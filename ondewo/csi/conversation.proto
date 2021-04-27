@@ -24,8 +24,9 @@ service Conversations {
 }
 
 message S2sStreamRequest {
-    TranscribeStreamRequest transcribe_stream_request = 1;
-    DetectIntentRequest detect_intent_request = 2;
+    bytes audio = 1;
+    string session_id = 2;
+    bool end_of_stream = 3;
 }
 
 message S2sStreamResponse {
