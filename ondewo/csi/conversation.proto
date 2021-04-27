@@ -1,0 +1,34 @@
+// Copyright 2020 ONDEWO GmbH
+// Licensed under the ONDEWO GmbH license, Version 1.0 (the "License");
+// you must not use this file except in compliance with the License.
+// You must obtain a copy of the License at
+// office@ondewo.com
+// Unless required by applicable law or agreed to in writing, software
+// distributed under the License is distributed on an "AS IS" BASIS,
+// WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
+// See the License for the specific language governing permissions and
+// limitations under the License.
+
+syntax = "proto3";
+
+package ondewo.csi;
+import "google/protobuf/empty.proto";
+import "ondewo/nlu/session.proto";
+import "ondewo/s2t/speech_to_text.proto";
+import "ondewo/t2s/text_to_speech.proto";
+
+// endpoints of csi service
+service Conversations {
+    rpc S2sStream (stream S2sStreamRequest) returns (stream S2sStreamResponse) {
+    };
+}
+
+message S2sStreamRequest {
+    TranscribeStreamRequest transcribe_stream_request = 1;
+    DetectIntentRequest detect_intent_request = 2;
+}
+
+message S2sStreamResponse {
+    DetectIntentResponse detect_intent_response = 1;
+    SynthetizeResponse synthetize_response = 2;
+}
