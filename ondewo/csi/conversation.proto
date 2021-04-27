@@ -17,8 +17,8 @@ syntax = "proto3";
 package ondewo.csi;
 import "google/protobuf/empty.proto";
 import "ondewo/nlu/session.proto";
-import "ondewo/s2t/speech_to_text.proto";
-import "ondewo/t2s/text_to_speech.proto";
+import "ondewo/s2t/speech-to-text.proto";
+import "ondewo/t2s/text-to-speech.proto";
 
 // endpoints of csi service
 service Conversations {
