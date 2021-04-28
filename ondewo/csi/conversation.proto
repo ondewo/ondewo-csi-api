@@ -20,17 +20,40 @@ import "ondewo/t2s/text-to-speech.proto";
 
 // endpoints of csi service
 service Conversations {
+    // Processes a natural language query in audio format in a streaming fashion
+    // and returns structured, actionable data as a result.
     rpc S2sStream (stream S2sStreamRequest) returns (stream S2sStreamResponse) {
     };
 }
 
+// The top-level message sent by the client to the
+// `S2sStream` method.
+//
+// Multiple request messages should be sent in order:
+//
+// 1.  The first message can contain `session_id`. The message must not contain `audio` nor `end_of_stream`.
+//
+// 2.  All subsequent messages must contain `audio`. If `end_of_stream` is `true`, the stream is closed.
 message S2sStreamRequest {
+    // Optional. The input audio content to be recognized.
     bytes audio = 1;
-    string session_id = 2;
+    // Optional. The session or call ID specified in the initial request. It’s up to the API caller to choose
+    // an appropriate string. It can be a random number or some type of user identifier (preferably hashed).
+    string session_id = 2
+    // If `true`, the recognizer will not return
+    // any further hypotheses about this piece of the audio. May only be populated
+    // for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`.
     bool end_of_stream = 3;
 }
 
+// The top-level message returned from the
+// `S2sStream` method.
+//
+// A response message is returned for each utterance of the input stream. It contains the full response from NLU system
+// in `detect_intent_response` together with full T2S response in `synthetize_response`.
 message S2sStreamResponse {
+    // full NLU response
     ondewo.nlu.DetectIntentResponse detect_intent_response = 1;
+    // full T2S response
     ondewo.t2s.SynthesizeResponse synthetize_response = 2;
 }
