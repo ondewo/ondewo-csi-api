@@ -51,6 +51,13 @@ message S2sStreamRequest {
 //
 // A response message is returned for each utterance of the input stream. It contains the full response from NLU system
 // in `detect_intent_response` together with full T2S response in `synthetize_response`.
+// Multiple response messages can be returned in order:
+//
+// 1.  The first response message for an input utterance contains response from NLU system `detect_intent_response`
+//     with detected intent and N fulfillment messages (N >= 0).
+//
+// 2.  The next N response messages contain T2S response `synthetize_response` with synthetized audio, one for each
+//     fulfillment message.
 message S2sStreamResponse {
     // full NLU response
     ondewo.nlu.DetectIntentResponse detect_intent_response = 1;
