@@ -29,6 +29,8 @@ service Conversations {
     };
     rpc DeleteS2sPipeline (S2sPipelineId) returns (google.protobuf.Empty) {
     };
+    rpc ListS2sPipelines (ListS2sPipelinesRequest) returns (ListS2sPipelinesResponse) {
+    };
     // Processes a natural language query in audio format in a streaming fashion
     // and returns structured, actionable data as a result.
     rpc S2sStream (stream S2sStreamRequest) returns (stream S2sStreamResponse) {
@@ -52,6 +54,14 @@ message S2sPipeline {
 message S2sPipelineId {
     // Required. CSI pipeline identifier.
     string id = 1;
+}
+
+message ListS2sPipelinesRequest {
+    // TODO: add filtering options
+}
+
+message ListS2sPipelinesResponse {
+    repeated S2sPipeline pipelines = 1;
 }
 
 // The top-level message sent by the client to the
