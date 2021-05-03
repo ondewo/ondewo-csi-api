@@ -15,15 +15,43 @@
 syntax = "proto3";
 
 package ondewo.csi;
+import "google/protobuf/empty.proto";
 import "ondewo/nlu/session.proto";
 import "ondewo/t2s/text-to-speech.proto";
 
 // endpoints of csi service
 service Conversations {
+    rpc CreateS2sPipeline (S2sPipeline) returns (google.protobuf.Empty) {
+    };
+    rpc GetS2sPipeline (S2sPipelineId) returns (S2sPipeline) {
+    };
+    rpc UpdateS2sPipeline (S2sPipeline) returns (google.protobuf.Empty) {
+    };
+    rpc DeleteS2sPipeline (S2sPipelineId) returns (google.protobuf.Empty) {
+    };
     // Processes a natural language query in audio format in a streaming fashion
     // and returns structured, actionable data as a result.
     rpc S2sStream (stream S2sStreamRequest) returns (stream S2sStreamResponse) {
     };
+}
+
+
+message S2sPipeline {
+    // Required. CSI pipeline identifier consisting of S2T, NLU and T2S configuration.
+    string id = 1;
+    // Required. S2T pipeline ID, e.g. "german_general"
+    string s2t_pipeline_id = 2;
+    // Required. NLU project ID, usually a hash, e.g. "ae33586b-afda-494a-aa73-1af0589cfc56".
+    string nlu_project_id = 3;
+    // Required. Language code present in the corresponding NLU project, e.g. "de".
+    string nlu_language_code = 4;
+    // Required. T2S pipeline ID, e.g. "kerstin".
+    string t2s_pipeline_id = 5;
+}
+
+message S2sPipelineId {
+    // Required. CSI pipeline identifier.
+    string id = 1;
 }
 
 // The top-level message sent by the client to the
@@ -35,15 +63,17 @@ service Conversations {
 //
 // 2.  All subsequent messages must contain `audio`. If `end_of_stream` is `true`, the stream is closed.
 message S2sStreamRequest {
-    // Optional. The input audio content to be recognized.
-    bytes audio = 1;
+    // Optional. The CSI pipeline ID specified in the initial request.
+    string pipeline_id = 1;
     // Optional. The session or call ID specified in the initial request. It’s up to the API caller to choose
     // an appropriate string. It can be a random number or some type of user identifier (preferably hashed).
-    string session_id = 2
+    string session_id = 2;
+    // Optional. The input audio content to be recognized.
+    bytes audio = 3;
     // If `true`, the recognizer will not return
     // any further hypotheses about this piece of the audio. May only be populated
     // for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`.
-    bool end_of_stream = 3;
+    bool end_of_stream = 4;
 }
 
 // The top-level message returned from the
