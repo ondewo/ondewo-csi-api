@@ -21,14 +21,19 @@ import "ondewo/t2s/text-to-speech.proto";
 
 // endpoints of csi service
 service Conversations {
+    // Create the S2S pipeline specified in the request message. The pipeline with the specified ID must not exist.
     rpc CreateS2sPipeline (S2sPipeline) returns (google.protobuf.Empty) {
     };
+    // Retrieve the S2S pipeline with the ID specified in the request message.
     rpc GetS2sPipeline (S2sPipelineId) returns (S2sPipeline) {
     };
+    // Update the S2S pipeline specified in the request message. The pipeline must exist.
     rpc UpdateS2sPipeline (S2sPipeline) returns (google.protobuf.Empty) {
     };
+    // Delete the S2S pipeline with the ID specified in the request message. The pipeline must exist.
     rpc DeleteS2sPipeline (S2sPipelineId) returns (google.protobuf.Empty) {
     };
+    // List all S2S pipelines of the server.
     rpc ListS2sPipelines (ListS2sPipelinesRequest) returns (ListS2sPipelinesResponse) {
     };
     // Processes a natural language query in audio format in a streaming fashion
@@ -37,9 +42,10 @@ service Conversations {
     };
 }
 
-
+// The top-level message sent by client to `CreateS2sPipeline` and `UpdateS2sPipeline` endpoints and received from
+// `GetS2sPipeline` endpoint.
 message S2sPipeline {
-    // Required. CSI pipeline identifier consisting of S2T, NLU and T2S configuration.
+    // Required. CSI pipeline identifier consisting of S2T, NLU and T2S configuration. ID can be any non-empty string.
     string id = 1;
     // Required. S2T pipeline ID, e.g. "german_general"
     string s2t_pipeline_id = 2;
@@ -51,16 +57,20 @@ message S2sPipeline {
     string t2s_pipeline_id = 5;
 }
 
+// The top-level message sent by client to `GetS2sPipeline` and `DeleteS2sPipeline` endpoints.
 message S2sPipelineId {
     // Required. CSI pipeline identifier.
     string id = 1;
 }
 
+// The top-level message sent by client to `ListS2sPipelines` endpoint. Currently without arguments.
 message ListS2sPipelinesRequest {
     // TODO: add filtering options
 }
 
+// The top-level message received from `ListS2sPipelines` endpoint.
 message ListS2sPipelinesResponse {
+    // Collection of S2S pipelines of the server.
     repeated S2sPipeline pipelines = 1;
 }
 
@@ -90,7 +100,7 @@ message S2sStreamRequest {
 // `S2sStream` method.
 //
 // A response message is returned for each utterance of the input stream. It contains the full response from NLU system
-// in `detect_intent_response` together with full T2S response in `synthetize_response`.
+// in `detect_intent_response` or the full T2S response in `synthetize_response`.
 // Multiple response messages can be returned in order:
 //
 // 1.  The first response message for an input utterance contains response from NLU system `detect_intent_response`
@@ -99,8 +109,10 @@ message S2sStreamRequest {
 // 2.  The next N response messages contain T2S response `synthetize_response` with synthetized audio, one for each
 //     fulfillment message.
 message S2sStreamResponse {
-    // full NLU response
-    ondewo.nlu.DetectIntentResponse detect_intent_response = 1;
-    // full T2S response
-    ondewo.t2s.SynthesizeResponse synthetize_response = 2;
+    oneof response {
+        // full NLU response
+        ondewo.nlu.DetectIntentResponse detect_intent_response = 1;
+        // full T2S response
+        ondewo.t2s.SynthesizeResponse synthetize_response = 2;
+    }
 }
