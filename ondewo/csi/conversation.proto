@@ -16,6 +16,7 @@ syntax = "proto3";
 
 package ondewo.csi;
 import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
 import "ondewo/nlu/session.proto";
 import "ondewo/t2s/text-to-speech.proto";
 
@@ -114,5 +115,20 @@ message S2sStreamResponse {
         ondewo.nlu.DetectIntentResponse detect_intent_response = 1;
         // full T2S response
         ondewo.t2s.SynthesizeResponse synthetize_response = 2;
+        // SIP trigger message
+        SipTrigger sip_trigger = 3;
     }
+}
+
+// SIP trigger message
+message SipTrigger {
+    enum SipTriggerType {
+        UNSPECIFIED = 0;
+        HANGUP = 1;
+        HANDOVER = 2;
+        SEND_NOW = 3;
+        PAUSE = 4;
+    }
+    SipTriggerType type = 1;
+    google.protobuf.Struct content = 2;
 }
