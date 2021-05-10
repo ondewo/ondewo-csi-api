@@ -42,7 +42,8 @@ service Conversations {
     rpc S2sStream (stream S2sStreamRequest) returns (stream S2sStreamResponse) {
     };
     // Check the health of S2T, NLU and T2S servers
-    rpc CheckHealth(CheckHealthRequest) returns (CheckHealthResponse)
+    rpc CheckHealth(CheckHealthRequest) returns (CheckHealthResponse) {
+    };
 
 }
 
