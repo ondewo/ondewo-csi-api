@@ -16,6 +16,7 @@ syntax = "proto3";
 
 package ondewo.csi;
 import "google/protobuf/empty.proto";
+import "google/rpc/status.proto";
 import "ondewo/nlu/session.proto";
 import "ondewo/t2s/text-to-speech.proto";
 
@@ -40,6 +41,9 @@ service Conversations {
     // and returns structured, actionable data as a result.
     rpc S2sStream (stream S2sStreamRequest) returns (stream S2sStreamResponse) {
     };
+    // Check the health of S2T, NLU and T2S servers
+    rpc CheckHealth(CheckHealthRequest) returns (CheckHealthResponse)
+
 }
 
 // The top-level message sent by client to `CreateS2sPipeline` and `UpdateS2sPipeline` endpoints and received from
@@ -115,4 +119,14 @@ message S2sStreamResponse {
         // full T2S response
         ondewo.t2s.SynthesizeResponse synthetize_response = 2;
     }
+}
+
+message CheckHealthRequest {
+
+}
+
+message CheckHealthResponse {
+    google.rpc.Status s2t_status = 1;
+    google.rpc.Status nlu_status = 2;
+    google.rpc.Status t2s_status = 3;
 }
