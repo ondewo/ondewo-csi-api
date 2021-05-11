@@ -85,7 +85,8 @@ message ListS2sPipelinesResponse {
 //
 // Multiple request messages should be sent in order:
 //
-// 1.  The first message can contain `session_id`. The message must not contain `audio` nor `end_of_stream`.
+// 1.  The first message must contain `pipeline_id` and can contain `session_id` or `initial_intent_display_name`.
+//     The message must not contain `audio` nor `end_of_stream`.
 //
 // 2.  All subsequent messages must contain `audio`. If `end_of_stream` is `true`, the stream is closed.
 message S2sStreamRequest {
@@ -100,6 +101,8 @@ message S2sStreamRequest {
     // any further hypotheses about this piece of the audio. May only be populated
     // for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`.
     bool end_of_stream = 4;
+    // Optional. Intent display name to trigger in NLU system in the beginning of the conversation.
+    string initial_intent_display_name = 5;
 }
 
 // The top-level message returned from the
