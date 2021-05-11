@@ -42,7 +42,7 @@ service Conversations {
     rpc S2sStream (stream S2sStreamRequest) returns (stream S2sStreamResponse) {
     };
     // Check the health of S2T, NLU and T2S servers
-    rpc CheckHealth(CheckHealthRequest) returns (CheckHealthResponse) {
+    rpc CheckUpstreamHealth(google.protobuf.Empty) returns (CheckUpstreamHealthResponse) {
     };
 
 }
@@ -122,11 +122,7 @@ message S2sStreamResponse {
     }
 }
 
-message CheckHealthRequest {
-
-}
-
-message CheckHealthResponse {
+message CheckUpstreamHealthResponse {
     google.rpc.Status s2t_status = 1;
     google.rpc.Status nlu_status = 2;
     google.rpc.Status t2s_status = 3;
