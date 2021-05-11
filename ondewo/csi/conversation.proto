@@ -40,6 +40,9 @@ service Conversations {
     // and returns structured, actionable data as a result.
     rpc S2sStream (stream S2sStreamRequest) returns (stream S2sStreamResponse) {
     };
+    // Trigger a specific intent in NLU
+    rpc TriggerIntent (TriggerIntentRequest) returns (ondewo.nlu.DetectIntentResponse) {
+    };
 }
 
 // The top-level message sent by client to `CreateS2sPipeline` and `UpdateS2sPipeline` endpoints and received from
@@ -115,4 +118,14 @@ message S2sStreamResponse {
         // full T2S response
         ondewo.t2s.SynthesizeResponse synthetize_response = 2;
     }
+}
+
+message TriggerIntentRequest {
+    // Required. The CSI pipeline ID specified in the initial request.
+    string pipeline_id = 1;
+    // Required. The session or call ID specified in the initial request. It’s up to the API caller to choose
+    // an appropriate string. It can be a random number or some type of user identifier (preferably hashed).
+    string session_id = 2;
+    // Required. Intent display name to trigger in the NLU system.
+    string intent_name = 3;
 }
