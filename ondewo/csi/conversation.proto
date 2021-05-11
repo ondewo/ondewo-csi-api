@@ -16,6 +16,7 @@ syntax = "proto3";
 
 package ondewo.csi;
 import "google/protobuf/empty.proto";
+import "google/protobuf/struct.proto";
 import "ondewo/nlu/session.proto";
 import "ondewo/t2s/text-to-speech.proto";
 
@@ -106,13 +107,37 @@ message S2sStreamRequest {
 // 1.  The first response message for an input utterance contains response from NLU system `detect_intent_response`
 //     with detected intent and N fulfillment messages (N >= 0).
 //
-// 2.  The next N response messages contain T2S response `synthetize_response` with synthetized audio, one for each
-//     fulfillment message.
+// 2.  The next N response messages contain for each fulfillment message one of the following:
+//      a. T2S response `synthetize_response` with synthetized audio
+//      b. SIP trigger message `sip_trigger` with SIP trigger extracted from the fulfillment message
 message S2sStreamResponse {
     oneof response {
         // full NLU response
         ondewo.nlu.DetectIntentResponse detect_intent_response = 1;
         // full T2S response
         ondewo.t2s.SynthesizeResponse synthetize_response = 2;
+        // SIP trigger message
+        SipTrigger sip_trigger = 3;
     }
+}
+
+// SIP trigger message
+message SipTrigger {
+    // type of the SIP trigger
+    enum SipTriggerType {
+        // should never be used
+        UNSPECIFIED = 0;
+        // hard hangup
+        HANGUP = 1;
+        // handover to human
+        HUMAN_HANDOVER = 2;
+        // send now
+        SEND_NOW = 3;
+        // pause
+        PAUSE = 4;
+    }
+    SipTriggerType type = 1;
+
+    // extra parameters for the trigger
+    google.protobuf.Struct content = 2;
 }
