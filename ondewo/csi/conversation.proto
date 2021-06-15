@@ -45,6 +45,8 @@ service Conversations {
     // Check the health of S2T, NLU and T2S servers
     rpc CheckUpstreamHealth(google.protobuf.Empty) returns (CheckUpstreamHealthResponse) {
     };
+    rpc GetControlStream (ControlStreamRequest) returns (stream ControlStreamResponse) {
+    };
 
 }
 
@@ -154,4 +156,14 @@ message CheckUpstreamHealthResponse {
     google.rpc.Status s2t_status = 1;
     google.rpc.Status nlu_status = 2;
     google.rpc.Status t2s_status = 3;
+}
+
+message ControlStreamRequest{}
+
+message ControlStreamResponse{
+    enum ControlStatus {
+        NORMAL_STREAM = 0;
+        EMERGENCY_STOP = 1;
+    }
+    ControlStatus control_status = 1;
 }
