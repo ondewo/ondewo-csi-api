@@ -47,7 +47,8 @@ service Conversations {
     };
     rpc GetControlStream (ControlStreamRequest) returns (stream ControlStreamResponse) {
     };
-
+    rpc SetControlStatus (SetControlStatusRequest) returns (SetControlStatusResponse) {
+    };
 }
 
 // The top-level message sent by client to `CreateS2sPipeline` and `UpdateS2sPipeline` endpoints and received from
@@ -160,10 +161,20 @@ message CheckUpstreamHealthResponse {
 
 message ControlStreamRequest{}
 
-message ControlStreamResponse{
-    enum ControlStatus {
+enum ControlStatus {
         NORMAL_STREAM = 0;
         EMERGENCY_STOP = 1;
-    }
+}
+
+message ControlStreamResponse{
     ControlStatus control_status = 1;
+}
+
+message SetControlStatusRequest{
+    ControlStatus control_status = 1;
+}
+
+message SetControlStatusResponse{
+    ControlStatus old_control_status = 1;
+    ControlStatus new_control_status = 2;
 }
