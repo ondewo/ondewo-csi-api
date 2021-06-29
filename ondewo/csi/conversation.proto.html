@@ -25,9 +25,9 @@ import "ondewo/t2s/text-to-speech.proto";
 service Conversations {
     // Create the S2S pipeline specified in the request message. The pipeline with the specified ID must not exist.
     //
-    // Examples:
+    // <p>Examples:</p>
     //
-    // ```bash
+    // <pre>
     // grpcurl -plaintext -d '{
     //   "id": "pizza",
     //   "s2t_pipeline_id": "default_german",
@@ -35,38 +35,32 @@ service Conversations {
     //   "nlu_language_code": "de",
     //   "t2s_pipeline_id": "default_german"
     // }' localhost:50051 ondewo.csi.Conversations.CreateS2sPipeline
-    // ```
-    //
-    // ```json
-    // {}
-    // ```
+    // </pre>
+    // <samp>{}</samp>
     rpc CreateS2sPipeline (S2sPipeline) returns (google.protobuf.Empty) {
     };
     // Retrieve the S2S pipeline with the ID specified in the request message.
     //
-    // Examples:
+    // <p>Examples:</p>
     //
-    // ```bash
+    // <pre>
     // grpcurl -plaintext -d '{"id": "pizza"}' localhost:50051 ondewo.csi.Conversations.GetS2sPipeline
-    // ```
-    //
-    // ```json
-    // {
+    // </pre>
+    // <samp>{
     //   "id": "pizza",
     //   "s2t_pipeline_id": "default_german",
     //   "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49",
     //   "nlu_language_code": "de",
     //   "t2s_pipeline_id": "default_german"
     // }
-    //
-    // ```
+    // </samp>
     rpc GetS2sPipeline (S2sPipelineId) returns (S2sPipeline) {
     };
     // Update the S2S pipeline specified in the request message. The pipeline must exist.
     //
-    // Examples:
+    // <p>Examples:</p>
     //
-    // ```bash
+    // <pre>
     // grpcurl -plaintext -d '{
     //   "id": "pizza",
     //   "s2t_pipeline_id": "default_german",
@@ -74,36 +68,28 @@ service Conversations {
     //   "nlu_language_code": "en",
     //   "t2s_pipeline_id": "default_german"
     // }' localhost:50051 ondewo.csi.Conversations.UpdateS2sPipeline
-    // ```
-    //
-    // ```json
-    // {}
-    // ```
+    // </pre>
+    // <samp>{}</samp>
     rpc UpdateS2sPipeline (S2sPipeline) returns (google.protobuf.Empty) {
     };
     // Delete the S2S pipeline with the ID specified in the request message. The pipeline must exist.
     //
-    // Examples:
+    // <p>Examples:</p>
     //
-    // ```bash
+    // <pre>
     // grpcurl -plaintext -d '{"id": "pizza"}' localhost:50051 ondewo.csi.Conversations.DeleteS2sPipeline
-    // ```
-    //
-    // ```json
-    // {}
-    // ```
+    // </pre>
+    // <samp>{}</samp>
     rpc DeleteS2sPipeline (S2sPipelineId) returns (google.protobuf.Empty) {
     };
     // List all S2S pipelines of the server.
     //
-    // Examples:
+    // <p>Examples:</p>
     //
-    // ```bash
+    // <pre>
     // grpcurl -plaintext localhost:50051 ondewo.csi.Conversations.ListS2sPipelines
-    // ```
-    //
-    // ```json
-    // {
+    // </pre>
+    // <samp>{
     //   "pipelines": [
     //     {
     //       "id": "pizza",
@@ -113,8 +99,7 @@ service Conversations {
     //       "t2s_pipeline_id": "default_german"
     //     }
     //   ]
-    // }
-    // ```
+    // }</samp>
     rpc ListS2sPipelines (ListS2sPipelinesRequest) returns (ListS2sPipelinesResponse) {
     };
     // Processes a natural language query in audio format in a streaming fashion
@@ -123,20 +108,17 @@ service Conversations {
     };
     // Check the health of S2T, NLU and T2S servers
     //
-    // Examples:
+    // <p>Examples:</p>
     //
-    // ```bash
+    // <pre>
     // grpcurl -plaintext localhost:50051 ondewo.csi.Conversations.CheckUpstreamHealth
-    // ```
+    // </pre>
     //
     // All upstreams healthy:
-    // ```json
-    // {}
-    // ```
+    // <samp>{}</samp>
     //
     // All upstreams unhealthy:
-    // ```json
-    // {
+    // <samp>{
     //   "s2t_status": {
     //     "code": 14,
     //     "message": "failed to connect to all addresses"
@@ -149,8 +131,7 @@ service Conversations {
     //     "code": 14,
     //     "message": "failed to connect to all addresses"
     //   }
-    // }
-    // ```
+    // }</samp>
     rpc CheckUpstreamHealth(google.protobuf.Empty) returns (CheckUpstreamHealthResponse) {
     };
 
