@@ -28,7 +28,7 @@ service Conversations {
 
       Examples:
 
-      ```bash
+      ```
       grpcurl -plaintext -d '{
         "id": "pizza",
         "s2t_pipeline_id": "default_german",
@@ -38,7 +38,7 @@ service Conversations {
       }' localhost:50051 ondewo.csi.Conversations.CreateS2sPipeline
       ```
 
-      ```json
+      ```
       {}
       ```
      */
@@ -49,11 +49,11 @@ service Conversations {
 
       Examples:
 
-      ```bash
+      ```
       grpcurl -plaintext -d '{"id": "pizza"}' localhost:50051 ondewo.csi.Conversations.GetS2sPipeline
       ```
 
-      ```json
+      ```
       {
         "id": "pizza",
         "s2t_pipeline_id": "default_german",
@@ -71,7 +71,7 @@ service Conversations {
 
       Examples:
 
-      ```bash
+      ```
       grpcurl -plaintext -d '{
         "id": "pizza",
         "s2t_pipeline_id": "default_german",
@@ -81,7 +81,7 @@ service Conversations {
       }' localhost:50051 ondewo.csi.Conversations.UpdateS2sPipeline
       ```
 
-      ```json
+      ```
       {}
       ```
      */
@@ -92,11 +92,11 @@ service Conversations {
 
       Examples:
 
-      ```bash
+      ```
       grpcurl -plaintext -d '{"id": "pizza"}' localhost:50051 ondewo.csi.Conversations.DeleteS2sPipeline
       ```
 
-      ```json
+      ```
       {}
       ```
      */
@@ -107,11 +107,11 @@ service Conversations {
 
       Examples:
 
-      ```bash
+      ```
       grpcurl -plaintext localhost:50051 ondewo.csi.Conversations.ListS2sPipelines
       ```
 
-      ```json
+      ```
       {
         "pipelines": [
           {
@@ -138,17 +138,17 @@ service Conversations {
 
       Examples:
 
-      ```bash
+      ```
       grpcurl -plaintext localhost:50051 ondewo.csi.Conversations.CheckUpstreamHealth
       ```
 
       All upstreams healthy:
-      ```json
+      ```
       {}
       ```
 
       All upstreams unhealthy:
-      ```json
+      ```
       {
         "s2t_status": {
           "code": 14,
