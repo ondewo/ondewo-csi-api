@@ -207,13 +207,53 @@ endpoints of csi service
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateS2sPipeline | [S2sPipeline](#ondewo.csi.S2sPipeline) | [.google.protobuf.Empty](#google.protobuf.Empty) | Create the S2S pipeline specified in the request message. The pipeline with the specified ID must not exist. |
-| GetS2sPipeline | [S2sPipelineId](#ondewo.csi.S2sPipelineId) | [S2sPipeline](#ondewo.csi.S2sPipeline) | Retrieve the S2S pipeline with the ID specified in the request message. |
-| UpdateS2sPipeline | [S2sPipeline](#ondewo.csi.S2sPipeline) | [.google.protobuf.Empty](#google.protobuf.Empty) | Update the S2S pipeline specified in the request message. The pipeline must exist. |
-| DeleteS2sPipeline | [S2sPipelineId](#ondewo.csi.S2sPipelineId) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete the S2S pipeline with the ID specified in the request message. The pipeline must exist. |
-| ListS2sPipelines | [ListS2sPipelinesRequest](#ondewo.csi.ListS2sPipelinesRequest) | [ListS2sPipelinesResponse](#ondewo.csi.ListS2sPipelinesResponse) | List all S2S pipelines of the server. |
+| CreateS2sPipeline | [S2sPipeline](#ondewo.csi.S2sPipeline) | [.google.protobuf.Empty](#google.protobuf.Empty) | Create the S2S pipeline specified in the request message. The pipeline with the specified ID must not exist.
+
+Examples:
+
+```bash grpcurl -plaintext -d '{ "id": "pizza", "s2t_pipeline_id": "default_german", "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49", "nlu_language_code": "de", "t2s_pipeline_id": "default_german" }' localhost:50051 ondewo.csi.Conversations.CreateS2sPipeline ```
+
+```json {} ``` |
+| GetS2sPipeline | [S2sPipelineId](#ondewo.csi.S2sPipelineId) | [S2sPipeline](#ondewo.csi.S2sPipeline) | Retrieve the S2S pipeline with the ID specified in the request message.
+
+Examples:
+
+```bash grpcurl -plaintext -d '{"id": "pizza"}' localhost:50051 ondewo.csi.Conversations.GetS2sPipeline ```
+
+```json { "id": "pizza", "s2t_pipeline_id": "default_german", "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49", "nlu_language_code": "de", "t2s_pipeline_id": "default_german" }
+
+``` |
+| UpdateS2sPipeline | [S2sPipeline](#ondewo.csi.S2sPipeline) | [.google.protobuf.Empty](#google.protobuf.Empty) | Update the S2S pipeline specified in the request message. The pipeline must exist.
+
+Examples:
+
+```bash grpcurl -plaintext -d '{ "id": "pizza", "s2t_pipeline_id": "default_german", "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49", "nlu_language_code": "en", "t2s_pipeline_id": "default_german" }' localhost:50051 ondewo.csi.Conversations.UpdateS2sPipeline ```
+
+```json {} ``` |
+| DeleteS2sPipeline | [S2sPipelineId](#ondewo.csi.S2sPipelineId) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete the S2S pipeline with the ID specified in the request message. The pipeline must exist.
+
+Examples:
+
+```bash grpcurl -plaintext -d '{"id": "pizza"}' localhost:50051 ondewo.csi.Conversations.DeleteS2sPipeline ```
+
+```json {} ``` |
+| ListS2sPipelines | [ListS2sPipelinesRequest](#ondewo.csi.ListS2sPipelinesRequest) | [ListS2sPipelinesResponse](#ondewo.csi.ListS2sPipelinesResponse) | List all S2S pipelines of the server.
+
+Examples:
+
+```bash grpcurl -plaintext localhost:50051 ondewo.csi.Conversations.ListS2sPipelines ```
+
+```json { "pipelines": [ { "id": "pizza", "s2t_pipeline_id": "default_german", "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49", "nlu_language_code": "de", "t2s_pipeline_id": "default_german" } ] } ``` |
 | S2sStream | [S2sStreamRequest](#ondewo.csi.S2sStreamRequest) stream | [S2sStreamResponse](#ondewo.csi.S2sStreamResponse) stream | Processes a natural language query in audio format in a streaming fashion and returns structured, actionable data as a result. |
-| CheckUpstreamHealth | [.google.protobuf.Empty](#google.protobuf.Empty) | [CheckUpstreamHealthResponse](#ondewo.csi.CheckUpstreamHealthResponse) | Check the health of S2T, NLU and T2S servers |
+| CheckUpstreamHealth | [.google.protobuf.Empty](#google.protobuf.Empty) | [CheckUpstreamHealthResponse](#ondewo.csi.CheckUpstreamHealthResponse) | Check the health of S2T, NLU and T2S servers
+
+Examples:
+
+```bash grpcurl -plaintext localhost:50051 ondewo.csi.Conversations.CheckUpstreamHealth ```
+
+All upstreams healthy: ```json {} ```
+
+All upstreams unhealthy: ```json { "s2t_status": { "code": 14, "message": "failed to connect to all addresses" }, "nlu_status": { "code": 14, "message": "failed to connect to all addresses" }, "t2s_status": { "code": 14, "message": "failed to connect to all addresses" } } ``` |
 
  <!-- end services -->
 
