@@ -23,115 +23,148 @@ import "ondewo/t2s/text-to-speech.proto";
 
 // endpoints of csi service
 service Conversations {
-    // Create the S2S pipeline specified in the request message. The pipeline with the specified ID must not exist.
-    //
-    // <p>Examples:</p>
-    //
-    // <pre>
-    // grpcurl -plaintext -d '{
-    //   "id": "pizza",
-    //   "s2t_pipeline_id": "default_german",
-    //   "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49",
-    //   "nlu_language_code": "de",
-    //   "t2s_pipeline_id": "default_german"
-    // }' localhost:50051 ondewo.csi.Conversations.CreateS2sPipeline
-    // </pre>
-    // <samp>{}</samp>
+    /*
+      Create the S2S pipeline specified in the request message. The pipeline with the specified ID must not exist.
+
+      Examples:
+
+      ```
+      grpcurl -plaintext -d '{
+        "id": "pizza",
+        "s2t_pipeline_id": "default_german",
+        "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49",
+        "nlu_language_code": "de",
+        "t2s_pipeline_id": "default_german"
+      }' localhost:50051 ondewo.csi.Conversations.CreateS2sPipeline
+      ```
+
+      ```
+      {}
+      ```
+     */
     rpc CreateS2sPipeline (S2sPipeline) returns (google.protobuf.Empty) {
     };
-    // Retrieve the S2S pipeline with the ID specified in the request message.
-    //
-    // <p>Examples:</p>
-    //
-    // <pre>
-    // grpcurl -plaintext -d '{"id": "pizza"}' localhost:50051 ondewo.csi.Conversations.GetS2sPipeline
-    // </pre>
-    // <samp>{
-    //   "id": "pizza",
-    //   "s2t_pipeline_id": "default_german",
-    //   "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49",
-    //   "nlu_language_code": "de",
-    //   "t2s_pipeline_id": "default_german"
-    // }
-    // </samp>
+    /*
+      Retrieve the S2S pipeline with the ID specified in the request message.
+
+      Examples:
+
+      ```
+      grpcurl -plaintext -d '{"id": "pizza"}' localhost:50051 ondewo.csi.Conversations.GetS2sPipeline
+      ```
+
+      ```
+      {
+        "id": "pizza",
+        "s2t_pipeline_id": "default_german",
+        "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49",
+        "nlu_language_code": "de",
+        "t2s_pipeline_id": "default_german"
+      }
+
+      ```
+     */
     rpc GetS2sPipeline (S2sPipelineId) returns (S2sPipeline) {
     };
-    // Update the S2S pipeline specified in the request message. The pipeline must exist.
-    //
-    // <p>Examples:</p>
-    //
-    // <pre>
-    // grpcurl -plaintext -d '{
-    //   "id": "pizza",
-    //   "s2t_pipeline_id": "default_german",
-    //   "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49",
-    //   "nlu_language_code": "en",
-    //   "t2s_pipeline_id": "default_german"
-    // }' localhost:50051 ondewo.csi.Conversations.UpdateS2sPipeline
-    // </pre>
-    // <samp>{}</samp>
+    /*
+      Update the S2S pipeline specified in the request message. The pipeline must exist.
+
+      Examples:
+
+      ```
+      grpcurl -plaintext -d '{
+        "id": "pizza",
+        "s2t_pipeline_id": "default_german",
+        "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49",
+        "nlu_language_code": "en",
+        "t2s_pipeline_id": "default_german"
+      }' localhost:50051 ondewo.csi.Conversations.UpdateS2sPipeline
+      ```
+
+      ```
+      {}
+      ```
+     */
     rpc UpdateS2sPipeline (S2sPipeline) returns (google.protobuf.Empty) {
     };
-    // Delete the S2S pipeline with the ID specified in the request message. The pipeline must exist.
-    //
-    // <p>Examples:</p>
-    //
-    // <pre>
-    // grpcurl -plaintext -d '{"id": "pizza"}' localhost:50051 ondewo.csi.Conversations.DeleteS2sPipeline
-    // </pre>
-    // <samp>{}</samp>
+    /*
+      Delete the S2S pipeline with the ID specified in the request message. The pipeline must exist.
+
+      Examples:
+
+      ```
+      grpcurl -plaintext -d '{"id": "pizza"}' localhost:50051 ondewo.csi.Conversations.DeleteS2sPipeline
+      ```
+
+      ```
+      {}
+      ```
+     */
     rpc DeleteS2sPipeline (S2sPipelineId) returns (google.protobuf.Empty) {
     };
-    // List all S2S pipelines of the server.
-    //
-    // <p>Examples:</p>
-    //
-    // <pre>
-    // grpcurl -plaintext localhost:50051 ondewo.csi.Conversations.ListS2sPipelines
-    // </pre>
-    // <samp>{
-    //   "pipelines": [
-    //     {
-    //       "id": "pizza",
-    //       "s2t_pipeline_id": "default_german",
-    //       "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49",
-    //       "nlu_language_code": "de",
-    //       "t2s_pipeline_id": "default_german"
-    //     }
-    //   ]
-    // }</samp>
+    /*
+      List all S2S pipelines of the server.
+
+      Examples:
+
+      ```
+      grpcurl -plaintext localhost:50051 ondewo.csi.Conversations.ListS2sPipelines
+      ```
+
+      ```
+      {
+        "pipelines": [
+          {
+            "id": "pizza",
+            "s2t_pipeline_id": "default_german",
+            "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49",
+            "nlu_language_code": "de",
+            "t2s_pipeline_id": "default_german"
+          }
+        ]
+      }
+      ```
+     */
     rpc ListS2sPipelines (ListS2sPipelinesRequest) returns (ListS2sPipelinesResponse) {
     };
-    // Processes a natural language query in audio format in a streaming fashion
-    // and returns structured, actionable data as a result.
+    /*
+      Processes a natural language query in audio format in a streaming fashion
+      and returns structured, actionable data as a result.
+     */
     rpc S2sStream (stream S2sStreamRequest) returns (stream S2sStreamResponse) {
     };
-    // Check the health of S2T, NLU and T2S servers
-    //
-    // <p>Examples:</p>
-    //
-    // <pre>
-    // grpcurl -plaintext localhost:50051 ondewo.csi.Conversations.CheckUpstreamHealth
-    // </pre>
-    //
-    // All upstreams healthy:
-    // <samp>{}</samp>
-    //
-    // All upstreams unhealthy:
-    // <samp>{
-    //   "s2t_status": {
-    //     "code": 14,
-    //     "message": "failed to connect to all addresses"
-    //   },
-    //   "nlu_status": {
-    //     "code": 14,
-    //     "message": "failed to connect to all addresses"
-    //   },
-    //   "t2s_status": {
-    //     "code": 14,
-    //     "message": "failed to connect to all addresses"
-    //   }
-    // }</samp>
+    /*
+      Check the health of S2T, NLU and T2S servers
+
+      Examples:
+
+      ```
+      grpcurl -plaintext localhost:50051 ondewo.csi.Conversations.CheckUpstreamHealth
+      ```
+
+      All upstreams healthy:
+      ```
+      {}
+      ```
+
+      All upstreams unhealthy:
+      ```
+      {
+        "s2t_status": {
+          "code": 14,
+          "message": "failed to connect to all addresses"
+        },
+        "nlu_status": {
+          "code": 14,
+          "message": "failed to connect to all addresses"
+        },
+        "t2s_status": {
+          "code": 14,
+          "message": "failed to connect to all addresses"
+        }
+      }
+      ```
+     */
     rpc CheckUpstreamHealth(google.protobuf.Empty) returns (CheckUpstreamHealthResponse) {
     };
 
