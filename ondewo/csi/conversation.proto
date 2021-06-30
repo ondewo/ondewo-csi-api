@@ -162,7 +162,7 @@ message CheckUpstreamHealthResponse {
 message ControlStreamRequest{}
 
 enum ControlStatus {
-        NORMAL_STREAM = 0;
+        OK = 0;
         EMERGENCY_STOP = 1;
 }
 
