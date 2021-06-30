@@ -1,6 +1,14 @@
 # Release History
 *****************
 
+## Release ONDEWO CSI API 1.0.0
+
+### New Features
+* [OND233-258] add ControlStream endpoints
+* [OND211-380] generate API documentation accessible [here](https://ondewo.github.io/ondewo-csi-api/). 
+
+*****************
+
 ## Release ONDEWO CSI API 0.2.2
 
 ### New Features
