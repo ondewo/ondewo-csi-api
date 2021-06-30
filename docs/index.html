@@ -56,6 +56,10 @@
                       
                         <li><a href="#ondewo.csi.Conversations.CheckUpstreamHealth" class="title-badge method">CheckUpstreamHealth</a></li>
                       
+                        <li><a href="#ondewo.csi.Conversations.GetControlStream" class="title-badge method">GetControlStream</a></li>
+                      
+                        <li><a href="#ondewo.csi.Conversations.SetControlStatus" class="title-badge method">SetControlStatus</a></li>
+                      
                       </ul>
                       
                     </li>
@@ -68,6 +72,14 @@
                     
                       <li>
                         <a href="#ondewo.csi.CheckUpstreamHealthResponse" class="title-badge message">CheckUpstreamHealthResponse</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.csi.ControlStreamRequest" class="title-badge message">ControlStreamRequest</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.csi.ControlStreamResponse" class="title-badge message">ControlStreamResponse</a>
                       </li>
                     
                       <li>
@@ -95,6 +107,14 @@
                       </li>
                     
                       <li>
+                        <a href="#ondewo.csi.SetControlStatusRequest" class="title-badge message">SetControlStatusRequest</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.csi.SetControlStatusResponse" class="title-badge message">SetControlStatusResponse</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.csi.SipTrigger" class="title-badge message">SipTrigger</a>
                       </li>
                     
@@ -103,6 +123,10 @@
                   
                   <a href="#ondewo/csi/conversation.proto-enums">Enums</a>
                   <ul>
+                    
+                      <li>
+                        <a href="#ondewo.csi.ControlStatus" class="title-badge enum">ControlStatus</a>
+                      </li>
                     
                       <li>
                         <a href="#ondewo.csi.SipTrigger.SipTriggerType" class="title-badge enum">SipTrigger.SipTriggerType</a>
@@ -271,6 +295,18 @@ All upstreams unhealthy:
   }
 }</samp>
         
+          <h4 id="ondewo.csi.Conversations.GetControlStream" class="title-badge method">GetControlStream</h4>
+
+          <pre>rpc GetControlStream (<a href="#ondewo.csi.ControlStreamRequest">ControlStreamRequest</a>) returns (stream <a href="#ondewo.csi.ControlStreamResponse">ControlStreamResponse)</a></pre>
+
+          
+        
+          <h4 id="ondewo.csi.Conversations.SetControlStatus" class="title-badge method">SetControlStatus</h4>
+
+          <pre>rpc SetControlStatus (<a href="#ondewo.csi.SetControlStatusRequest">SetControlStatusRequest</a>) returns (<a href="#ondewo.csi.SetControlStatusResponse">SetControlStatusResponse)</a></pre>
+
+          
+        
 
         
 
@@ -307,6 +343,37 @@ All upstreams unhealthy:
                 <tr>
                   <td>t2s_status</td>
                   <td><a href="#google.rpc.Status">google.rpc.Status</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.csi.ControlStreamRequest" class="title-badge message">ControlStreamRequest</h3>
+        <p></p>
+
+        
+
+        
+      
+        <h3 id="ondewo.csi.ControlStreamResponse" class="title-badge message">ControlStreamResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>control_status</td>
+                  <td><a href="#ondewo.csi.ControlStatus">ControlStatus</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -518,6 +585,61 @@ for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
 
         
       
+        <h3 id="ondewo.csi.SetControlStatusRequest" class="title-badge message">SetControlStatusRequest</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>control_status</td>
+                  <td><a href="#ondewo.csi.ControlStatus">ControlStatus</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.csi.SetControlStatusResponse" class="title-badge message">SetControlStatusResponse</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>old_control_status</td>
+                  <td><a href="#ondewo.csi.ControlStatus">ControlStatus</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>new_control_status</td>
+                  <td><a href="#ondewo.csi.ControlStatus">ControlStatus</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
         <h3 id="ondewo.csi.SipTrigger" class="title-badge message">SipTrigger</h3>
         <p>SIP trigger message</p>
 
@@ -553,6 +675,29 @@ for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
 
       
       <div id="ondewo/csi/conversation.proto-enums" class="object-category">Enums</div>
+      
+        <h3 id="ondewo.csi.ControlStatus" class="title-badge enum">ControlStatus</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>OK</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>EMERGENCY_STOP</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
         <h3 id="ondewo.csi.SipTrigger.SipTriggerType" class="title-badge enum">SipTrigger.SipTriggerType</h3>
         <p>type of the SIP trigger</p>
