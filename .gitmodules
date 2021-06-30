@@ -1,0 +1,9 @@
+[submodule "ondewo-nlu-api"]
+	path = ondewo-nlu-api
+	url = https://github.com/ondewo/ondewo-nlu-api.git
+[submodule "ondewo-s2t-api"]
+	path = ondewo-s2t-api
+	url = https://github.com/ondewo/ondewo-s2t-api.git
+[submodule "ondewo-t2s-api"]
+	path = ondewo-t2s-api
+	url = https://github.com/ondewo/ondewo-t2s-api.git
