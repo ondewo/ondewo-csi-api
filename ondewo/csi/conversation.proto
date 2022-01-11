@@ -312,5 +312,5 @@ message ControlMessageServiceParameters {
 message ControlMessage {
     ControlMessageServiceName service = 1;
     ControlMessageServiceMethod method = 2;
-    repeated ControlMessageServiceParameters parameters = 3;
+    ControlMessageServiceParameters parameters = 3;
 }
