@@ -22,6 +22,7 @@ import "google/protobuf/struct.proto";
 import "ondewo/nlu/session.proto";
 import "ondewo/t2s/text-to-speech.proto";
 import "ondewo/s2t/speech-to-text.proto";
+import "google/protobuf/any.proto";
 
 // endpoints of csi service
 service Conversations {
@@ -295,7 +296,7 @@ message CondtionValueUnion {
 
 message Condition{
     string type= 1;
-    CondtionValueUnion value= 2;
+    google.protobuf.Any value= 2;
 }
 
 
