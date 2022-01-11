@@ -294,9 +294,17 @@ message CondtionValueUnion {
     }
 }
 
+enum ConditionType {
+        UNKNOWTYPE = 0;
+        immediate = 1;
+        duration = 2;
+        datetime = 3;
+        interactions = 4;
+}
+
 message Condition{
-    string type= 1;
-    google.protobuf.Any value= 2;
+    ConditionType type= 1;
+    string value= 2;
 }
 
 
@@ -307,6 +315,8 @@ message ControlMessageServiceParameters {
     }
     map<string, Condition> condition_start = 3;
     map<string, Condition> condition_end = 4;
+
+
 }
 
 
