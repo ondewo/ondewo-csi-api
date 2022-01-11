@@ -21,6 +21,7 @@ import "google/protobuf/timestamp.proto";
 import "google/protobuf/struct.proto";
 import "ondewo/nlu/session.proto";
 import "ondewo/t2s/text-to-speech.proto";
+import "ondewo/t2s/speech-to-text.proto";
 
 // endpoints of csi service
 service Conversations {
