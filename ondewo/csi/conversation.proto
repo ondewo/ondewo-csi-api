@@ -313,8 +313,8 @@ message ControlMessageServiceParameters {
         ondewo.t2s.RequestConfig t2s_config = 1;
         ondewo.s2t.TranscribeRequestConfig s2t_config = 2;
     }
-    map<string, Condition> condition_start = 3;
-    map<string, Condition> condition_end = 4;
+    Condition condition_start = 3;
+    Condition condition_end = 4;
 
 
 }
