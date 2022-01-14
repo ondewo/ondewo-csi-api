@@ -17,9 +17,12 @@ syntax = "proto3";
 package ondewo.csi;
 import "google/protobuf/empty.proto";
 import "google/rpc/status.proto";
+import "google/protobuf/timestamp.proto";
 import "google/protobuf/struct.proto";
 import "ondewo/nlu/session.proto";
 import "ondewo/t2s/text-to-speech.proto";
+import "ondewo/s2t/speech-to-text.proto";
+import "google/protobuf/any.proto";
 
 // endpoints of csi service
 service Conversations {
@@ -266,4 +269,59 @@ message SetControlStatusRequest{
 message SetControlStatusResponse{
     ControlStatus old_control_status = 1;
     ControlStatus new_control_status = 2;
+}
+
+
+enum ControlMessageServiceName {
+        UNKNOWNNAME = 0;
+        ondewo_s2t = 1;
+        ondewo_t2s = 2;
+        ondewo_nlu = 3;
+}
+
+enum ControlMessageServiceMethod {
+        UNKNOWNMETHOD = 0;
+        update_config = 1;
+        undo_config = 2;
+        reset_config = 3;
+}
+
+message CondtionValueUnion {
+    oneof UnionOneof {
+        int64 int_value = 1;
+        float float_value = 2;
+        google.protobuf.Timestamp datetime_value = 3;
+    }
+}
+
+enum ConditionType {
+        UNKNOWTYPE = 0;
+        immediate = 1;
+        duration = 2;
+        datetime = 3;
+        interactions = 4;
+}
+
+message Condition{
+    ConditionType type= 1;
+    string value= 2;
+}
+
+
+message ControlMessageServiceParameters {
+    oneof config{
+        ondewo.t2s.RequestConfig t2s_config = 1;
+        ondewo.s2t.TranscribeRequestConfig s2t_config = 2;
+    }
+    Condition condition_start = 3;
+    Condition condition_end = 4;
+
+
+}
+
+
+message ControlMessage {
+    ControlMessageServiceName service = 1;
+    ControlMessageServiceMethod method = 2;
+    ControlMessageServiceParameters parameters = 3;
 }

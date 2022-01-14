@@ -1,6 +1,19 @@
 # Release History
 *****************
 
+## Release ONDEWO CSI API 1.2.0
+### New Features
+* Added Control messages
+
+*****************
+
+## Release ONDEWO CSI API 1.1.0
+### New Features
+* New nlu,t2s,s2t api and proto generation
+
+*****************
+
+
 ## Release ONDEWO CSI API 1.0.0
 
 ### New Features
