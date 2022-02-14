@@ -277,6 +277,7 @@ enum ControlMessageServiceName {
         ondewo_s2t = 1;
         ondewo_t2s = 2;
         ondewo_nlu = 3;
+        ondewo_sip = 4;
 }
 
 enum ControlMessageServiceMethod {
@@ -284,6 +285,11 @@ enum ControlMessageServiceMethod {
         update_config = 1;
         undo_config = 2;
         reset_config = 3;
+        end_call=4;
+        transfer_call=5;
+        play_wav_files=6;
+        mute=7;
+        un_mute=8;
 }
 
 message CondtionValueUnion {
