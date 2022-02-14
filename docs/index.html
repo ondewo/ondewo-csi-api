@@ -75,6 +75,22 @@
                       </li>
                     
                       <li>
+                        <a href="#ondewo.csi.Condition" class="title-badge message">Condition</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.csi.CondtionValueUnion" class="title-badge message">CondtionValueUnion</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.csi.ControlMessage" class="title-badge message">ControlMessage</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.csi.ControlMessageServiceParameters" class="title-badge message">ControlMessageServiceParameters</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.csi.ControlStreamRequest" class="title-badge message">ControlStreamRequest</a>
                       </li>
                     
@@ -123,6 +139,18 @@
                   
                   <a href="#ondewo/csi/conversation.proto-enums">Enums</a>
                   <ul>
+                    
+                      <li>
+                        <a href="#ondewo.csi.ConditionType" class="title-badge enum">ConditionType</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.csi.ControlMessageServiceMethod" class="title-badge enum">ControlMessageServiceMethod</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.csi.ControlMessageServiceName" class="title-badge enum">ControlMessageServiceName</a>
+                      </li>
                     
                       <li>
                         <a href="#ondewo.csi.ControlStatus" class="title-badge enum">ControlStatus</a>
@@ -343,6 +371,158 @@ All upstreams unhealthy:
                 <tr>
                   <td>t2s_status</td>
                   <td><a href="#google.rpc.Status">google.rpc.Status</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.csi.Condition" class="title-badge message">Condition</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>type</td>
+                  <td><a href="#ondewo.csi.ConditionType">ConditionType</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>value</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.csi.CondtionValueUnion" class="title-badge message">CondtionValueUnion</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>int_value</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>float_value</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>datetime_value</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.csi.ControlMessage" class="title-badge message">ControlMessage</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>service</td>
+                  <td><a href="#ondewo.csi.ControlMessageServiceName">ControlMessageServiceName</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>method</td>
+                  <td><a href="#ondewo.csi.ControlMessageServiceMethod">ControlMessageServiceMethod</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>parameters</td>
+                  <td><a href="#ondewo.csi.ControlMessageServiceParameters">ControlMessageServiceParameters</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.csi.ControlMessageServiceParameters" class="title-badge message">ControlMessageServiceParameters</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>t2s_config</td>
+                  <td><a href="#ondewo.t2s.RequestConfig">ondewo.t2s.RequestConfig</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>s2t_config</td>
+                  <td><a href="#ondewo.s2t.TranscribeRequestConfig">ondewo.s2t.TranscribeRequestConfig</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>condition_start</td>
+                  <td><a href="#ondewo.csi.Condition">Condition</a></td>
+                  <td></td>
+                  <td><p> </p></td>
+                </tr>
+              
+                <tr>
+                  <td>condition_end</td>
+                  <td><a href="#ondewo.csi.Condition">Condition</a></td>
                   <td></td>
                   <td><p> </p></td>
                 </tr>
@@ -675,6 +855,117 @@ for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
 
       
       <div id="ondewo/csi/conversation.proto-enums" class="object-category">Enums</div>
+      
+        <h3 id="ondewo.csi.ConditionType" class="title-badge enum">ConditionType</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWTYPE</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>immediate</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>duration</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>datetime</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>interactions</td>
+                <td>4</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="ondewo.csi.ControlMessageServiceMethod" class="title-badge enum">ControlMessageServiceMethod</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWNMETHOD</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>update_config</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>undo_config</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>reset_config</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="ondewo.csi.ControlMessageServiceName" class="title-badge enum">ControlMessageServiceName</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>UNKNOWNNAME</td>
+                <td>0</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ondewo_s2t</td>
+                <td>1</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ondewo_t2s</td>
+                <td>2</td>
+                <td><p></p></td>
+              </tr>
+            
+              <tr>
+                <td>ondewo_nlu</td>
+                <td>3</td>
+                <td><p></p></td>
+              </tr>
+            
+          </tbody>
+        </table>
       
         <h3 id="ondewo.csi.ControlStatus" class="title-badge enum">ControlStatus</h3>
         <p></p>
