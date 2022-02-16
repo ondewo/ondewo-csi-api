@@ -288,8 +288,9 @@ enum ControlMessageServiceMethod {
         end_call=4;
         transfer_call=5;
         play_wav_files=6;
-        mute=7;
-        un_mute=8;
+        play_text=7;
+        mute=8;
+        un_mute=9;
 }
 
 message CondtionValueUnion {
@@ -315,14 +316,20 @@ message Condition{
 
 
 message ControlMessageServiceParameters {
-    oneof config{
+
+  // t2s s2t params
+  oneof config{
         ondewo.t2s.RequestConfig t2s_config = 1;
         ondewo.s2t.TranscribeRequestConfig s2t_config = 2;
     }
-    Condition condition_start = 3;
-    Condition condition_end = 4;
 
+    // sip params
+    string transfer_id = 3;
+    string text = 4;
+    repeated bytes wav_files = 5;
 
+    Condition condition_start = 6;
+    Condition condition_end = 7;
 }
 
 
