@@ -291,6 +291,7 @@ enum ControlMessageServiceMethod {
         play_text=7;
         mute=8;
         un_mute=9;
+        stop_all_control_messages=10;
 }
 
 message CondtionValueUnion {
