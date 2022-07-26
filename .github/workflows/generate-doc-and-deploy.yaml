@@ -15,7 +15,7 @@ on:
 
 # A workflow run is made up of one or more jobs that can run sequentially or in parallel
 jobs:
-  # This workflow contains a single job called "generate-doc"
+  # This workflow contains a single job called "generate-docs"
   generate-doc-and-deploy:
     # The type of runner that the job will run on
     runs-on: ubuntu-latest
@@ -35,15 +35,14 @@ jobs:
 
       # - name: Multi-line command step
       #   run: |
-      #     go get -u github.com/pseudomuto/protoc-gen-doc/cmd/protoc-gen-doc
+      #     go get -u github.com/pseudomuto/protoc-gen-docs/cmd/protoc-gen-docs
       #     export PATH=$(go env GOPATH)/bin:$PATH
-      #     mkdir -p doc
-      #     protoc -I. -Igoogleapis --doc_opt=markdown,nlu.md --doc_out=doc $(find ondewo -name '*.proto' | sort)
+      #     mkdir -p docs
+      #     protoc -I. -Igoogleapis --doc_opt=markdown,nlu.md --doc_out=docs $(find ondewo -name '*.proto' | sort)
 
       - name: Generate documentation from ONDEWO proto files 🔧
-        uses: ondewo/ondewo-protoc-gen-doc-action@main
-        with:
-          formats: html
+        uses: ondewo/ondewo-protoc-gen-doc-action@master
+
 
       - name: Deploy 🚀
         if: ${{ !env.ACT }}
