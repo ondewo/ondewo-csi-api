@@ -41,7 +41,7 @@ jobs:
       #     protoc -I. -Igoogleapis --doc_opt=markdown,nlu.md --doc_out=docs $(find ondewo -name '*.proto' | sort)
 
       - name: Generate documentation from ONDEWO proto files 🔧
-        uses: ondewo/ondewo-protoc-gen-docs-action@master
+        uses: ondewo/ondewo-protoc-gen-doc-action@master
         with:
          formats: html
 
