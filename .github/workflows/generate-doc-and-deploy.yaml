@@ -42,8 +42,7 @@ jobs:
 
       - name: Generate documentation from ONDEWO proto files 🔧
         uses: ondewo/ondewo-protoc-gen-doc-action@master
-        with:
-         formats: html
+
 
       - name: Deploy 🚀
         if: ${{ !env.ACT }}
