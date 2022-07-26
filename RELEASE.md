@@ -2,7 +2,7 @@
 
 *****************
 
-## Release ONDEWO CSI API 1.7.0
+## Release ONDEWO CSI API 2.0.0
 ### New Features
  * [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Automated Release Process 
 
