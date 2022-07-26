@@ -53,6 +53,16 @@ checkout_defined_submodule_versions:  ## Update submodule versions
 	git -C ${ONDEWO_NLU_DIR} checkout ${ONDEWO_NLU_API_GIT_BRANCH}
 	git -C ${ONDEWO_S2T_DIR} fetch --all
 	git -C ${ONDEWO_S2T_DIR} checkout ${ONDEWO_S2T_API_GIT_BRANCH}
+	if [ -d googleapis ]; then rm -Rf googleapis; fi
+	cp -r "${ONDEWO_NLU_DIR}/googleapis" .
+	if [ -d ondewo/nlu ]; then rm -Rf ondewo/nlu; fi
+	if [ -d ondewo/s2t ]; then rm -Rf ondewo/s2t; fi
+	if [ -d ondewo/t2s ]; then rm -Rf ondewo/t2s; fi
+	cp -r "${ONDEWO_NLU_DIR}/ondewo/nlu" ondewo
+	cp -r "${ONDEWO_T2S_DIR}/ondewo/t2s" ondewo
+	cp -r "${ONDEWO_S2T_DIR}/ondewo/s2t" ondewo
+
+
 	@echo "DONE checking out submodules"
 
 release: create_release_branch create_release_tag build_and_release_to_github_via_docker  ## Automate the entire release process
