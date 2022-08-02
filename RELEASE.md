@@ -3,7 +3,7 @@
 *****************
 ## Release ONDEWO CSI API 2.1.0
 ### New Features
- * [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Added precommit hooks and refactored Makefile
+ * [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Added pre-commit hooks and adjusted files to them
 
 *****************
 ## Release ONDEWO CSI API 2.0.0
