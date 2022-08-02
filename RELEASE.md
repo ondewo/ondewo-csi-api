@@ -1,22 +1,26 @@
 # Release History
 
 *****************
+## Release ONDEWO CSI API 2.1.0
+### New Features
+ * [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Added precommit hooks and refactored Makefile
 
+*****************
 ## Release ONDEWO CSI API 2.0.0
 ### New Features
- * [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Automated Release Process 
+ * [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Automated Release Process
 
 *****************
 
 ## Release ONDEWO CSI API 1.6.0
 ### New Features
-* Update nlu api to 2.5.0 and s2t api to 3.1.0 
+* Update nlu api to 2.5.0 and s2t api to 3.1.0
 
 *****************
 
 ## Release ONDEWO CSI API 1.5.0
 ### New Features
-* Update nlu api to 2.4.0 s2t api to 3.0.0 and t2s api to 3.0.0 
+* Update nlu api to 2.4.0 s2t api to 3.0.0 and t2s api to 3.0.0
 
 *****************
 
