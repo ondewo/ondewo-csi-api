@@ -22,6 +22,7 @@ import "google/protobuf/struct.proto";
 import "ondewo/nlu/session.proto";
 import "ondewo/t2s/text-to-speech.proto";
 import "ondewo/s2t/speech-to-text.proto";
+import "ondewo/nlu/context.proto";
 import "google/protobuf/any.proto";
 
 // endpoints of csi service
@@ -326,11 +327,18 @@ message ControlMessageServiceParameters {
 
     // sip params
     string transfer_id = 3;
-    string text = 4;
-    repeated bytes wav_files = 5;
+    repeated bytes wav_files = 4;
 
-    Condition condition_start = 6;
-    Condition condition_end = 7;
+    // sip and nlu common params
+    string text = 5;
+
+    // nlu params
+    ondewo.nlu.Context context = 6;
+    string session_id = 7;
+    string context_name = 8;
+
+    Condition condition_start = 9;
+    Condition condition_end = 10;
 }
 
 
