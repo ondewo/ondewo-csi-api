@@ -293,6 +293,16 @@ enum ControlMessageServiceMethod {
         mute=8;
         un_mute=9;
         stop_all_control_messages=10;
+
+        // nlu control messages
+        train_agent=11;
+        cancel_train_agent=12;
+        delete_session=13;
+        delete_all_contexts=14;
+        create_context=15;
+        update_context=16;
+        delete_context=17;
+        detect_intent=18;
 }
 
 message CondtionValueUnion {
