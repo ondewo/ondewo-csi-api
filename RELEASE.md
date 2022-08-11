@@ -3,6 +3,13 @@
 *****************
 ## Release ONDEWO CSI API 2.1.0
 ### New Features
+  * ONDEWO Natural Language Understanding (NLU) API Version [2.10.0](https://github.com/ondewo/ondewo-nlu-api/releases/2.10.0)
+  * ONDEWO Speech-2-Text (S2T) API Version [3.3.0](https://github.com/ondewo/ondewo-s2t-api/releases/3.3.0)
+  * ONDEWO Text-2-Speech (S2T) API Version [4.3.0](https://github.com/ondewo/ondewo-t2s-api/releases/4.3.0)
+
+*****************
+## Release ONDEWO CSI API 2.1.0
+### New Features
  * [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Added pre-commit hooks and adjusted files to them
 
 *****************
