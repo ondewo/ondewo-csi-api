@@ -63,7 +63,7 @@ repos:
             -   id: name-tests-test # name pytest files correctly
                 args: [ --pytest-test-first ]
             -   id: requirements-txt-fixer  # Sorts the requirement.txt files' content
-                files: 'requirements/requirements.*\.txt$'
+                files: 'requirements.*\.txt$'
 
     -   repo: https://gitlab.com/pycqa/flake8
         rev: 4.0.1
