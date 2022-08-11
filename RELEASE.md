@@ -1,7 +1,7 @@
 # Release History
 
 *****************
-## Release ONDEWO CSI API 2.3.0
+## Release ONDEWO CSI API 2.3.1
 ### New Features
   * ONDEWO Natural Language Understanding (NLU) API Version [2.10.0](https://github.com/ondewo/ondewo-nlu-api/releases/2.10.0)
   * ONDEWO Speech-2-Text (S2T) API Version [3.3.0](https://github.com/ondewo/ondewo-s2t-api/releases/3.3.0)
