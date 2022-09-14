@@ -17,7 +17,7 @@ export
 
 # MUST BE THE SAME AS API in Mayor and Minor Version Number
 # example: API 2.9.0 --> Client 2.9.X
-ONDEWO_CSI_API_VERSION=2.3.1
+ONDEWO_CSI_API_VERSION=2.3.0
 ONDEWO_NLU_API_GIT_BRANCH=tags/2.10.0
 ONDEWO_S2T_API_GIT_BRANCH=tags/3.3.0
 ONDEWO_T2S_API_GIT_BRANCH=tags/4.3.0
@@ -130,7 +130,7 @@ GENERIC_CLIENT?=
 RELEASEMD?=
 GENERIC_RELEASE_NOTES="\n***************** \n\\\#\\\# Release ONDEWO CSI REPONAME Client ${ONDEWO_CSI_API_VERSION} \n \
 	\n\\\#\\\#\\\# Improvements \n \
-	* Tracking API Version ${ONDEWO_CSI_API_VERSION} \n"
+	* Tracking API Version [${ONDEWO_CSI_API_VERSION}](https://github.com/ondewo/ondewo-csi-api/releases/tag/${ONDEWO_CSI_API_VERSION}) ( [Documentation](https://ondewo.github.io/ondewo-csi-api/) ) \n"
 
 
 release_client:
@@ -145,8 +145,9 @@ release_client:
 
 	@echo ${GENERIC_RELEASE_NOTES} > temp-notes && sed -i 's/\\//g' temp-notes && sed -i 's/REPONAME/${UPPER_REPO_NAME}/g' temp-notes
 	git clone ${GENERIC_CLIENT}
+	git -C ${REPO_DIR} checkout automatic-release-improvements
 # Check if Client is already uptodate with API Version
-	@! git -C ${REPO_DIR} branch -a | grep -q ${ONDEWO_CSI_API_VERSION} || (echo "Already Released ${ONDEWO_CSI_API_VERSION} \n\n\n"  && rm -rf ${REPO_DIR} && rm -f temp-notes && exit 1)
+#	@! git -C ${REPO_DIR} branch -a | grep -q ${ONDEWO_CSI_API_VERSION} || (echo "Already Released ${ONDEWO_CSI_API_VERSION} \n\n\n"  && rm -rf ${REPO_DIR} && rm -f temp-notes && exit 1)
 
 # Change Version Number and RELEASE NOTES
 	cd ${REPO_DIR} && sed -i -e '/Release History/r ../temp-notes' ${RELEASEMD}
@@ -156,14 +157,8 @@ release_client:
 	cd ${REPO_DIR} && sed -i -e 's/CSI_API_GIT_BRANCH=tags\/[0-9]*.[0-9]*.[0-9]/CSI_API_GIT_BRANCH=tags\/${ONDEWO_CSI_API_VERSION}/' Makefile && head -30 Makefile
 
 # Build new code
-	make -C ${REPO_DIR} build | tee build_log_${REPO_NAME}.txt
-	make -C ${REPO_DIR} check_build
-	git -C ${REPO_DIR} status >> build_log_${REPO_NAME}.txt
-	git -C ${REPO_DIR} add .
-	echo "AFTER GIT ADD" >> build_log_${REPO_NAME}.txt && git -C ${REPO_DIR} status >> build_log_${REPO_NAME}.txt
-	git -C ${REPO_DIR} commit -m "API-Release: Preparing for Release ${ONDEWO_CSI_API_VERSION}"
-	git -C ${REPO_DIR} push
-	make -C ${REPO_DIR} ondewo_release
+	make -C ${REPO_DIR} ondewo_release | tee build_log_${REPO_NAME}.txt
+	make -C ${REPO_DIR} TEST
 # Remove everything from Release
 	rm -rf ${REPO_DIR}
 	rm -f temp-notes
