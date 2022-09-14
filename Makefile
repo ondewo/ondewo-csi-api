@@ -17,7 +17,7 @@ export
 
 # MUST BE THE SAME AS API in Mayor and Minor Version Number
 # example: API 2.9.0 --> Client 2.9.X
-ONDEWO_CSI_API_VERSION=2.3.0
+ONDEWO_CSI_API_VERSION=2.3.1
 ONDEWO_NLU_API_GIT_BRANCH=tags/2.10.0
 ONDEWO_S2T_API_GIT_BRANCH=tags/3.3.0
 ONDEWO_T2S_API_GIT_BRANCH=tags/4.3.0
@@ -145,9 +145,8 @@ release_client:
 
 	@echo ${GENERIC_RELEASE_NOTES} > temp-notes && sed -i 's/\\//g' temp-notes && sed -i 's/REPONAME/${UPPER_REPO_NAME}/g' temp-notes
 	git clone ${GENERIC_CLIENT}
-	git -C ${REPO_DIR} checkout automatic-release-improvements
 # Check if Client is already uptodate with API Version
-#	@! git -C ${REPO_DIR} branch -a | grep -q ${ONDEWO_CSI_API_VERSION} || (echo "Already Released ${ONDEWO_CSI_API_VERSION} \n\n\n"  && rm -rf ${REPO_DIR} && rm -f temp-notes && exit 1)
+	@! git -C ${REPO_DIR} branch -a | grep -q ${ONDEWO_CSI_API_VERSION} || (echo "Already Released ${ONDEWO_CSI_API_VERSION} \n\n\n"  && rm -rf ${REPO_DIR} && rm -f temp-notes && exit 1)
 
 # Change Version Number and RELEASE NOTES
 	cd ${REPO_DIR} && sed -i -e '/Release History/r ../temp-notes' ${RELEASEMD}
