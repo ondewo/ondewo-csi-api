@@ -1,6 +1,12 @@
 # Release History
 
 *****************
+
+## Release ONDEWO CSI API 3.0.0
+### New Features
+ * Synchronize API Client Versions
+
+*****************
 ## Release ONDEWO CSI API 2.3.1
 ### New Features
   * ONDEWO Natural Language Understanding (NLU) API Version [2.10.0](https://github.com/ondewo/ondewo-nlu-api/releases/2.10.0)

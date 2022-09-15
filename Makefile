@@ -17,10 +17,10 @@ export
 
 # MUST BE THE SAME AS API in Mayor and Minor Version Number
 # example: API 2.9.0 --> Client 2.9.X
-ONDEWO_CSI_API_VERSION=2.3.1
-ONDEWO_NLU_API_GIT_BRANCH=tags/2.10.0
-ONDEWO_S2T_API_GIT_BRANCH=tags/3.3.0
-ONDEWO_T2S_API_GIT_BRANCH=tags/4.3.0
+ONDEWO_CSI_API_VERSION=3.0.0
+ONDEWO_NLU_API_GIT_BRANCH=tags/3.0.0
+ONDEWO_S2T_API_GIT_BRANCH=tags/4.0.0
+ONDEWO_T2S_API_GIT_BRANCH=tags/5.0.0
 ONDEWO_NLU_DIR=ondewo-nlu-api
 ONDEWO_S2T_DIR=ondewo-s2t-api
 ONDEWO_T2S_DIR=ondewo-t2s-api
@@ -159,7 +159,7 @@ release_client:
 	make -C ${REPO_DIR} ondewo_release | tee build_log_${REPO_NAME}.txt
 	make -C ${REPO_DIR} TEST
 # Remove everything from Release
-	rm -rf ${REPO_DIR}
+	sudo rm -rf ${REPO_DIR}
 	rm -f temp-notes
 
 
