@@ -177,7 +177,7 @@ release_all_clients:
 	@make release_nodejs_client || (echo "Already released ${ONDEWO_CSI_API_VERSION} of Nodejs Client")
 	@make release_typescript_client || (echo "Already released ${ONDEWO_CSI_API_VERSION} of Typescript Client")
 	@make release_angular_client || (echo "Already released ${ONDEWO_CSI_API_VERSION} of Angular Client")
-	@make release_js_client || (echo "Already released ${ONDEWO_CSI_API_VERSION} of JS Client")
+#	@make release_js_client || (echo "Already released ${ONDEWO_CSI_API_VERSION} of JS Client")
 	@echo "End releasing all clients"
 
 GENERIC_CLIENT?=
