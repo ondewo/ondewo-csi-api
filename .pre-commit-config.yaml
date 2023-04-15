@@ -81,11 +81,5 @@ repos:
         hooks:
             -   id: githubio-version
                 name: githubio-version
-                entry: >-
-                    bash -c 'current_branch="$(git symbolic-ref --short HEAD)";
-                    if [ "$current_branch" == "master" ]; then
-                        make update_githubio;
-                    else
-                        echo "Skipping hook on non-master branch";
-                    fi'
+                entry: bash -c "make update_githubio"
                 language: system
