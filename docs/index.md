@@ -74,6 +74,8 @@
     - [GetModelStatusesResponse](#ondewo.nlu.GetModelStatusesResponse)
     - [GetPlatformInfoResponse](#ondewo.nlu.GetPlatformInfoResponse)
     - [GetPlatformMappingRequest](#ondewo.nlu.GetPlatformMappingRequest)
+    - [GetSessionsStatisticsRequest](#ondewo.nlu.GetSessionsStatisticsRequest)
+    - [GetSessionsStatisticsResponse](#ondewo.nlu.GetSessionsStatisticsResponse)
     - [ImportAgentRequest](#ondewo.nlu.ImportAgentRequest)
     - [ListAgentsOfUserResponse](#ondewo.nlu.ListAgentsOfUserResponse)
     - [ListAgentsRequest](#ondewo.nlu.ListAgentsRequest)
@@ -104,6 +106,7 @@
     - [ModelStatus.StatusName](#ondewo.nlu.ModelStatus.StatusName)
     - [ReportFormat](#ondewo.nlu.ReportFormat)
     - [ReportType](#ondewo.nlu.ReportType)
+    - [SessionsReportType](#ondewo.nlu.SessionsReportType)
   
     - [Agents](#ondewo.nlu.Agents)
   
@@ -166,29 +169,32 @@
   
 - [ondewo/nlu/entity_type.proto](#ondewo/nlu/entity_type.proto)
     - [BatchCreateEntitiesRequest](#ondewo.nlu.BatchCreateEntitiesRequest)
-    - [BatchCreateEntitiesRequest.CreateEntityRequest](#ondewo.nlu.BatchCreateEntitiesRequest.CreateEntityRequest)
     - [BatchDeleteEntitiesRequest](#ondewo.nlu.BatchDeleteEntitiesRequest)
     - [BatchDeleteEntitiesResponse](#ondewo.nlu.BatchDeleteEntitiesResponse)
-    - [BatchDeleteEntitiesResponse.DeleteEntityStatus](#ondewo.nlu.BatchDeleteEntitiesResponse.DeleteEntityStatus)
     - [BatchDeleteEntityTypesRequest](#ondewo.nlu.BatchDeleteEntityTypesRequest)
     - [BatchEntitiesResponse](#ondewo.nlu.BatchEntitiesResponse)
-    - [BatchEntitiesResponse.EntityStatus](#ondewo.nlu.BatchEntitiesResponse.EntityStatus)
     - [BatchGetEntitiesRequest](#ondewo.nlu.BatchGetEntitiesRequest)
     - [BatchUpdateEntitiesRequest](#ondewo.nlu.BatchUpdateEntitiesRequest)
     - [BatchUpdateEntityTypesRequest](#ondewo.nlu.BatchUpdateEntityTypesRequest)
     - [BatchUpdateEntityTypesResponse](#ondewo.nlu.BatchUpdateEntityTypesResponse)
+    - [CreateEntityRequest](#ondewo.nlu.CreateEntityRequest)
     - [CreateEntityTypeRequest](#ondewo.nlu.CreateEntityTypeRequest)
+    - [DeleteEntityRequest](#ondewo.nlu.DeleteEntityRequest)
+    - [DeleteEntityStatus](#ondewo.nlu.DeleteEntityStatus)
     - [DeleteEntityTypeRequest](#ondewo.nlu.DeleteEntityTypeRequest)
+    - [EntityStatus](#ondewo.nlu.EntityStatus)
     - [EntityType](#ondewo.nlu.EntityType)
     - [EntityType.Entity](#ondewo.nlu.EntityType.Entity)
     - [EntityTypeBatch](#ondewo.nlu.EntityTypeBatch)
     - [EntityTypeSorting](#ondewo.nlu.EntityTypeSorting)
     - [EntityValueSorting](#ondewo.nlu.EntityValueSorting)
+    - [GetEntityRequest](#ondewo.nlu.GetEntityRequest)
     - [GetEntityTypeRequest](#ondewo.nlu.GetEntityTypeRequest)
     - [ListEntitiesRequest](#ondewo.nlu.ListEntitiesRequest)
     - [ListEntitiesResponse](#ondewo.nlu.ListEntitiesResponse)
     - [ListEntityTypesRequest](#ondewo.nlu.ListEntityTypesRequest)
     - [ListEntityTypesResponse](#ondewo.nlu.ListEntityTypesResponse)
+    - [UpdateEntityRequest](#ondewo.nlu.UpdateEntityRequest)
     - [UpdateEntityTypeRequest](#ondewo.nlu.UpdateEntityTypeRequest)
   
     - [EntityType.AutoExpansionMode](#ondewo.nlu.EntityType.AutoExpansionMode)
@@ -337,8 +343,10 @@
   
 - [ondewo/nlu/session.proto](#ondewo/nlu/session.proto)
     - [AddSessionLabelsRequest](#ondewo.nlu.AddSessionLabelsRequest)
+    - [ContextFilter](#ondewo.nlu.ContextFilter)
     - [CreateSessionRequest](#ondewo.nlu.CreateSessionRequest)
     - [CreateSessionReviewRequest](#ondewo.nlu.CreateSessionReviewRequest)
+    - [DeleteSessionLabelsRequest](#ondewo.nlu.DeleteSessionLabelsRequest)
     - [DeleteSessionRequest](#ondewo.nlu.DeleteSessionRequest)
     - [DetectIntentRequest](#ondewo.nlu.DetectIntentRequest)
     - [DetectIntentResponse](#ondewo.nlu.DetectIntentResponse)
@@ -348,16 +356,42 @@
     - [GetSessionRequest](#ondewo.nlu.GetSessionRequest)
     - [GetSessionReviewRequest](#ondewo.nlu.GetSessionReviewRequest)
     - [InputAudioConfig](#ondewo.nlu.InputAudioConfig)
+    - [ListAccountIdsOfAllSessionsRequest](#ondewo.nlu.ListAccountIdsOfAllSessionsRequest)
+    - [ListAccountIdsResponse](#ondewo.nlu.ListAccountIdsResponse)
+    - [ListDatastreamIdsOfAllSessionsRequest](#ondewo.nlu.ListDatastreamIdsOfAllSessionsRequest)
+    - [ListDatastreamIdsResponse](#ondewo.nlu.ListDatastreamIdsResponse)
+    - [ListIdentifiedUserIdsOfAllSessionsRequest](#ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest)
+    - [ListIdentifiedUserIdsResponse](#ondewo.nlu.ListIdentifiedUserIdsResponse)
+    - [ListInputContextsOfAllSessionsRequest](#ondewo.nlu.ListInputContextsOfAllSessionsRequest)
+    - [ListInputContextsResponse](#ondewo.nlu.ListInputContextsResponse)
+    - [ListLanguageCodesOfAllSessionsRequest](#ondewo.nlu.ListLanguageCodesOfAllSessionsRequest)
+    - [ListLanguageCodesResponse](#ondewo.nlu.ListLanguageCodesResponse)
+    - [ListMatchedEntityTypesOfAllSessionsRequest](#ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest)
+    - [ListMatchedEntityTypesResponse](#ondewo.nlu.ListMatchedEntityTypesResponse)
+    - [ListMatchedIntentsOfAllSessionsRequest](#ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest)
+    - [ListMatchedIntentsResponse](#ondewo.nlu.ListMatchedIntentsResponse)
+    - [ListOriginIdsOfAllSessionsRequest](#ondewo.nlu.ListOriginIdsOfAllSessionsRequest)
+    - [ListOriginIdsResponse](#ondewo.nlu.ListOriginIdsResponse)
+    - [ListOutputContextsOfAllSessionsRequest](#ondewo.nlu.ListOutputContextsOfAllSessionsRequest)
+    - [ListOutputContextsResponse](#ondewo.nlu.ListOutputContextsResponse)
+    - [ListPlatformsOfAllSessionsRequest](#ondewo.nlu.ListPlatformsOfAllSessionsRequest)
+    - [ListPlatformsResponse](#ondewo.nlu.ListPlatformsResponse)
+    - [ListPropertyIdsOfAllSessionsRequest](#ondewo.nlu.ListPropertyIdsOfAllSessionsRequest)
+    - [ListPropertyIdsResponse](#ondewo.nlu.ListPropertyIdsResponse)
+    - [ListSessionLabelsOfAllSessionsRequest](#ondewo.nlu.ListSessionLabelsOfAllSessionsRequest)
     - [ListSessionLabelsRequest](#ondewo.nlu.ListSessionLabelsRequest)
     - [ListSessionLabelsResponse](#ondewo.nlu.ListSessionLabelsResponse)
     - [ListSessionReviewsRequest](#ondewo.nlu.ListSessionReviewsRequest)
     - [ListSessionReviewsResponse](#ondewo.nlu.ListSessionReviewsResponse)
     - [ListSessionsRequest](#ondewo.nlu.ListSessionsRequest)
     - [ListSessionsResponse](#ondewo.nlu.ListSessionsResponse)
+    - [ListTagsOfAllSessionsRequest](#ondewo.nlu.ListTagsOfAllSessionsRequest)
+    - [ListTagsResponse](#ondewo.nlu.ListTagsResponse)
+    - [ListUserIdsOfAllSessionsRequest](#ondewo.nlu.ListUserIdsOfAllSessionsRequest)
+    - [ListUserIdsResponse](#ondewo.nlu.ListUserIdsResponse)
     - [QueryInput](#ondewo.nlu.QueryInput)
     - [QueryParameters](#ondewo.nlu.QueryParameters)
     - [QueryResult](#ondewo.nlu.QueryResult)
-    - [RemoveSessionLabelsRequest](#ondewo.nlu.RemoveSessionLabelsRequest)
     - [Session](#ondewo.nlu.Session)
     - [SessionFilter](#ondewo.nlu.SessionFilter)
     - [SessionInfo](#ondewo.nlu.SessionInfo)
@@ -372,6 +406,7 @@
     - [TrackSessionStepRequest](#ondewo.nlu.TrackSessionStepRequest)
   
     - [AudioEncoding](#ondewo.nlu.AudioEncoding)
+    - [ComparisonOperator](#ondewo.nlu.ComparisonOperator)
     - [Session.View](#ondewo.nlu.Session.View)
     - [SessionReview.View](#ondewo.nlu.SessionReview.View)
     - [StreamingRecognitionResult.MessageType](#ondewo.nlu.StreamingRecognitionResult.MessageType)
@@ -1065,14 +1100,14 @@ The most important messages is <a href="#ondewo.nlu.Agent">Agent</a> and its mos
 <a name="ondewo.nlu.AddUserToProjectRequest"></a>
 
 ### AddUserToProjectRequest
-
+Request to add user to project.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
-| user_id | [string](#string) |  |  |
-| project_role_id | [uint32](#uint32) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to train is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
+| user_id | [string](#string) |  | id of the user |
+| project_role_id | [uint32](#uint32) |  | ID of the project role of the user |
 
 
 
@@ -1087,7 +1122,7 @@ Project/Agent messages
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The project of this agent. Format: `projects/<Project ID>/agent`. Read-only in the Agent message |
+| parent | [string](#string) |  | Required. The project of this agent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> Read-only in the Agent message |
 | display_name | [string](#string) |  | Required. The name of this agent. |
 | default_language_code | [string](#string) |  | Required. The default language of the agent as a language tag. See [Language Support](https://dialogflow.com/docs/reference/language) for a list of the currently supported language codes. This field cannot be set by the `Update` method. |
 | supported_language_codes | [string](#string) | repeated | Optional. The list of all languages supported by this agent (except for the `default_language_code`). |
@@ -1106,7 +1141,7 @@ Project/Agent messages
 <a name="ondewo.nlu.AgentOfUserWithOwner"></a>
 
 ### AgentOfUserWithOwner
-
+This message contains the agent of user with owner
 
 
 | Field | Type | Label | Description |
@@ -1122,13 +1157,13 @@ Project/Agent messages
 <a name="ondewo.nlu.AgentSorting"></a>
 
 ### AgentSorting
-
+Sorting order of agent
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| sorting_field | [AgentSorting.AgentSortingField](#ondewo.nlu.AgentSorting.AgentSortingField) |  |  |
-| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) |  |  |
+| sorting_field | [AgentSorting.AgentSortingField](#ondewo.nlu.AgentSorting.AgentSortingField) |  | sorting field for agent sorting |
+| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) |  | Sorting mode |
 
 
 
@@ -1138,13 +1173,13 @@ Project/Agent messages
 <a name="ondewo.nlu.AgentWithOwner"></a>
 
 ### AgentWithOwner
-
+This message contains the agent with owner
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| agent | [Agent](#ondewo.nlu.Agent) |  |  |
-| owner | [User](#ondewo.nlu.User) |  |  |
+| agent | [Agent](#ondewo.nlu.Agent) |  | The agent |
+| owner | [User](#ondewo.nlu.User) |  | User who created the agent |
 
 
 
@@ -1159,8 +1194,8 @@ The request message for [Agents.TrainAgentBuildCache][google.cloud.dialogflow.v2
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The project that the agent to build cache is associated with. Format: `projects/<Project ID>`. |
-| branch | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to build cache is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
+| branch | [string](#string) |  | Name of the branch of the agent for versioning. The default branch name is <code>develop</code>. |
 
 
 
@@ -1170,12 +1205,12 @@ The request message for [Agents.TrainAgentBuildCache][google.cloud.dialogflow.v2
 <a name="ondewo.nlu.CreateAgentRequest"></a>
 
 ### CreateAgentRequest
-
+Request to create an agent
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| agent | [Agent](#ondewo.nlu.Agent) |  |  |
+| agent | [Agent](#ondewo.nlu.Agent) |  | The agent |
 | agent_view | [AgentView](#ondewo.nlu.AgentView) |  | Optional. Specify the view of the returned agent (sparse view by default) |
 
 
@@ -1186,7 +1221,7 @@ The request message for [Agents.TrainAgentBuildCache][google.cloud.dialogflow.v2
 <a name="ondewo.nlu.CustomPlatformInfo"></a>
 
 ### CustomPlatformInfo
-
+This message contains the information of custom platform
 
 
 | Field | Type | Label | Description |
@@ -1203,12 +1238,12 @@ The request message for [Agents.TrainAgentBuildCache][google.cloud.dialogflow.v2
 <a name="ondewo.nlu.DeleteAgentRequest"></a>
 
 ### DeleteAgentRequest
-
+Request to delete the agent
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 
 
 
@@ -1218,15 +1253,15 @@ The request message for [Agents.TrainAgentBuildCache][google.cloud.dialogflow.v2
 <a name="ondewo.nlu.DeleteResourcesRequest"></a>
 
 ### DeleteResourcesRequest
-
+Request to delete resources
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | name | [string](#string) |  |  |
 | type | [string](#string) |  |  |
-| language_code | [string](#string) |  |  |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
 
 
 
@@ -1241,7 +1276,7 @@ The request message for [Agents.ExportAgent][google.cloud.dialogflow.v2.Agents.E
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The project that the agent to export is associated with. Format: `projects/<Project ID>`. |
+| parent | [string](#string) |  | Required. The project that the agent to export is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
 | agent_uri | [string](#string) |  | Optional. The Google Cloud Storage URI to export the agent to. Note: The URI must start with "gs://". If left unspecified, the serialized agent is returned inline. |
 | compression_level | [int32](#int32) |  | Optional. The compression level of the zip file created. Valid range 1-9; the grpc-default value 0 will be mapped to 1, other values cause an error in the request validation handler. |
 
@@ -1273,12 +1308,12 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 <a name="ondewo.nlu.ExportBenchmarkAgentRequest"></a>
 
 ### ExportBenchmarkAgentRequest
-
+Request to export benchmark agent
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Agent related info Required. The project that the agent to export is associated with. Format: `projects/<Project ID>`. |
+| parent | [string](#string) |  | Agent related info Required. The project that the agent to export is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
 | compression_level | [int32](#int32) |  | Optional. The compression level of the zip file created. Valid range 1-9; the grpc-default value 0 will be mapped to 1, other values cause an error in the request validation handler. |
 | test_size | [float](#float) |  | Train-test split related parameters, for further info, check https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html default values come from API definition above Optional: bigger than zero |
 | train_size | [float](#float) |  | Optional: bigger than zero |
@@ -1292,12 +1327,12 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 <a name="ondewo.nlu.ExportBenchmarkAgentResponse"></a>
 
 ### ExportBenchmarkAgentResponse
-
+Response to export benchmark agent
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| agent_content | [bytes](#bytes) |  |  |
+| agent_content | [bytes](#bytes) |  | Agent responses as zip file |
 | training_phrases | [ExportBenchmarkAgentResponse.TrainingPhrasesEntry](#ondewo.nlu.ExportBenchmarkAgentResponse.TrainingPhrasesEntry) | repeated | Key is the language code, value is the corresponding ListTrainingPhrasesResponse |
 
 
@@ -1324,15 +1359,15 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 <a name="ondewo.nlu.ExportResourcesRequest"></a>
 
 ### ExportResourcesRequest
-
+Request to export resources
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | name | [string](#string) |  |  |
 | type | [string](#string) |  |  |
-| language_code | [string](#string) |  |  |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
 
 
 
@@ -1342,15 +1377,15 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 <a name="ondewo.nlu.ExportResourcesResponse"></a>
 
 ### ExportResourcesResponse
-
+Response to export resources
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | name | [string](#string) |  |  |
 | type | [string](#string) |  |  |
-| language_code | [string](#string) |  |  |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
 | resource_file | [bytes](#bytes) |  |  |
 
 
@@ -1361,13 +1396,13 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 <a name="ondewo.nlu.FullTextSearchRequest"></a>
 
 ### FullTextSearchRequest
-
+This message is a request to run full text search
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The project that the agent is associated with. Format: `projects/<Project ID>/agent`. |
-| language_code | [string](#string) |  | In which language to search for |
+| parent | [string](#string) |  | Required. The project that the agent is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
 | term | [string](#string) |  | What to search for in the elastic server |
 | page_token | [string](#string) |  | Composite string: current_index-0--page_size-10 |
 
@@ -1379,18 +1414,18 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 <a name="ondewo.nlu.FullTextSearchResponseEntity"></a>
 
 ### FullTextSearchResponseEntity
-
+This message is a response of full text search of entity
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
-| language_code | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
 | entity_results | [FullTextSearchResponseEntity.EntitySearchResult](#ondewo.nlu.FullTextSearchResponseEntity.EntitySearchResult) | repeated |  |
 | term | [string](#string) |  |  |
 | elastic_query | [string](#string) |  |  |
 | time | [float](#float) |  |  |
-| next_page_token | [string](#string) |  |  |
+| next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
 
@@ -1408,6 +1443,7 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 | name | [string](#string) |  |  |
 | display_name | [string](#string) |  |  |
 | entity_type_name | [string](#string) |  |  |
+| entity_type_display_name | [string](#string) |  |  |
 | language | [string](#string) |  |  |
 
 
@@ -1418,18 +1454,18 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 <a name="ondewo.nlu.FullTextSearchResponseEntitySynonym"></a>
 
 ### FullTextSearchResponseEntitySynonym
-
+This message is a response of full text search of synonym entity
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
-| language_code | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
 | entity_synonym_results | [FullTextSearchResponseEntitySynonym.EntitySynonymSearchResult](#ondewo.nlu.FullTextSearchResponseEntitySynonym.EntitySynonymSearchResult) | repeated |  |
 | term | [string](#string) |  |  |
 | elastic_query | [string](#string) |  |  |
 | time | [float](#float) |  |  |
-| next_page_token | [string](#string) |  |  |
+| next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
 
@@ -1447,7 +1483,9 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 | name | [string](#string) |  |  |
 | display_name | [string](#string) |  |  |
 | entity_type_name | [string](#string) |  |  |
+| entity_type_display_name | [string](#string) |  |  |
 | entity_name | [string](#string) |  |  |
+| entity_display_name | [string](#string) |  |  |
 | language | [string](#string) |  |  |
 
 
@@ -1458,18 +1496,18 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 <a name="ondewo.nlu.FullTextSearchResponseEntityType"></a>
 
 ### FullTextSearchResponseEntityType
-
+This message is a response of full text search of entity type
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
-| language_code | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
 | entity_type_results | [FullTextSearchResponseEntityType.EntityTypeSearchResult](#ondewo.nlu.FullTextSearchResponseEntityType.EntityTypeSearchResult) | repeated |  |
 | term | [string](#string) |  |  |
 | elastic_query | [string](#string) |  |  |
 | time | [float](#float) |  |  |
-| next_page_token | [string](#string) |  |  |
+| next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
 
@@ -1496,18 +1534,18 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 <a name="ondewo.nlu.FullTextSearchResponseIntent"></a>
 
 ### FullTextSearchResponseIntent
-
+This message is a response of full text search of intent
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
-| language_code | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
 | intent_results | [FullTextSearchResponseIntent.IntentSearchResult](#ondewo.nlu.FullTextSearchResponseIntent.IntentSearchResult) | repeated |  |
 | term | [string](#string) |  |  |
 | elastic_query | [string](#string) |  |  |
 | time | [float](#float) |  |  |
-| next_page_token | [string](#string) |  |  |
+| next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
 
@@ -1525,6 +1563,7 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 | name | [string](#string) |  |  |
 | display_name | [string](#string) |  |  |
 | domain_name | [string](#string) |  |  |
+| tags | [string](#string) | repeated |  |
 | language | [string](#string) |  |  |
 
 
@@ -1535,18 +1574,18 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 <a name="ondewo.nlu.FullTextSearchResponseIntentContextIn"></a>
 
 ### FullTextSearchResponseIntentContextIn
-
+This message is a response of full text search of intent with context in
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
-| language_code | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
 | intent_context_in_results | [FullTextSearchResponseIntentContextIn.IntentContextInSearchResult](#ondewo.nlu.FullTextSearchResponseIntentContextIn.IntentContextInSearchResult) | repeated |  |
 | term | [string](#string) |  |  |
 | elastic_query | [string](#string) |  |  |
 | time | [float](#float) |  |  |
-| next_page_token | [string](#string) |  |  |
+| next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
 
@@ -1563,6 +1602,8 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  |  |
 | intent_name | [string](#string) |  |  |
+| intent_display_name | [string](#string) |  |  |
+| tags | [string](#string) | repeated |  |
 | language | [string](#string) |  |  |
 
 
@@ -1573,18 +1614,18 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 <a name="ondewo.nlu.FullTextSearchResponseIntentContextOut"></a>
 
 ### FullTextSearchResponseIntentContextOut
-
+This message is a response of full text search of intent with context out
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
-| language_code | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
 | intent_context_out_results | [FullTextSearchResponseIntentContextOut.IntentContextOutSearchResult](#ondewo.nlu.FullTextSearchResponseIntentContextOut.IntentContextOutSearchResult) | repeated |  |
 | term | [string](#string) |  |  |
 | elastic_query | [string](#string) |  |  |
 | time | [float](#float) |  |  |
-| next_page_token | [string](#string) |  |  |
+| next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
 
@@ -1601,6 +1642,8 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  |  |
 | intent_name | [string](#string) |  |  |
+| intent_display_name | [string](#string) |  |  |
+| tags | [string](#string) | repeated |  |
 | language | [string](#string) |  |  |
 
 
@@ -1611,18 +1654,18 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 <a name="ondewo.nlu.FullTextSearchResponseIntentParameters"></a>
 
 ### FullTextSearchResponseIntentParameters
-
+This message is a response of full text search of intent with parameters
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
-| language_code | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
 | intent_parameters_results | [FullTextSearchResponseIntentParameters.IntentParametersSearchResult](#ondewo.nlu.FullTextSearchResponseIntentParameters.IntentParametersSearchResult) | repeated |  |
 | term | [string](#string) |  |  |
 | elastic_query | [string](#string) |  |  |
 | time | [float](#float) |  |  |
-| next_page_token | [string](#string) |  |  |
+| next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
 
@@ -1640,6 +1683,8 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 | parameter_name | [string](#string) |  |  |
 | parameter_display_name | [string](#string) |  |  |
 | intent_name | [string](#string) |  |  |
+| intent_display_name | [string](#string) |  |  |
+| tags | [string](#string) | repeated |  |
 | language | [string](#string) |  |  |
 
 
@@ -1650,18 +1695,18 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 <a name="ondewo.nlu.FullTextSearchResponseIntentResponse"></a>
 
 ### FullTextSearchResponseIntentResponse
-
+This message is a response of full text search of intent response
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
-| language_code | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
 | intent_response_results | [FullTextSearchResponseIntentResponse.IntentResponseSearchResult](#ondewo.nlu.FullTextSearchResponseIntentResponse.IntentResponseSearchResult) | repeated |  |
 | term | [string](#string) |  |  |
 | elastic_query | [string](#string) |  |  |
 | time | [float](#float) |  |  |
-| next_page_token | [string](#string) |  |  |
+| next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
 
@@ -1680,6 +1725,8 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 | platform | [string](#string) |  |  |
 | response_type | [string](#string) |  |  |
 | intent_name | [string](#string) |  |  |
+| intent_display_name | [string](#string) |  |  |
+| tags | [string](#string) | repeated |  |
 | language | [string](#string) |  |  |
 
 
@@ -1690,18 +1737,18 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 <a name="ondewo.nlu.FullTextSearchResponseIntentTags"></a>
 
 ### FullTextSearchResponseIntentTags
-
+This message is a response of full text search of intent with tags
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
-| language_code | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
 | intent_tags_results | [FullTextSearchResponseIntentTags.IntentTagsSearchResult](#ondewo.nlu.FullTextSearchResponseIntentTags.IntentTagsSearchResult) | repeated |  |
 | term | [string](#string) |  |  |
 | elastic_query | [string](#string) |  |  |
 | time | [float](#float) |  |  |
-| next_page_token | [string](#string) |  |  |
+| next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
 
@@ -1719,6 +1766,8 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 | name | [string](#string) |  |  |
 | text | [string](#string) |  |  |
 | intent_name | [string](#string) |  |  |
+| intent_display_name | [string](#string) |  |  |
+| tags | [string](#string) | repeated |  |
 | language | [string](#string) |  |  |
 
 
@@ -1729,18 +1778,18 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 <a name="ondewo.nlu.FullTextSearchResponseIntentUsersays"></a>
 
 ### FullTextSearchResponseIntentUsersays
-
+This message is a response of full text search of intent with sentence
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
-| language_code | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
 | intent_usersays_results | [FullTextSearchResponseIntentUsersays.IntentUsersaysSearchResult](#ondewo.nlu.FullTextSearchResponseIntentUsersays.IntentUsersaysSearchResult) | repeated |  |
 | term | [string](#string) |  |  |
 | elastic_query | [string](#string) |  |  |
 | time | [float](#float) |  |  |
-| next_page_token | [string](#string) |  |  |
+| next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
 
@@ -1761,6 +1810,8 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:expor
 | text_as_entity_values | [string](#string) |  |  |
 | type | [string](#string) |  |  |
 | intent_name | [string](#string) |  |  |
+| intent_display_name | [string](#string) |  |  |
+| tags | [string](#string) | repeated |  |
 | language | [string](#string) |  |  |
 
 
@@ -1776,7 +1827,7 @@ The request message for [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetA
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: `projects/<Project ID>/agents`. |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | agent_view | [AgentView](#ondewo.nlu.AgentView) |  | Optional. Specify the view of the returned agent (full view by default) |
 
 
@@ -1787,15 +1838,15 @@ The request message for [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetA
 <a name="ondewo.nlu.GetAgentStatisticsRequest"></a>
 
 ### GetAgentStatisticsRequest
-
+Request statistics of the agent
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The project to get statistics from. Format: `projects/<Project ID>`. |
-| format | [ReportFormat](#ondewo.nlu.ReportFormat) |  |  |
-| language_code | [string](#string) |  |  |
-| type | [ReportType](#ondewo.nlu.ReportType) |  |  |
+| parent | [string](#string) |  | Required. The project to get statistics from. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
+| format | [ReportFormat](#ondewo.nlu.ReportFormat) |  | File formats for reports |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru the language to calculate statistics about |
+| type | [ReportType](#ondewo.nlu.ReportType) |  | Type of reports about the domain of the agent |
 
 
 
@@ -1805,14 +1856,14 @@ The request message for [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetA
 <a name="ondewo.nlu.GetAgentStatisticsResponse"></a>
 
 ### GetAgentStatisticsResponse
-
+Response to get statistics of the agent
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | reports | [bytes](#bytes) |  | Statistic info. |
-| format | [ReportFormat](#ondewo.nlu.ReportFormat) |  |  |
-| type | [ReportType](#ondewo.nlu.ReportType) |  |  |
+| format | [ReportFormat](#ondewo.nlu.ReportFormat) |  | File formats for reports |
+| type | [ReportType](#ondewo.nlu.ReportType) |  | Type of reports about the domain of the agent |
 
 
 
@@ -1822,14 +1873,14 @@ The request message for [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetA
 <a name="ondewo.nlu.GetModelStatusesRequest"></a>
 
 ### GetModelStatusesRequest
-
+Request to get model statuses
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: `projects/<Project ID>/agent`. |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | cache_version | [int32](#int32) |  |  |
-| language_code | [string](#string) |  |  |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
 | model_name | [string](#string) |  |  |
 
 
@@ -1840,7 +1891,7 @@ The request message for [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetA
 <a name="ondewo.nlu.GetModelStatusesResponse"></a>
 
 ### GetModelStatusesResponse
-
+Response to get model statuses
 
 
 | Field | Type | Label | Description |
@@ -1855,13 +1906,13 @@ The request message for [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetA
 <a name="ondewo.nlu.GetPlatformInfoResponse"></a>
 
 ### GetPlatformInfoResponse
-
+GIT information about the version of the server
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| version | [string](#string) |  |  |
-| commit_hash | [string](#string) |  |  |
+| version | [string](#string) |  | version of the server build |
+| commit_hash | [string](#string) |  | git commit hash of the server build |
 
 
 
@@ -1871,12 +1922,53 @@ The request message for [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetA
 <a name="ondewo.nlu.GetPlatformMappingRequest"></a>
 
 ### GetPlatformMappingRequest
-
+Request to get platform mapping
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The project that the agent is associated with. Format: `projects/<Project ID>/agent`. |
+| parent | [string](#string) |  | Required. The project that the agent is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetSessionsStatisticsRequest"></a>
+
+### GetSessionsStatisticsRequest
+Request of the report of the statistics about sessions
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The project to get statistics from. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
+| format | [ReportFormat](#ondewo.nlu.ReportFormat) |  | File formats for reports |
+| type | [SessionsReportType](#ondewo.nlu.SessionsReportType) |  | Type of reports about the domain of the agent |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow reports based on sessions |
+| context_filters | [ContextFilter](#ondewo.nlu.ContextFilter) | repeated | Optional. A filter to narrow reports based on contextual information (Coming soon! Not yet implemented) |
+| limit | [int32](#int32) |  | Optional. limit the returned number of results |
+| group_bys | [string](#string) | repeated | Optional. Grouping based on named properties |
+| order_bys | [string](#string) | repeated | Optional. Order based on named properties |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which data fields will be added to the returned data. Example: paths=["duration_in_s_min", "id", "session_id", "project_id"] |
+| sql_query | [string](#string) |  | SQL Query - only usable with specific SessionsReportType such as SessionsReportType.SESSION_SQL_QUERY |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetSessionsStatisticsResponse"></a>
+
+### GetSessionsStatisticsResponse
+Report of the statistics about sessions
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| reports | [bytes](#bytes) |  | Statistic info. |
+| format | [ReportFormat](#ondewo.nlu.ReportFormat) |  | File formats for reports |
+| type | [SessionsReportType](#ondewo.nlu.SessionsReportType) |  | Type of reports about the domain of the agent |
 
 
 
@@ -1891,7 +1983,7 @@ The request message for [Agents.ImportAgent][google.cloud.dialogflow.v2.Agents.I
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The project that the agent to import is associated with. Format: `projects/<Project ID>`. |
+| parent | [string](#string) |  | Required. The project that the agent to import is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
 | agent_uri | [string](#string) |  | The URI to a Google Cloud Storage file containing the agent to import. Note: The URI must start with "gs://". |
 | agent_content | [bytes](#bytes) |  | The agent to import.
 
@@ -1907,7 +1999,7 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:impor
 <a name="ondewo.nlu.ListAgentsOfUserResponse"></a>
 
 ### ListAgentsOfUserResponse
-
+Get list of agents of user
 
 
 | Field | Type | Label | Description |
@@ -1923,7 +2015,7 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:impor
 <a name="ondewo.nlu.ListAgentsRequest"></a>
 
 ### ListAgentsRequest
-
+Request to get the list of agents
 
 
 | Field | Type | Label | Description |
@@ -1940,7 +2032,7 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:impor
 <a name="ondewo.nlu.ListAgentsResponse"></a>
 
 ### ListAgentsResponse
-
+Get list of agents
 
 
 | Field | Type | Label | Description |
@@ -1971,7 +2063,7 @@ Project permissions
 <a name="ondewo.nlu.ListProjectPermissionsResponse"></a>
 
 ### ListProjectPermissionsResponse
-
+List project permissions
 
 
 | Field | Type | Label | Description |
@@ -1987,12 +2079,12 @@ Project permissions
 <a name="ondewo.nlu.ListUsersInProjectRequest"></a>
 
 ### ListUsersInProjectRequest
-
+Request to list users in the project
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to train is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. |
 
 
@@ -2003,7 +2095,7 @@ Project permissions
 <a name="ondewo.nlu.ListUsersInProjectResponse"></a>
 
 ### ListUsersInProjectResponse
-
+List the users in a project
 
 
 | Field | Type | Label | Description |
@@ -2019,14 +2111,14 @@ Project permissions
 <a name="ondewo.nlu.ModelStatus"></a>
 
 ### ModelStatus
-
+Status of model
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| cache_version | [int32](#int32) |  |  |
-| language_code | [string](#string) |  |  |
-| model_name | [string](#string) |  |  |
+| cache_version | [int32](#int32) |  | Cache version that contains the correspondent model |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
+| model_name | [string](#string) |  | The model name |
 | status_set_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
 | config | [string](#string) |  |  |
 | status | [ModelStatus.StatusName](#ondewo.nlu.ModelStatus.StatusName) |  |  |
@@ -2039,13 +2131,13 @@ Project permissions
 <a name="ondewo.nlu.OptimizeRankingMatchRequest"></a>
 
 ### OptimizeRankingMatchRequest
-
+This message is a request to run Optimize Ranking Match
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
-| language_codes | [string](#string) | repeated |  |
+| parent | [string](#string) |  | Required. The project that the agent to train is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
+| language_codes | [string](#string) | repeated | languages that should be optimized |
 | optimization_configs | [RankingMatchOptimizationConfig](#ondewo.nlu.RankingMatchOptimizationConfig) | repeated | optimization config will contain all possible optimizations, with which we will come up in the future |
 | in_place | [bool](#bool) |  | if in_place is true then the config of the agent on the server will be updated, if False then config with optimized thresholds will be returned but not updated on the server |
 
@@ -2057,13 +2149,13 @@ Project permissions
 <a name="ondewo.nlu.OptimizeRankingMatchResponse"></a>
 
 ### OptimizeRankingMatchResponse
-
+This message is a response of Optimize Ranking Match
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| optimization_info | [google.protobuf.Struct](#google.protobuf.Struct) |  |  |
-| optimized_ondewo_config | [google.protobuf.Struct](#google.protobuf.Struct) |  |  |
+| optimization_info | [google.protobuf.Struct](#google.protobuf.Struct) |  | info about optimization |
+| optimized_ondewo_config | [google.protobuf.Struct](#google.protobuf.Struct) |  | the optimized configuration of the ondewo agent e.g., optimized parameters |
 
 
 
@@ -2073,12 +2165,12 @@ Project permissions
 <a name="ondewo.nlu.PlatformMapping"></a>
 
 ### PlatformMapping
-
+This message contains the mapping of platform
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The project that the agent is associated with. Format: `projects/<Project ID>/agent`. |
+| parent | [string](#string) |  | Required. The project that the agent is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | platform_info | [CustomPlatformInfo](#ondewo.nlu.CustomPlatformInfo) | repeated | Required. If not set, it will set it empty. |
 
 
@@ -2089,14 +2181,14 @@ Project permissions
 <a name="ondewo.nlu.RankingMatchOptimizationConfig"></a>
 
 ### RankingMatchOptimizationConfig
-
+This message contains the configuration to run Optimize Ranking Match
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language_code | [string](#string) |  |  |
-| n_splits | [int32](#int32) |  |  |
-| random_seed | [int32](#int32) |  |  |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
+| n_splits | [int32](#int32) |  | number of splits for optimization |
+| random_seed | [int32](#int32) |  | random seed number for defining the split of train and test of training phrases for optimization |
 | initial_thresholds | [google.protobuf.Struct](#google.protobuf.Struct) |  | initial thresholds are optional, if not given will be taken from the current config example {'OndewoIntentSimilarityMatch': 0.59, 'OndewoIntentNamedSimilarityMatch': 0.39} |
 
 
@@ -2107,13 +2199,13 @@ Project permissions
 <a name="ondewo.nlu.ReindexAgentRequest"></a>
 
 ### ReindexAgentRequest
-
+This message is a request to reindex agent
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | projects/<project_id>/agent |
-| branch_name | [string](#string) |  | Optional, useful for versioning reasons in the future |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
+| branch_name | [string](#string) |  | Optional, useful for versioning reasons of the agent data |
 | index_types | [FullTextSearchRequest.QueryType](#ondewo.nlu.FullTextSearchRequest.QueryType) | repeated | Optional, useful for reindexing specific indices in the future |
 
 
@@ -2124,13 +2216,13 @@ Project permissions
 <a name="ondewo.nlu.RemoveUserFromProjectRequest"></a>
 
 ### RemoveUserFromProjectRequest
-
+Request to remove user from the project.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
-| user_id | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to train is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
+| user_id | [string](#string) |  | id of the user |
 
 
 
@@ -2145,7 +2237,7 @@ The request message for [Agents.RestoreAgent][google.cloud.dialogflow.v2.Agents.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The project that the agent to restore is associated with. Format: `projects/<Project ID>`. |
+| parent | [string](#string) |  | Required. The project that the agent to restore is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
 | agent_uri | [string](#string) |  | The URI to a Google Cloud Storage file containing the agent to restore. Note: The URI must start with "gs://". |
 | agent_content | [bytes](#bytes) |  | The agent to restore.
 
@@ -2161,12 +2253,12 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:resto
 <a name="ondewo.nlu.SetAgentStatusRequest"></a>
 
 ### SetAgentStatusRequest
-
+Request to set status of the agent
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The project of which to set the status. Format: `projects/<Project ID>/agent`. |
+| parent | [string](#string) |  | Required. The project of which to set the status. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | status | [AgentStatus](#ondewo.nlu.AgentStatus) |  | Required. Status of the agent |
 | agent_view | [AgentView](#ondewo.nlu.AgentView) |  | Optional. View of the returned agent |
 
@@ -2178,16 +2270,16 @@ curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:resto
 <a name="ondewo.nlu.SetResourcesRequest"></a>
 
 ### SetResourcesRequest
-
+Request to set resources
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | name | [string](#string) |  |  |
 | type | [string](#string) |  |  |
 | resource_file | [bytes](#bytes) |  |  |
-| language_code | [string](#string) |  |  |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
 
 
 
@@ -2202,9 +2294,9 @@ The request message for [Agents.TrainAgent][google.cloud.dialogflow.v2.Agents.Tr
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The project that the agent to train is associated with. Format: `projects/<Project ID>`. |
-| branch | [string](#string) |  |  |
-| initiation_protocol | [InitiationProtocol](#ondewo.nlu.InitiationProtocol) |  |  |
+| parent | [string](#string) |  | Required. The project that the agent to train is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
+| branch | [string](#string) |  | Name of the branch of the agent for versioning. The default branch name is <code>develop</code>. |
+| initiation_protocol | [InitiationProtocol](#ondewo.nlu.InitiationProtocol) |  | Defines when to initiate newly created agent when training started |
 
 
 
@@ -2214,12 +2306,12 @@ The request message for [Agents.TrainAgent][google.cloud.dialogflow.v2.Agents.Tr
 <a name="ondewo.nlu.UpdateAgentRequest"></a>
 
 ### UpdateAgentRequest
-
+Request to update the agent
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| agent | [Agent](#ondewo.nlu.Agent) |  |  |
+| agent | [Agent](#ondewo.nlu.Agent) |  | The agent |
 | agent_view | [AgentView](#ondewo.nlu.AgentView) |  | Optional. Specify the view of the returned agent (sparse view by default) |
 | update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields get updated. |
 
@@ -2231,12 +2323,12 @@ The request message for [Agents.TrainAgent][google.cloud.dialogflow.v2.Agents.Tr
 <a name="ondewo.nlu.UserInProject"></a>
 
 ### UserInProject
-
+Request to get user in project
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | ID of the project |
+| parent | [string](#string) |  | Required. The project that the agent to train is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
 | user | [User](#ondewo.nlu.User) |  | User object |
 | role_id | [uint32](#uint32) |  | ID of the project role of the user |
 
@@ -2250,22 +2342,22 @@ The request message for [Agents.TrainAgent][google.cloud.dialogflow.v2.Agents.Tr
 <a name="ondewo.nlu.AgentSorting.AgentSortingField"></a>
 
 ### AgentSorting.AgentSortingField
-
+Sorting field
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NO_AGENT_SORTING | 0 |  |
-| SORT_AGENT_BY_NAME | 1 |  |
-| SORT_AGENT_BY_CREATION_DATE | 2 |  |
-| SORT_AGENT_BY_LAST_UPDATED | 3 |  |
-| SORT_AGENT_BY_OWNER_NAME | 4 |  |
+| NO_AGENT_SORTING | 0 | no sorting |
+| SORT_AGENT_BY_NAME | 1 | sorting by name |
+| SORT_AGENT_BY_CREATION_DATE | 2 | sorting by creation date |
+| SORT_AGENT_BY_LAST_UPDATED | 3 | sorting by last updated date |
+| SORT_AGENT_BY_OWNER_NAME | 4 | sorting by owner, i.e. user who owns the agent which is usually the creator of the agent |
 
 
 
 <a name="ondewo.nlu.AgentStatus"></a>
 
 ### AgentStatus
-
+Type of Agent / Project status
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2277,20 +2369,21 @@ The request message for [Agents.TrainAgent][google.cloud.dialogflow.v2.Agents.Tr
 <a name="ondewo.nlu.AgentView"></a>
 
 ### AgentView
-
+Structure of agent view
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | AGENT_VIEW_UNSPECIFIED | 0 | Unspecified agent view: the view is defined by the call: - CreateAgent: AGENT_VIEW_SHALLOW - UpdateAgent: AGENT_VIEW_SHALLOW - GetAgent: AGENT_VIEW_FULL - ListAgents: AGENT_VIEW_SHALLOW |
 | AGENT_VIEW_FULL | 1 | Full agent view: populate all the fields of the Agent message including configs. |
 | AGENT_VIEW_SHALLOW | 2 | Shallow agent view: populates all the fields except configs. |
+| AGENT_VIEW_MINIMUM | 3 | Minimum view including only agent UUID and agent display name |
 
 
 
 <a name="ondewo.nlu.FullTextSearchRequest.QueryType"></a>
 
 ### FullTextSearchRequest.QueryType
-
+Type of query
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2341,20 +2434,20 @@ Defines when to initiate newly created agent when training started
 <a name="ondewo.nlu.ReportFormat"></a>
 
 ### ReportFormat
-
+File formats for reports
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| CSV | 0 |  |
-| HTML | 1 |  |
-| JSON | 2 |  |
+| CSV | 0 | CSV (comma separated values) file format |
+| HTML | 1 | HTML file format |
+| JSON | 2 | JSON file format |
 
 
 
 <a name="ondewo.nlu.ReportType"></a>
 
 ### ReportType
-
+Type of reports about the domain of the agent
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -2363,6 +2456,38 @@ Defines when to initiate newly created agent when training started
 | ENTITY_PER_LANGUAGE | 2 | statistics of the language specific part of the entity database |
 | ENTITY_COLLISION | 3 | report on collision of the entity synonyms |
 | INTENT_GENERAL | 4 | report of statistics of the general (relevant to all supported languages) part of intent database |
+
+
+
+<a name="ondewo.nlu.SessionsReportType"></a>
+
+### SessionsReportType
+Type of reports about the domain of the agent
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| SESSIONS | 0 | report on sessions. Supports SessionFilter to filter |
+| SESSION_STEPS | 1 | report on session steps. Supports SessionFilter to filter |
+| SESSION_TOP_X_INTENTS | 2 | report top x detected intents in session. Supports SessionFilter to filter |
+| SESSION_TOP_X_ENTITY_TYPES | 3 | report top x detected entity types. Supports SessionFilter to filter |
+| SESSION_TOP_X_ENTITY_VALUES | 4 | report top x detected entity values Supports SessionFilter to filter |
+| SESSION_TOP_X_USERS | 5 | report top x users. Supports SessionFilter to filter (Coming soon! Not yet implemented) |
+| SESSION_TOP_X_LABELS | 6 | report top x labels. Supports SessionFilter to filter |
+| SESSION_TOP_X_TAGS | 7 | report top x tags. Supports SessionFilter to filter |
+| SESSION_TOP_X_PHONE_NUMBERS | 8 | report top x phone_numbers. Supports SessionFilter to filter (Coming soon! Not yet implemented) |
+| SESSION_HUMAN_HANDOVERS | 9 | report on human handovers. Supports SessionFilter to filter (Coming soon! Not yet implemented) |
+| SESSION_SQL_QUERY | 10 | report based on a query issued tables with session information. Requires to define <code>sql_query</code> in request.
+
+Allowed tables to query are: * session * session_context * session_step * session_step_context * session_step_detect_entity * session_step_detect_intent * session_step_detect_intent_context_in * session_step_detect_intent_context_out * session_step_detect_intent_context_out * session_step_detect_intent_label * session_step_detect_intent_tag
+
+Example: <code>SELECT ... FROM session</code> <code>SELECT ... FROM session, session_steps</code> |
+| SESSION_LEAST_X_INTENTS | 11 | report least x detected intents in session. Supports SessionFilter to filter |
+| SESSION_LEAST_X_ENTITY_TYPES | 12 | report least x detected entity types. Supports SessionFilter to filter |
+| SESSION_LEAST_X_ENTITY_VALUES | 13 | report least x detected entity values Supports SessionFilter to filter |
+| SESSION_LEAST_X_USERS | 14 | report least x users. Supports SessionFilter to filter (Coming soon! Not yet implemented) |
+| SESSION_LEAST_X_LABELS | 15 | report least x labels. Supports SessionFilter to filter |
+| SESSION_LEAST_X_TAGS | 16 | report least x tags. Supports SessionFilter to filter |
+| TOTAL_STATISTICS | 17 | report total numbers of e.g. sessions, session steps, etc. |
 
 
  <!-- end enums -->
@@ -2391,7 +2516,7 @@ For more information about agents, see the [Dialogflow documentation](https://di
 
 <p>Examples:</p>
 
-<pre> grpcurl -plaintext -H 'cai-token: aimp' -d '{ "agent": { "display_name": "Pizza Bot", "default_language_code": "en", "supported_language_codes": ["en"], "time_zone": "Europe/Vienna", "nlu_platform": "ONDEWO" } }' localhost:50055 ondewo.nlu.Agents.CreateAgent </pre>
+<pre> grpcurl -plaintext -H 'cai-token: aimp' -d '{ "agent": { "display_name": "My Pizza Bot", "default_language_code": "en", "supported_language_codes": ["en"], "time_zone": "Europe/Vienna", "nlu_platform": "ONDEWO" } }' localhost:50055 ondewo.nlu.Agents.CreateAgent </pre>
 
 <samp>{ "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent", "display_name": "Pizza Bot", "default_language_code": "en", "supported_language_codes": [ "en" ], "time_zone": "Europe/Vienna", "nlu_platform": "ONDEWO", "owner_id": "5aac51b8-668f-49dd-913f-cc683e56af34" } </samp> |
 | UpdateAgent | [UpdateAgentRequest](#ondewo.nlu.UpdateAgentRequest) | [Agent](#ondewo.nlu.Agent) | Updates the specified agent.
@@ -2433,9 +2558,9 @@ For more information about agents, see the [Dialogflow documentation](https://di
 <pre> grpcurl -plaintext -H 'cai-token: aimp' localhost:50055 ondewo.nlu.Agents.ListAllAgents </pre> <samp>{ "agents_with_owners": [ { "agent": { "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent", "display_name": "Pizza Bot 2", "owner_id": "5aac51b8-668f-49dd-913f-cc683e56af34" }, "owner": { "user_id": "5aac51b8-668f-49dd-913f-cc683e56af34", "display_name": "admin", "server_role_id": 3, "user_email": "admin@ondewo.com" } } ], "next_page_token": "current_index-1" } </samp> |
 | AddUserToProject | [AddUserToProjectRequest](#ondewo.nlu.AddUserToProjectRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Adds a user with specified id to the project (agent) |
 | RemoveUserFromProject | [RemoveUserFromProjectRequest](#ondewo.nlu.RemoveUserFromProjectRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Removes a user with specified id from the project (agent) |
-| ListUsersInProject | [ListUsersInProjectRequest](#ondewo.nlu.ListUsersInProjectRequest) | [ListUsersInProjectResponse](#ondewo.nlu.ListUsersInProjectResponse) |  |
-| GetPlatformInfo | [.google.protobuf.Empty](#google.protobuf.Empty) | [GetPlatformInfoResponse](#ondewo.nlu.GetPlatformInfoResponse) |  |
-| ListProjectPermissions | [ListProjectPermissionsRequest](#ondewo.nlu.ListProjectPermissionsRequest) | [ListProjectPermissionsResponse](#ondewo.nlu.ListProjectPermissionsResponse) |  |
+| ListUsersInProject | [ListUsersInProjectRequest](#ondewo.nlu.ListUsersInProjectRequest) | [ListUsersInProjectResponse](#ondewo.nlu.ListUsersInProjectResponse) | Lists users in the project (agent) |
+| GetPlatformInfo | [.google.protobuf.Empty](#google.protobuf.Empty) | [GetPlatformInfoResponse](#ondewo.nlu.GetPlatformInfoResponse) | Gets information from the platform |
+| ListProjectPermissions | [ListProjectPermissionsRequest](#ondewo.nlu.ListProjectPermissionsRequest) | [ListProjectPermissionsResponse](#ondewo.nlu.ListProjectPermissionsResponse) | List permissions from the project (agent) |
 | TrainAgent | [TrainAgentRequest](#ondewo.nlu.TrainAgentRequest) | [Operation](#ondewo.nlu.Operation) | Trains the specified agent.
 
 Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [google.protobuf.Struct][google.protobuf.Struct]> |
@@ -2451,30 +2576,31 @@ Operation <response: [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgen
 Uploads new intents and entity types without deleting the existing ones. Intents and entity types with the same name are replaced with the new versions from ImportAgentRequest.
 
 Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [google.protobuf.Struct][google.protobuf.Struct]> |
-| OptimizeRankingMatch | [OptimizeRankingMatchRequest](#ondewo.nlu.OptimizeRankingMatchRequest) | [Operation](#ondewo.nlu.Operation) |  |
+| OptimizeRankingMatch | [OptimizeRankingMatchRequest](#ondewo.nlu.OptimizeRankingMatchRequest) | [Operation](#ondewo.nlu.Operation) | Runs optimize ranking match |
 | RestoreAgent | [RestoreAgentRequest](#ondewo.nlu.RestoreAgentRequest) | [Operation](#ondewo.nlu.Operation) | Restores the specified agent from a ZIP file.
 
 Replaces the current agent version with a new one. All the intents and entity types in the older version are deleted.
 
 Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [google.protobuf.Struct][google.protobuf.Struct]> |
-| GetAgentStatistics | [GetAgentStatisticsRequest](#ondewo.nlu.GetAgentStatisticsRequest) | [GetAgentStatisticsResponse](#ondewo.nlu.GetAgentStatisticsResponse) |  |
-| SetAgentStatus | [SetAgentStatusRequest](#ondewo.nlu.SetAgentStatusRequest) | [Agent](#ondewo.nlu.Agent) |  |
-| SetResources | [SetResourcesRequest](#ondewo.nlu.SetResourcesRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) |  |
-| DeleteResources | [DeleteResourcesRequest](#ondewo.nlu.DeleteResourcesRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) |  |
-| ExportResources | [ExportResourcesRequest](#ondewo.nlu.ExportResourcesRequest) | [ExportResourcesResponse](#ondewo.nlu.ExportResourcesResponse) |  |
+| GetAgentStatistics | [GetAgentStatisticsRequest](#ondewo.nlu.GetAgentStatisticsRequest) | [GetAgentStatisticsResponse](#ondewo.nlu.GetAgentStatisticsResponse) | Gets statistics for the agent |
+| GetSessionsStatistics | [GetSessionsStatisticsRequest](#ondewo.nlu.GetSessionsStatisticsRequest) | [GetSessionsStatisticsResponse](#ondewo.nlu.GetSessionsStatisticsResponse) |  |
+| SetAgentStatus | [SetAgentStatusRequest](#ondewo.nlu.SetAgentStatusRequest) | [Agent](#ondewo.nlu.Agent) | Sets status for the agent |
+| SetResources | [SetResourcesRequest](#ondewo.nlu.SetResourcesRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Sets resources |
+| DeleteResources | [DeleteResourcesRequest](#ondewo.nlu.DeleteResourcesRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes resources |
+| ExportResources | [ExportResourcesRequest](#ondewo.nlu.ExportResourcesRequest) | [ExportResourcesResponse](#ondewo.nlu.ExportResourcesResponse) | Exports resources |
 | GetModelStatuses | [GetModelStatusesRequest](#ondewo.nlu.GetModelStatusesRequest) | [GetModelStatusesResponse](#ondewo.nlu.GetModelStatusesResponse) | Get statuses of models related to project |
 | GetPlatformMapping | [GetPlatformMappingRequest](#ondewo.nlu.GetPlatformMappingRequest) | [PlatformMapping](#ondewo.nlu.PlatformMapping) | Get all set platform name mappings for an Agent |
 | SetPlatformMapping | [PlatformMapping](#ondewo.nlu.PlatformMapping) | [PlatformMapping](#ondewo.nlu.PlatformMapping) | Set platform name mappings for an Agent |
-| GetFullTextSearchEntityType | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseEntityType](#ondewo.nlu.FullTextSearchResponseEntityType) | Full text search endpoint |
-| GetFullTextSearchEntity | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseEntity](#ondewo.nlu.FullTextSearchResponseEntity) |  |
-| GetFullTextSearchEntitySynonym | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseEntitySynonym](#ondewo.nlu.FullTextSearchResponseEntitySynonym) |  |
-| GetFullTextSearchIntent | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseIntent](#ondewo.nlu.FullTextSearchResponseIntent) |  |
-| GetFullTextSearchIntentContextIn | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseIntentContextIn](#ondewo.nlu.FullTextSearchResponseIntentContextIn) |  |
-| GetFullTextSearchIntentContextOut | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseIntentContextOut](#ondewo.nlu.FullTextSearchResponseIntentContextOut) |  |
-| GetFullTextSearchIntentUsersays | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseIntentUsersays](#ondewo.nlu.FullTextSearchResponseIntentUsersays) |  |
-| GetFullTextSearchIntentTags | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseIntentTags](#ondewo.nlu.FullTextSearchResponseIntentTags) |  |
-| GetFullTextSearchIntentResponse | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseIntentResponse](#ondewo.nlu.FullTextSearchResponseIntentResponse) |  |
-| GetFullTextSearchIntentParameters | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseIntentParameters](#ondewo.nlu.FullTextSearchResponseIntentParameters) |  |
+| GetFullTextSearchEntityType | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseEntityType](#ondewo.nlu.FullTextSearchResponseEntityType) | Full text search endpoint in entity types |
+| GetFullTextSearchEntity | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseEntity](#ondewo.nlu.FullTextSearchResponseEntity) | Full text search endpoint in entities |
+| GetFullTextSearchEntitySynonym | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseEntitySynonym](#ondewo.nlu.FullTextSearchResponseEntitySynonym) | Full text search endpoint in entity synonyms |
+| GetFullTextSearchIntent | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseIntent](#ondewo.nlu.FullTextSearchResponseIntent) | Full text search endpoint in intents |
+| GetFullTextSearchIntentContextIn | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseIntentContextIn](#ondewo.nlu.FullTextSearchResponseIntentContextIn) | Full text search endpoint in context ins of intents |
+| GetFullTextSearchIntentContextOut | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseIntentContextOut](#ondewo.nlu.FullTextSearchResponseIntentContextOut) | Full text search endpoint in context outs of intents |
+| GetFullTextSearchIntentUsersays | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseIntentUsersays](#ondewo.nlu.FullTextSearchResponseIntentUsersays) | Full text search endpoint in user says of intents |
+| GetFullTextSearchIntentTags | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseIntentTags](#ondewo.nlu.FullTextSearchResponseIntentTags) | Full text search endpoint in tags of intents |
+| GetFullTextSearchIntentResponse | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseIntentResponse](#ondewo.nlu.FullTextSearchResponseIntentResponse) | Full text search endpoint in responses of intents |
+| GetFullTextSearchIntentParameters | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseIntentParameters](#ondewo.nlu.FullTextSearchResponseIntentParameters) | Full text search endpoint in parameters of intents |
 | ReindexAgent | [ReindexAgentRequest](#ondewo.nlu.ReindexAgentRequest) | [Operation](#ondewo.nlu.Operation) | Force reindexing Intent and Entity data of Agent |
 
  <!-- end services -->
@@ -2491,13 +2617,13 @@ Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [
 <a name="ondewo.nlu.AltSentence"></a>
 
 ### AltSentence
-
+This message contains an alternative sentence
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| sentence | [string](#string) |  |  |
-| score | [float](#float) |  |  |
+| sentence | [string](#string) |  | Alternative sentence |
+| score | [float](#float) |  | Score associated to the alternative sentence resulted |
 
 
 
@@ -2507,13 +2633,13 @@ Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [
 <a name="ondewo.nlu.AltTrainingPhrase"></a>
 
 ### AltTrainingPhrase
-
+This message contains an alternative training phrase
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| training_phrase | [Intent.TrainingPhrase](#ondewo.nlu.Intent.TrainingPhrase) |  |  |
-| score | [float](#float) |  |  |
+| training_phrase | [Intent.TrainingPhrase](#ondewo.nlu.Intent.TrainingPhrase) |  | Alternative training phrase |
+| score | [float](#float) |  | Score associated to training_phrase |
 
 
 
@@ -2523,14 +2649,14 @@ Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [
 <a name="ondewo.nlu.BertAugEnrichmentConfig"></a>
 
 ### BertAugEnrichmentConfig
-
+Configuration for BERT augmenter enrichment
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| is_active | [bool](#bool) |  |  |
-| enrichment_factor | [int32](#int32) |  |  |
-| execution_order | [int32](#int32) |  |  |
+| is_active | [bool](#bool) |  | Activation flag |
+| enrichment_factor | [int32](#int32) |  | Factor of enrichment |
+| execution_order | [int32](#int32) |  | Order of augmenter execution |
 
 
 
@@ -2545,7 +2671,7 @@ The request for intent classification.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | the parent of the request Format: `projects/<Project ID>`. |
+| parent | [string](#string) |  | Required. The project of this agent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | text | [string](#string) |  | the input text |
 | language_code | [string](#string) |  | the input language |
 | active_contexts | [bool](#bool) |  | Optional: if restrict classification result with input contexts listed in the field `context_names` |
@@ -2561,15 +2687,15 @@ The request for intent classification.
 <a name="ondewo.nlu.ClassifyIntentsResponse"></a>
 
 ### ClassifyIntentsResponse
-
+Response containing the intents classified in a sentence
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| intents_classified | [IntentClassified](#ondewo.nlu.IntentClassified) | repeated |  |
-| text | [string](#string) |  |  |
-| active_contexts | [bool](#bool) |  |  |
-| context_names | [string](#string) | repeated |  |
+| intents_classified | [IntentClassified](#ondewo.nlu.IntentClassified) | repeated | A list of intents detected |
+| text | [string](#string) |  | The text containing from which the intents were detected |
+| active_contexts | [bool](#bool) |  | Flag that enables the context through the conversation |
+| context_names | [string](#string) | repeated | The context tags associated to the intents |
 
 
 
@@ -2579,19 +2705,19 @@ The request for intent classification.
 <a name="ondewo.nlu.DataEnrichmentConfig"></a>
 
 ### DataEnrichmentConfig
-
+This message contains the configuration of data enrichment
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| entity_enrichment | [EntityEnrichmentConfig](#ondewo.nlu.EntityEnrichmentConfig) |  |  |
-| thesaurus_enrichment | [ThesaurusEnrichmentConfig](#ondewo.nlu.ThesaurusEnrichmentConfig) |  |  |
-| word2vec_enrichment | [Word2VecEnrichmentConfig](#ondewo.nlu.Word2VecEnrichmentConfig) |  |  |
-| word_net_enrichment | [WordNetAugEnrichmentConfig](#ondewo.nlu.WordNetAugEnrichmentConfig) |  |  |
-| gpt2_enrichment | [GPT2EnrichmentConfig](#ondewo.nlu.GPT2EnrichmentConfig) |  |  |
-| glove_enrichment | [GloVeEnrichmentConfig](#ondewo.nlu.GloVeEnrichmentConfig) |  |  |
-| bert_enrichment | [BertAugEnrichmentConfig](#ondewo.nlu.BertAugEnrichmentConfig) |  |  |
-| xlnet_enrichment | [XLNetAugEnrichmentConfig](#ondewo.nlu.XLNetAugEnrichmentConfig) |  |  |
+| entity_enrichment | [EntityEnrichmentConfig](#ondewo.nlu.EntityEnrichmentConfig) |  | Entity augmenter configuration |
+| thesaurus_enrichment | [ThesaurusEnrichmentConfig](#ondewo.nlu.ThesaurusEnrichmentConfig) |  | Thesaurus augmenter configuration |
+| word2vec_enrichment | [Word2VecEnrichmentConfig](#ondewo.nlu.Word2VecEnrichmentConfig) |  | Word2Vec augmenter configuration |
+| word_net_enrichment | [WordNetAugEnrichmentConfig](#ondewo.nlu.WordNetAugEnrichmentConfig) |  | WordNet augmenter configuration |
+| gpt2_enrichment | [GPT2EnrichmentConfig](#ondewo.nlu.GPT2EnrichmentConfig) |  | GPT2 augmenter configuration |
+| glove_enrichment | [GloVeEnrichmentConfig](#ondewo.nlu.GloVeEnrichmentConfig) |  | GloVe augmenter configuration |
+| bert_enrichment | [BertAugEnrichmentConfig](#ondewo.nlu.BertAugEnrichmentConfig) |  | BERT augmenter configuration |
+| xlnet_enrichment | [XLNetAugEnrichmentConfig](#ondewo.nlu.XLNetAugEnrichmentConfig) |  | XLNet augmenter configuration |
 
 
 
@@ -2601,14 +2727,14 @@ The request for intent classification.
 <a name="ondewo.nlu.EntityDetected"></a>
 
 ### EntityDetected
-
+This message contains the entity detected
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| entity | [Intent.TrainingPhrase.Entity](#ondewo.nlu.Intent.TrainingPhrase.Entity) |  |  |
-| extraction_method | [string](#string) |  |  |
-| score | [float](#float) |  |  |
+| entity | [Intent.TrainingPhrase.Entity](#ondewo.nlu.Intent.TrainingPhrase.Entity) |  | The entity name that is detected |
+| extraction_method | [string](#string) |  | The extractor name, e.g. SpacyNer |
+| score | [float](#float) |  | The confidence score of the detected entity |
 
 
 
@@ -2618,14 +2744,14 @@ The request for intent classification.
 <a name="ondewo.nlu.EntityEnrichmentConfig"></a>
 
 ### EntityEnrichmentConfig
-
+Configuration for Entity enrichment
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| is_active | [bool](#bool) |  |  |
-| enrichment_factor | [int32](#int32) |  |  |
-| execution_order | [int32](#int32) |  |  |
+| is_active | [bool](#bool) |  | Activation flag |
+| enrichment_factor | [int32](#int32) |  | Factor of enrichment |
+| execution_order | [int32](#int32) |  | Order of augmenter execution |
 
 
 
@@ -2635,7 +2761,7 @@ The request for intent classification.
 <a name="ondewo.nlu.EntityTypeFuzzyNerConfig"></a>
 
 ### EntityTypeFuzzyNerConfig
-
+Configuration for Fuzzy Entity Recognizer
 
 
 | Field | Type | Label | Description |
@@ -2643,9 +2769,8 @@ The request for intent classification.
 | entity_type | [EntityType](#ondewo.nlu.EntityType) |  | The Entity Type |
 | minimal_score | [float](#float) |  | Optional. Overrides the minimal score in ExtractEntitiesFuzzyRequest. |
 | entity_values | [string](#string) | repeated | Optional. If defined, only entity value from this list are considered. |
-| algorithm | [EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm](#ondewo.nlu.EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm) |  | Optional. Specify the Fuzzy Ner algorithm
-
-Should not use allow_overlaps here, since its default value is False bool allow_overlaps = 5; |
+| algorithm | [EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm](#ondewo.nlu.EntityTypeFuzzyNerConfig.FuzzyNerAlgorithm) |  | Optional. Specify the Fuzzy Ner algorithm |
+| allow_overlaps | [bool](#bool) |  | Should not use allow_overlaps here, since its default value is False |
 
 
 
@@ -2655,12 +2780,12 @@ Should not use allow_overlaps here, since its default value is False bool allow_
 <a name="ondewo.nlu.ExtractEntitiesFuzzyRequest"></a>
 
 ### ExtractEntitiesFuzzyRequest
-
+This message is a request to extract entities with Fuzzy Entity Recognizer
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | the parent of the request Format: `projects/<Project ID>`. |
+| parent | [string](#string) |  | the parent of the request Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
 | text | [string](#string) |  | The text to be analyzed |
 | potential_entities | [EntityTypeFuzzyNerConfig](#ondewo.nlu.EntityTypeFuzzyNerConfig) | repeated | Potential entities to be extracted from the text with entity-specific configs |
 | minimal_score | [float](#float) |  | Minimal similarity score to consider entity as "matched" |
@@ -2679,10 +2804,10 @@ The request to detect parameters.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | the parent of the request Format: `projects/<Project ID>`. |
+| parent | [string](#string) |  | the parent of the request Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
 | text | [string](#string) |  | the input text |
 | language_code | [string](#string) |  | the input language |
-| intent_name | [string](#string) |  | Optional. The name of the relevant intent. Used to establish preference hierarchy for entities that correspond to intent parameters Format: `projects/<Project ID>/agent/intents/<Intent ID>` |
+| intent_name | [string](#string) |  | Optional. The name of the relevant intent. Used to establish preference hierarchy for entities that correspond to intent parameters Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
 
 
 
@@ -2692,13 +2817,13 @@ The request to detect parameters.
 <a name="ondewo.nlu.ExtractEntitiesResponse"></a>
 
 ### ExtractEntitiesResponse
-
+This message is a response of extracting entities
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| entities_detected | [EntityDetected](#ondewo.nlu.EntityDetected) | repeated |  |
-| text | [string](#string) |  |  |
+| entities_detected | [EntityDetected](#ondewo.nlu.EntityDetected) | repeated | A list of entities detected |
+| text | [string](#string) |  | The text containing the entities detected |
 
 
 
@@ -2708,14 +2833,14 @@ The request to detect parameters.
 <a name="ondewo.nlu.GPT2EnrichmentConfig"></a>
 
 ### GPT2EnrichmentConfig
-
+Configuration for GPT2 enrichment
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| is_active | [bool](#bool) |  |  |
-| enrichment_factor | [int32](#int32) |  |  |
-| execution_order | [int32](#int32) |  |  |
+| is_active | [bool](#bool) |  | Activation flag |
+| enrichment_factor | [int32](#int32) |  | Factor of enrichment |
+| execution_order | [int32](#int32) |  | Order of augmenter execution |
 
 
 
@@ -2725,15 +2850,15 @@ The request to detect parameters.
 <a name="ondewo.nlu.GenerateResponsesRequest"></a>
 
 ### GenerateResponsesRequest
-
+Request to generate responses
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language_code | [string](#string) |  |  |
-| parent | [string](#string) |  |  |
-| n_repeat_synonym | [int32](#int32) |  |  |
-| branch | [string](#string) |  |  |
+| language_code | [string](#string) |  | language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
+| parent | [string](#string) |  | the parent of the request Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
+| n_repeat_synonym | [int32](#int32) |  | The number of synonyms desired |
+| branch | [string](#string) |  | Git branch |
 | drop_unknown_parameters | [bool](#bool) |  |  |
 
 
@@ -2744,12 +2869,12 @@ The request to detect parameters.
 <a name="ondewo.nlu.GenerateResponsesResponse"></a>
 
 ### GenerateResponsesResponse
-
+Response containing responses
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| responses | [string](#string) | repeated |  |
+| responses | [string](#string) | repeated | A list of responses |
 
 
 
@@ -2759,15 +2884,15 @@ The request to detect parameters.
 <a name="ondewo.nlu.GenerateUserSaysRequest"></a>
 
 ### GenerateUserSaysRequest
-
+Request to generate user sentences
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language_code | [string](#string) |  |  |
-| parent | [string](#string) |  |  |
-| n_repeat_synonym | [int32](#int32) |  |  |
-| branch | [string](#string) |  |  |
+| language_code | [string](#string) |  | language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
+| parent | [string](#string) |  | the parent of the request Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
+| n_repeat_synonym | [int32](#int32) |  | The number of synonyms desired |
+| branch | [string](#string) |  | Git branch |
 
 
 
@@ -2777,12 +2902,12 @@ The request to detect parameters.
 <a name="ondewo.nlu.GenerateUserSaysResponse"></a>
 
 ### GenerateUserSaysResponse
-
+Response containing user sentences
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| user_says | [string](#string) | repeated |  |
+| user_says | [string](#string) | repeated | A list of sampled sentences |
 
 
 
@@ -2792,17 +2917,17 @@ The request to detect parameters.
 <a name="ondewo.nlu.GetAlternativeSentencesRequest"></a>
 
 ### GetAlternativeSentencesRequest
-
+Request to get alternative sentences
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| config | [DataEnrichmentConfig](#ondewo.nlu.DataEnrichmentConfig) |  |  |
-| sentence | [string](#string) |  |  |
-| language_code | [string](#string) |  |  |
-| parent | [string](#string) |  |  |
-| protected_words | [string](#string) | repeated |  |
-| words_to_change | [string](#string) | repeated |  |
+| config | [DataEnrichmentConfig](#ondewo.nlu.DataEnrichmentConfig) |  | Configuration type of the enricher |
+| sentence | [string](#string) |  | The sentence from which it is desired to get alternative sentences |
+| language_code | [string](#string) |  | Language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
+| parent | [string](#string) |  | the parent of the request Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
+| protected_words | [string](#string) | repeated | Protected words in the augmentation process |
+| words_to_change | [string](#string) | repeated | Words to be changed in the augmentation process |
 
 
 
@@ -2812,12 +2937,12 @@ The request to detect parameters.
 <a name="ondewo.nlu.GetAlternativeSentencesResponse"></a>
 
 ### GetAlternativeSentencesResponse
-
+Response containing alternative sentences
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| alternative_sentences | [AltSentence](#ondewo.nlu.AltSentence) | repeated |  |
+| alternative_sentences | [AltSentence](#ondewo.nlu.AltSentence) | repeated | A list of alternative sentences |
 
 
 
@@ -2827,21 +2952,21 @@ The request to detect parameters.
 <a name="ondewo.nlu.GetAlternativeTrainingPhrasesRequest"></a>
 
 ### GetAlternativeTrainingPhrasesRequest
-
+Request to get alternative training phrases
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| config | [DataEnrichmentConfig](#ondewo.nlu.DataEnrichmentConfig) |  |  |
-| training_phrase | [Intent.TrainingPhrase](#ondewo.nlu.Intent.TrainingPhrase) |  |  |
-| intent_name | [string](#string) |  |  |
-| language_code | [string](#string) |  |  |
-| parent | [string](#string) |  |  |
-| detect_entities | [bool](#bool) |  |  |
+| config | [DataEnrichmentConfig](#ondewo.nlu.DataEnrichmentConfig) |  | Configuration of the enricher |
+| training_phrase | [Intent.TrainingPhrase](#ondewo.nlu.Intent.TrainingPhrase) |  | Training phrase from which an alternative one is got |
+| intent_name | [string](#string) |  | The intent tag attached to the training phrase |
+| language_code | [string](#string) |  | language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
+| parent | [string](#string) |  | the parent of the request Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
+| detect_entities | [bool](#bool) |  | Flag to determine whether entities must or not be detected |
 | similarity_threshold | [float](#float) |  | similarity threshold defines how similar sentences should be to drop generated training phrase as duplicate. Meaningful values of similarity_threshold are between 0.95 and 1.0 |
-| protected_words | [string](#string) | repeated |  |
-| words_to_change | [string](#string) | repeated |  |
-| branch | [string](#string) |  |  |
+| protected_words | [string](#string) | repeated | Protected words in the augmentation process |
+| words_to_change | [string](#string) | repeated | Words to be changed in the augmentation process |
+| branch | [string](#string) |  | Git branch |
 
 
 
@@ -2851,12 +2976,12 @@ The request to detect parameters.
 <a name="ondewo.nlu.GetAlternativeTrainingPhrasesResponse"></a>
 
 ### GetAlternativeTrainingPhrasesResponse
-
+Response containing alternative training phrases
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| alternative_training_phrases | [AltTrainingPhrase](#ondewo.nlu.AltTrainingPhrase) | repeated |  |
+| alternative_training_phrases | [AltTrainingPhrase](#ondewo.nlu.AltTrainingPhrase) | repeated | A list of alternative training phrases |
 
 
 
@@ -2866,15 +2991,15 @@ The request to detect parameters.
 <a name="ondewo.nlu.GetSynonymsRequest"></a>
 
 ### GetSynonymsRequest
-
+Request to get synonyms
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| config | [DataEnrichmentConfig](#ondewo.nlu.DataEnrichmentConfig) |  |  |
-| word | [string](#string) |  |  |
-| language_code | [string](#string) |  |  |
-| parent | [string](#string) |  |  |
+| config | [DataEnrichmentConfig](#ondewo.nlu.DataEnrichmentConfig) |  | Configuration of the enricher |
+| word | [string](#string) |  | Word from which a synonym is got |
+| language_code | [string](#string) |  | language code specifies the language of the request, e.g. cz, de, en, es, fi, fr, it, nl, pl, pt, tr, ru |
+| parent | [string](#string) |  | the parent of the request Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
 
 
 
@@ -2884,12 +3009,12 @@ The request to detect parameters.
 <a name="ondewo.nlu.GetSynonymsResponse"></a>
 
 ### GetSynonymsResponse
-
+Response containing synonyms
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| synonyms | [Synonym](#ondewo.nlu.Synonym) | repeated |  |
+| synonyms | [Synonym](#ondewo.nlu.Synonym) | repeated | A list of synonyms |
 
 
 
@@ -2899,14 +3024,14 @@ The request to detect parameters.
 <a name="ondewo.nlu.GloVeEnrichmentConfig"></a>
 
 ### GloVeEnrichmentConfig
-
+Configuration for GloVe enrichment
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| is_active | [bool](#bool) |  |  |
-| enrichment_factor | [int32](#int32) |  |  |
-| execution_order | [int32](#int32) |  |  |
+| is_active | [bool](#bool) |  | Activation flag |
+| enrichment_factor | [int32](#int32) |  | Factor of enrichment |
+| execution_order | [int32](#int32) |  | Order of augmenter execution |
 
 
 
@@ -2916,15 +3041,15 @@ The request to detect parameters.
 <a name="ondewo.nlu.IntentClassified"></a>
 
 ### IntentClassified
-
+Intent classified by a certain intent classifier
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| intent_name | [string](#string) |  | The unique identifier of this intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
+| intent_name | [string](#string) |  | The unique identifier of this intent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
 | intent_display_name | [string](#string) |  | The name of the intent. |
-| classifier | [string](#string) |  |  |
-| score | [float](#float) |  |  |
+| classifier | [string](#string) |  | The name of the classifier that detected the intent |
+| score | [float](#float) |  | Score associated to the detection of the intent by the classifier |
 
 
 
@@ -2934,13 +3059,13 @@ The request to detect parameters.
 <a name="ondewo.nlu.Synonym"></a>
 
 ### Synonym
-
+This message contains a Synonym
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| synonym | [string](#string) |  |  |
-| score | [int32](#int32) |  |  |
+| synonym | [string](#string) |  | Synonym word |
+| score | [int32](#int32) |  | Score associated to the synonym resulted |
 
 
 
@@ -2950,14 +3075,14 @@ The request to detect parameters.
 <a name="ondewo.nlu.ThesaurusEnrichmentConfig"></a>
 
 ### ThesaurusEnrichmentConfig
-
+Configuration for Thesaurus enrichment
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| is_active | [bool](#bool) |  |  |
-| enrichment_factor | [int32](#int32) |  |  |
-| execution_order | [int32](#int32) |  |  |
+| is_active | [bool](#bool) |  | Activation flag |
+| enrichment_factor | [int32](#int32) |  | Factor of enrichment |
+| execution_order | [int32](#int32) |  | Order of augmenter execution |
 
 
 
@@ -2967,14 +3092,14 @@ The request to detect parameters.
 <a name="ondewo.nlu.Word2VecEnrichmentConfig"></a>
 
 ### Word2VecEnrichmentConfig
-
+Configuration for Word2Vec enrichment
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| is_active | [bool](#bool) |  |  |
-| enrichment_factor | [int32](#int32) |  |  |
-| execution_order | [int32](#int32) |  |  |
+| is_active | [bool](#bool) |  | Activation flag |
+| enrichment_factor | [int32](#int32) |  | Factor of enrichment |
+| execution_order | [int32](#int32) |  | Order of augmenter execution |
 
 
 
@@ -2984,14 +3109,14 @@ The request to detect parameters.
 <a name="ondewo.nlu.WordNetAugEnrichmentConfig"></a>
 
 ### WordNetAugEnrichmentConfig
-
+Configuration for WordNet augmenter enrichment
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| is_active | [bool](#bool) |  |  |
-| enrichment_factor | [int32](#int32) |  |  |
-| execution_order | [int32](#int32) |  |  |
+| is_active | [bool](#bool) |  | Activation flag |
+| enrichment_factor | [int32](#int32) |  | Factor of enrichment |
+| execution_order | [int32](#int32) |  | Order of augmenter execution |
 
 
 
@@ -3001,14 +3126,14 @@ The request to detect parameters.
 <a name="ondewo.nlu.XLNetAugEnrichmentConfig"></a>
 
 ### XLNetAugEnrichmentConfig
-
+Configuration for Thesaurus enrichment
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| is_active | [bool](#bool) |  |  |
-| enrichment_factor | [int32](#int32) |  |  |
-| execution_order | [int32](#int32) |  |  |
+| is_active | [bool](#bool) |  | Activation flag |
+| enrichment_factor | [int32](#int32) |  | Factor of enrichment |
+| execution_order | [int32](#int32) |  | Order of augmenter execution |
 
 
 
@@ -3024,43 +3149,43 @@ Enum of fuzzy ner algorithms
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| PREFILTER_LEVENSHTEIN | 0 |  |
-| LOCAL_MAXIMUM | 1 |  |
+| PREFILTER_LEVENSHTEIN | 0 | Levenshtein algorithm for fuzzy ner matching |
+| LOCAL_MAXIMUM | 1 | local maximum |
 
 
 
 <a name="ondewo.nlu.IntentAlgorithms"></a>
 
 ### IntentAlgorithms
-
+Type of Intent algorithm.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| OndewoIntentExactContextDetector | 0 |  |
-| OndewoIntentExactMatch | 1 |  |
-| OndewoIntentNamedExactMatch | 2 |  |
-| OndewoIntentSimilarityMatch | 3 |  |
-| OndewoIntentNamedSimilarityMatch | 4 |  |
-| OndewoIntentBertClassifier | 7 |  |
+| OndewoIntentExactContextDetector | 0 | By enabling this, a specific intent is triggered if the context and the intent name in the user says is matched. This can be used for directly triggering 'quick reply' button clicks confidence is always '1.0'. |
+| OndewoIntentExactMatch | 1 | exact matching' of user input to user says is used to detect the intent. Confidence is always '1.0' if an 'exact match' is found. |
+| OndewoIntentNamedExactMatch | 2 | the entity synonym in the user says text is replaced by the entity and 'exact matching' of user says text is performed. Confidence is alway '1.0'. |
+| OndewoIntentSimilarityMatch | 3 | the algorithm computes the similarity of the user input to all user says of all intents. |
+| OndewoIntentNamedSimilarityMatch | 4 | the entity synonyms in the user says are replaced by their Entity. Text similarity algorithms are then used to detect the intent. |
+| OndewoIntentBertClassifier | 7 | new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers.BERT is designed to pre-train deep bidirectional representations by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT representations can be fine-tuned for multi-class intent detection. For details seehttps://arxiv.org/abs/1810.04805 |
 | OndewoIntentMetaClassifier | 8 |  |
-| IntentExitDetector | 10 |  |
-| OndewoIntentRankingMatch | 11 |  |
-| OndewoWeightedEnsemble | 13 |  |
-| OndewoIntentExitDetector | 14 |  |
-| OndewoIntentParameterMatch | 15 |  |
+| IntentExitDetector | 10 | Maximum number of repeated fallbacks before this algorithm exists the conversation and resets contexts |
+| OndewoIntentRankingMatch | 11 | Algorithm to improve the interplay of the other algorithms |
+| OndewoWeightedEnsemble | 13 | Ensemble calculation of used algorithms |
+| OndewoIntentExitDetector | 14 | Maximum number of repeated fallbacks before this algorithm exists the conversation and resets contexts |
+| OndewoIntentParameterMatch | 15 | Matches the intent based on the parameter constellation and the current user context |
 
 
 
 <a name="ondewo.nlu.Mode"></a>
 
 ### Mode
-
+Type of mode
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| UNSPECIFIED | 0 |  |
-| EXCLUSIVE | 1 |  |
-| INCLUSIVE | 2 |  |
+| UNSPECIFIED | 0 | default mode, described in agent config |
+| EXCLUSIVE | 1 | skip algorithms listed in `algorithms` field, |
+| INCLUSIVE | 2 | run ONLY algorithms listed in `algorithms` field |
 
 
  <!-- end enums -->
@@ -3076,12 +3201,12 @@ The Central class defining the ondewo ai services
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | ExtractEntities | [ExtractEntitiesRequest](#ondewo.nlu.ExtractEntitiesRequest) | [ExtractEntitiesResponse](#ondewo.nlu.ExtractEntitiesResponse) | Processes a natural language query and returns detected entities |
-| GenerateUserSays | [GenerateUserSaysRequest](#ondewo.nlu.GenerateUserSaysRequest) | [GenerateUserSaysResponse](#ondewo.nlu.GenerateUserSaysResponse) |  |
-| GenerateResponses | [GenerateResponsesRequest](#ondewo.nlu.GenerateResponsesRequest) | [GenerateResponsesResponse](#ondewo.nlu.GenerateResponsesResponse) |  |
-| GetAlternativeSentences | [GetAlternativeSentencesRequest](#ondewo.nlu.GetAlternativeSentencesRequest) | [GetAlternativeSentencesResponse](#ondewo.nlu.GetAlternativeSentencesResponse) |  |
-| GetAlternativeTrainingPhrases | [GetAlternativeTrainingPhrasesRequest](#ondewo.nlu.GetAlternativeTrainingPhrasesRequest) | [GetAlternativeTrainingPhrasesResponse](#ondewo.nlu.GetAlternativeTrainingPhrasesResponse) |  |
-| GetSynonyms | [GetSynonymsRequest](#ondewo.nlu.GetSynonymsRequest) | [GetSynonymsResponse](#ondewo.nlu.GetSynonymsResponse) |  |
-| ClassifyIntents | [ClassifyIntentsRequest](#ondewo.nlu.ClassifyIntentsRequest) | [ClassifyIntentsResponse](#ondewo.nlu.ClassifyIntentsResponse) |  |
+| GenerateUserSays | [GenerateUserSaysRequest](#ondewo.nlu.GenerateUserSaysRequest) | [GenerateUserSaysResponse](#ondewo.nlu.GenerateUserSaysResponse) | Generates a list of training phrases |
+| GenerateResponses | [GenerateResponsesRequest](#ondewo.nlu.GenerateResponsesRequest) | [GenerateResponsesResponse](#ondewo.nlu.GenerateResponsesResponse) | Generate responses from all intents using synonyms |
+| GetAlternativeSentences | [GetAlternativeSentencesRequest](#ondewo.nlu.GetAlternativeSentencesRequest) | [GetAlternativeSentencesResponse](#ondewo.nlu.GetAlternativeSentencesResponse) | Generates alternative phrase based on original phrase |
+| GetAlternativeTrainingPhrases | [GetAlternativeTrainingPhrasesRequest](#ondewo.nlu.GetAlternativeTrainingPhrasesRequest) | [GetAlternativeTrainingPhrasesResponse](#ondewo.nlu.GetAlternativeTrainingPhrasesResponse) | Generates alternative training phrase based on original training phrase |
+| GetSynonyms | [GetSynonymsRequest](#ondewo.nlu.GetSynonymsRequest) | [GetSynonymsResponse](#ondewo.nlu.GetSynonymsResponse) | Generates synonyms for a certain word |
+| ClassifyIntents | [ClassifyIntentsRequest](#ondewo.nlu.ClassifyIntentsRequest) | [ClassifyIntentsResponse](#ondewo.nlu.ClassifyIntentsResponse) | Preprocess text and detects intents in a sentence |
 | ExtractEntitiesFuzzy | [ExtractEntitiesFuzzyRequest](#ondewo.nlu.ExtractEntitiesFuzzyRequest) | [ExtractEntitiesResponse](#ondewo.nlu.ExtractEntitiesResponse) | Processes a natural language query and returns detected entities |
 
  <!-- end services -->
@@ -3098,7 +3223,7 @@ The Central class defining the ondewo ai services
 <a name="ondewo.nlu.StatResponse"></a>
 
 ### StatResponse
-
+statistic response
 
 
 | Field | Type | Label | Description |
@@ -3115,12 +3240,12 @@ The Central class defining the ondewo ai services
 <a name="ondewo.nlu.SortingMode"></a>
 
 ### SortingMode
-
+Sorting mode
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| ASCENDING | 0 |  |
-| DESCENDING | 1 |  |
+| ASCENDING | 0 | ascending sorting |
+| DESCENDING | 1 | descending sorting |
 
 
  <!-- end enums -->
@@ -3202,7 +3327,7 @@ The request message for [Contexts.CreateContext][google.cloud.dialogflow.v2.Cont
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The session to create a context for. Format: `projects/<Project ID>/agent/sessions/<Session ID>`. |
+| session_id | [string](#string) |  | Required. The session to create a context for. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
 | context | [Context](#ondewo.nlu.Context) |  | Required. The context to create. |
 
 
@@ -3215,10 +3340,13 @@ The request message for [Contexts.CreateContext][google.cloud.dialogflow.v2.Cont
 ### DeleteAllContextsRequest
 The request message for [Contexts.DeleteAllContexts][google.cloud.dialogflow.v2.Contexts.DeleteAllContexts].
 
+Required. The name of the session to delete all contexts from.
+Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre>
+
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The name of the session to delete all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>`. |
+| session_id | [string](#string) |  |  |
 
 
 
@@ -3263,7 +3391,7 @@ The request message for [Contexts.ListContexts][google.cloud.dialogflow.v2.Conte
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The session to list all contexts from. Format: `projects/<Project ID>/agent/sessions/<Session ID>`. |
+| session_id | [string](#string) |  | Required. The session to list all contexts from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. |
 
 
@@ -3353,28 +3481,12 @@ For more information about contexts, see the
 <a name="ondewo.nlu.BatchCreateEntitiesRequest"></a>
 
 ### BatchCreateEntitiesRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| create_entity_requests | [BatchCreateEntitiesRequest.CreateEntityRequest](#ondewo.nlu.BatchCreateEntitiesRequest.CreateEntityRequest) | repeated |  |
-
-
-
-
-
-
-<a name="ondewo.nlu.BatchCreateEntitiesRequest.CreateEntityRequest"></a>
-
-### BatchCreateEntitiesRequest.CreateEntityRequest
-
+This message is a request to create a batch entities
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| entity_type_name | [string](#string) |  | Required. Name of the entity type in which to create the entity value. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>`. |
-| entity | [EntityType.Entity](#ondewo.nlu.EntityType.Entity) |  | The entity value to create |
+| create_entity_requests | [CreateEntityRequest](#ondewo.nlu.CreateEntityRequest) | repeated | The create entity requests in a batch |
 
 
 
@@ -3384,7 +3496,7 @@ For more information about contexts, see the
 <a name="ondewo.nlu.BatchDeleteEntitiesRequest"></a>
 
 ### BatchDeleteEntitiesRequest
-
+This message is a request to delete a batch of entities
 
 
 | Field | Type | Label | Description |
@@ -3399,29 +3511,13 @@ For more information about contexts, see the
 <a name="ondewo.nlu.BatchDeleteEntitiesResponse"></a>
 
 ### BatchDeleteEntitiesResponse
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| delete_statuses | [BatchDeleteEntitiesResponse.DeleteEntityStatus](#ondewo.nlu.BatchDeleteEntitiesResponse.DeleteEntityStatus) | repeated |  |
-| has_errors | [bool](#bool) |  |  |
-
-
-
-
-
-
-<a name="ondewo.nlu.BatchDeleteEntitiesResponse.DeleteEntityStatus"></a>
-
-### BatchDeleteEntitiesResponse.DeleteEntityStatus
-
+This message is a response of deletion of a batch of entities
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| successfully_deleted | [google.protobuf.Empty](#google.protobuf.Empty) |  |  |
-| error_message | [string](#string) |  |  |
+| delete_statuses | [DeleteEntityStatus](#ondewo.nlu.DeleteEntityStatus) | repeated | status of an entity deletion |
+| has_errors | [bool](#bool) |  | error messages |
 
 
 
@@ -3447,29 +3543,13 @@ The request message for [EntityTypes.BatchDeleteEntityTypes][google.cloud.dialog
 <a name="ondewo.nlu.BatchEntitiesResponse"></a>
 
 ### BatchEntitiesResponse
-
+This message is a response of batch entities
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| entity_statuses | [BatchEntitiesResponse.EntityStatus](#ondewo.nlu.BatchEntitiesResponse.EntityStatus) | repeated |  |
+| entity_statuses | [EntityStatus](#ondewo.nlu.EntityStatus) | repeated | A list of entity statuses |
 | has_errors | [bool](#bool) |  | indicates if statuses of some of the training phrases have errors |
-
-
-
-
-
-
-<a name="ondewo.nlu.BatchEntitiesResponse.EntityStatus"></a>
-
-### BatchEntitiesResponse.EntityStatus
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| entity | [EntityType.Entity](#ondewo.nlu.EntityType.Entity) |  |  |
-| error_message | [string](#string) |  |  |
 
 
 
@@ -3479,7 +3559,7 @@ The request message for [EntityTypes.BatchDeleteEntityTypes][google.cloud.dialog
 <a name="ondewo.nlu.BatchGetEntitiesRequest"></a>
 
 ### BatchGetEntitiesRequest
-
+This message is a request to get a batch of entities
 
 
 | Field | Type | Label | Description |
@@ -3494,7 +3574,7 @@ The request message for [EntityTypes.BatchDeleteEntityTypes][google.cloud.dialog
 <a name="ondewo.nlu.BatchUpdateEntitiesRequest"></a>
 
 ### BatchUpdateEntitiesRequest
-
+This message is a request to update a batch of entities
 
 
 | Field | Type | Label | Description |
@@ -3514,7 +3594,7 @@ The request message for [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialog
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The name of the agent to update or create entity types in. Format: `projects/<Project ID>/agent`. |
+| parent | [string](#string) |  | Required. The name of the agent to update or create entity types in. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | entity_type_batch_uri | [string](#string) |  | The URI to a Google Cloud Storage file containing entity types to update or create. The file format can either be a serialized proto (of EntityBatch type) or a JSON object. Note: The URI must start with "gs://". |
 | entity_type_batch_inline | [EntityTypeBatch](#ondewo.nlu.EntityTypeBatch) |  | The collection of entity type to update or create. |
 | language_code | [string](#string) |  | Optional. The language of entity synonyms defined in `entity_types`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
@@ -3540,6 +3620,22 @@ The response message for [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialo
 
 
 
+<a name="ondewo.nlu.CreateEntityRequest"></a>
+
+### CreateEntityRequest
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| entity_type_name | [string](#string) |  | Required. Name of the entity type in which to create the entity value. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>/entities/<Entity ID>`. |
+| entity | [EntityType.Entity](#ondewo.nlu.EntityType.Entity) |  | The entity value to create |
+
+
+
+
+
+
 <a name="ondewo.nlu.CreateEntityTypeRequest"></a>
 
 ### CreateEntityTypeRequest
@@ -3548,10 +3644,41 @@ The request message for [EntityTypes.CreateEntityType][google.cloud.dialogflow.v
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The agent to create a entity type for. Format: `projects/<Project ID>/agent`. |
+| parent | [string](#string) |  | Required. The agent to create a entity type for. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | entity_type | [EntityType](#ondewo.nlu.EntityType) |  | Required. The entity type to create. |
 | language_code | [string](#string) |  | Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
 | entity_type_view | [EntityTypeView](#ondewo.nlu.EntityTypeView) |  | Optional. The resource view to apply to the returned Entity Type |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteEntityRequest"></a>
+
+### DeleteEntityRequest
+This message is a request to delete a batch of entities
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique identifiers of the entities. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>/entities/<Entity ID>`. |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteEntityStatus"></a>
+
+### DeleteEntityStatus
+This message contains the status of an entity deletion
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| successfully_deleted | [google.protobuf.Empty](#google.protobuf.Empty) |  |  |
+| error_message | [string](#string) |  |  |
 
 
 
@@ -3566,7 +3693,23 @@ The request message for [EntityTypes.DeleteEntityType][google.cloud.dialogflow.v
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Required. The name of the entity type to delete. Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`. |
+| name | [string](#string) |  | Required. The name of the entity type to delete. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;</code></pre> |
+
+
+
+
+
+
+<a name="ondewo.nlu.EntityStatus"></a>
+
+### EntityStatus
+This message is for the entity status
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| entity | [EntityType.Entity](#ondewo.nlu.EntityType.Entity) |  | The entity |
+| error_message | [string](#string) |  | Error message |
 
 
 
@@ -3636,7 +3779,7 @@ This message is a wrapper around a collection of entity types.
 <a name="ondewo.nlu.EntityTypeSorting"></a>
 
 ### EntityTypeSorting
-
+This message contains Entity type sorting
 
 
 | Field | Type | Label | Description |
@@ -3652,13 +3795,28 @@ This message is a wrapper around a collection of entity types.
 <a name="ondewo.nlu.EntityValueSorting"></a>
 
 ### EntityValueSorting
-
+This message contains entity value sorting
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | sorting_field | [EntityValueSorting.EntityValueSortingField](#ondewo.nlu.EntityValueSorting.EntityValueSortingField) |  |  |
 | sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) |  |  |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetEntityRequest"></a>
+
+### GetEntityRequest
+This message is a request to get a an entity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique identifiers of the entities. Format: `projects/<Project ID>/agent/entityTypes/<Entity Type ID>/entities/<Entity ID>`. |
 
 
 
@@ -3673,9 +3831,9 @@ The request message for [EntityTypes.GetEntityType][google.cloud.dialogflow.v2.E
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Required. The name of the entity type. Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`. |
+| name | [string](#string) |  | Required. The name of the entity type. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;</code></pre> |
 | language_code | [string](#string) |  | Optional. The language to retrieve entity synonyms for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
-| page_token | [string](#string) |  |  |
+| page_token | [string](#string) |  | A page_token allows the pagination of elements where <CURRENT_INDEX> and <PAGE_SIZE> are of type int, <SUB_FIELD> is of type str (example: `parameters`). An example for a page_token is page_size-1000 |
 | entity_type_view | [EntityTypeView](#ondewo.nlu.EntityTypeView) |  | Optional. The resource view to apply to the returned Entity Type |
 
 
@@ -3686,7 +3844,7 @@ The request message for [EntityTypes.GetEntityType][google.cloud.dialogflow.v2.E
 <a name="ondewo.nlu.ListEntitiesRequest"></a>
 
 ### ListEntitiesRequest
-
+This message is a request to get a list of entities
 
 
 | Field | Type | Label | Description |
@@ -3705,7 +3863,7 @@ The request message for [EntityTypes.GetEntityType][google.cloud.dialogflow.v2.E
 <a name="ondewo.nlu.ListEntitiesResponse"></a>
 
 ### ListEntitiesResponse
-
+This message is a response of listing entities
 
 
 | Field | Type | Label | Description |
@@ -3726,7 +3884,7 @@ The request message for [EntityTypes.ListEntityTypes][google.cloud.dialogflow.v2
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The agent to list all entity types from. Format: `projects/<Project ID>/agent`. |
+| parent | [string](#string) |  | Required. The agent to list all entity types from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | language_code | [string](#string) |  | Optional. The language to list entity synonyms for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. |
 | entity_type_view | [EntityTypeView](#ondewo.nlu.EntityTypeView) |  | Optional. The resource view to apply to the returned entity type. |
@@ -3754,6 +3912,21 @@ The response message for [EntityTypes.ListEntityTypes][google.cloud.dialogflow.v
 
 
 
+<a name="ondewo.nlu.UpdateEntityRequest"></a>
+
+### UpdateEntityRequest
+This message is a request to update an entity
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| entity | [EntityType.Entity](#ondewo.nlu.EntityType.Entity) |  | The entity to update |
+
+
+
+
+
+
 <a name="ondewo.nlu.UpdateEntityTypeRequest"></a>
 
 ### UpdateEntityTypeRequest
@@ -3762,7 +3935,7 @@ The request message for [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| entity_type | [EntityType](#ondewo.nlu.EntityType) |  | Required. The entity type to update. Format: `projects/<Project ID>/agent/entityTypes/<EntityType ID>`. |
+| entity_type | [EntityType](#ondewo.nlu.EntityType) |  | Required. The entity type to update. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;</code></pre> |
 | language_code | [string](#string) |  | Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
 | update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields get updated. |
 | entity_type_view | [EntityTypeView](#ondewo.nlu.EntityTypeView) |  | Optional. The resource view to apply to the returned Entity Type |
@@ -3829,7 +4002,7 @@ Represents the category of entity types to filter by in the "List Entity Types" 
 <a name="ondewo.nlu.EntityTypeSorting.EntityTypeSortingField"></a>
 
 ### EntityTypeSorting.EntityTypeSortingField
-
+Structure of Entity type sorting field
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -3855,13 +4028,14 @@ does not return all values and synonyms besides the full view that is set by def
 | ENTITY_TYPE_VIEW_FULL | 1 | All fields are populated. |
 | ENTITY_TYPE_VIEW_PARTIAL | 2 | The amount of entity values and synonyms is limited |
 | ENTITY_TYPE_VIEW_SHALLOW | 3 | No entity synonyms are returned, only entity values |
+| ENTITY_TYPE_VIEW_MINIMUM | 4 | Minimum view including only entity type UUID and entity type display name |
 
 
 
 <a name="ondewo.nlu.EntityValueSorting.EntityValueSortingField"></a>
 
 ### EntityValueSorting.EntityValueSortingField
-
+Structure of Entity value sorting field
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -3920,6 +4094,10 @@ Operation <response: [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2
 | BatchDeleteEntityTypes | [BatchDeleteEntityTypesRequest](#ondewo.nlu.BatchDeleteEntityTypesRequest) | [Operation](#ondewo.nlu.Operation) | Deletes entity types in the specified agent.
 
 Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [google.protobuf.Struct][google.protobuf.Struct]> |
+| GetEntity | [GetEntityRequest](#ondewo.nlu.GetEntityRequest) | [EntityType.Entity](#ondewo.nlu.EntityType.Entity) | Retrieves the specified entity . |
+| CreateEntity | [CreateEntityRequest](#ondewo.nlu.CreateEntityRequest) | [EntityType.Entity](#ondewo.nlu.EntityType.Entity) | Creates an entity in the specified agent. |
+| UpdateEntity | [UpdateEntityRequest](#ondewo.nlu.UpdateEntityRequest) | [EntityType.Entity](#ondewo.nlu.EntityType.Entity) | Updates the specified entity . |
+| DeleteEntity | [DeleteEntityRequest](#ondewo.nlu.DeleteEntityRequest) | [DeleteEntityStatus](#ondewo.nlu.DeleteEntityStatus) | Deletes the specified entity . |
 | BatchCreateEntities | [BatchCreateEntitiesRequest](#ondewo.nlu.BatchCreateEntitiesRequest) | [BatchEntitiesResponse](#ondewo.nlu.BatchEntitiesResponse) | Creates an entity value in an entity type. |
 | BatchUpdateEntities | [BatchUpdateEntitiesRequest](#ondewo.nlu.BatchUpdateEntitiesRequest) | [BatchEntitiesResponse](#ondewo.nlu.BatchEntitiesResponse) | Updates a specific entity value. |
 | BatchGetEntities | [BatchGetEntitiesRequest](#ondewo.nlu.BatchGetEntitiesRequest) | [BatchEntitiesResponse](#ondewo.nlu.BatchEntitiesResponse) | Gets a specific entity value. |
@@ -3940,7 +4118,7 @@ Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [
 <a name="ondewo.nlu.BatchCreateParametersRequest"></a>
 
 ### BatchCreateParametersRequest
-
+Request to create a batch of parameters in the specified intent
 
 
 | Field | Type | Label | Description |
@@ -3971,7 +4149,7 @@ Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [
 <a name="ondewo.nlu.BatchCreateResponseMessagesRequest"></a>
 
 ### BatchCreateResponseMessagesRequest
-
+Request to create a list of new response messages and adds it to an intent
 
 
 | Field | Type | Label | Description |
@@ -4002,7 +4180,7 @@ Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [
 <a name="ondewo.nlu.BatchCreateTrainingPhrasesRequest"></a>
 
 ### BatchCreateTrainingPhrasesRequest
-
+This message is a request of a creation of a batch of training phrases
 
 
 | Field | Type | Label | Description |
@@ -4049,12 +4227,12 @@ The request message for [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2.
 <a name="ondewo.nlu.BatchDeleteParametersRequest"></a>
 
 ### BatchDeleteParametersRequest
-
+Request to delete parameters specified by their names.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| names | [string](#string) | repeated | Required. The names of the response messages. Format: `projects/<Project ID>/agent/intents/<Intent ID>/parameters/<Parameter ID>` |
+| names | [string](#string) | repeated | Required. The names of the response messages. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;/parameters/&lt;parameter_uuid</code></pre> |
 
 
 
@@ -4064,7 +4242,7 @@ The request message for [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2.
 <a name="ondewo.nlu.BatchDeleteParametersResponse"></a>
 
 ### BatchDeleteParametersResponse
-
+This message contains response of deleted parameters
 
 
 | Field | Type | Label | Description |
@@ -4096,12 +4274,12 @@ The request message for [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2.
 <a name="ondewo.nlu.BatchDeleteResponseMessagesRequest"></a>
 
 ### BatchDeleteResponseMessagesRequest
-
+Request to delete response messages specified by their names
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| names | [string](#string) | repeated | Required. The names of the response messages. Format: `projects/<Project ID>/agent/intents/<Intent ID>/responseMessages/<Message ID>` |
+| names | [string](#string) | repeated | Required. The names of the response messages. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;/responseMessages/&lt;message_uuid&gt;</code></pre> |
 
 
 
@@ -4111,7 +4289,7 @@ The request message for [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2.
 <a name="ondewo.nlu.BatchDeleteResponseMessagesResponse"></a>
 
 ### BatchDeleteResponseMessagesResponse
-
+Response containing list with deleted response messages
 
 
 | Field | Type | Label | Description |
@@ -4143,12 +4321,12 @@ The request message for [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2.
 <a name="ondewo.nlu.BatchDeleteTrainingPhrasesRequest"></a>
 
 ### BatchDeleteTrainingPhrasesRequest
-
+This message is a request to delete a batch of training phrases
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| names | [string](#string) | repeated | Required. The names of the training phrases. Format: `projects/<Project ID>/agent/intents/<Intent ID>/trainingPhrases/<Training Phrase ID>` |
+| names | [string](#string) | repeated | Required. The names of the training phrases. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;/trainingPhrases/&lt;training_phrase_uuid&gt;</code></pre> |
 
 
 
@@ -4158,7 +4336,7 @@ The request message for [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2.
 <a name="ondewo.nlu.BatchDeleteTrainingPhrasesResponse"></a>
 
 ### BatchDeleteTrainingPhrasesResponse
-
+This message is a response of deleting a batch of training phrases
 
 
 | Field | Type | Label | Description |
@@ -4190,12 +4368,12 @@ The request message for [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2.
 <a name="ondewo.nlu.BatchGetParametersRequest"></a>
 
 ### BatchGetParametersRequest
-
+Request to get batch of parameters in a specified intent
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| names | [string](#string) | repeated | Required. The names of the response messages. Format: `projects/<Project ID>/agent/intents/<Intent ID>/parameters/<Parameter ID>` |
+| names | [string](#string) | repeated | Required. The names of the response messages. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;/parameters/&lt;parameter_uuid</code></pre> |
 
 
 
@@ -4205,12 +4383,12 @@ The request message for [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2.
 <a name="ondewo.nlu.BatchGetResponseMessagesRequest"></a>
 
 ### BatchGetResponseMessagesRequest
-
+Request to retrieve a response messages
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| names | [string](#string) | repeated | Required. The names of the response messages. Format: `projects/<Project ID>/agent/intents/<Intent ID>/responseMessages/<Message ID>` |
+| names | [string](#string) | repeated | Required. The names of the response messages. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;/responseMessages/&lt;message_uuid&gt;</code></pre> |
 
 
 
@@ -4220,12 +4398,12 @@ The request message for [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2.
 <a name="ondewo.nlu.BatchGetTrainingPhrasesRequest"></a>
 
 ### BatchGetTrainingPhrasesRequest
-
+This message is a request to get a batch training phrases
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| names | [string](#string) | repeated | Required. The names of the training phrases. Format: `projects/<Project ID>/agent/intents/<Intent ID>/trainingPhrases/<Training Phrase ID>` |
+| names | [string](#string) | repeated | Required. The names of the training phrases. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;/trainingPhrases/&lt;training_phrase_uuid&gt;</code></pre> |
 
 
 
@@ -4235,7 +4413,7 @@ The request message for [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2.
 <a name="ondewo.nlu.BatchParametersStatusResponse"></a>
 
 ### BatchParametersStatusResponse
-
+Response containing a batch of parameters in the specified intent
 
 
 | Field | Type | Label | Description |
@@ -4267,7 +4445,7 @@ The request message for [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2.
 <a name="ondewo.nlu.BatchResponseMessagesStatusResponse"></a>
 
 ### BatchResponseMessagesStatusResponse
-
+This message is a response of a batch responses of message status
 
 
 | Field | Type | Label | Description |
@@ -4299,12 +4477,12 @@ The request message for [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2.
 <a name="ondewo.nlu.BatchTrainingPhrasesStatusResponse"></a>
 
 ### BatchTrainingPhrasesStatusResponse
-
+This message is a response of the status of a batch of training phrases
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| training_phrase_statuses | [TrainingPhraseStatus](#ondewo.nlu.TrainingPhraseStatus) | repeated |  |
+| training_phrase_statuses | [TrainingPhraseStatus](#ondewo.nlu.TrainingPhraseStatus) | repeated | A list of training phrase statuses |
 | has_errors | [bool](#bool) |  | indicates if statuses of some of the training phrases have errors |
 
 
@@ -4320,7 +4498,7 @@ The request message for [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The name of the agent to update or create intents in. Format: `projects/<Project ID>/agent`. |
+| parent | [string](#string) |  | Required. The name of the agent to update or create intents in. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | intent_batch_uri | [string](#string) |  | The URI to a Google Cloud Storage file containing intents to update or create. The file format can either be a serialized proto (of IntentBatch type) or JSON object. Note: The URI must start with "gs://". |
 | intent_batch_inline | [IntentBatch](#ondewo.nlu.IntentBatch) |  | The collection of intents to update or create. |
 | language_code | [string](#string) |  | Optional. The language of training phrases, parameters and rich messages defined in `intents`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
@@ -4350,7 +4528,7 @@ The response message for [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2
 <a name="ondewo.nlu.BatchUpdateParametersRequest"></a>
 
 ### BatchUpdateParametersRequest
-
+Request to update parameters and adds them to an intent
 
 
 | Field | Type | Label | Description |
@@ -4365,7 +4543,7 @@ The response message for [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2
 <a name="ondewo.nlu.BatchUpdateResponseMessagesRequest"></a>
 
 ### BatchUpdateResponseMessagesRequest
-
+Request to update a response message in the specified intent
 
 
 | Field | Type | Label | Description |
@@ -4380,12 +4558,12 @@ The response message for [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2
 <a name="ondewo.nlu.BatchUpdateTrainingPhrasesRequest"></a>
 
 ### BatchUpdateTrainingPhrasesRequest
-
+This message is a request to update a batch of training phrases
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| training_phrases | [Intent.TrainingPhrase](#ondewo.nlu.Intent.TrainingPhrase) | repeated |  |
+| training_phrases | [Intent.TrainingPhrase](#ondewo.nlu.Intent.TrainingPhrase) | repeated | A list of training phrases |
 
 
 
@@ -4400,7 +4578,7 @@ The request message for [Intents.CreateIntent][google.cloud.dialogflow.v2.Intent
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The agent to create a intent for. Format: `projects/<Project ID>/agent`. |
+| parent | [string](#string) |  | Required. The agent to create a intent for. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | intent | [Intent](#ondewo.nlu.Intent) |  | Required. The intent to create. |
 | language_code | [string](#string) |  | Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
 | intent_view | [IntentView](#ondewo.nlu.IntentView) |  | Optional. The resource view to apply to the returned intent. |
@@ -4418,7 +4596,7 @@ The request message for [Intents.DeleteIntent][google.cloud.dialogflow.v2.Intent
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Required. The name of the intent to delete. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
+| name | [string](#string) |  | Required. The name of the intent to delete. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
 
 
 
@@ -4428,7 +4606,7 @@ The request message for [Intents.DeleteIntent][google.cloud.dialogflow.v2.Intent
 <a name="ondewo.nlu.GetAllIntentTagsRequest"></a>
 
 ### GetAllIntentTagsRequest
-
+This message is a request to get all intent tags
 
 
 | Field | Type | Label | Description |
@@ -4448,7 +4626,7 @@ The request message for [Intents.GetIntent][google.cloud.dialogflow.v2.Intents.G
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Required. The name of the intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
+| name | [string](#string) |  | Required. The name of the intent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
 | language_code | [string](#string) |  | Optional. The language to retrieve training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
 | intent_view | [IntentView](#ondewo.nlu.IntentView) |  | Optional. The resource view to apply to the returned intent. |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. Format: `current_index-<CURRENT_INDEX>--page_size-<PAGE_SIZE>` where <CURRENT_INDEX> and <PAGE_SIZE> are of type int |
@@ -4461,12 +4639,12 @@ The request message for [Intents.GetIntent][google.cloud.dialogflow.v2.Intents.G
 <a name="ondewo.nlu.GetIntentTagsRequest"></a>
 
 ### GetIntentTagsRequest
-
+This message is a request to get intent tags
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| intent_name | [string](#string) |  | The path of the intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
+| intent_name | [string](#string) |  | The path of the intent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
 
 
 
@@ -4476,7 +4654,7 @@ The request message for [Intents.GetIntent][google.cloud.dialogflow.v2.Intents.G
 <a name="ondewo.nlu.GetIntentTagsResponse"></a>
 
 ### GetIntentTagsResponse
-
+This message is a response of getting intent tags
 
 
 | Field | Type | Label | Description |
@@ -4498,23 +4676,23 @@ action is an extraction of a user command or sentence semantics.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Required for all methods except `create` (`create` populates the name automatically. The unique identifier of this intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
+| name | [string](#string) |  | Required for all methods except `create` (`create` populates the name automatically. The unique identifier of this intent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
 | display_name | [string](#string) |  | Required. The name of this intent. |
 | webhook_state | [Intent.WebhookState](#ondewo.nlu.Intent.WebhookState) |  | Required. Indicates whether webhooks are enabled for the intent. |
 | priority | [int32](#int32) |  | Optional. The priority of this intent. Higher numbers represent higher priorities. Zero or negative numbers mean that the intent is disabled. |
 | is_fallback | [bool](#bool) |  | Optional. Indicates whether this is a fallback intent. |
 | ml_disabled | [bool](#bool) |  | Optional. Indicates whether Machine Learning is disabled for the intent. Note: If `ml_diabled` setting is set to true, then this intent is not taken into account during inference in `ML ONLY` match mode. Also, auto-markup in the UI is turned off. |
-| input_context_names | [string](#string) | repeated | Optional. The list of context names required for this intent to be triggered. Format: `projects/<Project ID>/agent/sessions/-/contexts/<Context ID>`. |
+| input_context_names | [string](#string) | repeated | Optional. The list of context names required for this intent to be triggered. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/-/contexts/&lt;context_uuid&gt;</code></pre> |
 | events | [string](#string) | repeated | Optional. The collection of event names that trigger the intent. If the collection of input contexts is not empty, all of the contexts must be present in the active user session for an event to trigger this intent. |
 | training_phrases | [Intent.TrainingPhrase](#ondewo.nlu.Intent.TrainingPhrase) | repeated | Optional. The collection of examples/templates that the agent is trained on. |
 | action | [string](#string) |  | Optional. The name of the action associated with the intent. |
-| output_contexts | [Context](#ondewo.nlu.Context) | repeated | Optional. The collection of contexts that are activated when the intent is matched. Context messages in this collection should not set the parameters field. Setting the `lifespan_count` to 0 will reset the context when the intent is matched. Format: `projects/<Project ID>/agent/sessions/-/contexts/<Context ID>`. |
+| output_contexts | [Context](#ondewo.nlu.Context) | repeated | Optional. The collection of contexts that are activated when the intent is matched. Context messages in this collection should not set the parameters field. Setting the `lifespan_count` to 0 will reset the context when the intent is matched. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/-/contexts/&lt;context_uuid&gt;</code></pre> |
 | reset_contexts | [bool](#bool) |  | Optional. Indicates whether to delete all contexts in the current session when this intent is matched. |
 | parameters | [Intent.Parameter](#ondewo.nlu.Intent.Parameter) | repeated | Optional. The collection of parameters associated with the intent. |
 | messages | [Intent.Message](#ondewo.nlu.Intent.Message) | repeated | Optional. The collection of rich messages corresponding to the `Response` field in the Dialogflow console. |
 | default_response_platforms | [Intent.Message.Platform](#ondewo.nlu.Intent.Message.Platform) | repeated | Optional. The list of platforms for which the first response will be taken from among the messages assigned to the DEFAULT_PLATFORM. |
-| root_followup_intent_name | [string](#string) |  | The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup intents chain for this intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
-| parent_followup_intent_name | [string](#string) |  | The unique identifier of the parent intent in the chain of followup intents. It identifies the parent followup intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
+| root_followup_intent_name | [string](#string) |  | The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup intents chain for this intent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
+| parent_followup_intent_name | [string](#string) |  | The unique identifier of the parent intent in the chain of followup intents. It identifies the parent followup intent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
 | followup_intent_info | [Intent.FollowupIntentInfo](#ondewo.nlu.Intent.FollowupIntentInfo) | repeated | Optional. Collection of information about all followup intents that have name of this intent as a root_name. |
 | next_page_token | [string](#string) |  | Format: `current_index-<CURRENT_INDEX>--page_size-<PAGE_SIZE>` where <CURRENT_INDEX> and <PAGE_SIZE> are of type int |
 | domain_name | [string](#string) |  | Optional. Domain to which the intent belongs |
@@ -4539,8 +4717,8 @@ Represents a single followup intent in the chain.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| followup_intent_name | [string](#string) |  | The unique identifier of the followup intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
-| parent_followup_intent_name | [string](#string) |  | The unique identifier of the followup intent parent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
+| followup_intent_name | [string](#string) |  | The unique identifier of the followup intent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
+| parent_followup_intent_name | [string](#string) |  | The unique identifier of the followup intent parent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
 
 
 
@@ -4555,7 +4733,7 @@ Corresponds to the `Response` field in the Dialogflow console.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Required. The name of the return message. Format: `projects/<Project ID>/agent/intents/<Intent ID>/responseMessages/<Message ID>`. |
+| name | [string](#string) |  | Required. The name of the return message. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;/responseMessages/&lt;message_uuid&gt;</code></pre> |
 | language_code | [string](#string) |  | Required. The language of the return message. |
 | text | [Intent.Message.Text](#ondewo.nlu.Intent.Message.Text) |  | The text response. |
 | image | [Intent.Message.Image](#ondewo.nlu.Intent.Message.Image) |  | The image response. |
@@ -4715,7 +4893,7 @@ An item in the carousel.
 <a name="ondewo.nlu.Intent.Message.HTMLText"></a>
 
 ### Intent.Message.HTMLText
-
+This message contains HTML text
 
 
 | Field | Type | Label | Description |
@@ -4932,7 +5110,7 @@ Represents intent parameters.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The unique identifier of this parameter. Format: `projects/<Project ID>/agent/intents/<Intent ID>/parameters/<Parameter ID>`. |
+| name | [string](#string) |  | The unique identifier of this parameter. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;/parameters/&lt;parameter_uuid&gt;</code></pre> |
 | display_name | [string](#string) |  | Required. The name of the parameter. |
 | value | [string](#string) |  | Optional. The definition of the parameter value. It can be: - a constant string, - a parameter value defined as `$parameter_name`, - an original parameter value defined as `$parameter_name.original`, - a parameter value from some context defined as `#context_name.parameter_name`. |
 | default_value | [string](#string) |  | Optional. The default value to use when the `value` yields an empty result. Default values can be extracted from contexts by using the following syntax: `#context_name.parameter_name`. |
@@ -4955,7 +5133,7 @@ Represents the prompts in the parameters.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The unique identifier of this prompt. Format: `projects/<Project ID>/agent/intents/<Intent ID>/parameters/<Parameter ID>/prompts/<Prompt ID>`. |
+| name | [string](#string) |  | The unique identifier of this prompt. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;/parameters/&lt;parameter_uuid&gt;/prompts/&lt;prompt_uuid&gt;</code></pre> |
 | text | [string](#string) |  | Required. Text of the prompt |
 | language_code | [string](#string) |  | The language of the prompts. If not specified, the default language code will be used. |
 
@@ -4972,7 +5150,7 @@ Represents an example or template that the agent is trained on.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Required. The unique identifier of this training phrase. Format: `projects/<Project ID>/agent/intents/<Intent ID>/trainingPhrases/<Training Phrase ID>`. |
+| name | [string](#string) |  | Required. The unique identifier of this training phrase. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;/trainingPhrases/&lt;training_phrase_uuid&gt;</code></pre> |
 | type | [Intent.TrainingPhrase.Type](#ondewo.nlu.Intent.TrainingPhrase.Type) |  | Required. The type of the training phrase. |
 | text | [string](#string) |  | Required. The text of the training phrase. |
 | entities | [Intent.TrainingPhrase.Entity](#ondewo.nlu.Intent.TrainingPhrase.Entity) | repeated | Optional. The collection of annotated entities in the training phrase. |
@@ -5025,7 +5203,7 @@ This message is a wrapper around a collection of intents.
 <a name="ondewo.nlu.IntentSorting"></a>
 
 ### IntentSorting
-
+This message contains sorting of an intentn
 
 
 | Field | Type | Label | Description |
@@ -5041,12 +5219,12 @@ This message is a wrapper around a collection of intents.
 <a name="ondewo.nlu.IntentTagRequest"></a>
 
 ### IntentTagRequest
-
+This message is a request to get an intent tag
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| intent_name | [string](#string) |  | The path of the intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
+| intent_name | [string](#string) |  | The path of the intent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
 | tags | [string](#string) | repeated | Intent tags for this intent to operate on |
 
 
@@ -5062,7 +5240,7 @@ The request message for [Intents.ListIntents][google.cloud.dialogflow.v2.Intents
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The agent to list all intents from. Format: `projects/<Project ID>/agent`. |
+| parent | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used. |
 | intent_view | [IntentView](#ondewo.nlu.IntentView) |  | Optional. The resource view to apply to the returned intent. |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. Format: `current_index-<CURRENT_INDEX>--page_size-<PAGE_SIZE>` where <CURRENT_INDEX> and <PAGE_SIZE> are of type int |
@@ -5099,7 +5277,7 @@ The request message for TrainingPhraseRequest
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| intent_name | [string](#string) |  | Required. The agent to list all intents from. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
+| intent_name | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
 | language_code | [string](#string) |  | Optional. The language code used to filter out prompts. |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. Format: `current_index-<CURRENT_INDEX>--page_size-<PAGE_SIZE>--sub_field-<SUB_FIELD>` where <CURRENT_INDEX> and <PAGE_SIZE> are of type int, <SUB_FIELD> is of type str (example: `parameters`) |
 
@@ -5132,7 +5310,7 @@ The request message for ResponseMessageRequest
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| intent_name | [string](#string) |  | Required. The agent to list all intents from. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
+| intent_name | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
 | language_code | [string](#string) |  | Optional. The language to list response messages, parameters and rich messages for. If not specified, the agent's default language is used. |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. Format: `current_index-<CURRENT_INDEX>--page_size-<PAGE_SIZE>--sub_field-<SUB_FIELD>` where <CURRENT_INDEX> and <PAGE_SIZE> are of type int, <SUB_FIELD> is of type str (example: `messages`) |
 
@@ -5165,7 +5343,7 @@ The request message for TrainingPhraseRequest
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| intent_name | [string](#string) |  | Required. The agent to list all intents from. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
+| intent_name | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
 | language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. Format: `current_index-<CURRENT_INDEX>--page_size-<PAGE_SIZE>--sub_field-<SUB_FIELD>` where <CURRENT_INDEX> and <PAGE_SIZE> are of type int, <SUB_FIELD> is of type str (example: `training_phrases`) |
 
@@ -5211,7 +5389,7 @@ The request message for TrainingPhraseRequest
 <a name="ondewo.nlu.ListTrainingPhrasesofIntentsWithEnrichmentResponse"></a>
 
 ### ListTrainingPhrasesofIntentsWithEnrichmentResponse
-
+This message contains a list of training phrases filtered by intent ids, language code and parent passed through the request
 
 
 | Field | Type | Label | Description |
@@ -5227,7 +5405,7 @@ The request message for TrainingPhraseRequest
 <a name="ondewo.nlu.TrainingPhraseStatus"></a>
 
 ### TrainingPhraseStatus
-
+This message containing the training phrases status
 
 
 | Field | Type | Label | Description |
@@ -5248,7 +5426,7 @@ The request message for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intent
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| intent | [Intent](#ondewo.nlu.Intent) |  | Required. The intent to update. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
+| intent | [Intent](#ondewo.nlu.Intent) |  | Required. The intent to update. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
 | language_code | [string](#string) |  | Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
 | update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields get updated. |
 | intent_view | [IntentView](#ondewo.nlu.IntentView) |  | Optional. The resource view to apply to the returned intent. |
@@ -5263,7 +5441,7 @@ The request message for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intent
 <a name="ondewo.nlu.Intent.IntentStatus"></a>
 
 ### Intent.IntentStatus
-
+Structure of status of an Intent
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -5356,7 +5534,7 @@ Represents the type of intents to filter by in the "List Intents" request
 <a name="ondewo.nlu.IntentSorting.IntentSortingField"></a>
 
 ### IntentSorting.IntentSortingField
-
+Structure of intent sorting field
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -5383,6 +5561,7 @@ does not return training phrases in the response by default.
 | INTENT_VIEW_FULL | 1 | All fields are populated. |
 | INTENT_VIEW_PARTIAL | 2 | The only nested structures populated are Contexts and Training phrases. The Training phrases field is populated with only a few entries and no annotations. |
 | INTENT_VIEW_SHALLOW | 3 | All nested structures are not populated (no training phrases, nor contexts, nor parameters, ...) |
+| INTENT_VIEW_MINIMUM | 4 | Minimum view including only intent UUID and intent display name |
 
 
  <!-- end enums -->
@@ -5494,7 +5673,9 @@ can be a sub-operation itself
 | host_name | [string](#string) |  | name of the host where the operation was executed |
 | num_reruns | [int32](#int32) |  | number of times the operation was re-run |
 | max_num_reruns | [int32](#int32) |  | maximum number of re-runs in case the operation fails |
-| description | [string](#string) |  | description, normally needed for suboperations when type is OPERATION_TYPE_UNSPECIFIED |
+| description | [string](#string) |  | description, normally needed for sub operations when type is OPERATION_TYPE_UNSPECIFIED |
+| log | [string](#string) | repeated | The log output of an operation |
+| log_limit | [int32](#int32) |  | The log output of an operation limited to the last x log entries |
 
 
 
@@ -5506,7 +5687,8 @@ can be a sub-operation itself
 <a name="ondewo.nlu.OperationMetadata.OperationType"></a>
 
 ### OperationMetadata.OperationType
-
+Type of operation. It can be creating, importing, exporting, deleting, restoring, building cache,
+training or exporting benchmark an agent
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -5525,7 +5707,8 @@ can be a sub-operation itself
 <a name="ondewo.nlu.OperationMetadata.Status"></a>
 
 ### OperationMetadata.Status
-
+Structure to set status of operation. An operation may not be started if NOT_STARTED is set, in
+progress if IN_PROGRESS, finished if DONE, interrupted if CANCELED or failed if FAILED.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -5655,14 +5838,14 @@ network API call.
 <a name="ondewo.nlu.OperationFilter"></a>
 
 ### OperationFilter
-An operationFilter can be used in some requests to return only operations matching certain filter conditions.
-
-All fields below are  optional. Multiple fields specified at the same time are chained via OR.
+This message contains an operation filter
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| project_parents | [string](#string) | repeated | Match operations with any of the following project parents. |
+| project_parents | [string](#string) | repeated | An operationFilter can be used in some requests to return only operations matching certain filter conditions.
+
+All fields below are optional. Multiple fields specified at the same time are chained via OR. Match operations with any of the following project parents. |
 | statuses | [OperationMetadata.Status](#ondewo.nlu.OperationMetadata.Status) | repeated | Match operation which had any of the following operation statuses. |
 | types | [OperationMetadata.OperationType](#ondewo.nlu.OperationMetadata.OperationType) | repeated | Match operation which had any of the following operation types. |
 | start_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | The time operation processing started. |
@@ -5700,7 +5883,7 @@ so developers can have a consistent client experience.
 NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. |
 | GetOperation | [GetOperationRequest](#ondewo.nlu.GetOperationRequest) | [Operation](#ondewo.nlu.Operation) | Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service. |
 | DeleteOperation | [DeleteOperationRequest](#ondewo.nlu.DeleteOperationRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. |
-| CancelOperation | [CancelOperationRequest](#ondewo.nlu.CancelOperationRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use [Operations.GetOperation][ondewo.nlu.Operations.GetOperation] or other methods to check whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an [Operation.error][ondewo.nlu.Operation.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to `Code.CANCELLED`. |
+| CancelOperation | [CancelOperationRequest](#ondewo.nlu.CancelOperationRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use [Operations.GetOperation][ondewo.nlu.Operations.GetOperation] or other methods to verify whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an [Operation.error][ondewo.nlu.Operation.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to `Code.CANCELLED`. |
 
  <!-- end services -->
 
@@ -5716,7 +5899,7 @@ NOTE: the `name` binding below allows API services to override the binding to us
 <a name="ondewo.nlu.CreateProjectRoleRequest"></a>
 
 ### CreateProjectRoleRequest
-
+This message is a request to create project role
 
 
 | Field | Type | Label | Description |
@@ -5733,7 +5916,7 @@ NOTE: the `name` binding below allows API services to override the binding to us
 <a name="ondewo.nlu.DeleteProjectRoleRequest"></a>
 
 ### DeleteProjectRoleRequest
-
+This message is a request to delete project role
 
 
 | Field | Type | Label | Description |
@@ -5749,7 +5932,7 @@ NOTE: the `name` binding below allows API services to override the binding to us
 <a name="ondewo.nlu.GetProjectRoleRequest"></a>
 
 ### GetProjectRoleRequest
-
+This message is a request to get project role
 
 
 | Field | Type | Label | Description |
@@ -5767,7 +5950,7 @@ NOTE: the `name` binding below allows API services to override the binding to us
 <a name="ondewo.nlu.ListProjectRolesRequest"></a>
 
 ### ListProjectRolesRequest
-
+This message is a request to list project role
 
 
 | Field | Type | Label | Description |
@@ -5784,7 +5967,7 @@ NOTE: the `name` binding below allows API services to override the binding to us
 <a name="ondewo.nlu.ListProjectRolesResponse"></a>
 
 ### ListProjectRolesResponse
-
+This message is a response of listing project role
 
 
 | Field | Type | Label | Description |
@@ -5817,7 +6000,7 @@ Project Role messages
 <a name="ondewo.nlu.UpdateProjectRoleRequest"></a>
 
 ### UpdateProjectRoleRequest
-
+This message is a request to update project role
 
 
 | Field | Type | Label | Description |
@@ -5837,7 +6020,7 @@ Project Role messages
 <a name="ondewo.nlu.DefaultProjectRole"></a>
 
 ### DefaultProjectRole
-
+Structure of project role
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -5855,7 +6038,7 @@ unspecified, default value depends on endpoint # TODO |
 <a name="ondewo.nlu.ProjectRoleView"></a>
 
 ### ProjectRoleView
-
+Structure of project role view
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -5872,15 +6055,15 @@ unspecified, default value depends on endpoint # TODO |
 <a name="ondewo.nlu.ProjectRoles"></a>
 
 ### ProjectRoles
-
+Project roles
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateProjectRole | [CreateProjectRoleRequest](#ondewo.nlu.CreateProjectRoleRequest) | [ProjectRole](#ondewo.nlu.ProjectRole) |  |
-| GetProjectRole | [GetProjectRoleRequest](#ondewo.nlu.GetProjectRoleRequest) | [ProjectRole](#ondewo.nlu.ProjectRole) |  |
-| DeleteProjectRole | [DeleteProjectRoleRequest](#ondewo.nlu.DeleteProjectRoleRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) |  |
-| UpdateProjectRole | [UpdateProjectRoleRequest](#ondewo.nlu.UpdateProjectRoleRequest) | [ProjectRole](#ondewo.nlu.ProjectRole) |  |
-| ListProjectRoles | [ListProjectRolesRequest](#ondewo.nlu.ListProjectRolesRequest) | [ListProjectRolesResponse](#ondewo.nlu.ListProjectRolesResponse) |  |
+| CreateProjectRole | [CreateProjectRoleRequest](#ondewo.nlu.CreateProjectRoleRequest) | [ProjectRole](#ondewo.nlu.ProjectRole) | Creates a project role by creating the knowledge base master |
+| GetProjectRole | [GetProjectRoleRequest](#ondewo.nlu.GetProjectRoleRequest) | [ProjectRole](#ondewo.nlu.ProjectRole) | Creates a project role by getting the knowledge base master |
+| DeleteProjectRole | [DeleteProjectRoleRequest](#ondewo.nlu.DeleteProjectRoleRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes project role |
+| UpdateProjectRole | [UpdateProjectRoleRequest](#ondewo.nlu.UpdateProjectRoleRequest) | [ProjectRole](#ondewo.nlu.ProjectRole) | Updates project role |
+| ListProjectRoles | [ListProjectRolesRequest](#ondewo.nlu.ListProjectRolesRequest) | [ListProjectRolesResponse](#ondewo.nlu.ListProjectRolesResponse) | List project roles |
 
  <!-- end services -->
 
@@ -5896,7 +6079,7 @@ unspecified, default value depends on endpoint # TODO |
 <a name="ondewo.nlu.GetEntityTypeCountRequest"></a>
 
 ### GetEntityTypeCountRequest
-
+Request to get entity type count
 
 
 | Field | Type | Label | Description |
@@ -5914,7 +6097,7 @@ Example: * `projects/<Project ID>/agent` |
 <a name="ondewo.nlu.GetIntentCountRequest"></a>
 
 ### GetIntentCountRequest
-
+Request to get the intent count
 
 
 | Field | Type | Label | Description |
@@ -5932,7 +6115,7 @@ Example: * `projects/<Project ID>/agent` |
 <a name="ondewo.nlu.GetProjectElementStatRequest"></a>
 
 ### GetProjectElementStatRequest
-
+Request to get project element statistics
 
 
 | Field | Type | Label | Description |
@@ -5950,7 +6133,7 @@ Example: * `projects/<Project ID>/agent/intents/<Intent ID>` * `projects/<Projec
 <a name="ondewo.nlu.GetProjectStatRequest"></a>
 
 ### GetProjectStatRequest
-
+Request to get project statistics
 
 
 | Field | Type | Label | Description |
@@ -5973,18 +6156,18 @@ Example: * `projects/<Project ID>/agent` |
 <a name="ondewo.nlu.ProjectStatistics"></a>
 
 ### ProjectStatistics
-
+Project Root Statistics
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetIntentCount | [GetIntentCountRequest](#ondewo.nlu.GetIntentCountRequest) | [StatResponse](#ondewo.nlu.StatResponse) | Project Root Statistics |
-| GetEntityTypeCount | [GetEntityTypeCountRequest](#ondewo.nlu.GetEntityTypeCountRequest) | [StatResponse](#ondewo.nlu.StatResponse) |  |
-| GetUserCount | [GetProjectStatRequest](#ondewo.nlu.GetProjectStatRequest) | [StatResponse](#ondewo.nlu.StatResponse) |  |
-| GetSessionCount | [GetProjectStatRequest](#ondewo.nlu.GetProjectStatRequest) | [StatResponse](#ondewo.nlu.StatResponse) |  |
-| GetTrainingPhraseCount | [GetProjectElementStatRequest](#ondewo.nlu.GetProjectElementStatRequest) | [StatResponse](#ondewo.nlu.StatResponse) | Intent Statistics |
-| GetResponseCount | [GetProjectElementStatRequest](#ondewo.nlu.GetProjectElementStatRequest) | [StatResponse](#ondewo.nlu.StatResponse) |  |
-| GetEntityValueCount | [GetProjectElementStatRequest](#ondewo.nlu.GetProjectElementStatRequest) | [StatResponse](#ondewo.nlu.StatResponse) | Entity Type Statistics |
-| GetEntitySynonymCount | [GetProjectElementStatRequest](#ondewo.nlu.GetProjectElementStatRequest) | [StatResponse](#ondewo.nlu.StatResponse) | Entity Value Statistics |
+| GetIntentCount | [GetIntentCountRequest](#ondewo.nlu.GetIntentCountRequest) | [StatResponse](#ondewo.nlu.StatResponse) | Returns the intent count within a project |
+| GetEntityTypeCount | [GetEntityTypeCountRequest](#ondewo.nlu.GetEntityTypeCountRequest) | [StatResponse](#ondewo.nlu.StatResponse) | Returns the entity types count within a project |
+| GetUserCount | [GetProjectStatRequest](#ondewo.nlu.GetProjectStatRequest) | [StatResponse](#ondewo.nlu.StatResponse) | Returns the users count within a project |
+| GetSessionCount | [GetProjectStatRequest](#ondewo.nlu.GetProjectStatRequest) | [StatResponse](#ondewo.nlu.StatResponse) | Returns the sessions count within a project |
+| GetTrainingPhraseCount | [GetProjectElementStatRequest](#ondewo.nlu.GetProjectElementStatRequest) | [StatResponse](#ondewo.nlu.StatResponse) | Returns the training phrases count within a project |
+| GetResponseCount | [GetProjectElementStatRequest](#ondewo.nlu.GetProjectElementStatRequest) | [StatResponse](#ondewo.nlu.StatResponse) | Returns the responses count within a project |
+| GetEntityValueCount | [GetProjectElementStatRequest](#ondewo.nlu.GetProjectElementStatRequest) | [StatResponse](#ondewo.nlu.StatResponse) | Returns the entity value count within a project |
+| GetEntitySynonymCount | [GetProjectElementStatRequest](#ondewo.nlu.GetProjectElementStatRequest) | [StatResponse](#ondewo.nlu.StatResponse) | Returns the entity synonyms count within a project |
 
  <!-- end services -->
 
@@ -6000,7 +6183,7 @@ Example: * `projects/<Project ID>/agent` |
 <a name="ondewo.nlu.GetUserProjectCountRequest"></a>
 
 ### GetUserProjectCountRequest
-
+Request to get user project count
 
 
 | Field | Type | Label | Description |
@@ -6021,13 +6204,13 @@ Example: * `projects/<Project ID>/agent` |
 <a name="ondewo.nlu.ServerStatistics"></a>
 
 ### ServerStatistics
-
+Server project statistics
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| GetProjectCount | [.google.protobuf.Empty](#google.protobuf.Empty) | [StatResponse](#ondewo.nlu.StatResponse) |  |
-| GetUserProjectCount | [GetUserProjectCountRequest](#ondewo.nlu.GetUserProjectCountRequest) | [StatResponse](#ondewo.nlu.StatResponse) |  |
-| GetUserCount | [.google.protobuf.Empty](#google.protobuf.Empty) | [StatResponse](#ondewo.nlu.StatResponse) |  |
+| GetProjectCount | [.google.protobuf.Empty](#google.protobuf.Empty) | [StatResponse](#ondewo.nlu.StatResponse) | Returns the count of projects in the CAI server |
+| GetUserProjectCount | [GetUserProjectCountRequest](#ondewo.nlu.GetUserProjectCountRequest) | [StatResponse](#ondewo.nlu.StatResponse) | Returns the count of projects of a user |
+| GetUserCount | [.google.protobuf.Empty](#google.protobuf.Empty) | [StatResponse](#ondewo.nlu.StatResponse) | Returns the users count within a project |
 
  <!-- end services -->
 
@@ -6043,14 +6226,31 @@ Example: * `projects/<Project ID>/agent` |
 <a name="ondewo.nlu.AddSessionLabelsRequest"></a>
 
 ### AddSessionLabelsRequest
-
+This message is a request to add session labels
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session_id | [string](#string) |  |  |
-| labels | [string](#string) | repeated |  |
-| session_view | [Session.View](#ondewo.nlu.Session.View) |  |  |
+| session_id | [string](#string) |  | The id of the session |
+| labels | [string](#string) | repeated | The labels to add to the session |
+
+
+
+
+
+
+<a name="ondewo.nlu.ContextFilter"></a>
+
+### ContextFilter
+Message used to filter sessions based on contextual information
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| context_name | [string](#string) |  | name of the context |
+| key | [string](#string) |  | name of the key of the context parameter |
+| value | [string](#string) |  | value of the parameter |
+| operator | [ComparisonOperator](#ondewo.nlu.ComparisonOperator) |  |  |
 
 
 
@@ -6060,17 +6260,19 @@ Example: * `projects/<Project ID>/agent` |
 <a name="ondewo.nlu.CreateSessionRequest"></a>
 
 ### CreateSessionRequest
-
+This message is a request to create a session
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Creates a session that collects all the conversation interactions between the machine and a user The unique identifier of an Agent Format: `projects/<PROJECT_ID>/agent`.
+| parent | [string](#string) |  | Creates a session that collects all the conversation interactions between the machine and a user The unique identifier of an Agent Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre>
 
 Required. |
 | session_uuid | [string](#string) |  | The unique UUID of a Session Format: UUID Version 4, e.g. 2f59fad2-06bc-4730-9920-d3148f28f357
 
 Optional. If not provided, it will be auto-generated |
+| labels | [string](#string) | repeated | labels for the session - Optional |
+| contexts | [Context](#ondewo.nlu.Context) | repeated | Optional. The collection of contexts to be activated before this query is executed. |
 
 
 
@@ -6085,10 +6287,26 @@ SESSION-REVIEW RELATED MESSAGES *** //
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session_id | [string](#string) |  | The unique identifier for the session under review Format: `projects/<PROJECT_ID>/agent/sessions/<SESSION_ID>`. |
-| parent_review_id | [string](#string) |  | Optional: The unique identifier of the parent review Format: `projects/<PROJECT_ID>/agent/sessions/<SESSION_ID>/reviews/<SESSION_REVIEW_ID>`. |
+| session_id | [string](#string) |  | The unique identifier for the session under review Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
+| parent_review_id | [string](#string) |  | Optional: The unique identifier of the parent review Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/reviews/&lt;session_review_uuid&gt;</code></pre> |
 | session_review | [SessionReview](#ondewo.nlu.SessionReview) |  | The reviews for all steps in the session |
 | session_review_view | [SessionReview.View](#ondewo.nlu.SessionReview.View) |  |  |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteSessionLabelsRequest"></a>
+
+### DeleteSessionLabelsRequest
+This message is a request to delete session labels
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| session_id | [string](#string) |  | The id of the session |
+| labels | [string](#string) | repeated | The labels to delete from the session |
 
 
 
@@ -6098,12 +6316,12 @@ SESSION-REVIEW RELATED MESSAGES *** //
 <a name="ondewo.nlu.DeleteSessionRequest"></a>
 
 ### DeleteSessionRequest
-
+This message is a request to delete a session
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session_id | [string](#string) |  | Required. The session to be deleted Format: `projects/<PROJECT_ID>/agent/sessions/<SESSION_UUID>`. |
+| session_id | [string](#string) |  | Required. The session to be deleted Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
 
 
 
@@ -6154,7 +6372,7 @@ The message returned from the DetectIntent method.
 <a name="ondewo.nlu.DetectedIntent"></a>
 
 ### DetectedIntent
-
+This message contains a detected intent
 
 
 | Field | Type | Label | Description |
@@ -6194,12 +6412,12 @@ The parameter `name` may be used by the agent in the response:
 <a name="ondewo.nlu.GetLatestSessionReviewRequest"></a>
 
 ### GetLatestSessionReviewRequest
-
+This message is a request to get latest session review
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session_id | [string](#string) |  | The unique identifier of the session for which the latest review should be returned Format: `projects/<PROJECT_ID>/agent/sessions/<SESSION_ID>`. |
+| session_id | [string](#string) |  | The unique identifier of the session for which the latest review should be returned Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
 | session_review_view | [SessionReview.View](#ondewo.nlu.SessionReview.View) |  | An enum specifying the amount of information to be returned for the desired session review |
 
 
@@ -6210,13 +6428,14 @@ The parameter `name` may be used by the agent in the response:
 <a name="ondewo.nlu.GetSessionRequest"></a>
 
 ### GetSessionRequest
-
+This message is a request to get a session
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session_id | [string](#string) |  | The session to be returned Format: `projects/<PROJECT_ID>/agent/sessions/<SESSION_ID>`. |
+| session_id | [string](#string) |  | The session to be returned Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
 | session_view | [Session.View](#ondewo.nlu.Session.View) |  | whether to return a full or sparse view; if unspecified full view is returned |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. Example: path=["session_info.duration_in_s_min"] |
 
 
 
@@ -6226,7 +6445,7 @@ The parameter `name` may be used by the agent in the response:
 <a name="ondewo.nlu.GetSessionReviewRequest"></a>
 
 ### GetSessionReviewRequest
-
+This message is a request to get session review
 
 
 | Field | Type | Label | Description |
@@ -6257,15 +6476,372 @@ Instructs the speech recognizer how to process the audio content.
 
 
 
-<a name="ondewo.nlu.ListSessionLabelsRequest"></a>
+<a name="ondewo.nlu.ListAccountIdsOfAllSessionsRequest"></a>
 
-### ListSessionLabelsRequest
-
+### ListAccountIdsOfAllSessionsRequest
+request to list all account_ids of all sessions
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | The parent for which the labels for all sessions should be listed Format: `projects/<PROJECT_ID>/agent`. |
+| parent | [string](#string) |  | The parent for which the account_ids for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListAccountIdsResponse"></a>
+
+### ListAccountIdsResponse
+This message is a response of listing session account_ids
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| account_ids | [string](#string) | repeated | The account_ids of the session |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListDatastreamIdsOfAllSessionsRequest"></a>
+
+### ListDatastreamIdsOfAllSessionsRequest
+request to list all datastream_ids of all sessions
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The parent for which the datastream_ids for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListDatastreamIdsResponse"></a>
+
+### ListDatastreamIdsResponse
+This message is a response of listing session datastream_ids
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| datastream_ids | [string](#string) | repeated | The datastream_ids of the session |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest"></a>
+
+### ListIdentifiedUserIdsOfAllSessionsRequest
+request to list all identified_user_ids of all sessions
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The parent for which the identified_user_ids for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListIdentifiedUserIdsResponse"></a>
+
+### ListIdentifiedUserIdsResponse
+This message is a response of listing session identified_user_ids
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| identified_user_ids | [string](#string) | repeated | The identified_user_ids of the session |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListInputContextsOfAllSessionsRequest"></a>
+
+### ListInputContextsOfAllSessionsRequest
+request to list all input_contexts of all sessions
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The parent for which the input_contexts for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListInputContextsResponse"></a>
+
+### ListInputContextsResponse
+This message is a response of listing session input_contexts
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| input_contexts | [string](#string) | repeated | The input_contexts ids of the session |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLanguageCodesOfAllSessionsRequest"></a>
+
+### ListLanguageCodesOfAllSessionsRequest
+request to list all language codes of all sessions
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The parent for which the language_codes for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLanguageCodesResponse"></a>
+
+### ListLanguageCodesResponse
+This message is a response of listing session language_codes
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| language_codes | [string](#string) | repeated | The language_codes of the session |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest"></a>
+
+### ListMatchedEntityTypesOfAllSessionsRequest
+request to list all matched_entity_types of all sessions
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The parent for which the matched_entity_types for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListMatchedEntityTypesResponse"></a>
+
+### ListMatchedEntityTypesResponse
+This message is a response of listing session matched_entity_types
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| matched_entity_types | [string](#string) | repeated | The matched_entity_types of the session |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest"></a>
+
+### ListMatchedIntentsOfAllSessionsRequest
+request to list all matched_intents of all sessions
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The parent for which the matched_intents for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListMatchedIntentsResponse"></a>
+
+### ListMatchedIntentsResponse
+This message is a response of listing session matched_intents
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| matched_intents | [string](#string) | repeated | The matched_intents of the session |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListOriginIdsOfAllSessionsRequest"></a>
+
+### ListOriginIdsOfAllSessionsRequest
+request to list all origin_ids of all sessions
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The parent for which the origin_ids for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListOriginIdsResponse"></a>
+
+### ListOriginIdsResponse
+This message is a response of listing session origin_ids
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| origin_ids | [string](#string) | repeated | The origin_ids of the session |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListOutputContextsOfAllSessionsRequest"></a>
+
+### ListOutputContextsOfAllSessionsRequest
+request to list all output_contexts of all sessions
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The parent for which the output_contexts for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListOutputContextsResponse"></a>
+
+### ListOutputContextsResponse
+This message is a response of listing session output_contexts
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| output_contexts | [string](#string) | repeated | The output_contexts ids of the session |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListPlatformsOfAllSessionsRequest"></a>
+
+### ListPlatformsOfAllSessionsRequest
+request to list all labels of all sessions
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The parent for which the platforms for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListPlatformsResponse"></a>
+
+### ListPlatformsResponse
+This message is a response of listing session platforms
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| platforms | [string](#string) | repeated | The platforms of the session |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListPropertyIdsOfAllSessionsRequest"></a>
+
+### ListPropertyIdsOfAllSessionsRequest
+request to list all property_ids of all sessions
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The parent for which the property_ids for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListPropertyIdsResponse"></a>
+
+### ListPropertyIdsResponse
+This message is a response of listing session property_ids
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| property_ids | [string](#string) | repeated | The property_ids of the session |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListSessionLabelsOfAllSessionsRequest"></a>
+
+### ListSessionLabelsOfAllSessionsRequest
+request to list all labels of all sessions
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The parent for which the labels for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListSessionLabelsRequest"></a>
+
+### ListSessionLabelsRequest
+This message is a request to list session labels
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| session_id | [string](#string) |  | The id of the session |
 
 
 
@@ -6275,12 +6851,12 @@ Instructs the speech recognizer how to process the audio content.
 <a name="ondewo.nlu.ListSessionLabelsResponse"></a>
 
 ### ListSessionLabelsResponse
-
+This message is a response of listing session labels
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| labels | [string](#string) | repeated |  |
+| labels | [string](#string) | repeated | The labels of the session |
 
 
 
@@ -6290,12 +6866,12 @@ Instructs the speech recognizer how to process the audio content.
 <a name="ondewo.nlu.ListSessionReviewsRequest"></a>
 
 ### ListSessionReviewsRequest
-
+This message is a request to list session reviews
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session_id | [string](#string) |  | The unique identifier for the session for which reviews should be listed Format: `projects/<PROJECT_ID>/agent/sessions/<SESSION_ID>`. |
+| session_id | [string](#string) |  | The unique identifier for the session for which reviews should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
 | session_review_view | [SessionReview.View](#ondewo.nlu.SessionReview.View) |  | An enum specifying the amount of information to be returned per session review |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. |
 
@@ -6307,7 +6883,7 @@ Instructs the speech recognizer how to process the audio content.
 <a name="ondewo.nlu.ListSessionReviewsResponse"></a>
 
 ### ListSessionReviewsResponse
-
+This message is a response of listing session reviews
 
 
 | Field | Type | Label | Description |
@@ -6323,15 +6899,16 @@ Instructs the speech recognizer how to process the audio content.
 <a name="ondewo.nlu.ListSessionsRequest"></a>
 
 ### ListSessionsRequest
-
+This message is a request to list sessions
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | The parent for which sessions should be listed Format: `projects/<PROJECT_ID>/agent`. |
+| parent | [string](#string) |  | The parent for which sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | session_view | [Session.View](#ondewo.nlu.Session.View) |  | An enum specifying the amount of information to be returned per session |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. |
 | session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. Example: path=["session_info.duration_in_s_min"] |
 
 
 
@@ -6341,13 +6918,75 @@ Instructs the speech recognizer how to process the audio content.
 <a name="ondewo.nlu.ListSessionsResponse"></a>
 
 ### ListSessionsResponse
-
+This message is a response including the listing of sessions
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | sessions | [Session](#ondewo.nlu.Session) | repeated | The requested sessions |
 | next_page_token | [string](#string) |  | Token to retrieve the next page of results, or empty if there are no more results in the list |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListTagsOfAllSessionsRequest"></a>
+
+### ListTagsOfAllSessionsRequest
+request to list all tags of all sessions
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The parent for which the tags for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListTagsResponse"></a>
+
+### ListTagsResponse
+This message is a response of listing session tags
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| tags | [string](#string) | repeated | The tags of the session |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListUserIdsOfAllSessionsRequest"></a>
+
+### ListUserIdsOfAllSessionsRequest
+request to list all user_ids of all sessions
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The parent for which the user_ids for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListUserIdsResponse"></a>
+
+### ListUserIdsResponse
+This message is a response of listing session user_ids
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| user_ids | [string](#string) | repeated | The user_ids of the session |
 
 
 
@@ -6391,6 +7030,17 @@ Represents the parameters of the conversational query.
 | contexts | [Context](#ondewo.nlu.Context) | repeated | Optional. The collection of contexts to be activated before this query is executed. |
 | reset_contexts | [bool](#bool) |  | Optional. Specifies whether to delete all contexts in the current session before the new ones are activated. |
 | payload | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. This field can be used to pass custom data into the webhook associated with the agent. Arbitrary JSON objects are supported. |
+| labels | [string](#string) | repeated | labels associated to this request |
+| platforms | [Intent.Message.Platform](#ondewo.nlu.Intent.Message.Platform) | repeated | Only messages for the specified Intent.Message.Platform platforms are sent to the user in the <code>DetectIntentResponse</code> |
+| account_id | [string](#string) |  | Id of the account, e.g. Company Ondewo |
+| property_id | [string](#string) |  | Id of the property of the account, e.g. Domain ondewo.com This field can also be used for a customized tracking id or tag id |
+| datastream_id | [string](#string) |  | Id of the datastream of the property of the account, e.g. Subdomain sub1.ondewo.com or sub2.ondewo.com This field can also be used for a customized tracking id or tag id |
+| origin_id | [string](#string) |  | Id of the the origin of the user request
+
+For a phone bot, this is the phone number +123456789 the user called (Note: This is not the user's phone number) For a chatbot or voicebot on the web, this is the URL on which the bo, e.g. https://ondewo.com/webchat For a voice assistant device, this is the device-id or the app id This field can also be used for a customized tracking id or tag id
+
+https://aim-develop.ondewo.com/ |
+| identified_user_id | [string](#string) |  | Id of the "identified user" e.g. for a chatbot the email address or for a phone bot the phone number of the user This field can also be used for a customized tracking id or tag id |
 
 
 
@@ -6406,7 +7056,6 @@ Represents the result of conversational query or event processing.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | query_text | [string](#string) |  | The original conversational query text: - If natural language text was provided as input, `query_text` contains a copy of the input. - If natural language speech audio was provided as input, `query_text` contains the speech recognition result. If speech recognizer produced multiple alternatives, a particular one is picked. - If an event was provided as input, `query_text` is not set. |
-| language_code | [string](#string) |  | The language that was triggered during intent detection. See [Language Support](https://dialogflow.com/docs/reference/language) for a list of the currently supported language codes. |
 | speech_recognition_confidence | [float](#float) |  | The Speech recognition confidence between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set.
 
 You should not rely on this field as it isn't guaranteed to be accurate, or even set. In particular this field isn't set in Webhook calls and for StreamingDetectIntent since the streaming endpoint has separate confidence estimates per portion of the audio in StreamingRecognitionResult. |
@@ -6420,24 +7069,9 @@ You should not rely on this field as it isn't guaranteed to be accurate, or even
 | output_contexts | [Context](#ondewo.nlu.Context) | repeated | The collection of output contexts. If applicable, `output_contexts.parameters` contains entries with name `<parameter name>.original` containing the original parameter values before the query. |
 | intent | [Intent](#ondewo.nlu.Intent) |  | The intent that matched the conversational query. Some, not all fields are filled in this message, including but not limited to: `name`, `display_name` and `webhook_state`. |
 | intent_detection_confidence | [float](#float) |  | The intent detection confidence. Values range from 0.0 (completely uncertain) to 1.0 (completely certain). |
+| query_text_original | [string](#string) |  | The user input gets pre-processed by spelling correction, stop word removal etc. This property holds the string that is passed to the entity recognition and intent detection |
 | diagnostic_info | [google.protobuf.Struct](#google.protobuf.Struct) |  | The free-form diagnostic info. For example, this field could contain webhook call latency. |
-
-
-
-
-
-
-<a name="ondewo.nlu.RemoveSessionLabelsRequest"></a>
-
-### RemoveSessionLabelsRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| session_id | [string](#string) |  |  |
-| labels | [string](#string) | repeated |  |
-| session_view | [Session.View](#ondewo.nlu.Session.View) |  |  |
+| language_code | [string](#string) |  | The language that was triggered during intent detection. See [Language Support](https://dialogflow.com/docs/reference/language) for a list of the currently supported language codes. |
 
 
 
@@ -6447,12 +7081,12 @@ You should not rely on this field as it isn't guaranteed to be accurate, or even
 <a name="ondewo.nlu.Session"></a>
 
 ### Session
-SESSION RELATED MESSAGES *** //
+Session of a user interaction
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session_id | [string](#string) |  | The unique identifier of the session |
+| name | [string](#string) |  | The unique identifier of the session Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
 | session_steps | [SessionStep](#ondewo.nlu.SessionStep) | repeated | The list of all the steps of the session |
 | session_info | [SessionInfo](#ondewo.nlu.SessionInfo) |  |  |
 
@@ -6464,38 +7098,62 @@ SESSION RELATED MESSAGES *** //
 <a name="ondewo.nlu.SessionFilter"></a>
 
 ### SessionFilter
-A SessionFilter can be used in some requests to return only sessions matching certain filter conditions.
-
-All fields below are  optional. Multiple fields specified at the same time are chained via AND.
+This message contains a session filter
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language_codes | [string](#string) | repeated | Match only sessions with all of the following language_codes |
+| language_codes | [string](#string) | repeated | A SessionFilter can be used in some requests to return only sessions matching certain filter conditions. All fields below are optional. Multiple fields specified at the same time are chained via AND. Match only sessions with all of the following language_codes |
 | matched_intents | [Intent](#ondewo.nlu.Intent) | repeated | Match only sessions during which all of the following intents were detected NOTE: only name and display name fields are used for comparison |
 | matched_entity_types | [EntityType](#ondewo.nlu.EntityType) | repeated | Match only sessions during which all of the following entity types were recognized NOTE: only name and display name fields are used for comparison |
-| min_intents_confidence_min | [float](#float) |  | Match only sessions where the minimum confidence for intent detection along the session falls in the following range
-
-defaults to -1 if not set |
-| min_intents_confidence_max | [float](#float) |  | defaults to +1 if not set |
-| min_entity_types_confidence_min | [float](#float) |  | Match only sessions where the minimum confidence for entity recognition along the session falls in the following range
-
-defaults to -1 if not set |
-| min_entity_types_confidence_max | [float](#float) |  | defaults to +1 if not set |
-| earliest | [float](#float) |  | Match only sessions whose time range falls within the following range (in UNIX epochs)
-
-defaults to 0 if not set |
-| latest | [float](#float) |  | defaults to current epoch if not set |
-| min_number_turns | [int32](#int32) |  | Match only sessions for which the number of turns (interaction steps) falls in the following range
-
-defaults to 0 if not set |
-| max_number_turns | [int32](#int32) |  | defaults to MAXINT if not set |
+| min_intents_confidence_min | [float](#float) |  | Match only sessions where the minimum confidence for intent detection along the session falls in the following range. Defaults to -1 if not set. |
+| min_intents_confidence_max | [float](#float) |  | Match only sessions where the minimum confidence for intent detection along the session falls in the following range. Defaults to +1 if not set. |
+| min_entity_types_confidence_min | [float](#float) |  | Match only sessions where the minimum confidence for entity recognition along the session falls in the following range. Defaults to -1 if not set. |
+| min_entity_types_confidence_max | [float](#float) |  | Match only sessions where the minimum confidence for entity recognition along the session falls in the following range. Defaults to +1 if not set. |
+| earliest | [double](#double) |  | Match only sessions whose time range falls within the following range (in UNIX epochs). Defaults to 0 if not set. |
+| latest | [double](#double) |  | Match only sessions whose time range falls within the following range (in UNIX epochs). Defaults to current epoch if not set |
+| min_number_turns | [int32](#int32) |  | Match only sessions for which the number of turns (interaction steps) falls in the following range Defaults to 0 if not set. |
+| max_number_turns | [int32](#int32) |  | Match only sessions for which the number of turns (interaction steps) falls in the following range Defaults to MAXINT if not set. |
 | labels | [string](#string) | repeated | Match only session which have all of the following labels assigned |
 | user_ids | [string](#string) | repeated | Match only session which had all of the following user_ids interacting with them. |
 | intent_tags | [string](#string) | repeated | Match only session which have all of the following intent tags assigned |
 | session_ids | [string](#string) | repeated | Match only sessions whose IDs are specified here |
-| input_contexts | [Context](#ondewo.nlu.Context) | repeated | Match only sessions whose session info contains at least one step having all the contexts specified here |
-| output_contexts | [Context](#ondewo.nlu.Context) | repeated |  |
+| input_contexts | [Context](#ondewo.nlu.Context) | repeated | Match only sessions whose session info contains at least one step having all the contexts specified here The input contexts are pre-conditions for detecting intents |
+| output_contexts | [Context](#ondewo.nlu.Context) | repeated | The output contexts are the result of the intent matching and track the contextual state of a conversation |
+| duration_in_s_min | [float](#float) |  | Match only sessions for which the duration in seconds are larger or equal |
+| duration_in_s_max | [float](#float) |  | Match only sessions for which the duration in seconds are smaller or equal |
+| duration_in_m_min | [float](#float) |  | Match only sessions for which the duration in minutes are larger or equal |
+| duration_in_m_max | [float](#float) |  | Match only sessions for which the duration in minutes are smaller or equal |
+| duration_in_m_rounded_min | [float](#float) |  | Match only sessions for which the duration in minutes rounded are larger or equal |
+| duration_in_m_rounded_max | [float](#float) |  | Match only sessions for which the duration in minutes rounded are smaller or equal |
+| duration_interval_15s_rounded_min | [float](#float) |  | Match only sessions for which the duration in 15 seconds rounded are larger or equal |
+| duration_interval_15s_rounded_max | [float](#float) |  | Match only sessions for which the duration in 15 seconds rounded are smaller or equal |
+| duration_interval_30s_rounded_min | [float](#float) |  | Match only sessions for which the duration in 30 seconds rounded are larger or equal |
+| duration_interval_30s_rounded_max | [float](#float) |  | Match only sessions for which the duration in 30 seconds rounded are smaller or equal |
+| duration_interval_45s_rounded_min | [float](#float) |  | Match only sessions for which the duration in 45 seconds rounded are larger or equal |
+| duration_interval_45s_rounded_max | [float](#float) |  | Match only sessions for which the duration in 45 seconds rounded are smaller or equal |
+| started_time_slot_per_hour_min | [string](#string) |  | Match only sessions for which the started_time_slot_per_hour (e.g. 08:00) are larger or equal |
+| started_time_slot_per_hour_max | [string](#string) |  | Match only sessions for which the started_time_slot_per_hour (e.g. 14:00) are smaller or equal |
+| started_time_slot_per_quarter_hour_min | [string](#string) |  | Match only sessions for which the started_time_slot_per_quarter_hour (e.g. 08:00) are larger or equal |
+| started_time_slot_per_quarter_hour_max | [string](#string) |  | Match only sessions for which the started_time_slot_per_quarter_hour (e.g. 14:00) are smaller or equal |
+| started_time_slot_per_half_hour_min | [string](#string) |  | Match only sessions for which the started_time_slot_per_half_hour (e.g. 08:00) are larger or equal |
+| started_time_slot_per_half_hour_max | [string](#string) |  | Match only sessions for which the started_time_slot_per_half_hour (e.g. 14:00) are smaller or equal |
+| started_time_slot_per_day_phase_min | [string](#string) |  | Match only sessions for which the started_time_slot_per_day_phase (e.g. 08:00) are larger or equal |
+| started_time_slot_per_day_phase_max | [string](#string) |  | Match only sessions for which the started_time_slot_per_day_phase (e.g. 14:00) are smaller or equal |
+| started_time_slot_per_minute_min | [string](#string) |  | Match only sessions for which the started_time_slot_per_minute (e.g. 08:00) are larger or equal |
+| started_time_slot_per_minute_max | [string](#string) |  | Match only sessions for which the started_time_slot_per_minute (e.g. 14:00) are smaller or equal |
+| duration_in_s_rounded_min | [float](#float) |  | Match only sessions for which the duration in seconds rounded are larger or equal |
+| duration_in_s_rounded_max | [float](#float) |  | Match only sessions for which the duration in seconds rounded are smaller or equal |
+| platforms | [Intent.Message.Platform](#ondewo.nlu.Intent.Message.Platform) | repeated | Messages for each of the Intent.Message.Platform were sent to the user |
+| account_ids | [string](#string) | repeated | Ids of the account, e.g. Company Ondewo, This field can also be used for customized tracking ids or tag ids |
+| property_ids | [string](#string) | repeated | Ids of the property of the account, e.g. Domain ondewo.com This field can also be used for customized tracking ids or tag ids |
+| datastream_ids | [string](#string) | repeated | Ids of the datastream of the property of the account, e.g. Subdomain sub1.ondewo.com or sub2.ondewo.com This field can also be used for customized tracking ids or tag ids |
+| origin_ids | [string](#string) | repeated | Ids of the the origin of the user request
+
+For a phone bot, this is the phone number +123456789 the user called (Note: This is not the user's phone number) For a chatbot or voicebot on the web, this is the URL on which the bo, e.g. https://ondewo.com/webchat For a voice assistant device, this is the device-id or the app id |
+| identified_user_ids | [string](#string) | repeated | Ids of the "identified user" e.g. for a chatbot the email address or for a phone bot the phone number of the user |
+| duration_interval_60s_rounded_min | [float](#float) |  | Match only sessions for which the duration in 60 seconds rounded are larger or equal |
+| duration_interval_60s_rounded_max | [float](#float) |  | Match only sessions for which the duration in 60 seconds rounded are smaller or equal |
 
 
 
@@ -6505,29 +7163,49 @@ defaults to 0 if not set |
 <a name="ondewo.nlu.SessionInfo"></a>
 
 ### SessionInfo
-A SessionInfo contains some general information about a session.
-
-This information can be returned inside a Session object for consumption by a client.
-Or it can be used by the backend to check whether the Session matches a given SessionFilter.
-
-All fields below are  optional. Multiple fields specified at the same time are chained
+This message contains information about session
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language_codes | [string](#string) | repeated | The language codes used in the given session. |
+| language_codes | [string](#string) | repeated | A SessionInfo contains some general information about a session.
+
+This information can be returned inside a Session object for consumption by a client. Or it can be used by the backend to check whether the Session matches a given SessionFilter.
+
+All fields below are optional. Multiple fields specified at the same time are chained The language codes used in the given session. |
 | matched_intents | [Intent](#ondewo.nlu.Intent) | repeated | A list of intents which have been matched |
 | matched_entity_types | [EntityType](#ondewo.nlu.EntityType) | repeated | A list of entity types which have been matched |
 | min_intents_confidence | [float](#float) |  | The minimum confidence for intent recognition along the session |
 | min_entity_types_confidence | [float](#float) |  | The minimum confidence for entity recognition along the session |
-| earliest | [float](#float) |  | The start and end dates of the given session (in UNIX epochs) |
-| latest | [float](#float) |  |  |
+| earliest | [double](#double) |  | The earliest date of the given session (in UNIX epochs), i.e. the time of the first interaction of a user in the given session |
+| latest | [double](#double) |  | The latest date of the given session (in UNIX epochs), i.e. the time of the last interaction of a user in the given session |
 | number_turns | [int32](#int32) |  | The number of turns (interaction steps) in the given session |
 | labels | [string](#string) | repeated | The list of labels of the given session |
 | user_ids | [string](#string) | repeated | The user_ids of the users which were interacting within the given session |
 | intent_tags | [string](#string) | repeated | The list of intent tags in the given session |
-| input_context_steps | [SessionInfo.ContextSteps](#ondewo.nlu.SessionInfo.ContextSteps) | repeated |  |
-| output_context_steps | [SessionInfo.ContextSteps](#ondewo.nlu.SessionInfo.ContextSteps) | repeated |  |
+| input_context_steps | [SessionInfo.ContextSteps](#ondewo.nlu.SessionInfo.ContextSteps) | repeated | The input contexts that are matched in the given session. The name of the context here is the short name and not the full URL name including the project parent |
+| output_context_steps | [SessionInfo.ContextSteps](#ondewo.nlu.SessionInfo.ContextSteps) | repeated | The output contexts that are matched in the given session. The name of the context here is the short name and not the full URL name including the project parent |
+| duration_in_s | [float](#float) |  | duration in seconds |
+| duration_in_m | [float](#float) |  | duration in minutes |
+| duration_in_m_rounded | [float](#float) |  | duration in minutes rounded |
+| duration_interval_15s_rounded | [float](#float) |  | duration in 15 seconds intervals rounded |
+| duration_interval_30s_rounded | [float](#float) |  | duration in 30 seconds intervals rounded |
+| duration_interval_45s_rounded | [float](#float) |  | duration in 45 seconds intervals rounded |
+| started_time_slot_per_hour | [string](#string) |  | started_time_slot_per_hour (e.g. 08:00) |
+| started_time_slot_per_quarter_hour | [string](#string) |  | started_time_slot_per_quarter_hour (e.g. 08:00) |
+| started_time_slot_per_half_hour | [string](#string) |  | started_time_slot_per_half_hour (e.g. 08:00) |
+| started_time_slot_per_day_phase | [string](#string) |  | started_time_slot_per_day_phase (e.g. 14:00) |
+| started_time_slot_per_minute | [string](#string) |  | started_time_slot_per_minute (e.g. 14:00) |
+| duration_in_s_rounded | [float](#float) |  | duration in seconds rounded |
+| platforms | [Intent.Message.Platform](#ondewo.nlu.Intent.Message.Platform) | repeated | Messages for each of the Intent.Message.Platform were sent to the user |
+| account_ids | [string](#string) | repeated | Ids of the account, e.g. Company Ondewo, This field can also be used for customized tracking ids or tag ids |
+| property_ids | [string](#string) | repeated | Ids of the property of the account, e.g. Domain ondewo.com This field can also be used for customized tracking ids or tag ids |
+| datastream_ids | [string](#string) | repeated | Ids of the datastream of the property of the account, e.g. Subdomain sub1.ondewo.com or sub2.ondewo.com This field can also be used for customized tracking ids or tag ids |
+| origin_ids | [string](#string) | repeated | Ids of the the origin of the user request
+
+For a phone bot, this is the phone number +123456789 the user called (Note: This is not the user's phone number) For a chatbot or voicebot on the web, this is the URL on which the bo, e.g. https://ondewo.com/webchat For a voice assistant device, this is the device-id or the app id |
+| identified_user_ids | [string](#string) | repeated | Ids of the "identified user" e.g. for a chatbot the email address or for a phone bot the phone number of the user |
+| duration_interval_60s_rounded | [float](#float) |  | duration in 60 seconds intervals rounded |
 
 
 
@@ -6552,12 +7230,12 @@ The list of contexts of each step collected in an outer list
 <a name="ondewo.nlu.SessionReview"></a>
 
 ### SessionReview
-
+This message contains a session review
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session_review_id | [string](#string) |  | The unique identifier for the given review Format: `projects/<PROJECT_ID>/agent/sessions/<SESSION_ID>/reviews/<SESSION_REVIEW_ID>`. |
+| name | [string](#string) |  | The unique identifier for the given review Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/reviews/&lt;session_review_uuid&gt;</code></pre> |
 | session_review_steps | [SessionReviewStep](#ondewo.nlu.SessionReviewStep) | repeated | The reviews for all steps in the session |
 
 
@@ -6568,16 +7246,21 @@ The list of contexts of each step collected in an outer list
 <a name="ondewo.nlu.SessionReviewStep"></a>
 
 ### SessionReviewStep
-
+This message contains a session review step
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| annotated_usersays | [Intent.TrainingPhrase](#ondewo.nlu.Intent.TrainingPhrase) |  | The user says with markup of the detected entity types |
+| name | [string](#string) |  | The unique identifier for the given review step Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/reviews/&lt;review_uuid&gt;/sessionreviewsteps/&lt;session_review_step_uuid&gt;</code></pre> |
+| annotated_usersays | [Intent.TrainingPhrase](#ondewo.nlu.Intent.TrainingPhrase) |  | The user says with markup of the detected entity types after the preprocessing such as spelling correction, stopword removal etc. has been applied.
+
+This string represents what has been passed to the entity recognition and intent detection algorithms. |
 | language_code | [string](#string) |  | The language code |
 | detected_intents | [DetectedIntent](#ondewo.nlu.DetectedIntent) | repeated | Unique detected intents ordered by descending confidence |
 | contexts | [Context](#ondewo.nlu.Context) | repeated | The contexts which were active at the beginning of this step |
 | contexts_out | [Context](#ondewo.nlu.Context) | repeated | The output contexts of this step |
+| query_text_original | [string](#string) |  | User input without any pre-processing applied |
+| platforms | [Intent.Message.Platform](#ondewo.nlu.Intent.Message.Platform) | repeated | Messages for each of the Intent.Message.Platform were sent to the user |
 
 
 
@@ -6587,13 +7270,14 @@ The list of contexts of each step collected in an outer list
 <a name="ondewo.nlu.SessionStep"></a>
 
 ### SessionStep
-
+SessionStep is a single user interaction as part of a session
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| detect_intent_request | [DetectIntentRequest](#ondewo.nlu.DetectIntentRequest) |  |  |
-| detect_intent_response | [DetectIntentResponse](#ondewo.nlu.DetectIntentResponse) |  |  |
+| name | [string](#string) |  | The unique identifier for the given review Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/steps/&lt;session_step_uuid&gt;</code></pre> |
+| detect_intent_request | [DetectIntentRequest](#ondewo.nlu.DetectIntentRequest) |  | The detect intent request of the session step |
+| detect_intent_response | [DetectIntentResponse](#ondewo.nlu.DetectIntentResponse) |  | The detect intent response of the session step |
 | contexts | [Context](#ondewo.nlu.Context) | repeated | The contexts which were active at the beginning of this step |
 
 
@@ -6736,14 +7420,14 @@ Represents the natural language text to be processed.
 <a name="ondewo.nlu.TrackSessionStepRequest"></a>
 
 ### TrackSessionStepRequest
-
+TrackSessionStepRequest stores a session step into the session
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session_id | [string](#string) |  |  |
-| session_step | [SessionStep](#ondewo.nlu.SessionStep) |  |  |
-| session_view | [Session.View](#ondewo.nlu.Session.View) |  |  |
+| session_id | [string](#string) |  | The unique identifier for the given review Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/steps/&lt;session_step_uuid&gt;</code></pre>. |
+| session_step | [SessionStep](#ondewo.nlu.SessionStep) |  | The session step to be added |
+| session_view | [Session.View](#ondewo.nlu.Session.View) |  | Defines which fields of the session should be returned in the response |
 
 
 
@@ -6766,9 +7450,26 @@ details.
 | AUDIO_ENCODING_FLAC | 2 | [`FLAC`](https://xiph.org/flac/documentation.html) (Free Lossless Audio Codec) is the recommended encoding because it is lossless (therefore recognition is not compromised) and requires only about half the bandwidth of `LINEAR16`. `FLAC` stream encoding supports 16-bit and 24-bit samples, however, not all fields in `STREAMINFO` are supported. |
 | AUDIO_ENCODING_MULAW | 3 | 8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law. |
 | AUDIO_ENCODING_AMR | 4 | Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000. |
-| AUDIO_ENCODING_AMR_WB | 5 | Adaptive Multi-Rate Wideband codec. `sample_rate_hertz` must be 16000. |
+| AUDIO_ENCODING_AMR_WB | 5 | Adaptive Multi-Rate wideband codec. `sample_rate_hertz` must be 16000. |
 | AUDIO_ENCODING_OGG_OPUS | 6 | Opus encoded audio frames in Ogg container ([OggOpus](https://wiki.xiph.org/OggOpus)). `sample_rate_hertz` must be 16000. |
 | AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE | 7 | Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Dialogflow API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000. |
+
+
+
+<a name="ondewo.nlu.ComparisonOperator"></a>
+
+### ComparisonOperator
+Type of operator to compare
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| EQUAL | 0 | equal operator |
+| GREATER | 1 | greater operator, e.g. for numbers, dates, and strings |
+| GREATER_OR_EQUAL | 2 | greater or equal operator, e.g. for numbers, dates, and strings |
+| LESS_OR_EQUAL | 3 | less or equal operator, e.g. for numbers, dates, and strings |
+| CONTAINS | 4 | contains operator, e.g. part of string, or one of the elements in an iterable such as set or list |
+| STARTS_WITH | 5 | starts with operator for string comparison only |
+| ENDS_WITH | 6 | ends with operator for string comparison only |
 
 
 
@@ -6837,8 +7538,22 @@ user intent and respond.
 | TrackSessionStep | [TrackSessionStepRequest](#ondewo.nlu.TrackSessionStepRequest) | [Session](#ondewo.nlu.Session) | TrackSessionStep: append to an existing session; creates it if not existing |
 | DeleteSession | [DeleteSessionRequest](#ondewo.nlu.DeleteSessionRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | DeleteSession: delete a session(=conversation) from ondewo-kb (for testing only) |
 | ListSessionLabels | [ListSessionLabelsRequest](#ondewo.nlu.ListSessionLabelsRequest) | [ListSessionLabelsResponse](#ondewo.nlu.ListSessionLabelsResponse) | SESSION-LABEL RELATED ENDPOINTS *** // |
+| ListSessionLabelsOfAllSessions | [ListSessionLabelsOfAllSessionsRequest](#ondewo.nlu.ListSessionLabelsOfAllSessionsRequest) | [ListSessionLabelsResponse](#ondewo.nlu.ListSessionLabelsResponse) |  |
+| ListLanguageCodesOfAllSessions | [ListLanguageCodesOfAllSessionsRequest](#ondewo.nlu.ListLanguageCodesOfAllSessionsRequest) | [ListLanguageCodesResponse](#ondewo.nlu.ListLanguageCodesResponse) |  |
+| ListMatchedIntentsOfAllSessions | [ListMatchedIntentsOfAllSessionsRequest](#ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest) | [ListMatchedIntentsResponse](#ondewo.nlu.ListMatchedIntentsResponse) |  |
+| ListMatchedEntityTypesOfAllSessions | [ListMatchedEntityTypesOfAllSessionsRequest](#ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest) | [ListMatchedEntityTypesResponse](#ondewo.nlu.ListMatchedEntityTypesResponse) |  |
+| ListUserIdsOfAllSessions | [ListUserIdsOfAllSessionsRequest](#ondewo.nlu.ListUserIdsOfAllSessionsRequest) | [ListUserIdsResponse](#ondewo.nlu.ListUserIdsResponse) |  |
+| ListIdentifiedUserIdsOfAllSessions | [ListIdentifiedUserIdsOfAllSessionsRequest](#ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest) | [ListIdentifiedUserIdsResponse](#ondewo.nlu.ListIdentifiedUserIdsResponse) |  |
+| ListTagsOfAllSessions | [ListTagsOfAllSessionsRequest](#ondewo.nlu.ListTagsOfAllSessionsRequest) | [ListTagsResponse](#ondewo.nlu.ListTagsResponse) |  |
+| ListInputContextsOfAllSessions | [ListInputContextsOfAllSessionsRequest](#ondewo.nlu.ListInputContextsOfAllSessionsRequest) | [ListInputContextsResponse](#ondewo.nlu.ListInputContextsResponse) |  |
+| ListOutputContextsOfAllSessions | [ListOutputContextsOfAllSessionsRequest](#ondewo.nlu.ListOutputContextsOfAllSessionsRequest) | [ListOutputContextsResponse](#ondewo.nlu.ListOutputContextsResponse) |  |
+| ListPlatformsOfAllSessions | [ListPlatformsOfAllSessionsRequest](#ondewo.nlu.ListPlatformsOfAllSessionsRequest) | [ListPlatformsResponse](#ondewo.nlu.ListPlatformsResponse) |  |
+| ListAccountIdsOfAllSessions | [ListAccountIdsOfAllSessionsRequest](#ondewo.nlu.ListAccountIdsOfAllSessionsRequest) | [ListAccountIdsResponse](#ondewo.nlu.ListAccountIdsResponse) |  |
+| ListPropertyIdsOfAllSessions | [ListPropertyIdsOfAllSessionsRequest](#ondewo.nlu.ListPropertyIdsOfAllSessionsRequest) | [ListPropertyIdsResponse](#ondewo.nlu.ListPropertyIdsResponse) |  |
+| ListDatastreamIdsOfAllSessions | [ListDatastreamIdsOfAllSessionsRequest](#ondewo.nlu.ListDatastreamIdsOfAllSessionsRequest) | [ListDatastreamIdsResponse](#ondewo.nlu.ListDatastreamIdsResponse) |  |
+| ListOriginIdsOfAllSessions | [ListOriginIdsOfAllSessionsRequest](#ondewo.nlu.ListOriginIdsOfAllSessionsRequest) | [ListOriginIdsResponse](#ondewo.nlu.ListOriginIdsResponse) |  |
 | AddSessionLabels | [AddSessionLabelsRequest](#ondewo.nlu.AddSessionLabelsRequest) | [Session](#ondewo.nlu.Session) |  |
-| RemoveSessionLabels | [RemoveSessionLabelsRequest](#ondewo.nlu.RemoveSessionLabelsRequest) | [Session](#ondewo.nlu.Session) |  |
+| DeleteSessionLabels | [DeleteSessionLabelsRequest](#ondewo.nlu.DeleteSessionLabelsRequest) | [Session](#ondewo.nlu.Session) |  |
 | ListSessionReviews | [ListSessionReviewsRequest](#ondewo.nlu.ListSessionReviewsRequest) | [ListSessionReviewsResponse](#ondewo.nlu.ListSessionReviewsResponse) | SESSION-REVIEW RELATED ENDPOINTS *** // ListSessionReviews: returns list of session reviews from ondewo-kb; by default only returns session review IDs |
 | GetSessionReview | [GetSessionReviewRequest](#ondewo.nlu.GetSessionReviewRequest) | [SessionReview](#ondewo.nlu.SessionReview) | GetSessionReview: returns a session-review from ondewo-kb or computes the first review if none exists |
 | GetLatestSessionReview | [GetLatestSessionReviewRequest](#ondewo.nlu.GetLatestSessionReviewRequest) | [SessionReview](#ondewo.nlu.SessionReview) | GetLatestSessionReview: returns a session-review from ondewo-kb or computes the first review if none exists |
@@ -6858,7 +7573,7 @@ user intent and respond.
 <a name="ondewo.nlu.CreateServerRoleRequest"></a>
 
 ### CreateServerRoleRequest
-
+Request to create server role
 
 
 | Field | Type | Label | Description |
@@ -6873,13 +7588,13 @@ user intent and respond.
 <a name="ondewo.nlu.CreateUserRequest"></a>
 
 ### CreateUserRequest
-
+Request to create user
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| user | [User](#ondewo.nlu.User) |  |  |
-| password | [string](#string) |  |  |
+| user | [User](#ondewo.nlu.User) |  | user_id in the User message should be given, if empty will throw an error in the backend |
+| password | [string](#string) |  | password |
 
 
 
@@ -6889,7 +7604,7 @@ user intent and respond.
 <a name="ondewo.nlu.DeleteServerRoleRequest"></a>
 
 ### DeleteServerRoleRequest
-
+Request to delete server role
 
 
 | Field | Type | Label | Description |
@@ -6904,7 +7619,7 @@ user intent and respond.
 <a name="ondewo.nlu.DeleteUserRequest"></a>
 
 ### DeleteUserRequest
-
+Request to delete user
 
 
 | Field | Type | Label | Description |
@@ -6919,7 +7634,7 @@ user intent and respond.
 <a name="ondewo.nlu.GetServerRoleRequest"></a>
 
 ### GetServerRoleRequest
-
+Request to get server role
 
 
 | Field | Type | Label | Description |
@@ -6935,7 +7650,7 @@ user intent and respond.
 <a name="ondewo.nlu.GetUserRequest"></a>
 
 ### GetUserRequest
-
+Request to get user
 
 
 | Field | Type | Label | Description |
@@ -6966,7 +7681,7 @@ Server permissions
 <a name="ondewo.nlu.ListServerPermissionsResponse"></a>
 
 ### ListServerPermissionsResponse
-
+Response containing list of server permissions
 
 
 | Field | Type | Label | Description |
@@ -6982,7 +7697,7 @@ Server permissions
 <a name="ondewo.nlu.ListServerRolesRequest"></a>
 
 ### ListServerRolesRequest
-
+Request to list server roles
 
 
 | Field | Type | Label | Description |
@@ -6997,7 +7712,7 @@ Server permissions
 <a name="ondewo.nlu.ListServerRolesResponse"></a>
 
 ### ListServerRolesResponse
-
+Response containing list of server roles
 
 
 | Field | Type | Label | Description |
@@ -7013,7 +7728,7 @@ Server permissions
 <a name="ondewo.nlu.ListUserInfosResponse"></a>
 
 ### ListUserInfosResponse
-
+Response containing list of users
 
 
 | Field | Type | Label | Description |
@@ -7029,7 +7744,7 @@ Server permissions
 <a name="ondewo.nlu.ListUsersRequest"></a>
 
 ### ListUsersRequest
-
+Request to list user
 
 
 | Field | Type | Label | Description |
@@ -7044,7 +7759,7 @@ Server permissions
 <a name="ondewo.nlu.ListUsersResponse"></a>
 
 ### ListUsersResponse
-
+Response containing list of users
 
 
 | Field | Type | Label | Description |
@@ -7065,8 +7780,8 @@ Authentication messages
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| user_email | [string](#string) |  |  |
-| password | [string](#string) |  |  |
+| user_email | [string](#string) |  | user email |
+| password | [string](#string) |  | user password |
 
 
 
@@ -7076,13 +7791,13 @@ Authentication messages
 <a name="ondewo.nlu.LoginResponse"></a>
 
 ### LoginResponse
-
+This message is a response of logging
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| user | [User](#ondewo.nlu.User) |  |  |
-| auth_token | [string](#string) |  |  |
+| user | [User](#ondewo.nlu.User) |  | user object - user_id must be there |
+| auth_token | [string](#string) |  | authentication token after successful login of the user to access NLU services |
 
 
 
@@ -7109,7 +7824,7 @@ Server Role messages
 <a name="ondewo.nlu.UpdateServerRoleRequest"></a>
 
 ### UpdateServerRoleRequest
-
+Request to update server role
 
 
 | Field | Type | Label | Description |
@@ -7125,13 +7840,13 @@ Server Role messages
 <a name="ondewo.nlu.UpdateUserRequest"></a>
 
 ### UpdateUserRequest
-
+Request to update user
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | user | [User](#ondewo.nlu.User) |  | user_id in the User message should be given, if empty will throw an error in the backend password and other fields in the User are optional. Only the fields to be updated should be provided |
-| password | [string](#string) |  |  |
+| password | [string](#string) |  | Password of the user |
 | update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields get updated. |
 
 
@@ -7160,12 +7875,12 @@ this message contains all the fields that required for user db
 <a name="ondewo.nlu.UserInfo"></a>
 
 ### UserInfo
-
+This message contains information about user
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| user | [User](#ondewo.nlu.User) |  |  |
+| user | [User](#ondewo.nlu.User) |  | user object |
 | project_roles | [UserInfo.ProjectRolesEntry](#ondewo.nlu.UserInfo.ProjectRolesEntry) | repeated | If in GetUser, ListUser requests UserView is FULL, then the mapping is additionally provided of parent of the project and corresponding ProjectRole of the user |
 
 
@@ -7194,7 +7909,7 @@ this message contains all the fields that required for user db
 <a name="ondewo.nlu.DefaultServerRole"></a>
 
 ### DefaultServerRole
-
+Structure of server role
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -7217,21 +7932,21 @@ this message contains all the fields that required for user db
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateUser | [CreateUserRequest](#ondewo.nlu.CreateUserRequest) | [User](#ondewo.nlu.User) |  |
-| GetUser | [GetUserRequest](#ondewo.nlu.GetUserRequest) | [User](#ondewo.nlu.User) |  |
-| GetUserInfo | [GetUserRequest](#ondewo.nlu.GetUserRequest) | [UserInfo](#ondewo.nlu.UserInfo) |  |
-| DeleteUser | [GetUserRequest](#ondewo.nlu.GetUserRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) |  |
-| UpdateUser | [UpdateUserRequest](#ondewo.nlu.UpdateUserRequest) | [User](#ondewo.nlu.User) |  |
-| ListUsers | [ListUsersRequest](#ondewo.nlu.ListUsersRequest) | [ListUsersResponse](#ondewo.nlu.ListUsersResponse) |  |
-| ListUserInfos | [ListUsersRequest](#ondewo.nlu.ListUsersRequest) | [ListUserInfosResponse](#ondewo.nlu.ListUserInfosResponse) |  |
-| CreateServerRole | [CreateServerRoleRequest](#ondewo.nlu.CreateServerRoleRequest) | [ServerRole](#ondewo.nlu.ServerRole) |  |
-| GetServerRole | [GetServerRoleRequest](#ondewo.nlu.GetServerRoleRequest) | [ServerRole](#ondewo.nlu.ServerRole) |  |
-| DeleteServerRole | [DeleteServerRoleRequest](#ondewo.nlu.DeleteServerRoleRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) |  |
-| UpdateServerRole | [UpdateServerRoleRequest](#ondewo.nlu.UpdateServerRoleRequest) | [ServerRole](#ondewo.nlu.ServerRole) |  |
-| ListServerRoles | [ListServerRolesRequest](#ondewo.nlu.ListServerRolesRequest) | [ListServerRolesResponse](#ondewo.nlu.ListServerRolesResponse) |  |
-| ListServerPermissions | [ListServerPermissionsRequest](#ondewo.nlu.ListServerPermissionsRequest) | [ListServerPermissionsResponse](#ondewo.nlu.ListServerPermissionsResponse) |  |
-| Login | [LoginRequest](#ondewo.nlu.LoginRequest) | [LoginResponse](#ondewo.nlu.LoginResponse) |  |
-| CheckLogin | [.google.protobuf.Empty](#google.protobuf.Empty) | [.google.protobuf.Empty](#google.protobuf.Empty) |  |
+| CreateUser | [CreateUserRequest](#ondewo.nlu.CreateUserRequest) | [User](#ondewo.nlu.User) | Creates user |
+| GetUser | [GetUserRequest](#ondewo.nlu.GetUserRequest) | [User](#ondewo.nlu.User) | Gets user |
+| GetUserInfo | [GetUserRequest](#ondewo.nlu.GetUserRequest) | [UserInfo](#ondewo.nlu.UserInfo) | Gets user information |
+| DeleteUser | [GetUserRequest](#ondewo.nlu.GetUserRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes user |
+| UpdateUser | [UpdateUserRequest](#ondewo.nlu.UpdateUserRequest) | [User](#ondewo.nlu.User) | Updates user |
+| ListUsers | [ListUsersRequest](#ondewo.nlu.ListUsersRequest) | [ListUsersResponse](#ondewo.nlu.ListUsersResponse) | Lists users |
+| ListUserInfos | [ListUsersRequest](#ondewo.nlu.ListUsersRequest) | [ListUserInfosResponse](#ondewo.nlu.ListUserInfosResponse) | Lists users information |
+| CreateServerRole | [CreateServerRoleRequest](#ondewo.nlu.CreateServerRoleRequest) | [ServerRole](#ondewo.nlu.ServerRole) | Creates server role |
+| GetServerRole | [GetServerRoleRequest](#ondewo.nlu.GetServerRoleRequest) | [ServerRole](#ondewo.nlu.ServerRole) | Get server role |
+| DeleteServerRole | [DeleteServerRoleRequest](#ondewo.nlu.DeleteServerRoleRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes server role |
+| UpdateServerRole | [UpdateServerRoleRequest](#ondewo.nlu.UpdateServerRoleRequest) | [ServerRole](#ondewo.nlu.ServerRole) | Updates server role |
+| ListServerRoles | [ListServerRolesRequest](#ondewo.nlu.ListServerRolesRequest) | [ListServerRolesResponse](#ondewo.nlu.ListServerRolesResponse) | Lists server roles |
+| ListServerPermissions | [ListServerPermissionsRequest](#ondewo.nlu.ListServerPermissionsRequest) | [ListServerPermissionsResponse](#ondewo.nlu.ListServerPermissionsResponse) | Lists server permissions |
+| Login | [LoginRequest](#ondewo.nlu.LoginRequest) | [LoginResponse](#ondewo.nlu.LoginResponse) | Request to login |
+| CheckLogin | [.google.protobuf.Empty](#google.protobuf.Empty) | [.google.protobuf.Empty](#google.protobuf.Empty) | Checks login |
 
  <!-- end services -->
 
@@ -7252,7 +7967,7 @@ Request message to AddTrainingPhraseFromCSV rpc
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The agent to list all intents from. Format: `projects/<Project ID>/agent`. |
+| parent | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | language_code | [string](#string) |  | Required. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used. |
 | csv_contents | [bytes](#bytes) |  | Required. Contents of the .csv file containing training phrases to be added to the intents |
 | extract_entities | [bool](#bool) |  | Optional. Whether or not to extract entities for the new training phrases |
@@ -7273,7 +7988,7 @@ Request message to AddTrainingPhrase rpc
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The agent to list all intents from. Format: `projects/<Project ID>/agent`. |
+| parent | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | language_code | [string](#string) |  | Required. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used. |
 | training_phrase_list | [AddTrainingPhrasesRequest.TrainingPhraseForIntent](#ondewo.nlu.AddTrainingPhrasesRequest.TrainingPhraseForIntent) | repeated | Required. List of training phrases to be added to the intent |
 | extract_entities | [bool](#bool) |  | Optional. Whether or not to extract entities for the new training phrases |
@@ -7327,7 +8042,7 @@ Request to clean the entity types
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The agent to list all intents from. Format: `projects/<Project ID>/agent`. |
+| parent | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used. |
 | special_characters | [string](#string) |  | Optional. Characters to be recognized as special characters for cleaning. Overrides the default: '.,;!?:' |
 | substring_white_list | [string](#string) | repeated | Optional. List of substring that shall not be cleaned/deleted. Example: ['St.', 'U.S.', 'sys.', '24.12.', 'Nr.', 'TelNr.'] |
@@ -7367,7 +8082,7 @@ The request to clean the all intents.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The agent to list all intents from. Format: `projects/<Project ID>/agent`. |
+| parent | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used. |
 | special_characters | [string](#string) |  | Optional. Characters to be recognized as special characters for cleaning. Overrides the default: '.,;!?:' |
 | substring_white_list | [string](#string) | repeated | Optional. List of substring that shall not be cleaned/deleted. Example: ['St.', 'U.S.', 'sys.', '24.12.', 'Nr.', 'TelNr.'] Default = None |
@@ -7405,7 +8120,7 @@ Request to clean a single entity type
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The agent to list all intents from. Format: `projects/<Project ID>/agent`. |
+| parent | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | entity_type_name | [string](#string) |  | Required. The name of the entity_type |
 | language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used. |
 | special_characters | [string](#string) |  | Optional. Characters to be recognized as special characters for cleaning. Overrides the default: '.,;!?:' |
@@ -7442,8 +8157,8 @@ The request message to clean a single intents.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The agent to list all intents from. Format: `projects/<Project ID>/agent`. |
-| intent_name | [string](#string) |  | Required. The name of the intent. Format: `projects/<Project ID>/agent/intents/<Intent ID>`. |
+| parent | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| intent_name | [string](#string) |  | Required. The name of the intent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
 | language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used. |
 | special_characters | [string](#string) |  | Optional. Characters to be recognized as special characters for cleaning. Overrides the default: '.,;!?:' |
 | substring_white_list | [string](#string) | repeated | Optional. List of substring that shall not be cleaned/deleted. Example: ['St.', 'U.S.', 'sys.', '24.12.', 'Nr.', 'TelNr.'] Default = None |
@@ -7658,7 +8373,6 @@ Encapsulates entity re-annotation options
 ### Utilities
 This is collection of utility endpoints, intended to language-independent operations,
 such as code checks, regex checks, etc.
-
 Holds a collection of utility functions
 
 | Method Name | Request Type | Response Type | Description |
@@ -7718,7 +8432,7 @@ request sent for webhook ping
 <a name="ondewo.nlu.PingResponse"></a>
 
 ### PingResponse
-
+This message is a response of pinging
 
 
 | Field | Type | Label | Description |
@@ -7738,7 +8452,7 @@ The request message for a webhook call.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session | [string](#string) |  | The unique identifier of detectIntent request session. Can be used to identify end-user inside webhook implementation. Format: `projects/<Project ID>/agent/sessions/<Session ID>`. |
+| session | [string](#string) |  | The unique identifier of detectIntent request session. Can be used to identify end-user inside webhook implementation. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
 | response_id | [string](#string) |  | The unique identifier of the response. Contains the same value as `[Streaming]DetectIntentResponse.response_id`. |
 | query_result | [QueryResult](#ondewo.nlu.QueryResult) |  | The result of the conversational query or event processing. Contains the same value as `[Streaming]DetectIntentResponse.query_result`. |
 | original_detect_intent_request | [OriginalDetectIntentRequest](#ondewo.nlu.OriginalDetectIntentRequest) |  | Optional. The contents of the original request that was passed to `[Streaming]DetectIntent` call. |
@@ -7786,7 +8500,7 @@ service to send requests to a webhook server
 | ----------- | ------------ | ------------- | ------------|
 | ResponseRefinement | [WebhookRequest](#ondewo.nlu.WebhookRequest) | [WebhookResponse](#ondewo.nlu.WebhookResponse) | send a request for /response_refinement/ to the webhook server fulfillment messages can be overwritten by the webhook server |
 | SlotFilling | [WebhookRequest](#ondewo.nlu.WebhookRequest) | [WebhookResponse](#ondewo.nlu.WebhookResponse) | send a request for /slot_filling/ to the webhook server parameter values can be provided & context information can be changed by the webhook server |
-| Ping | [PingRequest](#ondewo.nlu.PingRequest) | [PingResponse](#ondewo.nlu.PingResponse) | send a Ping to the webhook server to check server health will return True if http status_code==200 is detected in the response |
+| Ping | [PingRequest](#ondewo.nlu.PingRequest) | [PingResponse](#ondewo.nlu.PingResponse) | send a Ping to the webhook server to verify server health will return True if http status_code==200 is detected in the response |
 
  <!-- end services -->
 
