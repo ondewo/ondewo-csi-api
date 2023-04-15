@@ -17,8 +17,8 @@ export
 
 # MUST BE THE SAME AS API in Mayor and Minor Version Number
 # example: API 2.9.0 --> Client 2.9.X
-ONDEWO_CSI_API_VERSION=3.0.0
-ONDEWO_NLU_API_GIT_BRANCH=tags/3.0.0
+ONDEWO_CSI_API_VERSION=3.1.0
+ONDEWO_NLU_API_GIT_BRANCH=tags/4.6.0
 ONDEWO_S2T_API_GIT_BRANCH=tags/4.0.0
 ONDEWO_T2S_API_GIT_BRANCH=tags/5.0.0
 ONDEWO_NLU_DIR=ondewo-nlu-api
@@ -51,6 +51,7 @@ install_nvm: ## Install NVM, node and npm !! Forcefully closes current terminal
 	@node --version & npm --version || (kill -KILL ${PID})
 
 install_python_requirements: ## Installs python requirements flak8 and mypy
+	conda install -y cffi
 	wget -q https://raw.githubusercontent.com/ondewo/ondewo-csi-client-python/master/requirements-dev.txt -O requirements-dev.txt
 	pip install -r requirements-dev.txt
 	wget -q https://raw.githubusercontent.com/ondewo/ondewo-csi-client-python/master/requirements.txt -O requirements.txt
