@@ -163,3 +163,7 @@ cython_debug/
 .idea/
 .vscode/
 ondewo-devops-accounts/
+build_log_angular.txt
+build_log_nodejs.txt
+build_log_python.txt
+build_log_typescript.txt
