@@ -140,8 +140,8 @@ checkout_defined_submodule_versions:  ## Update submodule versions
 	git -C ${ONDEWO_NLU_DIR} checkout ${ONDEWO_NLU_API_GIT_BRANCH}
 	git -C ${ONDEWO_S2T_DIR} fetch --all
 	git -C ${ONDEWO_S2T_DIR} checkout ${ONDEWO_S2T_API_GIT_BRANCH}
-	if [ -d googleapis ]; then rm -Rf googleapis; fi
-	cp -r "${ONDEWO_NLU_DIR}/googleapis" .
+	if [ -d googleapis ]; then rm -Rf google; fi
+	cp -r "${ONDEWO_NLU_DIR}/google" .
 	if [ -d ondewo/nlu ]; then rm -Rf ondewo/nlu; fi
 	if [ -d ondewo/s2t ]; then rm -Rf ondewo/s2t; fi
 	if [ -d ondewo/t2s ]; then rm -Rf ondewo/t2s; fi
