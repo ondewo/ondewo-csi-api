@@ -79,10 +79,6 @@
                       </li>
                     
                       <li>
-                        <a href="#ondewo.csi.CondtionValueUnion" class="title-badge message">CondtionValueUnion</a>
-                      </li>
-                    
-                      <li>
                         <a href="#ondewo.csi.ControlMessage" class="title-badge message">ControlMessage</a>
                       </li>
                     
@@ -3012,13 +3008,13 @@ All upstreams unhealthy:
 
           <pre>rpc GetControlStream (<a href="#ondewo.csi.ControlStreamRequest">ControlStreamRequest</a>) returns (stream <a href="#ondewo.csi.ControlStreamResponse">ControlStreamResponse)</a></pre>
 
-          
+          Get the control stream to control sip, t2s, s2t etc. during a conversation
         
           <h4 id="ondewo.csi.Conversations.SetControlStatus" class="title-badge method">SetControlStatus</h4>
 
           <pre>rpc SetControlStatus (<a href="#ondewo.csi.SetControlStatusRequest">SetControlStatusRequest</a>) returns (<a href="#ondewo.csi.SetControlStatusResponse">SetControlStatusResponse)</a></pre>
 
-          
+          Send a message on the control stream to control sip, t2s, s2t etc. during a conversation
         
 
         
@@ -3030,7 +3026,7 @@ All upstreams unhealthy:
       <div id="ondewo/csi/conversation.proto-messages" class="object-category">Messages</div>
       
         <h3 id="ondewo.csi.CheckUpstreamHealthResponse" class="title-badge message">CheckUpstreamHealthResponse</h3>
-        <p></p>
+        <p>Health checks</p>
 
         
           <table class="field-table">
@@ -3043,21 +3039,21 @@ All upstreams unhealthy:
                   <td>s2t_status</td>
                   <td><a href="#google.rpc.Status">google.rpc.Status</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Health checks for Speech-2-Text </p></td>
                 </tr>
               
                 <tr>
                   <td>nlu_status</td>
                   <td><a href="#google.rpc.Status">google.rpc.Status</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Health checks for NLU </p></td>
                 </tr>
               
                 <tr>
                   <td>t2s_status</td>
                   <td><a href="#google.rpc.Status">google.rpc.Status</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Health checks for Text-2-Speech </p></td>
                 </tr>
               
             </tbody>
@@ -3068,7 +3064,7 @@ All upstreams unhealthy:
         
       
         <h3 id="ondewo.csi.Condition" class="title-badge message">Condition</h3>
-        <p></p>
+        <p>A condition message with its type and value</p><p>A Condition can be of various types.</p><p><p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p></p><p><pre><code></p><p>immediate execution</p><p>{</p><p>"type": "immediate"</p><p>}</p><p></code></pre></p><p>number of interactions of the user with the AI agent</p><p><pre><code></p><p>{</p><p>"type": "interactions",</p><p>"value": “10”</p><p>}</p><p></code></pre></p><p>number of seconds</p><p><pre><code></p><p>{</p><p>"type": "duration",</p><p>"value": “3600”</p><p>}</p><p></code></pre></p><p>at a specific date and time</p><p><pre><code></p><p>{</p><p>"type": "datetime",</p><p>"value": "2021-12-23T13:45:00.000Z"</p><p>}</p><p></code></pre></p>
 
         
           <table class="field-table">
@@ -3081,52 +3077,15 @@ All upstreams unhealthy:
                   <td>type</td>
                   <td><a href="#ondewo.csi.ConditionType">ConditionType</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Condition type </p></td>
                 </tr>
               
                 <tr>
                   <td>value</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.csi.CondtionValueUnion" class="title-badge message">CondtionValueUnion</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>int_value</td>
-                  <td><a href="#int64">int64</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>float_value</td>
-                  <td><a href="#float">float</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-                <tr>
-                  <td>datetime_value</td>
-                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
-                  <td></td>
-                  <td><p> </p></td>
+                  <td><p>Value of the condition.
+Examples of conditions values based on the condition type are given in the <pre>ConditionType</pre> documentation </p></td>
                 </tr>
               
             </tbody>
@@ -3137,7 +3096,7 @@ All upstreams unhealthy:
         
       
         <h3 id="ondewo.csi.ControlMessage" class="title-badge message">ControlMessage</h3>
-        <p></p>
+        <p>A control message</p><p><p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p></p><p><pre><code></p><p>{</p><p>"service": "<SERVICE_NAME>", 			// e.g. ondewo_s2t</p><p>"method": "<SERVICE_CONTROL_METHOD>", 	// e.g. update_config</p><p>"parameters": [</p><p>// primitive data types and JSON objects are possible</p><p>1,</p><p>1.0,</p><p>-2.0,</p><p>“string”,</p><p>true,</p><p>{</p><p>// parameter JSON object</p><p>},</p><p>{</p><p>// Condition start object</p><p>},</p><p>{</p><p>// Condition end object [optional]</p><p>},</p><p>]</p><p>}</p><p></code></pre></p>
 
         
           <table class="field-table">
@@ -3150,21 +3109,22 @@ All upstreams unhealthy:
                   <td>service</td>
                   <td><a href="#ondewo.csi.ControlMessageServiceName">ControlMessageServiceName</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Service to control.
+Valid service names are:'ondewo_nlu', 'ondewo_t2s', 'ondewo_s2t', 'ondewo_sip' and 'ondewo_csi' </p></td>
                 </tr>
               
                 <tr>
                   <td>method</td>
                   <td><a href="#ondewo.csi.ControlMessageServiceMethod">ControlMessageServiceMethod</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Method to invoke on the service </p></td>
                 </tr>
               
                 <tr>
                   <td>parameters</td>
                   <td><a href="#ondewo.csi.ControlMessageServiceParameters">ControlMessageServiceParameters</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Parameters to use to invoke the method of the service </p></td>
                 </tr>
               
             </tbody>
@@ -3175,7 +3135,7 @@ All upstreams unhealthy:
         
       
         <h3 id="ondewo.csi.ControlMessageServiceParameters" class="title-badge message">ControlMessageServiceParameters</h3>
-        <p></p>
+        <p>Parameters of the control message passed to the service specified in the control message</p>
 
         
           <table class="field-table">
@@ -3188,70 +3148,70 @@ All upstreams unhealthy:
                   <td>t2s_config</td>
                   <td><a href="#ondewo.t2s.RequestConfig">ondewo.t2s.RequestConfig</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Text-2-Speech: configuration to control the synthesis of a text into audio </p></td>
                 </tr>
               
                 <tr>
                   <td>s2t_config</td>
                   <td><a href="#ondewo.s2t.TranscribeRequestConfig">ondewo.s2t.TranscribeRequestConfig</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Speech-2-Text: configuration to control the recognition of text based on human voice audio </p></td>
                 </tr>
               
                 <tr>
                   <td>transfer_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>sip params </p></td>
+                  <td><p>SIP: callee id to transfer call to </p></td>
                 </tr>
               
                 <tr>
                   <td>wav_files</td>
                   <td><a href="#bytes">bytes</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>SIP: bytes of audio files to play to a caller </p></td>
                 </tr>
               
                 <tr>
                   <td>text</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>sip and nlu common params </p></td>
+                  <td><p>text, e.g. for NLU detect intent response or Text-2-Speech voice synthesis </p></td>
                 </tr>
               
                 <tr>
                   <td>context</td>
                   <td><a href="#ondewo.nlu.Context">ondewo.nlu.Context</a></td>
                   <td></td>
-                  <td><p>nlu params </p></td>
+                  <td><p>NLU: context for creating, updating or deleting contextual information from a NLU session </p></td>
                 </tr>
               
                 <tr>
                   <td>session_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>NLU: the session id of a NLU session </p></td>
                 </tr>
               
                 <tr>
                   <td>context_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>NLU: the name of the context of a NLU session </p></td>
                 </tr>
               
                 <tr>
                   <td>condition_start</td>
                   <td><a href="#ondewo.csi.Condition">Condition</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>CSI: the condition that defines when a control message should be executed </p></td>
                 </tr>
               
                 <tr>
                   <td>condition_end</td>
                   <td><a href="#ondewo.csi.Condition">Condition</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>CSI: the condition that defines when a control message should stop its execution </p></td>
                 </tr>
               
             </tbody>
@@ -3262,14 +3222,14 @@ All upstreams unhealthy:
         
       
         <h3 id="ondewo.csi.ControlStreamRequest" class="title-badge message">ControlStreamRequest</h3>
-        <p></p>
+        <p>Control stream message</p>
 
         
 
         
       
         <h3 id="ondewo.csi.ControlStreamResponse" class="title-badge message">ControlStreamResponse</h3>
-        <p></p>
+        <p>Control stream response message</p>
 
         
           <table class="field-table">
@@ -3282,7 +3242,7 @@ All upstreams unhealthy:
                   <td>control_status</td>
                   <td><a href="#ondewo.csi.ControlStatus">ControlStatus</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Control status </p></td>
                 </tr>
               
             </tbody>
@@ -3428,16 +3388,16 @@ an appropriate string. It can be a random number or some type of user identifier
                   <td>audio</td>
                   <td><a href="#bytes">bytes</a></td>
                   <td></td>
-                  <td><p>Optional. The input audio content to be recognized. </p></td>
+                  <td><p>If `true`, the recognizer will not return
+any further hypotheses about this piece of the audio. May only be populated
+for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
                 </tr>
               
                 <tr>
                   <td>end_of_stream</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>If `true`, the recognizer will not return
-any further hypotheses about this piece of the audio. May only be populated
-for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
+                  <td><p> </p></td>
                 </tr>
               
                 <tr>
@@ -3455,7 +3415,7 @@ for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
         
       
         <h3 id="ondewo.csi.S2sStreamResponse" class="title-badge message">S2sStreamResponse</h3>
-        <p>The top-level message returned from the</p><p>`S2sStream` method.</p><p>A response message is returned for each utterance of the input stream. It contains the full response from NLU system</p><p>in `detect_intent_response` or the full T2S response in `synthetize_response`.</p><p>Multiple response messages can be returned in order:</p><p>1.  The first response message for an input utterance contains response from NLU system `detect_intent_response`</p><p>with detected intent and N fulfillment messages (N >= 0).</p><p>2.  The next N response messages contain for each fulfillment message one of the following:</p><p>a. T2S response `synthetize_response` with synthetized audio</p><p>b. SIP trigger message `sip_trigger` with SIP trigger extracted from the fulfillment message</p>
+        <p>The top-level message returned from the</p><p>`S2sStream` method.</p><p>A response message is returned for each utterance of the input stream. It contains the full response from NLU system</p><p>in `detect_intent_response` or the full T2S response in `synthesize_response`.</p><p>Multiple response messages can be returned in order:</p><p>1.  The first response message for an input utterance contains response from NLU system `detect_intent_response`</p><p>with detected intent and N fulfillment messages (N >= 0).</p><p>2.  The next N response messages contain for each fulfillment message one of the following:</p><p>a. T2S response `synthesize_response` with synthetized audio</p><p>b. SIP trigger message `sip_trigger` with SIP trigger extracted from the fulfillment message</p>
 
         
           <table class="field-table">
@@ -3468,14 +3428,14 @@ for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
                   <td>detect_intent_response</td>
                   <td><a href="#ondewo.nlu.DetectIntentResponse">ondewo.nlu.DetectIntentResponse</a></td>
                   <td></td>
-                  <td><p>full NLU response </p></td>
+                  <td><p>full NLU detect intent response </p></td>
                 </tr>
               
                 <tr>
-                  <td>synthetize_response</td>
+                  <td>synthesize_response</td>
                   <td><a href="#ondewo.t2s.SynthesizeResponse">ondewo.t2s.SynthesizeResponse</a></td>
                   <td></td>
-                  <td><p>full T2S response </p></td>
+                  <td><p>full T2S synthesize response </p></td>
                 </tr>
               
                 <tr>
@@ -3493,7 +3453,7 @@ for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
         
       
         <h3 id="ondewo.csi.SetControlStatusRequest" class="title-badge message">SetControlStatusRequest</h3>
-        <p></p>
+        <p>Request to set control status</p>
 
         
           <table class="field-table">
@@ -3506,7 +3466,7 @@ for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
                   <td>control_status</td>
                   <td><a href="#ondewo.csi.ControlStatus">ControlStatus</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Control status </p></td>
                 </tr>
               
             </tbody>
@@ -3517,7 +3477,7 @@ for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
         
       
         <h3 id="ondewo.csi.SetControlStatusResponse" class="title-badge message">SetControlStatusResponse</h3>
-        <p></p>
+        <p>Response of setting the control status with the old and new status objects</p>
 
         
           <table class="field-table">
@@ -3530,14 +3490,14 @@ for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
                   <td>old_control_status</td>
                   <td><a href="#ondewo.csi.ControlStatus">ControlStatus</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Previous 'old' control status </p></td>
                 </tr>
               
                 <tr>
                   <td>new_control_status</td>
                   <td><a href="#ondewo.csi.ControlStatus">ControlStatus</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Current 'new' control status </p></td>
                 </tr>
               
             </tbody>
@@ -3584,7 +3544,7 @@ for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
       <div id="ondewo/csi/conversation.proto-enums" class="object-category">Enums</div>
       
         <h3 id="ondewo.csi.ConditionType" class="title-badge enum">ConditionType</h3>
-        <p></p>
+        <p>Type of condition that need to be satisfied to execute a control message</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -3594,38 +3554,42 @@ for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
               <tr>
                 <td>UNKNOWTYPE</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>Unknown type</p></td>
               </tr>
             
               <tr>
                 <td>immediate</td>
                 <td>1</td>
-                <td><p></p></td>
+                <td><p>Immediate execution of the control message
+Example value need be given as a string in the format: <pre><code>value="5"</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>duration</td>
                 <td>2</td>
-                <td><p></p></td>
+                <td><p>Duration in number of seconds after a control message should be executed,
+Example value need be given as a string in the format: <pre><code>value="10"</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>datetime</td>
                 <td>3</td>
-                <td><p></p></td>
+                <td><p>Date and time when a control message should be executed,
+Example value need be given as a string in the format: <pre><code>value="2021-12-23T13:45:00.000Z"</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>interactions</td>
                 <td>4</td>
-                <td><p></p></td>
+                <td><p>Number of interactions of the user with an ONDEWO AI agent after a control message should be executed
+Example value need be given as a string in the format: <pre><code>value="4"</code></pre></p></td>
               </tr>
             
           </tbody>
         </table>
       
         <h3 id="ondewo.csi.ControlMessageServiceMethod" class="title-badge enum">ControlMessageServiceMethod</h3>
-        <p></p>
+        <p>Control message methods to control services during a conversation</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -3635,122 +3599,491 @@ for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
               <tr>
                 <td>UNKNOWNMETHOD</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>Unknown method (default)</p></td>
               </tr>
             
               <tr>
                 <td>update_config</td>
                 <td>1</td>
-                <td><p></p></td>
+                <td><p>CSI: update configuration
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "ondewo_s2t",
+   "method": "update_config",
+   "parameters": [
+       {
+           // Speech2TextConfig object
+           “s2tPipelineId” : “s2t_pipeline_german_1”,
+           “languageModelName” : “language_model_german”
+       },
+       {
+            // condition_start object => should take effect immediately
+            "type": "immediate",
+            “value”: “0”
+       },
+       {
+            // condition_end object - s2t config will be changed back to
+            // last valid configuration after 10 interactions of user with
+            // the AI agent
+            "type": "interactions",
+	           "value": 10
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>undo_config</td>
                 <td>2</td>
-                <td><p></p></td>
+                <td><p>CSI: undo previous configuration update
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "ondewo_s2t",
+   "method": "undo_config",
+   "parameters": [
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+	          // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>reset_config</td>
                 <td>3</td>
-                <td><p></p></td>
+                <td><p>CSI: reset configuration to default
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "ondewo_s2t",
+   "method": "reset_config",
+   "parameters": [
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+           // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>end_call</td>
                 <td>4</td>
-                <td><p></p></td>
+                <td><p>SIP: end conversation / hang up call
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "ondewo_sip",
+   "method": "end_call",
+   "parameters": [
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+           // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>transfer_call</td>
                 <td>5</td>
-                <td><p></p></td>
+                <td><p>SIP: transfer call
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "ondewo_sip",
+   "method": "transfer_call",
+   "parameters": [
+       {
+	 	      "transfer_id": "+43123456789@127.0.0.10:5060",
+       },
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+           // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>play_wav_files</td>
                 <td>6</td>
-                <td><p></p></td>
+                <td><p>SIP: play wav files on the call
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "ondewo_sip",
+   "method": "  "play_wav_files",
+   "parameters": [
+       {
+	 	      "wav_files":  [
+               <bytes_of_file_1>,
+               <bytes_of_file_2>,
+               <bytes_of_file_3>,
+           ]
+       },
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+           // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>play_text</td>
                 <td>7</td>
-                <td><p></p></td>
+                <td><p>SIP: play a certain text on the phone based on Text-2-Speech synthesis
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "ondewo_sip",
+   "method": "play_text",
+   "parameters": [
+       {
+	 	      "text": "Welcome from ONDEWO AI Agent! How are you today?",
+       },
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+           // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>mute</td>
                 <td>8</td>
-                <td><p></p></td>
+                <td><p>SIP: mute microphone
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "ondewo_sip",
+   "method": "mute",
+   "parameters": [
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+           // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>un_mute</td>
                 <td>9</td>
-                <td><p></p></td>
+                <td><p>SIP: unmute microphone
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "ondewo_sip",
+   "method": "un_mute",
+   "parameters": [
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+           // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>stop_all_control_messages</td>
                 <td>10</td>
-                <td><p></p></td>
+                <td><p>CSI: stop the execution of all running and scheduled control messages
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "",    <= empty string since it is for all services / no specific service
+   "method": "stop_all_control_messages",
+   "parameters": [
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+           // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>train_agent</td>
                 <td>11</td>
-                <td><p>nlu control messages</p></td>
+                <td><p>NLU: train agent
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "ondewo_nlu",
+   "method": "train_agent",
+   "parameters": [
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+           // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>cancel_train_agent</td>
                 <td>12</td>
-                <td><p></p></td>
+                <td><p>NLU: cancel the ongoing agent
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "ondewo_nlu",
+   "method": "cancel_train_agent",
+   "parameters": [
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+           // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>delete_session</td>
                 <td>13</td>
-                <td><p></p></td>
+                <td><p>NLU: delete session all all session-related information
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "ondewo_nlu",
+   "method": "delete_session",
+   "parameters": [
+       {
+	 	      "session_id": "97ea1a20-0784-442b-93c0-eb9e2469420e",
+       },
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+           // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>delete_all_contexts</td>
                 <td>14</td>
-                <td><p></p></td>
+                <td><p>NLU: delete all context information in the current session
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "ondewo_nlu",
+   "method": "delete_all_contexts",
+   "parameters": [
+       {
+	 	      "session_id": "97ea1a20-0784-442b-93c0-eb9e2469420e",
+       },
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+           // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>create_context</td>
                 <td>15</td>
-                <td><p></p></td>
+                <td><p>NLU: create a context based on the provided contextual information in the current session
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "ondewo_nlu",
+   "method": "create_context",
+   "parameters": [
+       {
+	 	      "context": {           <== <NLU Context Object as JSON object>
+               name": "projects/db46dcf8-2d2c-4115-ac38-eff443ea0e72/agent/sessions/ssea1a20-0784-442b-93c0-eb9e2469420e/contexts/78ea1a20-0784-442b-93c0-eb9e2469420e",
+               ...,
+           }
+       },
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+           // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>update_context</td>
                 <td>16</td>
-                <td><p></p></td>
+                <td><p>NLU: update an existing context based on the provided contextual information in the current session
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "ondewo_nlu",
+   "method": "update_context",
+   "parameters": [
+       {
+	 	      "context": {           <== <NLU Context Object as JSON object>
+               name": "projects/db46dcf8-2d2c-4115-ac38-eff443ea0e72/agent/sessions/ssea1a20-0784-442b-93c0-eb9e2469420e/contexts/78ea1a20-0784-442b-93c0-eb9e2469420e",
+               ...,
+           }
+       },
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+           // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>delete_context</td>
                 <td>17</td>
-                <td><p></p></td>
+                <td><p>NLU: delete an existing context including all contextual information in the current session
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+   "service": "ondewo_nlu",
+   "method": "delete_context",
+   "parameters": [
+       {
+	 	      "session_id": "97ea1a20-0784-442b-93c0-eb9e2469420e",
+	 	      "context_name": "78ea1a20-0784-442b-93c0-eb9e2469420e",
+       },
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+           // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
               <tr>
                 <td>detect_intent</td>
                 <td>18</td>
-                <td><p></p></td>
+                <td><p>NLU: execute a detect intent request based on the provided information in the current session
+{
+   "service": "ondewo_nlu",
+   "method": "detect_intent",
+   "parameters": [
+       {
+	 	      "session_id": "97ea1a20-0784-442b-93c0-eb9e2469420e",
+	 	      "text": "Are you an artificial intelligence?",
+       },
+       {
+	 	      // condition_start object
+       },
+       {
+	 	      // condition_end object (OPTIONAL) - for permanent change
+           // no condition_end needs to be supplied i.e.
+		      // this parameter is missing or empty “{}”
+       },
+   ]
+}
+</code></pre></p></td>
               </tr>
             
           </tbody>
         </table>
       
         <h3 id="ondewo.csi.ControlMessageServiceName" class="title-badge enum">ControlMessageServiceName</h3>
-        <p></p>
+        <p>Control message services</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -3760,38 +4093,38 @@ for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
               <tr>
                 <td>UNKNOWNNAME</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>Unknown control message service name</p></td>
               </tr>
             
               <tr>
                 <td>ondewo_s2t</td>
                 <td>1</td>
-                <td><p></p></td>
+                <td><p>Speech-2-Text control message service name</p></td>
               </tr>
             
               <tr>
                 <td>ondewo_t2s</td>
                 <td>2</td>
-                <td><p></p></td>
+                <td><p>Text-2-Speech control message service name</p></td>
               </tr>
             
               <tr>
                 <td>ondewo_nlu</td>
                 <td>3</td>
-                <td><p></p></td>
+                <td><p>NLU control message service name</p></td>
               </tr>
             
               <tr>
                 <td>ondewo_sip</td>
                 <td>4</td>
-                <td><p></p></td>
+                <td><p>SIP control message service name</p></td>
               </tr>
             
           </tbody>
         </table>
       
         <h3 id="ondewo.csi.ControlStatus" class="title-badge enum">ControlStatus</h3>
-        <p></p>
+        <p>Control status</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -3801,13 +4134,13 @@ for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
               <tr>
                 <td>OK</td>
                 <td>0</td>
-                <td><p></p></td>
+                <td><p>Status that control stream is ok</p></td>
               </tr>
             
               <tr>
                 <td>EMERGENCY_STOP</td>
                 <td>1</td>
-                <td><p></p></td>
+                <td><p>Status that control stream needs to stop immediately</p></td>
               </tr>
             
           </tbody>
