@@ -6,7 +6,6 @@
 - [ondewo/csi/conversation.proto](#ondewo/csi/conversation.proto)
     - [CheckUpstreamHealthResponse](#ondewo.csi.CheckUpstreamHealthResponse)
     - [Condition](#ondewo.csi.Condition)
-    - [CondtionValueUnion](#ondewo.csi.CondtionValueUnion)
     - [ControlMessage](#ondewo.csi.ControlMessage)
     - [ControlMessageServiceParameters](#ondewo.csi.ControlMessageServiceParameters)
     - [ControlStreamRequest](#ondewo.csi.ControlStreamRequest)
@@ -558,14 +557,14 @@
 <a name="ondewo.csi.CheckUpstreamHealthResponse"></a>
 
 ### CheckUpstreamHealthResponse
-
+Health checks
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| s2t_status | [google.rpc.Status](#google.rpc.Status) |  |  |
-| nlu_status | [google.rpc.Status](#google.rpc.Status) |  |  |
-| t2s_status | [google.rpc.Status](#google.rpc.Status) |  |  |
+| s2t_status | [google.rpc.Status](#google.rpc.Status) |  | Health checks for Speech-2-Text |
+| nlu_status | [google.rpc.Status](#google.rpc.Status) |  | Health checks for NLU |
+| t2s_status | [google.rpc.Status](#google.rpc.Status) |  | Health checks for Text-2-Speech |
 
 
 
@@ -575,30 +574,46 @@
 <a name="ondewo.csi.Condition"></a>
 
 ### Condition
+A condition message with its type and value
 
+A Condition can be of various types.
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+immediate execution
+{
+   "type": "immediate"
+}
+</code></pre>
+
+number of interactions of the user with the AI agent
+<pre><code>
+{
+   "type": "interactions",
+   "value": “10”
+}
+</code></pre>
+
+ number of seconds
+<pre><code>
+{
+   "type": "duration",
+   "value": “3600”
+}
+</code></pre>
+
+ at a specific date and time
+<pre><code>
+{
+   "type": "datetime",
+   "value": "2021-12-23T13:45:00.000Z"
+}
+</code></pre>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [ConditionType](#ondewo.csi.ConditionType) |  |  |
-| value | [string](#string) |  |  |
-
-
-
-
-
-
-<a name="ondewo.csi.CondtionValueUnion"></a>
-
-### CondtionValueUnion
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| int_value | [int64](#int64) |  |  |
-| float_value | [float](#float) |  |  |
-| datetime_value | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
+| type | [ConditionType](#ondewo.csi.ConditionType) |  | Condition type |
+| value | [string](#string) |  | Value of the condition. Examples of conditions values based on the condition type are given in the <pre>ConditionType</pre> documentation |
 
 
 
@@ -608,14 +623,39 @@
 <a name="ondewo.csi.ControlMessage"></a>
 
 ### ControlMessage
+A control message
 
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+<pre><code>
+{
+  "service": "<SERVICE_NAME>", 			// e.g. ondewo_s2t
+  "method": "<SERVICE_CONTROL_METHOD>", 	// e.g. update_config
+  "parameters": [
+      // primitive data types and JSON objects are possible
+      1,
+      1.0,
+      -2.0,
+      “string”,
+      true,
+  	 {
+          // parameter JSON object
+      },
+      {
+          // Condition start object
+      },
+      {
+          // Condition end object [optional]
+      },
+   ]
+}
+</code></pre>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| service | [ControlMessageServiceName](#ondewo.csi.ControlMessageServiceName) |  |  |
-| method | [ControlMessageServiceMethod](#ondewo.csi.ControlMessageServiceMethod) |  |  |
-| parameters | [ControlMessageServiceParameters](#ondewo.csi.ControlMessageServiceParameters) |  |  |
+| service | [ControlMessageServiceName](#ondewo.csi.ControlMessageServiceName) |  | Service to control. Valid service names are:'ondewo_nlu', 'ondewo_t2s', 'ondewo_s2t', 'ondewo_sip' and 'ondewo_csi' |
+| method | [ControlMessageServiceMethod](#ondewo.csi.ControlMessageServiceMethod) |  | Method to invoke on the service |
+| parameters | [ControlMessageServiceParameters](#ondewo.csi.ControlMessageServiceParameters) |  | Parameters to use to invoke the method of the service |
 
 
 
@@ -625,21 +665,21 @@
 <a name="ondewo.csi.ControlMessageServiceParameters"></a>
 
 ### ControlMessageServiceParameters
-
+Parameters of the control message passed to the service specified in the control message
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| t2s_config | [ondewo.t2s.RequestConfig](#ondewo.t2s.RequestConfig) |  |  |
-| s2t_config | [ondewo.s2t.TranscribeRequestConfig](#ondewo.s2t.TranscribeRequestConfig) |  |  |
-| transfer_id | [string](#string) |  | sip params |
-| wav_files | [bytes](#bytes) | repeated |  |
-| text | [string](#string) |  | sip and nlu common params |
-| context | [ondewo.nlu.Context](#ondewo.nlu.Context) |  | nlu params |
-| session_id | [string](#string) |  |  |
-| context_name | [string](#string) |  |  |
-| condition_start | [Condition](#ondewo.csi.Condition) |  |  |
-| condition_end | [Condition](#ondewo.csi.Condition) |  |  |
+| t2s_config | [ondewo.t2s.RequestConfig](#ondewo.t2s.RequestConfig) |  | Text-2-Speech: configuration to control the synthesis of a text into audio |
+| s2t_config | [ondewo.s2t.TranscribeRequestConfig](#ondewo.s2t.TranscribeRequestConfig) |  | Speech-2-Text: configuration to control the recognition of text based on human voice audio |
+| transfer_id | [string](#string) |  | SIP: callee id to transfer call to |
+| wav_files | [bytes](#bytes) | repeated | SIP: bytes of audio files to play to a caller |
+| text | [string](#string) |  | text, e.g. for NLU detect intent response or Text-2-Speech voice synthesis |
+| context | [ondewo.nlu.Context](#ondewo.nlu.Context) |  | NLU: context for creating, updating or deleting contextual information from a NLU session |
+| session_id | [string](#string) |  | NLU: the session id of a NLU session |
+| context_name | [string](#string) |  | NLU: the name of the context of a NLU session |
+| condition_start | [Condition](#ondewo.csi.Condition) |  | CSI: the condition that defines when a control message should be executed |
+| condition_end | [Condition](#ondewo.csi.Condition) |  | CSI: the condition that defines when a control message should stop its execution |
 
 
 
@@ -649,7 +689,7 @@
 <a name="ondewo.csi.ControlStreamRequest"></a>
 
 ### ControlStreamRequest
-
+Control stream message
 
 
 
@@ -659,12 +699,12 @@
 <a name="ondewo.csi.ControlStreamResponse"></a>
 
 ### ControlStreamResponse
-
+Control stream response message
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| control_status | [ControlStatus](#ondewo.csi.ControlStatus) |  |  |
+| control_status | [ControlStatus](#ondewo.csi.ControlStatus) |  | Control status |
 
 
 
@@ -751,8 +791,8 @@ Multiple request messages should be sent in order:
 | ----- | ---- | ----- | ----------- |
 | pipeline_id | [string](#string) |  | Optional. The CSI pipeline ID specified in the initial request. |
 | session_id | [string](#string) |  | Optional. The session or call ID specified in the initial request. It’s up to the API caller to choose an appropriate string. It can be a random number or some type of user identifier (preferably hashed). |
-| audio | [bytes](#bytes) |  | Optional. The input audio content to be recognized. |
-| end_of_stream | [bool](#bool) |  | If `true`, the recognizer will not return any further hypotheses about this piece of the audio. May only be populated for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. |
+| audio | [bytes](#bytes) |  | If `true`, the recognizer will not return any further hypotheses about this piece of the audio. May only be populated for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. |
+| end_of_stream | [bool](#bool) |  |  |
 | initial_intent_display_name | [string](#string) |  | Optional. Intent display name to trigger in NLU system in the beginning of the conversation. |
 
 
@@ -767,21 +807,21 @@ The top-level message returned from the
 `S2sStream` method.
 
 A response message is returned for each utterance of the input stream. It contains the full response from NLU system
-in `detect_intent_response` or the full T2S response in `synthetize_response`.
+in `detect_intent_response` or the full T2S response in `synthesize_response`.
 Multiple response messages can be returned in order:
 
 1.  The first response message for an input utterance contains response from NLU system `detect_intent_response`
     with detected intent and N fulfillment messages (N >= 0).
 
 2.  The next N response messages contain for each fulfillment message one of the following:
-     a. T2S response `synthetize_response` with synthetized audio
+     a. T2S response `synthesize_response` with synthetized audio
      b. SIP trigger message `sip_trigger` with SIP trigger extracted from the fulfillment message
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| detect_intent_response | [ondewo.nlu.DetectIntentResponse](#ondewo.nlu.DetectIntentResponse) |  | full NLU response |
-| synthetize_response | [ondewo.t2s.SynthesizeResponse](#ondewo.t2s.SynthesizeResponse) |  | full T2S response |
+| detect_intent_response | [ondewo.nlu.DetectIntentResponse](#ondewo.nlu.DetectIntentResponse) |  | full NLU detect intent response |
+| synthesize_response | [ondewo.t2s.SynthesizeResponse](#ondewo.t2s.SynthesizeResponse) |  | full T2S synthesize response |
 | sip_trigger | [SipTrigger](#ondewo.csi.SipTrigger) |  | SIP trigger message |
 
 
@@ -792,12 +832,12 @@ Multiple response messages can be returned in order:
 <a name="ondewo.csi.SetControlStatusRequest"></a>
 
 ### SetControlStatusRequest
-
+Request to set control status
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| control_status | [ControlStatus](#ondewo.csi.ControlStatus) |  |  |
+| control_status | [ControlStatus](#ondewo.csi.ControlStatus) |  | Control status |
 
 
 
@@ -807,13 +847,13 @@ Multiple response messages can be returned in order:
 <a name="ondewo.csi.SetControlStatusResponse"></a>
 
 ### SetControlStatusResponse
-
+Response of setting the control status with the old and new status objects
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| old_control_status | [ControlStatus](#ondewo.csi.ControlStatus) |  |  |
-| new_control_status | [ControlStatus](#ondewo.csi.ControlStatus) |  |  |
+| old_control_status | [ControlStatus](#ondewo.csi.ControlStatus) |  | Previous 'old' control status |
+| new_control_status | [ControlStatus](#ondewo.csi.ControlStatus) |  | Current 'new' control status |
 
 
 
@@ -841,71 +881,105 @@ SIP trigger message
 <a name="ondewo.csi.ConditionType"></a>
 
 ### ConditionType
-
+Type of condition that need to be satisfied to execute a control message
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| UNKNOWTYPE | 0 |  |
-| immediate | 1 |  |
-| duration | 2 |  |
-| datetime | 3 |  |
-| interactions | 4 |  |
+| UNKNOWTYPE | 0 | Unknown type |
+| immediate | 1 | Immediate execution of the control message Example value need be given as a string in the format: <pre><code>value="5"</code></pre> |
+| duration | 2 | Duration in number of seconds after a control message should be executed, Example value need be given as a string in the format: <pre><code>value="10"</code></pre> |
+| datetime | 3 | Date and time when a control message should be executed, Example value need be given as a string in the format: <pre><code>value="2021-12-23T13:45:00.000Z"</code></pre> |
+| interactions | 4 | Number of interactions of the user with an ONDEWO AI agent after a control message should be executed Example value need be given as a string in the format: <pre><code>value="4"</code></pre> |
 
 
 
 <a name="ondewo.csi.ControlMessageServiceMethod"></a>
 
 ### ControlMessageServiceMethod
-
+Control message methods to control services during a conversation
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| UNKNOWNMETHOD | 0 |  |
-| update_config | 1 |  |
-| undo_config | 2 |  |
-| reset_config | 3 |  |
-| end_call | 4 |  |
-| transfer_call | 5 |  |
-| play_wav_files | 6 |  |
-| play_text | 7 |  |
-| mute | 8 |  |
-| un_mute | 9 |  |
-| stop_all_control_messages | 10 |  |
-| train_agent | 11 | nlu control messages |
-| cancel_train_agent | 12 |  |
-| delete_session | 13 |  |
-| delete_all_contexts | 14 |  |
-| create_context | 15 |  |
-| update_context | 16 |  |
-| delete_context | 17 |  |
-| detect_intent | 18 |  |
+| UNKNOWNMETHOD | 0 | Unknown method (default) |
+| update_config | 1 | CSI: update configuration
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_s2t", "method": "update_config", "parameters": [ { // Speech2TextConfig object “s2tPipelineId” : “s2t_pipeline_german_1”, “languageModelName” : “language_model_german” }, { // condition_start object => should take effect immediately "type": "immediate", “value”: “0” }, { // condition_end object - s2t config will be changed back to // last valid configuration after 10 interactions of user with // the AI agent "type": "interactions", 	 "value": 10 }, ] } </code></pre> |
+| undo_config | 2 | CSI: undo previous configuration update
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_s2t", "method": "undo_config", "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change 	 // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+| reset_config | 3 | CSI: reset configuration to default
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_s2t", "method": "reset_config", "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+| end_call | 4 | SIP: end conversation / hang up call
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_sip", "method": "end_call", "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+| transfer_call | 5 | SIP: transfer call
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_sip", "method": "transfer_call", "parameters": [ { 	 	 "transfer_id": "+43123456789@127.0.0.10:5060", }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+| play_wav_files | 6 | SIP: play wav files on the call
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_sip", "method": " "play_wav_files", "parameters": [ { 	 	 "wav_files": [ <bytes_of_file_1>, <bytes_of_file_2>, <bytes_of_file_3>, ] }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+| play_text | 7 | SIP: play a certain text on the phone based on Text-2-Speech synthesis
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_sip", "method": "play_text", "parameters": [ { 	 	 "text": "Welcome from ONDEWO AI Agent! How are you today?", }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+| mute | 8 | SIP: mute microphone
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_sip", "method": "mute", "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+| un_mute | 9 | SIP: unmute microphone
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_sip", "method": "un_mute", "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+| stop_all_control_messages | 10 | CSI: stop the execution of all running and scheduled control messages
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "", <= empty string since it is for all services / no specific service "method": "stop_all_control_messages", "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+| train_agent | 11 | NLU: train agent
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "train_agent", "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+| cancel_train_agent | 12 | NLU: cancel the ongoing agent
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "cancel_train_agent", "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+| delete_session | 13 | NLU: delete session all all session-related information
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "delete_session", "parameters": [ { 	 	 "session_id": "97ea1a20-0784-442b-93c0-eb9e2469420e", }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+| delete_all_contexts | 14 | NLU: delete all context information in the current session
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "delete_all_contexts", "parameters": [ { 	 	 "session_id": "97ea1a20-0784-442b-93c0-eb9e2469420e", }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+| create_context | 15 | NLU: create a context based on the provided contextual information in the current session
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "create_context", "parameters": [ { 	 	 "context": { <== <NLU Context Object as JSON object> name": "projects/db46dcf8-2d2c-4115-ac38-eff443ea0e72/agent/sessions/ssea1a20-0784-442b-93c0-eb9e2469420e/contexts/78ea1a20-0784-442b-93c0-eb9e2469420e", ..., } }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+| update_context | 16 | NLU: update an existing context based on the provided contextual information in the current session
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "update_context", "parameters": [ { 	 	 "context": { <== <NLU Context Object as JSON object> name": "projects/db46dcf8-2d2c-4115-ac38-eff443ea0e72/agent/sessions/ssea1a20-0784-442b-93c0-eb9e2469420e/contexts/78ea1a20-0784-442b-93c0-eb9e2469420e", ..., } }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+| delete_context | 17 | NLU: delete an existing context including all contextual information in the current session
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "delete_context", "parameters": [ { 	 	 "session_id": "97ea1a20-0784-442b-93c0-eb9e2469420e", 	 	 "context_name": "78ea1a20-0784-442b-93c0-eb9e2469420e", }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+| detect_intent | 18 | NLU: execute a detect intent request based on the provided information in the current session { "service": "ondewo_nlu", "method": "detect_intent", "parameters": [ { 	 	 "session_id": "97ea1a20-0784-442b-93c0-eb9e2469420e", 	 	 "text": "Are you an artificial intelligence?", }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
 
 
 
 <a name="ondewo.csi.ControlMessageServiceName"></a>
 
 ### ControlMessageServiceName
-
+Control message services
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| UNKNOWNNAME | 0 |  |
-| ondewo_s2t | 1 |  |
-| ondewo_t2s | 2 |  |
-| ondewo_nlu | 3 |  |
-| ondewo_sip | 4 |  |
+| UNKNOWNNAME | 0 | Unknown control message service name |
+| ondewo_s2t | 1 | Speech-2-Text control message service name |
+| ondewo_t2s | 2 | Text-2-Speech control message service name |
+| ondewo_nlu | 3 | NLU control message service name |
+| ondewo_sip | 4 | SIP control message service name |
 
 
 
 <a name="ondewo.csi.ControlStatus"></a>
 
 ### ControlStatus
-
+Control status
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| OK | 0 |  |
-| EMERGENCY_STOP | 1 |  |
+| OK | 0 | Status that control stream is ok |
+| EMERGENCY_STOP | 1 | Status that control stream needs to stop immediately |
 
 
 
@@ -970,8 +1044,8 @@ endpoints of csi service
 All upstreams healthy: <samp>{}</samp>
 
 All upstreams unhealthy: <samp>{ "s2t_status": { "code": 14, "message": "failed to connect to all addresses" }, "nlu_status": { "code": 14, "message": "failed to connect to all addresses" }, "t2s_status": { "code": 14, "message": "failed to connect to all addresses" } }</samp> |
-| GetControlStream | [ControlStreamRequest](#ondewo.csi.ControlStreamRequest) | [ControlStreamResponse](#ondewo.csi.ControlStreamResponse) stream |  |
-| SetControlStatus | [SetControlStatusRequest](#ondewo.csi.SetControlStatusRequest) | [SetControlStatusResponse](#ondewo.csi.SetControlStatusResponse) |  |
+| GetControlStream | [ControlStreamRequest](#ondewo.csi.ControlStreamRequest) | [ControlStreamResponse](#ondewo.csi.ControlStreamResponse) stream | Get the control stream to control sip, t2s, s2t etc. during a conversation |
+| SetControlStatus | [SetControlStatusRequest](#ondewo.csi.SetControlStatusRequest) | [SetControlStatusResponse](#ondewo.csi.SetControlStatusResponse) | Send a message on the control stream to control sip, t2s, s2t etc. during a conversation |
 
  <!-- end services -->
 
