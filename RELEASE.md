@@ -2,13 +2,21 @@
 
 *****************
 
+## Release ONDEWO CSI API 3.2.0
+
+### Bug Fixes
+
+* Fixed spellings
+
+*****************
+
 ## Release ONDEWO CSI API 3.1.0
 
 ### Improvements
 
 * Added documentation for all messages and added RABBIT MQ control message examples
 * Upgraded dependency to NLU 4.6.0
-* Corrected spelling from synthetize_response to synthesize_response
+* Corrected spelling from synthesize_response to synthesize_response
 
 *****************
 
