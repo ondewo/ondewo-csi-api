@@ -3489,7 +3489,7 @@ Valid service names are:'ondewo_nlu', 'ondewo_t2s', 'ondewo_s2t', 'ondewo_sip' a
                   <td>nlu_project_id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Required. NLU project ID, usually a hash, e.g. "ae33586b-afda-494a-aa73-1af0589cfc56". </p></td>
+                  <td><p>Required. NLU project ID, usually a hash, e.g. "ae33586b-x2s2-494a-aa73-1af0589cfc56". </p></td>
                 </tr>
               
                 <tr>
@@ -3593,7 +3593,7 @@ for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. </p></td>
         
       
         <h3 id="ondewo.csi.S2sStreamResponse" class="title-badge message">S2sStreamResponse</h3>
-        <p>The top-level message returned from the</p><p>`S2sStream` method.</p><p>A response message is returned for each utterance of the input stream. It contains the full response from NLU system</p><p>in `detect_intent_response` or the full T2S response in `synthesize_response`.</p><p>Multiple response messages can be returned in order:</p><p>1.  The first response message for an input utterance contains response from NLU system `detect_intent_response`</p><p>with detected intent and N fulfillment messages (N >= 0).</p><p>2.  The next N response messages contain for each fulfillment message one of the following:</p><p>a. T2S response `synthesize_response` with synthetized audio</p><p>b. SIP trigger message `sip_trigger` with SIP trigger extracted from the fulfillment message</p>
+        <p>The top-level message returned from the</p><p>`S2sStream` method.</p><p>A response message is returned for each utterance of the input stream. It contains the full response from NLU system</p><p>in `detect_intent_response` or the full T2S response in `synthesize_response`.</p><p>Multiple response messages can be returned in order:</p><p>1.  The first response message for an input utterance contains response from NLU system `detect_intent_response`</p><p>with detected intent and N fulfillment messages (N >= 0).</p><p>2.  The next N response messages contain for each fulfillment message one of the following:</p><p>a. T2S response `synthesize_response` with synthesized audio</p><p>b. SIP trigger message `sip_trigger` with SIP trigger extracted from the fulfillment message</p>
 
         
           <table class="field-table">
@@ -4157,7 +4157,7 @@ Example value need be given as a string in the format: <pre><code>value="4"</cod
    "parameters": [
        {
 	 	      "context": {           <== <NLU Context Object as JSON object>
-               name": "projects/db46dcf8-2d2c-4115-ac38-eff443ea0e72/agent/sessions/ssea1a20-0784-442b-93c0-eb9e2469420e/contexts/78ea1a20-0784-442b-93c0-eb9e2469420e",
+               name": "projects/db46dcf8-2d2c-4115-ac38-eff443ea0e72/agent/sessions/ss2ea1a20-0784-442b-93c0-eb9e2469420e/contexts/78ea1a20-0784-442b-93c0-eb9e2469420e",
                ...,
            }
        },
@@ -4187,7 +4187,7 @@ Example value need be given as a string in the format: <pre><code>value="4"</cod
    "parameters": [
        {
 	 	      "context": {           <== <NLU Context Object as JSON object>
-               name": "projects/db46dcf8-2d2c-4115-ac38-eff443ea0e72/agent/sessions/ssea1a20-0784-442b-93c0-eb9e2469420e/contexts/78ea1a20-0784-442b-93c0-eb9e2469420e",
+               name": "projects/db46dcf8-2d2c-4115-ac38-eff443ea0e72/agent/sessions/2dea1a20-0784-442b-93c0-eb9e2469420e/contexts/78ea1a20-0784-442b-93c0-eb9e2469420e",
                ...,
            }
        },

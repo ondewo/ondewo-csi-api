@@ -784,7 +784,7 @@ The top-level message sent by client to `CreateS2sPipeline` and `UpdateS2sPipeli
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | Required. CSI pipeline identifier consisting of S2T, NLU and T2S configuration. ID can be any non-empty string. |
 | s2t_pipeline_id | [string](#string) |  | Required. S2T pipeline ID, e.g. "german_general" |
-| nlu_project_id | [string](#string) |  | Required. NLU project ID, usually a hash, e.g. "ae33586b-afda-494a-aa73-1af0589cfc56". |
+| nlu_project_id | [string](#string) |  | Required. NLU project ID, usually a hash, e.g. "ae33586b-x2s2-494a-aa73-1af0589cfc56". |
 | nlu_language_code | [string](#string) |  | Required. Language code present in the corresponding NLU project, e.g. "de". |
 | t2s_pipeline_id | [string](#string) |  | Required. T2S pipeline ID, e.g. "kerstin". |
 
@@ -849,7 +849,7 @@ Multiple response messages can be returned in order:
     with detected intent and N fulfillment messages (N >= 0).
 
 2.  The next N response messages contain for each fulfillment message one of the following:
-     a. T2S response `synthesize_response` with synthetized audio
+     a. T2S response `synthesize_response` with synthesized audio
      b. SIP trigger message `sip_trigger` with SIP trigger extracted from the fulfillment message
 
 
@@ -980,10 +980,10 @@ Control message methods to control services during a conversation
 <p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "delete_all_contexts", "parameters": [ { 	 	 "session_id": "97ea1a20-0784-442b-93c0-eb9e2469420e", }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
 | create_context | 15 | NLU: create a context based on the provided contextual information in the current session
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "create_context", "parameters": [ { 	 	 "context": { <== <NLU Context Object as JSON object> name": "projects/db46dcf8-2d2c-4115-ac38-eff443ea0e72/agent/sessions/ssea1a20-0784-442b-93c0-eb9e2469420e/contexts/78ea1a20-0784-442b-93c0-eb9e2469420e", ..., } }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "create_context", "parameters": [ { 	 	 "context": { <== <NLU Context Object as JSON object> name": "projects/db46dcf8-2d2c-4115-ac38-eff443ea0e72/agent/sessions/ss2ea1a20-0784-442b-93c0-eb9e2469420e/contexts/78ea1a20-0784-442b-93c0-eb9e2469420e", ..., } }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
 | update_context | 16 | NLU: update an existing context based on the provided contextual information in the current session
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "update_context", "parameters": [ { 	 	 "context": { <== <NLU Context Object as JSON object> name": "projects/db46dcf8-2d2c-4115-ac38-eff443ea0e72/agent/sessions/ssea1a20-0784-442b-93c0-eb9e2469420e/contexts/78ea1a20-0784-442b-93c0-eb9e2469420e", ..., } }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "update_context", "parameters": [ { 	 	 "context": { <== <NLU Context Object as JSON object> name": "projects/db46dcf8-2d2c-4115-ac38-eff443ea0e72/agent/sessions/2dea1a20-0784-442b-93c0-eb9e2469420e/contexts/78ea1a20-0784-442b-93c0-eb9e2469420e", ..., } }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
 | delete_context | 17 | NLU: delete an existing context including all contextual information in the current session
 
 <p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "delete_context", "parameters": [ { 	 	 "session_id": "97ea1a20-0784-442b-93c0-eb9e2469420e", 	 	 "context_name": "78ea1a20-0784-442b-93c0-eb9e2469420e", }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
