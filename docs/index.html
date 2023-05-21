@@ -2576,6 +2576,10 @@
                   <ul>
                     
                       <li>
+                        <a href="#ondewo.s2t.AcousticModels" class="title-badge message">AcousticModels</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.s2t.AddDataToUserLanguageModelRequest" class="title-badge message">AddDataToUserLanguageModelRequest</a>
                       </li>
                     
@@ -2585,10 +2589,6 @@
                     
                       <li>
                         <a href="#ondewo.s2t.CreateUserLanguageModelRequest" class="title-badge message">CreateUserLanguageModelRequest</a>
-                      </li>
-                    
-                      <li>
-                        <a href="#ondewo.s2t.CtcAcousticModels" class="title-badge message">CtcAcousticModels</a>
                       </li>
                     
                       <li>
@@ -2736,6 +2736,10 @@
                       </li>
                     
                       <li>
+                        <a href="#ondewo.s2t.TranscriptionAlternative" class="title-badge message">TranscriptionAlternative</a>
+                      </li>
+                    
+                      <li>
                         <a href="#ondewo.s2t.TranscriptionReturnOptions" class="title-badge message">TranscriptionReturnOptions</a>
                       </li>
                     
@@ -2756,7 +2760,19 @@
                       </li>
                     
                       <li>
-                        <a href="#ondewo.s2t.WordTiming" class="title-badge message">WordTiming</a>
+                        <a href="#ondewo.s2t.Whisper" class="title-badge message">Whisper</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.WhisperTriton" class="title-badge message">WhisperTriton</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.WordAlternative" class="title-badge message">WordAlternative</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.WordDetail" class="title-badge message">WordDetail</a>
                       </li>
                     
                   </ul>
@@ -2766,7 +2782,11 @@
                   <ul>
                     
                       <li>
-                        <a href="#ondewo.s2t.CTCDecoding" class="title-badge enum">CTCDecoding</a>
+                        <a href="#ondewo.s2t.Decoding" class="title-badge enum">Decoding</a>
+                      </li>
+                    
+                      <li>
+                        <a href="#ondewo.s2t.InferenceBackend" class="title-badge enum">InferenceBackend</a>
                       </li>
                     
                   </ul>
@@ -20250,7 +20270,7 @@ Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid
                   <td>session_info</td>
                   <td><a href="#ondewo.nlu.SessionInfo">SessionInfo</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>session information </p></td>
                 </tr>
               
             </tbody>
@@ -21024,6 +21044,13 @@ This string represents what has been passed to the entity recognition and intent
                   <td><p>Messages for each of the Intent.Message.Platform were sent to the user </p></td>
                 </tr>
               
+                <tr>
+                  <td>timestamp</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>Timestamp of session review step </p></td>
+                </tr>
+              
             </tbody>
           </table>
 
@@ -21068,6 +21095,13 @@ Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid
                   <td><a href="#ondewo.nlu.Context">Context</a></td>
                   <td>repeated</td>
                   <td><p>The contexts which were active at the beginning of this step </p></td>
+                </tr>
+              
+                <tr>
+                  <td>timestamp</td>
+                  <td><a href="#google.protobuf.Timestamp">google.protobuf.Timestamp</a></td>
+                  <td></td>
+                  <td><p>Timestamp of session step </p></td>
                 </tr>
               
             </tbody>
@@ -23972,7 +24006,7 @@ internally with the specified event as input. </p></td>
       
         
         <h3 id="ondewo.s2t.Speech2Text" class="title-badge service">Speech2Text</h3>
-        <p>endpoints of speech-to-text service</p>
+        <p>Speech-to-text service</p>
 
         
         <div id="ondewo.s2t.Speech2Text-methods" class="service-methods">Service Methods</div>
@@ -23981,7 +24015,7 @@ internally with the specified event as input. </p></td>
 
           <pre>rpc TranscribeFile (<a href="#ondewo.s2t.TranscribeFileRequest">TranscribeFileRequest</a>) returns (<a href="#ondewo.s2t.TranscribeFileResponse">TranscribeFileResponse)</a></pre>
 
-          
+          Transcribes an audio file
         
           <h4 id="ondewo.s2t.Speech2Text.TranscribeStream" class="title-badge method">TranscribeStream</h4>
 
@@ -24080,87 +24114,8 @@ id and a list of the language models loaded in the pipeline.
       
       <div id="ondewo/s2t/speech-to-text.proto-messages" class="object-category">Messages</div>
       
-        <h3 id="ondewo.s2t.AddDataToUserLanguageModelRequest" class="title-badge message">AddDataToUserLanguageModelRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>language_model_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Name of the language model to which to add data </p></td>
-                </tr>
-              
-                <tr>
-                  <td>zipped_data</td>
-                  <td><a href="#bytes">bytes</a></td>
-                  <td></td>
-                  <td><p>Zip file containing data in the form of text files </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.CkptFile" class="title-badge message">CkptFile</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>path</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p> </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.CreateUserLanguageModelRequest" class="title-badge message">CreateUserLanguageModelRequest</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
-                <tr>
-                  <td>language_model_name</td>
-                  <td><a href="#string">string</a></td>
-                  <td></td>
-                  <td><p>Name of the language model to create </p></td>
-                </tr>
-              
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.CtcAcousticModels" class="title-badge message">CtcAcousticModels</h3>
-        <p></p>
+        <h3 id="ondewo.s2t.AcousticModels" class="title-badge message">AcousticModels</h3>
+        <p>AcousticModels contains information about different types of acoustic models.</p>
 
         
           <table class="field-table">
@@ -24173,35 +24128,49 @@ id and a list of the language models loaded in the pipeline.
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Type of the acoustic model. </p></td>
                 </tr>
               
                 <tr>
                   <td>quartznet</td>
                   <td><a href="#ondewo.s2t.Quartznet">Quartznet</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration for the Quartznet model. </p></td>
                 </tr>
               
                 <tr>
                   <td>quartznet_triton</td>
                   <td><a href="#ondewo.s2t.QuartznetTriton">QuartznetTriton</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration for the Quartznet model using Triton. </p></td>
                 </tr>
               
                 <tr>
                   <td>wav2vec</td>
                   <td><a href="#ondewo.s2t.Wav2Vec">Wav2Vec</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration for the Wav2Vec model. </p></td>
                 </tr>
               
                 <tr>
                   <td>wav2vec_triton</td>
                   <td><a href="#ondewo.s2t.Wav2VecTriton">Wav2VecTriton</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration for the Wav2Vec model using Triton. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>whisper</td>
+                  <td><a href="#ondewo.s2t.Whisper">Whisper</a></td>
+                  <td></td>
+                  <td><p>Configuration for the Whisper model. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>whisper_triton</td>
+                  <td><a href="#ondewo.s2t.WhisperTriton">WhisperTriton</a></td>
+                  <td></td>
+                  <td><p>Configuration for the Whisper model using Triton. </p></td>
                 </tr>
               
             </tbody>
@@ -24211,8 +24180,8 @@ id and a list of the language models loaded in the pipeline.
 
         
       
-        <h3 id="ondewo.s2t.DeleteUserLanguageModelRequest" class="title-badge message">DeleteUserLanguageModelRequest</h3>
-        <p></p>
+        <h3 id="ondewo.s2t.AddDataToUserLanguageModelRequest" class="title-badge message">AddDataToUserLanguageModelRequest</h3>
+        <p>AddDataToUserLanguageModelRequest is used to request the addition of data to a user-specific language model.</p>
 
         
           <table class="field-table">
@@ -24225,38 +24194,15 @@ id and a list of the language models loaded in the pipeline.
                   <td>language_model_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Name of the language model to delete </p></td>
+                  <td><p>Name of the language model to which to add data. Example: "user_lm_1" </p></td>
                 </tr>
               
-            </tbody>
-          </table>
-
-          
-
-        
-      
-        <h3 id="ondewo.s2t.LanguageModelPipelineId" class="title-badge message">LanguageModelPipelineId</h3>
-        <p></p>
-
-        
-          <table class="field-table">
-            <thead>
-              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
-            </thead>
-            <tbody>
-              
                 <tr>
-                  <td>pipeline_id</td>
-                  <td><a href="#string">string</a></td>
+                  <td>zipped_data</td>
+                  <td><a href="#bytes">bytes</a></td>
                   <td></td>
-                  <td><p>One pipeline id </p></td>
-                </tr>
-              
-                <tr>
-                  <td>model_names</td>
-                  <td><a href="#string">string</a></td>
-                  <td>repeated</td>
-                  <td><p>A list of all available language models for above pipeline id </p></td>
+                  <td><p>Zip file containing data in the form of text files.
+Example: A zip file with text files containing sentences or phrases in the target language. </p></td>
                 </tr>
               
             </tbody>
@@ -24266,8 +24212,8 @@ id and a list of the language models loaded in the pipeline.
 
         
       
-        <h3 id="ondewo.s2t.LanguageModels" class="title-badge message">LanguageModels</h3>
-        <p></p>
+        <h3 id="ondewo.s2t.CkptFile" class="title-badge message">CkptFile</h3>
+        <p>CkptFile contains information about checkpoint files.</p>
 
         
           <table class="field-table">
@@ -24280,35 +24226,138 @@ id and a list of the language models loaded in the pipeline.
                   <td>path</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Path to the directory of language models </p></td>
+                  <td><p>Path to the checkpoint file. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.CreateUserLanguageModelRequest" class="title-badge message">CreateUserLanguageModelRequest</h3>
+        <p>CreateUserLanguageModelRequest is used to request the creation of a new user-specific language model.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>language_model_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of the language model to create. Example: "user_lm_1" </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.DeleteUserLanguageModelRequest" class="title-badge message">DeleteUserLanguageModelRequest</h3>
+        <p>DeleteUserLanguageModelRequest is used to request the deletion of a user-specific language model.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>language_model_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of the language model to delete. Example: "user_lm_1" </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.LanguageModelPipelineId" class="title-badge message">LanguageModelPipelineId</h3>
+        <p>LanguageModelPipelineId contains information about a pipeline and its available language models.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>pipeline_id</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>A pipeline ID. Example: "pipeline_1" </p></td>
+                </tr>
+              
+                <tr>
+                  <td>model_names</td>
+                  <td><a href="#string">string</a></td>
+                  <td>repeated</td>
+                  <td><p>A list of all available language models for the corresponding pipeline ID. Example: ["model_1", "model_2"] </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.LanguageModels" class="title-badge message">LanguageModels</h3>
+        <p>LanguageModels contains information about language models.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Path to the directory of language models. </p></td>
                 </tr>
               
                 <tr>
                   <td>beam_size</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Beam size for the search algorithm. </p></td>
                 </tr>
               
                 <tr>
                   <td>default_lm</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>this language model will be selected if none is given </p></td>
+                  <td><p>Default language model to be selected if none is given. </p></td>
                 </tr>
               
                 <tr>
                   <td>beam_search_scorer_alpha</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Weight for the language model scorer (alpha). </p></td>
                 </tr>
               
                 <tr>
                   <td>beam_search_scorer_beta</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Weight for the word insertion penalty (beta). </p></td>
                 </tr>
               
             </tbody>
@@ -24319,7 +24368,7 @@ id and a list of the language models loaded in the pipeline.
         
       
         <h3 id="ondewo.s2t.ListS2tDomainsRequest" class="title-badge message">ListS2tDomainsRequest</h3>
-        <p></p>
+        <p>Request message to list available domains. Optionally also filters can be set.</p>
 
         
           <table class="field-table">
@@ -24332,14 +24381,14 @@ id and a list of the language models loaded in the pipeline.
                   <td>languages</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>Filter for languages </p></td>
                 </tr>
               
                 <tr>
                   <td>pipeline_owners</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>Filter for pipeline owner </p></td>
                 </tr>
               
             </tbody>
@@ -24350,7 +24399,7 @@ id and a list of the language models loaded in the pipeline.
         
       
         <h3 id="ondewo.s2t.ListS2tDomainsResponse" class="title-badge message">ListS2tDomainsResponse</h3>
-        <p></p>
+        <p>Response message to list available domains</p>
 
         
           <table class="field-table">
@@ -24363,7 +24412,7 @@ id and a list of the language models loaded in the pipeline.
                   <td>domains</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>domains available. Example: ["medical", "finance"] </p></td>
                 </tr>
               
             </tbody>
@@ -24374,7 +24423,7 @@ id and a list of the language models loaded in the pipeline.
         
       
         <h3 id="ondewo.s2t.ListS2tLanguageModelsRequest" class="title-badge message">ListS2tLanguageModelsRequest</h3>
-        <p></p>
+        <p>ListS2tLanguageModelsRequest is used to request a list of available language models for specified pipelines.</p>
 
         
           <table class="field-table">
@@ -24387,7 +24436,8 @@ id and a list of the language models loaded in the pipeline.
                   <td>ids</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>List of pipeline id(s) to see their available language models </p></td>
+                  <td><p>List of pipeline IDs to retrieve their available language models.
+Example: ["pipeline_1", "pipeline_2"] </p></td>
                 </tr>
               
             </tbody>
@@ -24398,7 +24448,7 @@ id and a list of the language models loaded in the pipeline.
         
       
         <h3 id="ondewo.s2t.ListS2tLanguageModelsResponse" class="title-badge message">ListS2tLanguageModelsResponse</h3>
-        <p></p>
+        <p>ListS2tLanguageModelsResponse is used to return the available language models for specified pipelines.</p>
 
         
           <table class="field-table">
@@ -24411,7 +24461,10 @@ id and a list of the language models loaded in the pipeline.
                   <td>lm_pipeline_ids</td>
                   <td><a href="#ondewo.s2t.LanguageModelPipelineId">LanguageModelPipelineId</a></td>
                   <td>repeated</td>
-                  <td><p>Response is a dictionary of type Dict[pipeline id, List of available language models] </p></td>
+                  <td><p>Response is a list of LanguageModelPipelineId, where each element contains a pipeline ID and its associated
+language models.
+Example: [{pipeline_id: "pipeline_1", model_names: ["model_1", "model_2"]}, {pipeline_id: "pipeline_2",
+model_names: ["model_3"]}] </p></td>
                 </tr>
               
             </tbody>
@@ -24422,7 +24475,7 @@ id and a list of the language models loaded in the pipeline.
         
       
         <h3 id="ondewo.s2t.ListS2tLanguagesRequest" class="title-badge message">ListS2tLanguagesRequest</h3>
-        <p></p>
+        <p>ListS2tLanguagesRequest is used to request a list of available languages. Optionally, filters can be set.</p>
 
         
           <table class="field-table">
@@ -24435,14 +24488,15 @@ id and a list of the language models loaded in the pipeline.
                   <td>domains</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>Filter for domains.  Example: ["medical", "finance"] </p></td>
                 </tr>
               
                 <tr>
                   <td>pipeline_owners</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>Filter for pipeline owners.
+Example: ["ondewo", "partner_company"] </p></td>
                 </tr>
               
             </tbody>
@@ -24453,7 +24507,7 @@ id and a list of the language models loaded in the pipeline.
         
       
         <h3 id="ondewo.s2t.ListS2tLanguagesResponse" class="title-badge message">ListS2tLanguagesResponse</h3>
-        <p></p>
+        <p>Response message to list available languages</p>
 
         
           <table class="field-table">
@@ -24466,7 +24520,7 @@ id and a list of the language models loaded in the pipeline.
                   <td>languages</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>available languages </p></td>
                 </tr>
               
             </tbody>
@@ -24477,7 +24531,7 @@ id and a list of the language models loaded in the pipeline.
         
       
         <h3 id="ondewo.s2t.ListS2tPipelinesRequest" class="title-badge message">ListS2tPipelinesRequest</h3>
-        <p></p>
+        <p>Request to list all speech-to-text pipelines. Optionally also filter criteria can be set</p>
 
         
           <table class="field-table">
@@ -24490,21 +24544,21 @@ id and a list of the language models loaded in the pipeline.
                   <td>languages</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>Filter for languages </p></td>
                 </tr>
               
                 <tr>
                   <td>pipeline_owners</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>Filter for pipeline owners </p></td>
                 </tr>
               
                 <tr>
                   <td>domains</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>Filter for domains </p></td>
                 </tr>
               
                 <tr>
@@ -24523,7 +24577,7 @@ Default false: return registered and persisted (from config files) configs. </p>
         
       
         <h3 id="ondewo.s2t.ListS2tPipelinesResponse" class="title-badge message">ListS2tPipelinesResponse</h3>
-        <p></p>
+        <p>ListS2tPipelinesResponse is used to return a list of all speech-to-text pipelines.</p>
 
         
           <table class="field-table">
@@ -24536,7 +24590,9 @@ Default false: return registered and persisted (from config files) configs. </p>
                   <td>pipeline_configs</td>
                   <td><a href="#ondewo.s2t.Speech2TextConfig">Speech2TextConfig</a></td>
                   <td>repeated</td>
-                  <td><p> </p></td>
+                  <td><p>A list of Speech2TextConfig message instances containing the configuration of each pipeline.
+Example: [{id: "pipeline_1", description: {language: "en"}, active: true, ...}, {id: "pipeline_2",
+description: {language: "fr"}, active: true, ...}] </p></td>
                 </tr>
               
             </tbody>
@@ -24547,7 +24603,7 @@ Default false: return registered and persisted (from config files) configs. </p>
         
       
         <h3 id="ondewo.s2t.Logging" class="title-badge message">Logging</h3>
-        <p></p>
+        <p>Logging contains configuration for logging.</p>
 
         
           <table class="field-table">
@@ -24560,14 +24616,14 @@ Default false: return registered and persisted (from config files) configs. </p>
                   <td>type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Type of logging. </p></td>
                 </tr>
               
                 <tr>
                   <td>path</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Path for logging. </p></td>
                 </tr>
               
             </tbody>
@@ -24578,7 +24634,7 @@ Default false: return registered and persisted (from config files) configs. </p>
         
       
         <h3 id="ondewo.s2t.Matchbox" class="title-badge message">Matchbox</h3>
-        <p></p>
+        <p>Matchbox contains configuration for the Matchbox voice activity detection model.</p>
 
         
           <table class="field-table">
@@ -24591,21 +24647,21 @@ Default false: return registered and persisted (from config files) configs. </p>
                   <td>model_config</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Path to the Matchbox model configuration. </p></td>
                 </tr>
               
                 <tr>
                   <td>encoder_path</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Path to the Matchbox encoder. </p></td>
                 </tr>
               
                 <tr>
                   <td>decoder_path</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Path to the Matchbox decoder. </p></td>
                 </tr>
               
             </tbody>
@@ -24616,7 +24672,7 @@ Default false: return registered and persisted (from config files) configs. </p>
         
       
         <h3 id="ondewo.s2t.PostProcessing" class="title-badge message">PostProcessing</h3>
-        <p></p>
+        <p>PostProcessing contains the configuration for post-processing.</p>
 
         
           <table class="field-table">
@@ -24629,7 +24685,7 @@ Default false: return registered and persisted (from config files) configs. </p>
                   <td>pipeline</td>
                   <td><a href="#string">string</a></td>
                   <td>repeated</td>
-                  <td><p>List of names of active post-processors </p></td>
+                  <td><p>List of names of active post-processors. </p></td>
                 </tr>
               
                 <tr>
@@ -24647,7 +24703,7 @@ Default false: return registered and persisted (from config files) configs. </p>
         
       
         <h3 id="ondewo.s2t.PostProcessingOptions" class="title-badge message">PostProcessingOptions</h3>
-        <p></p>
+        <p>Configuration of the post-processing options</p>
 
         
           <table class="field-table">
@@ -24660,14 +24716,14 @@ Default false: return registered and persisted (from config files) configs. </p>
                   <td>spelling_correction</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Whether or not to use spelling correction </p></td>
+                  <td><p>Whether to use spelling correction </p></td>
                 </tr>
               
                 <tr>
                   <td>normalize</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Whether or not to disable normalization </p></td>
+                  <td><p>Whether to disable normalization </p></td>
                 </tr>
               
                 <tr>
@@ -24686,7 +24742,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.PostProcessors" class="title-badge message">PostProcessors</h3>
-        <p></p>
+        <p>PostProcessors contains configurations for post-processors.</p>
 
         
           <table class="field-table">
@@ -24699,14 +24755,14 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td>sym_spell</td>
                   <td><a href="#ondewo.s2t.SymSpell">SymSpell</a></td>
                   <td></td>
-                  <td><p>Configuration of the sym-spell spelling correction </p></td>
+                  <td><p>Configuration of the SymSpell spelling correction. </p></td>
                 </tr>
               
                 <tr>
                   <td>normalization</td>
                   <td><a href="#ondewo.s2t.S2TNormalization">S2TNormalization</a></td>
                   <td></td>
-                  <td><p>Configuration of the normalization object </p></td>
+                  <td><p>Configuration of the normalization object. </p></td>
                 </tr>
               
             </tbody>
@@ -24717,7 +24773,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.PtFiles" class="title-badge message">PtFiles</h3>
-        <p></p>
+        <p>PtFiles contains information about PT files.</p>
 
         
           <table class="field-table">
@@ -24730,14 +24786,14 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td>path</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Path to the PT files. </p></td>
                 </tr>
               
                 <tr>
                   <td>step</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Step for the PT files. </p></td>
                 </tr>
               
             </tbody>
@@ -24748,7 +24804,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.Pyannote" class="title-badge message">Pyannote</h3>
-        <p></p>
+        <p>Pyannote contains configuration for the Pyannote voice activity detection model.</p>
 
         
           <table class="field-table">
@@ -24761,49 +24817,49 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td>model_path</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Path to the Pyannote model. </p></td>
                 </tr>
               
                 <tr>
                   <td>min_audio_size</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Minimum audio size for processing. </p></td>
                 </tr>
               
                 <tr>
                   <td>offset</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Offset for voice activity detection. </p></td>
                 </tr>
               
                 <tr>
                   <td>onset</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Onset for voice activity detection. </p></td>
                 </tr>
               
                 <tr>
                   <td>log_scale</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>whether to use log scale </p></td>
                 </tr>
               
                 <tr>
                   <td>min_duration_off</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Minimum duration for an off segment. </p></td>
                 </tr>
               
                 <tr>
                   <td>min_duration_on</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Minimum duration for an on segment. </p></td>
                 </tr>
               
             </tbody>
@@ -24814,7 +24870,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.Quartznet" class="title-badge message">Quartznet</h3>
-        <p></p>
+        <p>Quartznet contains information about the Quartznet model.</p>
 
         
           <table class="field-table">
@@ -24827,35 +24883,35 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td>config_path</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Path to the configuration file. </p></td>
                 </tr>
               
                 <tr>
                   <td>load_type</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Type of loading for the model. </p></td>
                 </tr>
               
                 <tr>
                   <td>pt_files</td>
                   <td><a href="#ondewo.s2t.PtFiles">PtFiles</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration for PT files. </p></td>
                 </tr>
               
                 <tr>
                   <td>ckpt_file</td>
                   <td><a href="#ondewo.s2t.CkptFile">CkptFile</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration for checkpoint files. </p></td>
                 </tr>
               
                 <tr>
                   <td>use_gpu</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Indicates if GPU is used. </p></td>
                 </tr>
               
             </tbody>
@@ -24866,7 +24922,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.QuartznetTriton" class="title-badge message">QuartznetTriton</h3>
-        <p></p>
+        <p>QuartznetTriton contains information about the Quartznet model using Triton.</p>
 
         
           <table class="field-table">
@@ -24879,21 +24935,21 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td>config_path</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Path to the configuration file. </p></td>
                 </tr>
               
                 <tr>
                   <td>triton_url</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>URL for the Triton server. </p></td>
                 </tr>
               
                 <tr>
                   <td>triton_model</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Triton model name. </p></td>
                 </tr>
               
             </tbody>
@@ -24904,7 +24960,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.S2TDescription" class="title-badge message">S2TDescription</h3>
-        <p></p>
+        <p>S2TDescription contains descriptive information about the speech-to-text pipeline.</p>
 
         
           <table class="field-table">
@@ -24917,28 +24973,28 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td>language</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Language of the speech-to-text system. </p></td>
                 </tr>
               
                 <tr>
                   <td>pipeline_owner</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Owner of the pipeline. </p></td>
                 </tr>
               
                 <tr>
                   <td>domain</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Domain of the speech-to-text system. </p></td>
                 </tr>
               
                 <tr>
                   <td>comments</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Comments about the system. </p></td>
                 </tr>
               
             </tbody>
@@ -24949,7 +25005,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.S2TGetServiceInfoResponse" class="title-badge message">S2TGetServiceInfoResponse</h3>
-        <p></p>
+        <p>S2TGetServiceInfoResponse is used to return version information about the speech-to-text service.</p>
 
         
           <table class="field-table">
@@ -24962,7 +25018,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td>version</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Version number based on semantic versioning, e.g. "4.2.0". </p></td>
                 </tr>
               
             </tbody>
@@ -24973,7 +25029,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.S2TInference" class="title-badge message">S2TInference</h3>
-        <p></p>
+        <p>S2TInference contains information about inference models used in the speech-to-text pipeline.</p>
 
         
           <table class="field-table">
@@ -24983,17 +25039,24 @@ configuration. If not set, all values are replaced by the ones in current pipeli
             <tbody>
               
                 <tr>
-                  <td>ctc_acoustic_models</td>
-                  <td><a href="#ondewo.s2t.CtcAcousticModels">CtcAcousticModels</a></td>
+                  <td>acoustic_models</td>
+                  <td><a href="#ondewo.s2t.AcousticModels">AcousticModels</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration for the acoustic models. </p></td>
                 </tr>
               
                 <tr>
                   <td>language_models</td>
                   <td><a href="#ondewo.s2t.LanguageModels">LanguageModels</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration for the language models. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>inference_backend</td>
+                  <td><a href="#ondewo.s2t.InferenceBackend">InferenceBackend</a></td>
+                  <td></td>
+                  <td><p>Configuration for the inference backend. </p></td>
                 </tr>
               
             </tbody>
@@ -25004,7 +25067,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.S2TNormalization" class="title-badge message">S2TNormalization</h3>
-        <p></p>
+        <p>S2TNormalization contains configuration for the speech-to-text normalization.</p>
 
         
           <table class="field-table">
@@ -25017,7 +25080,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td>language</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>In which language to normalization transcription. </p></td>
+                  <td><p>Language for normalization of transcriptions. </p></td>
                 </tr>
               
             </tbody>
@@ -25028,7 +25091,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.S2tPipelineId" class="title-badge message">S2tPipelineId</h3>
-        <p></p>
+        <p>The pipeline id for a specific pipeline configuration</p>
 
         
           <table class="field-table">
@@ -25052,7 +25115,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.Speech2TextConfig" class="title-badge message">Speech2TextConfig</h3>
-        <p></p>
+        <p>Speech2TextConfig is a configuration message for the speech-to-text pipeline</p>
 
         
           <table class="field-table">
@@ -25065,56 +25128,56 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td>id</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Unique identifier for the configuration. </p></td>
                 </tr>
               
                 <tr>
                   <td>description</td>
                   <td><a href="#ondewo.s2t.S2TDescription">S2TDescription</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Description of the speech-to-text system. </p></td>
                 </tr>
               
                 <tr>
                   <td>active</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Indicates if the configuration is active. </p></td>
                 </tr>
               
                 <tr>
                   <td>inference</td>
                   <td><a href="#ondewo.s2t.S2TInference">S2TInference</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration for inference models. </p></td>
                 </tr>
               
                 <tr>
                   <td>streaming_server</td>
                   <td><a href="#ondewo.s2t.StreamingServer">StreamingServer</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration for the streaming server. </p></td>
                 </tr>
               
                 <tr>
                   <td>voice_activity_detection</td>
                   <td><a href="#ondewo.s2t.VoiceActivityDetection">VoiceActivityDetection</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration for voice activity detection. </p></td>
                 </tr>
               
                 <tr>
                   <td>post_processing</td>
                   <td><a href="#ondewo.s2t.PostProcessing">PostProcessing</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration for post-processing. </p></td>
                 </tr>
               
                 <tr>
                   <td>logging</td>
                   <td><a href="#ondewo.s2t.Logging">Logging</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration for logging. </p></td>
                 </tr>
               
             </tbody>
@@ -25125,7 +25188,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.StreamingServer" class="title-badge message">StreamingServer</h3>
-        <p></p>
+        <p>StreamingServer contains information about the streaming server.</p>
 
         
           <table class="field-table">
@@ -25138,28 +25201,28 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td>host</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Hostname of the streaming server. </p></td>
                 </tr>
               
                 <tr>
                   <td>port</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Port number of the streaming server. </p></td>
                 </tr>
               
                 <tr>
                   <td>output_style</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Output style for the streaming server. </p></td>
                 </tr>
               
                 <tr>
                   <td>streaming_speech_recognition</td>
                   <td><a href="#ondewo.s2t.StreamingSpeechRecognition">StreamingSpeechRecognition</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration for streaming speech recognition. </p></td>
                 </tr>
               
             </tbody>
@@ -25170,7 +25233,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.StreamingSpeechRecognition" class="title-badge message">StreamingSpeechRecognition</h3>
-        <p></p>
+        <p>StreamingSpeechRecognition contains information about streaming speech recognition settings.</p>
 
         
           <table class="field-table">
@@ -25183,49 +25246,49 @@ configuration. If not set, all values are replaced by the ones in current pipeli
                   <td>transcribe_not_final</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Indicates whether to transcribe non-final results. </p></td>
                 </tr>
               
                 <tr>
-                  <td>ctc_decoding_method</td>
+                  <td>decoding_method</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Decoding method for speech recognition. </p></td>
                 </tr>
               
                 <tr>
                   <td>sampling_rate</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Sampling rate for audio input. </p></td>
                 </tr>
               
                 <tr>
                   <td>min_audio_chunk_size</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Minimum audio chunk size for processing. </p></td>
                 </tr>
               
                 <tr>
                   <td>start_of_utterance_threshold</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Threshold for detecting the start of an utterance. </p></td>
                 </tr>
               
                 <tr>
                   <td>end_of_utterance_threshold</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Threshold for detecting the end of an utterance. </p></td>
                 </tr>
               
                 <tr>
                   <td>next_chunk_timeout</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p>if time between audio chunks exceeds next_chunk_timeout, stream will be stopped </p></td>
+                  <td><p>Timeout between audio chunks; if exceeded, the stream will be stopped. </p></td>
                 </tr>
               
             </tbody>
@@ -25236,7 +25299,7 @@ configuration. If not set, all values are replaced by the ones in current pipeli
         
       
         <h3 id="ondewo.s2t.SymSpell" class="title-badge message">SymSpell</h3>
-        <p></p>
+        <p>SymSpell contains configuration for the SymSpell spelling correction.</p>
 
         
           <table class="field-table">
@@ -25275,7 +25338,7 @@ takes longer to process!) </p></td>
         
       
         <h3 id="ondewo.s2t.TrainUserLanguageModelRequest" class="title-badge message">TrainUserLanguageModelRequest</h3>
-        <p></p>
+        <p>TrainUserLanguageModelRequest is used to request the training of a user-specific language model.</p>
 
         
           <table class="field-table">
@@ -25288,14 +25351,14 @@ takes longer to process!) </p></td>
                   <td>language_model_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Name of the language model to train </p></td>
+                  <td><p>Name of the language model to train. Example: "user_lm_1" </p></td>
                 </tr>
               
                 <tr>
                   <td>order</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p>Order n of the ngram </p></td>
+                  <td><p>Order n of the ngram. Example: 3 (for trigram model) </p></td>
                 </tr>
               
             </tbody>
@@ -25306,7 +25369,7 @@ takes longer to process!) </p></td>
         
       
         <h3 id="ondewo.s2t.TranscribeFileRequest" class="title-badge message">TranscribeFileRequest</h3>
-        <p></p>
+        <p>A request to transcribe an audio file</p>
 
         
           <table class="field-table">
@@ -25337,7 +25400,7 @@ takes longer to process!) </p></td>
         
       
         <h3 id="ondewo.s2t.TranscribeFileResponse" class="title-badge message">TranscribeFileResponse</h3>
-        <p></p>
+        <p>The response message for a transcribe file request</p>
 
         
           <table class="field-table">
@@ -25361,13 +25424,6 @@ takes longer to process!) </p></td>
                 </tr>
               
                 <tr>
-                  <td>word_timing</td>
-                  <td><a href="#ondewo.s2t.WordTiming">WordTiming</a></td>
-                  <td>repeated</td>
-                  <td><p>List of words with timestamps for their start and end </p></td>
-                </tr>
-              
-                <tr>
                   <td>audio_uuid</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
@@ -25382,7 +25438,7 @@ takes longer to process!) </p></td>
         
       
         <h3 id="ondewo.s2t.TranscribeRequestConfig" class="title-badge message">TranscribeRequestConfig</h3>
-        <p></p>
+        <p>Configuration for a request to transcribe audio</p>
 
         
           <table class="field-table">
@@ -25399,10 +25455,10 @@ takes longer to process!) </p></td>
                 </tr>
               
                 <tr>
-                  <td>ctc_decoding</td>
-                  <td><a href="#ondewo.s2t.CTCDecoding">CTCDecoding</a></td>
+                  <td>decoding</td>
+                  <td><a href="#ondewo.s2t.Decoding">Decoding</a></td>
                   <td></td>
-                  <td><p>Optional. CTC decoding type </p></td>
+                  <td><p>Optional. decoding type </p></td>
                 </tr>
               
                 <tr>
@@ -25455,7 +25511,7 @@ takes longer to process!) </p></td>
         
       
         <h3 id="ondewo.s2t.TranscribeStreamRequest" class="title-badge message">TranscribeStreamRequest</h3>
-        <p></p>
+        <p>Request to transcribe an audio stream</p>
 
         
           <table class="field-table">
@@ -25500,7 +25556,7 @@ takes longer to process!) </p></td>
         
       
         <h3 id="ondewo.s2t.TranscribeStreamResponse" class="title-badge message">TranscribeStreamResponse</h3>
-        <p></p>
+        <p>The response message of a stream transcription</p>
 
         
           <table class="field-table">
@@ -25574,7 +25630,7 @@ started before the end of an utterance). </p></td>
         
       
         <h3 id="ondewo.s2t.Transcription" class="title-badge message">Transcription</h3>
-        <p></p>
+        <p>The transcription message</p>
 
         
           <table class="field-table">
@@ -25594,7 +25650,61 @@ started before the end of an utterance). </p></td>
                   <td>confidence_score</td>
                   <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p>The corresponding confidence score </p></td>
+                  <td><p>The corresponding confidence score. The confidence estimate between 0.0 and 1.0. A higher number
+indicates an estimated greater likelihood that the recognized words are correct. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>words</td>
+                  <td><a href="#ondewo.s2t.WordDetail">WordDetail</a></td>
+                  <td>repeated</td>
+                  <td><p>List of the words of transcription with their confidence scores and probable alternatives </p></td>
+                </tr>
+              
+                <tr>
+                  <td>alternatives</td>
+                  <td><a href="#ondewo.s2t.TranscriptionAlternative">TranscriptionAlternative</a></td>
+                  <td>repeated</td>
+                  <td><p>List of alternative transcriptions, confidence scores, words timings and alternative words </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.TranscriptionAlternative" class="title-badge message">TranscriptionAlternative</h3>
+        <p></p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>transcript</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The alternative transcribed text </p></td>
+                </tr>
+              
+                <tr>
+                  <td>confidence</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p>The corresponding confidence score to the alternative transcript. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>words</td>
+                  <td><a href="#ondewo.s2t.WordDetail">WordDetail</a></td>
+                  <td>repeated</td>
+                  <td><p>A list of word-specific information for each recognized word, including word timings, confidence score of
+the word and alternative words. </p></td>
                 </tr>
               
             </tbody>
@@ -25605,7 +25715,7 @@ started before the end of an utterance). </p></td>
         
       
         <h3 id="ondewo.s2t.TranscriptionReturnOptions" class="title-badge message">TranscriptionReturnOptions</h3>
-        <p></p>
+        <p>Configuration of the return values of a transcribe request</p>
 
         
           <table class="field-table">
@@ -25629,6 +25739,13 @@ started before the end of an utterance). </p></td>
                 </tr>
               
                 <tr>
+                  <td>return_confidence_score</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Whether or not to return confidence scores </p></td>
+                </tr>
+              
+                <tr>
                   <td>return_alternative_transcriptions</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
@@ -25636,10 +25753,24 @@ started before the end of an utterance). </p></td>
                 </tr>
               
                 <tr>
-                  <td>return_confidence_score</td>
+                  <td>return_alternative_transcriptions_nr</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Optional. Number of alternative transcriptions results from beam-search or greedy-search </p></td>
+                </tr>
+              
+                <tr>
+                  <td>return_alternative_words</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p>Whether or not to return confidence scores </p></td>
+                  <td><p>Whether or not to return alternative results from beam-search </p></td>
+                </tr>
+              
+                <tr>
+                  <td>return_alternative_words_nr</td>
+                  <td><a href="#int32">int32</a></td>
+                  <td></td>
+                  <td><p>Optional. Number of alternative words to results </p></td>
                 </tr>
               
                 <tr>
@@ -25657,7 +25788,7 @@ started before the end of an utterance). </p></td>
         
       
         <h3 id="ondewo.s2t.UtteranceDetectionOptions" class="title-badge message">UtteranceDetectionOptions</h3>
-        <p></p>
+        <p>Configuration of the options to detect utterances</p>
 
         
           <table class="field-table">
@@ -25702,7 +25833,7 @@ started before the end of an utterance). </p></td>
         
       
         <h3 id="ondewo.s2t.VoiceActivityDetection" class="title-badge message">VoiceActivityDetection</h3>
-        <p></p>
+        <p>VoiceActivityDetection contains information about voice activity detection settings.</p>
 
         
           <table class="field-table">
@@ -25715,28 +25846,28 @@ started before the end of an utterance). </p></td>
                   <td>active</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Indicates if voice activity detection is active. </p></td>
                 </tr>
               
                 <tr>
                   <td>sampling_rate</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Sampling rate for voice activity detection. </p></td>
                 </tr>
               
                 <tr>
                   <td>pyannote</td>
                   <td><a href="#ondewo.s2t.Pyannote">Pyannote</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration for the Pyannote model. </p></td>
                 </tr>
               
                 <tr>
                   <td>matchbox</td>
                   <td><a href="#ondewo.s2t.Matchbox">Matchbox</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Configuration for the Matchbox model. </p></td>
                 </tr>
               
             </tbody>
@@ -25747,7 +25878,7 @@ started before the end of an utterance). </p></td>
         
       
         <h3 id="ondewo.s2t.Wav2Vec" class="title-badge message">Wav2Vec</h3>
-        <p></p>
+        <p>Wav2Vec contains information about the Wav2Vec model.</p>
 
         
           <table class="field-table">
@@ -25760,14 +25891,14 @@ started before the end of an utterance). </p></td>
                   <td>model_path</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Path to the model. </p></td>
                 </tr>
               
                 <tr>
                   <td>use_gpu</td>
                   <td><a href="#bool">bool</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Indicates if GPU is used. </p></td>
                 </tr>
               
             </tbody>
@@ -25778,7 +25909,7 @@ started before the end of an utterance). </p></td>
         
       
         <h3 id="ondewo.s2t.Wav2VecTriton" class="title-badge message">Wav2VecTriton</h3>
-        <p></p>
+        <p>Wav2VecTriton contains information about the Wav2Vec model using Triton.</p>
 
         
           <table class="field-table">
@@ -25791,28 +25922,28 @@ started before the end of an utterance). </p></td>
                   <td>processor_path</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Path to the processor. </p></td>
                 </tr>
               
                 <tr>
                   <td>triton_model_name</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Name of the Triton model. </p></td>
                 </tr>
               
                 <tr>
                   <td>triton_model_version</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Version of the Triton model. </p></td>
                 </tr>
               
                 <tr>
                   <td>check_status_timeout</td>
                   <td><a href="#int64">int64</a></td>
                   <td></td>
-                  <td><p> </p></td>
+                  <td><p>Timeout for checking model status. </p></td>
                 </tr>
               
             </tbody>
@@ -25822,7 +25953,90 @@ started before the end of an utterance). </p></td>
 
         
       
-        <h3 id="ondewo.s2t.WordTiming" class="title-badge message">WordTiming</h3>
+        <h3 id="ondewo.s2t.Whisper" class="title-badge message">Whisper</h3>
+        <p>Whisper contains information about the Whisper model.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>model_path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Path to the model. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>use_gpu</td>
+                  <td><a href="#bool">bool</a></td>
+                  <td></td>
+                  <td><p>Indicates if GPU is used. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>language</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Language of the model. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.WhisperTriton" class="title-badge message">WhisperTriton</h3>
+        <p>WhisperTriton contains information about the Whisper model using Triton.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>processor_path</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Path to the processor. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>triton_model_name</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Name of the Triton model. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>triton_model_version</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>Version of the Triton model. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>check_status_timeout</td>
+                  <td><a href="#int64">int64</a></td>
+                  <td></td>
+                  <td><p>Timeout for checking model status. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.WordAlternative" class="title-badge message">WordAlternative</h3>
         <p></p>
 
         
@@ -25836,21 +26050,68 @@ started before the end of an utterance). </p></td>
                   <td>word</td>
                   <td><a href="#string">string</a></td>
                   <td></td>
-                  <td><p>Transcribed word </p></td>
+                  <td><p>The recognized word corresponding to this set of information. </p></td>
                 </tr>
               
                 <tr>
-                  <td>begin</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td>confidence</td>
+                  <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p>Timestamp for start of word </p></td>
+                  <td><p>The corresponding confidence score to the alternative word. </p></td>
+                </tr>
+              
+            </tbody>
+          </table>
+
+          
+
+        
+      
+        <h3 id="ondewo.s2t.WordDetail" class="title-badge message">WordDetail</h3>
+        <p>WordDetail provides word-specific information for recognized words.</p>
+
+        
+          <table class="field-table">
+            <thead>
+              <tr><td>Field</td><td>Type</td><td>Label</td><td>Description</td></tr>
+            </thead>
+            <tbody>
+              
+                <tr>
+                  <td>start_time</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p>The start time of the spoken word relative to the beginning of the audio.
+The accuracy of the time offset can vary, and this is an experimental feature. </p></td>
                 </tr>
               
                 <tr>
-                  <td>end</td>
-                  <td><a href="#int32">int32</a></td>
+                  <td>end_time</td>
+                  <td><a href="#float">float</a></td>
                   <td></td>
-                  <td><p>Timestamp for end of word </p></td>
+                  <td><p>The end time of the spoken word relative to the beginning of the audio.
+The accuracy of the time offset can vary, and this is an experimental feature. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>word</td>
+                  <td><a href="#string">string</a></td>
+                  <td></td>
+                  <td><p>The recognized word corresponding to this set of information. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>confidence</td>
+                  <td><a href="#float">float</a></td>
+                  <td></td>
+                  <td><p>The corresponding confidence score to the word. </p></td>
+                </tr>
+              
+                <tr>
+                  <td>word_alternatives</td>
+                  <td><a href="#ondewo.s2t.WordAlternative">WordAlternative</a></td>
+                  <td>repeated</td>
+                  <td><p>List of alternative words and confidence scores of each. </p></td>
                 </tr>
               
             </tbody>
@@ -25865,8 +26126,8 @@ started before the end of an utterance). </p></td>
       
       <div id="ondewo/s2t/speech-to-text.proto-enums" class="object-category">Enums</div>
       
-        <h3 id="ondewo.s2t.CTCDecoding" class="title-badge enum">CTCDecoding</h3>
-        <p></p>
+        <h3 id="ondewo.s2t.Decoding" class="title-badge enum">Decoding</h3>
+        <p>The decoding configuration</p>
         <table class="enum-table">
           <thead>
             <tr><td>Name</td><td>Number</td><td>Description</td></tr>
@@ -25889,6 +26150,41 @@ started before the end of an utterance). </p></td>
                 <td>BEAM_SEARCH_WITH_LM</td>
                 <td>2</td>
                 <td><p>beam search will be used independently on pipeline config</p></td>
+              </tr>
+            
+              <tr>
+                <td>BEAM_SEARCH</td>
+                <td>3</td>
+                <td><p>beam search without LM head, to configure decoding mode for seq2seq models.</p></td>
+              </tr>
+            
+          </tbody>
+        </table>
+      
+        <h3 id="ondewo.s2t.InferenceBackend" class="title-badge enum">InferenceBackend</h3>
+        <p></p>
+        <table class="enum-table">
+          <thead>
+            <tr><td>Name</td><td>Number</td><td>Description</td></tr>
+          </thead>
+          <tbody>
+            
+              <tr>
+                <td>INFERENCE_BACKEND_UNKNOWN</td>
+                <td>0</td>
+                <td><p>Not set</p></td>
+              </tr>
+            
+              <tr>
+                <td>INFERENCE_BACKEND_PYTORCH</td>
+                <td>1</td>
+                <td><p>Run pytorch model</p></td>
+              </tr>
+            
+              <tr>
+                <td>INFERENCE_BACKEND_FLAX</td>
+                <td>2</td>
+                <td><p>Run flax model</p></td>
               </tr>
             
           </tbody>

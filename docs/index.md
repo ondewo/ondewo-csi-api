@@ -478,10 +478,10 @@
     - [Webhook](#ondewo.nlu.Webhook)
   
 - [ondewo/s2t/speech-to-text.proto](#ondewo/s2t/speech-to-text.proto)
+    - [AcousticModels](#ondewo.s2t.AcousticModels)
     - [AddDataToUserLanguageModelRequest](#ondewo.s2t.AddDataToUserLanguageModelRequest)
     - [CkptFile](#ondewo.s2t.CkptFile)
     - [CreateUserLanguageModelRequest](#ondewo.s2t.CreateUserLanguageModelRequest)
-    - [CtcAcousticModels](#ondewo.s2t.CtcAcousticModels)
     - [DeleteUserLanguageModelRequest](#ondewo.s2t.DeleteUserLanguageModelRequest)
     - [LanguageModelPipelineId](#ondewo.s2t.LanguageModelPipelineId)
     - [LanguageModels](#ondewo.s2t.LanguageModels)
@@ -518,14 +518,19 @@
     - [TranscribeStreamRequest](#ondewo.s2t.TranscribeStreamRequest)
     - [TranscribeStreamResponse](#ondewo.s2t.TranscribeStreamResponse)
     - [Transcription](#ondewo.s2t.Transcription)
+    - [TranscriptionAlternative](#ondewo.s2t.TranscriptionAlternative)
     - [TranscriptionReturnOptions](#ondewo.s2t.TranscriptionReturnOptions)
     - [UtteranceDetectionOptions](#ondewo.s2t.UtteranceDetectionOptions)
     - [VoiceActivityDetection](#ondewo.s2t.VoiceActivityDetection)
     - [Wav2Vec](#ondewo.s2t.Wav2Vec)
     - [Wav2VecTriton](#ondewo.s2t.Wav2VecTriton)
-    - [WordTiming](#ondewo.s2t.WordTiming)
+    - [Whisper](#ondewo.s2t.Whisper)
+    - [WhisperTriton](#ondewo.s2t.WhisperTriton)
+    - [WordAlternative](#ondewo.s2t.WordAlternative)
+    - [WordDetail](#ondewo.s2t.WordDetail)
   
-    - [CTCDecoding](#ondewo.s2t.CTCDecoding)
+    - [Decoding](#ondewo.s2t.Decoding)
+    - [InferenceBackend](#ondewo.s2t.InferenceBackend)
   
     - [Speech2Text](#ondewo.s2t.Speech2Text)
   
@@ -7088,7 +7093,7 @@ Session of a user interaction
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | The unique identifier of the session Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
 | session_steps | [SessionStep](#ondewo.nlu.SessionStep) | repeated | The list of all the steps of the session |
-| session_info | [SessionInfo](#ondewo.nlu.SessionInfo) |  |  |
+| session_info | [SessionInfo](#ondewo.nlu.SessionInfo) |  | session information |
 
 
 
@@ -7261,6 +7266,7 @@ This string represents what has been passed to the entity recognition and intent
 | contexts_out | [Context](#ondewo.nlu.Context) | repeated | The output contexts of this step |
 | query_text_original | [string](#string) |  | User input without any pre-processing applied |
 | platforms | [Intent.Message.Platform](#ondewo.nlu.Intent.Message.Platform) | repeated | Messages for each of the Intent.Message.Platform were sent to the user |
+| timestamp | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Timestamp of session review step |
 
 
 
@@ -7279,6 +7285,7 @@ SessionStep is a single user interaction as part of a session
 | detect_intent_request | [DetectIntentRequest](#ondewo.nlu.DetectIntentRequest) |  | The detect intent request of the session step |
 | detect_intent_response | [DetectIntentResponse](#ondewo.nlu.DetectIntentResponse) |  | The detect intent response of the session step |
 | contexts | [Context](#ondewo.nlu.Context) | repeated | The contexts which were active at the beginning of this step |
+| timestamp | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Timestamp of session step |
 
 
 
@@ -8513,16 +8520,37 @@ service to send requests to a webhook server
 
 
 
-<a name="ondewo.s2t.AddDataToUserLanguageModelRequest"></a>
+<a name="ondewo.s2t.AcousticModels"></a>
 
-### AddDataToUserLanguageModelRequest
-
+### AcousticModels
+AcousticModels contains information about different types of acoustic models.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language_model_name | [string](#string) |  | Name of the language model to which to add data |
-| zipped_data | [bytes](#bytes) |  | Zip file containing data in the form of text files |
+| type | [string](#string) |  | Type of the acoustic model. |
+| quartznet | [Quartznet](#ondewo.s2t.Quartznet) |  | Configuration for the Quartznet model. |
+| quartznet_triton | [QuartznetTriton](#ondewo.s2t.QuartznetTriton) |  | Configuration for the Quartznet model using Triton. |
+| wav2vec | [Wav2Vec](#ondewo.s2t.Wav2Vec) |  | Configuration for the Wav2Vec model. |
+| wav2vec_triton | [Wav2VecTriton](#ondewo.s2t.Wav2VecTriton) |  | Configuration for the Wav2Vec model using Triton. |
+| whisper | [Whisper](#ondewo.s2t.Whisper) |  | Configuration for the Whisper model. |
+| whisper_triton | [WhisperTriton](#ondewo.s2t.WhisperTriton) |  | Configuration for the Whisper model using Triton. |
+
+
+
+
+
+
+<a name="ondewo.s2t.AddDataToUserLanguageModelRequest"></a>
+
+### AddDataToUserLanguageModelRequest
+AddDataToUserLanguageModelRequest is used to request the addition of data to a user-specific language model.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| language_model_name | [string](#string) |  | Name of the language model to which to add data. Example: "user_lm_1" |
+| zipped_data | [bytes](#bytes) |  | Zip file containing data in the form of text files. Example: A zip file with text files containing sentences or phrases in the target language. |
 
 
 
@@ -8532,12 +8560,12 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.CkptFile"></a>
 
 ### CkptFile
-
+CkptFile contains information about checkpoint files.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| path | [string](#string) |  |  |
+| path | [string](#string) |  | Path to the checkpoint file. |
 
 
 
@@ -8547,31 +8575,12 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.CreateUserLanguageModelRequest"></a>
 
 ### CreateUserLanguageModelRequest
-
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| language_model_name | [string](#string) |  | Name of the language model to create |
-
-
-
-
-
-
-<a name="ondewo.s2t.CtcAcousticModels"></a>
-
-### CtcAcousticModels
-
+CreateUserLanguageModelRequest is used to request the creation of a new user-specific language model.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  |  |
-| quartznet | [Quartznet](#ondewo.s2t.Quartznet) |  |  |
-| quartznet_triton | [QuartznetTriton](#ondewo.s2t.QuartznetTriton) |  |  |
-| wav2vec | [Wav2Vec](#ondewo.s2t.Wav2Vec) |  |  |
-| wav2vec_triton | [Wav2VecTriton](#ondewo.s2t.Wav2VecTriton) |  |  |
+| language_model_name | [string](#string) |  | Name of the language model to create. Example: "user_lm_1" |
 
 
 
@@ -8581,12 +8590,12 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.DeleteUserLanguageModelRequest"></a>
 
 ### DeleteUserLanguageModelRequest
-
+DeleteUserLanguageModelRequest is used to request the deletion of a user-specific language model.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language_model_name | [string](#string) |  | Name of the language model to delete |
+| language_model_name | [string](#string) |  | Name of the language model to delete. Example: "user_lm_1" |
 
 
 
@@ -8596,13 +8605,13 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.LanguageModelPipelineId"></a>
 
 ### LanguageModelPipelineId
-
+LanguageModelPipelineId contains information about a pipeline and its available language models.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| pipeline_id | [string](#string) |  | One pipeline id |
-| model_names | [string](#string) | repeated | A list of all available language models for above pipeline id |
+| pipeline_id | [string](#string) |  | A pipeline ID. Example: "pipeline_1" |
+| model_names | [string](#string) | repeated | A list of all available language models for the corresponding pipeline ID. Example: ["model_1", "model_2"] |
 
 
 
@@ -8612,16 +8621,16 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.LanguageModels"></a>
 
 ### LanguageModels
-
+LanguageModels contains information about language models.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| path | [string](#string) |  | Path to the directory of language models |
-| beam_size | [int64](#int64) |  |  |
-| default_lm | [string](#string) |  | this language model will be selected if none is given |
-| beam_search_scorer_alpha | [float](#float) |  |  |
-| beam_search_scorer_beta | [float](#float) |  |  |
+| path | [string](#string) |  | Path to the directory of language models. |
+| beam_size | [int64](#int64) |  | Beam size for the search algorithm. |
+| default_lm | [string](#string) |  | Default language model to be selected if none is given. |
+| beam_search_scorer_alpha | [float](#float) |  | Weight for the language model scorer (alpha). |
+| beam_search_scorer_beta | [float](#float) |  | Weight for the word insertion penalty (beta). |
 
 
 
@@ -8631,13 +8640,13 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.ListS2tDomainsRequest"></a>
 
 ### ListS2tDomainsRequest
-
+Request message to list available domains. Optionally also filters can be set.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| languages | [string](#string) | repeated |  |
-| pipeline_owners | [string](#string) | repeated |  |
+| languages | [string](#string) | repeated | Filter for languages |
+| pipeline_owners | [string](#string) | repeated | Filter for pipeline owner |
 
 
 
@@ -8647,12 +8656,12 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.ListS2tDomainsResponse"></a>
 
 ### ListS2tDomainsResponse
-
+Response message to list available domains
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| domains | [string](#string) | repeated |  |
+| domains | [string](#string) | repeated | domains available. Example: ["medical", "finance"] |
 
 
 
@@ -8662,12 +8671,12 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.ListS2tLanguageModelsRequest"></a>
 
 ### ListS2tLanguageModelsRequest
-
+ListS2tLanguageModelsRequest is used to request a list of available language models for specified pipelines.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| ids | [string](#string) | repeated | List of pipeline id(s) to see their available language models |
+| ids | [string](#string) | repeated | List of pipeline IDs to retrieve their available language models. Example: ["pipeline_1", "pipeline_2"] |
 
 
 
@@ -8677,12 +8686,12 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.ListS2tLanguageModelsResponse"></a>
 
 ### ListS2tLanguageModelsResponse
-
+ListS2tLanguageModelsResponse is used to return the available language models for specified pipelines.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| lm_pipeline_ids | [LanguageModelPipelineId](#ondewo.s2t.LanguageModelPipelineId) | repeated | Response is a dictionary of type Dict[pipeline id, List of available language models] |
+| lm_pipeline_ids | [LanguageModelPipelineId](#ondewo.s2t.LanguageModelPipelineId) | repeated | Response is a list of LanguageModelPipelineId, where each element contains a pipeline ID and its associated language models. Example: [{pipeline_id: "pipeline_1", model_names: ["model_1", "model_2"]}, {pipeline_id: "pipeline_2", model_names: ["model_3"]}] |
 
 
 
@@ -8692,13 +8701,13 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.ListS2tLanguagesRequest"></a>
 
 ### ListS2tLanguagesRequest
-
+ListS2tLanguagesRequest is used to request a list of available languages. Optionally, filters can be set.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| domains | [string](#string) | repeated |  |
-| pipeline_owners | [string](#string) | repeated |  |
+| domains | [string](#string) | repeated | Filter for domains. Example: ["medical", "finance"] |
+| pipeline_owners | [string](#string) | repeated | Filter for pipeline owners. Example: ["ondewo", "partner_company"] |
 
 
 
@@ -8708,12 +8717,12 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.ListS2tLanguagesResponse"></a>
 
 ### ListS2tLanguagesResponse
-
+Response message to list available languages
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| languages | [string](#string) | repeated |  |
+| languages | [string](#string) | repeated | available languages |
 
 
 
@@ -8723,14 +8732,14 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.ListS2tPipelinesRequest"></a>
 
 ### ListS2tPipelinesRequest
-
+Request to list all speech-to-text pipelines. Optionally also filter criteria can be set
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| languages | [string](#string) | repeated |  |
-| pipeline_owners | [string](#string) | repeated |  |
-| domains | [string](#string) | repeated |  |
+| languages | [string](#string) | repeated | Filter for languages |
+| pipeline_owners | [string](#string) | repeated | Filter for pipeline owners |
+| domains | [string](#string) | repeated | Filter for domains |
 | registered_only | [bool](#bool) |  | If true, return only registered pipelines. Default false: return registered and persisted (from config files) configs. |
 
 
@@ -8741,12 +8750,12 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.ListS2tPipelinesResponse"></a>
 
 ### ListS2tPipelinesResponse
-
+ListS2tPipelinesResponse is used to return a list of all speech-to-text pipelines.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| pipeline_configs | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | repeated |  |
+| pipeline_configs | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | repeated | A list of Speech2TextConfig message instances containing the configuration of each pipeline. Example: [{id: "pipeline_1", description: {language: "en"}, active: true, ...}, {id: "pipeline_2", description: {language: "fr"}, active: true, ...}] |
 
 
 
@@ -8756,13 +8765,13 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.Logging"></a>
 
 ### Logging
-
+Logging contains configuration for logging.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  |  |
-| path | [string](#string) |  |  |
+| type | [string](#string) |  | Type of logging. |
+| path | [string](#string) |  | Path for logging. |
 
 
 
@@ -8772,14 +8781,14 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.Matchbox"></a>
 
 ### Matchbox
-
+Matchbox contains configuration for the Matchbox voice activity detection model.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| model_config | [string](#string) |  |  |
-| encoder_path | [string](#string) |  |  |
-| decoder_path | [string](#string) |  |  |
+| model_config | [string](#string) |  | Path to the Matchbox model configuration. |
+| encoder_path | [string](#string) |  | Path to the Matchbox encoder. |
+| decoder_path | [string](#string) |  | Path to the Matchbox decoder. |
 
 
 
@@ -8789,12 +8798,12 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.PostProcessing"></a>
 
 ### PostProcessing
-
+PostProcessing contains the configuration for post-processing.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| pipeline | [string](#string) | repeated | List of names of active post-processors |
+| pipeline | [string](#string) | repeated | List of names of active post-processors. |
 | post_processors | [PostProcessors](#ondewo.s2t.PostProcessors) |  | Post-processor configurations. |
 
 
@@ -8805,13 +8814,13 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.PostProcessingOptions"></a>
 
 ### PostProcessingOptions
-
+Configuration of the post-processing options
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| spelling_correction | [bool](#bool) |  | Whether or not to use spelling correction |
-| normalize | [bool](#bool) |  | Whether or not to disable normalization |
+| spelling_correction | [bool](#bool) |  | Whether to use spelling correction |
+| normalize | [bool](#bool) |  | Whether to disable normalization |
 | config | [PostProcessing](#ondewo.s2t.PostProcessing) |  | Post-processing configuration specifying the active post-processors in the pipeline, as well as their individual configuration. If not set, all values are replaced by the ones in current pipeline. |
 
 
@@ -8822,13 +8831,13 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.PostProcessors"></a>
 
 ### PostProcessors
-
+PostProcessors contains configurations for post-processors.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| sym_spell | [SymSpell](#ondewo.s2t.SymSpell) |  | Configuration of the sym-spell spelling correction |
-| normalization | [S2TNormalization](#ondewo.s2t.S2TNormalization) |  | Configuration of the normalization object |
+| sym_spell | [SymSpell](#ondewo.s2t.SymSpell) |  | Configuration of the SymSpell spelling correction. |
+| normalization | [S2TNormalization](#ondewo.s2t.S2TNormalization) |  | Configuration of the normalization object. |
 
 
 
@@ -8838,13 +8847,13 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.PtFiles"></a>
 
 ### PtFiles
-
+PtFiles contains information about PT files.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| path | [string](#string) |  |  |
-| step | [string](#string) |  |  |
+| path | [string](#string) |  | Path to the PT files. |
+| step | [string](#string) |  | Step for the PT files. |
 
 
 
@@ -8854,18 +8863,18 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.Pyannote"></a>
 
 ### Pyannote
-
+Pyannote contains configuration for the Pyannote voice activity detection model.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| model_path | [string](#string) |  |  |
-| min_audio_size | [int64](#int64) |  |  |
-| offset | [float](#float) |  |  |
-| onset | [float](#float) |  |  |
-| log_scale | [bool](#bool) |  |  |
-| min_duration_off | [float](#float) |  |  |
-| min_duration_on | [float](#float) |  |  |
+| model_path | [string](#string) |  | Path to the Pyannote model. |
+| min_audio_size | [int64](#int64) |  | Minimum audio size for processing. |
+| offset | [float](#float) |  | Offset for voice activity detection. |
+| onset | [float](#float) |  | Onset for voice activity detection. |
+| log_scale | [bool](#bool) |  | whether to use log scale |
+| min_duration_off | [float](#float) |  | Minimum duration for an off segment. |
+| min_duration_on | [float](#float) |  | Minimum duration for an on segment. |
 
 
 
@@ -8875,16 +8884,16 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.Quartznet"></a>
 
 ### Quartznet
-
+Quartznet contains information about the Quartznet model.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| config_path | [string](#string) |  |  |
-| load_type | [string](#string) |  |  |
-| pt_files | [PtFiles](#ondewo.s2t.PtFiles) |  |  |
-| ckpt_file | [CkptFile](#ondewo.s2t.CkptFile) |  |  |
-| use_gpu | [bool](#bool) |  |  |
+| config_path | [string](#string) |  | Path to the configuration file. |
+| load_type | [string](#string) |  | Type of loading for the model. |
+| pt_files | [PtFiles](#ondewo.s2t.PtFiles) |  | Configuration for PT files. |
+| ckpt_file | [CkptFile](#ondewo.s2t.CkptFile) |  | Configuration for checkpoint files. |
+| use_gpu | [bool](#bool) |  | Indicates if GPU is used. |
 
 
 
@@ -8894,14 +8903,14 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.QuartznetTriton"></a>
 
 ### QuartznetTriton
-
+QuartznetTriton contains information about the Quartznet model using Triton.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| config_path | [string](#string) |  |  |
-| triton_url | [string](#string) |  |  |
-| triton_model | [string](#string) |  |  |
+| config_path | [string](#string) |  | Path to the configuration file. |
+| triton_url | [string](#string) |  | URL for the Triton server. |
+| triton_model | [string](#string) |  | Triton model name. |
 
 
 
@@ -8911,15 +8920,15 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.S2TDescription"></a>
 
 ### S2TDescription
-
+S2TDescription contains descriptive information about the speech-to-text pipeline.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language | [string](#string) |  |  |
-| pipeline_owner | [string](#string) |  |  |
-| domain | [string](#string) |  |  |
-| comments | [string](#string) |  |  |
+| language | [string](#string) |  | Language of the speech-to-text system. |
+| pipeline_owner | [string](#string) |  | Owner of the pipeline. |
+| domain | [string](#string) |  | Domain of the speech-to-text system. |
+| comments | [string](#string) |  | Comments about the system. |
 
 
 
@@ -8929,12 +8938,12 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.S2TGetServiceInfoResponse"></a>
 
 ### S2TGetServiceInfoResponse
-
+S2TGetServiceInfoResponse is used to return version information about the speech-to-text service.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| version | [string](#string) |  |  |
+| version | [string](#string) |  | Version number based on semantic versioning, e.g. "4.2.0". |
 
 
 
@@ -8944,13 +8953,14 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.S2TInference"></a>
 
 ### S2TInference
-
+S2TInference contains information about inference models used in the speech-to-text pipeline.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| ctc_acoustic_models | [CtcAcousticModels](#ondewo.s2t.CtcAcousticModels) |  |  |
-| language_models | [LanguageModels](#ondewo.s2t.LanguageModels) |  |  |
+| acoustic_models | [AcousticModels](#ondewo.s2t.AcousticModels) |  | Configuration for the acoustic models. |
+| language_models | [LanguageModels](#ondewo.s2t.LanguageModels) |  | Configuration for the language models. |
+| inference_backend | [InferenceBackend](#ondewo.s2t.InferenceBackend) |  | Configuration for the inference backend. |
 
 
 
@@ -8960,12 +8970,12 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.S2TNormalization"></a>
 
 ### S2TNormalization
-
+S2TNormalization contains configuration for the speech-to-text normalization.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language | [string](#string) |  | In which language to normalization transcription. |
+| language | [string](#string) |  | Language for normalization of transcriptions. |
 
 
 
@@ -8975,7 +8985,7 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.S2tPipelineId"></a>
 
 ### S2tPipelineId
-
+The pipeline id for a specific pipeline configuration
 
 
 | Field | Type | Label | Description |
@@ -8990,19 +9000,19 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.Speech2TextConfig"></a>
 
 ### Speech2TextConfig
-
+Speech2TextConfig is a configuration message for the speech-to-text pipeline
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| id | [string](#string) |  |  |
-| description | [S2TDescription](#ondewo.s2t.S2TDescription) |  |  |
-| active | [bool](#bool) |  |  |
-| inference | [S2TInference](#ondewo.s2t.S2TInference) |  |  |
-| streaming_server | [StreamingServer](#ondewo.s2t.StreamingServer) |  |  |
-| voice_activity_detection | [VoiceActivityDetection](#ondewo.s2t.VoiceActivityDetection) |  |  |
-| post_processing | [PostProcessing](#ondewo.s2t.PostProcessing) |  |  |
-| logging | [Logging](#ondewo.s2t.Logging) |  |  |
+| id | [string](#string) |  | Unique identifier for the configuration. |
+| description | [S2TDescription](#ondewo.s2t.S2TDescription) |  | Description of the speech-to-text system. |
+| active | [bool](#bool) |  | Indicates if the configuration is active. |
+| inference | [S2TInference](#ondewo.s2t.S2TInference) |  | Configuration for inference models. |
+| streaming_server | [StreamingServer](#ondewo.s2t.StreamingServer) |  | Configuration for the streaming server. |
+| voice_activity_detection | [VoiceActivityDetection](#ondewo.s2t.VoiceActivityDetection) |  | Configuration for voice activity detection. |
+| post_processing | [PostProcessing](#ondewo.s2t.PostProcessing) |  | Configuration for post-processing. |
+| logging | [Logging](#ondewo.s2t.Logging) |  | Configuration for logging. |
 
 
 
@@ -9012,15 +9022,15 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.StreamingServer"></a>
 
 ### StreamingServer
-
+StreamingServer contains information about the streaming server.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| host | [string](#string) |  |  |
-| port | [int64](#int64) |  |  |
-| output_style | [string](#string) |  |  |
-| streaming_speech_recognition | [StreamingSpeechRecognition](#ondewo.s2t.StreamingSpeechRecognition) |  |  |
+| host | [string](#string) |  | Hostname of the streaming server. |
+| port | [int64](#int64) |  | Port number of the streaming server. |
+| output_style | [string](#string) |  | Output style for the streaming server. |
+| streaming_speech_recognition | [StreamingSpeechRecognition](#ondewo.s2t.StreamingSpeechRecognition) |  | Configuration for streaming speech recognition. |
 
 
 
@@ -9030,18 +9040,18 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.StreamingSpeechRecognition"></a>
 
 ### StreamingSpeechRecognition
-
+StreamingSpeechRecognition contains information about streaming speech recognition settings.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| transcribe_not_final | [bool](#bool) |  |  |
-| ctc_decoding_method | [string](#string) |  |  |
-| sampling_rate | [int64](#int64) |  |  |
-| min_audio_chunk_size | [int64](#int64) |  |  |
-| start_of_utterance_threshold | [float](#float) |  |  |
-| end_of_utterance_threshold | [float](#float) |  |  |
-| next_chunk_timeout | [float](#float) |  | if time between audio chunks exceeds next_chunk_timeout, stream will be stopped |
+| transcribe_not_final | [bool](#bool) |  | Indicates whether to transcribe non-final results. |
+| decoding_method | [string](#string) |  | Decoding method for speech recognition. |
+| sampling_rate | [int64](#int64) |  | Sampling rate for audio input. |
+| min_audio_chunk_size | [int64](#int64) |  | Minimum audio chunk size for processing. |
+| start_of_utterance_threshold | [float](#float) |  | Threshold for detecting the start of an utterance. |
+| end_of_utterance_threshold | [float](#float) |  | Threshold for detecting the end of an utterance. |
+| next_chunk_timeout | [float](#float) |  | Timeout between audio chunks; if exceeded, the stream will be stopped. |
 
 
 
@@ -9051,7 +9061,7 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.SymSpell"></a>
 
 ### SymSpell
-
+SymSpell contains configuration for the SymSpell spelling correction.
 
 
 | Field | Type | Label | Description |
@@ -9068,13 +9078,13 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.TrainUserLanguageModelRequest"></a>
 
 ### TrainUserLanguageModelRequest
-
+TrainUserLanguageModelRequest is used to request the training of a user-specific language model.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language_model_name | [string](#string) |  | Name of the language model to train |
-| order | [int64](#int64) |  | Order n of the ngram |
+| language_model_name | [string](#string) |  | Name of the language model to train. Example: "user_lm_1" |
+| order | [int64](#int64) |  | Order n of the ngram. Example: 3 (for trigram model) |
 
 
 
@@ -9084,7 +9094,7 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.TranscribeFileRequest"></a>
 
 ### TranscribeFileRequest
-
+A request to transcribe an audio file
 
 
 | Field | Type | Label | Description |
@@ -9100,14 +9110,13 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.TranscribeFileResponse"></a>
 
 ### TranscribeFileResponse
-
+The response message for a transcribe file request
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | transcriptions | [Transcription](#ondewo.s2t.Transcription) | repeated | List of transcriptions with confidence level |
 | time | [float](#float) |  | The time the transcription took |
-| word_timing | [WordTiming](#ondewo.s2t.WordTiming) | repeated | List of words with timestamps for their start and end |
 | audio_uuid | [string](#string) |  | id of the transcribed audio file |
 
 
@@ -9118,13 +9127,13 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.TranscribeRequestConfig"></a>
 
 ### TranscribeRequestConfig
-
+Configuration for a request to transcribe audio
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | s2t_pipeline_id | [string](#string) |  | Required. id of the pipeline (model setup) that will generate audio |
-| ctc_decoding | [CTCDecoding](#ondewo.s2t.CTCDecoding) |  | Optional. CTC decoding type |
+| decoding | [Decoding](#ondewo.s2t.Decoding) |  | Optional. decoding type |
 | language_model_name | [string](#string) |  |  |
 | post_processing | [PostProcessingOptions](#ondewo.s2t.PostProcessingOptions) |  |  |
 | utterance_detection | [UtteranceDetectionOptions](#ondewo.s2t.UtteranceDetectionOptions) |  |  |
@@ -9140,7 +9149,7 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.TranscribeStreamRequest"></a>
 
 ### TranscribeStreamRequest
-
+Request to transcribe an audio stream
 
 
 | Field | Type | Label | Description |
@@ -9158,7 +9167,7 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.TranscribeStreamResponse"></a>
 
 ### TranscribeStreamResponse
-
+The response message of a stream transcription
 
 
 | Field | Type | Label | Description |
@@ -9180,13 +9189,32 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.Transcription"></a>
 
 ### Transcription
-
+The transcription message
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | transcription | [string](#string) |  | The transcribed text |
-| confidence_score | [float](#float) |  | The corresponding confidence score |
+| confidence_score | [float](#float) |  | The corresponding confidence score. The confidence estimate between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. |
+| words | [WordDetail](#ondewo.s2t.WordDetail) | repeated | List of the words of transcription with their confidence scores and probable alternatives |
+| alternatives | [TranscriptionAlternative](#ondewo.s2t.TranscriptionAlternative) | repeated | List of alternative transcriptions, confidence scores, words timings and alternative words |
+
+
+
+
+
+
+<a name="ondewo.s2t.TranscriptionAlternative"></a>
+
+### TranscriptionAlternative
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| transcript | [string](#string) |  | The alternative transcribed text |
+| confidence | [float](#float) |  | The corresponding confidence score to the alternative transcript. |
+| words | [WordDetail](#ondewo.s2t.WordDetail) | repeated | A list of word-specific information for each recognized word, including word timings, confidence score of the word and alternative words. |
 
 
 
@@ -9196,15 +9224,18 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.TranscriptionReturnOptions"></a>
 
 ### TranscriptionReturnOptions
-
+Configuration of the return values of a transcribe request
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | return_start_of_speech | [bool](#bool) |  | should server make response indicating that the beginning of the speech was detected |
 | return_audio | [bool](#bool) |  | should s2t server return audio bytes of transcribed utterance |
-| return_alternative_transcriptions | [bool](#bool) |  | Whether or not to return alternative results from beam-search |
 | return_confidence_score | [bool](#bool) |  | Whether or not to return confidence scores |
+| return_alternative_transcriptions | [bool](#bool) |  | Whether or not to return alternative results from beam-search |
+| return_alternative_transcriptions_nr | [int32](#int32) |  | Optional. Number of alternative transcriptions results from beam-search or greedy-search |
+| return_alternative_words | [bool](#bool) |  | Whether or not to return alternative results from beam-search |
+| return_alternative_words_nr | [int32](#int32) |  | Optional. Number of alternative words to results |
 | return_word_timing | [bool](#bool) |  | Optional. Whether or not to return timestamps of start and end of the words. Only used in TranscribeFile. |
 
 
@@ -9215,7 +9246,7 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.UtteranceDetectionOptions"></a>
 
 ### UtteranceDetectionOptions
-
+Configuration of the options to detect utterances
 
 
 | Field | Type | Label | Description |
@@ -9233,15 +9264,15 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.VoiceActivityDetection"></a>
 
 ### VoiceActivityDetection
-
+VoiceActivityDetection contains information about voice activity detection settings.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| active | [string](#string) |  |  |
-| sampling_rate | [int64](#int64) |  |  |
-| pyannote | [Pyannote](#ondewo.s2t.Pyannote) |  |  |
-| matchbox | [Matchbox](#ondewo.s2t.Matchbox) |  |  |
+| active | [string](#string) |  | Indicates if voice activity detection is active. |
+| sampling_rate | [int64](#int64) |  | Sampling rate for voice activity detection. |
+| pyannote | [Pyannote](#ondewo.s2t.Pyannote) |  | Configuration for the Pyannote model. |
+| matchbox | [Matchbox](#ondewo.s2t.Matchbox) |  | Configuration for the Matchbox model. |
 
 
 
@@ -9251,13 +9282,13 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.Wav2Vec"></a>
 
 ### Wav2Vec
-
+Wav2Vec contains information about the Wav2Vec model.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| model_path | [string](#string) |  |  |
-| use_gpu | [bool](#bool) |  |  |
+| model_path | [string](#string) |  | Path to the model. |
+| use_gpu | [bool](#bool) |  | Indicates if GPU is used. |
 
 
 
@@ -9267,32 +9298,85 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.Wav2VecTriton"></a>
 
 ### Wav2VecTriton
+Wav2VecTriton contains information about the Wav2Vec model using Triton.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| processor_path | [string](#string) |  | Path to the processor. |
+| triton_model_name | [string](#string) |  | Name of the Triton model. |
+| triton_model_version | [string](#string) |  | Version of the Triton model. |
+| check_status_timeout | [int64](#int64) |  | Timeout for checking model status. |
+
+
+
+
+
+
+<a name="ondewo.s2t.Whisper"></a>
+
+### Whisper
+Whisper contains information about the Whisper model.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| model_path | [string](#string) |  | Path to the model. |
+| use_gpu | [bool](#bool) |  | Indicates if GPU is used. |
+| language | [string](#string) |  | Language of the model. |
+
+
+
+
+
+
+<a name="ondewo.s2t.WhisperTriton"></a>
+
+### WhisperTriton
+WhisperTriton contains information about the Whisper model using Triton.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| processor_path | [string](#string) |  | Path to the processor. |
+| triton_model_name | [string](#string) |  | Name of the Triton model. |
+| triton_model_version | [string](#string) |  | Version of the Triton model. |
+| check_status_timeout | [int64](#int64) |  | Timeout for checking model status. |
+
+
+
+
+
+
+<a name="ondewo.s2t.WordAlternative"></a>
+
+### WordAlternative
 
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| processor_path | [string](#string) |  |  |
-| triton_model_name | [string](#string) |  |  |
-| triton_model_version | [string](#string) |  |  |
-| check_status_timeout | [int64](#int64) |  |  |
+| word | [string](#string) |  | The recognized word corresponding to this set of information. |
+| confidence | [float](#float) |  | The corresponding confidence score to the alternative word. |
 
 
 
 
 
 
-<a name="ondewo.s2t.WordTiming"></a>
+<a name="ondewo.s2t.WordDetail"></a>
 
-### WordTiming
-
+### WordDetail
+WordDetail provides word-specific information for recognized words.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| word | [string](#string) |  | Transcribed word |
-| begin | [int32](#int32) |  | Timestamp for start of word |
-| end | [int32](#int32) |  | Timestamp for end of word |
+| start_time | [float](#float) |  | The start time of the spoken word relative to the beginning of the audio. The accuracy of the time offset can vary, and this is an experimental feature. |
+| end_time | [float](#float) |  | The end time of the spoken word relative to the beginning of the audio. The accuracy of the time offset can vary, and this is an experimental feature. |
+| word | [string](#string) |  | The recognized word corresponding to this set of information. |
+| confidence | [float](#float) |  | The corresponding confidence score to the word. |
+| word_alternatives | [WordAlternative](#ondewo.s2t.WordAlternative) | repeated | List of alternative words and confidence scores of each. |
 
 
 
@@ -9301,16 +9385,30 @@ service to send requests to a webhook server
  <!-- end messages -->
 
 
-<a name="ondewo.s2t.CTCDecoding"></a>
+<a name="ondewo.s2t.Decoding"></a>
 
-### CTCDecoding
-
+### Decoding
+The decoding configuration
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | DEFAULT | 0 | decoding will be defined by the pipeline config |
 | GREEDY | 1 | greedy decoding will be used independently on pipeline config |
 | BEAM_SEARCH_WITH_LM | 2 | beam search will be used independently on pipeline config |
+| BEAM_SEARCH | 3 | beam search without LM head, to configure decoding mode for seq2seq models. |
+
+
+
+<a name="ondewo.s2t.InferenceBackend"></a>
+
+### InferenceBackend
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| INFERENCE_BACKEND_UNKNOWN | 0 | Not set |
+| INFERENCE_BACKEND_PYTORCH | 1 | Run pytorch model |
+| INFERENCE_BACKEND_FLAX | 2 | Run flax model |
 
 
  <!-- end enums -->
@@ -9321,11 +9419,11 @@ service to send requests to a webhook server
 <a name="ondewo.s2t.Speech2Text"></a>
 
 ### Speech2Text
-endpoints of speech-to-text service
+Speech-to-text service
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| TranscribeFile | [TranscribeFileRequest](#ondewo.s2t.TranscribeFileRequest) | [TranscribeFileResponse](#ondewo.s2t.TranscribeFileResponse) |  |
+| TranscribeFile | [TranscribeFileRequest](#ondewo.s2t.TranscribeFileRequest) | [TranscribeFileResponse](#ondewo.s2t.TranscribeFileResponse) | Transcribes an audio file |
 | TranscribeStream | [TranscribeStreamRequest](#ondewo.s2t.TranscribeStreamRequest) stream | [TranscribeStreamResponse](#ondewo.s2t.TranscribeStreamResponse) stream | Transcribes an audio stream. |
 | GetS2tPipeline | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | Gets a speech to text pipeline corresponding to the id specified in S2tPipelineId. If no corresponding id is found, raises ModuleNotFoundError in server. |
 | CreateS2tPipeline | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | Creates a new speech to text pipeline from a Speech2TextConfig and registers the new pipeline in the server. |
