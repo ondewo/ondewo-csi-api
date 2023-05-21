@@ -4,6 +4,11 @@
 
 ## Release ONDEWO CSI API 3.2.0
 
+### Improvements
+
+* [[OND235-57]](https://ondewo.atlassian.net/browse/OND235-57) - NLU API 4.7.0, S2T API 5.4.0 and T2S API 5.0.0 library
+  upgrades
+
 ### Bug Fixes
 
 * Fixed spellings
