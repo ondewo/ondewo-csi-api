@@ -2,12 +2,27 @@
 
 *****************
 
+## Release ONDEWO CSI API 4.0.0
+
+### Improvements
+
+* [[OND235-57]](https://ondewo.atlassian.net/browse/OND235-76) - Upgrade API to NLU
+  API [5.0.0](https://github.com/ondewo/ondewo-nlu-api/releases/5.0.0), S2T
+  API [5.7.0](https://github.com/ondewo/ondewo-s2t-api/releases/5.7.0)) and T2S API
+  [5.3.0](https://github.com/ondewo/ondewo-t2s-api/releases/5.3.0) library
+* Upgrade `Dockerfile.utils` to `python:3.10-slim`
+* Upgrade nvm to `v18.18.0`
+
+*****************
+
 ## Release ONDEWO CSI API 3.2.0
 
 ### Improvements
 
-* [[OND235-57]](https://ondewo.atlassian.net/browse/OND235-57) - NLU API 4.7.0, S2T API 5.4.0 and T2S API 5.0.0 library
-  upgrades
+* [[OND235-57]](https://ondewo.atlassian.net/browse/OND235-57) - Upgrade to NLU
+  API [4.7.0](https://github.com/ondewo/ondewo-nlu-api/releases/4.7.0), S2T
+  API [5.4.0](https://github.com/ondewo/ondewo-s2t-api/releases/5.4.0))and T2S API
+  [5.0.0](https://github.com/ondewo/ondewo-t2s-api/releases/5.0.0) library
 
 ### Bug Fixes
 
@@ -20,7 +35,7 @@
 ### Improvements
 
 * Added documentation for all messages and added RABBIT MQ control message examples
-* Upgraded dependency to NLU 4.6.0
+* Upgraded dependency to NLU API [4.6.0](https://github.com/ondewo/ondewo-nlu-api/releases/4.6.0)
 * Corrected spelling from synthesize_response to synthesize_response
 
 *****************
