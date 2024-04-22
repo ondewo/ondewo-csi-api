@@ -116,7 +116,7 @@ githubio_logic: | githubio_logic_pre
 
 update_githubio:
 	-@rm -rf ondewo.github.io
-	-@git clone git@github.com:ondewo/ondewo.github.io.git
+	@git clone git@github.com:ondewo/ondewo.github.io.git
 	@make githubio_logic || (echo "Done")
 	@rm -rf ondewo.github.io
 
