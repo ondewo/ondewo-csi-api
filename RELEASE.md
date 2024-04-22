@@ -6,7 +6,7 @@
 
 ### Improvements
 
-* [[OND235-57]](https://ondewo.atlassian.net/browse/OND235-76) - Upgrade API to NLU
+* [[OND235-57]](https://ondewo.atlassian.net/browse/OND235-76) Upgrade API to NLU
   API [5.0.0](https://github.com/ondewo/ondewo-nlu-api/releases/5.0.0), S2T
   API [5.7.0](https://github.com/ondewo/ondewo-s2t-api/releases/5.7.0)) and T2S API
   [5.3.0](https://github.com/ondewo/ondewo-t2s-api/releases/5.3.0) library
@@ -19,9 +19,9 @@
 
 ### Improvements
 
-* [[OND235-57]](https://ondewo.atlassian.net/browse/OND235-57) - Upgrade to NLU
-  API [4.7.0](https://github.com/ondewo/ondewo-nlu-api/releases/4.7.0), S2T
-  API [5.4.0](https://github.com/ondewo/ondewo-s2t-api/releases/5.4.0))and T2S API
+* [[OND235-57]](https://ondewo.atlassian.net/browse/OND235-57) Upgrade to ONDEWO NLU
+  API [4.7.0](https://github.com/ondewo/ondewo-nlu-api/releases/4.7.0), ONDEWO S2T
+  API [5.4.0](https://github.com/ondewo/ondewo-s2t-api/releases/5.4.0) and ONDEWO T2S API
   [5.0.0](https://github.com/ondewo/ondewo-t2s-api/releases/5.0.0) library
 
 ### Bug Fixes
@@ -35,7 +35,7 @@
 ### Improvements
 
 * Added documentation for all messages and added RABBIT MQ control message examples
-* Upgraded dependency to NLU API [4.6.0](https://github.com/ondewo/ondewo-nlu-api/releases/4.6.0)
+* Upgraded dependency to ONDEWO NLU API [4.6.0](https://github.com/ondewo/ondewo-nlu-api/releases/4.6.0)
 * Corrected spelling from synthesize_response to synthesize_response
 
 *****************
@@ -63,7 +63,7 @@
 
 ### New Features
 
-* [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Added pre-commit hooks and adjusted files to them
+* [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) Added pre-commit hooks and adjusted files to them
 
 *****************
 
@@ -71,7 +71,7 @@
 
 ### New Features
 
-* [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) - Automated Release Process
+* [[OND211-2039]](https://ondewo.atlassian.net/browse/OND211-2039) Automated Release Process
 
 *****************
 
@@ -127,8 +127,8 @@
 
 ### New Features
 
-* [[OND233-258]](https://ondewo.atlassian.net/browse/OND233-258) - add ControlStream endpoints
-* [[OND211-380]](https://ondewo.atlassian.net/browse/OND211-380) - generate API documentation
+* [[OND233-258]](https://ondewo.atlassian.net/browse/OND233-258) add ControlStream endpoints
+* [[OND211-380]](https://ondewo.atlassian.net/browse/OND211-380) generate API documentation
   accessible [here](https://ondewo.github.io/ondewo-csi-api/)
 
 *****************
@@ -137,9 +137,9 @@
 
 ### New Features
 
-* [[OND233-201]](https://ondewo.atlassian.net/browse/OND233-201) - add endpoint for checking health of upstream S2T, NLU
+* [[OND233-201]](https://ondewo.atlassian.net/browse/OND233-201) add endpoint for checking health of upstream S2T, NLU
   and T2S servers
-* [[OND233-213]](https://ondewo.atlassian.net/browse/OND233-213) - add optional initial intent field to S2sStreamRequest
+* [[OND233-213]](https://ondewo.atlassian.net/browse/OND233-213) add optional initial intent field to S2sStreamRequest
   to trigger an intent in NLU system
-* [[OND233-216]](https://ondewo.atlassian.net/browse/OND233-216) - add SipTrigger message to S2sStreamResponse in case a
+* [[OND233-216]](https://ondewo.atlassian.net/browse/OND233-216) add SipTrigger message to S2sStreamResponse in case a
   SIP trigger was detected in NLU response
