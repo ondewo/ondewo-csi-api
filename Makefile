@@ -58,12 +58,12 @@ install_nvm: ## Install NVM, node and npm !! Forcefully closes current terminal
 
 install_python_requirements: ## Installs python requirements flak8 and mypy
 	conda install -y cffi
-	wget -q https://raw.githubusercontent.com/ondewo/ondewo-csi-client-python/master/requirements-dev.txt -O requirements-dev.txt
-	pip install -r requirements-dev.txt
 	wget -q https://raw.githubusercontent.com/ondewo/ondewo-csi-client-python/master/requirements.txt -O requirements.txt
-	pip install -r requirements.txt
-	wget -q https://raw.githubusercontent.com/ondewo/ondewo-csi-client-python/master/mypy.ini -O mypy.ini
+	wget -q https://raw.githubusercontent.com/ondewo/ondewo-csi-client-python/master/requirements-dev.txt -O requirements-dev.txt
 	wget -q https://raw.githubusercontent.com/ondewo/ondewo-csi-client-python/master/.flake8 -O .flake8
+	wget -q https://raw.githubusercontent.com/ondewo/ondewo-csi-client-python/master/mypy.ini -O mypy.ini
+	pip install -r requirements.txt
+	pip install -r requirements-dev.txt
 
 install_precommit_hooks: ## Installs pre-commit hooks and sets them up for the ondewo-vtsi-api repo
 	pip install pre-commit
@@ -102,6 +102,7 @@ githubio_logic_pre:
 	$(eval REPO_NAME:= $(shell echo ${GH_REPO} | cut -d "-" -f 2 ))
 	$(eval REPO_NAME_UPPER:= $(shell echo ${GH_REPO} | cut -d "-" -f 2 | sed -e 's/\(.*\)/\U\1/'))
 	$(eval DOCS_DIR:=ondewo.github.io/docs/ondewo-${REPO_NAME}-api/${ONDEWO_CSI_API_VERSION})
+	@sed -i "/{ number: '${ONDEWO_CSI_API_VERSION}', link: 'ondewo-${REPO_NAME}-api\/${ONDEWO_CSI_API_VERSION}\/' },/d" ondewo.github.io/data.js
 	@rm -rf ${DOCS_DIR}
 	@mkdir "${DOCS_DIR}"
 	@cp docs/* ${DOCS_DIR}
