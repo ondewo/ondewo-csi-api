@@ -1084,6 +1084,9 @@ Control message services
 | ondewo_t2s | 2 | Text-2-Speech control message service name |
 | ondewo_nlu | 3 | NLU control message service name |
 | ondewo_sip | 4 | SIP control message service name |
+| ondewo_vtsi | 5 | VTSI control message service name |
+| ondewo_csi | 6 | CSI control message service name |
+| ondewo_survey | 7 | Survey control message service name |
 
 
 
@@ -1096,6 +1099,7 @@ Control status
 | ---- | ------ | ----------- |
 | OK | 0 | Status that control stream is ok |
 | EMERGENCY_STOP | 1 | Status that control stream needs to stop immediately |
+| VAD_START_OF_SPEECH | 2 | Status that voice activity detection detected start of speech |
 
 
 
