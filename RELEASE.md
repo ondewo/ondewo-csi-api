@@ -1,4 +1,15 @@
 # Release History
+*****************
+
+## Release ONDEWO CSI API 5.0.0
+
+### Improvements
+
+* [[OND235-87]](https://ondewo.atlassian.net/browse/OND235-87) Upgrade API to NLU
+  API [6.0.0](https://github.com/ondewo/ondewo-nlu-api/releases/6.0.0), S2T
+  API [6.0.0](https://github.com/ondewo/ondewo-s2t-api/releases/6.0.0)) and T2S API
+  [6.0.0](https://github.com/ondewo/ondewo-t2s-api/releases/6.0.0) libraries
+* [[OND235-87]](https://ondewo.atlassian.net/browse/OND235-87) Add further control messages for csi and vtsi
 
 *****************
 
@@ -9,7 +20,7 @@
 * [[OND235-57]](https://ondewo.atlassian.net/browse/OND235-76) Upgrade API to NLU
   API [5.0.0](https://github.com/ondewo/ondewo-nlu-api/releases/5.0.0), S2T
   API [5.7.0](https://github.com/ondewo/ondewo-s2t-api/releases/5.7.0)) and T2S API
-  [5.3.0](https://github.com/ondewo/ondewo-t2s-api/releases/5.3.0) library
+  [5.3.0](https://github.com/ondewo/ondewo-t2s-api/releases/5.3.0) libraries
 * Upgrade `Dockerfile.utils` to `python:3.10-slim`
 * Upgrade nvm to `v18.18.0`
 
@@ -22,7 +33,7 @@
 * [[OND235-57]](https://ondewo.atlassian.net/browse/OND235-57) Upgrade to ONDEWO NLU
   API [4.7.0](https://github.com/ondewo/ondewo-nlu-api/releases/4.7.0), ONDEWO S2T
   API [5.4.0](https://github.com/ondewo/ondewo-s2t-api/releases/5.4.0) and ONDEWO T2S API
-  [5.0.0](https://github.com/ondewo/ondewo-t2s-api/releases/5.0.0) library
+  [5.0.0](https://github.com/ondewo/ondewo-t2s-api/releases/5.0.0) libraries
 
 ### Bug Fixes
 

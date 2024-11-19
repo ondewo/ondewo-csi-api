@@ -143,6 +143,7 @@ service Conversations {
 
     // Send a message on the control stream to control sip, t2s, s2t etc. during a conversation
     rpc SetControlStatus (SetControlStatusRequest) returns (SetControlStatusResponse) {};
+
 }
 
 // The top-level message sent by client to `CreateS2sPipeline` and `UpdateS2sPipeline` endpoints and received from
@@ -163,6 +164,7 @@ message S2sPipeline {
 
     // Required. T2S pipeline ID, e.g. "kerstin".
     string t2s_pipeline_id = 5;
+
 }
 
 // The top-level message sent by client to `GetS2sPipeline` and `DeleteS2sPipeline` endpoints.
@@ -170,6 +172,7 @@ message S2sPipelineId {
 
     // Required. CSI pipeline identifier.
     string id = 1;
+
 }
 
 // The top-level message sent by client to `ListS2sPipelines` endpoint. Currently without arguments.
@@ -182,6 +185,7 @@ message ListS2sPipelinesResponse {
 
     // Collection of S2S pipelines of the server.
     repeated S2sPipeline pipelines = 1;
+
 }
 
 // The top-level message sent by the client to the
@@ -213,6 +217,7 @@ message S2sStreamRequest {
 
     // Optional. Intent display name to trigger in NLU system in the beginning of the conversation.
     string initial_intent_display_name = 5;
+
 }
 
 // The top-level message returned from the
@@ -241,6 +246,7 @@ message S2sStreamResponse {
         // SIP trigger message
         SipTrigger sip_trigger = 3;
     }
+
 }
 
 // SIP trigger message
@@ -264,10 +270,12 @@ message SipTrigger {
         // pause
         PAUSE = 4;
     }
+
     SipTriggerType type = 1;
 
     // extra parameters for the trigger
     google.protobuf.Struct content = 2;
+
 }
 
 // Health checks
@@ -281,6 +289,7 @@ message CheckUpstreamHealthResponse {
 
     // Health checks for Text-2-Speech
     google.rpc.Status t2s_status = 3;
+
 }
 
 // Control stream message
@@ -294,6 +303,10 @@ enum ControlStatus {
 
     // Status that control stream needs to stop immediately
     EMERGENCY_STOP = 1;
+
+    // Status that voice activity detection detected start of speech
+    VAD_START_OF_SPEECH = 2;
+
 }
 
 // Control stream response message
@@ -301,6 +314,7 @@ message ControlStreamResponse{
 
     // Control status
     ControlStatus control_status = 1;
+
 }
 
 // Request to set control status
@@ -308,6 +322,7 @@ message SetControlStatusRequest{
 
     // Control status
     ControlStatus control_status = 1;
+
 }
 
 // Response of setting the control status with the old and new status objects
@@ -318,6 +333,7 @@ message SetControlStatusResponse{
 
     // Current 'new' control status
     ControlStatus new_control_status = 2;
+
 }
 
 // Control message services
@@ -337,6 +353,15 @@ enum ControlMessageServiceName {
 
     // SIP control message service name
     ondewo_sip = 4;
+
+    // VTSI control message service name
+    ondewo_vtsi = 5;
+
+    // CSI control message service name
+    ondewo_csi = 6;
+
+    // Survey control message service name
+    ondewo_survey = 7;
 }
 
 // Control message methods to control services during a conversation
@@ -695,7 +720,7 @@ enum ControlMessageServiceMethod {
     create_context = 15;
 
     // NLU: update an existing context based on the provided contextual information in the current session
-        //
+    //
     // <p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
     // <pre><code>
     //{
@@ -767,6 +792,7 @@ enum ControlMessageServiceMethod {
     //}
     //</code></pre>
     detect_intent = 18;
+
 }
 
 // Type of condition that need to be satisfied to execute a control message
@@ -790,6 +816,7 @@ enum ConditionType {
     // Number of interactions of the user with an ONDEWO AI agent after a control message should be executed
     // Example value need be given as a string in the format: <pre><code>value="4"</code></pre>
     interactions = 4;
+
 }
 
 // A condition message with its type and value
@@ -834,6 +861,7 @@ message Condition{
     // Value of the condition.
     // Examples of conditions values based on the condition type are given in the <pre>ConditionType</pre> documentation
     string value = 2;
+
 }
 
 // Parameters of the control message passed to the service specified in the control message
@@ -847,6 +875,7 @@ message ControlMessageServiceParameters {
 
         // Speech-2-Text: configuration to control the recognition of text based on human voice audio
         ondewo.s2t.TranscribeRequestConfig s2t_config = 2;
+
     }
 
     // SIP: callee id to transfer call to
@@ -872,6 +901,7 @@ message ControlMessageServiceParameters {
 
     // CSI: the condition that defines when a control message should stop its execution
     Condition condition_end = 10;
+
 }
 
 // A control message
@@ -911,4 +941,5 @@ message ControlMessage {
 
     // Parameters to use to invoke the method of the service
     ControlMessageServiceParameters parameters = 3;
+
 }
