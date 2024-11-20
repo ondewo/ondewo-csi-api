@@ -1,6 +1,14 @@
 # Release History
 *****************
 
+## Release ONDEWO CSI API 5.1.0
+
+### Improvements
+
+* [[OND235-87]](https://ondewo.atlassian.net/browse/OND235-87) Upgrade API to S2T API [6.1.0](https://github.com/ondewo/ondewo-s2t-api/releases/6.1.0)
+
+*****************
+
 ## Release ONDEWO CSI API 5.0.0
 
 ### Improvements
