@@ -1149,6 +1149,9 @@ type of the SIP trigger
 | HUMAN_HANDOVER | 2 | handover to human |
 | SEND_NOW | 3 | send now |
 | PAUSE | 4 | pause |
+| TRANSFER | 5 | transfer |
+| INVITE | 6 | invite to conference call |
+| PLAY_AUDIO | 7 | play audio |
 
 
  <!-- end enums -->
