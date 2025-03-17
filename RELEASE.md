@@ -1,6 +1,14 @@
 # Release History
 *****************
 
+## Release ONDEWO CSI API 5.2.0
+
+### Improvements
+
+* [[OND235-66]](https://ondewo.atlassian.net/browse/OND235-66) Extend `SipTripperType` with `PLAY_AUDIO` "play audio from URL" and "play audio from file (mapped volume)"
+
+*****************
+
 ## Release ONDEWO CSI API 5.1.0
 
 ### Improvements
