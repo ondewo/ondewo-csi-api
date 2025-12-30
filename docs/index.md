@@ -707,7 +707,7 @@
 <a name="ondewo.csi.CheckUpstreamHealthResponse"></a>
 
 ### CheckUpstreamHealthResponse
-Health checks
+Health checks.
 
 
 | Field | Type | Label | Description |
@@ -724,38 +724,34 @@ Health checks
 <a name="ondewo.csi.Condition"></a>
 
 ### Condition
-A condition message with its type and value
-
+A condition message with its type and value.
 A Condition can be of various types.
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:
+Immediate execution:
 <pre><code>
-immediate execution
 {
-   "type": "immediate"
+   &quot;type&quot;: &quot;immediate&quot;
 }
 </code></pre>
-
-number of interactions of the user with the AI agent
+Number of interactions of the user with the AI agent:
 <pre><code>
 {
-   "type": "interactions",
-   "value": “10”
+   &quot;type&quot;: &quot;interactions&quot;,
+   &quot;value&quot;: &quot;10&quot;
 }
 </code></pre>
-
- number of seconds
+Number of seconds:
 <pre><code>
 {
-   "type": "duration",
-   "value": “3600”
+   &quot;type&quot;: &quot;duration&quot;,
+   &quot;value&quot;: &quot;3600&quot;
 }
 </code></pre>
-
- at a specific date and time
+At a specific date and time:
 <pre><code>
 {
-   "type": "datetime",
-   "value": "2021-12-23T13:45:00.000Z"
+   &quot;type&quot;: &quot;datetime&quot;,
+   &quot;value&quot;: &quot;2021-12-23T13:45:00.000Z&quot;
 }
 </code></pre>
 
@@ -763,7 +759,7 @@ number of interactions of the user with the AI agent
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | type | [ConditionType](#ondewo.csi.ConditionType) |  | Condition type |
-| value | [string](#string) |  | Value of the condition. Examples of conditions values based on the condition type are given in the <pre>ConditionType</pre> documentation |
+| value | [string](#string) |  | Value of the condition. Examples of conditions values based on the condition type are given in the <code>ConditionType</code> documentation. |
 
 
 
@@ -773,19 +769,18 @@ number of interactions of the user with the AI agent
 <a name="ondewo.csi.ControlMessage"></a>
 
 ### ControlMessage
-A control message
-
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p>
+A control message.
+Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:
 <pre><code>
 {
-  "service": "<SERVICE_NAME>", 			// e.g. ondewo_s2t
-  "method": "<SERVICE_CONTROL_METHOD>", 	// e.g. update_config
-  "parameters": [
+  &quot;service&quot;: &quot;&lt;SERVICE_NAME&gt;&quot;, 			// e.g. ondewo_s2t
+  &quot;method&quot;: &quot;&lt;SERVICE_CONTROL_METHOD&gt;&quot;, 	// e.g. update_config
+  &quot;parameters&quot;: [
       // primitive data types and JSON objects are possible
       1,
       1.0,
       -2.0,
-      “string”,
+      &quot;string&quot;,
       true,
   	 {
           // parameter JSON object
@@ -803,7 +798,7 @@ A control message
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| service | [ControlMessageServiceName](#ondewo.csi.ControlMessageServiceName) |  | Service to control. Valid service names are:'ondewo_nlu', 'ondewo_t2s', 'ondewo_s2t', 'ondewo_sip' and 'ondewo_csi' |
+| service | [ControlMessageServiceName](#ondewo.csi.ControlMessageServiceName) |  | Service to control. Valid service names are: <code>ondewo_nlu</code>, <code>ondewo_t2s</code>, <code>ondewo_s2t</code>, <code>ondewo_sip</code> and <code>ondewo_csi</code>. |
 | method | [ControlMessageServiceMethod](#ondewo.csi.ControlMessageServiceMethod) |  | Method to invoke on the service |
 | parameters | [ControlMessageServiceParameters](#ondewo.csi.ControlMessageServiceParameters) |  | Parameters to use to invoke the method of the service |
 
@@ -815,7 +810,7 @@ A control message
 <a name="ondewo.csi.ControlMessageServiceParameters"></a>
 
 ### ControlMessageServiceParameters
-Parameters of the control message passed to the service specified in the control message
+Parameters of the control message passed to the service specified in the control message.
 
 
 | Field | Type | Label | Description |
@@ -839,7 +834,7 @@ Parameters of the control message passed to the service specified in the control
 <a name="ondewo.csi.ControlStreamRequest"></a>
 
 ### ControlStreamRequest
-Control stream message
+Control stream message.
 
 
 
@@ -849,7 +844,7 @@ Control stream message
 <a name="ondewo.csi.ControlStreamResponse"></a>
 
 ### ControlStreamResponse
-Control stream response message
+Control stream response message.
 
 
 | Field | Type | Label | Description |
@@ -864,7 +859,7 @@ Control stream response message
 <a name="ondewo.csi.ListS2sPipelinesRequest"></a>
 
 ### ListS2sPipelinesRequest
-The top-level message sent by client to `ListS2sPipelines` endpoint. Currently without arguments.
+The top-level message sent by client to <code>ListS2sPipelines</code> endpoint. Currently without arguments.
 
 TODO: add filtering options
 
@@ -876,7 +871,7 @@ TODO: add filtering options
 <a name="ondewo.csi.ListS2sPipelinesResponse"></a>
 
 ### ListS2sPipelinesResponse
-The top-level message received from `ListS2sPipelines` endpoint.
+The top-level message received from <code>ListS2sPipelines</code> endpoint.
 
 
 | Field | Type | Label | Description |
@@ -891,8 +886,7 @@ The top-level message received from `ListS2sPipelines` endpoint.
 <a name="ondewo.csi.S2sPipeline"></a>
 
 ### S2sPipeline
-The top-level message sent by client to `CreateS2sPipeline` and `UpdateS2sPipeline` endpoints and received from
-`GetS2sPipeline` endpoint.
+The top-level message sent by client to <code>CreateS2sPipeline</code> and <code>UpdateS2sPipeline</code> endpoints and received from <code>GetS2sPipeline</code> endpoint.
 
 
 | Field | Type | Label | Description |
@@ -911,7 +905,7 @@ The top-level message sent by client to `CreateS2sPipeline` and `UpdateS2sPipeli
 <a name="ondewo.csi.S2sPipelineId"></a>
 
 ### S2sPipelineId
-The top-level message sent by client to `GetS2sPipeline` and `DeleteS2sPipeline` endpoints.
+The top-level message sent by client to <code>GetS2sPipeline</code> and <code>DeleteS2sPipeline</code> endpoints.
 
 
 | Field | Type | Label | Description |
@@ -926,23 +920,20 @@ The top-level message sent by client to `GetS2sPipeline` and `DeleteS2sPipeline`
 <a name="ondewo.csi.S2sStreamRequest"></a>
 
 ### S2sStreamRequest
-The top-level message sent by the client to the
-`S2sStream` method.
-
+The top-level message sent by the client to the <code>S2sStream</code> method.
 Multiple request messages should be sent in order:
-
-1.  The first message must contain `pipeline_id` and can contain `session_id` or `initial_intent_display_name`.
-    The message must not contain `audio` nor `end_of_stream`.
-
-2.  All subsequent messages must contain `audio`. If `end_of_stream` is `true`, the stream is closed.
+<ul>
+  <li>The first message must contain <code>pipeline_id</code> and can contain <code>session_id</code> or <code>initial_intent_display_name</code>. The message must not contain <code>audio</code> nor <code>end_of_stream</code>.</li>
+  <li>All subsequent messages must contain <code>audio</code>. If <code>end_of_stream</code> is <code>true</code>, the stream is closed.</li>
+</ul>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | pipeline_id | [string](#string) |  | Optional. The CSI pipeline ID specified in the initial request. |
-| session_id | [string](#string) |  | Optional. The session or call ID specified in the initial request. It’s up to the API caller to choose an appropriate string. It can be a random number or some type of user identifier (preferably hashed). |
-| audio | [bytes](#bytes) |  | If `true`, the recognizer will not return any further hypotheses about this piece of the audio. May only be populated for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. |
-| end_of_stream | [bool](#bool) |  |  |
+| session_id | [string](#string) |  | <p>Optional. The session or call ID specified in the initial request. It&apos;s up to the API caller to choose an appropriate string. It can be a random number or some type of user identifier (preferably hashed).</p> |
+| audio | [bytes](#bytes) |  |  |
+| end_of_stream | [bool](#bool) |  | If <code>true</code>, the recognizer will not return any further hypotheses about this piece of the audio. May only be populated for <code>event_type</code> = <code>RECOGNITION_EVENT_TRANSCRIPT</code>. |
 | initial_intent_display_name | [string](#string) |  | Optional. Intent display name to trigger in NLU system in the beginning of the conversation. |
 
 
@@ -953,19 +944,18 @@ Multiple request messages should be sent in order:
 <a name="ondewo.csi.S2sStreamResponse"></a>
 
 ### S2sStreamResponse
-The top-level message returned from the
-`S2sStream` method.
-
-A response message is returned for each utterance of the input stream. It contains the full response from NLU system
-in `detect_intent_response` or the full T2S response in `synthesize_response`.
+The top-level message returned from the <code>S2sStream</code> method.
+A response message is returned for each utterance of the input stream. It contains the full response from NLU system in <code>detect_intent_response</code> or the full T2S response in <code>synthesize_response</code>.
 Multiple response messages can be returned in order:
-
-1.  The first response message for an input utterance contains response from NLU system `detect_intent_response`
-    with detected intent and N fulfillment messages (N >= 0).
-
-2.  The next N response messages contain for each fulfillment message one of the following:
-     a. T2S response `synthesize_response` with synthesized audio
-     b. SIP trigger message `sip_trigger` with SIP trigger extracted from the fulfillment message
+<ul>
+  <li>The first response message for an input utterance contains response from NLU system <code>detect_intent_response</code> with detected intent and N fulfillment messages (N &gt;= 0).</li>
+  <li>The next N response messages contain for each fulfillment message one of the following:
+    <ul>
+      <li>T2S response <code>synthesize_response</code> with synthesized audio</li>
+      <li>SIP trigger message <code>sip_trigger</code> with SIP trigger extracted from the fulfillment message</li>
+    </ul>
+  </li>
+</ul>
 
 
 | Field | Type | Label | Description |
@@ -982,7 +972,7 @@ Multiple response messages can be returned in order:
 <a name="ondewo.csi.SetControlStatusRequest"></a>
 
 ### SetControlStatusRequest
-Request to set control status
+Request to set control status.
 
 
 | Field | Type | Label | Description |
@@ -997,7 +987,7 @@ Request to set control status
 <a name="ondewo.csi.SetControlStatusResponse"></a>
 
 ### SetControlStatusResponse
-Response of setting the control status with the old and new status objects
+Response of setting the control status with the old and new status objects.
 
 
 | Field | Type | Label | Description |
@@ -1013,7 +1003,7 @@ Response of setting the control status with the old and new status objects
 <a name="ondewo.csi.SipTrigger"></a>
 
 ### SipTrigger
-SIP trigger message
+SIP trigger message.
 
 
 | Field | Type | Label | Description |
@@ -1031,85 +1021,87 @@ SIP trigger message
 <a name="ondewo.csi.ConditionType"></a>
 
 ### ConditionType
-Type of condition that need to be satisfied to execute a control message
+Type of condition that need to be satisfied to execute a control message.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | UNKNOWTYPE | 0 | Unknown type |
-| immediate | 1 | Immediate execution of the control message Example value need be given as a string in the format: <pre><code>value="5"</code></pre> |
-| duration | 2 | Duration in number of seconds after a control message should be executed, Example value need be given as a string in the format: <pre><code>value="10"</code></pre> |
-| datetime | 3 | Date and time when a control message should be executed, Example value need be given as a string in the format: <pre><code>value="2021-12-23T13:45:00.000Z"</code></pre> |
-| interactions | 4 | Number of interactions of the user with an ONDEWO AI agent after a control message should be executed Example value need be given as a string in the format: <pre><code>value="4"</code></pre> |
+| immediate | 1 | Immediate execution of the control message. Example value need be given as a string in the format: <pre><code>value=&quot;5&quot;</code></pre> |
+| duration | 2 | Duration in number of seconds after a control message should be executed. Example value need be given as a string in the format: <pre><code>value=&quot;10&quot;</code></pre> |
+| datetime | 3 | Date and time when a control message should be executed. Example value need be given as a string in the format: <pre><code>value=&quot;2021-12-23T13:45:00.000Z&quot;</code></pre> |
+| interactions | 4 | Number of interactions of the user with an ONDEWO AI agent after a control message should be executed. Example value need be given as a string in the format: <pre><code>value=&quot;4&quot;</code></pre> |
 
 
 
 <a name="ondewo.csi.ControlMessageServiceMethod"></a>
 
 ### ControlMessageServiceMethod
-Control message methods to control services during a conversation
+Control message methods to control services during a conversation.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | UNKNOWNMETHOD | 0 | Unknown method (default) |
 | update_config | 1 | CSI: update configuration
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_s2t", "method": "update_config", "parameters": [ { // Speech2TextConfig object “s2tPipelineId” : “s2t_pipeline_german_1”, “languageModelName” : “language_model_german” }, { // condition_start object => should take effect immediately "type": "immediate", “value”: “0” }, { // condition_end object - s2t config will be changed back to // last valid configuration after 10 interactions of user with // the AI agent "type": "interactions", 	 "value": 10 }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { &quot;service&quot;: &quot;ondewo_s2t&quot;, &quot;method&quot;: &quot;update_config&quot;, &quot;parameters&quot;: [ { // Speech2TextConfig object &quot;s2tPipelineId&quot; : &quot;s2t_pipeline_german_1&quot;, &quot;languageModelName&quot; : &quot;language_model_german&quot; }, { // condition_start object =&gt; should take effect immediately &quot;type&quot;: &quot;immediate&quot;, &quot;value&quot;: &quot;0&quot; }, { // condition_end object - s2t config will be changed back to // last valid configuration after 10 interactions of user with // the AI agent &quot;type&quot;: &quot;interactions&quot;, 	 &quot;value&quot;: 10 }, ] } </code></pre> |
 | undo_config | 2 | CSI: undo previous configuration update
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_s2t", "method": "undo_config", "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change 	 // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { &quot;service&quot;: &quot;ondewo_s2t&quot;, &quot;method&quot;: &quot;undo_config&quot;, &quot;parameters&quot;: [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change 	 // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty &quot;{}&quot; }, ] } </code></pre> |
 | reset_config | 3 | CSI: reset configuration to default
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_s2t", "method": "reset_config", "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { &quot;service&quot;: &quot;ondewo_s2t&quot;, &quot;method&quot;: &quot;reset_config&quot;, &quot;parameters&quot;: [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty &quot;{}&quot; }, ] } </code></pre> |
 | end_call | 4 | SIP: end conversation / hang up call
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_sip", "method": "end_call", "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { &quot;service&quot;: &quot;ondewo_sip&quot;, &quot;method&quot;: &quot;end_call&quot;, &quot;parameters&quot;: [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty &quot;{}&quot; }, ] } </code></pre> |
 | transfer_call | 5 | SIP: transfer call
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_sip", "method": "transfer_call", "parameters": [ { 	 	 "transfer_id": "+43123456789@127.0.0.10:5060", }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { &quot;service&quot;: &quot;ondewo_sip&quot;, &quot;method&quot;: &quot;transfer_call&quot;, &quot;parameters&quot;: [ { 	 	 &quot;transfer_id&quot;: &quot;+43123456789@127.0.0.10:5060&quot;, }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty &quot;{}&quot; }, ] } </code></pre> |
 | play_wav_files | 6 | SIP: play wav files on the call
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_sip", "method": " "play_wav_files", "parameters": [ { 	 	 "wav_files": [ <bytes_of_file_1>, <bytes_of_file_2>, <bytes_of_file_3>, ] }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { &quot;service&quot;: &quot;ondewo_sip&quot;, &quot;method&quot;: &quot;play_wav_files&quot;, &quot;parameters&quot;: [ { 	 	 &quot;wav_files&quot;: [ &lt;bytes_of_file_1&gt;, &lt;bytes_of_file_2&gt;, &lt;bytes_of_file_3&gt;, ] }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
 | play_text | 7 | SIP: play a certain text on the phone based on Text-2-Speech synthesis
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_sip", "method": "play_text", "parameters": [ { 	 	 "text": "Welcome from ONDEWO AI Agent! How are you today?", }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { &quot;service&quot;: &quot;ondewo_sip&quot;, &quot;method&quot;: &quot;play_text&quot;, &quot;parameters&quot;: [ { 	 	 &quot;text&quot;: &quot;Welcome from ONDEWO AI Agent! How are you today?&quot;, }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty &quot;{}&quot; }, ] } </code></pre> |
 | mute | 8 | SIP: mute microphone
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_sip", "method": "mute", "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { &quot;service&quot;: &quot;ondewo_sip&quot;, &quot;method&quot;: &quot;mute&quot;, &quot;parameters&quot;: [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty &quot;{}&quot; }, ] } </code></pre> |
 | un_mute | 9 | SIP: unmute microphone
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_sip", "method": "un_mute", "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { &quot;service&quot;: &quot;ondewo_sip&quot;, &quot;method&quot;: &quot;un_mute&quot;, &quot;parameters&quot;: [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty &quot;{}&quot; }, ] } </code></pre> |
 | stop_all_control_messages | 10 | CSI: stop the execution of all running and scheduled control messages
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "", <= empty string since it is for all services / no specific service "method": "stop_all_control_messages", "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { &quot;service&quot;: &quot;&quot;, &lt;= empty string since it is for all services / no specific service &quot;method&quot;: &quot;stop_all_control_messages&quot;, "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
 | train_agent | 11 | NLU: train agent
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "train_agent", "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { &quot;service&quot;: &quot;ondewo_nlu&quot;, &quot;method&quot;: &quot;train_agent&quot;, &quot;parameters&quot;: [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty &quot;{}&quot; }, ] } </code></pre> |
 | cancel_train_agent | 12 | NLU: cancel the ongoing agent
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "cancel_train_agent", "parameters": [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
-| delete_session | 13 | NLU: delete session all all session-related information
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { &quot;service&quot;: &quot;ondewo_nlu&quot;, &quot;method&quot;: &quot;cancel_train_agent&quot;, &quot;parameters&quot;: [ { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty &quot;{}&quot; }, ] } </code></pre> |
+| delete_session | 13 | NLU: delete session and all session-related information
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "delete_session", "parameters": [ { 	 	 "session_id": "97ea1a20-0784-442b-93c0-eb9e2469420e", }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { &quot;service&quot;: &quot;ondewo_nlu&quot;, &quot;method&quot;: &quot;delete_session&quot;, &quot;parameters&quot;: [ { 	 	 &quot;session_id&quot;: &quot;97ea1a20-0784-442b-93c0-eb9e2469420e&quot;, }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty &quot;{}&quot; }, ] } </code></pre> |
 | delete_all_contexts | 14 | NLU: delete all context information in the current session
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "delete_all_contexts", "parameters": [ { 	 	 "session_id": "97ea1a20-0784-442b-93c0-eb9e2469420e", }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { &quot;service&quot;: &quot;ondewo_nlu&quot;, &quot;method&quot;: &quot;delete_all_contexts&quot;, &quot;parameters&quot;: [ { 	 	 &quot;session_id&quot;: &quot;97ea1a20-0784-442b-93c0-eb9e2469420e&quot;, }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty &quot;{}&quot; }, ] } </code></pre> |
 | create_context | 15 | NLU: create a context based on the provided contextual information in the current session
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "create_context", "parameters": [ { 	 	 "context": { <== <NLU Context Object as JSON object> name": "projects/db46dcf8-2d2c-4115-ac38-eff443ea0e72/agent/sessions/ss2ea1a20-0784-442b-93c0-eb9e2469420e/contexts/78ea1a20-0784-442b-93c0-eb9e2469420e", ..., } }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "create_context", "parameters": [ { 	 	 &quot;context&quot;: { &lt;== &lt;NLU Context Object as JSON object&gt; &quot;name&quot;: &quot;projects/db46dcf8-2d2c-4115-ac38-eff443ea0e72/agent/sessions/ss2ea1a20-0784-442b-93c0-eb9e2469420e/contexts/78ea1a20-0784-442b-93c0-eb9e2469420e&quot;, ..., } }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
 | update_context | 16 | NLU: update an existing context based on the provided contextual information in the current session
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "update_context", "parameters": [ { 	 	 "context": { <== <NLU Context Object as JSON object> name": "projects/db46dcf8-2d2c-4115-ac38-eff443ea0e72/agent/sessions/2dea1a20-0784-442b-93c0-eb9e2469420e/contexts/78ea1a20-0784-442b-93c0-eb9e2469420e", ..., } }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "update_context", "parameters": [ { 	 	 &quot;context&quot;: { &lt;== &lt;NLU Context Object as JSON object&gt; &quot;name&quot;: &quot;projects/db46dcf8-2d2c-4115-ac38-eff443ea0e72/agent/sessions/2dea1a20-0784-442b-93c0-eb9e2469420e/contexts/78ea1a20-0784-442b-93c0-eb9e2469420e&quot;, ..., } }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
 | delete_context | 17 | NLU: delete an existing context including all contextual information in the current session
 
-<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { "service": "ondewo_nlu", "method": "delete_context", "parameters": [ { 	 	 "session_id": "97ea1a20-0784-442b-93c0-eb9e2469420e", 	 	 "context_name": "78ea1a20-0784-442b-93c0-eb9e2469420e", }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
-| detect_intent | 18 | NLU: execute a detect intent request based on the provided information in the current session { "service": "ondewo_nlu", "method": "detect_intent", "parameters": [ { 	 	 "session_id": "97ea1a20-0784-442b-93c0-eb9e2469420e", 	 	 "text": "Are you an artificial intelligence?", }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty “{}” }, ] } </code></pre> |
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { &quot;service&quot;: &quot;ondewo_nlu&quot;, &quot;method&quot;: &quot;delete_context&quot;, &quot;parameters&quot;: [ { 	 	 &quot;session_id&quot;: &quot;97ea1a20-0784-442b-93c0-eb9e2469420e&quot;, 	 	 &quot;context_name&quot;: &quot;78ea1a20-0784-442b-93c0-eb9e2469420e&quot;, }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty &quot;{}&quot; }, ] } </code></pre> |
+| detect_intent | 18 | NLU: execute a detect intent request based on the provided information in the current session
+
+<p>Example of a JSON how to invoke a control message via ONDEWO RABBITMQ service:</p> <pre><code> { &quot;service&quot;: &quot;ondewo_nlu&quot;, &quot;method&quot;: &quot;detect_intent&quot;, &quot;parameters&quot;: [ { 	 	 &quot;session_id&quot;: &quot;97ea1a20-0784-442b-93c0-eb9e2469420e&quot;, 	 	 &quot;text&quot;: &quot;Are you an artificial intelligence?&quot;, }, { 	 	 // condition_start object }, { 	 	 // condition_end object (OPTIONAL) - for permanent change // no condition_end needs to be supplied i.e. 		 // this parameter is missing or empty &quot;{}&quot; }, ] } </code></pre> |
 
 
 
 <a name="ondewo.csi.ControlMessageServiceName"></a>
 
 ### ControlMessageServiceName
-Control message services
+Control message services.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -1127,7 +1119,7 @@ Control message services
 <a name="ondewo.csi.ControlStatus"></a>
 
 ### ControlStatus
-Control status
+Control status.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -1162,37 +1154,37 @@ type of the SIP trigger
 <a name="ondewo.csi.Conversations"></a>
 
 ### Conversations
-endpoints of csi service
+<p>Endpoints of CSI service.</p>
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| CreateS2sPipeline | [S2sPipeline](#ondewo.csi.S2sPipeline) | [.google.protobuf.Empty](#google.protobuf.Empty) | Create the S2S pipeline specified in the request message. The pipeline with the specified ID must not exist.
+| CreateS2sPipeline | [S2sPipeline](#ondewo.csi.S2sPipeline) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Create the S2S pipeline specified in the request message. The pipeline with the specified ID must not exist.</p>
 
 <p>Examples:</p>
 
 <pre> grpcurl -plaintext -d '{ "id": "pizza", "s2t_pipeline_id": "default_german", "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49", "nlu_language_code": "de", "t2s_pipeline_id": "default_german" }' localhost:50051 ondewo.csi.Conversations.CreateS2sPipeline </pre> <samp>{}</samp> |
-| GetS2sPipeline | [S2sPipelineId](#ondewo.csi.S2sPipelineId) | [S2sPipeline](#ondewo.csi.S2sPipeline) | Retrieve the S2S pipeline with the ID specified in the request message.
+| GetS2sPipeline | [S2sPipelineId](#ondewo.csi.S2sPipelineId) | [S2sPipeline](#ondewo.csi.S2sPipeline) | <p>Retrieve the S2S pipeline with the ID specified in the request message.</p>
 
 <p>Examples:</p>
 
 <pre> grpcurl -plaintext -d '{"id": "pizza"}' localhost:50051 ondewo.csi.Conversations.GetS2sPipeline </pre> <samp>{ "id": "pizza", "s2t_pipeline_id": "default_german", "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49", "nlu_language_code": "de", "t2s_pipeline_id": "default_german" } </samp> |
-| UpdateS2sPipeline | [S2sPipeline](#ondewo.csi.S2sPipeline) | [.google.protobuf.Empty](#google.protobuf.Empty) | Update the S2S pipeline specified in the request message. The pipeline must exist.
+| UpdateS2sPipeline | [S2sPipeline](#ondewo.csi.S2sPipeline) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Update the S2S pipeline specified in the request message. The pipeline must exist.</p>
 
 <p>Examples:</p>
 
 <pre> grpcurl -plaintext -d '{ "id": "pizza", "s2t_pipeline_id": "default_german", "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49", "nlu_language_code": "en", "t2s_pipeline_id": "default_german" }' localhost:50051 ondewo.csi.Conversations.UpdateS2sPipeline </pre> <samp>{}</samp> |
-| DeleteS2sPipeline | [S2sPipelineId](#ondewo.csi.S2sPipelineId) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete the S2S pipeline with the ID specified in the request message. The pipeline must exist.
+| DeleteS2sPipeline | [S2sPipelineId](#ondewo.csi.S2sPipelineId) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Delete the S2S pipeline with the ID specified in the request message. The pipeline must exist.</p>
 
 <p>Examples:</p>
 
 <pre> grpcurl -plaintext -d '{"id": "pizza"}' localhost:50051 ondewo.csi.Conversations.DeleteS2sPipeline </pre> <samp>{}</samp> |
-| ListS2sPipelines | [ListS2sPipelinesRequest](#ondewo.csi.ListS2sPipelinesRequest) | [ListS2sPipelinesResponse](#ondewo.csi.ListS2sPipelinesResponse) | List all S2S pipelines of the server.
+| ListS2sPipelines | [ListS2sPipelinesRequest](#ondewo.csi.ListS2sPipelinesRequest) | [ListS2sPipelinesResponse](#ondewo.csi.ListS2sPipelinesResponse) | <p>List all S2S pipelines of the server.</p>
 
 <p>Examples:</p>
 
 <pre> grpcurl -plaintext localhost:50051 ondewo.csi.Conversations.ListS2sPipelines </pre> <samp>{ "pipelines": [ { "id": "pizza", "s2t_pipeline_id": "default_german", "nlu_project_id": "1f3425d2-41fd-4970-87e6-88e8e121bb49", "nlu_language_code": "de", "t2s_pipeline_id": "default_german" } ] }</samp> |
-| S2sStream | [S2sStreamRequest](#ondewo.csi.S2sStreamRequest) stream | [S2sStreamResponse](#ondewo.csi.S2sStreamResponse) stream | Processes a natural language query in audio format in a streaming fashion and returns structured, actionable data as a result. |
-| CheckUpstreamHealth | [.google.protobuf.Empty](#google.protobuf.Empty) | [CheckUpstreamHealthResponse](#ondewo.csi.CheckUpstreamHealthResponse) | Check the health of S2T, NLU and T2S servers
+| S2sStream | [S2sStreamRequest](#ondewo.csi.S2sStreamRequest) stream | [S2sStreamResponse](#ondewo.csi.S2sStreamResponse) stream | <p>Processes a natural language query in audio format in a streaming fashion and returns structured, actionable data as a result.</p> |
+| CheckUpstreamHealth | [.google.protobuf.Empty](#google.protobuf.Empty) | [CheckUpstreamHealthResponse](#ondewo.csi.CheckUpstreamHealthResponse) | <p>Check the health of S2T, NLU and T2S servers.</p>
 
 <p>Examples:</p>
 
@@ -1201,8 +1193,8 @@ endpoints of csi service
 All upstreams healthy: <samp>{}</samp>
 
 All upstreams unhealthy: <samp>{ "s2t_status": { "code": 14, "message": "failed to connect to all addresses" }, "nlu_status": { "code": 14, "message": "failed to connect to all addresses" }, "t2s_status": { "code": 14, "message": "failed to connect to all addresses" } }</samp> |
-| GetControlStream | [ControlStreamRequest](#ondewo.csi.ControlStreamRequest) | [ControlStreamResponse](#ondewo.csi.ControlStreamResponse) stream | Get the control stream to control sip, t2s, s2t etc. during a conversation |
-| SetControlStatus | [SetControlStatusRequest](#ondewo.csi.SetControlStatusRequest) | [SetControlStatusResponse](#ondewo.csi.SetControlStatusResponse) | Send a message on the control stream to control sip, t2s, s2t etc. during a conversation |
+| GetControlStream | [ControlStreamRequest](#ondewo.csi.ControlStreamRequest) | [ControlStreamResponse](#ondewo.csi.ControlStreamResponse) stream | <p>Get the control stream to control sip, t2s, s2t etc. during a conversation.</p> |
+| SetControlStatus | [SetControlStatusRequest](#ondewo.csi.SetControlStatusRequest) | [SetControlStatusResponse](#ondewo.csi.SetControlStatusResponse) | <p>Send a message on the control stream to control sip, t2s, s2t etc. during a conversation.</p> |
 
  <!-- end services -->
 
