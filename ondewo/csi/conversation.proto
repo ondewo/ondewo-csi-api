@@ -201,7 +201,6 @@ message S2sStreamRequest {
     string session_id = 2;
 
     // Optional. The input audio content to be recognized.
-
     bytes audio = 3;
     // If <code>true</code>, the recognizer will not return any further hypotheses about this piece of the audio. May only be populated for <code>event_type</code> = <code>RECOGNITION_EVENT_TRANSCRIPT</code>.
     bool end_of_stream = 4;
@@ -225,6 +224,7 @@ message S2sStreamRequest {
 // </ul>
 message S2sStreamResponse {
 
+    // Response type for the S2S stream. One of the following will be populated.
     oneof response {
 
         // full NLU detect intent response
@@ -242,7 +242,7 @@ message S2sStreamResponse {
 // SIP trigger message.
 message SipTrigger {
 
-    // type of the SIP trigger
+    // Type of SIP trigger that can be executed during a conversation.
     enum SipTriggerType {
 
         // should never be used
@@ -271,6 +271,7 @@ message SipTrigger {
 
     }
 
+    // Type of the SIP trigger.
     SipTriggerType type = 1;
 
     // extra parameters for the trigger
