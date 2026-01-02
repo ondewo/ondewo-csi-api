@@ -932,7 +932,7 @@ Multiple request messages should be sent in order:
 | ----- | ---- | ----- | ----------- |
 | pipeline_id | [string](#string) |  | Optional. The CSI pipeline ID specified in the initial request. |
 | session_id | [string](#string) |  | <p>Optional. The session or call ID specified in the initial request. It&apos;s up to the API caller to choose an appropriate string. It can be a random number or some type of user identifier (preferably hashed).</p> |
-| audio | [bytes](#bytes) |  |  |
+| audio | [bytes](#bytes) |  | Optional. The input audio content to be recognized. |
 | end_of_stream | [bool](#bool) |  | If <code>true</code>, the recognizer will not return any further hypotheses about this piece of the audio. May only be populated for <code>event_type</code> = <code>RECOGNITION_EVENT_TRANSCRIPT</code>. |
 | initial_intent_display_name | [string](#string) |  | Optional. Intent display name to trigger in NLU system in the beginning of the conversation. |
 
@@ -1008,7 +1008,7 @@ SIP trigger message.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [SipTrigger.SipTriggerType](#ondewo.csi.SipTrigger.SipTriggerType) |  |  |
+| type | [SipTrigger.SipTriggerType](#ondewo.csi.SipTrigger.SipTriggerType) |  | Type of the SIP trigger. |
 | content | [google.protobuf.Struct](#google.protobuf.Struct) |  | extra parameters for the trigger |
 
 
@@ -1132,7 +1132,7 @@ Control status.
 <a name="ondewo.csi.SipTrigger.SipTriggerType"></a>
 
 ### SipTrigger.SipTriggerType
-type of the SIP trigger
+Type of SIP trigger that can be executed during a conversation.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
