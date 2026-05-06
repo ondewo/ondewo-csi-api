@@ -341,8 +341,42 @@ run_release_with_devops: ## Gets Credentials from devops-repo and runs release w
 	$(eval info:= $(shell cat ${DEVOPS_ACCOUNT_DIR}/account_github.env | grep GITHUB_GH))
 	make release $(info)
 
+update_setup: ## Update version in setup files (if any)
+	@echo "No setup files to update (version managed via ONDEWO_CSI_API_VERSION in Makefile)"
+
 spc: ## Checks if the Release Branch, Tag and Pypi version already exist
 	$(eval filtered_branches:= $(shell git branch --all | grep "release/${ONDEWO_CSI_API_VERSION}"))
 	$(eval filtered_tags:= $(shell git tag --list | grep "${ONDEWO_CSI_API_VERSION}"))
 	@if test "$(filtered_branches)" != ""; then echo "-- Test 1: Branch exists!!" & exit 1; else echo "-- Test 1: Branch is fine";fi
 	@if test "$(filtered_tags)" != ""; then echo "-- Test 2: Tag exists!!" & exit 1; else echo "-- Test 2: Tag is fine";fi
+
+########################################################
+#		UNRELEASE
+
+unrelease: build_utils_docker_image unrelease_to_github_via_docker_image delete_release_branch delete_release_tag ## Automate the entire unrelease process
+	@echo "Unrelease Finished"
+
+delete_gh_release: ## Delete release from GitHub
+	gh release delete --repo $(GH_REPO) "$(ONDEWO_CSI_API_VERSION)" --yes
+	gh api repos/ondewo/ondewo-csi-api/git/refs/tags/${ONDEWO_CSI_API_VERSION} -X DELETE
+
+delete_release_branch: ## Delete Release Branch locally and remotely
+	-git branch -d "release/${ONDEWO_CSI_API_VERSION}"
+	-git push origin --delete "release/${ONDEWO_CSI_API_VERSION}"
+
+delete_release_tag: ## Delete Release Tag locally and remotely
+	-git tag -d "${ONDEWO_CSI_API_VERSION}"
+	-git push origin --delete "${ONDEWO_CSI_API_VERSION}"
+	-git fetch --prune
+
+unrelease_to_github_via_docker_image: delete_gh_release ## Unrelease from Github via docker
+	docker run --rm \
+		-e GITHUB_GH_TOKEN=${GITHUB_GH_TOKEN} \
+		${IMAGE_UTILS_NAME} make delete_gh_release
+
+ondewo_unrelease: clone_devops_accounts run_unrelease_with_devops ## Unrelease with credentials from devops-accounts repo
+	@rm -rf ${DEVOPS_ACCOUNT_GIT}
+
+run_unrelease_with_devops: ## Gets Credentials from devops-repo and runs unrelease with them
+	$(eval info:= $(shell cat ${DEVOPS_ACCOUNT_DIR}/account_github.env | grep GITHUB_GH))
+	make unrelease $(info)
