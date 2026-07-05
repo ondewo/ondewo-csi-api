@@ -18,89 +18,124 @@ package ondewo.t2s;
 import "google/protobuf/empty.proto";
 import "google/protobuf/struct.proto";
 
-// <p>Text2Speech service provides endpoints for text-to-speech generation.</p>
+// Text2Speech service provides endpoints for text-to-speech generation.
 service Text2Speech {
 
-    // <p>Synthesizes a specific text sent in the request with the provided configuration requirements
-    // and retrieves a response that includes the synthesized text as audio and the requested configuration.</p>
+    // Synthesize RPC
+    //
+    // Synthesizes a specific text sent in the request with the provided configuration requirements
+    // and retrieves a response that includes the synthesized text as audio and the requested configuration.
     rpc Synthesize(SynthesizeRequest) returns (SynthesizeResponse);
 
-    // <p>Performs batch synthesis by accepting a batch of synthesis requests and returning a batch response.
-    // This can be more efficient for generating predictions on the AI model in bulk.</p>
+    // BatchSynthesize RPC
+    //
+    // Performs batch synthesis by accepting a batch of synthesis requests and returning a batch response.
+    // This can be more efficient for generating predictions on the AI model in bulk.
     rpc BatchSynthesize(BatchSynthesizeRequest) returns (BatchSynthesizeResponse);
 
-    // <p>Performs streaming synthesis by accepting stream of input text and returning a stream of generated audio.</p>
-    rpc StreamingSynthesize(stream StreamingSynthesizeRequest) returns (stream StreamingSynthesizeResponse);
-
-    // <p>Normalizes a text according to the specific pipeline&apos;s normalization rules.</p>
+    // NormalizeText RPC
+    //
+    // Normalizes a text according to the specific pipeline's normalization rules.
     rpc NormalizeText(NormalizeTextRequest) returns (NormalizeTextResponse);
 
-    // <p>Retrieves the configuration of the specified text-to-speech pipeline.</p>
+    // GetT2sPipeline RPC
+    //
+    // Retrieves the configuration of the specified text-to-speech pipeline.
     rpc GetT2sPipeline(T2sPipelineId) returns (Text2SpeechConfig);
 
-    // <p>Creates a new text-to-speech pipeline with the provided configuration and returns its pipeline ID.</p>
+    // CreateT2sPipeline RPC
+    //
+    // Creates a new text-to-speech pipeline with the provided configuration and returns its pipeline ID.
     rpc CreateT2sPipeline(Text2SpeechConfig) returns (T2sPipelineId);
 
-    // <p>Deletes the specified text-to-speech pipeline.</p>
+    // DeleteT2sPipeline RPC
+    //
+    // Deletes the specified text-to-speech pipeline.
     rpc DeleteT2sPipeline(T2sPipelineId) returns (google.protobuf.Empty);
 
-    // <p>Updates the specified text-to-speech pipeline with the given configuration.</p>
+    // UpdateT2sPipeline RPC
+    //
+    // Updates the specified text-to-speech pipeline with the given configuration.
     rpc UpdateT2sPipeline(Text2SpeechConfig) returns (google.protobuf.Empty);
 
-    // <p>Retrieves a list of text-to-speech pipelines based on specific requirements.</p>
+    // ListT2sPipelines RPC
+    //
+    // Retrieves a list of text-to-speech pipelines based on specific requirements.
     rpc ListT2sPipelines(ListT2sPipelinesRequest) returns (ListT2sPipelinesResponse);
 
-    // <p>Retrieves a list of languages available based on specific configuration requirements.</p>
+    // ListT2sLanguages RPC
+    //
+    // Retrieves a list of languages available based on specific configuration requirements.
     rpc ListT2sLanguages(ListT2sLanguagesRequest) returns (ListT2sLanguagesResponse);
 
-    // <p>Retrieves a list of domains available based on specific configuration requirements.</p>
+    // ListT2sDomains RPC
+    //
+    // Retrieves a list of domains available based on specific configuration requirements.
     rpc ListT2sDomains(ListT2sDomainsRequest) returns (ListT2sDomainsResponse);
 
-    // <p>Retrieves a list of normalization pipelines based on specific requirements.</p>
-    rpc ListT2sNormalizationPipelines(ListT2sNormalizationPipelinesRequest) returns (ListT2sNormalizationPipelinesResponse);
-
-    // <p>Retrieves the version information of the running text-to-speech server.</p>
+    // GetServiceInfo RPC
+    //
+    // Retrieves the version information of the running text-to-speech server.
     rpc GetServiceInfo(google.protobuf.Empty) returns (T2SGetServiceInfoResponse);
 
-    // <p>Retrieves a custom phonemizer based on the provided PhonemizerId.</p>
+    // GetCustomPhonemizer RPC
+    //
+    // Retrieves a custom phonemizer based on the provided PhonemizerId.
     rpc GetCustomPhonemizer(PhonemizerId) returns (CustomPhonemizerProto);
 
-    // <p>Creates a custom phonemizer based on the provided CreateCustomPhonemizerRequest.
-    // Returns the PhonemizerId associated with the created custom phonemizer.</p>
+    // CreateCustomPhonemizer RPC
+    //
+    // Creates a custom phonemizer based on the provided CreateCustomPhonemizerRequest.
+    // Returns the PhonemizerId associated with the created custom phonemizer.
     rpc CreateCustomPhonemizer(CreateCustomPhonemizerRequest) returns (PhonemizerId);
 
-    // <p>Deletes a custom phonemizer based on the provided PhonemizerId.
-    // Returns an Empty response upon successful deletion.</p>
+    // DeleteCustomPhonemizer RPC
+    //
+    // Deletes a custom phonemizer based on the provided PhonemizerId.
+    // Returns an Empty response upon successful deletion.
     rpc DeleteCustomPhonemizer(PhonemizerId) returns (google.protobuf.Empty);
 
-    // <p>Updates the specified custom phonemizer with the provided configuration.</p>
+    // UpdateCustomPhonemizer RPC
+    //
+    // Updates the specified custom phonemizer with the provided configuration.
     rpc UpdateCustomPhonemizer(UpdateCustomPhonemizerRequest) returns (CustomPhonemizerProto);
 
-    // <p>Retrieves a list of custom phonemizers based on specific requirements.</p>
+    // ListCustomPhonemizer RPC
+    //
+    // Retrieves a list of custom phonemizers based on specific requirements.
     rpc ListCustomPhonemizer(ListCustomPhonemizerRequest) returns (ListCustomPhonemizerResponse);
 }
 
-// <p>Represents a Synthesize Request.</p>
-// <p>A Synthesize Request contains the information need to perform a text to speech conversion.</p>
+// Represents a Synthesize Request.
+// A Synthesize Request contains the information need to perform a text to speech conversion.
 message SynthesizeRequest {
 
     // Required. Represents the text that will be transformed to speech.
-    // Synthesize text:
-    // <ul>
-    //   <li>Simple text: <pre><code>Hello, how are you?</code></pre></li>
-    // </ul>
-    // Examples to modulate the voice based on SSML tags and Arpabet phonemes:
-    // <ul>
-    //   <li>SSML Tag Phone: <pre><code>&lt;say-as interpret-as=&quot;phone&quot;&gt;+12354321&lt;/say-as&gt;</code></pre></li>
-    //   <li>SSML Tag Email: <pre><code>&lt;say-as interpret-as=&quot;email&quot;&gt;voices@ondewo.com&lt;/say-as&gt;</code></pre></li>
-    //   <li>SSML Tag URL: <pre><code>&lt;say-as interpret-as=&quot;url&quot;&gt;ondewo.com/en/&lt;/say-as&gt;</code></pre></li>
-    //   <li>SSML Tag Spell: <pre><code>&lt;say-as interpret-as=&quot;spell&quot;&gt;AP732&lt;/say-as&gt;</code></pre></li>
-    //   <li>SSML Tag Spell With Names: <pre><code>&lt;say-as interpret-as=&quot;spell-with-names&quot;&gt;AHO32&lt;/say-as&gt;</code></pre></li>
-    //   <li>SSML Tag Callsigns Short: <pre><code>&lt;say-as interpret-as=&quot;callsign-short&quot;&gt;AUA439&lt;/say-as&gt;</code></pre></li>
-    //   <li>SSML Tag Callsigns Long: <pre><code>&lt;say-as interpret-as=&quot;callsign-long&quot;&gt;AAL439&lt;/say-as&gt;</code></pre></li>
-    //   <li>SSML Tag Break Tag: <pre><code>I am going to take a 2 seconds break &lt;break time=&quot;2.0&quot;/&gt; done</code></pre></li>
-    //   <li>Arpabet Phonemes: <pre><code>Hello I am {AE2 L EH0 G Z AE1 N D R AH0}</code></pre></li>
-    // </ul>
+    //
+    // <p> Synthesize text: </p>
+    //
+    // - Simple text: <pre><code>Hello, how are you?</code></pre>
+    //
+    // <p>Examples to modulate the voice based on SSML tags and Arpabet phonemes:</p>
+    //
+    // - SSML Tag Phone: <pre><code>&lt;say-as interpret-as="phone">+12354321&lt;/say-as&gt;</code></pre>
+    //
+    // - SSML Tag Email: <pre><code>&lt;say-as interpret-as="email">voices@ondewo.com&lt;/say-as&gt;</code></pre>
+    //
+    // - SSML Tag URL: <pre><code>&lt;say-as interpret-as="url">ondewo.com/en/&lt;/say-as&gt;</code></pre>
+    //
+    // - SSML Tag Spell: <pre><code>&lt;say-as interpret-as="spell">AP732&lt;/say-as&gt;</code></pre>
+    //
+    // - SSML Tag Spell With Names: <pre><code>&lt;say-as interpret-as="spell-with-names">AHO32&lt;/say-as&gt;</code></pre>
+    //
+    // - SSML Tag Callsigns Short: <pre><code>&lt;say-as interpret-as="callsign-short">AUA439&lt;/say-as&gt;</code></pre>
+    //
+    // - SSML Tag Callsigns Long: <pre><code>&lt;say-as interpret-as="callsign-long">AAL439&lt;/say-as&gt;</code></pre>
+    //
+    // - SSML Tag Break Tag: <pre><code>I am going to take a 2 seconds break <break time="2.0"/> done</code></pre>
+    //
+    // - Arpabet Phonemes: <pre><code>Hello I am {AE2 L EH0 G Z AE1 N D R AH0}</code></pre>
+    //
     string text = 1;
 
     // Required. Represents the specifications needed to do the text to speech transformation.
@@ -108,33 +143,21 @@ message SynthesizeRequest {
 
 }
 
-// <p>BatchSynthesizeRequest message is used to send a batch request for synthesis.</p>
+// BatchSynthesizeRequest message is used to send a batch request for synthesis.
 message BatchSynthesizeRequest {
 
     // Repeated field holding individual synthesis requests that make up the batch request.
     repeated SynthesizeRequest batch_request = 1;
 }
 
-// <p>StreamingSynthesizeRequest is used to perform streaming synthesize.</p>
-message StreamingSynthesizeRequest {
-
-    // Required. Represents the text that will be transformed to speech.
-    // All the properties according to the input text in SynthesizeRequest can be also applied here.
-    string text = 1;
-
-    // Required. Represents the specifications needed to do the text to speech transformation.
-    RequestConfig config = 2;
-
-}
-
-// <p>BatchSynthesizeResponse message is used to store the responses for a batch synthesis request.</p>
+// BatchSynthesizeResponse message is used to store the responses for a batch synthesis request.
 message BatchSynthesizeResponse {
 
     // Repeated field holding individual synthesis responses that correspond to the input requests in the batch.
     repeated SynthesizeResponse batch_response = 1;
 }
 
-// <p>Represents a Configuration for the text to speech conversion.</p>
+// Represents a Configuration for the text to speech conversion.
 message RequestConfig {
 
     // Required. Represents the pipeline id of the model configuration that will be used.
@@ -179,68 +202,23 @@ message RequestConfig {
         bool use_cache = 7;
     }
 
-    reserved 8;
-    reserved "normalizer";
+    oneof oneof_normalizer {
+        // Optional. Define what normalizer to synthesize the text with.
+        // The default value is the language of the pipeline.
+        string normalizer = 8;
+    }
 
-    // Optional. t2s_service_config provides the configuration of the service such as API key, bearer tokens, JWT,
-    // and other header information as key value pairs, e.g., <pre><code>MY_API_KEY=&apos;LKJDIFe244LKJOI&apos;</code></pre>
-    //
-    // A. For Amazon T2S service, the following arguments should be passed:
-    // <ul>
-    //   <li>A1. <code>aws_access_key_id</code> (required) Access key id to access Amazon WEB Service.</li>
-    //   <li>A2. <code>aws_secret_access_key</code> (required) Secret access key to access Amazon WEB Service.</li>
-    //   <li>A3. <code>region</code> (required) Region name of Amazon Server.</li>
-    // </ul>
-    // Example:
-    // <pre><code>t2s_config_service={&apos;aws_access_key_id&apos;: &apos;YOUR_AWS_ACCESS_KEY_ID&apos;, &apos;aws_secret_access_key&apos;: &apos;YOUR_AWS_SECRET_ACCESS_KEY&apos;, &apos;region&apos;: &apos;YOUR_AMAZON_SERVER_REGION_NAME&apos;}</code></pre>
-    //
-    // B. For ElevenLabs T2s service, the following arguments should be passed:
-    // <ul>
-    //   <li>B1. <code>api_key</code> (required) API key of ElevenLabs cloud provider to access its T2S service.</li>
-    // </ul>
-    // Example:
-    // <pre><code>t2s_config_service={&apos;api_key&apos;: &apos;YOUR_ELEVENLABS_API_KEY&apos;}</code></pre>
-    //
-    // C. For Google cloud T2S service, the following arguments should be passed:
-    // <ul>
-    //   <li>C1. <code>api_key</code> (required) API key of Google cloud provider to access its T2S service.</li>
-    //   <li>C2. <code>api_endpoint</code> (optional) Regional API endpoint of Google cloud T2S service.
-    //     (Defaults to &apos;eu-texttospeech.googleapis.com&apos;)</li>
-    // </ul>
-    // Example:
-    // <pre><code>t2s_config_service={&apos;api_key&apos;: &apos;YOUR_GOOGLE_CLOUD_API_KEY&apos;, &apos;api_endpoint&apos;: &apos;YOUR_GOOGLE_CLOUD_API_ENDPOINT&apos;}</code></pre>
-    //
-    // D. For Microsoft Azure T2s service, the following arguments should be passed:
-    // <ul>
-    //   <li>D1. <code>subscription_key</code> (required) Subscription key to access Microsoft Azure Service.</li>
-    //   <li>D2. <code>region</code> (required) Region name of Microsoft Azure Server.</li>
-    // </ul>
-    // Example:
-    // <pre><code>t2s_config_service={&apos;subscription_key&apos;: &apos;YOUR_MICROSOFT_AZURE_SUBSCRIPTION_KEY&apos;, &apos;region&apos;: &apos;YOUR_MICROSOFT_AZURE_SERVER_REGION_NAME&apos;}</code></pre>
-    //
-    // Note: ondewo-t2s will raise an error if you don&apos;t pass any of the required arguments above.
+    // t2s_service_config provides the configuration of the service such as API key, bearer tokens, JWT,
+    // and other header information as key value pairs, e.g., <pre><code>MY_API_KEY='LKJDIFe244LKJOI'</code></pre>
     optional google.protobuf.Struct t2s_service_config = 9;
 
     // Optional. Defines the cloud provider's specific configuration for using text to speech cloud services
     // The default value is None.
     optional T2sCloudProviderConfig t2s_cloud_provider_config = 10;
 
-    oneof oneof_t2s_normalization {
-        // Optional. Define t2s_normalization config parameters for this specific request.
-        // The default values are set in the config file and the values set via RequestConfig are set just for
-        // this specific request and will not update the pipeline.
-        T2SNormalization t2s_normalization = 11;
-    }
-
-    // Optional. Define a dict which specifies the phonemes for a special word.
-    optional google.protobuf.Struct word_to_phoneme_mapping = 12;
-
-    // Optional. Define an instruction or prompt to be passed to the TTS/LLM backend for this request.
-    optional string instruction = 13;
-
 }
 
-// <p>Configuration for cloud provider settings for Text-to-Speech (T2S).</p>
+// Configuration for cloud provider settings for Text-to-Speech (T2S).
 message T2sCloudProviderConfig {
 
     // Configuration for Eleven Labs text-to-speech provider.
@@ -254,28 +232,27 @@ message T2sCloudProviderConfig {
 
 }
 
-// <p>Configuration details specific to the Eleven Labs text-to-speech provider.</p>
+// Configuration details specific to the Eleven Labs text-to-speech provider.
 message T2sCloudProviderConfigElevenLabs {
 
-    // Stability level for inference, influencing consistency of generated speech. It is in the range [0.0, 1.0].
+    // Stability level for inference, influencing consistency of generated speech.
     float stability = 1;
 
     // Boost value for similarity to enhance the similarity of the generated voice to a target voice.
-    // It is in the range [0.0, 1.0].
     float similarity_boost = 2;
 
-    // Style parameter to control the expression or emotion in speech. It is in the range [0.0, 1.0].
+    // Style parameter to control the expression or emotion in speech.
     float style = 3;
 
     // Enables or disables speaker boost for emphasis on clarity and loudness.
     bool use_speaker_boost = 4;
 
-    // Specifies type of text normalization to apply during processing. Available options are 'auto', 'on', and 'off'.
+    // Specifies type of text normalization to apply during processing.
     string apply_text_normalization = 5;
 
 }
 
-// <p>Configuration details specific to the Microsoft text-to-speech provider.</p>
+// Configuration details specific to the Microsoft text-to-speech provider.
 message T2sCloudProviderConfigMicrosoft {
 
     // Determines whether to use the default speaker voice.
@@ -283,21 +260,21 @@ message T2sCloudProviderConfigMicrosoft {
 
 }
 
-// <p>Configuration details specific to the Google text-to-speech provider.</p>
+// Configuration details specific to the Google text-to-speech provider.
 message T2sCloudProviderConfigGoogle {
 
-    // Speaking rate for inference, controlling the speed of generated speech. It is in the range [0.25, 4.0].
+    // Speaking rate for inference, controlling the speed of generated speech.
     float speaking_rate = 1;
 
-    // Volume gain in dB applied to the generated speech. It is in the range [-96.0, 16.0].
+    // Volume gain in dB applied to the generated speech.
     float volume_gain_db = 2;
 
-    // Pitch adjustment for inference, allowing control over voice pitch. It is in the range in the range [-20.0, 20.0].
+    // Pitch adjustment for inference, allowing control over voice pitch.
     float pitch = 3;
 
 }
 
-// <p>Represents a pulse-code modulation technique.</p>
+// Represents a pulse-code modulation technique.
 enum Pcm {
 
     // 16-bit pulse-code modulation.
@@ -322,7 +299,7 @@ enum Pcm {
     DOUBLE = 6;
 }
 
-// <p>AudioFormat enum represents various audio file formats for storing digital audio data.</p>
+// AudioFormat enum represents various audio file formats for storing digital audio data.
 enum AudioFormat {
 
     // Waveform Audio File Format (WAV)
@@ -348,8 +325,8 @@ enum AudioFormat {
 
 }
 
-// <p>Represents a Synthesize Response.</p>
-// <p>A Synthesize Response contains the generated audio, requested text and all other properties of this generated audio.</p>
+// Represents a Synthesize Response.
+// A Synthesize Request contains the converted text to audio and the requested configuration.
 message SynthesizeResponse {
 
     // Required. Represents the pipeline id of the model configuration that will be used.
@@ -373,47 +350,13 @@ message SynthesizeResponse {
     // Optional. Normalized text.
     string normalized_text = 7;
 
-    // Optional. Value of sampling rate
-    float sample_rate = 8;
-
-}
-
-// <p>Represents a Streaming Synthesize Response.</p>
-// <p>A Streaming Synthesize Response contains the generated audio, requested text and and
-// all other properties of this generated audio.</p>
-message StreamingSynthesizeResponse {
-
-    // Required. Represents the pipeline id of the model configuration that will be used.
-    string audio_uuid = 1;
-
-    // Required. Generated file with the parameters described in request.
-    bytes audio = 2;
-
-    // Required. Time to generate audio.
-    float generation_time = 3;
-
-    // Required. Audio length.
-    float audio_length = 4;
-
-    // Required. Text from which audio was generated.
-    string text = 5;
-
-    // Required. Configuration from which audio was generated.
-    RequestConfig config = 6;
-
-    // Optional. Normalized text.
-    string normalized_text = 7;
-
-    // Optional. Value of sampling rate
-    float sample_rate = 8;
-
 }
 
 ///////////////
 // NORMALIZE //
 ///////////////
 
-// <p>NormalizeTextRequest message is used to request text normalization.</p>
+// NormalizeTextRequest message is used to request text normalization.
 message NormalizeTextRequest {
 
     // The ID of the text-to-speech pipeline.
@@ -424,7 +367,7 @@ message NormalizeTextRequest {
 
 }
 
-// <p>NormalizeTextResponse message is used to store the normalized text response.</p>
+// NormalizeTextResponse message is used to store the normalized text response.
 message NormalizeTextResponse {
 
     // The normalized text.
@@ -436,7 +379,7 @@ message NormalizeTextResponse {
 // GET SERVICE INFO //
 //////////////////////
 
-// <p>Version information of the service</p>
+// Version information of the service
 message T2SGetServiceInfoResponse {
 
     // version number
@@ -447,9 +390,9 @@ message T2SGetServiceInfoResponse {
 // LIST T2S PIPELINES //
 ////////////////////////
 
-// <p>Pipeline Request representation.</p>
-// <p>The request message for ListT2sPipelines.</p>
-// <p>Filter pipelines by attributed in request.</p>
+// Pipeline Request representation.
+// The request message for ListT2sPipelines.
+// Filter pipelines by attributed in request.
 message ListT2sPipelinesRequest {
 
     // Optional. Define the language/ languages.
@@ -469,8 +412,8 @@ message ListT2sPipelinesRequest {
 
 }
 
-// <p>Pipeline Response representation.</p>
-// <p>The response message for ListT2sPipelines.</p>
+// Pipeline Response representation.
+// The response message for ListT2sPipelines.
 message ListT2sPipelinesResponse {
 
     // Required. Representation of a list of pipelines configurations.
@@ -485,9 +428,9 @@ message ListT2sPipelinesResponse {
 ////////////////////////
 
 
-// <p>Language Request representation.</p>
-// <p>The request message for ListT2sLanguages.</p>
-// <p>Filter languages of pipelines by attributed in request.</p>
+// Language Request representation.
+// The request message for ListT2sLanguages.
+// Filter languages of pipelines by attributed in request.
 message ListT2sLanguagesRequest {
 
     // Optional. Define the speaker sex.
@@ -505,8 +448,8 @@ message ListT2sLanguagesRequest {
 }
 
 
-// <p>Language Response representation.</p>
-// <p>The response message for ListT2sLanguages.</p>
+// Language Response representation.
+// The response message for ListT2sLanguages.
 message ListT2sLanguagesResponse {
 
     // Required. Define the language/ languages that satisfy/ies
@@ -520,9 +463,9 @@ message ListT2sLanguagesResponse {
 //////////////////////
 
 
-// <p>Domain Request representation.</p>
-// <p>The request message for ListT2sDomains.</p>
-// <p>Filter domains of pipelines by attributed in request.</p>
+// Domain Request representation.
+// The request message for ListT2sDomains.
+// Filter domains of pipelines by attributed in request.
 message ListT2sDomainsRequest {
 
     // Optional. Define the speaker sex.
@@ -539,8 +482,8 @@ message ListT2sDomainsRequest {
 
 }
 
-// <p>Domains Response representation.</p>
-// <p>The response message for ListT2sDomains.</p>
+// Domains Response representation.
+// The response message for ListT2sDomains.
 message ListT2sDomainsResponse {
 
     // Required. Define the domain/ domains that satisfy/ies
@@ -549,37 +492,13 @@ message ListT2sDomainsResponse {
 
 }
 
-////////////////////////
-// LIST T2S NORMALIZATION PIPELINES //
-////////////////////////
-
-// <p>The request message for ListT2sNormalizationPipelines.</p>
-// <p>Filter pipelines by attributed in request.</p>
-message ListT2sNormalizationPipelinesRequest {
-
-    // Optional. Define the language.
-    string language = 1;
-
-}
-
-// <p>Pipeline Response representation.</p>
-// <p>The response message for ListT2sNormalizationPipelines.</p>
-message ListT2sNormalizationPipelinesResponse {
-
-    // Required. Representation of a list of normalization pipelines configurations.
-    // Retrieved by ListT2sNormalizationPipelines, containing the configurations of
-    // normalization pipelines with the specifications received in the ListT2sNormalizationPipelinesRequest.
-    repeated string t2s_normalization_pipelines = 1;
-
-}
-
 /////////////////////////
 // UPDATE T2S PIPELINE //
 /////////////////////////
 
 
-// <p>Pipeline Id representation.</p>
-// <p>Used in the creation, deletion and getter of pipelines.</p>
+// Pipeline Id representation.
+// Used in the creation, deletion and getter of pipelines.
 message T2sPipelineId {
 
     // Required. Defines the id of the pipeline.
@@ -591,7 +510,7 @@ message T2sPipelineId {
 // Text-to-Speech Config //
 ///////////////////////////
 
-// <p>Configuration of text-to-speech models representation.</p>
+// Configuration of text-to-speech models representation.
 message Text2SpeechConfig {
 
     // Required. Defines the id of the pipeline.
@@ -615,7 +534,7 @@ message Text2SpeechConfig {
 }
 
 
-// <p>T2SDescription message is used to describe the text-to-speech service.</p>
+// T2SDescription message is used to describe the text-to-speech service.
 message T2SDescription {
 
     // The language supported by the service.
@@ -639,7 +558,7 @@ message T2SDescription {
 
 }
 
-// <p>T2SInference message is used to specify the text-to-speech inference settings.</p>
+// T2SInference message is used to specify the text-to-speech inference settings.
 message T2SInference {
 
     // The type of inference.
@@ -655,7 +574,7 @@ message T2SInference {
     Caching caching = 4;
 }
 
-// <p>CompositeInference message combines text-to-mel and mel-to-audio inference settings.</p>
+// CompositeInference message combines text-to-mel and mel-to-audio inference settings.
 message CompositeInference {
 
     // Text-to-mel inference settings.
@@ -666,7 +585,7 @@ message CompositeInference {
 
 }
 
-// <p>SingleInference message inference settings of text2audio models.</p>
+// SingleInference message inference settings of text2audio models.
 message SingleInference {
 
     // Text-to-audio inference settings.
@@ -674,7 +593,7 @@ message SingleInference {
 
 }
 
-// <p>Text2Mel message contains settings for text-to-mel inference.</p>
+// Text2Mel message contains settings for text-to-mel inference.
 message Text2Mel {
 
     // The type of text-to-mel inference.
@@ -688,7 +607,7 @@ message Text2Mel {
 
 }
 
-// <p>Text2Audio message contains settings for text-to-audio inference.</p>
+// Text2Audio message contains settings for text-to-audio inference.
 message Text2Audio {
 
     // The type of text-to-audio inference.
@@ -712,15 +631,9 @@ message Text2Audio {
     // Microsoft cloud service inference settings.
     T2sCloudServiceMicrosoft t2s_cloud_service_microsoft = 7;
 
-    // Qwen3-TTS-custom-voice inference settings.
-    Qwen3TtsCustomVoice qwen3_tts_custom_voice = 8;
-
-    // Qwen3-TTS-base inference settings for voice cloning.
-    Qwen3TtsBase qwen3_tts_base = 9;
-
 }
 
-// <p>GlowTTS message contains settings for the GlowTTS inference.</p>
+// GlowTTS message contains settings for the GlowTTS inference.
 message GlowTTS {
 
     // The batch size for inference.
@@ -746,7 +659,7 @@ message GlowTTS {
 
 }
 
-// <p>GlowTTSTriton message contains settings for the GlowTTS Triton inference.</p>
+// GlowTTSTriton message contains settings for the GlowTTS Triton inference.
 message GlowTTSTriton {
 
     // The batch size for inference.
@@ -778,7 +691,6 @@ message GlowTTSTriton {
 
 }
 
-// <p>Vits message contains settings for the Vits inference.</p>
 message Vits {
 
     // The batch size for inference.
@@ -804,7 +716,7 @@ message Vits {
 
 }
 
-// <p>VitsTriton message contains settings for the Vits Triton inference.</p>
+// VitsTriton message contains settings for the Vits Triton inference.
 message VitsTriton {
 
     // The batch size for inference.
@@ -836,7 +748,7 @@ message VitsTriton {
 
 }
 
-// <p>T2sCloudServiceElevenLabs message contains settings for the ElevenLabs Cloud service inference.</p>
+// T2sCloudServiceElevenLabs message contains settings for the ElevenLabs Cloud service inference.
 message T2sCloudServiceElevenLabs {
 
     // Language of the generated audio. It should be 4-Letter language code.
@@ -856,7 +768,7 @@ message T2sCloudServiceElevenLabs {
 
 }
 
-// <p>VoiceSettings message contains settings for ElevenLabs inference.</p>
+// VoiceSettings message contains settings for ElevenLabs inference.
 message VoiceSettings{
 
     // stability value for elevenlabs inference
@@ -872,7 +784,7 @@ message VoiceSettings{
     bool use_speaker_boost = 4;
 }
 
-// <p>T2sCloudServiceAmazon message contains settings for the Amazon Cloud service inference.</p>
+// T2sCloudServiceAmazon message contains settings for the Amazon Cloud service inference.
 message T2sCloudServiceAmazon {
 
     // Voice ID indicating the speaker
@@ -883,7 +795,7 @@ message T2sCloudServiceAmazon {
 
 }
 
-// <p>T2sCloudServiceGoogle message contains settings for the Google Cloud service inference.</p>
+// T2sCloudServiceGoogle message contains settings for the Google Cloud service inference.
 message T2sCloudServiceGoogle {
 
     // Voice ID indicating the speaker
@@ -900,7 +812,7 @@ message T2sCloudServiceGoogle {
 
 }
 
-// <p>T2sCloudServiceMicrosoft message contains settings for the Microsoft Cloud service inference.</p>
+// T2sCloudServiceMicrosoft message contains settings for the Microsoft Cloud service inference.
 message T2sCloudServiceMicrosoft {
 
     // Voice ID indicating the speaker.
@@ -911,53 +823,7 @@ message T2sCloudServiceMicrosoft {
 
 }
 
-// <p>Qwen3TtsCustomVoice message contains settings for inference of qwen3-TTS-CustomVoice model.</p>
-message Qwen3TtsCustomVoice {
-
-    // Voice id indicating the speaker name
-    string voice_id = 1;
-
-    // Model name for the inference server.
-    string model_name = 2;
-
-    // Language for inference server
-    string language = 3;
-
-    // Host name for the inference server
-    string qwen3_tts_server_host = 4;
-
-    // Port of the inference server
-    int64 qwen3_tts_server_port = 5;
-
-    // Authorization headers for the inference server
-    optional google.protobuf.Struct qwen3_tts_server_header = 6;
-
-}
-
-// <p>Qwen3TtsBase message contains settings for inference of qwen3-TTS-Base model.</p>
-message Qwen3TtsBase {
-
-    // Model name for the inference server.
-    string model_name = 1;
-
-    // Language for inference server
-    string language = 2;
-
-    // Path of the embedding file
-    string embedding_path = 3;
-
-    // Host name for the inference server
-    string qwen3_tts_server_host = 4;
-
-    // Port of the inference server
-    int64 qwen3_tts_server_port = 5;
-
-    // Authorization headers for the inference server
-    optional google.protobuf.Struct qwen3_tts_server_header = 6;
-
-}
-
-// <p>Mel2Audio message contains settings for mel-to-audio inference.</p>
+// Mel2Audio message contains settings for mel-to-audio inference.
 message Mel2Audio {
 
     // The type of mel-to-audio inference.
@@ -974,7 +840,7 @@ message Mel2Audio {
 
 }
 
-// <p>HiFiGan message contains settings for the HiFiGan inference.</p>
+// HiFiGan message contains settings for the HiFiGan inference.
 message HiFiGan {
 
     // Flag indicating whether to use GPU for inference.
@@ -991,7 +857,7 @@ message HiFiGan {
 
 }
 
-// <p>HiFiGanTriton message contains settings for the HiFiGan Triton inference.</p>
+// HiFiGanTriton message contains settings for the HiFiGan Triton inference.
 message HiFiGanTriton {
 
     // The path to the HiFiGan Triton configuration.
@@ -1008,7 +874,7 @@ message HiFiGanTriton {
 
 }
 
-// <p>MbMelganTriton message contains settings for the MbMelgan Triton inference.</p>
+// MbMelganTriton message contains settings for the MbMelgan Triton inference.
 message MbMelganTriton {
 
     // The path to the MbMelgan Triton configuration.
@@ -1028,7 +894,7 @@ message MbMelganTriton {
 
 }
 
-// <p>Caching message contains settings for caching.</p>
+// Caching message contains settings for caching.
 message Caching {
 
     // Flag indicating whether caching is active.
@@ -1050,7 +916,7 @@ message Caching {
     string cache_save_dir = 6;
 
 }
-// <p>Represents the configuration for text-to-speech normalization.</p>
+// Represents the configuration for text-to-speech normalization.
 message T2SNormalization {
 
     // The language for which the normalization is applied.
@@ -1079,7 +945,7 @@ message T2SNormalization {
 
 }
 
-// <p>Postprocessing message contains settings for postprocessing.</p>
+// Postprocessing message contains settings for postprocessing.
 message Postprocessing {
 
     // The duration of silence in seconds.
@@ -1099,7 +965,7 @@ message Postprocessing {
 
 }
 
-// <p>Logmnse message contains settings for Logmnse postprocessing.</p>
+// Logmnse message contains settings for Logmnse postprocessing.
 message Logmnse {
 
     // The initial noise value.
@@ -1113,7 +979,7 @@ message Logmnse {
 
 }
 
-// <p>Wiener message contains settings for Wiener postprocessing.</p>
+// Wiener message contains settings for Wiener postprocessing.
 message Wiener {
 
     // The frame length.
@@ -1133,7 +999,7 @@ message Wiener {
 
 }
 
-// <p>Apodization message contains settings for apodization postprocessing.</p>
+// Apodization message contains settings for apodization postprocessing.
 message Apodization {
 
     // The duration of apodization in seconds.
@@ -1141,7 +1007,7 @@ message Apodization {
 
 }
 
-// <p>T2SCustomLengthScales message contains custom length scales for text types.</p>
+// T2SCustomLengthScales message contains custom length scales for text types.
 message T2SCustomLengthScales {
 
     // The custom length scale for general text.
@@ -1171,7 +1037,7 @@ message T2SCustomLengthScales {
 }
 
 
-// <p>PhonemizerId message represents the ID of a phonemizer.</p>
+// PhonemizerId message represents the ID of a phonemizer.
 message PhonemizerId {
 
     // The ID of the phonemizer.
@@ -1179,7 +1045,7 @@ message PhonemizerId {
 
 }
 
-// <p>CustomPhonemizerProto message represents a custom phonemizer.</p>
+// CustomPhonemizerProto message represents a custom phonemizer.
 message CustomPhonemizerProto {
 
     // The ID of the custom phonemizer.
@@ -1189,7 +1055,7 @@ message CustomPhonemizerProto {
     repeated Map maps = 2;
 }
 
-// <p>Map message represents a word-to-phoneme mapping in a custom phonemizer.</p>
+// Map message represents a word-to-phoneme mapping in a custom phonemizer.
 message Map {
 
     // The word to be mapped.
@@ -1200,7 +1066,7 @@ message Map {
 
 }
 
-// <p>ListCustomPhonemizerResponse message represents the response for listing custom phonemizers.</p>
+// ListCustomPhonemizerResponse message represents the response for listing custom phonemizers.
 message ListCustomPhonemizerResponse {
 
     // Repeated field of CustomPhonemizerProto messages representing the custom phonemizers.
@@ -1208,7 +1074,7 @@ message ListCustomPhonemizerResponse {
 
 }
 
-// <p>ListCustomPhonemizerRequest message represents the request for listing custom phonemizers.</p>
+// ListCustomPhonemizerRequest message represents the request for listing custom phonemizers.
 message ListCustomPhonemizerRequest {
 
     // Repeated field of pipeline IDs to filter the list of custom phonemizers.
@@ -1216,14 +1082,13 @@ message ListCustomPhonemizerRequest {
 
 }
 
-// <p>UpdateCustomPhonemizerRequest message represents the request for updating a custom phonemizer.</p>
+// UpdateCustomPhonemizerRequest message represents the request for updating a custom phonemizer.
 message UpdateCustomPhonemizerRequest {
 
     // The ID of the custom phonemizer to be updated.
     string id = 1;
 
     // The update method to be used.
-    // UpdateMethod enum defines the method for updating custom phonemizers.
     enum UpdateMethod {
 
         // Add new words, replacing existing ones.
@@ -1244,7 +1109,7 @@ message UpdateCustomPhonemizerRequest {
     repeated Map maps = 3;
 }
 
-// <p>CreateCustomPhonemizerRequest message represents the request for creating a custom phonemizer.</p>
+// CreateCustomPhonemizerRequest message represents the request for creating a custom phonemizer.
 message CreateCustomPhonemizerRequest {
 
     // The prefix for the custom phonemizer ID.
