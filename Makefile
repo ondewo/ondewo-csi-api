@@ -339,7 +339,7 @@ clone_devops_accounts: ## Clones devops-accounts repo
 
 run_release_with_devops: ## Gets Credentials from devops-repo and runs release with them
 	$(eval info:= $(shell cat ${DEVOPS_ACCOUNT_DIR}/account_github.env | grep GITHUB_GH))
-	make release $(info)
+	@make release $(info)
 
 update_setup: ## Update version in setup files (if any)
 	@echo "No setup files to update (version managed via ONDEWO_CSI_API_VERSION in Makefile)"
@@ -379,4 +379,4 @@ ondewo_unrelease: clone_devops_accounts run_unrelease_with_devops ## Unrelease w
 
 run_unrelease_with_devops: ## Gets Credentials from devops-repo and runs unrelease with them
 	$(eval info:= $(shell cat ${DEVOPS_ACCOUNT_DIR}/account_github.env | grep GITHUB_GH))
-	make unrelease $(info)
+	@make unrelease $(info)
