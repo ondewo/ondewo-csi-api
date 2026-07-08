@@ -270,7 +270,7 @@ release_client:
 	cd ${REPO_DIR} && perl -i -pe 's/CSI_API_GIT_BRANCH.*=.*/CSI_API_GIT_BRANCH=tags\/${ONDEWO_CSI_API_VERSION}/' Makefile && head -30 Makefile
 
 # Build new code
-	make -C ${REPO_DIR} ondewo_release | tee build_log_${REPO_NAME}.txt
+	bash -c 'set -o pipefail; make -C ${REPO_DIR} ondewo_release | tee build_log_${REPO_NAME}.txt'
 	make -C ${REPO_DIR} TEST
 # Remove everything from Release
 	sudo rm -rf ${REPO_DIR}
