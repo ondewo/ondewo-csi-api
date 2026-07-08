@@ -174,29 +174,29 @@ message TranscribeRequestConfig {
 
     // Optional. s2t_service_config provides the configuration of the service such as API key, bearer tokens, JWT,
     // and other header information as key value pairs, e.g., <pre><code>MY_API_KEY='LKJDIFe244LKJOI'</code></pre>
-    // A. For Amazon S2T service, the following arguments should be passed in form of a dict:    
-    //  A.1 aws_access_key_id (required) Access key id to access Amazon WEb Service.    
-    //  A.2 aws_secret_access_key (required) Secret access key to access Amazon WEb Service.   
+    // A. For Amazon S2T service, the following arguments should be passed in form of a dict:
+    //  A.1 aws_access_key_id (required) Access key id to access Amazon WEb Service.
+    //  A.2 aws_secret_access_key (required) Secret access key to access Amazon WEb Service.
     //  A.3 region (required) Region name of Amazon Server.
     //  Example:
-    //  s2t_config_service={'aws_access_key_id': 'YOUR_AWS_ACCESS_KEY_ID', 'aws_secret_access_key': 
-    //  'YOUR_AWS_SECRET_ACCESS_KEY', 'region': 'YOUR_AMAZON_SERVER_REGION_NAME'} 
-    // B. For Deepgram S2T service, the following argument should be passed in form of a dict:    
-    //  B.1 api_key (required) API key of Deepgram account to access Deepgram S2T service.     
+    //  s2t_config_service={'aws_access_key_id': 'YOUR_AWS_ACCESS_KEY_ID', 'aws_secret_access_key':
+    //  'YOUR_AWS_SECRET_ACCESS_KEY', 'region': 'YOUR_AMAZON_SERVER_REGION_NAME'}
+    // B. For Deepgram S2T service, the following argument should be passed in form of a dict:
+    //  B.1 api_key (required) API key of Deepgram account to access Deepgram S2T service.
     //  Example:
     //  s2t_config_service={'api_key': 'YOUR_DEEPGRAM_API_KEY'}
-    // C. For Google cloud S2T service, the following arguments should be passed in form of a dict:    
-    //  C.1- api_key (required) API key of Google cloud to access its S2T service. 
-    //  C.2- api_endpoint (optional) Regional API endpoint of Google cloud S2T service. (Defaults to 
-    //  'eu-speech.googleapis.com')   
+    // C. For Google cloud S2T service, the following arguments should be passed in form of a dict:
+    //  C.1- api_key (required) API key of Google cloud to access its S2T service.
+    //  C.2- api_endpoint (optional) Regional API endpoint of Google cloud S2T service. (Defaults to
+    //  'eu-speech.googleapis.com')
     //  Example:
     //  s2t_config_service={'api_key': 'YOUR_GOOGLE_CLOUD_API_KEY', 'api_endpoint': 'YOUR_GOOGLE_CLOUD_API_ENDPOINT'}
-    // D. For Microsoft Azure S2T service, the following arguments should be passed in form of a dict:    
-    //  D.1 subscription_key (required) Subscription key to access Microsoft Azure Service.    
-    //  D.2 region (required) Region name of Microsoft Azure Server.   
+    // D. For Microsoft Azure S2T service, the following arguments should be passed in form of a dict:
+    //  D.1 subscription_key (required) Subscription key to access Microsoft Azure Service.
+    //  D.2 region (required) Region name of Microsoft Azure Server.
     //  Example:
-    //  s2t_config_service={'subscription_key': 'YOUR_MICROSOFT_AZURE_SUBSCRIPTION_KEY', 'region': 
-    //  'YOUR_MICROSOFT_AZURE_SERVER_REGION_NAME'} 
+    //  s2t_config_service={'subscription_key': 'YOUR_MICROSOFT_AZURE_SUBSCRIPTION_KEY', 'region':
+    //  'YOUR_MICROSOFT_AZURE_SERVER_REGION_NAME'}
     // Note: ondewo-s2t will raise an error if you don't pass any of the required arguments above.
     optional google.protobuf.Struct s2t_service_config = 11;
 
@@ -258,7 +258,7 @@ message S2tCloudProviderConfigDeepgram {
     // More details at: https://developers.deepgram.com/docs/smart-format
     optional bool smart_format = 2;
 
-    // Optional. Enables or disables numerals feature of Deepgram to convert numbers to numeric form in the resulted 
+    // Optional. Enables or disables numerals feature of Deepgram to convert numbers to numeric form in the resulted
     // transcript. More details at: https://developers.deepgram.com/docs/numerals
     optional bool numerals = 3;
 
@@ -267,7 +267,7 @@ message S2tCloudProviderConfigDeepgram {
     // More details at: https://developers.deepgram.com/docs/measurements
     optional bool measurements = 4;
 
-    // Optional. Enables or disables dictation feature of Deepgram to convert spoken dictation commands into their 
+    // Optional. Enables or disables dictation feature of Deepgram to convert spoken dictation commands into their
     // corresponding punctuation marks. More details at: https://developers.deepgram.com/docs/dictation
     optional bool dictation = 5;
 
@@ -276,7 +276,7 @@ message S2tCloudProviderConfigDeepgram {
 // Configuration details specific to the Google speech-to-text provider.
 message S2tCloudProviderConfigGoogle {
 
-    // Optional. Enables or disables automatic_punctuation feature of Google s2t to add punctuations to the resulted 
+    // Optional. Enables or disables automatic_punctuation feature of Google s2t to add punctuations to the resulted
     // transcript. More details at: https://cloud.google.com/speech-to-text/docs/automatic-punctuation
     optional bool enable_automatic_punctuation = 1;
 
@@ -302,7 +302,7 @@ message S2tCloudProviderConfigGoogle {
 // Configuration details specific to the Microsoft Azure speech-to-text provider.
 message S2tCloudProviderConfigMicrosoft {
 
-    // Optional. Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in 
+    // Optional. Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in
     // preview version.
     // More details at: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create
     optional bool use_fast_transcription_api = 1;
@@ -730,7 +730,7 @@ message S2tCloudServiceAmazon {
     // (BCP-47) e.g. 'en-US' or 'de-DE'.
     string language = 1;
 
-    // Specifies if streaming mode of Amazon web service speech to text is available for the selected language, 
+    // Specifies if streaming mode of Amazon web service speech to text is available for the selected language,
     // otherwise batch mode transcription is used. See the list of languages and available transcription modes at:
     // https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html
     bool streaming_available = 2;

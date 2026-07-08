@@ -11,6 +11,7 @@ This repository contains the original interface definitions of public ONDEWO API
 The core components of all the client libraries are built directly from files in this repo using [the proto compiler.](https://github.com/ondewo/ondewo-proto-compiler)
 
 For an end-user, the APIS in this repo function mostly as documentation for the endpoints. For specific implementations, look in the following repos for working implementations:
+
 * [Python](https://github.com/ondewo/ondewo-csi-client-python)
 * [Angular](https://github.com/ondewo/ondewo-csi-client-angular)
 * [Nodejs](https://github.com/ondewo/ondewo-csi-client-nodejs)
@@ -25,15 +26,16 @@ ONDEWO APIs use [Protocol Buffers](https://github.com/google/protobuf) version 3
 
 There are several ways of accessing APIs:
 
-1.  Protocol Buffers over gRPC: You can access APIs published in this repository through [GRPC](https://github.com/grpc), which is a high-performance binary RPC protocol over HTTP/2. It offers many useful features, including request/response multiplex and full-duplex streaming.
+1. Protocol Buffers over gRPC: You can access APIs published in this repository through [GRPC](https://github.com/grpc), which is a high-performance binary RPC protocol over HTTP/2. It offers many useful features, including request/response multiplex and full-duplex streaming.
 
-2.  ONDEWO Client Libraries:
+2. ONDEWO Client Libraries:
 You can use these libraries to access ONDEWO Cloud APIs. They are based on gRPC for better performance and provide idiomatic client surface for better developer experience.
 
 The `.proto`-files of this repository are dependent on 3 other APIs:
- - `Natural Language Understanding (NLU)`
- - `Speech to Text (S2T)`
- - `Text to Speech (T2S)`
+
+* `Natural Language Understanding (NLU)`
+* `Speech to Text (S2T)`
+* `Text to Speech (T2S)`
 
 To make development with this API easier, use the `make build` command to pull the `.proto`-files from the api-repositories and put them all in the `ondewo` folder.
 
@@ -88,21 +90,21 @@ Please use the issue tracker in this repo for discussions about this API, or the
 
 API client libraries can be built directly from files in this repo using [the proto compiler.](https://github.com/ondewo/ondewo-proto-compiler)
 
-
 ## Automatic Release Process
 
 The entire process is automated to make development easier. The actual steps are simple:
 
 TODOs after Pull Request was merged in:
 
- - Checkout master:
+* Checkout master:
     >git checkout master
- - Pull the new stuff:
+* Pull the new stuff:
     >git pull
- - (If not already, run the `setup_developer_environment_locally` command):
+* (If not already, run the `setup_developer_environment_locally` command):
    >make setup_developer_environment_locally
- - Update the `ONDEWO_NLU_API_VERSION` in the `Makefile`
- - Add the new Release Notes in `RELEASE.md` in the format:
+* Update the `ONDEWO_NLU_API_VERSION` in the `Makefile`
+* Add the new Release Notes in `RELEASE.md` in the format:
+
    ```
    ## Release ONDEWO CSI API X.X.X       <---- Beginning of Notes
 
@@ -110,17 +112,18 @@ TODOs after Pull Request was merged in:
 
    *****************                      <---- End of Notes
    ```
- - `Commit and push` the changes made in `RELEASE.md` and `Makefile`
- - Release:
+
+* `Commit and push` the changes made in `RELEASE.md` and `Makefile`
+* Release:
    >make ondewo_release
 
 ---
 The `make ondewo_release` command can be divided into 5 steps:
 
-- cloning the devops-accounts repository and extracting the credentials
-- creating and pushing the release branch
-- creating and pushing the release tag
-- creating the GitHub release
+* cloning the devops-accounts repository and extracting the credentials
+* creating and pushing the release branch
+* creating and pushing the release tag
+* creating the GitHub release
 
 The variable for the GitHub Access Token is inside the Makefile, but the value is overwritten during
 `make ondewo_release`, because it is passed from the devops-accounts repo as an argument to the actual `release` command.
@@ -130,10 +133,11 @@ The variable for the GitHub Access Token is inside the Makefile, but the value i
 Every available Client of this API can be released from this repository, to make the release process for major and minor changes easier.
 
 The generic `release_client` command depends on 4 variables:
- - `ONDEWO_CSI_API_VERSION` -- Current API version
- - `GENERIC_CLIENT` -- specifies `SSH git link` to client-repository
- - `RELEASEMD` -- position of `RELEASE.md` inside the client-repository
- - `GENERIC_RELEASE_NOTES` -- template text of client release notes
+
+* `ONDEWO_CSI_API_VERSION` -- Current API version
+* `GENERIC_CLIENT` -- specifies `SSH git link` to client-repository
+* `RELEASEMD` -- position of `RELEASE.md` inside the client-repository
+* `GENERIC_RELEASE_NOTES` -- template text of client release notes
 
 To release all clients in sequence, use the `make release_all_clients` command.
 
@@ -142,7 +146,8 @@ To release all clients in sequence, use the `make release_all_clients` command.
 The documentation for this, and all other APIs and their available versions, can be found on [ondewo.github.io](https://ondewo.github.io). For Offline usage, it can also be found in the `docs` folder.
 
 As part of the `pre-commit` hooks, `update_githubio` is run. It will preemptively stop if:
- - The command is not run on the `master` branch
- - There already exists a version-object with the specified version in the `data.js` of the `ondewo.github.io` repository
+
+* The command is not run on the `master` branch
+* There already exists a version-object with the specified version in the `data.js` of the `ondewo.github.io` repository
 
 > :warning:  This command is dependent on your installation of NPM and NodeJS -- Make sure to install both, or run `make setup_developer_environment_locally`
