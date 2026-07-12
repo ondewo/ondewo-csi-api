@@ -1,6 +1,25 @@
 # Release History
 *****************
 
+## Release ONDEWO CSI API 5.4.0
+
+### Improvements
+
+* [[OND235-105]](https://ondewo.atlassian.net/browse/OND235-105) Extend `ControlStatus` with barge-in and playback lifecycle statuses `BARGE_IN`, `RESUME_PLAYBACK`, `DISCARD_REMAINDER`, `PLAYBACK_RESUMED` and `PLAYBACK_DONE`
+* [[OND235-105]](https://ondewo.atlassian.net/browse/OND235-105) Add monotonic barge-in `epoch` field to `ControlStreamResponse`
+* [[OND235-105]](https://ondewo.atlassian.net/browse/OND235-105) Add utterance/turn framing fields `utterance_id`, `chunk_index`, `last_chunk` and `turn_epoch` to `S2sStreamResponse`
+
+*****************
+
+## Release ONDEWO CSI API 5.3.0
+
+### Improvements
+
+* [[OND235-105]](https://ondewo.atlassian.net/browse/OND235-105) Upgrade API to NLU API [6.11.0](https://github.com/ondewo/ondewo-nlu-api/releases/6.11.0), S2T API [7.3.0](https://github.com/ondewo/ondewo-s2t-api/releases/7.3.0) and T2S API [6.2.0](https://github.com/ondewo/ondewo-t2s-api/releases/6.2.0) libraries
+* [[OND211-2333]](https://ondewo.atlassian.net/browse/OND211-2333) Add local documentation build make targets (`build_docs`, `clean_docs_builder`) and improve proto file documentation with HTML formatting
+
+*****************
+
 ## Release ONDEWO CSI API 5.2.0
 
 ### Improvements
