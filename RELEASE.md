@@ -1,6 +1,16 @@
 # Release History
 *****************
 
+## Release ONDEWO CSI API 5.4.0
+
+### Improvements
+
+* [[OND235-105]](https://ondewo.atlassian.net/browse/OND235-105) Extend `ControlStatus` with barge-in and playback lifecycle statuses `BARGE_IN`, `RESUME_PLAYBACK`, `DISCARD_REMAINDER`, `PLAYBACK_RESUMED` and `PLAYBACK_DONE`
+* [[OND235-105]](https://ondewo.atlassian.net/browse/OND235-105) Add monotonic barge-in `epoch` field to `ControlStreamResponse`
+* [[OND235-105]](https://ondewo.atlassian.net/browse/OND235-105) Add utterance/turn framing fields `utterance_id`, `chunk_index`, `last_chunk` and `turn_epoch` to `S2sStreamResponse`
+
+*****************
+
 ## Release ONDEWO CSI API 5.3.0
 
 ### Improvements
