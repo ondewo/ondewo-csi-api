@@ -1,4 +1,5 @@
 # Release History
+
 *****************
 
 ## Release ONDEWO CSI API 5.4.0
@@ -165,8 +166,8 @@
 ### New Features
 
 * [[OND233-258]](https://ondewo.atlassian.net/browse/OND233-258) add ControlStream endpoints
-* [[OND211-380]](https://ondewo.atlassian.net/browse/OND211-380) generate API documentation
-  accessible [here](https://ondewo.github.io/ondewo-csi-api/)
+* [[OND211-380]](https://ondewo.atlassian.net/browse/OND211-380) generate API documentation,
+  accessible at [ondewo.github.io/ondewo-csi-api](https://ondewo.github.io/ondewo-csi-api/)
 
 *****************
 
