@@ -119,7 +119,7 @@ clean_docs_builder: ## Remove the cloned protoc-gen-doc-action repo and Docker i
 	@echo "✓ Cleanup complete"
 
 TEST:
-	@echo "----------------------------------------------\nGITHUB_GH_TOKEN\n----------------------------------------------\n${GITHUB_GH_TOKEN}\n"
+	@echo "----------------------------------------------\nGITHUB_GH_TOKEN\n----------------------------------------------\n$(if $(GITHUB_GH_TOKEN),<set>,<unset>)\n"
 	@echo "----------------------------------------------\nCURRENT_RELEASE_NOTES\n----------------------------------------------\n${CURRENT_RELEASE_NOTES}\n"
 
 githubio_logic_pre:
@@ -138,8 +138,7 @@ githubio_logic: | githubio_logic_pre
 	@git branch | grep "*" | grep -q "master" || (echo "Not on master branch"  & rm -rf ondewo.github.io && exit 1)
 	@! cat ondewo.github.io/data.js | perl -ne "print if /name\: '${REPO_NAME_UPPER}'/../end\: ''/" | grep -q "number: '${ONDEWO_CSI_API_VERSION}'" || (echo "Already Released" && exit 1)
 	$(eval VERSION_LINE:= $(shell cat -n ondewo.github.io/data.js | perl -ne "print if /name\: '${REPO_NAME_UPPER}'/../end\: ''/" | grep "versions: " -A 1 | tail -1 | grep -o -E '[0-9]+' | head -1 | perl -pe 's/^0+//'))
-	$(eval TEMP_TEXT:= $(shell cat ondewo.github.io/script_object.txt | perl -pe "s/VERSION/${ONDEWO_CSI_API_VERSION}/g; s/TECHNOLOGY/${REPO_NAME}/g"))
-	@perl -i -pe 'print "${TEMP_TEXT}\n" if $$. == ${VERSION_LINE}' ondewo.github.io/data.js
+	@TEMP_TEXT="$$(cat ondewo.github.io/script_object.txt | perl -pe 's/VERSION/${ONDEWO_CSI_API_VERSION}/g; s/TECHNOLOGY/${REPO_NAME}/g')" perl -i -pe 'print "$$ENV{TEMP_TEXT}\n" if $$. == ${VERSION_LINE}' ondewo.github.io/data.js
 	@npm install prettier && cd ondewo.github.io && npx prettier -w --single-quote data.js
 	$(eval DOCS_DIR:=ondewo.github.io/docs/ondewo-${REPO_NAME}-api/${ONDEWO_CSI_API_VERSION})
 	@rm -rf ${DOCS_DIR}
@@ -147,9 +146,7 @@ githubio_logic: | githubio_logic_pre
 	@cp docs/* ${DOCS_DIR}
 	@perl -i -pe "s/h1>Protocol Documentation/h1>${REPO_NAME_UPPER} ${ONDEWO_CSI_API_VERSION} Documentation/" ${DOCS_DIR}/index.html
 	$(eval HEADER_LINE:= $(shell cat ${DOCS_DIR}/index.html | grep -n "${REPO_NAME_UPPER} ${ONDEWO_CSI_API_VERSION} Documentation" | grep -o -E '[0-9]+' | head -1 | perl -pe 's/^0+//'))
-	$(eval TEMP_IMG:= $(shell cat  ondewo.github.io/script_image.txt))
-	$(eval TEMP_CALC:= $(shell expr ${HEADER_LINE} ))
-	perl -i -pe 'print "${TEMP_IMG}\n" if $$. == ${TEMP_CALC}' ${DOCS_DIR}/index.html
+	@TEMP_IMG="$$(cat ondewo.github.io/script_image.txt)" perl -i -pe 'print "$$ENV{TEMP_IMG}\n" if $$. == ${HEADER_LINE}' ${DOCS_DIR}/index.html
 	head -30 ${DOCS_DIR}/index.html
 	cat ondewo.github.io/data.js | perl -ne "print if /name\: '${REPO_NAME_UPPER}'/../end\: ''/"
 	@git -C ondewo.github.io status
@@ -227,18 +224,33 @@ create_release_tag: ## Create Release Tag and push it to origin
 	git push origin ${ONDEWO_CSI_API_VERSION}
 
 login_to_gh: ## Login to Github CLI with Access Token
-	echo $(GITHUB_GH_TOKEN) | gh auth login -p ssh --with-token
+	@echo $(GITHUB_GH_TOKEN) | gh auth login -p ssh --with-token
 
 build_gh_release: ## Generate Github Release with CLI
 	gh release create --repo $(GH_REPO) "$(ONDEWO_CSI_API_VERSION)" -n "$(CURRENT_RELEASE_NOTES)" -t "Release ${ONDEWO_CSI_API_VERSION}"
 
-release_all_clients:
-	@make release_python_client || (echo "Already released ${ONDEWO_CSI_API_VERSION} of Python Client")
-	@make release_nodejs_client || (echo "Already released ${ONDEWO_CSI_API_VERSION} of Nodejs Client")
-	@make release_typescript_client || (echo "Already released ${ONDEWO_CSI_API_VERSION} of Typescript Client")
-	@make release_angular_client || (echo "Already released ${ONDEWO_CSI_API_VERSION} of Angular Client")
-	@make release_js_client || (echo "Already released ${ONDEWO_CSI_API_VERSION} of JS Client")
-	@echo "End releasing all clients"
+CLIENTS := python nodejs typescript angular js
+
+release_all_clients: ## Release all clients IN PARALLEL; one failing client does not abort the others
+	@echo "Releasing all clients in parallel for ${ONDEWO_CSI_API_VERSION} ..."; \
+	rm -f .already_released_marker-* .client_status-*; \
+	for c in $(CLIENTS); do \
+		( if make release_$${c}_client > release_run_$${c}.log 2>&1; then echo RELEASED > .client_status-$$c; \
+		  elif [ -f .already_released_marker-$$c ]; then echo SKIP > .client_status-$$c; \
+		  else echo FAILED > .client_status-$$c; fi ) & \
+	done; \
+	wait; \
+	echo ""; echo "=============== CLIENT RELEASE SUMMARY (${ONDEWO_CSI_API_VERSION}) ==============="; \
+	failed=0; \
+	for c in $(CLIENTS); do \
+		s=$$(cat .client_status-$$c 2>/dev/null || echo NO_STATUS); \
+		echo "  $$c : $$s"; \
+		if [ "$$s" = FAILED ] || [ "$$s" = NO_STATUS ]; then failed=1; echo "      -> see release_run_$$c.log"; fi; \
+	done; \
+	echo "==============================================================="; \
+	rm -f .already_released_marker-* .client_status-*; \
+	if [ "$$failed" = 1 ]; then echo "RESULT: one or more clients FAILED (the others released independently)."; exit 1; fi; \
+	echo "RESULT: all clients released or already up-to-date."
 
 GENERIC_CLIENT?=
 RELEASEMD?=
@@ -257,24 +269,24 @@ release_client:
 	rm -rf ${REPO_DIR}
 	rm -f build_log_${REPO_NAME}.txt
 
-	@echo ${GENERIC_RELEASE_NOTES} > temp-notes && perl -i -pe 's/\\//g' temp-notes && perl -i -pe 's/REPONAME/${UPPER_REPO_NAME}/g' temp-notes
+	@echo ${GENERIC_RELEASE_NOTES} > temp-notes-${REPO_NAME} && perl -i -pe 's/\\//g' temp-notes-${REPO_NAME} && perl -i -pe 's/REPONAME/${UPPER_REPO_NAME}/g' temp-notes-${REPO_NAME}
 	git clone ${GENERIC_CLIENT}
 # Check if Client is already uptodate with API Version
-	@! git -C ${REPO_DIR} branch -a | grep -q ${ONDEWO_CSI_API_VERSION} || (echo "Already Released ${ONDEWO_CSI_API_VERSION} \n\n\n"  && rm -rf ${REPO_DIR} && rm -f temp-notes && exit 1)
+	@! git -C ${REPO_DIR} branch -a | grep -q ${ONDEWO_CSI_API_VERSION} || (echo "Already Released ${ONDEWO_CSI_API_VERSION} \n\n\n"  && touch .already_released_marker-${REPO_NAME} && rm -rf ${REPO_DIR} && rm -f temp-notes-${REPO_NAME} && exit 1)
 
 # Change Version Number and RELEASE NOTES
-	cd ${REPO_DIR} && perl -i -ne 'print; if(/Release History/){open my $$fh,"<","../temp-notes"; print while <$$fh>; close $$fh}' ${RELEASEMD}
+	cd ${REPO_DIR} && perl -i -ne 'print; if(/Release History/){open my $$fh,"<","../temp-notes-${REPO_NAME}"; print while <$$fh>; close $$fh}' ${RELEASEMD}
 	cd ${REPO_DIR} && head -20 ${RELEASEMD}
-	cd ${REPO_DIR} && perl -i -pe 's/ONDEWO_CSI_VERSION.*=.*/ONDEWO_CSI_VERSION = ${ONDEWO_CSI_API_VERSION}/' Makefile
+	cd ${REPO_DIR} && perl -i -pe 's/ONDEWO_CSI_VERSION.*=.*/ONDEWO_CSI_VERSION=${ONDEWO_CSI_API_VERSION}/' Makefile
 	cd ${REPO_DIR} && perl -i -pe 's/ONDEWO_PROTO_COMPILER_GIT_BRANCH.*=.*/ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags\/${PROTO_COMPILER}/' Makefile
 	cd ${REPO_DIR} && perl -i -pe 's/CSI_API_GIT_BRANCH.*=.*/CSI_API_GIT_BRANCH=tags\/${ONDEWO_CSI_API_VERSION}/' Makefile && head -30 Makefile
 
 # Build new code
-	make -C ${REPO_DIR} ondewo_release | tee build_log_${REPO_NAME}.txt
+	bash -c 'set -o pipefail; make -C ${REPO_DIR} ondewo_release | tee build_log_${REPO_NAME}.txt'
 	make -C ${REPO_DIR} TEST
 # Remove everything from Release
 	sudo rm -rf ${REPO_DIR}
-	rm -f temp-notes
+	rm -f temp-notes-${REPO_NAME}
 
 PYTHON_CLIENT="git@github.com:ondewo/ondewo-csi-client-python.git"
 
@@ -323,7 +335,7 @@ push_to_gh: login_to_gh build_gh_release ## Logs into GitHub CLI and Releases
 	@echo 'Released to Github'
 
 release_to_github_via_docker_image: ## Release to Github via docker
-	docker run --rm \
+	@docker run --rm \
 		-e GITHUB_GH_TOKEN=${GITHUB_GH_TOKEN} \
 		${IMAGE_UTILS_NAME} make push_to_gh
 
@@ -339,7 +351,7 @@ clone_devops_accounts: ## Clones devops-accounts repo
 
 run_release_with_devops: ## Gets Credentials from devops-repo and runs release with them
 	$(eval info:= $(shell cat ${DEVOPS_ACCOUNT_DIR}/account_github.env | grep GITHUB_GH))
-	make release $(info)
+	@make release $(info)
 
 update_setup: ## Update version in setup files (if any)
 	@echo "No setup files to update (version managed via ONDEWO_CSI_API_VERSION in Makefile)"
@@ -370,7 +382,7 @@ delete_release_tag: ## Delete Release Tag locally and remotely
 	-git fetch --prune
 
 unrelease_to_github_via_docker_image: delete_gh_release ## Unrelease from Github via docker
-	docker run --rm \
+	@docker run --rm \
 		-e GITHUB_GH_TOKEN=${GITHUB_GH_TOKEN} \
 		${IMAGE_UTILS_NAME} make delete_gh_release
 
@@ -379,4 +391,4 @@ ondewo_unrelease: clone_devops_accounts run_unrelease_with_devops ## Unrelease w
 
 run_unrelease_with_devops: ## Gets Credentials from devops-repo and runs unrelease with them
 	$(eval info:= $(shell cat ${DEVOPS_ACCOUNT_DIR}/account_github.env | grep GITHUB_GH))
-	make unrelease $(info)
+	@make unrelease $(info)
