@@ -335,6 +335,9 @@ enum ControlStatus {
     // Status reported by the client to the server via <code>SetControlStatus</code> that playback of an utterance has completed
     PLAYBACK_DONE = 7;
 
+    // Status reported by ondewo-sip to the server via <code>SetControlStatus</code> that the phone call has ENDED and the server must reset ALL per-call state in place (persistent-listener model). It is a command, not a state: it is never pushed onto the control stream
+    CALL_ENDED = 8;
+
 }
 
 // Control stream response message.
