@@ -149,6 +149,32 @@ Raises:
 - Prefer region comments for grouping methods in files that already use them.
 - End edited Markdown and YAML files with a trailing newline.
 
+## Embedded API submodules and what the generated clients ship
+
+`ondewo-csi-api` embeds sibling API repos as submodules; the generated clients are built from that
+combined tree. Current pins:
+
+- `ondewo-nlu-api` **7.0.0**
+- `ondewo-s2t-api` 7.3.0
+- `ondewo-t2s-api` 6.2.0
+
+Two consequences worth knowing before touching a submodule pointer:
+
+- **The generated Python client ships `ondewo/csi` only.** `ondewo-csi-client-python` contains **no**
+  `ondewo/nlu` (or s2t/t2s) `*_pb2` modules — it declares `ondewo-nlu-client==7.0.1` as a runtime
+  dependency and consumes those protos from that wheel. Bumping `ondewo-nlu-api` here therefore
+  changes only what the csi protos may _reference_, not what the client physically installs, so it
+  cannot collide in a downstream descriptor pool. (`ondewo-vtsi-client-python` is the one that
+  vendors 55 `ondewo/nlu` files and does have that hazard — see ondewo-vtsi `CLAUDE.md` §3.)
+- **`ondewo-nlu-api` 7.0.0 made several previously-plain scalars `optional`.** Downstream code must
+  read them with `HasField()` and write them conditionally; assigning unconditionally turns "unset"
+  into "explicitly the default", which is a different instruction on the wire, not a no-op.
+
+`ControlStatus.CALL_ENDED` (wire value **8**) was added on this branch for the persistent-listener
+per-call reset: ondewo-sip sends it over `SetControlStatus` so a warm ondewo-csi wipes its per-call
+state in place instead of the container cold-booting after every call. The numeric value is a
+cross-repo contract — never renumber an existing `ControlStatus` member.
+
 ## Client-release orchestration (`release_all_clients`)
 
 - It **fails loudly** on a genuine client-release error: the piped sub-make runs under `bash -c 'set -o pipefail; make -C … | tee …'` (a plain sh pipe returns tee's 0 and masks failures), and a **marker file** distinguishes an "already released" SKIP from a real FAILURE (make flattens recipe exit codes to 2, so the code alone can't tell them apart). Do not regress either.
