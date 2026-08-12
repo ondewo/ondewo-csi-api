@@ -155,8 +155,8 @@ Raises:
 combined tree. Current pins:
 
 - `ondewo-nlu-api` **7.0.0**
-- `ondewo-s2t-api` 7.3.0
-- `ondewo-t2s-api` 6.2.0
+- `ondewo-s2t-api` 7.4.0
+- `ondewo-t2s-api` 6.6.0
 
 Two consequences worth knowing before touching a submodule pointer:
 
