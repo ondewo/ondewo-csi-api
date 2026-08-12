@@ -1,4 +1,4 @@
-// Copyright 2020-2023 ONDEWO GmbH
+// Copyright 2020-2025 ONDEWO GmbH
 //
 // Licensed under the Apache License, Version 2.0 (the "License");
 // you may not use this file except in compliance with the License.
@@ -134,15 +134,6 @@ service Users {
         };
     }
 
-    // Requests login.
-    rpc Login (LoginRequest) returns (LoginResponse) {
-        // HTTP configuration for the Login RPC.
-        option (google.api.http) = {
-            post: "/v2/login"
-            body: "*"
-        };
-    }
-
     // Checks login.
     rpc CheckLogin (google.protobuf.Empty) returns (google.protobuf.Empty) {
         // HTTP configuration for the CheckLogin RPC.
@@ -159,6 +150,25 @@ service Users {
 
     // Sets the read status for multiple notifications.
     rpc SetNotificationsReadStatus (SetNotificationsReadStatusRequest) returns (ListNotificationsResponse);
+
+    // Adds one or more notifications.
+    rpc AddNotifications (AddNotificationsRequest) returns (AddNotificationsResponse);
+
+    // Retrieves a single notification by its resource name.
+    rpc GetNotification (GetNotificationRequest) returns (Notification);
+
+    // Updates a single notification, applying only the fields named in the update mask.
+    rpc UpdateNotification (UpdateNotificationRequest) returns (Notification);
+
+    // Deletes one or more notifications by their resource names.
+    rpc DeleteNotifications (DeleteNotificationsRequest) returns (google.protobuf.Empty);
+
+    // Streams notifications for the authenticated caller in real time: each newly-added notification that
+    // matches the request filter is pushed to the client as it is created (backed server-side by a
+    // Postgres LISTEN/NOTIFY channel). The stream stays open until the client disconnects. When
+    // <code>include_existing</code> is set the currently-stored matching notifications are replayed first
+    // (newest last) before switching to the live tail.
+    rpc StreamNotifications (StreamNotificationsRequest) returns (stream Notification);
 
     // Retrieves user preferences based on the provided request.
     rpc GetUserPreferences (GetUserPreferencesRequest) returns (GetUserPreferencesResponse);
@@ -183,7 +193,7 @@ message User {
     string user_id = 2;
 
     // Optional field display_name is the name that will be used on the frontend to interact with the user
-    // it shouldn't be unique. If not provided user_name will also be used as display name
+    // it shouldn&apos;t be unique. If not provided user_name will also be used as display name
     string display_name = 3;
 
     // server role type of the given user. If nothing is provided, the user is set to USER (minimum access)
@@ -255,12 +265,15 @@ message GetUserRequest {
         // the user can identified by their email
         string user_email = 3;
     }
+    // Optional field mask to specify which fields to return in the response
+    google.protobuf.FieldMask field_mask = 4;
+
 }
 
 // Request to delete user
 message DeleteUserRequest {
 
-    //user is identified by user id, if empty will throw an error in the backend
+    // user is identified by user id, if empty will throw an error in the backend
     string user_id = 1;
 }
 
@@ -272,25 +285,35 @@ message ListUsersRequest {
     // The page token is a string representing the current index and page size.
     //
     // Valid page token strings:
-    // * "" (empty string) - Retrieves the first page.
-    // * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20.
-    // * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+    // <ul>
+    //     <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li>
+    //     <li><code>&quot;current_index-0--page_size-20&quot;</code> - Retrieves the first page with a page size of 20.</li>
+    //     <li><code>&quot;current_index-1--page_size-20&quot;</code> - Retrieves the second page with a page size of 20.</li>
+    // </ul>
     //
     // Index starts at 0.
     //
     // Examples of valid page token strings:
-    // * ""
-    // * "current_index-0--page_size-20"
-    // * "current_index-1--page_size-20"
-    // * "current_index-10--page_size-20"
+    // <ul>
+    //     <li><code>&quot;&quot;</code></li>
+    //     <li><code>&quot;current_index-0--page_size-20&quot;</code></li>
+    //     <li><code>&quot;current_index-1--page_size-20&quot;</code></li>
+    //     <li><code>&quot;current_index-10--page_size-20&quot;</code></li>
+    // </ul>
     //
     // Examples of invalid page token strings:
-    // * "1"
-    // * "current_index-0--page_size-20"
-    // * "current_index--1--page_size-20"
-    // * "current_index1--page_size-20"
-    // * "current_index-1--page_size--20"
+    // <ul>
+    //     <li><code>&quot;1&quot;</code></li>
+    //     <li><code>&quot;current_index-0--page_size-20&quot;</code></li>
+    //     <li><code>&quot;current_index--1--page_size-20&quot;</code></li>
+    //     <li><code>&quot;current_index1--page_size-20&quot;</code></li>
+    //     <li><code>&quot;current_index-1--page_size--20&quot;</code></li>
+    // </ul>
     string page_token = 1;
+
+    // Optional. The mask to control which fields gets returned.
+    google.protobuf.FieldMask field_mask = 2;
+
 }
 
 // Response containing list of users
@@ -351,7 +374,7 @@ enum DefaultServerRole {
     // read-only access
     SERVER_USER = 1;
 
-    // SERVER_USER's permissions + CRUD of projects and Users
+    // SERVER_USER&apos;s permissions + CRUD of projects and Users
     SERVER_MANAGER = 2;
 
     // this role can do everything
@@ -364,17 +387,17 @@ enum DefaultServerRole {
 // Request to create server role
 message CreateServerRoleRequest {
 
-    //If the role_id is not provided, an incremental value will be assigned
-    //The "name" and "role_type" are mandatory values
-    //The permissions all default to False if not provided specifically
+    // If the role_id is not provided, an incremental value will be assigned
+    // The &quot;name&quot; and &quot;role_type&quot; are mandatory values
+    // The permissions all default to False if not provided specifically
     ServerRole role = 1;
 }
 
 // Request to update server role
 message UpdateServerRoleRequest {
 
-    //role_id in the Role message should be given, if empty will throw an error in the backend
-    //other fields in the Role are optional. Only the fields to be updated should be provided
+    // role_id in the Role message should be given, if empty will throw an error in the backend
+    // other fields in the Role are optional. Only the fields to be updated should be provided
     ServerRole role = 1;
 
     // Optional. The mask to control which fields get updated.
@@ -384,7 +407,7 @@ message UpdateServerRoleRequest {
 // Request to delete server role
 message DeleteServerRoleRequest {
 
-    //role is identified by role id, if empty will throw an error in the backend
+    // role is identified by role id, if empty will throw an error in the backend
     uint32 role_id = 1;
 }
 
@@ -398,6 +421,10 @@ message GetServerRoleRequest {
         // role can also be uniquely identified by its name
         string role_name = 2;
     }
+
+    // Optional. The mask to control which fields gets returned.
+    google.protobuf.FieldMask field_mask = 3;
+
 }
 
 // Request to list server roles
@@ -408,25 +435,35 @@ message ListServerRolesRequest {
     // The page token is a string representing the current index and page size.
     //
     // Valid page token strings:
-    // * "" (empty string) - Retrieves the first page.
-    // * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20.
-    // * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+    // <ul>
+    //     <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li>
+    //     <li><code>&quot;current_index-0--page_size-20&quot;</code> - Retrieves the first page with a page size of 20.</li>
+    //     <li><code>&quot;current_index-1--page_size-20&quot;</code> - Retrieves the second page with a page size of 20.</li>
+    // </ul>
     //
     // Index starts at 0.
     //
     // Examples of valid page token strings:
-    // * ""
-    // * "current_index-0--page_size-20"
-    // * "current_index-1--page_size-20"
-    // * "current_index-10--page_size-20"
+    // <ul>
+    //     <li><code>&quot;&quot;</code></li>
+    //     <li><code>&quot;current_index-0--page_size-20&quot;</code></li>
+    //     <li><code>&quot;current_index-1--page_size-20&quot;</code></li>
+    //     <li><code>&quot;current_index-10--page_size-20&quot;</code></li>
+    // </ul>
     //
     // Examples of invalid page token strings:
-    // * "1"
-    // * "current_index-0--page_size-20"
-    // * "current_index--1--page_size-20"
-    // * "current_index1--page_size-20"
-    // * "current_index-1--page_size--20"
+    // <ul>
+    //     <li><code>&quot;1&quot;</code></li>
+    //     <li><code>&quot;current_index-0--page_size-20&quot;</code></li>
+    //     <li><code>&quot;current_index--1--page_size-20&quot;</code></li>
+    //     <li><code>&quot;current_index1--page_size-20&quot;</code></li>
+    //     <li><code>&quot;current_index-1--page_size--20&quot;</code></li>
+    // </ul>
     string page_token = 1;
+
+    // Optional. The mask to control which fields gets returned.
+    google.protobuf.FieldMask field_mask = 2;
+
 }
 
 // Response containing list of server roles
@@ -449,25 +486,35 @@ message ListServerPermissionsRequest {
     // The page token is a string representing the current index and page size.
     //
     // Valid page token strings:
-    // * "" (empty string) - Retrieves the first page.
-    // * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20.
-    // * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+    // <ul>
+    //     <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li>
+    //     <li><code>&quot;current_index-0--page_size-20&quot;</code> - Retrieves the first page with a page size of 20.</li>
+    //     <li><code>&quot;current_index-1--page_size-20&quot;</code> - Retrieves the second page with a page size of 20.</li>
+    // </ul>
     //
     // Index starts at 0.
     //
     // Examples of valid page token strings:
-    // * ""
-    // * "current_index-0--page_size-20"
-    // * "current_index-1--page_size-20"
-    // * "current_index-10--page_size-20"
+    // <ul>
+    //     <li><code>&quot;&quot;</code></li>
+    //     <li><code>&quot;current_index-0--page_size-20&quot;</code></li>
+    //     <li><code>&quot;current_index-1--page_size-20&quot;</code></li>
+    //     <li><code>&quot;current_index-10--page_size-20&quot;</code></li>
+    // </ul>
     //
     // Examples of invalid page token strings:
-    // * "1"
-    // * "current_index-0--page_size-20"
-    // * "current_index--1--page_size-20"
-    // * "current_index1--page_size-20"
-    // * "current_index-1--page_size--20"
+    // <ul>
+    //     <li><code>&quot;1&quot;</code></li>
+    //     <li><code>&quot;current_index-0--page_size-20&quot;</code></li>
+    //     <li><code>&quot;current_index--1--page_size-20&quot;</code></li>
+    //     <li><code>&quot;current_index1--page_size-20&quot;</code></li>
+    //     <li><code>&quot;current_index-1--page_size--20&quot;</code></li>
+    // </ul>
     string page_token = 1;
+
+    // Optional. The mask to control which fields gets returned.
+    google.protobuf.FieldMask field_mask = 2;
+
 }
 
 // Response containing list of server permissions
@@ -482,26 +529,6 @@ message ListServerPermissionsResponse {
     string next_page_token = 2;
 }
 
-// Authentication messages
-message LoginRequest {
-
-    // user email
-    string user_email = 1;
-
-    // user password
-    string password = 2;
-}
-
-// This message is a response of logging
-message LoginResponse {
-
-    // user object - user_id must be there
-    User user = 1;
-
-    // authentication token after successful login of the user to access NLU services
-    string auth_token = 2;
-}
-
 // Request to get user preferences.
 message GetUserPreferencesRequest {
 
@@ -513,12 +540,15 @@ message GetUserPreferencesRequest {
     // If keys are specified multiple times then only one KeyValue pair is returned
     repeated string keys = 2;
 
-    // Optional: In addition to the keys specified also include all <pre>keys</pre> that match the provided
-    // <pre>regex_include</pre> regular expression.
+    // Optional: In addition to the keys specified also include all <code>keys</code> that match the provided
+    // <code>regex_include</code> regular expression.
     // If user does not add regex_filter, then only the keys specified in the keys field are returned.
     // If both, a key in the keys field and in the regex_include will be matched than only a single
-    // <pre>KeyValuePair</pre> is returned.
+    // <code>KeyValuePair</code> is returned.
     string regex_include = 3;
+
+    // Optional. The mask to control which fields gets returned.
+    google.protobuf.FieldMask field_mask = 4;
 
 }
 
@@ -574,8 +604,8 @@ message DeleteUserPreferencesRequest {
     // List of keys to delete from user preferences.
     repeated string keys = 2;
 
-    // Optional: In addition to the keys specified also include all <pre>keys</pre> that match the provided
-    // <pre>regex_include</pre> regular expression.
+    // Optional: In addition to the keys specified also include all <code>keys</code> that match the provided
+    // <code>regex_include</code> regular expression.
     // If user does not add regex_filter, then only the keys specified in the keys field are deleted.
     // If both, a key in the keys field and in the regex_include is matched then the key is deleted without raising an error.
     string regex_include = 3;
@@ -622,6 +652,10 @@ message ListUserPreferencesRequest {
 
     // Optional: Only list keys that match the provided regular expression
     string regex_filter = 2;
+
+    // Optional. The mask to control which fields gets returned.
+    google.protobuf.FieldMask field_mask = 3;
+
 }
 
 // Response containing a list of user preferences for a specific user with an optional filter substring.

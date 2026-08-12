@@ -237,6 +237,18 @@ message S2sStreamResponse {
         SipTrigger sip_trigger = 3;
     }
 
+    // Optional. Identifier of the utterance this response belongs to. All chunks of one synthesized utterance share the same <code>utterance_id</code>
+    string utterance_id = 4;
+
+    // Optional. Zero-based index of this chunk within the utterance identified by <code>utterance_id</code>
+    int32 chunk_index = 5;
+
+    // Optional. If <code>true</code>, this is the last chunk of the utterance identified by <code>utterance_id</code>
+    bool last_chunk = 6;
+
+    // Optional. Monotonic turn epoch of the conversation turn that produced this response. Used by consumers to fence stale audio of an interrupted turn
+    uint64 turn_epoch = 7;
+
 }
 
 // SIP trigger message.
@@ -308,6 +320,24 @@ enum ControlStatus {
     // Status that voice activity detection detected start of speech
     VAD_START_OF_SPEECH = 2;
 
+    // Status that the caller started speaking while the bot was speaking (barge-in): playback pauses and the un-played audio remainder is buffered
+    BARGE_IN = 3;
+
+    // Status sent by the server to the client to resume playback of the buffered audio remainder after a false interruption (no committed transcription final arrived within the false interruption timeout)
+    RESUME_PLAYBACK = 4;
+
+    // Status sent by the server to the client to discard the buffered audio remainder because the interruption committed as a real turn
+    DISCARD_REMAINDER = 5;
+
+    // Status reported by the client to the server via <code>SetControlStatus</code> that playback of the buffered audio remainder has resumed
+    PLAYBACK_RESUMED = 6;
+
+    // Status reported by the client to the server via <code>SetControlStatus</code> that playback of an utterance has completed
+    PLAYBACK_DONE = 7;
+
+    // Status reported by ondewo-sip to the server via <code>SetControlStatus</code> that the phone call has ENDED and the server must reset ALL per-call state in place (persistent-listener model). It is a command, not a state: it is never pushed onto the control stream
+    CALL_ENDED = 8;
+
 }
 
 // Control stream response message.
@@ -315,6 +345,9 @@ message ControlStreamResponse{
 
     // Control status
     ControlStatus control_status = 1;
+
+    // Monotonic barge-in epoch/sequence number so control status transitions are correlatable with the <code>S2sStreamResponse</code> <code>turn_epoch</code> and a second barge-in during a resumed remainder can never be coalesced away
+    uint64 epoch = 2;
 
 }
 
