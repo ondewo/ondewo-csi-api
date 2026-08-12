@@ -9,6 +9,7 @@
 * [[OND235-105]](https://ondewo.atlassian.net/browse/OND235-105) Extend `ControlStatus` with barge-in and playback lifecycle statuses `BARGE_IN`, `RESUME_PLAYBACK`, `DISCARD_REMAINDER`, `PLAYBACK_RESUMED` and `PLAYBACK_DONE`
 * [[OND235-105]](https://ondewo.atlassian.net/browse/OND235-105) Add monotonic barge-in `epoch` field to `ControlStreamResponse`
 * [[OND235-105]](https://ondewo.atlassian.net/browse/OND235-105) Add utterance/turn framing fields `utterance_id`, `chunk_index`, `last_chunk` and `turn_epoch` to `S2sStreamResponse`
+* [[OND211-2418]](https://ondewo.atlassian.net/browse/OND211-2418) Upgrade API to NLU API [7.0.0](https://github.com/ondewo/ondewo-nlu-api/releases/7.0.0), S2T API [7.4.0](https://github.com/ondewo/ondewo-s2t-api/releases/7.4.0) and T2S API [6.6.0](https://github.com/ondewo/ondewo-t2s-api/releases/6.6.0) libraries
 
 *****************
 
