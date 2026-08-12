@@ -919,6 +919,7 @@
     - [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions)
     - [OpenaiLlmOptions.DefaultHeadersEntry](#ondewo.s2t.OpenaiLlmOptions.DefaultHeadersEntry)
     - [OpenaiLlmOptions.LogitBiasEntry](#ondewo.s2t.OpenaiLlmOptions.LogitBiasEntry)
+    - [Parakeet](#ondewo.s2t.Parakeet)
     - [PostProcessing](#ondewo.s2t.PostProcessing)
     - [PostProcessingOptions](#ondewo.s2t.PostProcessingOptions)
     - [PostProcessors](#ondewo.s2t.PostProcessors)
@@ -1033,6 +1034,7 @@
     - [UpdateCustomPhonemizerRequest](#ondewo.t2s.UpdateCustomPhonemizerRequest)
     - [Vits](#ondewo.t2s.Vits)
     - [VitsTriton](#ondewo.t2s.VitsTriton)
+    - [VoiceCloningRequest](#ondewo.t2s.VoiceCloningRequest)
     - [VoiceSettings](#ondewo.t2s.VoiceSettings)
     - [Wiener](#ondewo.t2s.Wiener)
   
@@ -17530,6 +17532,7 @@ This method doesn&apos;t work with Google Assistant integration. Contact Dialogf
 | s2t_cloud_service_deepgram | [S2tCloudServiceDeepgram](#ondewo.s2t.S2tCloudServiceDeepgram) |  | Deepgram cloud service inference settings. |
 | s2t_cloud_service_google | [S2tCloudServiceGoogle](#ondewo.s2t.S2tCloudServiceGoogle) |  | Google cloud service inference settings. |
 | s2t_cloud_service_microsoft | [S2tCloudServiceMicrosoft](#ondewo.s2t.S2tCloudServiceMicrosoft) |  | Microsoft Azure cloud service inference settings. |
+| parakeet | [Parakeet](#ondewo.s2t.Parakeet) |  | Configuration for the Parakeet model. |
 
 
 
@@ -17823,26 +17826,26 @@ This method doesn&apos;t work with Google Assistant integration. Contact Dialogf
 | default_headers | [OpenaiLlmOptions.DefaultHeadersEntry](#ondewo.s2t.OpenaiLlmOptions.DefaultHeadersEntry) | repeated | Optional. Default HTTP headers to include with every request to the OpenAI API. |
 | default_query | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Default query parameters to append to every request URL sent to the OpenAI API. Values can be of any type (string, number, boolean, list), hence the use of Struct. |
 | strict_response_validation | [bool](#bool) | optional | Optional. If true, enables strict validation of response payloads returned by the OpenAI API. |
-| model | [string](#string) | optional | Required. The name or identifier of the OpenAI model to use for chat completion (e.g., "gpt-4o", "gpt-4o-mini", "o3"). |
+| model | [string](#string) |  | Required. The name or identifier of the OpenAI model to use for chat completion (e.g., "gpt-4o", "gpt-4o-mini", "o3"). |
 | frequency_penalty | [float](#float) | optional | Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the likelihood of the model repeating the same line verbatim. |
 | logit_bias | [OpenaiLlmOptions.LogitBiasEntry](#ondewo.s2t.OpenaiLlmOptions.LogitBiasEntry) | repeated | Optional. Modifies the likelihood of specified tokens appearing in the completion. Maps token IDs (as strings) to bias values from -100 to 100. Mathematically added to the logits before sampling. |
 | logprobs | [bool](#bool) | optional | Optional. Whether to return log probabilities of the output tokens. If true, returns the log probabilities of each output token in the response. |
 | max_completion_tokens | [int32](#int32) | optional | Optional. An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and reasoning tokens. |
 | max_tokens | [int32](#int32) | optional | Optional. The maximum number of tokens that can be generated in the chat completion. Deprecated in favor of max_completion_tokens. |
-| metadata | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Developer-defined tags and values used for filtering completions in the OpenAI dashboard. |
+| metadata | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. |
 | n | [int32](#int32) | optional | Optional. The number of chat completion choices to generate for each input message. Note that costs are multiplied by the number of choices generated. |
 | presence_penalty | [float](#float) | optional | Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on whether they have already appeared in the text, increasing the likelihood of the model discussing new topics. |
-| prompt_cache_key | [string](#string) | optional | Optional. A stable key used to enable prompt caching for identical prompt prefixes, reducing latency and cost on repeated requests. |
-| reasoning_effort | [ReasoningEffort](#ondewo.s2t.ReasoningEffort) | optional | Optional. Constrains the effort level for reasoning models (e.g., o1, o3). Controls the trade-off between speed and quality. |
+| prompt_cache_key | [string](#string) | optional | Optional. Used by OpenAI to cache responses for similar requests to optimize your cache hit rates. Replaces the `user` field. [Learn more](https://platform.openai.com/docs/guides/prompt-caching). |
+| reasoning_effort | [ReasoningEffort](#ondewo.s2t.ReasoningEffort) | optional | Optional. Constrains effort on reasoning for [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `none`, `minimal`, `low`, `medium`, `high`, and `xhigh`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. |
 | seed | [int64](#int64) | optional | Optional. If specified, the system will make a best effort to sample deterministically given the same seed and parameters, enabling reproducible outputs. |
-| service_tier | [ServiceTier](#ondewo.s2t.ServiceTier) | optional | Optional. Specifies the latency tier to use for processing the request. Affects cost and throughput. |
-| stop | [string](#string) | repeated | Optional. Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. |
+| service_tier | [ServiceTier](#ondewo.s2t.ServiceTier) | optional | Optional. Specifies the processing type used for serving the request. - If set to 'auto', then the request will be processed with the service tier configured in the Project settings. Unless otherwise configured, the Project will use 'default'. - If set to 'default', then the request will be processed with the standard pricing and performance for the selected model. - If set to '[flex](https://platform.openai.com/docs/guides/flex-processing)' or '[priority](https://openai.com/api-priority-processing/)', then the request will be processed with the corresponding service tier. - When not set, the default behavior is 'auto'. When the `service_tier` parameter is set, the response body will include the `service_tier` value based on the processing mode actually used to serve the request. This response value may be different from the value set in the parameter. |
+| stop | [string](#string) | repeated | Optional. Not supported with latest reasoning models `o3` and `o4-mini`. Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. |
 | store | [bool](#bool) | optional | Optional. Whether to store the output of this chat completion request for use in model distillation, evals, or the stored completions dashboard. |
 | temperature | [float](#float) | optional | Optional. What sampling temperature to use, between 0 and 2. Higher values (e.g., 0.8) make the output more random, while lower values (e.g., 0.2) make it more focused and deterministic. |
 | top_logprobs | [int32](#int32) | optional | Optional. An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. Requires logprobs to be true. |
 | top_p | [float](#float) | optional | Optional. An alternative to sampling with temperature, called nucleus sampling. The model considers only the tokens with top_p probability mass. Ranges from 0 to 1. |
-| user | [string](#string) | optional | Optional. A unique identifier representing the end-user, which helps OpenAI monitor and detect abuse. |
-| verbosity | [Verbosity](#ondewo.s2t.Verbosity) | optional | Optional. The verbosity level for the response output. |
+| user | [string](#string) | optional | Optional. This field is being replaced by `safety_identifier` and `prompt_cache_key`. Use `prompt_cache_key` instead to maintain caching optimizations. A stable identifier for your end-users. Used to boost cache hit rates by better bucketing similar requests and to help OpenAI detect and prevent abuse. [Learn more](https://platform.openai.com/docs/guides/safety-best-practices#safety-identifiers). |
+| verbosity | [Verbosity](#ondewo.s2t.Verbosity) | optional | Optional. Constrains the verbosity of the model's response. Lower values will result in more concise responses, while higher values will result in more verbose responses. Currently supported values are `low`, `medium`, and `high`. |
 | extra_headers | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Additional HTTP headers to send with the request. These are merged with and override default_headers for this specific request only. |
 | extra_query | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Additional query parameters to send with the request. These are merged with and override default_query for this specific request only. |
 | extra_body | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Additional JSON properties to include in the request body. Useful for accessing new or undocumented API parameters. |
@@ -17878,6 +17881,25 @@ This method doesn&apos;t work with Google Assistant integration. Contact Dialogf
 | ----- | ---- | ----- | ----------- |
 | key | [string](#string) |  |  |
 | value | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="ondewo.s2t.Parakeet"></a>
+
+### Parakeet
+<p>Parakeet contains information about the Parakeet model.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| triton_model_name | [string](#string) |  | Name of the Triton model. |
+| triton_model_version | [string](#string) |  | Version of the Triton model. |
+| check_status_timeout | [int64](#int64) |  | Timeout for checking model status. |
+| triton_server_host | [string](#string) |  | Host name of triton inference server that serves the Parakeet model |
+| triton_server_port | [int64](#int64) |  | Port number of triton inference server that serves the Parakeet model |
 
 
 
@@ -19021,8 +19043,8 @@ The inference backend configuration
 | max_text_length | [int64](#int64) |  | The maximum text length allowed. |
 | param_config_path | [string](#string) |  | The path to the parameter configuration. |
 | triton_model_name | [string](#string) |  | The name of the Triton model. |
-| triton_server_host | [string](#string) |  | The host of the Triton inference server which servers the model. |
-| triton_server_port | [int64](#int64) |  | The port of the Triton inference server which servers the model. |
+| triton_server_host | [string](#string) |  | The host of the Triton inference server which serves the model. |
+| triton_server_port | [int64](#int64) |  | The port of the Triton inference server which serves the model. |
 
 
 
@@ -19057,8 +19079,8 @@ The inference backend configuration
 | ----- | ---- | ----- | ----------- |
 | config_path | [string](#string) |  | The path to the HiFiGan Triton configuration. |
 | triton_model_name | [string](#string) |  | The name of the Triton model. |
-| triton_server_host | [string](#string) |  | The host of the Triton inference server which servers the model. |
-| triton_server_port | [int64](#int64) |  | The port of the Triton inference server which servers the model. |
+| triton_server_host | [string](#string) |  | The host of the Triton inference server which serves the model. |
+| triton_server_port | [int64](#int64) |  | The port of the Triton inference server which serves the model. |
 
 
 
@@ -19280,8 +19302,8 @@ The inference backend configuration
 | config_path | [string](#string) |  | The path to the MbMelgan Triton configuration. |
 | stats_path | [string](#string) |  | The path to the MbMelgan statistics. |
 | triton_model_name | [string](#string) |  | The name of the Triton model. |
-| triton_server_host | [string](#string) |  | The host of the Triton inference server which servers the model. |
-| triton_server_port | [int64](#int64) |  | The port of the Triton inference server which servers the model. |
+| triton_server_host | [string](#string) |  | The host of the Triton inference server which serves the model. |
+| triton_server_port | [int64](#int64) |  | The port of the Triton inference server which serves the model. |
 
 
 
@@ -19296,7 +19318,7 @@ The inference backend configuration
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  | The type of mel-to-audio inference. |
+| type | [string](#string) |  | The type of mel-to-audio inference (vocoder), selecting which of the settings below is applied (mb_melgan_triton, hifi_gan or hifi_gan_triton). |
 | mb_melgan_triton | [MbMelganTriton](#ondewo.t2s.MbMelganTriton) |  | MbMelgan Triton inference settings. |
 | hifi_gan | [HiFiGan](#ondewo.t2s.HiFiGan) |  | HiFiGan inference settings. |
 | hifi_gan_triton | [HiFiGanTriton](#ondewo.t2s.HiFiGanTriton) |  | HiFiGan Triton inference settings. |
@@ -19420,7 +19442,7 @@ The inference backend configuration
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | t2s_pipeline_id | [string](#string) |  | Required. Represents the pipeline id of the model configuration that will be used. |
-| length_scale | [float](#float) |  | Optional. This parameter is used for time stretching which is the process of changing the speed or duration of an audio. It should be much more than 1.0. O is not a valid number for this variable. The default value is 1. |
+| length_scale | [float](#float) |  | Optional. This parameter is used for time stretching which is the process of changing the speed or duration of an audio. It should be much more than 1.0. 0 is not a valid number for this variable. The default value is 1. |
 | noise_scale | [float](#float) |  | Optional. Defines the noise in the generated audio. It should be between 0.0 and 1. The default value is 0.0 |
 | sample_rate | [int32](#int32) |  | Optional. Defines the sample rate of the generated wav file. The default value is 22050. |
 | pcm | [Pcm](#ondewo.t2s.Pcm) |  | Optional. Defines the pulse-code modulation of the wav file. The default value is PCM_16. |
@@ -19440,7 +19462,9 @@ Note: ondewo-t2s will raise an error if you don&apos;t pass any of the required 
 | t2s_cloud_provider_config | [T2sCloudProviderConfig](#ondewo.t2s.T2sCloudProviderConfig) | optional | Optional. Defines the cloud provider's specific configuration for using text to speech cloud services The default value is None. |
 | t2s_normalization | [T2SNormalization](#ondewo.t2s.T2SNormalization) |  | Optional. Define t2s_normalization config parameters for this specific request. The default values are set in the config file and the values set via RequestConfig are set just for this specific request and will not update the pipeline. |
 | word_to_phoneme_mapping | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Define a dict which specifies the phonemes for a special word. |
-| instruction | [string](#string) | optional | Optional. Define an instruction or prompt to be passed to the TTS/LLM backend for this request. |
+| instruction | [string](#string) | optional | Optional. Define an instruction or prompt to be passed to the TTS/LLM backend for this request.
+
+<p>This field is only honored by the <b>qwen3-tts-voicedesign</b> model, where it is a natural-language description of the target voice to design, e.g. <pre><code>a calm female voice with a slight British accent</code></pre></p> <p>It is ignored by every other pipeline, including the qwen3-tts CustomVoice and base models and the local vits / glow-tts models. To control the delivery / emotion of the qwen3-tts CustomVoice model, embed the control tags in the request text instead (see <code>SynthesizeRequest.text</code>), not via this field.</p> |
 
 
 
@@ -19488,14 +19512,14 @@ all other properties of this generated audio.</p>
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| audio_uuid | [string](#string) |  | Required. Represents the pipeline id of the model configuration that will be used. |
+| audio_uuid | [string](#string) |  | Required. The unique identifier (UUID) assigned to the generated audio. |
 | audio | [bytes](#bytes) |  | Required. Generated file with the parameters described in request. |
-| generation_time | [float](#float) |  | Required. Time to generate audio. |
-| audio_length | [float](#float) |  | Required. Audio length. |
+| generation_time | [float](#float) |  | Required. Time taken to generate the audio, in seconds. |
+| audio_length | [float](#float) |  | Required. Length (duration) of the generated audio, in seconds. |
 | text | [string](#string) |  | Required. Text from which audio was generated. |
 | config | [RequestConfig](#ondewo.t2s.RequestConfig) |  | Required. Configuration from which audio was generated. |
 | normalized_text | [string](#string) |  | Optional. Normalized text. |
-| sample_rate | [float](#float) |  | Optional. Value of sampling rate |
+| sample_rate | [float](#float) |  | Optional. Sampling rate of the generated audio, in Hertz (Hz). |
 
 
 
@@ -19511,7 +19535,21 @@ all other properties of this generated audio.</p>
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| text | [string](#string) |  | Required. Represents the text that will be transformed to speech. Synthesize text: <ul> <li>Simple text: <pre><code>Hello, how are you?</code></pre></li> </ul> Examples to modulate the voice based on SSML tags and Arpabet phonemes: <ul> <li>SSML Tag Phone: <pre><code>&lt;say-as interpret-as=&quot;phone&quot;&gt;+12354321&lt;/say-as&gt;</code></pre></li> <li>SSML Tag Email: <pre><code>&lt;say-as interpret-as=&quot;email&quot;&gt;voices@ondewo.com&lt;/say-as&gt;</code></pre></li> <li>SSML Tag URL: <pre><code>&lt;say-as interpret-as=&quot;url&quot;&gt;ondewo.com/en/&lt;/say-as&gt;</code></pre></li> <li>SSML Tag Spell: <pre><code>&lt;say-as interpret-as=&quot;spell&quot;&gt;AP732&lt;/say-as&gt;</code></pre></li> <li>SSML Tag Spell With Names: <pre><code>&lt;say-as interpret-as=&quot;spell-with-names&quot;&gt;AHO32&lt;/say-as&gt;</code></pre></li> <li>SSML Tag Callsigns Short: <pre><code>&lt;say-as interpret-as=&quot;callsign-short&quot;&gt;AUA439&lt;/say-as&gt;</code></pre></li> <li>SSML Tag Callsigns Long: <pre><code>&lt;say-as interpret-as=&quot;callsign-long&quot;&gt;AAL439&lt;/say-as&gt;</code></pre></li> <li>SSML Tag Break Tag: <pre><code>I am going to take a 2 seconds break &lt;break time=&quot;2.0&quot;/&gt; done</code></pre></li> <li>Arpabet Phonemes: <pre><code>Hello I am {AE2 L EH0 G Z AE1 N D R AH0}</code></pre></li> </ul> |
+| text | [string](#string) |  | Required. Represents the text that will be transformed to speech.
+
+<p>The text may be plain text, or it may embed SSML markup, phonemes and voice-control tags to shape how it is spoken. The sections below list every supported form with a copy-paste example. Which forms take effect depends on the pipeline (model) selected via <code>RequestConfig.t2s_pipeline_id</code>; unsupported tags are stripped and the plain text is still spoken.</p>
+
+<p><b>1. Plain text</b></p> <ul> <li>Simple text: <pre><code>Hello, how are you?</code></pre></li> </ul>
+
+<p><b>2. SSML <code>&lt;say-as&gt;</code> tags (local vits / qwen3-tts and cloud providers)</b></p> <p>Rewrites the enclosed text into its spoken form (spelled out letters, digits, symbols, ...). Supported by the local normalization pipeline and forwarded to the cloud providers.</p> <ul> <li>Phone: <pre><code>&lt;say-as interpret-as=&quot;phone&quot;&gt;+12354321&lt;/say-as&gt;</code></pre></li> <li>Email: <pre><code>&lt;say-as interpret-as=&quot;email&quot;&gt;voices@ondewo.com&lt;/say-as&gt;</code></pre></li> <li>URL: <pre><code>&lt;say-as interpret-as=&quot;url&quot;&gt;ondewo.com/en/&lt;/say-as&gt;</code></pre></li> <li>Spell (spell out each character): <pre><code>&lt;say-as interpret-as=&quot;spell&quot;&gt;AP732&lt;/say-as&gt;</code></pre></li> <li>Spell with names (e.g. &quot;A like Anton&quot;): <pre><code>&lt;say-as interpret-as=&quot;spell-with-names&quot;&gt;AHO32&lt;/say-as&gt;</code></pre></li> <li>Callsigns short: <pre><code>&lt;say-as interpret-as=&quot;callsign-short&quot;&gt;AUA439&lt;/say-as&gt;</code></pre></li> <li>Callsigns long: <pre><code>&lt;say-as interpret-as=&quot;callsign-long&quot;&gt;AAL439&lt;/say-as&gt;</code></pre></li> </ul>
+
+<p><b>3. Pauses / breaks</b></p> <ul> <li>Break tag (seconds): <pre><code>I am going to take a 2 seconds break &lt;break time=&quot;2.0&quot;/&gt; done</code></pre></li> <li>Break tag (milliseconds, cloud providers): <pre><code>please wait &lt;break time=&quot;500ms&quot;/&gt; done</code></pre></li> </ul>
+
+<p><b>4. Phonemes / pronunciation control</b></p> <p>The phoneme alphabet depends exclusively on the model type:</p> <p><b>4a. IPA phonemes (vits and cloud providers only)</b> - the vits models and the cloud providers (Amazon Polly, Microsoft Azure and Google Cloud TTS) control pronunciation with the SSML <code>&lt;phoneme&gt;</code> element using the IPA alphabet (<code>alphabet=&quot;ipa&quot;</code>). The IPA string goes in the <code>ph</code> attribute and the written word between the tags:</p> <ul> <li>English: <pre><code>I would like a &lt;phoneme alphabet=&quot;ipa&quot; ph=&quot;t&#601;&#712;me&#618;to&#650;&quot;&gt;tomato&lt;/phoneme&gt; please</code></pre></li> <li>German: <pre><code>Ich h&auml;tte gerne ein &lt;phoneme alphabet=&quot;ipa&quot; ph=&quot;&#712;ba&#618;&#643;pi&#720;l&quot;&gt;Beispiel&lt;/phoneme&gt; bitte</code></pre></li> </ul> <p><b>4b. Arpabet phonemes (glow model only)</b> - the glow model controls pronunciation with Arpabet phonemes, supplied through the same SSML <code>&lt;phoneme&gt;</code> element but with <code>alphabet=&quot;arpabet&quot;</code>. The ARPAbet transcription goes in the <code>ph</code> attribute and the written word between the tags (the phonemes are <b>not</b> written in curly braces <code>{}</code> in the request text):</p> <ul> <li>English: <pre><code>Please say &lt;phoneme alphabet=&quot;arpabet&quot; ph=&quot;T EH1 S T&quot;&gt;test&lt;/phoneme&gt; out loud</code></pre></li> <li>German: <pre><code>Ich sage &lt;phoneme alphabet=&quot;arpabet&quot; ph=&quot;T EH1 S T&quot;&gt;test&lt;/phoneme&gt; laut</code></pre></li> </ul> <p><b>4c. qwen3-tts has no phonemes - use the verbalized form instead</b> - the qwen3-tts models do <b>not</b> support Arpabet or IPA phonemes; the <code>&lt;phoneme&gt;</code> element and its <code>ph</code> string are ignored. Instead, to have a special text (symbols, codes, abbreviations, ...) spoken correctly, pass its <b>verbalization</b>: the plain, written-out spoken form of the text in the target language. For example, to have <code>A-7+8*</code> pronounced correctly:</p> <ul> <li>English: <pre><code>ai dash seven plus eight asterisk</code></pre></li> <li>German: <pre><code>ah bindestrich sieben plus acht sternchen</code></pre></li> </ul>
+
+<p><b>5. Voice control for qwen3-tts (emotion / style / prosody)</b></p> <p>These ONDEWO-namespaced tags are compiled into the model instruction and stripped from the spoken text, so the transcription stays the plain sentence while the delivery changes. They only take effect on the qwen3-tts <b>CustomVoice</b> model; on the base and voicedesign models they are stripped and a warning is logged.</p> <ul> <li>Style - one of the five primary styles <code>apologetic</code>, <code>calm</code>, <code>empathetic</code>, <code>firm</code>, <code>lively</code>, or one of the accepted synonyms <code>cheerful</code> / <code>happy</code> / <code>joyful</code>, <code>sad</code> / <code>sorrowful</code>, <code>angry</code> / <code>furious</code>, <code>excited</code>, <code>serious</code>, <code>tender</code> / <code>gentle</code>. An unknown name falls back to <code>neutral</code> and a warning is logged: <pre><code>&lt;ondewo:style name=&quot;calm&quot;&gt;please stay calm everything will be fine&lt;/ondewo:style&gt;</code></pre></li> <li>Emphasis - selects the intensity tier of the chosen style: <code>strong</code> (intense), <code>moderate</code> (the default when no emphasis is given) or <code>reduced</code> / <code>none</code> (mild): <pre><code>&lt;ondewo:style name=&quot;firm&quot;&gt;&lt;emphasis level=&quot;strong&quot;&gt;listen carefully&lt;/emphasis&gt;&lt;/ondewo:style&gt;</code></pre></li> <li>Prosody - <code>rate</code> (<code>x-slow</code>/<code>slow</code>/<code>medium</code>/<code>fast</code>/<code>x-fast</code> or a percentage such as <code>+20%</code>/<code>-20%</code>/<code>120%</code>), <code>pitch</code> (<code>x-low</code>/<code>low</code>/<code>medium</code>/<code>high</code>/<code>x-high</code>, a semitone offset such as <code>+4st</code>/<code>-4st</code> or a percentage such as <code>+10%</code>/<code>-10%</code>) and <code>volume</code> (<code>silent</code>/<code>x-soft</code>/<code>soft</code>/<code>medium</code>/<code>loud</code>/<code>x-loud</code> or a decibel offset such as <code>+6dB</code>/<code>-6dB</code>): <pre><code>&lt;prosody rate=&quot;slow&quot; pitch=&quot;+4st&quot; volume=&quot;loud&quot;&gt;hello there&lt;/prosody&gt;</code></pre></li> <li>Nested combination (style + emphasis + prosody): <pre><code>&lt;ondewo:style name=&quot;calm&quot;&gt;&lt;emphasis level=&quot;moderate&quot;&gt;&lt;prosody rate=&quot;slow&quot; pitch=&quot;low&quot; volume=&quot;soft&quot;&gt;hello there&lt;/prosody&gt;&lt;/emphasis&gt;&lt;/ondewo:style&gt;</code></pre></li> <li>Free-form instruction (CustomVoice only) - describe the delivery in natural language in the <code>instruction</code> attribute. The attribute value is used verbatim as the model instruction and takes precedence over the style / emphasis / prosody tags; the wrapped inner text is kept as the spoken text and it should be always in English: <pre><code>&lt;ondewo:instruct instruction=&quot;speak slowly in a warm and reassuring tone&quot;&gt;hello there&lt;/ondewo:instruct&gt;</code></pre></li> <li>Inline audio tags (CustomVoice only) - emotional expressions / sound effects in square brackets. They are compiled into the instruction and stripped from the spoken text. The supported tags are: <ul> <li>Voice-related: <code>[laughs]</code>, <code>[laughs harder]</code>, <code>[starts laughing]</code>, <code>[wheezing]</code>, <code>[whispers]</code>, <code>[sighs]</code>, <code>[exhales]</code>, <code>[sarcastic]</code>, <code>[curious]</code>, <code>[excited]</code>, <code>[crying]</code>, <code>[snorts]</code>, <code>[mischievously]</code></li> <li>Sound effects: <code>[gunshot]</code>, <code>[applause]</code>, <code>[clapping]</code>, <code>[explosion]</code>, <code>[swallows]</code>, <code>[gulps]</code></li> <li>Unique and special: <code>[sings]</code>, <code>[woo]</code>, <code>[fart]</code></li> <li>Accent (variable form): <code>[strong &lt;accent&gt; accent]</code>, e.g. <code>[strong French accent]</code></li> </ul> <pre><code>[whispers] hello there</code></pre></li> </ul> <p>See also <code>RequestConfig.instruction</code> for supplying the instruction / voice description directly instead of embedding it in the text.</p>
+
+<p><b>6. Provider-specific SSML (cloud pipelines only)</b></p> <p>Each cloud provider documents its own SSML vocabulary; use the elements matching the provider behind the selected pipeline. Standard <code>&lt;prosody&gt;</code>, <code>&lt;emphasis&gt;</code> and <code>&lt;break&gt;</code> are common to all three.</p> <ul> <li>Google Cloud TTS: <pre><code>&lt;google:style name=&quot;calm&quot;&gt;please stay calm everything will be fine&lt;/google:style&gt;</code></pre></li> <li>Microsoft Azure: <pre><code>&lt;mstts:express-as style=&quot;cheerful&quot;&gt;please stay calm everything will be fine&lt;/mstts:express-as&gt;</code></pre></li> <li>Amazon Polly (whispered): <pre><code>&lt;amazon:effect name=&quot;whispered&quot;&gt;please stay calm everything will be fine&lt;/amazon:effect&gt;</code></pre></li> <li>Amazon Polly (soft phonation): <pre><code>&lt;amazon:effect phonation=&quot;soft&quot;&gt;please stay calm everything will be fine&lt;/amazon:effect&gt;</code></pre></li> </ul> |
 | config | [RequestConfig](#ondewo.t2s.RequestConfig) |  | Required. Represents the specifications needed to do the text to speech transformation. |
 
 
@@ -19528,14 +19566,14 @@ all other properties of this generated audio.</p>
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| audio_uuid | [string](#string) |  | Required. Represents the pipeline id of the model configuration that will be used. |
+| audio_uuid | [string](#string) |  | Required. The unique identifier (UUID) assigned to the generated audio. |
 | audio | [bytes](#bytes) |  | Required. Generated file with the parameters described in request. |
-| generation_time | [float](#float) |  | Required. Time to generate audio. |
-| audio_length | [float](#float) |  | Required. Audio length. |
+| generation_time | [float](#float) |  | Required. Time taken to generate the audio, in seconds. |
+| audio_length | [float](#float) |  | Required. Length (duration) of the generated audio, in seconds. |
 | text | [string](#string) |  | Required. Text from which audio was generated. |
 | config | [RequestConfig](#ondewo.t2s.RequestConfig) |  | Required. Configuration from which audio was generated. |
 | normalized_text | [string](#string) |  | Optional. Normalized text. |
-| sample_rate | [float](#float) |  | Optional. Value of sampling rate |
+| sample_rate | [float](#float) |  | Optional. Sampling rate of the generated audio, in Hertz (Hz). |
 
 
 
@@ -19573,7 +19611,7 @@ all other properties of this generated audio.</p>
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | language | [string](#string) |  | The language supported by the service. |
-| speaker_sex | [string](#string) |  |  |
+| speaker_sex | [string](#string) |  | The speaker's sex or gender. |
 | pipeline_owner | [string](#string) |  | The owner of the text-to-speech pipeline. |
 | comments | [string](#string) |  | Additional comments or notes. |
 | speaker_name | [string](#string) |  | The name of the speaker. |
@@ -19607,9 +19645,9 @@ all other properties of this generated audio.</p>
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  | The type of inference. |
-| composite_inference | [CompositeInference](#ondewo.t2s.CompositeInference) |  | Composite inference settings. |
-| single_inference | [SingleInference](#ondewo.t2s.SingleInference) |  | Single inference settings. |
+| type | [string](#string) |  | The type of inference, selecting which of the settings below is applied: composite_inference (two-stage text-to-mel then mel-to-audio) or single_inference (single-stage text-to-audio). |
+| composite_inference | [CompositeInference](#ondewo.t2s.CompositeInference) |  | Composite (two-stage) inference settings, used when type selects composite inference. |
+| single_inference | [SingleInference](#ondewo.t2s.SingleInference) |  | Single (one-stage) inference settings, used when type selects single inference. |
 | caching | [Caching](#ondewo.t2s.Caching) |  | Caching settings. |
 
 
@@ -19754,6 +19792,7 @@ all other properties of this generated audio.</p>
 | speaking_rate | [float](#float) |  | Speaking rate to control the speed of audio. |
 | volume_gain_db | [float](#float) |  | Volume gain in db to control volume of the audio. |
 | pitch | [float](#float) |  | pitch value of the audio |
+| speaker_language | [string](#string) |  | speaker_language indicating the speaker language code |
 
 
 
@@ -19800,7 +19839,7 @@ all other properties of this generated audio.</p>
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  | The type of text-to-audio inference. |
+| type | [string](#string) |  | The type of text-to-audio inference, selecting which of the settings below is applied: a local model (vits, vits_triton) or a cloud / neural service (t2s_cloud_service_elevenlabs, t2s_cloud_service_amazon, t2s_cloud_service_google, t2s_cloud_service_microsoft, qwen3_tts_custom_voice, qwen3_tts_base). |
 | vits | [Vits](#ondewo.t2s.Vits) |  | Vits inference settings. |
 | vits_triton | [VitsTriton](#ondewo.t2s.VitsTriton) |  | Vits Triton inference settings. |
 | t2s_cloud_service_elevenlabs | [T2sCloudServiceElevenLabs](#ondewo.t2s.T2sCloudServiceElevenLabs) |  | ElevenLabs cloud service inference settings. |
@@ -19823,7 +19862,7 @@ all other properties of this generated audio.</p>
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  | The type of text-to-mel inference. |
+| type | [string](#string) |  | The type of text-to-mel inference, selecting which of the settings below is applied (glow_tts or glow_tts_triton). |
 | glow_tts | [GlowTTS](#ondewo.t2s.GlowTTS) |  | GlowTTS inference settings. |
 | glow_tts_triton | [GlowTTSTriton](#ondewo.t2s.GlowTTSTriton) |  | GlowTTS Triton inference settings. |
 
@@ -19843,7 +19882,7 @@ all other properties of this generated audio.</p>
 | id | [string](#string) |  | Required. Defines the id of the pipeline. |
 | description | [T2SDescription](#ondewo.t2s.T2SDescription) |  | Required. Defines the description of the pipeline representation. |
 | active | [bool](#bool) |  | Required. Defines if the pipeline is active or inactive. |
-| inference | [T2SInference](#ondewo.t2s.T2SInference) |  | Required. Defines he inference of the pipeline representation. |
+| inference | [T2SInference](#ondewo.t2s.T2SInference) |  | Required. Defines the inference of the pipeline representation. |
 | normalization | [T2SNormalization](#ondewo.t2s.T2SNormalization) |  | Required. Defines the normalization process of the pipeline representation. |
 | postprocessing | [Postprocessing](#ondewo.t2s.Postprocessing) |  | Required. Defines the postprocessing process of the pipeline representation. |
 
@@ -19905,8 +19944,29 @@ all other properties of this generated audio.</p>
 | max_text_length | [int64](#int64) |  | The maximum text length allowed. |
 | param_config_path | [string](#string) |  | The path to the parameter configuration. |
 | triton_model_name | [string](#string) |  | The name of the Triton model. |
-| triton_server_host | [string](#string) |  | The host of the Triton inference server which servers the model. |
-| triton_server_port | [int64](#int64) |  | The port of the Triton inference server which servers the model. |
+| triton_server_host | [string](#string) |  | The host of the Triton inference server which serves the model. |
+| triton_server_port | [int64](#int64) |  | The port of the Triton inference server which serves the model. |
+
+
+
+
+
+
+<a name="ondewo.t2s.VoiceCloningRequest"></a>
+
+### VoiceCloningRequest
+<p>VoiceCloningRequest message represents the request for cloning a voice.</p>
+<p>A VoiceCloningRequest contains a sample audio of the speaker to be cloned together with
+its transcription and the information about the speaker and the model to use for cloning.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sample_audio | [bytes](#bytes) |  | Required. The sample audio of the speaker whose voice should be cloned. |
+| transcription | [string](#string) |  | Required. The transcription of the sample audio. |
+| speaker_name | [string](#string) |  | Required. The name of the speaker to associate with the cloned voice. |
+| speaker_language | [string](#string) |  | Required. The language of the speaker in the sample audio. |
+| model_name | [string](#string) |  | Required. The name of the model used for voice cloning. |
 
 
 
@@ -20029,6 +20089,7 @@ UpdateMethod enum defines the method for updating custom phonemizers.
 | DeleteCustomPhonemizer | [PhonemizerId](#ondewo.t2s.PhonemizerId) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Deletes a custom phonemizer based on the provided PhonemizerId. Returns an Empty response upon successful deletion.</p> |
 | UpdateCustomPhonemizer | [UpdateCustomPhonemizerRequest](#ondewo.t2s.UpdateCustomPhonemizerRequest) | [CustomPhonemizerProto](#ondewo.t2s.CustomPhonemizerProto) | <p>Updates the specified custom phonemizer with the provided configuration.</p> |
 | ListCustomPhonemizer | [ListCustomPhonemizerRequest](#ondewo.t2s.ListCustomPhonemizerRequest) | [ListCustomPhonemizerResponse](#ondewo.t2s.ListCustomPhonemizerResponse) | <p>Retrieves a list of custom phonemizers based on specific requirements.</p> |
+| VoiceCloning | [VoiceCloningRequest](#ondewo.t2s.VoiceCloningRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Clones a voice based on a sample audio of the speaker and its transcription. The cloned voice can afterwards be used for synthesis by referencing the given speaker name.</p> |
 
  <!-- end services -->
 
