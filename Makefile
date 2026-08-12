@@ -266,7 +266,9 @@ release_client:
 # Get newest Proto-Compiler Version
 	$(eval PROTO_COMPILER:= $(shell curl https://api.github.com/repos/ondewo/ondewo-proto-compiler/tags | grep "\"name\"" | head -1 | cut -d '"' -f 4))
 # Clone Repo
-	rm -rf ${REPO_DIR}
+# The proto-compiler docker run leaves root-owned files behind, so a bare rm -rf here
+# fails on the leftovers of an earlier run and the clone never happens.
+	rm -rf ${REPO_DIR} || sudo rm -rf ${REPO_DIR}
 	rm -f build_log_${REPO_NAME}.txt
 
 	@echo ${GENERIC_RELEASE_NOTES} > temp-notes-${REPO_NAME} && perl -i -pe 's/\\//g' temp-notes-${REPO_NAME} && perl -i -pe 's/REPONAME/${UPPER_REPO_NAME}/g' temp-notes-${REPO_NAME}
@@ -285,7 +287,9 @@ release_client:
 	bash -c 'set -o pipefail; make -C ${REPO_DIR} ondewo_release | tee build_log_${REPO_NAME}.txt'
 	make -C ${REPO_DIR} TEST
 # Remove everything from Release
-	sudo rm -rf ${REPO_DIR}
+# Try without sudo first, so the release does not depend on passwordless sudo when the
+# working tree has no root-owned leftovers to clear.
+	rm -rf ${REPO_DIR} || sudo rm -rf ${REPO_DIR}
 	rm -f temp-notes-${REPO_NAME}
 
 PYTHON_CLIENT="git@github.com:ondewo/ondewo-csi-client-python.git"
