@@ -36,8 +36,11 @@
     - [AgentWithOwner](#ondewo.nlu.AgentWithOwner)
     - [BuildCacheRequest](#ondewo.nlu.BuildCacheRequest)
     - [CreateAgentRequest](#ondewo.nlu.CreateAgentRequest)
+    - [CreateProjectTechnicalUserRequest](#ondewo.nlu.CreateProjectTechnicalUserRequest)
+    - [CreateProjectTechnicalUserResponse](#ondewo.nlu.CreateProjectTechnicalUserResponse)
     - [CustomPlatformInfo](#ondewo.nlu.CustomPlatformInfo)
     - [DeleteAgentRequest](#ondewo.nlu.DeleteAgentRequest)
+    - [DeleteProjectTechnicalUserRequest](#ondewo.nlu.DeleteProjectTechnicalUserRequest)
     - [DeleteResourcesRequest](#ondewo.nlu.DeleteResourcesRequest)
     - [ExportAgentRequest](#ondewo.nlu.ExportAgentRequest)
     - [ExportAgentResponse](#ondewo.nlu.ExportAgentResponse)
@@ -76,22 +79,31 @@
     - [GetPlatformMappingRequest](#ondewo.nlu.GetPlatformMappingRequest)
     - [GetSessionsStatisticsRequest](#ondewo.nlu.GetSessionsStatisticsRequest)
     - [GetSessionsStatisticsResponse](#ondewo.nlu.GetSessionsStatisticsResponse)
+    - [GetSessionsStatisticsTimeSeriesRequest](#ondewo.nlu.GetSessionsStatisticsTimeSeriesRequest)
+    - [GetSessionsStatisticsTimeSeriesResponse](#ondewo.nlu.GetSessionsStatisticsTimeSeriesResponse)
     - [ImportAgentRequest](#ondewo.nlu.ImportAgentRequest)
     - [ListAgentsOfUserResponse](#ondewo.nlu.ListAgentsOfUserResponse)
     - [ListAgentsRequest](#ondewo.nlu.ListAgentsRequest)
     - [ListAgentsResponse](#ondewo.nlu.ListAgentsResponse)
     - [ListProjectPermissionsRequest](#ondewo.nlu.ListProjectPermissionsRequest)
     - [ListProjectPermissionsResponse](#ondewo.nlu.ListProjectPermissionsResponse)
+    - [ListProjectTechnicalUsersRequest](#ondewo.nlu.ListProjectTechnicalUsersRequest)
+    - [ListProjectTechnicalUsersResponse](#ondewo.nlu.ListProjectTechnicalUsersResponse)
     - [ListUsersInProjectRequest](#ondewo.nlu.ListUsersInProjectRequest)
     - [ListUsersInProjectResponse](#ondewo.nlu.ListUsersInProjectResponse)
+    - [LlmTelemetryTimeSeriesBucket](#ondewo.nlu.LlmTelemetryTimeSeriesBucket)
+    - [MigrateAgentRequest](#ondewo.nlu.MigrateAgentRequest)
     - [ModelStatus](#ondewo.nlu.ModelStatus)
     - [OptimizeRankingMatchRequest](#ondewo.nlu.OptimizeRankingMatchRequest)
     - [OptimizeRankingMatchResponse](#ondewo.nlu.OptimizeRankingMatchResponse)
     - [PlatformMapping](#ondewo.nlu.PlatformMapping)
+    - [ProjectTechnicalUser](#ondewo.nlu.ProjectTechnicalUser)
     - [RankingMatchOptimizationConfig](#ondewo.nlu.RankingMatchOptimizationConfig)
     - [ReindexAgentRequest](#ondewo.nlu.ReindexAgentRequest)
     - [RemoveUserFromProjectRequest](#ondewo.nlu.RemoveUserFromProjectRequest)
     - [RestoreAgentRequest](#ondewo.nlu.RestoreAgentRequest)
+    - [RotateProjectTechnicalUserPasswordRequest](#ondewo.nlu.RotateProjectTechnicalUserPasswordRequest)
+    - [RotateProjectTechnicalUserPasswordResponse](#ondewo.nlu.RotateProjectTechnicalUserPasswordResponse)
     - [SetAgentStatusRequest](#ondewo.nlu.SetAgentStatusRequest)
     - [SetResourcesRequest](#ondewo.nlu.SetResourcesRequest)
     - [TrainAgentRequest](#ondewo.nlu.TrainAgentRequest)
@@ -185,15 +197,21 @@
     - [AddNotificationsRequest](#ondewo.nlu.AddNotificationsRequest)
     - [AddNotificationsResponse](#ondewo.nlu.AddNotificationsResponse)
     - [Comment](#ondewo.nlu.Comment)
+    - [DeleteNotificationsRequest](#ondewo.nlu.DeleteNotificationsRequest)
+    - [GetNotificationRequest](#ondewo.nlu.GetNotificationRequest)
     - [KeyValuePair](#ondewo.nlu.KeyValuePair)
     - [ListNotificationsRequest](#ondewo.nlu.ListNotificationsRequest)
     - [ListNotificationsResponse](#ondewo.nlu.ListNotificationsResponse)
+    - [LogEntry](#ondewo.nlu.LogEntry)
     - [Notification](#ondewo.nlu.Notification)
     - [NotificationFilter](#ondewo.nlu.NotificationFilter)
     - [SetNotificationsFlaggedStatusRequest](#ondewo.nlu.SetNotificationsFlaggedStatusRequest)
     - [SetNotificationsReadStatusRequest](#ondewo.nlu.SetNotificationsReadStatusRequest)
     - [StatResponse](#ondewo.nlu.StatResponse)
+    - [StreamNotificationsRequest](#ondewo.nlu.StreamNotificationsRequest)
+    - [UpdateNotificationRequest](#ondewo.nlu.UpdateNotificationRequest)
   
+    - [LogSeverity](#ondewo.nlu.LogSeverity)
     - [NotificationFlaggedStatus](#ondewo.nlu.NotificationFlaggedStatus)
     - [NotificationOrigin](#ondewo.nlu.NotificationOrigin)
     - [NotificationReadStatus](#ondewo.nlu.NotificationReadStatus)
@@ -345,6 +363,162 @@
   
     - [Intents](#ondewo.nlu.Intents)
   
+- [ondewo/nlu/llm_evaluation.proto](#ondewo/nlu/llm_evaluation.proto)
+    - [AddLlmEvaluationExampleRequest](#ondewo.nlu.AddLlmEvaluationExampleRequest)
+    - [AddLlmEvaluationExamplesRequest](#ondewo.nlu.AddLlmEvaluationExamplesRequest)
+    - [AddLlmEvaluationExamplesResponse](#ondewo.nlu.AddLlmEvaluationExamplesResponse)
+    - [ApplyLlmEvaluationAbRolloutRequest](#ondewo.nlu.ApplyLlmEvaluationAbRolloutRequest)
+    - [CancelLlmEvaluationExperimentRequest](#ondewo.nlu.CancelLlmEvaluationExperimentRequest)
+    - [CompareLlmEvaluationExperimentsRequest](#ondewo.nlu.CompareLlmEvaluationExperimentsRequest)
+    - [CreateLlmEvaluationAbExperimentRequest](#ondewo.nlu.CreateLlmEvaluationAbExperimentRequest)
+    - [CreateLlmEvaluationDatasetRequest](#ondewo.nlu.CreateLlmEvaluationDatasetRequest)
+    - [CreateLlmEvaluationExamplesFromSessionRequest](#ondewo.nlu.CreateLlmEvaluationExamplesFromSessionRequest)
+    - [CreateLlmEvaluationExamplesFromSessionResponse](#ondewo.nlu.CreateLlmEvaluationExamplesFromSessionResponse)
+    - [CreateLlmEvaluationOnlineConfigRequest](#ondewo.nlu.CreateLlmEvaluationOnlineConfigRequest)
+    - [CreateLlmEvaluationReleaseGateRequest](#ondewo.nlu.CreateLlmEvaluationReleaseGateRequest)
+    - [CreateLlmEvaluationReportRequest](#ondewo.nlu.CreateLlmEvaluationReportRequest)
+    - [CreateLlmEvaluationScheduleRequest](#ondewo.nlu.CreateLlmEvaluationScheduleRequest)
+    - [CreateLlmEvaluationScorecardRequest](#ondewo.nlu.CreateLlmEvaluationScorecardRequest)
+    - [DeleteLlmEvaluationAbExperimentRequest](#ondewo.nlu.DeleteLlmEvaluationAbExperimentRequest)
+    - [DeleteLlmEvaluationDatasetRequest](#ondewo.nlu.DeleteLlmEvaluationDatasetRequest)
+    - [DeleteLlmEvaluationExampleRequest](#ondewo.nlu.DeleteLlmEvaluationExampleRequest)
+    - [DeleteLlmEvaluationExperimentRequest](#ondewo.nlu.DeleteLlmEvaluationExperimentRequest)
+    - [DeleteLlmEvaluationFeedbackRequest](#ondewo.nlu.DeleteLlmEvaluationFeedbackRequest)
+    - [DeleteLlmEvaluationOnlineConfigRequest](#ondewo.nlu.DeleteLlmEvaluationOnlineConfigRequest)
+    - [DeleteLlmEvaluationReleaseGateRequest](#ondewo.nlu.DeleteLlmEvaluationReleaseGateRequest)
+    - [DeleteLlmEvaluationReportRequest](#ondewo.nlu.DeleteLlmEvaluationReportRequest)
+    - [DeleteLlmEvaluationScheduleRequest](#ondewo.nlu.DeleteLlmEvaluationScheduleRequest)
+    - [DeleteLlmEvaluationScorecardRequest](#ondewo.nlu.DeleteLlmEvaluationScorecardRequest)
+    - [GetLlmEvaluationAbExperimentRequest](#ondewo.nlu.GetLlmEvaluationAbExperimentRequest)
+    - [GetLlmEvaluationAbExperimentResultsRequest](#ondewo.nlu.GetLlmEvaluationAbExperimentResultsRequest)
+    - [GetLlmEvaluationAbExperimentResultsResponse](#ondewo.nlu.GetLlmEvaluationAbExperimentResultsResponse)
+    - [GetLlmEvaluationAbRolloutDecisionRequest](#ondewo.nlu.GetLlmEvaluationAbRolloutDecisionRequest)
+    - [GetLlmEvaluationAbRolloutRecommendationRequest](#ondewo.nlu.GetLlmEvaluationAbRolloutRecommendationRequest)
+    - [GetLlmEvaluationAnnotationQueueItemRequest](#ondewo.nlu.GetLlmEvaluationAnnotationQueueItemRequest)
+    - [GetLlmEvaluationDatasetRequest](#ondewo.nlu.GetLlmEvaluationDatasetRequest)
+    - [GetLlmEvaluationExampleRequest](#ondewo.nlu.GetLlmEvaluationExampleRequest)
+    - [GetLlmEvaluationExperimentRequest](#ondewo.nlu.GetLlmEvaluationExperimentRequest)
+    - [GetLlmEvaluationOnlineConfigRequest](#ondewo.nlu.GetLlmEvaluationOnlineConfigRequest)
+    - [GetLlmEvaluationOnlineResultRequest](#ondewo.nlu.GetLlmEvaluationOnlineResultRequest)
+    - [GetLlmEvaluationProjectSettingsRequest](#ondewo.nlu.GetLlmEvaluationProjectSettingsRequest)
+    - [GetLlmEvaluationReleaseGateRequest](#ondewo.nlu.GetLlmEvaluationReleaseGateRequest)
+    - [GetLlmEvaluationReleaseGateRunRequest](#ondewo.nlu.GetLlmEvaluationReleaseGateRunRequest)
+    - [GetLlmEvaluationReportRequest](#ondewo.nlu.GetLlmEvaluationReportRequest)
+    - [GetLlmEvaluationScheduleRequest](#ondewo.nlu.GetLlmEvaluationScheduleRequest)
+    - [GetLlmEvaluationScorecardRequest](#ondewo.nlu.GetLlmEvaluationScorecardRequest)
+    - [ListLlmEvaluationAbExperimentsRequest](#ondewo.nlu.ListLlmEvaluationAbExperimentsRequest)
+    - [ListLlmEvaluationAbExperimentsResponse](#ondewo.nlu.ListLlmEvaluationAbExperimentsResponse)
+    - [ListLlmEvaluationAbRolloutDecisionsRequest](#ondewo.nlu.ListLlmEvaluationAbRolloutDecisionsRequest)
+    - [ListLlmEvaluationAbRolloutDecisionsResponse](#ondewo.nlu.ListLlmEvaluationAbRolloutDecisionsResponse)
+    - [ListLlmEvaluationAnnotationQueueItemsRequest](#ondewo.nlu.ListLlmEvaluationAnnotationQueueItemsRequest)
+    - [ListLlmEvaluationAnnotationQueueItemsResponse](#ondewo.nlu.ListLlmEvaluationAnnotationQueueItemsResponse)
+    - [ListLlmEvaluationDatasetsRequest](#ondewo.nlu.ListLlmEvaluationDatasetsRequest)
+    - [ListLlmEvaluationDatasetsResponse](#ondewo.nlu.ListLlmEvaluationDatasetsResponse)
+    - [ListLlmEvaluationEvaluatorsRequest](#ondewo.nlu.ListLlmEvaluationEvaluatorsRequest)
+    - [ListLlmEvaluationEvaluatorsResponse](#ondewo.nlu.ListLlmEvaluationEvaluatorsResponse)
+    - [ListLlmEvaluationExamplesRequest](#ondewo.nlu.ListLlmEvaluationExamplesRequest)
+    - [ListLlmEvaluationExamplesResponse](#ondewo.nlu.ListLlmEvaluationExamplesResponse)
+    - [ListLlmEvaluationExperimentsRequest](#ondewo.nlu.ListLlmEvaluationExperimentsRequest)
+    - [ListLlmEvaluationExperimentsResponse](#ondewo.nlu.ListLlmEvaluationExperimentsResponse)
+    - [ListLlmEvaluationFeedbackRequest](#ondewo.nlu.ListLlmEvaluationFeedbackRequest)
+    - [ListLlmEvaluationFeedbackResponse](#ondewo.nlu.ListLlmEvaluationFeedbackResponse)
+    - [ListLlmEvaluationOnlineConfigsRequest](#ondewo.nlu.ListLlmEvaluationOnlineConfigsRequest)
+    - [ListLlmEvaluationOnlineConfigsResponse](#ondewo.nlu.ListLlmEvaluationOnlineConfigsResponse)
+    - [ListLlmEvaluationOnlineResultsRequest](#ondewo.nlu.ListLlmEvaluationOnlineResultsRequest)
+    - [ListLlmEvaluationOnlineResultsResponse](#ondewo.nlu.ListLlmEvaluationOnlineResultsResponse)
+    - [ListLlmEvaluationReleaseGateRunsRequest](#ondewo.nlu.ListLlmEvaluationReleaseGateRunsRequest)
+    - [ListLlmEvaluationReleaseGateRunsResponse](#ondewo.nlu.ListLlmEvaluationReleaseGateRunsResponse)
+    - [ListLlmEvaluationReleaseGatesRequest](#ondewo.nlu.ListLlmEvaluationReleaseGatesRequest)
+    - [ListLlmEvaluationReleaseGatesResponse](#ondewo.nlu.ListLlmEvaluationReleaseGatesResponse)
+    - [ListLlmEvaluationReportsRequest](#ondewo.nlu.ListLlmEvaluationReportsRequest)
+    - [ListLlmEvaluationReportsResponse](#ondewo.nlu.ListLlmEvaluationReportsResponse)
+    - [ListLlmEvaluationSchedulesRequest](#ondewo.nlu.ListLlmEvaluationSchedulesRequest)
+    - [ListLlmEvaluationSchedulesResponse](#ondewo.nlu.ListLlmEvaluationSchedulesResponse)
+    - [ListLlmEvaluationScorecardsRequest](#ondewo.nlu.ListLlmEvaluationScorecardsRequest)
+    - [ListLlmEvaluationScorecardsResponse](#ondewo.nlu.ListLlmEvaluationScorecardsResponse)
+    - [LlmEvaluationAbExperiment](#ondewo.nlu.LlmEvaluationAbExperiment)
+    - [LlmEvaluationAbExperimentFilter](#ondewo.nlu.LlmEvaluationAbExperimentFilter)
+    - [LlmEvaluationAbRolloutDecision](#ondewo.nlu.LlmEvaluationAbRolloutDecision)
+    - [LlmEvaluationAbRolloutDecisionFilter](#ondewo.nlu.LlmEvaluationAbRolloutDecisionFilter)
+    - [LlmEvaluationAbRolloutRecommendation](#ondewo.nlu.LlmEvaluationAbRolloutRecommendation)
+    - [LlmEvaluationAbRolloutRecommendation.SessionsPerVariantEntry](#ondewo.nlu.LlmEvaluationAbRolloutRecommendation.SessionsPerVariantEntry)
+    - [LlmEvaluationAbTrafficConfig](#ondewo.nlu.LlmEvaluationAbTrafficConfig)
+    - [LlmEvaluationAbVariant](#ondewo.nlu.LlmEvaluationAbVariant)
+    - [LlmEvaluationAbVariantResult](#ondewo.nlu.LlmEvaluationAbVariantResult)
+    - [LlmEvaluationAnnotationQueueItem](#ondewo.nlu.LlmEvaluationAnnotationQueueItem)
+    - [LlmEvaluationAnnotationQueueItemFilter](#ondewo.nlu.LlmEvaluationAnnotationQueueItemFilter)
+    - [LlmEvaluationComparison](#ondewo.nlu.LlmEvaluationComparison)
+    - [LlmEvaluationDataset](#ondewo.nlu.LlmEvaluationDataset)
+    - [LlmEvaluationDatasetFilter](#ondewo.nlu.LlmEvaluationDatasetFilter)
+    - [LlmEvaluationEvaluatorParameterSpec](#ondewo.nlu.LlmEvaluationEvaluatorParameterSpec)
+    - [LlmEvaluationEvaluatorRun](#ondewo.nlu.LlmEvaluationEvaluatorRun)
+    - [LlmEvaluationEvaluatorSpec](#ondewo.nlu.LlmEvaluationEvaluatorSpec)
+    - [LlmEvaluationExample](#ondewo.nlu.LlmEvaluationExample)
+    - [LlmEvaluationExampleFilter](#ondewo.nlu.LlmEvaluationExampleFilter)
+    - [LlmEvaluationExperiment](#ondewo.nlu.LlmEvaluationExperiment)
+    - [LlmEvaluationExperimentFilter](#ondewo.nlu.LlmEvaluationExperimentFilter)
+    - [LlmEvaluationFeedback](#ondewo.nlu.LlmEvaluationFeedback)
+    - [LlmEvaluationFeedbackFilter](#ondewo.nlu.LlmEvaluationFeedbackFilter)
+    - [LlmEvaluationJudgeConfig](#ondewo.nlu.LlmEvaluationJudgeConfig)
+    - [LlmEvaluationOnlineConfig](#ondewo.nlu.LlmEvaluationOnlineConfig)
+    - [LlmEvaluationOnlineConfigFilter](#ondewo.nlu.LlmEvaluationOnlineConfigFilter)
+    - [LlmEvaluationOnlineResult](#ondewo.nlu.LlmEvaluationOnlineResult)
+    - [LlmEvaluationOnlineResultFilter](#ondewo.nlu.LlmEvaluationOnlineResultFilter)
+    - [LlmEvaluationOnlineSessionFilter](#ondewo.nlu.LlmEvaluationOnlineSessionFilter)
+    - [LlmEvaluationPairwiseResult](#ondewo.nlu.LlmEvaluationPairwiseResult)
+    - [LlmEvaluationProjectSettings](#ondewo.nlu.LlmEvaluationProjectSettings)
+    - [LlmEvaluationReleaseGate](#ondewo.nlu.LlmEvaluationReleaseGate)
+    - [LlmEvaluationReleaseGateCheck](#ondewo.nlu.LlmEvaluationReleaseGateCheck)
+    - [LlmEvaluationReleaseGateFilter](#ondewo.nlu.LlmEvaluationReleaseGateFilter)
+    - [LlmEvaluationReleaseGateRun](#ondewo.nlu.LlmEvaluationReleaseGateRun)
+    - [LlmEvaluationReleaseGateRunFilter](#ondewo.nlu.LlmEvaluationReleaseGateRunFilter)
+    - [LlmEvaluationReleaseGateSafetyConfig](#ondewo.nlu.LlmEvaluationReleaseGateSafetyConfig)
+    - [LlmEvaluationReleaseGateThresholds](#ondewo.nlu.LlmEvaluationReleaseGateThresholds)
+    - [LlmEvaluationReport](#ondewo.nlu.LlmEvaluationReport)
+    - [LlmEvaluationReportFilter](#ondewo.nlu.LlmEvaluationReportFilter)
+    - [LlmEvaluationSchedule](#ondewo.nlu.LlmEvaluationSchedule)
+    - [LlmEvaluationScheduleFilter](#ondewo.nlu.LlmEvaluationScheduleFilter)
+    - [LlmEvaluationScorecard](#ondewo.nlu.LlmEvaluationScorecard)
+    - [LlmEvaluationScorecardComponent](#ondewo.nlu.LlmEvaluationScorecardComponent)
+    - [LlmEvaluationScorecardFilter](#ondewo.nlu.LlmEvaluationScorecardFilter)
+    - [LlmEvaluationSimulationPersona](#ondewo.nlu.LlmEvaluationSimulationPersona)
+    - [LlmEvaluationTurnResult](#ondewo.nlu.LlmEvaluationTurnResult)
+    - [PromoteLlmEvaluationAnnotationQueueItemRequest](#ondewo.nlu.PromoteLlmEvaluationAnnotationQueueItemRequest)
+    - [PromoteLlmEvaluationAnnotationQueueItemResponse](#ondewo.nlu.PromoteLlmEvaluationAnnotationQueueItemResponse)
+    - [RagVariantConfig](#ondewo.nlu.RagVariantConfig)
+    - [RunLlmEvaluationExperimentRequest](#ondewo.nlu.RunLlmEvaluationExperimentRequest)
+    - [RunLlmEvaluationReleaseGateRequest](#ondewo.nlu.RunLlmEvaluationReleaseGateRequest)
+    - [SimulateLlmEvaluationConversationsRequest](#ondewo.nlu.SimulateLlmEvaluationConversationsRequest)
+    - [StartLlmEvaluationAbExperimentRequest](#ondewo.nlu.StartLlmEvaluationAbExperimentRequest)
+    - [StopLlmEvaluationAbExperimentRequest](#ondewo.nlu.StopLlmEvaluationAbExperimentRequest)
+    - [SubmitLlmEvaluationFeedbackRequest](#ondewo.nlu.SubmitLlmEvaluationFeedbackRequest)
+    - [UpdateLlmEvaluationAbExperimentRequest](#ondewo.nlu.UpdateLlmEvaluationAbExperimentRequest)
+    - [UpdateLlmEvaluationAnnotationQueueItemRequest](#ondewo.nlu.UpdateLlmEvaluationAnnotationQueueItemRequest)
+    - [UpdateLlmEvaluationDatasetRequest](#ondewo.nlu.UpdateLlmEvaluationDatasetRequest)
+    - [UpdateLlmEvaluationExampleRequest](#ondewo.nlu.UpdateLlmEvaluationExampleRequest)
+    - [UpdateLlmEvaluationExperimentRequest](#ondewo.nlu.UpdateLlmEvaluationExperimentRequest)
+    - [UpdateLlmEvaluationFeedbackRequest](#ondewo.nlu.UpdateLlmEvaluationFeedbackRequest)
+    - [UpdateLlmEvaluationOnlineConfigRequest](#ondewo.nlu.UpdateLlmEvaluationOnlineConfigRequest)
+    - [UpdateLlmEvaluationProjectSettingsRequest](#ondewo.nlu.UpdateLlmEvaluationProjectSettingsRequest)
+    - [UpdateLlmEvaluationReleaseGateRequest](#ondewo.nlu.UpdateLlmEvaluationReleaseGateRequest)
+    - [UpdateLlmEvaluationScheduleRequest](#ondewo.nlu.UpdateLlmEvaluationScheduleRequest)
+    - [UpdateLlmEvaluationScorecardRequest](#ondewo.nlu.UpdateLlmEvaluationScorecardRequest)
+  
+    - [LlmEvaluationAbExperimentStatus](#ondewo.nlu.LlmEvaluationAbExperimentStatus)
+    - [LlmEvaluationAbOptimizeMetric](#ondewo.nlu.LlmEvaluationAbOptimizeMetric)
+    - [LlmEvaluationAnnotationStatus](#ondewo.nlu.LlmEvaluationAnnotationStatus)
+    - [LlmEvaluationDatasetType](#ondewo.nlu.LlmEvaluationDatasetType)
+    - [LlmEvaluationEvaluatorCategory](#ondewo.nlu.LlmEvaluationEvaluatorCategory)
+    - [LlmEvaluationEvaluatorType](#ondewo.nlu.LlmEvaluationEvaluatorType)
+    - [LlmEvaluationExampleExtractionMode](#ondewo.nlu.LlmEvaluationExampleExtractionMode)
+    - [LlmEvaluationExperimentKind](#ondewo.nlu.LlmEvaluationExperimentKind)
+    - [LlmEvaluationExperimentStatus](#ondewo.nlu.LlmEvaluationExperimentStatus)
+    - [LlmEvaluationReleaseGateVerdict](#ondewo.nlu.LlmEvaluationReleaseGateVerdict)
+    - [LlmEvaluationScheduleAction](#ondewo.nlu.LlmEvaluationScheduleAction)
+    - [LlmEvaluationSimulationKind](#ondewo.nlu.LlmEvaluationSimulationKind)
+  
+    - [LlmEvaluations](#ondewo.nlu.LlmEvaluations)
+  
 - [ondewo/nlu/operation_metadata.proto](#ondewo/nlu/operation_metadata.proto)
     - [OperationMetadata](#ondewo.nlu.OperationMetadata)
   
@@ -355,10 +529,23 @@
     - [CancelOperationRequest](#ondewo.nlu.CancelOperationRequest)
     - [DeleteOperationRequest](#ondewo.nlu.DeleteOperationRequest)
     - [GetOperationRequest](#ondewo.nlu.GetOperationRequest)
+    - [GetRemoteOperationContainerLogsRequest](#ondewo.nlu.GetRemoteOperationContainerLogsRequest)
+    - [GetRemoteOperationContainerLogsResponse](#ondewo.nlu.GetRemoteOperationContainerLogsResponse)
+    - [GetRemoteOperationContainerStatusRequest](#ondewo.nlu.GetRemoteOperationContainerStatusRequest)
     - [ListOperationsRequest](#ondewo.nlu.ListOperationsRequest)
     - [ListOperationsResponse](#ondewo.nlu.ListOperationsResponse)
+    - [ListRemoteOperationContainersRequest](#ondewo.nlu.ListRemoteOperationContainersRequest)
+    - [ListRemoteOperationContainersResponse](#ondewo.nlu.ListRemoteOperationContainersResponse)
     - [Operation](#ondewo.nlu.Operation)
     - [OperationFilter](#ondewo.nlu.OperationFilter)
+    - [RemoteOperationContainer](#ondewo.nlu.RemoteOperationContainer)
+    - [RemoteOperationContainer.EnvironmentVariablesEntry](#ondewo.nlu.RemoteOperationContainer.EnvironmentVariablesEntry)
+    - [RemoteOperationContainerLogLine](#ondewo.nlu.RemoteOperationContainerLogLine)
+    - [RemoteOperationContainerStatus](#ondewo.nlu.RemoteOperationContainerStatus)
+    - [RemoteOperationContainerStatus.EnvironmentVariablesEntry](#ondewo.nlu.RemoteOperationContainerStatus.EnvironmentVariablesEntry)
+    - [StreamRemoteOperationContainerLogsRequest](#ondewo.nlu.StreamRemoteOperationContainerLogsRequest)
+  
+    - [RemoteOperationContainerLifecycleState](#ondewo.nlu.RemoteOperationContainerLifecycleState)
   
     - [Operations](#ondewo.nlu.Operations)
   
@@ -384,6 +571,96 @@
   
     - [ProjectStatistics](#ondewo.nlu.ProjectStatistics)
   
+- [ondewo/nlu/rag.proto](#ondewo/nlu/rag.proto)
+    - [RagAddCrawlerResultsToDatasetsRequest](#ondewo.nlu.RagAddCrawlerResultsToDatasetsRequest)
+    - [RagChunk](#ondewo.nlu.RagChunk)
+    - [RagCrawler](#ondewo.nlu.RagCrawler)
+    - [RagCrawlerAuth](#ondewo.nlu.RagCrawlerAuth)
+    - [RagCrawlerBrowserConfig](#ondewo.nlu.RagCrawlerBrowserConfig)
+    - [RagCrawlerConcurrencyConfig](#ondewo.nlu.RagCrawlerConcurrencyConfig)
+    - [RagCrawlerConfig](#ondewo.nlu.RagCrawlerConfig)
+    - [RagCrawlerContentResult](#ondewo.nlu.RagCrawlerContentResult)
+    - [RagCrawlerContentScope](#ondewo.nlu.RagCrawlerContentScope)
+    - [RagCrawlerCookie](#ondewo.nlu.RagCrawlerCookie)
+    - [RagCrawlerDeepCrawlerConfig](#ondewo.nlu.RagCrawlerDeepCrawlerConfig)
+    - [RagCrawlerDensityPruning](#ondewo.nlu.RagCrawlerDensityPruning)
+    - [RagCrawlerExecutionInfo](#ondewo.nlu.RagCrawlerExecutionInfo)
+    - [RagCrawlerFilters](#ondewo.nlu.RagCrawlerFilters)
+    - [RagCrawlerHtmlAuth](#ondewo.nlu.RagCrawlerHtmlAuth)
+    - [RagCrawlerHttpAuth](#ondewo.nlu.RagCrawlerHttpAuth)
+    - [RagCrawlerMetaDataExtractor](#ondewo.nlu.RagCrawlerMetaDataExtractor)
+    - [RagCrawlerResult](#ondewo.nlu.RagCrawlerResult)
+    - [RagCrawlerResultsConfig](#ondewo.nlu.RagCrawlerResultsConfig)
+    - [RagCrawlerRetryConfig](#ondewo.nlu.RagCrawlerRetryConfig)
+    - [RagCrawlerSeedUrlFilters](#ondewo.nlu.RagCrawlerSeedUrlFilters)
+    - [RagCrawlerSources](#ondewo.nlu.RagCrawlerSources)
+    - [RagCrawlerStatusFilter](#ondewo.nlu.RagCrawlerStatusFilter)
+    - [RagCreateCrawlerRequest](#ondewo.nlu.RagCreateCrawlerRequest)
+    - [RagCreateDatasetRequest](#ondewo.nlu.RagCreateDatasetRequest)
+    - [RagDataset](#ondewo.nlu.RagDataset)
+    - [RagDatasetList](#ondewo.nlu.RagDatasetList)
+    - [RagDatasetParsingStatus](#ondewo.nlu.RagDatasetParsingStatus)
+    - [RagDeleteCrawlerRequest](#ondewo.nlu.RagDeleteCrawlerRequest)
+    - [RagDeleteCrawlerResponse](#ondewo.nlu.RagDeleteCrawlerResponse)
+    - [RagDeleteCrawlerRunsRequest](#ondewo.nlu.RagDeleteCrawlerRunsRequest)
+    - [RagDeleteCrawlerRunsResponse](#ondewo.nlu.RagDeleteCrawlerRunsResponse)
+    - [RagDeleteCrawlersRequest](#ondewo.nlu.RagDeleteCrawlersRequest)
+    - [RagDeleteCrawlersResponse](#ondewo.nlu.RagDeleteCrawlersResponse)
+    - [RagDeleteDocumentsRequest](#ondewo.nlu.RagDeleteDocumentsRequest)
+    - [RagDeleteRequest](#ondewo.nlu.RagDeleteRequest)
+    - [RagDocAgg](#ondewo.nlu.RagDocAgg)
+    - [RagDocument](#ondewo.nlu.RagDocument)
+    - [RagDocumentIdsRequest](#ondewo.nlu.RagDocumentIdsRequest)
+    - [RagDocumentList](#ondewo.nlu.RagDocumentList)
+    - [RagDownloadDocumentRequest](#ondewo.nlu.RagDownloadDocumentRequest)
+    - [RagFileChunk](#ondewo.nlu.RagFileChunk)
+    - [RagFileMetadata](#ondewo.nlu.RagFileMetadata)
+    - [RagGetCrawlerAttachedDatasetsRequest](#ondewo.nlu.RagGetCrawlerAttachedDatasetsRequest)
+    - [RagGetCrawlerAttachedDatasetsResponse](#ondewo.nlu.RagGetCrawlerAttachedDatasetsResponse)
+    - [RagGetCrawlerRequest](#ondewo.nlu.RagGetCrawlerRequest)
+    - [RagGetCrawlerResultRequest](#ondewo.nlu.RagGetCrawlerResultRequest)
+    - [RagGetCrawlerResultsRequest](#ondewo.nlu.RagGetCrawlerResultsRequest)
+    - [RagGetCrawlerResultsResponse](#ondewo.nlu.RagGetCrawlerResultsResponse)
+    - [RagGetCrawlerRunLogsRequest](#ondewo.nlu.RagGetCrawlerRunLogsRequest)
+    - [RagGetCrawlerRunLogsResponse](#ondewo.nlu.RagGetCrawlerRunLogsResponse)
+    - [RagGetCrawlerRunRequest](#ondewo.nlu.RagGetCrawlerRunRequest)
+    - [RagGraphRagConfig](#ondewo.nlu.RagGraphRagConfig)
+    - [RagListCrawlerRunsRequest](#ondewo.nlu.RagListCrawlerRunsRequest)
+    - [RagListCrawlerRunsResponse](#ondewo.nlu.RagListCrawlerRunsResponse)
+    - [RagListCrawlersRequest](#ondewo.nlu.RagListCrawlersRequest)
+    - [RagListCrawlersResponse](#ondewo.nlu.RagListCrawlersResponse)
+    - [RagListDatasetsRequest](#ondewo.nlu.RagListDatasetsRequest)
+    - [RagListDocumentsRequest](#ondewo.nlu.RagListDocumentsRequest)
+    - [RagMetadataCondition](#ondewo.nlu.RagMetadataCondition)
+    - [RagMetadataConditions](#ondewo.nlu.RagMetadataConditions)
+    - [RagParserConfig](#ondewo.nlu.RagParserConfig)
+    - [RagPartialSuccess](#ondewo.nlu.RagPartialSuccess)
+    - [RagRaptorConfig](#ondewo.nlu.RagRaptorConfig)
+    - [RagRemoveCrawlerResultsFromDatasetsRequest](#ondewo.nlu.RagRemoveCrawlerResultsFromDatasetsRequest)
+    - [RagRetrievalRequest](#ondewo.nlu.RagRetrievalRequest)
+    - [RagRetrievalResponse](#ondewo.nlu.RagRetrievalResponse)
+    - [RagStartCrawlerRequest](#ondewo.nlu.RagStartCrawlerRequest)
+    - [RagStopCrawlerRequest](#ondewo.nlu.RagStopCrawlerRequest)
+    - [RagStopCrawlerResponse](#ondewo.nlu.RagStopCrawlerResponse)
+    - [RagUpdateCrawlerRequest](#ondewo.nlu.RagUpdateCrawlerRequest)
+    - [RagUpdateDatasetRequest](#ondewo.nlu.RagUpdateDatasetRequest)
+    - [RagUpdateDocumentRequest](#ondewo.nlu.RagUpdateDocumentRequest)
+    - [RagUploadDocumentRequest](#ondewo.nlu.RagUploadDocumentRequest)
+  
+    - [RagChunkMethod](#ondewo.nlu.RagChunkMethod)
+    - [RagComparisonOperator](#ondewo.nlu.RagComparisonOperator)
+    - [RagCrawlerAuthenticationExecutionType](#ondewo.nlu.RagCrawlerAuthenticationExecutionType)
+    - [RagCrawlerCrawlStrategy](#ondewo.nlu.RagCrawlerCrawlStrategy)
+    - [RagCrawlerMetaDataExtractorType](#ondewo.nlu.RagCrawlerMetaDataExtractorType)
+    - [RagCrawlerPruningThresholdType](#ondewo.nlu.RagCrawlerPruningThresholdType)
+    - [RagCrawlerSelectorType](#ondewo.nlu.RagCrawlerSelectorType)
+    - [RagDocumentStatus](#ondewo.nlu.RagDocumentStatus)
+    - [RagDocumentType](#ondewo.nlu.RagDocumentType)
+    - [RagGraphRagMethod](#ondewo.nlu.RagGraphRagMethod)
+    - [RagLogic](#ondewo.nlu.RagLogic)
+  
+    - [Rags](#ondewo.nlu.Rags)
+  
 - [ondewo/nlu/server_statistics.proto](#ondewo/nlu/server_statistics.proto)
     - [GetUserProjectCountRequest](#ondewo.nlu.GetUserProjectCountRequest)
   
@@ -393,7 +670,9 @@
     - [AddAudioFilesRequest](#ondewo.nlu.AddAudioFilesRequest)
     - [AddAudioFilesResponse](#ondewo.nlu.AddAudioFilesResponse)
     - [AddSessionCommentRequest](#ondewo.nlu.AddSessionCommentRequest)
+    - [AddSessionFeedbackRequest](#ondewo.nlu.AddSessionFeedbackRequest)
     - [AddSessionLabelsRequest](#ondewo.nlu.AddSessionLabelsRequest)
+    - [AddSessionStepFeedbackRequest](#ondewo.nlu.AddSessionStepFeedbackRequest)
     - [AudioFileResource](#ondewo.nlu.AudioFileResource)
     - [ContextFilter](#ondewo.nlu.ContextFilter)
     - [CreateSessionRequest](#ondewo.nlu.CreateSessionRequest)
@@ -402,6 +681,7 @@
     - [DeleteAudioFilesRequest](#ondewo.nlu.DeleteAudioFilesRequest)
     - [DeleteAudioFilesResponse](#ondewo.nlu.DeleteAudioFilesResponse)
     - [DeleteSessionCommentsRequest](#ondewo.nlu.DeleteSessionCommentsRequest)
+    - [DeleteSessionFeedbackRequest](#ondewo.nlu.DeleteSessionFeedbackRequest)
     - [DeleteSessionLabelsRequest](#ondewo.nlu.DeleteSessionLabelsRequest)
     - [DeleteSessionRequest](#ondewo.nlu.DeleteSessionRequest)
     - [DeleteSessionStepRequest](#ondewo.nlu.DeleteSessionStepRequest)
@@ -410,11 +690,20 @@
     - [DetectedIntent](#ondewo.nlu.DetectedIntent)
     - [DocumentFileResource](#ondewo.nlu.DocumentFileResource)
     - [EventInput](#ondewo.nlu.EventInput)
+    - [FeedbackBreakdownBucket](#ondewo.nlu.FeedbackBreakdownBucket)
+    - [FeedbackFilter](#ondewo.nlu.FeedbackFilter)
+    - [FeedbackStatistics](#ondewo.nlu.FeedbackStatistics)
+    - [FeedbackTimeSeriesBucket](#ondewo.nlu.FeedbackTimeSeriesBucket)
     - [FileResource](#ondewo.nlu.FileResource)
     - [GetAudioFileOfSessionRequest](#ondewo.nlu.GetAudioFileOfSessionRequest)
     - [GetAudioFilesRequest](#ondewo.nlu.GetAudioFilesRequest)
     - [GetAudioFilesResponse](#ondewo.nlu.GetAudioFilesResponse)
+    - [GetFeedbackStatisticsRequest](#ondewo.nlu.GetFeedbackStatisticsRequest)
+    - [GetFeedbackStatisticsResponse](#ondewo.nlu.GetFeedbackStatisticsResponse)
+    - [GetFeedbackStatisticsTimeSeriesRequest](#ondewo.nlu.GetFeedbackStatisticsTimeSeriesRequest)
+    - [GetFeedbackStatisticsTimeSeriesResponse](#ondewo.nlu.GetFeedbackStatisticsTimeSeriesResponse)
     - [GetLatestSessionReviewRequest](#ondewo.nlu.GetLatestSessionReviewRequest)
+    - [GetSessionFeedbackRequest](#ondewo.nlu.GetSessionFeedbackRequest)
     - [GetSessionRequest](#ondewo.nlu.GetSessionRequest)
     - [GetSessionReviewRequest](#ondewo.nlu.GetSessionReviewRequest)
     - [GetSessionStepRequest](#ondewo.nlu.GetSessionStepRequest)
@@ -444,8 +733,12 @@
     - [ListPlatformsResponse](#ondewo.nlu.ListPlatformsResponse)
     - [ListPropertyIdsOfAllSessionsRequest](#ondewo.nlu.ListPropertyIdsOfAllSessionsRequest)
     - [ListPropertyIdsResponse](#ondewo.nlu.ListPropertyIdsResponse)
+    - [ListSessionCommentsOfAllSessionsRequest](#ondewo.nlu.ListSessionCommentsOfAllSessionsRequest)
     - [ListSessionCommentsRequest](#ondewo.nlu.ListSessionCommentsRequest)
     - [ListSessionCommentsResponse](#ondewo.nlu.ListSessionCommentsResponse)
+    - [ListSessionFeedbackOfAllSessionsRequest](#ondewo.nlu.ListSessionFeedbackOfAllSessionsRequest)
+    - [ListSessionFeedbackRequest](#ondewo.nlu.ListSessionFeedbackRequest)
+    - [ListSessionFeedbackResponse](#ondewo.nlu.ListSessionFeedbackResponse)
     - [ListSessionLabelsOfAllSessionsRequest](#ondewo.nlu.ListSessionLabelsOfAllSessionsRequest)
     - [ListSessionLabelsRequest](#ondewo.nlu.ListSessionLabelsRequest)
     - [ListSessionLabelsResponse](#ondewo.nlu.ListSessionLabelsResponse)
@@ -457,11 +750,41 @@
     - [ListTagsResponse](#ondewo.nlu.ListTagsResponse)
     - [ListUserIdsOfAllSessionsRequest](#ondewo.nlu.ListUserIdsOfAllSessionsRequest)
     - [ListUserIdsResponse](#ondewo.nlu.ListUserIdsResponse)
+    - [LlmAgentUsage](#ondewo.nlu.LlmAgentUsage)
+    - [LlmCacheStats](#ondewo.nlu.LlmCacheStats)
+    - [LlmCallFinishedEvent](#ondewo.nlu.LlmCallFinishedEvent)
+    - [LlmCallStartedEvent](#ondewo.nlu.LlmCallStartedEvent)
+    - [LlmCcaiServiceUsage](#ondewo.nlu.LlmCcaiServiceUsage)
+    - [LlmErrorStat](#ondewo.nlu.LlmErrorStat)
+    - [LlmErrorStats](#ondewo.nlu.LlmErrorStats)
+    - [LlmFinishReasonStat](#ondewo.nlu.LlmFinishReasonStat)
+    - [LlmLatencyStats](#ondewo.nlu.LlmLatencyStats)
+    - [LlmModelUsage](#ondewo.nlu.LlmModelUsage)
+    - [LlmProviderUsage](#ondewo.nlu.LlmProviderUsage)
+    - [LlmReasoningEffortStat](#ondewo.nlu.LlmReasoningEffortStat)
+    - [LlmRetrievalMetadata](#ondewo.nlu.LlmRetrievalMetadata)
+    - [LlmRetrievedChunk](#ondewo.nlu.LlmRetrievedChunk)
+    - [LlmSafetyAssessment](#ondewo.nlu.LlmSafetyAssessment)
+    - [LlmSafetyCategoryStat](#ondewo.nlu.LlmSafetyCategoryStat)
+    - [LlmSafetyFinding](#ondewo.nlu.LlmSafetyFinding)
+    - [LlmSafetyStats](#ondewo.nlu.LlmSafetyStats)
+    - [LlmTelemetry](#ondewo.nlu.LlmTelemetry)
+    - [LlmTelemetryReport](#ondewo.nlu.LlmTelemetryReport)
+    - [LlmThinkingDeltaEvent](#ondewo.nlu.LlmThinkingDeltaEvent)
+    - [LlmThinkingMetadata](#ondewo.nlu.LlmThinkingMetadata)
+    - [LlmTokenUsage](#ondewo.nlu.LlmTokenUsage)
+    - [LlmTokenUsageUpdateEvent](#ondewo.nlu.LlmTokenUsageUpdateEvent)
+    - [LlmToolCallFinishedEvent](#ondewo.nlu.LlmToolCallFinishedEvent)
+    - [LlmToolCallMetadata](#ondewo.nlu.LlmToolCallMetadata)
+    - [LlmToolCallStartedEvent](#ondewo.nlu.LlmToolCallStartedEvent)
+    - [LlmToolUsage](#ondewo.nlu.LlmToolUsage)
     - [QueryInput](#ondewo.nlu.QueryInput)
     - [QueryParameters](#ondewo.nlu.QueryParameters)
     - [QueryResult](#ondewo.nlu.QueryResult)
+    - [ReferencedChunk](#ondewo.nlu.ReferencedChunk)
     - [S2tTranscription](#ondewo.nlu.S2tTranscription)
     - [Session](#ondewo.nlu.Session)
+    - [SessionFeedback](#ondewo.nlu.SessionFeedback)
     - [SessionFilter](#ondewo.nlu.SessionFilter)
     - [SessionInfo](#ondewo.nlu.SessionInfo)
     - [SessionInfo.ContextSteps](#ondewo.nlu.SessionInfo.ContextSteps)
@@ -473,12 +796,19 @@
     - [StreamingRecognitionResult](#ondewo.nlu.StreamingRecognitionResult)
     - [TextInput](#ondewo.nlu.TextInput)
     - [UpdateSessionCommentsRequest](#ondewo.nlu.UpdateSessionCommentsRequest)
+    - [UpdateSessionFeedbackRequest](#ondewo.nlu.UpdateSessionFeedbackRequest)
     - [UpdateSessionStepRequest](#ondewo.nlu.UpdateSessionStepRequest)
     - [VideoFileResource](#ondewo.nlu.VideoFileResource)
   
     - [AudioEncoding](#ondewo.nlu.AudioEncoding)
     - [AudioFileResourceType](#ondewo.nlu.AudioFileResourceType)
     - [ComparisonOperator](#ondewo.nlu.ComparisonOperator)
+    - [FeedbackAuthorType](#ondewo.nlu.FeedbackAuthorType)
+    - [FeedbackRating](#ondewo.nlu.FeedbackRating)
+    - [FeedbackScope](#ondewo.nlu.FeedbackScope)
+    - [FeedbackTimeGranularity](#ondewo.nlu.FeedbackTimeGranularity)
+    - [LlmSafetyLocation](#ondewo.nlu.LlmSafetyLocation)
+    - [ReasoningEffort](#ondewo.nlu.ReasoningEffort)
     - [ResourceView](#ondewo.nlu.ResourceView)
     - [Session.View](#ondewo.nlu.Session.View)
     - [SessionReview.View](#ondewo.nlu.SessionReview.View)
@@ -508,8 +838,6 @@
     - [ListUserPreferencesResponse](#ondewo.nlu.ListUserPreferencesResponse)
     - [ListUsersRequest](#ondewo.nlu.ListUsersRequest)
     - [ListUsersResponse](#ondewo.nlu.ListUsersResponse)
-    - [LoginRequest](#ondewo.nlu.LoginRequest)
-    - [LoginResponse](#ondewo.nlu.LoginResponse)
     - [ServerRole](#ondewo.nlu.ServerRole)
     - [SetUserPreferencesRequest](#ondewo.nlu.SetUserPreferencesRequest)
     - [SetUserPreferencesResponse](#ondewo.nlu.SetUserPreferencesResponse)
@@ -583,18 +911,20 @@
     - [ListS2tLanguageModelsResponse](#ondewo.s2t.ListS2tLanguageModelsResponse)
     - [ListS2tLanguagesRequest](#ondewo.s2t.ListS2tLanguagesRequest)
     - [ListS2tLanguagesResponse](#ondewo.s2t.ListS2tLanguagesResponse)
+    - [ListS2tNormalizationPipelinesRequest](#ondewo.s2t.ListS2tNormalizationPipelinesRequest)
+    - [ListS2tNormalizationPipelinesResponse](#ondewo.s2t.ListS2tNormalizationPipelinesResponse)
     - [ListS2tPipelinesRequest](#ondewo.s2t.ListS2tPipelinesRequest)
     - [ListS2tPipelinesResponse](#ondewo.s2t.ListS2tPipelinesResponse)
     - [Logging](#ondewo.s2t.Logging)
+    - [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions)
+    - [OpenaiLlmOptions.DefaultHeadersEntry](#ondewo.s2t.OpenaiLlmOptions.DefaultHeadersEntry)
+    - [OpenaiLlmOptions.LogitBiasEntry](#ondewo.s2t.OpenaiLlmOptions.LogitBiasEntry)
+    - [Parakeet](#ondewo.s2t.Parakeet)
     - [PostProcessing](#ondewo.s2t.PostProcessing)
     - [PostProcessingOptions](#ondewo.s2t.PostProcessingOptions)
     - [PostProcessors](#ondewo.s2t.PostProcessors)
     - [PtFiles](#ondewo.s2t.PtFiles)
     - [Pyannote](#ondewo.s2t.Pyannote)
-    - [S2TDescription](#ondewo.s2t.S2TDescription)
-    - [S2TGetServiceInfoResponse](#ondewo.s2t.S2TGetServiceInfoResponse)
-    - [S2TInference](#ondewo.s2t.S2TInference)
-    - [S2TNormalization](#ondewo.s2t.S2TNormalization)
     - [S2tCloudProviderConfig](#ondewo.s2t.S2tCloudProviderConfig)
     - [S2tCloudProviderConfigAmazon](#ondewo.s2t.S2tCloudProviderConfigAmazon)
     - [S2tCloudProviderConfigDeepgram](#ondewo.s2t.S2tCloudProviderConfigDeepgram)
@@ -604,6 +934,16 @@
     - [S2tCloudServiceDeepgram](#ondewo.s2t.S2tCloudServiceDeepgram)
     - [S2tCloudServiceGoogle](#ondewo.s2t.S2tCloudServiceGoogle)
     - [S2tCloudServiceMicrosoft](#ondewo.s2t.S2tCloudServiceMicrosoft)
+    - [S2tDescription](#ondewo.s2t.S2tDescription)
+    - [S2tGetServiceInfoResponse](#ondewo.s2t.S2tGetServiceInfoResponse)
+    - [S2tInference](#ondewo.s2t.S2tInference)
+    - [S2tLlmPostProcessing](#ondewo.s2t.S2tLlmPostProcessing)
+    - [S2tLlmPostProcessingInverseNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingInverseNormalizationOptions)
+    - [S2tLlmPostProcessingNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingNormalizationOptions)
+    - [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions)
+    - [S2tLlmPostProcessingSummarizationOptions](#ondewo.s2t.S2tLlmPostProcessingSummarizationOptions)
+    - [S2tLlmPostProcessingTranslationOptions](#ondewo.s2t.S2tLlmPostProcessingTranslationOptions)
+    - [S2tNormalization](#ondewo.s2t.S2tNormalization)
     - [S2tPipelineId](#ondewo.s2t.S2tPipelineId)
     - [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig)
     - [StreamingServer](#ondewo.s2t.StreamingServer)
@@ -618,6 +958,7 @@
     - [Transcription](#ondewo.s2t.Transcription)
     - [TranscriptionAlternative](#ondewo.s2t.TranscriptionAlternative)
     - [TranscriptionReturnOptions](#ondewo.s2t.TranscriptionReturnOptions)
+    - [TurnDetectionOptions](#ondewo.s2t.TurnDetectionOptions)
     - [UtteranceDetectionOptions](#ondewo.s2t.UtteranceDetectionOptions)
     - [VoiceActivityDetection](#ondewo.s2t.VoiceActivityDetection)
     - [Wav2Vec](#ondewo.s2t.Wav2Vec)
@@ -629,6 +970,9 @@
   
     - [Decoding](#ondewo.s2t.Decoding)
     - [InferenceBackend](#ondewo.s2t.InferenceBackend)
+    - [ReasoningEffort](#ondewo.s2t.ReasoningEffort)
+    - [ServiceTier](#ondewo.s2t.ServiceTier)
+    - [Verbosity](#ondewo.s2t.Verbosity)
   
     - [Speech2Text](#ondewo.s2t.Speech2Text)
   
@@ -650,6 +994,8 @@
     - [ListT2sDomainsResponse](#ondewo.t2s.ListT2sDomainsResponse)
     - [ListT2sLanguagesRequest](#ondewo.t2s.ListT2sLanguagesRequest)
     - [ListT2sLanguagesResponse](#ondewo.t2s.ListT2sLanguagesResponse)
+    - [ListT2sNormalizationPipelinesRequest](#ondewo.t2s.ListT2sNormalizationPipelinesRequest)
+    - [ListT2sNormalizationPipelinesResponse](#ondewo.t2s.ListT2sNormalizationPipelinesResponse)
     - [ListT2sPipelinesRequest](#ondewo.t2s.ListT2sPipelinesRequest)
     - [ListT2sPipelinesResponse](#ondewo.t2s.ListT2sPipelinesResponse)
     - [Logmnse](#ondewo.t2s.Logmnse)
@@ -660,8 +1006,12 @@
     - [NormalizeTextResponse](#ondewo.t2s.NormalizeTextResponse)
     - [PhonemizerId](#ondewo.t2s.PhonemizerId)
     - [Postprocessing](#ondewo.t2s.Postprocessing)
+    - [Qwen3TtsBase](#ondewo.t2s.Qwen3TtsBase)
+    - [Qwen3TtsCustomVoice](#ondewo.t2s.Qwen3TtsCustomVoice)
     - [RequestConfig](#ondewo.t2s.RequestConfig)
     - [SingleInference](#ondewo.t2s.SingleInference)
+    - [StreamingSynthesizeRequest](#ondewo.t2s.StreamingSynthesizeRequest)
+    - [StreamingSynthesizeResponse](#ondewo.t2s.StreamingSynthesizeResponse)
     - [SynthesizeRequest](#ondewo.t2s.SynthesizeRequest)
     - [SynthesizeResponse](#ondewo.t2s.SynthesizeResponse)
     - [T2SCustomLengthScales](#ondewo.t2s.T2SCustomLengthScales)
@@ -684,6 +1034,7 @@
     - [UpdateCustomPhonemizerRequest](#ondewo.t2s.UpdateCustomPhonemizerRequest)
     - [Vits](#ondewo.t2s.Vits)
     - [VitsTriton](#ondewo.t2s.VitsTriton)
+    - [VoiceCloningRequest](#ondewo.t2s.VoiceCloningRequest)
     - [VoiceSettings](#ondewo.t2s.VoiceSettings)
     - [Wiener](#ondewo.t2s.Wiener)
   
@@ -850,6 +1201,7 @@ Control stream response message.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | control_status | [ControlStatus](#ondewo.csi.ControlStatus) |  | Control status |
+| epoch | [uint64](#uint64) |  | Monotonic barge-in epoch/sequence number so control status transitions are correlatable with the <code>S2sStreamResponse</code> <code>turn_epoch</code> and a second barge-in during a resumed remainder can never be coalesced away |
 
 
 
@@ -963,6 +1315,10 @@ Multiple response messages can be returned in order:
 | detect_intent_response | [ondewo.nlu.DetectIntentResponse](#ondewo.nlu.DetectIntentResponse) |  | full NLU detect intent response |
 | synthesize_response | [ondewo.t2s.SynthesizeResponse](#ondewo.t2s.SynthesizeResponse) |  | full T2S synthesize response |
 | sip_trigger | [SipTrigger](#ondewo.csi.SipTrigger) |  | SIP trigger message |
+| utterance_id | [string](#string) |  | Optional. Identifier of the utterance this response belongs to. All chunks of one synthesized utterance share the same <code>utterance_id</code> |
+| chunk_index | [int32](#int32) |  | Optional. Zero-based index of this chunk within the utterance identified by <code>utterance_id</code> |
+| last_chunk | [bool](#bool) |  | Optional. If <code>true</code>, this is the last chunk of the utterance identified by <code>utterance_id</code> |
+| turn_epoch | [uint64](#uint64) |  | Optional. Monotonic turn epoch of the conversation turn that produced this response. Used by consumers to fence stale audio of an interrupted turn |
 
 
 
@@ -1126,6 +1482,12 @@ Control status.
 | OK | 0 | Status that control stream is ok |
 | EMERGENCY_STOP | 1 | Status that control stream needs to stop immediately |
 | VAD_START_OF_SPEECH | 2 | Status that voice activity detection detected start of speech |
+| BARGE_IN | 3 | Status that the caller started speaking while the bot was speaking (barge-in): playback pauses and the un-played audio remainder is buffered |
+| RESUME_PLAYBACK | 4 | Status sent by the server to the client to resume playback of the buffered audio remainder after a false interruption (no committed transcription final arrived within the false interruption timeout) |
+| DISCARD_REMAINDER | 5 | Status sent by the server to the client to discard the buffered audio remainder because the interruption committed as a real turn |
+| PLAYBACK_RESUMED | 6 | Status reported by the client to the server via <code>SetControlStatus</code> that playback of the buffered audio remainder has resumed |
+| PLAYBACK_DONE | 7 | Status reported by the client to the server via <code>SetControlStatus</code> that playback of an utterance has completed |
+| CALL_ENDED | 8 | Status reported by ondewo-sip to the server via <code>SetControlStatus</code> that the phone call has ENDED and the server must reset ALL per-call state in place (persistent-listener model). It is a command, not a state: it is never pushed onto the control stream |
 
 
 
@@ -1206,9 +1568,9 @@ All upstreams unhealthy: <samp>{ "s2t_status": { "code": 14, "message": "failed 
 ## ondewo/nlu/agent.proto
 File-level comment for <code>ondewo/nlu/agent.proto</code>.
 
-This file contains a single service <a href="#ondewo.nlu.Agents">Agents</a>.
+This file contains a single service <a href="index.html#ondewo.nlu.Agents">Agents</a>.
 
-The most important messages is <a href="#ondewo.nlu.Agent">Agent</a> and its most complicated field is <code>configs</code>.
+The most important messages is <a href="index.html#ondewo.nlu.Agent">Agent</a> and its most complicated field is <code>configs</code>.
 
 
 <a name="ondewo.nlu.AddUserToProjectRequest"></a>
@@ -1238,14 +1600,14 @@ Project/Agent messages
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project of this agent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> Read-only in the Agent message |
 | display_name | [string](#string) |  | Required. The name of this agent. |
-| default_language_code | [string](#string) |  | Required. The default language of the agent as a language tag. See [Language Support](https://dialogflow.com/docs/reference/language) for a list of the currently supported language codes. This field cannot be set by the `Update` method. |
-| supported_language_codes | [string](#string) | repeated | Optional. The list of all languages supported by this agent (except for the `default_language_code`). |
-| time_zone | [string](#string) |  | Required. The time zone of this agent from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris. |
+| default_language_code | [string](#string) |  | Required. The default language of the agent as a language tag. See <a href="https://dialogflow.com/docs/reference/language">Language Support</a> for a list of the currently supported language codes. This field cannot be set by the <code>Update</code> method. |
+| supported_language_codes | [string](#string) | repeated | Optional. The list of all languages supported by this agent (except for the <code>default_language_code</code>). |
+| time_zone | [string](#string) |  | Required. The time zone of this agent from the <a href="https://www.iana.org/time-zones">time zone database</a>, e.g., America/New_York, Europe/Paris. |
 | nlu_platform | [string](#string) |  | Required. Specifies the format of the agent data. |
 | configs | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. Agent configuration as OndewoConfig converted to Struct format. |
 | owner_id | [string](#string) |  | Optional. User id of the project owner. If empty, in CreateAgent call it is set to user id in the call metadata. Read-only in the Agent message |
 | status | [AgentStatus](#ondewo.nlu.AgentStatus) |  | Optional. Status of the agent Read-only in the Agent message |
-| description | [string](#string) |  |  |
+| description | [string](#string) |  | Optional. Description of the agent. |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
@@ -1307,7 +1669,7 @@ This message contains the agent with owner
 <a name="ondewo.nlu.BuildCacheRequest"></a>
 
 ### BuildCacheRequest
-The request message for [Agents.TrainAgentBuildCache][google.cloud.dialogflow.v2.Agents.BuildCache].
+The request message for <a href="index.html#ondewo.nlu.Agents.BuildCache">Agents.TrainAgentBuildCache</a>.
 
 
 | Field | Type | Label | Description |
@@ -1330,6 +1692,40 @@ Request to create an agent
 | ----- | ---- | ----- | ----------- |
 | agent | [Agent](#ondewo.nlu.Agent) |  | The agent |
 | agent_view | [AgentView](#ondewo.nlu.AgentView) |  | Optional. Specify the view of the returned agent (sparse view by default) |
+
+
+
+
+
+
+<a name="ondewo.nlu.CreateProjectTechnicalUserRequest"></a>
+
+### CreateProjectTechnicalUserRequest
+Request to create a project-scoped technical user (PROJECT_EXECUTOR, 2FA-exempt).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The project (agent) that the technical user is scoped to. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| name | [string](#string) |  | Optional. A human-readable name used to derive the technical user's Keycloak username/email (e.g. ondewo-nlu-cai-tech-&lt;project&gt;-&lt;name&gt;). If empty, the server generates one. |
+
+
+
+
+
+
+<a name="ondewo.nlu.CreateProjectTechnicalUserResponse"></a>
+
+### CreateProjectTechnicalUserResponse
+Response with the freshly minted technical user's credentials.
+The password is returned ONCE and cannot be retrieved later.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| user_id | [string](#string) |  | The technical user's id (Keycloak sub / UUID). |
+| username | [string](#string) |  | The technical user's login username / email. |
+| password | [string](#string) |  | The generated password. Shown ONCE; not retrievable afterwards. |
 
 
 
@@ -1372,6 +1768,22 @@ Request to delete the agent
 
 
 
+<a name="ondewo.nlu.DeleteProjectTechnicalUserRequest"></a>
+
+### DeleteProjectTechnicalUserRequest
+Request to delete a project-scoped technical user.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The project (agent) that the technical user is scoped to. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| user_id | [string](#string) |  | Required. The id of the technical user to delete. |
+
+
+
+
+
+
 <a name="ondewo.nlu.DeleteResourcesRequest"></a>
 
 ### DeleteResourcesRequest
@@ -1381,8 +1793,8 @@ Request to delete resources
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
-| name | [string](#string) |  |  |
-| type | [string](#string) |  |  |
+| name | [string](#string) |  | Required. Name of the resource to delete. |
+| type | [string](#string) |  | Required. Type of the resource (e.g., "audio", "image", "file"). |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
 
 
@@ -1393,7 +1805,7 @@ Request to delete resources
 <a name="ondewo.nlu.ExportAgentRequest"></a>
 
 ### ExportAgentRequest
-The request message for [Agents.ExportAgent][google.cloud.dialogflow.v2.Agents.ExportAgent].
+The request message for <a href="index.html#ondewo.nlu.Agents.ExportAgent">Agents.ExportAgent</a>.
 
 
 | Field | Type | Label | Description |
@@ -1410,17 +1822,15 @@ The request message for [Agents.ExportAgent][google.cloud.dialogflow.v2.Agents.E
 <a name="ondewo.nlu.ExportAgentResponse"></a>
 
 ### ExportAgentResponse
-The response message for [Agents.ExportAgent][google.cloud.dialogflow.v2.Agents.ExportAgent].
+The response message for <a href="index.html#ondewo.nlu.Agents.ExportAgent">Agents.ExportAgent</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| agent_uri | [string](#string) |  | The URI to a file containing the exported agent. This field is populated only if `agent_uri` is specified in `ExportAgentRequest`. |
+| agent_uri | [string](#string) |  | The URI to a file containing the exported agent. This field is populated only if <code>agent_uri</code> is specified in <code>ExportAgentRequest</code>. |
 | agent_content | [bytes](#bytes) |  | The exported agent.
 
-Example for how to export an agent to a zip file via a command line:
-
-curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:export'\ -X POST \ -H 'Authorization: Bearer '$(gcloud auth print-access-token) \ -H 'Accept: application/json' \ -H 'Content-Type: application/json' \ --compressed \ --data-binary '{}' \ | grep agentContent | sed -e 's/.*"agentContent": "\([^"]*\)".*/\1/' \ | base64 --decode > <agent zip file> |
+Example for how to export an agent to a zip file via a command line: <br/> <pre><code>curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:export'\ -X POST \ -H 'Authorization: Bearer '$(gcloud auth print-access-token) \ -H 'Accept: application/json' \ -H 'Content-Type: application/json' \ --compressed \ --data-binary '{}' \ | grep agentContent | sed -e 's/.*"agentContent": "\([^"]*\)".*/\1/' \ | base64 --decode > <agent zip file> </code></pre> |
 
 
 
@@ -1437,7 +1847,7 @@ Request to export benchmark agent
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Agent related info Required. The project that the agent to export is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
 | compression_level | [int32](#int32) |  | Optional. The compression level of the zip file created. Valid range 1-9; the grpc-default value 0 will be mapped to 1, other values cause an error in the request validation handler. |
-| test_size | [float](#float) |  | Train-test split related parameters, for further info, check https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html default values come from API definition above Optional: bigger than zero |
+| test_size | [float](#float) |  | Train-test split related parameters, for further info, check <a href="https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html">https://scikit-learn.org/stable/modules/generated/sklearn.model_selection.train_test_split.html</a> default values come from API definition above Optional: bigger than zero |
 | train_size | [float](#float) |  | Optional: bigger than zero |
 | random_state | [int32](#int32) |  | Optional: random seed |
 
@@ -1487,8 +1897,8 @@ Request to export resources
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
-| name | [string](#string) |  |  |
-| type | [string](#string) |  |  |
+| name | [string](#string) |  | Required. Name of the resource to export. |
+| type | [string](#string) |  | Required. Type of the resource (e.g., "audio", "image", "file"). |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
 
 
@@ -1505,10 +1915,10 @@ Response to export resources
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
-| name | [string](#string) |  |  |
-| type | [string](#string) |  |  |
+| name | [string](#string) |  | Required. Name of the exported resource. |
+| type | [string](#string) |  | Required. Type of the resource (e.g., "audio", "image", "file"). |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
-| resource_file | [bytes](#bytes) |  |  |
+| resource_file | [bytes](#bytes) |  | Required. The exported resource file content as bytes. |
 
 
 
@@ -1528,13 +1938,13 @@ This message is a request to run full text search
 | term | [string](#string) |  | What to search for in the elastic server |
 | page_token | [string](#string) |  | Composite string: current_index-0--page_size-10 The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
 
 
 
@@ -1551,10 +1961,10 @@ This message is a response of full text search of entity
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
-| entity_results | [FullTextSearchResponseEntity.EntitySearchResult](#ondewo.nlu.FullTextSearchResponseEntity.EntitySearchResult) | repeated |  |
-| term | [string](#string) |  |  |
-| elastic_query | [string](#string) |  |  |
-| time | [float](#float) |  |  |
+| entity_results | [FullTextSearchResponseEntity.EntitySearchResult](#ondewo.nlu.FullTextSearchResponseEntity.EntitySearchResult) | repeated | List of entity search results |
+| term | [string](#string) |  | Search term used in the query |
+| elastic_query | [string](#string) |  | Elasticsearch query that was executed |
+| time | [float](#float) |  | Time taken to execute the query in seconds |
 | next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
@@ -1565,16 +1975,16 @@ This message is a response of full text search of entity
 <a name="ondewo.nlu.FullTextSearchResponseEntity.EntitySearchResult"></a>
 
 ### FullTextSearchResponseEntity.EntitySearchResult
-
+Search result for an entity
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| display_name | [string](#string) |  |  |
-| entity_type_name | [string](#string) |  |  |
-| entity_type_display_name | [string](#string) |  |  |
-| language | [string](#string) |  |  |
+| name | [string](#string) |  | Name of the entity |
+| display_name | [string](#string) |  | Display name of the entity |
+| entity_type_name | [string](#string) |  | Name of the entity type this entity belongs to |
+| entity_type_display_name | [string](#string) |  | Display name of the entity type |
+| language | [string](#string) |  | Language code of the entity |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
@@ -1595,10 +2005,10 @@ This message is a response of full text search of synonym entity
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
-| entity_synonym_results | [FullTextSearchResponseEntitySynonym.EntitySynonymSearchResult](#ondewo.nlu.FullTextSearchResponseEntitySynonym.EntitySynonymSearchResult) | repeated |  |
-| term | [string](#string) |  |  |
-| elastic_query | [string](#string) |  |  |
-| time | [float](#float) |  |  |
+| entity_synonym_results | [FullTextSearchResponseEntitySynonym.EntitySynonymSearchResult](#ondewo.nlu.FullTextSearchResponseEntitySynonym.EntitySynonymSearchResult) | repeated | List of entity synonym search results |
+| term | [string](#string) |  | Search term used in the query |
+| elastic_query | [string](#string) |  | Elasticsearch query that was executed |
+| time | [float](#float) |  | Time taken to execute the query in seconds |
 | next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
@@ -1609,18 +2019,18 @@ This message is a response of full text search of synonym entity
 <a name="ondewo.nlu.FullTextSearchResponseEntitySynonym.EntitySynonymSearchResult"></a>
 
 ### FullTextSearchResponseEntitySynonym.EntitySynonymSearchResult
-
+Search result for an entity synonym
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| display_name | [string](#string) |  |  |
-| entity_type_name | [string](#string) |  |  |
-| entity_type_display_name | [string](#string) |  |  |
-| entity_name | [string](#string) |  |  |
-| entity_display_name | [string](#string) |  |  |
-| language | [string](#string) |  |  |
+| name | [string](#string) |  | Name of the entity synonym |
+| display_name | [string](#string) |  | Display name of the entity synonym |
+| entity_type_name | [string](#string) |  | Name of the entity type |
+| entity_type_display_name | [string](#string) |  | Display name of the entity type |
+| entity_name | [string](#string) |  | Name of the entity this synonym belongs to |
+| entity_display_name | [string](#string) |  | Display name of the entity |
+| language | [string](#string) |  | Language code of the entity synonym |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
@@ -1641,10 +2051,10 @@ This message is a response of full text search of entity type
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
-| entity_type_results | [FullTextSearchResponseEntityType.EntityTypeSearchResult](#ondewo.nlu.FullTextSearchResponseEntityType.EntityTypeSearchResult) | repeated |  |
-| term | [string](#string) |  |  |
-| elastic_query | [string](#string) |  |  |
-| time | [float](#float) |  |  |
+| entity_type_results | [FullTextSearchResponseEntityType.EntityTypeSearchResult](#ondewo.nlu.FullTextSearchResponseEntityType.EntityTypeSearchResult) | repeated | List of entity type search results |
+| term | [string](#string) |  | Search term used in the query |
+| elastic_query | [string](#string) |  | Elasticsearch query that was executed |
+| time | [float](#float) |  | Time taken to execute the query in seconds |
 | next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
@@ -1655,14 +2065,14 @@ This message is a response of full text search of entity type
 <a name="ondewo.nlu.FullTextSearchResponseEntityType.EntityTypeSearchResult"></a>
 
 ### FullTextSearchResponseEntityType.EntityTypeSearchResult
-
+Search result for an entity type
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| display_name | [string](#string) |  |  |
-| language | [string](#string) |  |  |
+| name | [string](#string) |  | Name of the entity type |
+| display_name | [string](#string) |  | Display name of the entity type |
+| language | [string](#string) |  | Language code of the entity type |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
@@ -1683,10 +2093,10 @@ This message is a response of full text search of intent
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
-| intent_results | [FullTextSearchResponseIntent.IntentSearchResult](#ondewo.nlu.FullTextSearchResponseIntent.IntentSearchResult) | repeated |  |
-| term | [string](#string) |  |  |
-| elastic_query | [string](#string) |  |  |
-| time | [float](#float) |  |  |
+| intent_results | [FullTextSearchResponseIntent.IntentSearchResult](#ondewo.nlu.FullTextSearchResponseIntent.IntentSearchResult) | repeated | List of intent search results |
+| term | [string](#string) |  | Search term used in the query |
+| elastic_query | [string](#string) |  | Elasticsearch query that was executed |
+| time | [float](#float) |  | Time taken to execute the query in seconds |
 | next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
@@ -1697,16 +2107,16 @@ This message is a response of full text search of intent
 <a name="ondewo.nlu.FullTextSearchResponseIntent.IntentSearchResult"></a>
 
 ### FullTextSearchResponseIntent.IntentSearchResult
-
+Search result for an intent
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| display_name | [string](#string) |  |  |
-| domain_name | [string](#string) |  |  |
-| tags | [string](#string) | repeated |  |
-| language | [string](#string) |  |  |
+| name | [string](#string) |  | Name of the intent |
+| display_name | [string](#string) |  | Display name of the intent |
+| domain_name | [string](#string) |  | Domain name of the intent |
+| tags | [string](#string) | repeated | Tags associated with the intent |
+| language | [string](#string) |  | Language code of the intent |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
@@ -1727,10 +2137,10 @@ This message is a response of full text search of intent with context in
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
-| intent_context_in_results | [FullTextSearchResponseIntentContextIn.IntentContextInSearchResult](#ondewo.nlu.FullTextSearchResponseIntentContextIn.IntentContextInSearchResult) | repeated |  |
-| term | [string](#string) |  |  |
-| elastic_query | [string](#string) |  |  |
-| time | [float](#float) |  |  |
+| intent_context_in_results | [FullTextSearchResponseIntentContextIn.IntentContextInSearchResult](#ondewo.nlu.FullTextSearchResponseIntentContextIn.IntentContextInSearchResult) | repeated | List of intent input context search results |
+| term | [string](#string) |  | Search term used in the query |
+| elastic_query | [string](#string) |  | Elasticsearch query that was executed |
+| time | [float](#float) |  | Time taken to execute the query in seconds |
 | next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
@@ -1741,16 +2151,16 @@ This message is a response of full text search of intent with context in
 <a name="ondewo.nlu.FullTextSearchResponseIntentContextIn.IntentContextInSearchResult"></a>
 
 ### FullTextSearchResponseIntentContextIn.IntentContextInSearchResult
-
+Search result for an intent input context
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| intent_name | [string](#string) |  |  |
-| intent_display_name | [string](#string) |  |  |
-| tags | [string](#string) | repeated |  |
-| language | [string](#string) |  |  |
+| name | [string](#string) |  | Name of the input context |
+| intent_name | [string](#string) |  | Name of the intent this context belongs to |
+| intent_display_name | [string](#string) |  | Display name of the intent |
+| tags | [string](#string) | repeated | Tags associated with the intent |
+| language | [string](#string) |  | Language code of the context |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
@@ -1771,10 +2181,10 @@ This message is a response of full text search of intent with context out
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
-| intent_context_out_results | [FullTextSearchResponseIntentContextOut.IntentContextOutSearchResult](#ondewo.nlu.FullTextSearchResponseIntentContextOut.IntentContextOutSearchResult) | repeated |  |
-| term | [string](#string) |  |  |
-| elastic_query | [string](#string) |  |  |
-| time | [float](#float) |  |  |
+| intent_context_out_results | [FullTextSearchResponseIntentContextOut.IntentContextOutSearchResult](#ondewo.nlu.FullTextSearchResponseIntentContextOut.IntentContextOutSearchResult) | repeated | List of intent output context search results |
+| term | [string](#string) |  | Search term used in the query |
+| elastic_query | [string](#string) |  | Elasticsearch query that was executed |
+| time | [float](#float) |  | Time taken to execute the query in seconds |
 | next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
@@ -1785,16 +2195,16 @@ This message is a response of full text search of intent with context out
 <a name="ondewo.nlu.FullTextSearchResponseIntentContextOut.IntentContextOutSearchResult"></a>
 
 ### FullTextSearchResponseIntentContextOut.IntentContextOutSearchResult
-
+Search result for an intent output context
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| intent_name | [string](#string) |  |  |
-| intent_display_name | [string](#string) |  |  |
-| tags | [string](#string) | repeated |  |
-| language | [string](#string) |  |  |
+| name | [string](#string) |  | Name of the output context |
+| intent_name | [string](#string) |  | Name of the intent this context belongs to |
+| intent_display_name | [string](#string) |  | Display name of the intent |
+| tags | [string](#string) | repeated | Tags associated with the intent |
+| language | [string](#string) |  | Language code of the context |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
@@ -1815,10 +2225,10 @@ This message is a response of full text search of intent with parameters
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
-| intent_parameters_results | [FullTextSearchResponseIntentParameters.IntentParametersSearchResult](#ondewo.nlu.FullTextSearchResponseIntentParameters.IntentParametersSearchResult) | repeated |  |
-| term | [string](#string) |  |  |
-| elastic_query | [string](#string) |  |  |
-| time | [float](#float) |  |  |
+| intent_parameters_results | [FullTextSearchResponseIntentParameters.IntentParametersSearchResult](#ondewo.nlu.FullTextSearchResponseIntentParameters.IntentParametersSearchResult) | repeated | List of intent parameter search results |
+| term | [string](#string) |  | Search term used in the query |
+| elastic_query | [string](#string) |  | Elasticsearch query that was executed |
+| time | [float](#float) |  | Time taken to execute the query in seconds |
 | next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
@@ -1829,17 +2239,17 @@ This message is a response of full text search of intent with parameters
 <a name="ondewo.nlu.FullTextSearchResponseIntentParameters.IntentParametersSearchResult"></a>
 
 ### FullTextSearchResponseIntentParameters.IntentParametersSearchResult
-
+Search result for an intent parameter
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parameter_name | [string](#string) |  |  |
-| parameter_display_name | [string](#string) |  |  |
-| intent_name | [string](#string) |  |  |
-| intent_display_name | [string](#string) |  |  |
-| tags | [string](#string) | repeated |  |
-| language | [string](#string) |  |  |
+| parameter_name | [string](#string) |  | Name of the parameter |
+| parameter_display_name | [string](#string) |  | Display name of the parameter |
+| intent_name | [string](#string) |  | Name of the intent this parameter belongs to |
+| intent_display_name | [string](#string) |  | Display name of the intent |
+| tags | [string](#string) | repeated | Tags associated with the intent |
+| language | [string](#string) |  | Language code of the parameter |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
@@ -1860,19 +2270,19 @@ This message is a response of full text search of intent response
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
-| intent_response_results | [FullTextSearchResponseIntentResponse.IntentResponseSearchResult](#ondewo.nlu.FullTextSearchResponseIntentResponse.IntentResponseSearchResult) | repeated |  |
-| term | [string](#string) |  |  |
-| elastic_query | [string](#string) |  |  |
-| time | [float](#float) |  |  |
+| intent_response_results | [FullTextSearchResponseIntentResponse.IntentResponseSearchResult](#ondewo.nlu.FullTextSearchResponseIntentResponse.IntentResponseSearchResult) | repeated | List of intent response search results |
+| term | [string](#string) |  | Search term used in the query |
+| elastic_query | [string](#string) |  | Elasticsearch query that was executed |
+| time | [float](#float) |  | Time taken to execute the query in seconds |
 | next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result. The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
 
 
 
@@ -1882,18 +2292,18 @@ Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" 
 <a name="ondewo.nlu.FullTextSearchResponseIntentResponse.IntentResponseSearchResult"></a>
 
 ### FullTextSearchResponseIntentResponse.IntentResponseSearchResult
-
+Search result for an intent response
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| text | [string](#string) |  |  |
-| platform | [string](#string) |  |  |
-| response_type | [string](#string) |  |  |
-| intent_name | [string](#string) |  |  |
-| intent_display_name | [string](#string) |  |  |
-| tags | [string](#string) | repeated |  |
-| language | [string](#string) |  |  |
+| text | [string](#string) |  | Text content of the response |
+| platform | [string](#string) |  | Platform for which this response is intended |
+| response_type | [string](#string) |  | Type of the response |
+| intent_name | [string](#string) |  | Name of the intent this response belongs to |
+| intent_display_name | [string](#string) |  | Display name of the intent |
+| tags | [string](#string) | repeated | Tags associated with the intent |
+| language | [string](#string) |  | Language code of the response |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
@@ -1914,10 +2324,10 @@ This message is a response of full text search of intent with tags
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
-| intent_tags_results | [FullTextSearchResponseIntentTags.IntentTagsSearchResult](#ondewo.nlu.FullTextSearchResponseIntentTags.IntentTagsSearchResult) | repeated |  |
-| term | [string](#string) |  |  |
-| elastic_query | [string](#string) |  |  |
-| time | [float](#float) |  |  |
+| intent_tags_results | [FullTextSearchResponseIntentTags.IntentTagsSearchResult](#ondewo.nlu.FullTextSearchResponseIntentTags.IntentTagsSearchResult) | repeated | List of intent tag search results |
+| term | [string](#string) |  | Search term used in the query |
+| elastic_query | [string](#string) |  | Elasticsearch query that was executed |
+| time | [float](#float) |  | Time taken to execute the query in seconds |
 | next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
@@ -1928,17 +2338,17 @@ This message is a response of full text search of intent with tags
 <a name="ondewo.nlu.FullTextSearchResponseIntentTags.IntentTagsSearchResult"></a>
 
 ### FullTextSearchResponseIntentTags.IntentTagsSearchResult
-
+Search result for an intent tag
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| text | [string](#string) |  |  |
-| intent_name | [string](#string) |  |  |
-| intent_display_name | [string](#string) |  |  |
-| tags | [string](#string) | repeated |  |
-| language | [string](#string) |  |  |
+| name | [string](#string) |  | Name of the tag |
+| text | [string](#string) |  | Text content of the tag |
+| intent_name | [string](#string) |  | Name of the intent this tag belongs to |
+| intent_display_name | [string](#string) |  | Display name of the intent |
+| tags | [string](#string) | repeated | Tags associated with the intent |
+| language | [string](#string) |  | Language code of the tag |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
@@ -1959,10 +2369,10 @@ This message is a response of full text search of intent with sentence
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
-| intent_usersays_results | [FullTextSearchResponseIntentUsersays.IntentUsersaysSearchResult](#ondewo.nlu.FullTextSearchResponseIntentUsersays.IntentUsersaysSearchResult) | repeated |  |
-| term | [string](#string) |  |  |
-| elastic_query | [string](#string) |  |  |
-| time | [float](#float) |  |  |
+| intent_usersays_results | [FullTextSearchResponseIntentUsersays.IntentUsersaysSearchResult](#ondewo.nlu.FullTextSearchResponseIntentUsersays.IntentUsersaysSearchResult) | repeated | List of intent training phrase search results |
+| term | [string](#string) |  | Search term used in the query |
+| elastic_query | [string](#string) |  | Elasticsearch query that was executed |
+| time | [float](#float) |  | Time taken to execute the query in seconds |
 | next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
 
 
@@ -1973,20 +2383,20 @@ This message is a response of full text search of intent with sentence
 <a name="ondewo.nlu.FullTextSearchResponseIntentUsersays.IntentUsersaysSearchResult"></a>
 
 ### FullTextSearchResponseIntentUsersays.IntentUsersaysSearchResult
-
+Search result for an intent training phrase (user says)
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  |  |
-| text | [string](#string) |  |  |
-| text_as_entity_types | [string](#string) |  |  |
-| text_as_entity_values | [string](#string) |  |  |
-| type | [string](#string) |  |  |
-| intent_name | [string](#string) |  |  |
-| intent_display_name | [string](#string) |  |  |
-| tags | [string](#string) | repeated |  |
-| language | [string](#string) |  |  |
+| name | [string](#string) |  | Name of the training phrase |
+| text | [string](#string) |  | Text of the training phrase |
+| text_as_entity_types | [string](#string) |  | Text with entity types annotated |
+| text_as_entity_values | [string](#string) |  | Text with entity values annotated |
+| type | [string](#string) |  | Type of the training phrase part |
+| intent_name | [string](#string) |  | Name of the intent this training phrase belongs to |
+| intent_display_name | [string](#string) |  | Display name of the intent |
+| tags | [string](#string) | repeated | Tags associated with the intent |
+| language | [string](#string) |  | Language code of the training phrase |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
@@ -2000,13 +2410,14 @@ This message is a response of full text search of intent with sentence
 <a name="ondewo.nlu.GetAgentRequest"></a>
 
 ### GetAgentRequest
-The request message for [Agents.GetAgent][google.cloud.dialogflow.v2.Agents.GetAgent].
+The request message for <a href="index.html#ondewo.nlu.Agents.GetAgent">Agents.GetAgent</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | agent_view | [AgentView](#ondewo.nlu.AgentView) |  | Optional. Specify the view of the returned agent (full view by default) |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. A mask to control which fields are returned in the response. |
 
 
 
@@ -2025,6 +2436,12 @@ Request statistics of the agent
 | format | [ReportFormat](#ondewo.nlu.ReportFormat) |  | File formats for reports |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. the language to calculate statistics about |
 | type | [ReportType](#ondewo.nlu.ReportType) |  | Type of reports about the domain of the agent |
+| llm_model_filter | [string](#string) | repeated | Optional. Restrict LLM aggregations to specific models (e.g. <code>"claude-3-5-sonnet-20241022"</code>). Empty list = all models. |
+| llm_provider_filter | [string](#string) | repeated | Optional. Restrict LLM aggregations to specific providers (e.g. <code>"anthropic"</code>, <code>"openai"</code>). Empty list = all providers. |
+| llm_agent_name_filter | [string](#string) | repeated | Optional. Restrict LLM aggregations to specific intent-agent names. |
+| llm_group_bys | [string](#string) | repeated | Optional. Group LLM aggregations by named dimensions (e.g. <code>["model_name", "provider"]</code>). Empty list = no grouping. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data on the response (e.g. paths=["llm_telemetry_report"]). |
+| llm_ccai_service_provider_filter | [CcaiServiceProvider](#ondewo.nlu.CcaiServiceProvider) | repeated | Optional. Restrict LLM aggregations to specific CCAI service providers. Empty = all. |
 
 
 
@@ -2042,6 +2459,7 @@ Response to get statistics of the agent
 | reports | [bytes](#bytes) |  | Statistic info. |
 | format | [ReportFormat](#ondewo.nlu.ReportFormat) |  | File formats for reports |
 | type | [ReportType](#ondewo.nlu.ReportType) |  | Type of reports about the domain of the agent |
+| llm_telemetry_report | [LlmTelemetryReport](#ondewo.nlu.LlmTelemetryReport) |  | Optional aggregate LLM telemetry across all sessions / steps in scope (subject to the LLM filters in the request). Populated only when the request field_mask includes <code>llm_telemetry_report</code>. |
 
 
 
@@ -2057,9 +2475,9 @@ Request to get model statuses
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
-| cache_version | [int32](#int32) |  |  |
+| cache_version | [int32](#int32) |  | Optional. Cache version to filter model statuses. If not specified, returns statuses for all cache versions. |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
-| model_name | [string](#string) |  |  |
+| model_name | [string](#string) |  | Optional. Model name to filter model statuses. If not specified, returns statuses for all models. |
 
 
 
@@ -2074,7 +2492,7 @@ Response to get model statuses
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| model_statuses | [ModelStatus](#ondewo.nlu.ModelStatus) | repeated |  |
+| model_statuses | [ModelStatus](#ondewo.nlu.ModelStatus) | repeated | List of model statuses matching the request filters. |
 
 
 
@@ -2128,8 +2546,13 @@ Request of the report of the statistics about sessions
 | limit | [int32](#int32) |  | Optional. limit the returned number of results |
 | group_bys | [string](#string) | repeated | Optional. Grouping based on named properties |
 | order_bys | [string](#string) | repeated | Optional. Order based on named properties |
-| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which data fields will be added to the returned data. Example: paths=["duration_in_s_min", "id", "session_id", "project_id"] |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which data fields will be added to the returned data. <br> Example: paths=[&quot;duration_in_s_min&quot;, &quot;id&quot;, &quot;session_id&quot;, &quot;project_id&quot;] <br> |
 | sql_query | [string](#string) |  | SQL Query - only usable with specific SessionsReportType such as SessionsReportType.SESSION_SQL_QUERY |
+| llm_model_filter | [string](#string) | repeated | Optional. Restrict LLM-typed reports to specific models. Empty = all models. |
+| llm_provider_filter | [string](#string) | repeated | Optional. Restrict LLM-typed reports to specific providers. Empty = all providers. |
+| llm_agent_name_filter | [string](#string) | repeated | Optional. Restrict LLM-typed reports to specific intent-agent names. Empty = all. |
+| llm_tool_name_filter | [string](#string) | repeated | Optional. Restrict LLM-typed reports to specific tool names. Empty = all. |
+| llm_ccai_service_provider_filter | [CcaiServiceProvider](#ondewo.nlu.CcaiServiceProvider) | repeated | Optional. Restrict LLM-typed reports to specific CCAI service providers. Empty = all. |
 
 
 
@@ -2147,6 +2570,48 @@ Report of the statistics about sessions
 | reports | [bytes](#bytes) |  | Statistic info. |
 | format | [ReportFormat](#ondewo.nlu.ReportFormat) |  | File formats for reports |
 | type | [SessionsReportType](#ondewo.nlu.SessionsReportType) |  | Type of reports about the domain of the agent |
+| llm_telemetry_report | [LlmTelemetryReport](#ondewo.nlu.LlmTelemetryReport) |  | Optional aggregate LLM telemetry summarizing the report (tokens, tool calls, thinking) across all sessions matched by the request. Populated only for LLM-typed report types (SESSION_LLM_*). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetSessionsStatisticsTimeSeriesRequest"></a>
+
+### GetSessionsStatisticsTimeSeriesRequest
+Request for time-bucketed LLM telemetry statistics about sessions.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The project to get statistics from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| type | [SessionsReportType](#ondewo.nlu.SessionsReportType) |  | Type of report. Only LLM-typed report types (SESSION_LLM_*) are supported. |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Required. A filter narrowing the sessions; <code>earliest</code> / <code>latest</code> define the time range that is bucketed. |
+| bucket_width_seconds | [int32](#int32) |  | Optional. Width of one bucket in seconds. 0 = the server picks (time range divided by <code>max_buckets</code>). |
+| max_buckets | [int32](#int32) |  | Optional. Maximum number of buckets (default 50, server-side cap 200). |
+| llm_model_filter | [string](#string) | repeated | Optional. Restrict to specific models. Empty = all models. |
+| llm_provider_filter | [string](#string) | repeated | Optional. Restrict to specific providers. Empty = all providers. |
+| llm_agent_name_filter | [string](#string) | repeated | Optional. Restrict to specific intent-agent names. Empty = all. |
+| llm_tool_name_filter | [string](#string) | repeated | Optional. Restrict to specific tool names. Empty = all. |
+| llm_ccai_service_provider_filter | [CcaiServiceProvider](#ondewo.nlu.CcaiServiceProvider) | repeated | Optional. Restrict to specific CCAI service providers. Empty = all. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which data fields will be added to the returned data (e.g. paths=["llm_telemetry_time_series_buckets.llm_telemetry_report.llm_token_usage"]). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetSessionsStatisticsTimeSeriesResponse"></a>
+
+### GetSessionsStatisticsTimeSeriesResponse
+Response with time-bucketed LLM telemetry statistics.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_telemetry_time_series_buckets | [LlmTelemetryTimeSeriesBucket](#ondewo.nlu.LlmTelemetryTimeSeriesBucket) | repeated | Buckets in ascending time order. Buckets without any matching telemetry carry an empty report (llm_call_count == 0). |
+| bucket_width_seconds | [int32](#int32) |  | Effective bucket width in seconds the server used. |
 
 
 
@@ -2156,18 +2621,14 @@ Report of the statistics about sessions
 <a name="ondewo.nlu.ImportAgentRequest"></a>
 
 ### ImportAgentRequest
-The request message for [Agents.ImportAgent][google.cloud.dialogflow.v2.Agents.ImportAgent].
+The request message for <a href="index.html#ondewo.nlu.Agents.ImportAgent">Agents.ImportAgent</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to import is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
 | agent_uri | [string](#string) |  | The URI to a Google Cloud Storage file containing the agent to import. Note: The URI must start with "gs://". |
-| agent_content | [bytes](#bytes) |  | The agent to import.
-
-Example for how to import an agent via the command line:
-
-curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:import\ -X POST \ -H 'Authorization: Bearer '$(gcloud auth print-access-token) \ -H 'Accept: application/json' \ -H 'Content-Type: application/json' \ --compressed \ --data-binary "{ 'agentContent': '$(cat <agent zip file> | base64 -w 0)' }" |
+| agent_content | [bytes](#bytes) |  | The agent to import. <br> Example for how to import an agent via the command line: <br> <pre><code>curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:import\ -X POST \ -H 'Authorization: Bearer '$(gcloud auth print-access-token) \ -H 'Accept: application/json' \ -H 'Content-Type: application/json' \ --compressed \ --data-binary "{ 'agentContent': '$(cat <agent zip file> | base64 -w 0)' }" </code></pre> |
 
 
 
@@ -2201,6 +2662,7 @@ Request to get the list of agents
 | agent_view | [AgentView](#ondewo.nlu.AgentView) |  | Optional. Specify the view of the returned agent (full view by default) |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. |
 | sort_by_field | [AgentSorting](#ondewo.nlu.AgentSorting) |  | Optional. Defines the sorting of the list. Default, no sorting. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -2233,13 +2695,14 @@ Project permissions
 | ----- | ---- | ----- | ----------- |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -2262,6 +2725,38 @@ List project permissions
 
 
 
+<a name="ondewo.nlu.ListProjectTechnicalUsersRequest"></a>
+
+### ListProjectTechnicalUsersRequest
+Request to list the project-scoped technical users of a project (agent).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The project (agent) whose technical users are listed. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. The page token to support pagination. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListProjectTechnicalUsersResponse"></a>
+
+### ListProjectTechnicalUsersResponse
+Response listing the project-scoped technical users of a project (agent).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| technical_users | [ProjectTechnicalUser](#ondewo.nlu.ProjectTechnicalUser) | repeated | The technical users scoped to the project. |
+| next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result. |
+
+
+
+
+
+
 <a name="ondewo.nlu.ListUsersInProjectRequest"></a>
 
 ### ListUsersInProjectRequest
@@ -2273,13 +2768,14 @@ Request to list users in the project
 | parent | [string](#string) |  | Required. The project that the agent to train is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. <br> |
 
 
 
@@ -2302,6 +2798,38 @@ List the users in a project
 
 
 
+<a name="ondewo.nlu.LlmTelemetryTimeSeriesBucket"></a>
+
+### LlmTelemetryTimeSeriesBucket
+One time bucket of aggregated LLM telemetry.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| bucket_start | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Inclusive start of the bucket. |
+| bucket_end | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Exclusive end of the bucket. |
+| llm_telemetry_report | [LlmTelemetryReport](#ondewo.nlu.LlmTelemetryReport) |  | Aggregated LLM telemetry of all matched sessions inside the bucket. |
+
+
+
+
+
+
+<a name="ondewo.nlu.MigrateAgentRequest"></a>
+
+### MigrateAgentRequest
+Request to migrate an agent
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| agent_content | [bytes](#bytes) |  | The agent to migrate as zip file |
+
+
+
+
+
+
 <a name="ondewo.nlu.ModelStatus"></a>
 
 ### ModelStatus
@@ -2313,9 +2841,9 @@ Status of model
 | cache_version | [int32](#int32) |  | Cache version that contains the correspondent model |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
 | model_name | [string](#string) |  | The model name |
-| status_set_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  |  |
-| config | [string](#string) |  |  |
-| status | [ModelStatus.StatusName](#ondewo.nlu.ModelStatus.StatusName) |  |  |
+| status_set_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Timestamp when the status was set. Read-only field. |
+| config | [string](#string) |  | Configuration of the model as a string. |
+| status | [ModelStatus.StatusName](#ondewo.nlu.ModelStatus.StatusName) |  | Current status of the model. |
 
 
 
@@ -2348,8 +2876,8 @@ This message is a response of Optimize Ranking Match
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| optimization_info | [google.protobuf.Struct](#google.protobuf.Struct) |  | info about optimization |
-| optimized_ondewo_config | [google.protobuf.Struct](#google.protobuf.Struct) |  | the optimized configuration of the ondewo agent e.g., optimized parameters |
+| optimization_info | [google.protobuf.Struct](#google.protobuf.Struct) |  | info about optimization <br> |
+| optimized_ondewo_config | [google.protobuf.Struct](#google.protobuf.Struct) |  | the optimized configuration of the ondewo agent e.g., optimized parameters <br> |
 
 
 
@@ -2372,6 +2900,24 @@ This message contains the mapping of platform
 
 
 
+<a name="ondewo.nlu.ProjectTechnicalUser"></a>
+
+### ProjectTechnicalUser
+A single project-scoped technical user entry.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| user_id | [string](#string) |  | The technical user's id (Keycloak sub / UUID). |
+| username | [string](#string) |  | The technical user's login username / email. |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | The time the technical user was created (Keycloak createdTimestamp). |
+| created_by | [string](#string) |  | The id of the user that created this technical user. |
+
+
+
+
+
+
 <a name="ondewo.nlu.RankingMatchOptimizationConfig"></a>
 
 ### RankingMatchOptimizationConfig
@@ -2383,7 +2929,7 @@ This message contains the configuration to run Optimize Ranking Match
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
 | n_splits | [int32](#int32) |  | number of splits for optimization |
 | random_seed | [int32](#int32) |  | random seed number for defining the split of train and test of training phrases for optimization |
-| initial_thresholds | [google.protobuf.Struct](#google.protobuf.Struct) |  | initial thresholds are optional, if not given will be taken from the current config example {'OndewoIntentSimilarityMatch': 0.59, 'OndewoIntentNamedSimilarityMatch': 0.39} |
+| initial_thresholds | [google.protobuf.Struct](#google.protobuf.Struct) |  | initial thresholds are optional, if not given will be taken from the current config <br> example {'OndewoIntentSimilarityMatch': 0.59, 'OndewoIntentNamedSimilarityMatch': 0.39} <br> |
 
 
 
@@ -2426,18 +2972,48 @@ Request to remove user from the project.
 <a name="ondewo.nlu.RestoreAgentRequest"></a>
 
 ### RestoreAgentRequest
-The request message for [Agents.RestoreAgent][google.cloud.dialogflow.v2.Agents.RestoreAgent].
+The request message for <a href="index.html#ondewo.nlu.Agents.RestoreAgent">Agents.RestoreAgent</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to restore is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
 | agent_uri | [string](#string) |  | The URI to a Google Cloud Storage file containing the agent to restore. Note: The URI must start with "gs://". |
-| agent_content | [bytes](#bytes) |  | The agent to restore.
+| agent_content | [bytes](#bytes) |  | The agent to restore. <br> Example for how to restore an agent via the command line: <pre><code>curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:restore\ -X POST \ -H 'Authorization: Bearer '$(gcloud auth print-access-token) \ -H 'Accept: application/json' \ -H 'Content-Type: application/json' \ --compressed \ --data-binary "{ 'agentContent': '$(cat <agent zip file> | base64 -w 0)' }" \ </code></pre> |
 
-Example for how to restore an agent via the command line:
 
-curl \ 'https://dialogflow.googleapis.com/v2/projects/<project_name>/agent:restore\ -X POST \ -H 'Authorization: Bearer '$(gcloud auth print-access-token) \ -H 'Accept: application/json' \ -H 'Content-Type: application/json' \ --compressed \ --data-binary "{ 'agentContent': '$(cat <agent zip file> | base64 -w 0)' }" \ |
+
+
+
+
+<a name="ondewo.nlu.RotateProjectTechnicalUserPasswordRequest"></a>
+
+### RotateProjectTechnicalUserPasswordRequest
+Request to rotate the password of a project-scoped technical user.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The project (agent) that the technical user is scoped to. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| user_id | [string](#string) |  | Required. The id of the technical user whose password is rotated. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RotateProjectTechnicalUserPasswordResponse"></a>
+
+### RotateProjectTechnicalUserPasswordResponse
+Response with the rotated password.
+The password is returned ONCE and cannot be retrieved later.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| user_id | [string](#string) |  | The technical user's id (Keycloak sub / UUID). |
+| username | [string](#string) |  | The technical user's login username / email. |
+| password | [string](#string) |  | The new generated password. Shown ONCE; not retrievable afterwards. |
 
 
 
@@ -2470,9 +3046,9 @@ Request to set resources
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
-| name | [string](#string) |  |  |
-| type | [string](#string) |  |  |
-| resource_file | [bytes](#bytes) |  |  |
+| name | [string](#string) |  | Required. Name of the resource. |
+| type | [string](#string) |  | Required. Type of the resource (e.g., "audio", "image", "file"). |
+| resource_file | [bytes](#bytes) |  | Required. The resource file content as bytes. |
 | language_code | [string](#string) |  | Language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
 
 
@@ -2483,7 +3059,7 @@ Request to set resources
 <a name="ondewo.nlu.TrainAgentRequest"></a>
 
 ### TrainAgentRequest
-The request message for [Agents.TrainAgent][google.cloud.dialogflow.v2.Agents.TrainAgent].
+The request message for <a href="index.html#ondewo.nlu.Agents.TrainAgent">Agents.TrainAgent</a>.
 
 
 | Field | Type | Label | Description |
@@ -2556,7 +3132,7 @@ Type of Agent / Project status
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | ACTIVE | 0 | If project is active, all its endpoints are active |
-| INACTIVE | 1 | If project is inactive: * members of the project do not see the project anymore except users with project role "PROJECT_ADMIN" and users with server role "SERVER_ADMIN" * nothing is allowed (no endpoint) on the project except "SetAgentStatus" by PROJECT_ADMIN or SERVER_ADMIN |
+| INACTIVE | 1 | If project is inactive: <ul> <li>members of the project do not see the project anymore except users with project role &quot;PROJECT_ADMIN&quot; and users with server role &quot;SERVER_ADMIN&quot;</li> <li>nothing is allowed (no endpoint) on the project except &quot;SetAgentStatus&quot; by PROJECT_ADMIN or SERVER_ADMIN</li> </ul> |
 
 
 
@@ -2567,7 +3143,7 @@ Structure of agent view
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| AGENT_VIEW_UNSPECIFIED | 0 | Unspecified agent view: the view is defined by the call: - CreateAgent: AGENT_VIEW_SHALLOW - UpdateAgent: AGENT_VIEW_SHALLOW - GetAgent: AGENT_VIEW_FULL - ListAgents: AGENT_VIEW_SHALLOW |
+| AGENT_VIEW_UNSPECIFIED | 0 | Unspecified agent view: the view is defined by the call: <ul> <li>CreateAgent: AGENT_VIEW_SHALLOW</li> <li>UpdateAgent: AGENT_VIEW_SHALLOW</li> <li>GetAgent: AGENT_VIEW_FULL</li> <li>ListAgents: AGENT_VIEW_SHALLOW</li> </ul> |
 | AGENT_VIEW_FULL | 1 | Full agent view: populate all the fields of the Agent message including configs. |
 | AGENT_VIEW_SHALLOW | 2 | Shallow agent view: populates all the fields except configs. |
 | AGENT_VIEW_MINIMUM | 3 | Minimum view including only agent UUID and agent display name |
@@ -2581,17 +3157,17 @@ Type of query
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| ALL | 0 | just a placeholder, has to start with zero |
-| OndewoEntityQuery | 1 |  |
-| OndewoEntityTypeQuery | 2 |  |
-| OndewoEntitySynonymQuery | 3 |  |
-| OndewoIntentQuery | 4 |  |
-| OndewoIntentContextInQuery | 5 |  |
-| OndewoIntentContextOutQuery | 6 |  |
-| OndewoIntentUsersaysQuery | 7 |  |
-| OndewoIntentTagsQuery | 8 |  |
-| OndewoIntentParametersQuery | 9 |  |
-| OndewoIntentResponseQuery | 10 |  |
+| ALL | 0 | Placeholder value, has to start with zero |
+| OndewoEntityQuery | 1 | Query for entities |
+| OndewoEntityTypeQuery | 2 | Query for entity types |
+| OndewoEntitySynonymQuery | 3 | Query for entity synonyms |
+| OndewoIntentQuery | 4 | Query for intents |
+| OndewoIntentContextInQuery | 5 | Query for intent input contexts |
+| OndewoIntentContextOutQuery | 6 | Query for intent output contexts |
+| OndewoIntentUsersaysQuery | 7 | Query for intent training phrases (user says) |
+| OndewoIntentTagsQuery | 8 | Query for intent tags |
+| OndewoIntentParametersQuery | 9 | Query for intent parameters |
+| OndewoIntentResponseQuery | 10 | Query for intent responses |
 
 
 
@@ -2611,17 +3187,17 @@ Defines when to initiate newly created agent when training started
 <a name="ondewo.nlu.ModelStatus.StatusName"></a>
 
 ### ModelStatus.StatusName
-
+Status name of the model.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| UNKNOWN | 0 |  |
-| INITIALIZING | 1 |  |
-| INITIALIZED | 2 |  |
-| LOADING_DATA | 3 |  |
-| TRAINING | 4 |  |
-| TESTING | 5 |  |
-| TRAINED | 6 |  |
+| UNKNOWN | 0 | Unknown status |
+| INITIALIZING | 1 | Model is initializing |
+| INITIALIZED | 2 | Model has been initialized |
+| LOADING_DATA | 3 | Model is loading data |
+| TRAINING | 4 | Model is training |
+| TESTING | 5 | Model is being tested |
+| TRAINED | 6 | Model training is complete |
 
 
 
@@ -2650,6 +3226,27 @@ Type of reports about the domain of the agent
 | ENTITY_PER_LANGUAGE | 2 | statistics of the language specific part of the entity database |
 | ENTITY_COLLISION | 3 | report on collision of the entity synonyms |
 | INTENT_GENERAL | 4 | report of statistics of the general (relevant to all supported languages) part of intent database |
+| AGENT_LLM_TOKEN_USAGE | 5 | Aggregate LLM token usage (input / output / cache) over the agent domain. |
+| AGENT_LLM_MODELS_USED | 6 | Per-model usage rollup (calls, tokens, latency) over the agent domain. |
+| AGENT_LLM_PROVIDERS_USED | 7 | Per-provider usage rollup over the agent domain. |
+| AGENT_LLM_CCAI_SERVICES_USED | 8 | Per-CCAI-service usage rollup (keyed by CcaiServiceProvider) over the agent domain. |
+| AGENT_LLM_AGENTS_USED | 9 | Per-intent-agent usage rollup over the agent domain. |
+| AGENT_LLM_ERRORS | 10 | LLM error breakdown (counts and rate per error_class) over the agent domain. |
+| AGENT_LLM_CACHE_EFFICIENCY | 11 | Prompt-cache efficiency over the agent domain. |
+| AGENT_LLM_REASONING_EFFORT | 12 | Reasoning-effort distribution (keyed by ReasoningEffort) over the agent domain. |
+| AGENT_LLM_TOP_X_TOOLS | 13 | Top X most-invoked tools over the agent domain. |
+| AGENT_LLM_LEAST_X_TOOLS | 14 | Least X invoked tools over the agent domain. |
+| AGENT_LLM_LATENCY | 15 | LLM latency aggregates (p50 / p95 / p99, time-to-first-token) over the agent domain. |
+| AGENT_LLM_FINISH_REASONS | 16 | Finish-reason distribution over the agent domain. |
+| AGENT_LLM_TOTAL_STATISTICS | 17 | Single rolled-up LLM statistics summary (totals + all breakdowns) over the agent domain. |
+| AGENT_LLM_INPUT_TOKEN_USAGE | 18 | Aggregate LLM input / prompt token usage over the agent domain. |
+| AGENT_LLM_OUTPUT_TOKEN_USAGE | 19 | Aggregate LLM output / completion token usage over the agent domain. |
+| AGENT_LLM_THINKING_TOKEN_USAGE | 20 | Aggregate LLM thinking / reasoning token usage over the agent domain. |
+| AGENT_LLM_TOOL_CALL_TOKEN_USAGE | 21 | Aggregate LLM tool-call token usage over the agent domain. |
+| AGENT_LLM_TOP_X_MODELS | 22 | Top X most-used models (by calls / tokens) over the agent domain. |
+| AGENT_LLM_TOP_X_CCAI_SERVICE_PROVIDERS | 23 | Top X most-used CCAI service providers over the agent domain. |
+| AGENT_LLM_TOP_X_AGENT_NAMES | 24 | Top X most-used agent name of agentic AI team |
+| AGENT_LLM_SAFETY | 25 | Native-safety breakdown (flagged counts / rates per category, mean safety score) over the agent domain. |
 
 
 
@@ -2672,9 +3269,9 @@ Type of reports about the domain of the agent
 | SESSION_HUMAN_HANDOVERS | 9 | report on human handovers. Supports SessionFilter to filter (Coming soon! Not yet implemented) |
 | SESSION_SQL_QUERY | 10 | report based on a query issued tables with session information. Requires to define <code>sql_query</code> in request.
 
-Allowed tables to query are: * session * session_context * session_step * session_step_context * session_step_detect_entity * session_step_detect_intent * session_step_detect_intent_context_in * session_step_detect_intent_context_out * session_step_detect_intent_context_out * session_step_detect_intent_label * session_step_detect_intent_tag
+Allowed tables to query are: <ul> <li>session</li> <li>session_context</li> <li>session_step</li> <li>session_step_context</li> <li>session_step_detect_entity</li> <li>session_step_detect_intent</li> <li>session_step_detect_intent_context_in</li> <li>session_step_detect_intent_context_out</li> <li>session_step_detect_intent_context_out</li> <li>session_step_detect_intent_label</li> <li>session_step_detect_intent_tag</li> </ul>
 
-Example: <code>SELECT ... FROM session</code> <code>SELECT ... FROM session, session_steps</code> |
+Example: <pre><code>SELECT ... FROM session</code></pre> <pre><code>SELECT ... FROM session, session_steps</code></pre> |
 | SESSION_LEAST_X_INTENTS | 11 | report least x detected intents in session. Supports SessionFilter to filter |
 | SESSION_LEAST_X_ENTITY_TYPES | 12 | report least x detected entity types. Supports SessionFilter to filter |
 | SESSION_LEAST_X_ENTITY_VALUES | 13 | report least x detected entity values Supports SessionFilter to filter |
@@ -2682,6 +3279,30 @@ Example: <code>SELECT ... FROM session</code> <code>SELECT ... FROM session, ses
 | SESSION_LEAST_X_LABELS | 15 | report least x labels. Supports SessionFilter to filter |
 | SESSION_LEAST_X_TAGS | 16 | report least x tags. Supports SessionFilter to filter |
 | TOTAL_STATISTICS | 17 | report total numbers of e.g. sessions, session steps, etc. |
+| SESSION_LLM_TOKEN_USAGE | 18 | Aggregate LLM token usage (input / output / cache) across sessions in scope. Supports SessionFilter to filter and the request's <code>llm_*_filter</code> fields to restrict to specific models / providers / agents. |
+| SESSION_LLM_TOOL_CALLS | 19 | Tool-call breakdown across sessions in scope (counts, durations, error rate). |
+| SESSION_LLM_THINKING | 20 | Thinking-token / duration aggregates across sessions in scope (where the provider surfaces extended thinking). |
+| SESSION_LLM_FINISH_REASONS | 21 | Finish-reason distribution across sessions in scope (<code>stop</code>, <code>length</code>, <code>tool_calls</code>, <code>content_filter</code>, <code>error</code>, ...). |
+| SESSION_LLM_LATENCY | 22 | LLM call latency aggregates (p50 / p95 / p99, time-to-first-token). |
+| SESSION_LLM_RAG_METRICS | 23 | RAG-specific metrics (retrieval hit-rate, context precision, citation overlap) aggregated across sessions in scope. |
+| SESSION_LLM_MODELS_USED | 24 | Per-model usage rollup (calls, tokens, latency) across sessions in scope. |
+| SESSION_LLM_PROVIDERS_USED | 25 | Per-provider usage rollup across sessions in scope. |
+| SESSION_LLM_CCAI_SERVICES_USED | 26 | Per-CCAI-service usage rollup (keyed by CcaiServiceProvider) across sessions in scope. |
+| SESSION_LLM_AGENTS_USED | 27 | Per-intent-agent usage rollup across sessions in scope. |
+| SESSION_LLM_ERRORS | 28 | LLM error breakdown (counts and rate per error_class) across sessions in scope. |
+| SESSION_LLM_CACHE_EFFICIENCY | 29 | Prompt-cache efficiency (cache read / creation tokens, hit-rate, savings). |
+| SESSION_LLM_REASONING_EFFORT | 30 | Reasoning-effort distribution (keyed by ReasoningEffort) across sessions in scope. |
+| SESSION_LLM_TOP_X_TOOLS | 31 | Top X most-invoked tools (count, duration, error-rate) across sessions in scope. |
+| SESSION_LLM_LEAST_X_TOOLS | 32 | Least X invoked tools across sessions in scope. |
+| SESSION_LLM_TOTAL_STATISTICS | 33 | Single rolled-up LLM statistics summary (totals + all breakdowns) across sessions in scope. |
+| SESSION_LLM_INPUT_TOKEN_USAGE | 34 | Aggregate LLM input / prompt token usage across sessions in scope. |
+| SESSION_LLM_OUTPUT_TOKEN_USAGE | 35 | Aggregate LLM output / completion token usage across sessions in scope. |
+| SESSION_LLM_THINKING_TOKEN_USAGE | 36 | Aggregate LLM thinking / reasoning token usage across sessions in scope. |
+| SESSION_LLM_TOOL_CALL_TOKEN_USAGE | 37 | Aggregate LLM tool-call token usage across sessions in scope. |
+| SESSION_LLM_TOP_X_MODELS | 38 | Top X most-used models (by calls / tokens) across sessions in scope. |
+| SESSION_LLM_TOP_X_CCAI_SERVICE_PROVIDERS | 39 | Top X most-used CCAI service providers across sessions in scope. |
+| SESSION_LLM_TOP_X_AGENT_NAMES | 40 | Top X most-used agent name of agentic AI team |
+| SESSION_LLM_SAFETY | 41 | Native-safety breakdown (flagged counts / rates per category, mean safety score) across sessions in scope. |
 
 
  <!-- end enums -->
@@ -2694,90 +3315,82 @@ Example: <code>SELECT ... FROM session</code> <code>SELECT ... FROM session, ses
 ### Agents
 Agents are best described as Natural Language Understanding (NLU) modules that transform user requests into actionable data. You can include agents in your app, product, or service to determine user intent and respond to the user in a natural way.
 
-After you create an agent, you can add [Intents][google.cloud.dialogflow.v2.Intents], [Contexts][google.cloud.dialogflow.v2.Contexts], [Entity Types][google.cloud.dialogflow.v2.EntityTypes], [Webhooks][google.cloud.dialogflow.v2.WebhookRequest], and so on to manage the flow of a conversation and match user input to predefined intents and actions.
+After you create an agent, you can add <a href="index.html#ondewo.nlu.Intent">Intents</a>, <a href="index.html#ondewo.nlu.Context">Contexts</a>, <a href="index.html#ondewo.nlu.EntityType">Entity Types</a>, <a href="index.html#ondewo.nlu.WebhookRequest">Webhooks</a>, and so on to manage the flow of a conversation and match user input to predefined intents and actions.
 
-You can create an agent using both Dialogflow Standard Edition and Dialogflow Enterprise Edition. For details, see [Dialogflow Editions](/dialogflow-enterprise/docs/editions).
+You can create an agent using both Dialogflow Standard Edition and Dialogflow Enterprise Edition. For details, see <a href="https://docs.cloud.google.com/dialogflow/docs/editions">Dialogflow Editions</a>.
 
-You can save your agent for backup or versioning by exporting the agent by using the [ExportAgent][google.cloud.dialogflow.v2.Agents.ExportAgent] method. You can import a saved agent by using the [ImportAgent][google.cloud.dialogflow.v2.Agents.ImportAgent] method.
+You can save your agent for backup or versioning by exporting the agent by using the <a href="index.html#ondewo.nlu.Agents.ExportAgent">ExportAgent</a> method. You can import a saved agent by using the <a href="index.html#ondewo.nlu.Agents.ImportAgent">ImportAgent</a> method.
 
-Dialogflow provides several [prebuilt agents](https://dialogflow.com/docs/prebuilt-agents) for common conversation scenarios such as determining a date and time, converting currency, and so on.
+Dialogflow provides several <a href="https://dialogflow.com/docs/prebuilt-agents">prebuilt agents</a> for common conversation scenarios such as determining a date and time, converting currency, and so on.
 
-For more information about agents, see the [Dialogflow documentation](https://dialogflow.com/docs/agents).
+For more information about agents, see the <a href="https://dialogflow.com/docs/agents">Dialogflow documentation</a>.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | CreateAgent | [CreateAgentRequest](#ondewo.nlu.CreateAgentRequest) | [Agent](#ondewo.nlu.Agent) | Creates the specified agent.
 
-<p>Examples:</p>
+Examples:
 
-<pre> grpcurl -plaintext -H 'cai-token: aimp' -d '{ "agent": { "display_name": "My Pizza Bot", "default_language_code": "en", "supported_language_codes": ["en"], "time_zone": "Europe/Vienna", "nlu_platform": "ONDEWO" } }' localhost:50055 ondewo.nlu.Agents.CreateAgent </pre>
+<pre> grpcurl -plaintext -H 'Authorization: Bearer <jwt>' -d '{ "agent": { "display_name": "My Pizza Bot", "default_language_code": "en", "supported_language_codes": ["en"], "time_zone": "Europe/Vienna", "nlu_platform": "ONDEWO" } }' localhost:50055 ondewo.nlu.Agents.CreateAgent </pre>
 
 <samp>{ "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent", "display_name": "Pizza Bot", "default_language_code": "en", "supported_language_codes": [ "en" ], "time_zone": "Europe/Vienna", "nlu_platform": "ONDEWO", "owner_id": "5aac51b8-668f-49dd-913f-cc683e56af34" } </samp> |
 | UpdateAgent | [UpdateAgentRequest](#ondewo.nlu.UpdateAgentRequest) | [Agent](#ondewo.nlu.Agent) | Updates the specified agent.
 
-<p>Examples:</p>
+Examples:
 
-<pre> grpcurl -plaintext -H 'cai-token: aimp' -d '{ "agent": { "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent", "display_name": "Pizza Bot 2", "supported_language_codes": ["en", "de"] }, "update_mask": { "paths": [ "agent.display_name", "agent.supported_language_codes" ] } }' localhost:50055 ondewo.nlu.Agents.UpdateAgent </pre>
+<pre> grpcurl -plaintext -H 'Authorization: Bearer <jwt>' -d '{ "agent": { "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent", "display_name": "Pizza Bot 2", "supported_language_codes": ["en", "de"] }, "update_mask": { "paths": [ "agent.display_name", "agent.supported_language_codes" ] } }' localhost:50055 ondewo.nlu.Agents.UpdateAgent </pre>
 
 <samp>{ "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent", "display_name": "Pizza Bot 2", "default_language_code": "en", "supported_language_codes": [ "en", "de" ], "time_zone": "Europe/Vienna", "nlu_platform": "ONDEWO", "owner_id": "5aac51b8-668f-49dd-913f-cc683e56af34" } </samp> |
 | GetAgent | [GetAgentRequest](#ondewo.nlu.GetAgentRequest) | [Agent](#ondewo.nlu.Agent) | Retrieves the specified agent.
 
-<p>Examples:</p>
+Examples:
 
-<pre> grpcurl -plaintext -H 'cai-token: aimp' -d '{ "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent" }' localhost:50055 ondewo.nlu.Agents.GetAgent </pre> <samp>{ "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent", "display_name": "Pizza Bot 2", "default_language_code": "en", "supported_language_codes": [ "en", "de" ], "time_zone": "Europe/Vienna", "nlu_platform": "ONDEWO", "configs": {...}, "owner_id": "5aac51b8-668f-49dd-913f-cc683e56af34" } </samp> |
+<pre> grpcurl -plaintext -H 'Authorization: Bearer <jwt>' -d '{ "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent" }' localhost:50055 ondewo.nlu.Agents.GetAgent </pre> <samp>{ "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent", "display_name": "Pizza Bot 2", "default_language_code": "en", "supported_language_codes": [ "en", "de" ], "time_zone": "Europe/Vienna", "nlu_platform": "ONDEWO", "configs": {...}, "owner_id": "5aac51b8-668f-49dd-913f-cc683e56af34" } </samp> |
 | DeleteAgent | [DeleteAgentRequest](#ondewo.nlu.DeleteAgentRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes the specified agent.
 
-<p>Examples:</p>
+Examples:
 
-<pre> grpcurl -plaintext -H 'cai-token: aimp' -d '{ "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent" }' localhost:50055 ondewo.nlu.Agents.DeleteAgent </pre> <samp>{}</samp> |
+<pre> grpcurl -plaintext -H 'Authorization: Bearer <jwt>' -d '{ "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent" }' localhost:50055 ondewo.nlu.Agents.DeleteAgent </pre> <samp>{}</samp> |
 | DeleteAllAgents | [.google.protobuf.Empty](#google.protobuf.Empty) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes all agents in the server (for development purposes only).
 
-<p>Examples:</p>
+Examples:
 
-<pre> grpcurl -plaintext -H 'cai-token: aimp' localhost:50055 ondewo.nlu.Agents.DeleteAllAgents </pre> <samp>{}</samp> |
+<pre> grpcurl -plaintext -H 'Authorization: Bearer <jwt>' localhost:50055 ondewo.nlu.Agents.DeleteAllAgents </pre> <samp>{}</samp> |
 | ListAgents | [ListAgentsRequest](#ondewo.nlu.ListAgentsRequest) | [ListAgentsResponse](#ondewo.nlu.ListAgentsResponse) | Lists agents in the server associated to the current user
 
-<p>Examples:</p>
+Examples:
 
-<pre> grpcurl -plaintext -H 'cai-token: aimp' localhost:50055 ondewo.nlu.Agents.ListAgents </pre> <samp>{ "agents_with_owners": [ { "agent": { "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent", "display_name": "Pizza Bot 2", "owner_id": "5aac51b8-668f-49dd-913f-cc683e56af34" }, "owner": { "user_id": "5aac51b8-668f-49dd-913f-cc683e56af34", "display_name": "admin", "server_role_id": 3, "user_email": "admin@ondewo.com" } } ], "next_page_token": "current_index-1" } </samp> |
+<pre> grpcurl -plaintext -H 'Authorization: Bearer <jwt>' localhost:50055 ondewo.nlu.Agents.ListAgents </pre> <samp>{ "agents_with_owners": [ { "agent": { "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent", "display_name": "Pizza Bot 2", "owner_id": "5aac51b8-668f-49dd-913f-cc683e56af34" }, "owner": { "user_id": "5aac51b8-668f-49dd-913f-cc683e56af34", "display_name": "admin", "server_role_id": 3, "user_email": "admin@ondewo.com" } } ], "next_page_token": "current_index-1" } </samp> |
 | ListAgentsOfUser | [ListAgentsRequest](#ondewo.nlu.ListAgentsRequest) | [ListAgentsOfUserResponse](#ondewo.nlu.ListAgentsOfUserResponse) | Lists agents in the server associated to the given user
 
-<p>Examples:</p>
+Examples:
 
-<pre> grpcurl -plaintext -H 'cai-token: aimp' localhost:50055 ondewo.nlu.Agents.ListAgentsOfUser </pre> <samp>{ "agents_of_user_with_owners": [ { "agent_with_owner": { "agent": { "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent", "display_name": "Pizza Bot 2", "owner_id": "5aac51b8-668f-49dd-913f-cc683e56af34" }, "owner": { "user_id": "5aac51b8-668f-49dd-913f-cc683e56af34", "display_name": "admin", "server_role_id": 3, "user_email": "admin@ondewo.com" } }, "project_role": { "role_id": 4, "name": "ADMIN" } } ], "next_page_token": "current_index-1" } </samp> |
+<pre> grpcurl -plaintext -H 'Authorization: Bearer <jwt>' localhost:50055 ondewo.nlu.Agents.ListAgentsOfUser </pre> <samp>{ "agents_of_user_with_owners": [ { "agent_with_owner": { "agent": { "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent", "display_name": "Pizza Bot 2", "owner_id": "5aac51b8-668f-49dd-913f-cc683e56af34" }, "owner": { "user_id": "5aac51b8-668f-49dd-913f-cc683e56af34", "display_name": "admin", "server_role_id": 3, "user_email": "admin@ondewo.com" } }, "project_role": { "role_id": 4, "name": "ADMIN" } } ], "next_page_token": "current_index-1" } </samp> |
 | ListAllAgents | [ListAgentsRequest](#ondewo.nlu.ListAgentsRequest) | [ListAgentsResponse](#ondewo.nlu.ListAgentsResponse) | Lists all agents in the server
 
-<p>Examples:</p>
+Examples:
 
-<pre> grpcurl -plaintext -H 'cai-token: aimp' localhost:50055 ondewo.nlu.Agents.ListAllAgents </pre> <samp>{ "agents_with_owners": [ { "agent": { "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent", "display_name": "Pizza Bot 2", "owner_id": "5aac51b8-668f-49dd-913f-cc683e56af34" }, "owner": { "user_id": "5aac51b8-668f-49dd-913f-cc683e56af34", "display_name": "admin", "server_role_id": 3, "user_email": "admin@ondewo.com" } } ], "next_page_token": "current_index-1" } </samp> |
+<pre> grpcurl -plaintext -H 'Authorization: Bearer <jwt>' localhost:50055 ondewo.nlu.Agents.ListAllAgents </pre> <samp>{ "agents_with_owners": [ { "agent": { "parent": "projects/76aaf4f3-a1f6-4fda-b4b3-351c64e65bc4/agent", "display_name": "Pizza Bot 2", "owner_id": "5aac51b8-668f-49dd-913f-cc683e56af34" }, "owner": { "user_id": "5aac51b8-668f-49dd-913f-cc683e56af34", "display_name": "admin", "server_role_id": 3, "user_email": "admin@ondewo.com" } } ], "next_page_token": "current_index-1" } </samp> |
 | AddUserToProject | [AddUserToProjectRequest](#ondewo.nlu.AddUserToProjectRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Adds a user with specified id to the project (agent) |
 | RemoveUserFromProject | [RemoveUserFromProjectRequest](#ondewo.nlu.RemoveUserFromProjectRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Removes a user with specified id from the project (agent) |
 | ListUsersInProject | [ListUsersInProjectRequest](#ondewo.nlu.ListUsersInProjectRequest) | [ListUsersInProjectResponse](#ondewo.nlu.ListUsersInProjectResponse) | Lists users in the project (agent) |
-| GetPlatformInfo | [.google.protobuf.Empty](#google.protobuf.Empty) | [GetPlatformInfoResponse](#ondewo.nlu.GetPlatformInfoResponse) | Gets information from the platform |
+| GetPlatformInfo | [.google.protobuf.Empty](#google.protobuf.Empty) | [GetPlatformInfoResponse](#ondewo.nlu.GetPlatformInfoResponse) | Gets information from the platform <br> Request parameter: <a href="https://protobuf.dev/reference/protobuf/google.protobuf/#empty">google.protobuf.Empty</a> |
 | ListProjectPermissions | [ListProjectPermissionsRequest](#ondewo.nlu.ListProjectPermissionsRequest) | [ListProjectPermissionsResponse](#ondewo.nlu.ListProjectPermissionsResponse) | List permissions from the project (agent) |
 | TrainAgent | [TrainAgentRequest](#ondewo.nlu.TrainAgentRequest) | [Operation](#ondewo.nlu.Operation) | Trains the specified agent.
 
-Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [google.protobuf.Struct][google.protobuf.Struct]> |
+Operation &lt;response: <a href="https://protobuf.dev/reference/protobuf/google.protobuf/#empty">google.protobuf.Empty</a>, metadata: <a href="https://protobuf.dev/reference/protobuf/google.protobuf/#struct">google.protobuf.Struct</a>&gt; |
 | BuildCache | [BuildCacheRequest](#ondewo.nlu.BuildCacheRequest) | [Operation](#ondewo.nlu.Operation) | Builds cache for the specified agent.
 
-Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [google.protobuf.Struct][google.protobuf.Struct]> |
-| ExportAgent | [ExportAgentRequest](#ondewo.nlu.ExportAgentRequest) | [Operation](#ondewo.nlu.Operation) | Exports the specified agent to a ZIP file.
-
-Operation <response: [ExportAgentResponse][google.cloud.dialogflow.v2.ExportAgentResponse], metadata: [google.protobuf.Struct][google.protobuf.Struct]> |
+Operation &lt;response: <a href="https://protobuf.dev/reference/protobuf/google.protobuf/#empty">google.protobuf.Empty</a>, metadata: <a href="https://protobuf.dev/reference/protobuf/google.protobuf/#struct">google.protobuf.Struct</a>&gt; |
+| ExportAgent | [ExportAgentRequest](#ondewo.nlu.ExportAgentRequest) | [Operation](#ondewo.nlu.Operation) | Exports the specified agent to a ZIP file. <br> Operation &lt;response: <a href="index.html#ondewo.nlu.ExportAgentResponse">ExportAgentResponse</a>, metadata: <a href="https://protobuf.dev/reference/protobuf/google.protobuf/#struct">google.protobuf.Struct</a>&gt; |
 | ExportBenchmarkAgent | [ExportBenchmarkAgentRequest](#ondewo.nlu.ExportBenchmarkAgentRequest) | [Operation](#ondewo.nlu.Operation) | Exports the specified train agent to a ZIP file after train-test split, returns the test TrainingPhrase list. |
-| ImportAgent | [ImportAgentRequest](#ondewo.nlu.ImportAgentRequest) | [Operation](#ondewo.nlu.Operation) | Imports the specified agent from a ZIP file.
-
-Uploads new intents and entity types without deleting the existing ones. Intents and entity types with the same name are replaced with the new versions from ImportAgentRequest.
-
-Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [google.protobuf.Struct][google.protobuf.Struct]> |
-| OptimizeRankingMatch | [OptimizeRankingMatchRequest](#ondewo.nlu.OptimizeRankingMatchRequest) | [Operation](#ondewo.nlu.Operation) | Runs optimize ranking match |
-| RestoreAgent | [RestoreAgentRequest](#ondewo.nlu.RestoreAgentRequest) | [Operation](#ondewo.nlu.Operation) | Restores the specified agent from a ZIP file.
-
-Replaces the current agent version with a new one. All the intents and entity types in the older version are deleted.
-
-Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [google.protobuf.Struct][google.protobuf.Struct]> |
+| ImportAgent | [ImportAgentRequest](#ondewo.nlu.ImportAgentRequest) | [Operation](#ondewo.nlu.Operation) | Imports the specified agent from a ZIP file. <br> Uploads new intents and entity types without deleting the existing ones. Intents and entity types with the same name are replaced with the new versions from ImportAgentRequest. <br> Operation &lt;response: <a href="https://protobuf.dev/reference/protobuf/google.protobuf/#empty">google.protobuf.Empty</a>, metadata: <a href="https://protobuf.dev/reference/protobuf/google.protobuf/#struct">google.protobuf.Struct</a>&gt; |
+| MigrateAgent | [MigrateAgentRequest](#ondewo.nlu.MigrateAgentRequest) | [Operation](#ondewo.nlu.Operation) |  |
+| OptimizeRankingMatch | [OptimizeRankingMatchRequest](#ondewo.nlu.OptimizeRankingMatchRequest) | [Operation](#ondewo.nlu.Operation) |  |
+| RestoreAgent | [RestoreAgentRequest](#ondewo.nlu.RestoreAgentRequest) | [Operation](#ondewo.nlu.Operation) | Restores the specified agent from a ZIP file. <br> Replaces the current agent version with a new one. All the intents and entity types in the older version are deleted. <br> Operation &lt;response: <a href="https://protobuf.dev/reference/protobuf/google.protobuf/#empty">google.protobuf.Empty</a>, metadata: <a href="https://protobuf.dev/reference/protobuf/google.protobuf/#struct">google.protobuf.Struct</a>&gt; |
 | GetAgentStatistics | [GetAgentStatisticsRequest](#ondewo.nlu.GetAgentStatisticsRequest) | [GetAgentStatisticsResponse](#ondewo.nlu.GetAgentStatisticsResponse) | Gets statistics for the agent |
 | GetSessionsStatistics | [GetSessionsStatisticsRequest](#ondewo.nlu.GetSessionsStatisticsRequest) | [GetSessionsStatisticsResponse](#ondewo.nlu.GetSessionsStatisticsResponse) |  |
+| GetSessionsStatisticsTimeSeries | [GetSessionsStatisticsTimeSeriesRequest](#ondewo.nlu.GetSessionsStatisticsTimeSeriesRequest) | [GetSessionsStatisticsTimeSeriesResponse](#ondewo.nlu.GetSessionsStatisticsTimeSeriesResponse) | Gets LLM telemetry statistics for sessions bucketed over time (time series). Supports LLM-typed report types (SESSION_LLM_*) only. |
 | SetAgentStatus | [SetAgentStatusRequest](#ondewo.nlu.SetAgentStatusRequest) | [Agent](#ondewo.nlu.Agent) | Sets status for the agent |
 | SetResources | [SetResourcesRequest](#ondewo.nlu.SetResourcesRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Sets resources |
 | DeleteResources | [DeleteResourcesRequest](#ondewo.nlu.DeleteResourcesRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes resources |
@@ -2796,6 +3409,10 @@ Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [
 | GetFullTextSearchIntentResponse | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseIntentResponse](#ondewo.nlu.FullTextSearchResponseIntentResponse) | Full text search endpoint in responses of intents |
 | GetFullTextSearchIntentParameters | [FullTextSearchRequest](#ondewo.nlu.FullTextSearchRequest) | [FullTextSearchResponseIntentParameters](#ondewo.nlu.FullTextSearchResponseIntentParameters) | Full text search endpoint in parameters of intents |
 | ReindexAgent | [ReindexAgentRequest](#ondewo.nlu.ReindexAgentRequest) | [Operation](#ondewo.nlu.Operation) | Force reindexing Intent and Entity data of Agent |
+| CreateProjectTechnicalUser | [CreateProjectTechnicalUserRequest](#ondewo.nlu.CreateProjectTechnicalUserRequest) | [CreateProjectTechnicalUserResponse](#ondewo.nlu.CreateProjectTechnicalUserResponse) | Creates a project-scoped technical user (a normal, 2FA-exempt account holding PROJECT_EXECUTOR on this one project) for headless/machine access (e.g. ondewo-sip/csi/vtsi) via the ROPC login bridge. The generated password is returned ONCE in the response and is not retrievable afterwards. |
+| ListProjectTechnicalUsers | [ListProjectTechnicalUsersRequest](#ondewo.nlu.ListProjectTechnicalUsersRequest) | [ListProjectTechnicalUsersResponse](#ondewo.nlu.ListProjectTechnicalUsersResponse) | Lists the project-scoped technical users of the project (agent). |
+| DeleteProjectTechnicalUser | [DeleteProjectTechnicalUserRequest](#ondewo.nlu.DeleteProjectTechnicalUserRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes a project-scoped technical user (removes the Keycloak user and the project membership/projection rows). |
+| RotateProjectTechnicalUserPassword | [RotateProjectTechnicalUserPasswordRequest](#ondewo.nlu.RotateProjectTechnicalUserPasswordRequest) | [RotateProjectTechnicalUserPasswordResponse](#ondewo.nlu.RotateProjectTechnicalUserPasswordResponse) | Rotates the password of a project-scoped technical user. Invalidates the old password and returns the new generated password ONCE in the response. |
 
  <!-- end services -->
 
@@ -2868,10 +3485,11 @@ The request for intent classification.
 | parent | [string](#string) |  | Required. The project of this agent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | text | [string](#string) |  | the input text |
 | language_code | [string](#string) |  | the input language |
-| active_contexts | [bool](#bool) |  | Optional: if restrict classification result with input contexts listed in the field `context_names` |
+| active_contexts | [bool](#bool) |  | Optional: if restrict classification result with input contexts listed in the field <code>context_names</code> |
 | context_names | [string](#string) | repeated | Optional: names of the input contexts to restrict the classification result with. Intents can only be classified if the intent's input context set is the subset of the given context set. |
-| mode | [Mode](#ondewo.nlu.Mode) |  | Optional: Which mode to use: EXCLUSIVE - skip algorithms listed in `algorithms` field, INCLUSIVE - run ONLY algorithms listed in `algorithms` field, UNSPECIFIED - default mode, described in agent config |
+| mode | [Mode](#ondewo.nlu.Mode) |  | Optional: Which mode to use: <ul> <li>EXCLUSIVE - skip algorithms listed in <code>algorithms</code> field,</li> <li>INCLUSIVE - run ONLY algorithms listed in <code>algorithms</code> field,</li> <li>UNSPECIFIED - default mode, described in agent config</li> </ul> |
 | algorithms | [IntentAlgorithms](#ondewo.nlu.IntentAlgorithms) | repeated | Optional: Algorithm list |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -2985,6 +3603,7 @@ This message is a request to extract entities with Fuzzy Entity Recognizer
 | potential_entities | [EntityTypeFuzzyNerConfig](#ondewo.nlu.EntityTypeFuzzyNerConfig) | repeated | Potential entities to be extracted from the text with entity-specific configs |
 | minimal_score | [float](#float) |  | Minimal similarity score to consider entity as "matched" |
 | allow_overlaps | [bool](#bool) |  | Optional. Whether or not entities are allowed to overlap. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -3003,6 +3622,7 @@ The request to detect parameters.
 | text | [string](#string) |  | the input text |
 | language_code | [string](#string) |  | the input language |
 | intent_name | [string](#string) |  | Optional. The name of the relevant intent. Used to establish preference hierarchy for entities that correspond to intent parameters Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -3054,7 +3674,8 @@ Request to generate responses
 | parent | [string](#string) |  | the parent of the request Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
 | n_repeat_synonym | [int32](#int32) |  | The number of synonyms desired |
 | branch | [string](#string) |  | Git branch |
-| drop_unknown_parameters | [bool](#bool) |  |  |
+| drop_unknown_parameters | [bool](#bool) |  | Optional. Whether to drop unknown parameters from the generated responses |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -3088,6 +3709,7 @@ Request to generate user sentences
 | parent | [string](#string) |  | the parent of the request Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
 | n_repeat_synonym | [int32](#int32) |  | The number of synonyms desired |
 | branch | [string](#string) |  | Git branch |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -3123,6 +3745,7 @@ Request to get alternative sentences
 | parent | [string](#string) |  | the parent of the request Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
 | protected_words | [string](#string) | repeated | Protected words in the augmentation process |
 | words_to_change | [string](#string) | repeated | Words to be changed in the augmentation process |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -3162,6 +3785,7 @@ Request to get alternative training phrases
 | protected_words | [string](#string) | repeated | Protected words in the augmentation process |
 | words_to_change | [string](#string) | repeated | Words to be changed in the augmentation process |
 | branch | [string](#string) |  | Git branch |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -3195,6 +3819,7 @@ Request to get synonyms
 | word | [string](#string) |  | Word from which a synonym is got |
 | language_code | [string](#string) |  | language code specifies the language of the request in IETF BCP 47 language tag format, e.g. de-DE, en-US, etc. |
 | parent | [string](#string) |  | the parent of the request Format: <pre><code>projects/&lt;project_uuid&gt;</code></pre> |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -3260,6 +3885,7 @@ The request message to list available LLM models for a specified CCAI service.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | ccai_service_name | [string](#string) |  | The CCAI service for which to list models. Format: <pre><code>projects/&lt;project_uuid&gt;/ccai/services/&lt;service_uuid&gt;</code></pre> |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -3274,7 +3900,7 @@ The response message containing a list of available LLM models.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| llm_models | [LlmModel](#ondewo.nlu.LlmModel) | repeated | A list of LLM models associated with the specified CCAI service. Each model in this list represents an individual language model that can be used within the service, including details such as name, provider, and description. |
+| llm_models | [LlmModel](#ondewo.nlu.LlmModel) | repeated | A list of LLM models associated with the specified CCAI service. <br> Each model in this list represents an individual language model that can <br> be used within the service, including details such as name, provider, and description. |
 
 
 
@@ -3307,9 +3933,10 @@ The request message to generate a response from a Large Language Model (LLM).
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| llm_generation_request | [google.protobuf.Struct](#google.protobuf.Struct) |  | The request payload for the LLM, structured according to the specific requirements of the large language model provider. The payload must fit the format expected by the specified LLM provider, as defined by <pre><code>CcaiServiceProvider</code></pre>. |
+| llm_generation_request | [google.protobuf.Struct](#google.protobuf.Struct) |  | The request payload for the LLM, structured according to the specific requirements of the large language model provider. <br> The payload must fit the format expected by the specified LLM provider, as defined by <pre><code>CcaiServiceProvider</code></pre> |
 | ccai_service_name | [string](#string) |  | The CCAI service to be used for processing the request. This specifies which large language model provider and model settings will handle the request. Format: <pre><code>projects/&lt;project_uuid&gt;/ccai/services/&lt;service_uuid&gt;</code></pre> |
 | file_resources | [FileResource](#ondewo.nlu.FileResource) | repeated | Files as input for the generation request |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -3324,7 +3951,7 @@ The response message containing the generated output from a Large Language Model
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| llm_generation_response | [google.protobuf.Struct](#google.protobuf.Struct) |  | The response data from the LLM, returned as a structured payload. This can contain the text generation, embeddings, or other outputs based on the specific request made to the LLM provider. |
+| llm_generation_response | [google.protobuf.Struct](#google.protobuf.Struct) |  | The response data from the LLM, returned as a structured payload. <br> This can contain the text generation, embeddings, or other outputs based on the specific request made to the LLM provider. |
 | file_resources | [FileResource](#ondewo.nlu.FileResource) | repeated | Files as input for the generation request, e.g., generated pictures, audio or video |
 
 
@@ -3341,7 +3968,7 @@ Represents an individual LLM model available within a CCAI service.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | The resource name of the model. Format: <pre><code>projects/&lt;project_uuid&gt;/ccai/services/&lt;service_uuid&gt;/model/&lt;model_uuid&gt;</code></pre> This is a unique identifier for the model, specifying its project, service, and model ID. |
-| display_name | [string](#string) |  | The display name of the model. This is a human-readable name used for identifying the model in other requests, such as <pre><code>LlmGenerateRequest</code></pre> and <pre><code>StreamingLlmGenerateRequest</code></pre>. |
+| display_name | [string](#string) |  | The display name of the model. This is a human-readable name used for identifying the model in other requests, such as <pre><code>LlmGenerateRequest</code></pre> and <pre><code>StreamingLlmGenerateRequest</code></pre> |
 | description | [string](#string) |  | The description of the model. Provides additional details about the model, such as its purpose, architecture, or any other relevant information. |
 | ccai_service_name | [string](#string) |  | The resource name of the CCAI service to which the model belongs. This field links the model to its service context, helping clients understand which service hosts the model. |
 | ccai_service_provider | [CcaiServiceProvider](#ondewo.nlu.CcaiServiceProvider) |  | The provider of the CCAI service that offers this model. Specifies the LLM provider (e.g., Ollama, OpenAI, Google, etc.), indicating the origin or vendor of the model. |
@@ -3359,7 +3986,7 @@ The response message for streaming generation from a Large Language Model (LLM).
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| llm_generation_stream_response | [google.protobuf.Struct](#google.protobuf.Struct) |  | The response data from the LLM in a streaming format, returned as a structured payload. This response is part of a continuous stream of data from the LLM, allowing incremental results to be sent as they are generated. |
+| llm_generation_stream_response | [google.protobuf.Struct](#google.protobuf.Struct) |  | The response data from the LLM in a streaming format, returned as a structured payload. <br> This response is part of a continuous stream of data from the LLM, allowing incremental results to be sent as they are generated. |
 
 
 
@@ -3471,13 +4098,13 @@ Type of Intent algorithm.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| OndewoIntentExactContextDetector | 0 | By enabling this, a specific intent is triggered if the context and the intent name in the user says is matched. This can be used for directly triggering 'quick reply' button clicks confidence is always '1.0'. |
-| OndewoIntentExactMatch | 1 | exact matching' of user input to user says is used to detect the intent. Confidence is always '1.0' if an 'exact match' is found. |
-| OndewoIntentNamedExactMatch | 2 | the entity synonym in the user says text is replaced by the entity and 'exact matching' of user says text is performed. Confidence is always '1.0'. |
+| OndewoIntentExactContextDetector | 0 | By enabling this, a specific intent is triggered if the context and the intent name in the user says is matched. This can be used for directly triggering &apos;quick reply&apos; button clicks confidence is always &apos;1.0&apos;. |
+| OndewoIntentExactMatch | 1 | exact matching&apos; of user input to user says is used to detect the intent. Confidence is always &apos;1.0&apos; if an &apos;exact match&apos; is found. |
+| OndewoIntentNamedExactMatch | 2 | the entity synonym in the user says text is replaced by the entity and &apos;exact matching&apos; of user says text is performed. Confidence is always &apos;1.0&apos;. |
 | OndewoIntentSimilarityMatch | 3 | the algorithm computes the similarity of the user input to all user says of all intents. |
 | OndewoIntentNamedSimilarityMatch | 4 | the entity synonyms in the user says are replaced by their Entity. Text similarity algorithms are then used to detect the intent. |
-| OndewoIntentBertClassifier | 7 | new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers.BERT is designed to pre-train deep bidirectional representations by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT representations can be fine-tuned for multi-class intent detection. For details see https://arxiv.org/abs/1810.04805 |
-| OndewoIntentMetaClassifier | 8 |  |
+| OndewoIntentBertClassifier | 7 | new language representation model called BERT, which stands for Bidirectional Encoder Representations from Transformers.BERT is designed to pre-train deep bidirectional representations by jointly conditioning on both left and right context in all layers. As a result, the pre-trained BERT representations can be fine-tuned for multi-class intent detection. For details see <a href="https://arxiv.org/abs/1810.04805">https://arxiv.org/abs/1810.04805</a> |
+| OndewoIntentMetaClassifier | 8 | Meta classifier that combines multiple intent classification algorithms to improve accuracy |
 | IntentExitDetector | 10 | Maximum number of repeated fallbacks before this algorithm exists the conversation and resets contexts |
 | OndewoIntentRankingMatch | 11 | Algorithm to improve the interplay of the other algorithms |
 | OndewoWeightedEnsemble | 13 | Ensemble calculation of used algorithms |
@@ -3494,8 +4121,8 @@ Type of mode
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | UNSPECIFIED | 0 | default mode, described in agent config |
-| EXCLUSIVE | 1 | skip algorithms listed in `algorithms` field, |
-| INCLUSIVE | 2 | run ONLY algorithms listed in `algorithms` field |
+| EXCLUSIVE | 1 | skip algorithms listed in <code>algorithms</code> field, |
+| INCLUSIVE | 2 | run ONLY algorithms listed in <code>algorithms</code> field |
 
 
  <!-- end enums -->
@@ -3544,7 +4171,7 @@ Message representing a CCAI service project
 | name | [string](#string) |  | Resource name of the CCAI service project |
 | display_name | [string](#string) |  | Required. The display name of this ccai project. |
 | owner_name | [string](#string) |  | Optional. Resource name of the user who is the owner of the project. |
-| ccai_services_map | [CcaiProject.CcaiServicesMapEntry](#ondewo.nlu.CcaiProject.CcaiServicesMapEntry) | repeated | Map of two letter language codes to lists of CcaiServiceList Two-letter language codes following ISO 639-1 (see https://en.wikipedia.org/wiki/ISO_639-1) |
+| ccai_services_map | [CcaiProject.CcaiServicesMapEntry](#ondewo.nlu.CcaiProject.CcaiServicesMapEntry) | repeated | Map of two letter language codes to lists of CcaiServiceList Two-letter language codes following ISO 639-1 (see <a href="https://en.wikipedia.org/wiki/ISO_639-1">https://en.wikipedia.org/wiki/ISO_639-1</a>) |
 | ccai_project_status | [CcaiProjectStatus](#ondewo.nlu.CcaiProjectStatus) |  | The status of the ccai project. |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
@@ -3576,13 +4203,13 @@ Message representing a CCAI service project
 <a name="ondewo.nlu.CcaiProjectSorting"></a>
 
 ### CcaiProjectSorting
-This protobuf message defines the sorting order for CCAI service (Virtual Test System Infrastructure) projects.
+This protobuf message defines the sorting order for CCAI service (VOIP Telephone System Integration) projects.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| sorting_field | [CcaiProjectSorting.CcaiProjectSortingField](#ondewo.nlu.CcaiProjectSorting.CcaiProjectSortingField) | optional | sorting field for ccai projects sorting |
-| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) | optional | Sorting mode |
+| sorting_field | [CcaiProjectSorting.CcaiProjectSortingField](#ondewo.nlu.CcaiProjectSorting.CcaiProjectSortingField) |  | sorting field for ccai projects sorting |
+| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) |  | Sorting mode |
 
 
 
@@ -3619,11 +4246,11 @@ Definition of a Call Center AI (CCAI service) Service.
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time of the service. Read-only field. |
 | created_by | [string](#string) |  | User ID of the creator in the form of a valid UUID. Read-only field. |
 | modified_by | [string](#string) |  | User ID of the last modifier in the form of a valid UUID. Read-only field. |
-| headers | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. The headers of the request message |
-| ccai_service_provider | [CcaiServiceProvider](#ondewo.nlu.CcaiServiceProvider) | optional | Provider of the ccai service |
-| service_hierarchy | [string](#string) | optional | Index indicating the hierarchical position of a service within the service hierarchy. The index follows a tree-like structure, where each level of depth is separated by a "_". For example: - "1" represents a top-level service - "1_1" represents a sub-service under "1" - "1_1_1" represents a sub-service under "1.1" This structure allows for easy representation and organization of services in nested workflows.
+| headers | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. The headers of the request message |
+| ccai_service_provider | [CcaiServiceProvider](#ondewo.nlu.CcaiServiceProvider) |  | Provider of the ccai service |
+| service_hierarchy | [string](#string) |  | Index indicating the hierarchical position of a service within the service hierarchy. The index follows a tree-like structure, where each level of depth is separated by a &quot;_&quot;. For example: <ul> <li>&quot;1&quot; represents a top-level service</li> <li>&quot;1_1&quot; represents a sub-service under &quot;1&quot;</li> <li>&quot;1_1_1&quot; represents a sub-service under &quot;1.1&quot;</li> </ul> This structure allows for easy representation and organization of services in nested workflows.
 
-If CcaiService have the same service_hierarchy they are executed in parallel. For example: - "1" Service A - "1_1" Service B - "1_1" Service C
+If CcaiService have the same service_hierarchy they are executed in parallel. For example: <ul> <li>&quot;1&quot; Service A</li> <li>&quot;1_1&quot; Service B</li> <li>&quot;1_1&quot; Service C</li> </ul>
 
 Service B and C will be executed in parallel and the Service A receives both results of service B and C. The variable for the return value of a service is {{OUTPUT_SERVICE_service_hierarchy}}. So in the example above the outputs of the services are {{OUTPUT_SERVICE_1}}, {{OUTPUT_SERVICE_1_1}}, and {{OUTPUT_SERVICE_1_2}}. |
 
@@ -3642,6 +4269,7 @@ Filter which services should be included in the returned CcaiProject
 | ----- | ---- | ----- | ----------- |
 | language_codes | [string](#string) | repeated | Language codes of the projects for which services are filtered. |
 | ccai_service_types | [CcaiServiceType](#ondewo.nlu.CcaiServiceType) | repeated | Type of CCAI service service |
+| ccai_service_providers | [CcaiServiceProvider](#ondewo.nlu.CcaiServiceProvider) | repeated | Type of CCAI service providers |
 
 
 
@@ -3739,9 +4367,10 @@ Request to retrieve a CCAI service project
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | CCAI service project name with which to perform the call of the form <pre><code>projects/&lt;project_uuid&gt;/project</code></pre> |
-| ccai_project_view | [CcaiProjectView](#ondewo.nlu.CcaiProjectView) | optional | Optional. Specify the view of the returned CcaiProject (full view by default) |
-| ccai_service_filter | [CcaiServiceFilter](#ondewo.nlu.CcaiServiceFilter) | optional | Filter which services should be included in the returned CcaiProject |
+| ccai_project_view | [CcaiProjectView](#ondewo.nlu.CcaiProjectView) |  | Optional. Specify the view of the returned CcaiProject (full view by default) |
+| ccai_service_filter | [CcaiServiceFilter](#ondewo.nlu.CcaiServiceFilter) |  | Filter which services should be included in the returned CcaiProject |
 | nlu_project_name | [string](#string) |  | Required. The nlu agent project of this CcaiProject. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -3758,6 +4387,7 @@ Request to retrieve a CCAI service project
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | CCAI service project name with which to perform the call of the form <pre><code>projects/&lt;project_uuid&gt;/ccai/services/&lt;service_uuid&gt;</code></pre> |
 | nlu_project_name | [string](#string) |  | Required. The nlu agent project of this CcaiProject. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -3773,18 +4403,19 @@ Request to get the list of agents
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | ccai_project_view | [CcaiProjectView](#ondewo.nlu.CcaiProjectView) |  | Optional. Specify the view of the returned CcaiProject (full view by default) |
-| ccai_service_filter | [CcaiServiceFilter](#ondewo.nlu.CcaiServiceFilter) | optional | Filter which services should be included in the CcaiProject |
-| ccai_project_sorting | [CcaiProjectSorting](#ondewo.nlu.CcaiProjectSorting) | optional | Optional. Field to define the sorting of the list of CCAI service projects in the response. If not specified, the default behavior is to have no sorting. |
-| page_token | [string](#string) | optional | Optional. The next_page_token value returned from a previous list request. Example: "current_index-1--page_size-20" The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
+| ccai_service_filter | [CcaiServiceFilter](#ondewo.nlu.CcaiServiceFilter) |  | Filter which services should be included in the CcaiProject |
+| ccai_project_sorting | [CcaiProjectSorting](#ondewo.nlu.CcaiProjectSorting) |  | Optional. Field to define the sorting of the list of CCAI service projects in the response. If not specified, the default behavior is to have no sorting. |
+| page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. Example: &quot;current_index-1--page_size-20&quot; The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
 | nlu_project_name | [string](#string) |  | Required. The nlu agent project of this CcaiProject. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -3816,8 +4447,8 @@ Request to updated CCAI service project
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | ccai_project | [CcaiProject](#ondewo.nlu.CcaiProject) |  | The CcaiProject that should be updated |
-| ccai_service_filter | [CcaiServiceFilter](#ondewo.nlu.CcaiServiceFilter) | optional | Filter which services should be updated in the CcaiProject |
-| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) | optional | Optional. The mask to control which fields get updated. Note: Not implemented yet |
+| ccai_service_filter | [CcaiServiceFilter](#ondewo.nlu.CcaiServiceFilter) |  | Filter which services should be updated in the CcaiProject |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields get updated. |
 | nlu_project_name | [string](#string) |  | Required. The nlu agent project of this CcaiProject. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 
 
@@ -3851,7 +4482,7 @@ Enum to specify the sorting field for CCAI service projects.
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | NO_CCAI_PROJECT_SORTING | 0 | No sorting |
-| SORT_CCAI_PROJECT_BY_NAME | 1 | Sort by project name such as <pre><code>projects/&lt;project_uuid&gt;/project</code></pre>. |
+| SORT_CCAI_PROJECT_BY_NAME | 1 | Sort by project name such as <pre><code>projects/&lt;project_uuid&gt;/project</code></pre> |
 | SORT_CCAI_PROJECT_BY_DISPLAY_NAME | 2 | Sort by display name |
 | SORT_CCAI_PROJECT_BY_CREATION_DATE | 3 | Sort by creation date |
 | SORT_CCAI_PROJECT_BY_LAST_MODIFIED | 4 | Sort by last modified date |
@@ -3898,55 +4529,79 @@ CcaiProjectView defines what the CcaiProject message contains
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | NO_CCAI_SERVICE_PROVIDER | 0 | No specified provider or placeholder |
-| CCAI_SERVICE_PROVIDER_ONDEWO | 1 | ONDEWO provider for CCAI service services |
-| CCAI_SERVICE_PROVIDER_GOOGLE_GEMINI | 2 | Google as the CCAI service provider, utilizing Google’s conversational AI capabilities |
-| CCAI_SERVICE_PROVIDER_MICROSOFT_AZURE_OPENAI | 3 | Microsoft Azure as the CCAI service provider, using Microsoft's Azure cognitive services |
-| CCAI_SERVICE_PROVIDER_MICROSOFT_AUTOGEN | 4 | LangChain as the CCAI service provider |
-| CCAI_SERVICE_PROVIDER_OLLAMA | 5 | Ollama as the CCAI service provider, typically associated with specific OLLAMA AI tools |
-| CCAI_SERVICE_PROVIDER_OPENAI | 6 | OpenAI as the CCAI service provider, commonly used for models such as GPT |
-| CCAI_SERVICE_PROVIDER_ANTHROPIC | 7 | Anthropic as the CCAI service provider, used with AI models from Anthropic |
-| CCAI_SERVICE_PROVIDER_HUGGINGFACE | 8 | Hugging Face as the CCAI service provider, often used for open-source NLP models |
-| CCAI_SERVICE_PROVIDER_IBM | 9 | IBM as the CCAI service provider, such as IBM Watson for conversational AI |
-| CCAI_SERVICE_PROVIDER_HAYSTACK | 10 | Haystack as the CCAI service provider, e.g. for question and answering, conversations |
-| CCAI_SERVICE_PROVIDER_LANGCHAIN | 11 | LangChain as the CCAI service provider |
-| CCAI_SERVICE_PROVIDER_AMAZON | 12 | Amazon AWS as the CCAI service provider, using Amazon's AI/ML services |
-| CCAI_SERVICE_PROVIDER_MISTRAL | 13 | Mistral as the CCAI service provider, using Mistrals services |
-| CCAI_SERVICE_PROVIDER_DUCKDUCKGO | 14 | DuckDuckGo Websearch API |
-| CCAI_SERVICE_PROVIDER_GOOGLE_PSE | 15 | Google PSE Websearch API |
-| CCAI_SERVICE_PROVIDER_JINA | 16 | Jina Websearch API |
-| CCAI_SERVICE_PROVIDER_TAVILY | 17 | Tavily Websearch API |
-| CCAI_SERVICE_PROVIDER_ELASTICSEARCH | 18 | Elastic Search vector database service |
-| CCAI_SERVICE_PROVIDER_MILVUS | 19 | Milvus vector database service |
-| CCAI_SERVICE_PROVIDER_QDRANT | 20 | Qdrant vector database service |
-| CCAI_SERVICE_PROVIDER_CHROMA | 21 | Chroma vector database service |
+| CCAI_SERVICE_PROVIDER_ONDEWO | 1 | ONDEWO provider for CCAI service services <a href="https://www.ondewo.com/">ONDEWO</a> |
+| CCAI_SERVICE_PROVIDER_GOOGLE_GEMINI | 2 | Google as the CCAI service provider, utilizing Google&apos;s conversational AI capabilities <a href="https://deepmind.google/technologies/gemini/">Google Gemini</a> |
+| CCAI_SERVICE_PROVIDER_MICROSOFT_AZURE_OPENAI | 3 | Microsoft Azure as the CCAI service provider, using Microsoft&apos;s Azure cognitive services <a href="https://azure.microsoft.com/en-us/products/cognitive-services/openai-service/">Azure OpenAI</a> |
+| CCAI_SERVICE_PROVIDER_MICROSOFT_AUTOGEN | 4 | Microsoft AutoGen as the CCAI service provider <a href="https://github.com/microsoft/autogen">AutoGen</a> |
+| CCAI_SERVICE_PROVIDER_OLLAMA | 5 | Ollama as the CCAI service provider, typically associated with specific OLLAMA AI tools <a href="https://github.com/ollama/ollama">Ollama</a> |
+| CCAI_SERVICE_PROVIDER_OPENAI | 6 | OpenAI as the CCAI service provider, commonly used for models such as GPT <a href="https://openai.com/">OpenAI</a> |
+| CCAI_SERVICE_PROVIDER_ANTHROPIC | 7 | Anthropic as the CCAI service provider, used with AI models from Anthropic <a href="https://www.anthropic.com/">Anthropic</a> |
+| CCAI_SERVICE_PROVIDER_HUGGINGFACE | 8 | Hugging Face as the CCAI service provider, often used for open-source NLP models <a href="https://huggingface.co/">Hugging Face</a> |
+| CCAI_SERVICE_PROVIDER_IBM | 9 | IBM as the CCAI service provider, such as IBM Watson for conversational AI <a href="https://www.ibm.com/watson">IBM Watson</a> |
+| CCAI_SERVICE_PROVIDER_HAYSTACK | 10 | Haystack as the CCAI service provider, e.g., for question answering and conversations <a href="https://github.com/deepset-ai/haystack">Haystack</a> |
+| CCAI_SERVICE_PROVIDER_LANGCHAIN | 11 | LangChain as the CCAI service provider <a href="https://github.com/langchain-ai/langchain">LangChain</a> |
+| CCAI_SERVICE_PROVIDER_AMAZON | 12 | Amazon AWS as the CCAI service provider, using Amazon&apos;s AI/ML services <a href="https://aws.amazon.com/machine-learning/">AWS AI Services</a> |
+| CCAI_SERVICE_PROVIDER_MISTRAL | 13 | Mistral as the CCAI service provider, using Mistral&apos;s services <a href="https://mistral.ai/">Mistral</a> |
+| CCAI_SERVICE_PROVIDER_DUCKDUCKGO | 14 | DuckDuckGo Websearch API <a href="https://duckduckgo.com/api">DuckDuckGo API</a> |
+| CCAI_SERVICE_PROVIDER_GOOGLE_PSE | 15 | Google PSE Websearch API <a href="https://programmablesearchengine.google.com/">Google Programmable Search Engine</a> |
+| CCAI_SERVICE_PROVIDER_JINA | 16 | Jina Websearch API <a href="https://github.com/jina-ai/jina">Jina AI</a> |
+| CCAI_SERVICE_PROVIDER_TAVILY | 17 | Tavily Websearch API <a href="https://tavily.com/">Tavily API</a> |
+| CCAI_SERVICE_PROVIDER_ELASTICSEARCH | 18 | ElasticSearch vector database service <a href="https://www.elastic.co/">ElasticSearch</a> |
+| CCAI_SERVICE_PROVIDER_MILVUS | 19 | Milvus vector database service <a href="https://milvus.io/">Milvus</a> |
+| CCAI_SERVICE_PROVIDER_QDRANT | 20 | Qdrant vector database service <a href="https://qdrant.tech/">Qdrant</a> |
+| CCAI_SERVICE_PROVIDER_CHROMA | 21 | Chroma vector database service <a href="https://github.com/chroma-core/chroma">ChromaDB</a> |
+| CCAI_SERVICE_PROVIDER_GOOGLE | 22 | Google CCAI service provider <a href="https://cloud.google.com/ai">Google Cloud AI</a> |
+| CCAI_SERVICE_PROVIDER_MICROSOFT | 23 | Microsoft CCAI service provider <a href="https://www.microsoft.com/en-us/ai">Microsoft AI</a> |
+| CCAI_SERVICE_PROVIDER_DEEPGRAM | 24 | Deepgram as the CCAI service provider for speech processing <a href="https://deepgram.com/">Deepgram</a> |
+| CCAI_SERVICE_PROVIDER_ELEVENLABS | 25 | ElevenLabs as the CCAI service provider for voice synthesis <a href="https://elevenlabs.io/">ElevenLabs</a> |
+| CCAI_SERVICE_PROVIDER_HUGGINGFACE_TGI | 26 | Hugging Face Text Generation Inference (TGI) as the CCAI service provider <a href="https://github.com/huggingface/text-generation-inference">Text Generation Inference</a> |
+| CCAI_SERVICE_PROVIDER_HUGGINGFACE_TGE | 27 | Hugging Face Text Embedding Inference (TGE) as the CCAI service provider <a href="https://github.com/huggingface/text-embeddings-inference">Text Embeddings Inference</a> |
+| CCAI_SERVICE_PROVIDER_HUGGINGFACE_SMOLAGENTS | 28 | Hugging Face SmolAgents as the CCAI service provider <a href="https://github.com/huggingface/smolagents">SmolAgents</a> |
+| CCAI_SERVICE_PROVIDER_GOOGLE_AGENT_DEVELOPMENT_KIT | 29 | Google Agent Development Kit (ADK) as the CCAI service provider <a href="https://google.github.io/adk-docs/">Google Agent Development Kit (ADK)</a> |
+| CCAI_SERVICE_PROVIDER_MODEL_CONTEXT_PROTOCOL | 30 | Model Context Protocol as the CCAI service provider, enabling integration with services following the Model Context Protocol standard. <a href="https://modelcontextprotocol.io/introduction">MCP</a> |
+| CCAI_SERVICE_PROVIDER_OPENSEARCH | 31 | Opensearch as the CCAI service provider, enabling integration with Opensearch vector database and search services <a href="https://opensearch.org/">Opensearch</a> |
+| CCAI_SERVICE_PROVIDER_GROK | 32 | Grok as the CCAI service provider, commonly used for models such as Grok-1 <a href="https://grok.x.ai/">Grok</a> |
+| CCAI_SERVICE_PROVIDER_POSTGRES | 33 | PostgreSQL as the CCAI service provider, enabling integration with PostgreSQL databases <a href="https://www.postgresql.org/">PostgreSQL</a> |
+| CCAI_SERVICE_PROVIDER_MICROSOFT_AGENT_FRAMEWORK | 34 | Microsoft Agent Framework as the CCAI service provider <a href="https://github.com/microsoft/agent-framework">Microsoft Agent Framework</a> |
 
 
 
 <a name="ondewo.nlu.CcaiServiceType"></a>
 
 ### CcaiServiceType
+Defines the types of CCAI (Call Center AI) services available in the system.
 
+Each service type represents a specific capability or module within the ONDEWO platform
+that enables comprehensive call center and customer interaction management. Services can be
+composed in workflows and are identified by their type, language code, and provider configuration.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| CCAI_SERVICE_TYPE_UNSPECIFIED | 0 | unspecified |
-| CCAI_SERVICE_TYPE_ONDEWO_AIM | 1 | ondewo-aim service |
-| CCAI_SERVICE_TYPE_ONDEWO_BPI | 2 | ondewo-bpi service |
-| CCAI_SERVICE_TYPE_ONDEWO_CSI | 3 | ondewo-csi service |
-| CCAI_SERVICE_TYPE_ONDEWO_NLU | 4 | ondewo-nlu service |
-| CCAI_SERVICE_TYPE_ONDEWO_S2T | 5 | ondewo-s2t service |
-| CCAI_SERVICE_TYPE_ONDEWO_SIP | 6 | ondewo-sip service |
-| CCAI_SERVICE_TYPE_ONDEWO_T2S | 7 | ondewo-t2s service |
-| CCAI_SERVICE_TYPE_ONDEWO_VTSI | 8 | ondewo-vtsi service |
-| CCAI_SERVICE_TYPE_ONDEWO_VTSI_RABBITMQ | 9 | ondewo-vtsi service |
-| CCAI_SERVICE_TYPE_ONDEWO_NLU_QA | 10 | ondewo-nlu-qa service |
-| CCAI_SERVICE_TYPE_ONDEWO_NLU_WEBHOOK | 11 | ondewo-nlu-webhook service |
-| CCAI_SERVICE_TYPE_ONDEWO_SURVEY | 12 | ondewo-survey service |
-| CCAI_SERVICE_TYPE_ONDEWO_NLU_LLM | 13 | ondewo-nlu-llm service |
-| CCAI_SERVICE_TYPE_ONDEWO_NLU_WEBSEARCH | 14 | ondewo-nlu-websearch service |
-| CCAI_SERVICE_TYPE_ONDEWO_AIM_WEBCHAT | 15 | ondewo-aim-webchat service |
-| CCAI_SERVICE_TYPE_ONDEWO_AIM_WEBPHONE | 16 | ondewo-aim-webphone service |
-| CCAI_SERVICE_TYPE_ONDEWO_NLU_VECTORSTORE | 17 | ondewo-nlu-vectorstore service |
+| CCAI_SERVICE_TYPE_UNSPECIFIED | 0 | No service type specified or unknown type |
+| CCAI_SERVICE_TYPE_ONDEWO_AIM | 1 | ONDEWO Agent Interaction Manager (AIM) Orchestrates multi-channel agent interactions, conversation routing, and workforce management. Handles inbound/outbound call distribution, chat routing, and agent state management. |
+| CCAI_SERVICE_TYPE_ONDEWO_BPI | 2 | ONDEWO Business Process Intelligence (BPI) Analyzes call center processes, identifies optimization opportunities, and monitors compliance. Enables workflow automation, process mining, and performance benchmarking. |
+| CCAI_SERVICE_TYPE_ONDEWO_CSI | 3 | ONDEWO Customer Service Intelligence (CSI) Provides customer service analytics, sentiment analysis, and interaction quality scoring. Generates insights from call recordings, transcripts, and customer feedback. |
+| CCAI_SERVICE_TYPE_ONDEWO_NLU | 4 | ONDEWO Natural Language Understanding (NLU) Core natural language processing service for intent recognition, entity extraction, and dialogue management. Essential for conversational AI and automated customer interactions. |
+| CCAI_SERVICE_TYPE_ONDEWO_S2T | 5 | ONDEWO Speech-to-Text (S2T) Converts audio speech to written text with high accuracy and multi-language support. Integrates with voice channels for real-time transcription during calls. |
+| CCAI_SERVICE_TYPE_ONDEWO_SIP | 6 | ONDEWO Session Initiation Protocol (SIP) Manages VoIP signaling, call establishment, call control, and telephony infrastructure. Handles SIP trunk integration, PBX connectivity, and call routing logic. |
+| CCAI_SERVICE_TYPE_ONDEWO_T2S | 7 | ONDEWO Text-to-Speech (T2S) Converts written text to natural-sounding audio speech with multiple voice options. Enables voice-based responses, IVR prompts, and notification delivery. |
+| CCAI_SERVICE_TYPE_ONDEWO_VTSI | 8 | ONDEWO VOIP Telephone System Integration (VTSI) Provides virtual telephony infrastructure for testing, simulation, and call management. Enables stress testing, scenario simulation, and quality assurance for voice applications. |
+| CCAI_SERVICE_TYPE_ONDEWO_VTSI_RABBITMQ | 9 | ONDEWO VOIP Telephone System Integration (VTSI) with RabbitMQ Extended VTSI service with RabbitMQ message queue integration for asynchronous processing. Enables decoupled, scalable call handling and event streaming. |
+| CCAI_SERVICE_TYPE_ONDEWO_NLU_QA | 10 | ONDEWO NLU Question Answering (QA) Provides intelligent question-answering capabilities for knowledge base queries. Enables automated FAQ handling and self-service customer support. |
+| CCAI_SERVICE_TYPE_ONDEWO_NLU_WEBHOOK | 11 | ONDEWO NLU Webhook Enables webhook-based event integration for NLU events and external notifications. Allows real-time integration with third-party systems and custom workflows. |
+| CCAI_SERVICE_TYPE_ONDEWO_SURVEY | 12 | ONDEWO Survey Manages survey campaigns, customer feedback collection, and satisfaction measurements. Supports post-call surveys and voice-based survey delivery. |
+| CCAI_SERVICE_TYPE_ONDEWO_NLU_LLM | 13 | ONDEWO NLU Large Language Model (LLM) Integrates large language models for advanced NLP tasks and generative AI capabilities. Enables contextual responses, content generation, and semantic understanding. |
+| CCAI_SERVICE_TYPE_ONDEWO_NLU_WEBSEARCH | 14 | ONDEWO NLU Web Search Performs real-time internet search queries and retrieves current information. Enables agents to access live data during customer interactions. |
+| CCAI_SERVICE_TYPE_ONDEWO_AIM_WEBCHAT | 15 | ONDEWO Agent Interaction Manager (AIM) WebChat Enables live chat interactions via web browsers for customer support. Manages web-based messaging channels with agent assignment and routing. |
+| CCAI_SERVICE_TYPE_ONDEWO_AIM_WEBPHONE | 16 | ONDEWO Agent Interaction Manager (AIM) WebPhone Enables VoIP phone interactions directly through web browsers without additional software. Supports WebRTC-based calling for modern browser environments. |
+| CCAI_SERVICE_TYPE_ONDEWO_NLU_VECTORSTORE | 17 | ONDEWO NLU Vector Store Manages vector embeddings and semantic search capabilities for knowledge retrieval. Enables similarity matching and context-aware information lookup. |
+| CCAI_SERVICE_TYPE_ONDEWO_NLU_LLM_AGENT | 18 | ONDEWO NLU LLM Agent Autonomous agent powered by large language models with tool-calling capabilities. Enables complex, multi-step tasks and dynamic decision-making in customer interactions. |
+| CCAI_SERVICE_TYPE_ONDEWO_NLU_LLM_MCP | 19 | ONDEWO NLU LLM Model Context Protocol (MCP) Integrates large language models with the Model Context Protocol standard for tool usage. Enables standardized integration with external tools and data sources. |
+| CCAI_SERVICE_TYPE_ONDEWO_NLU_LLM_RAG | 20 | ONDEWO NLU LLM Retrieval-Augmented Generation (RAG) Enhances large language model responses with document and knowledge base retrieval. Enables grounded, factual responses backed by organizational knowledge. |
+| CCAI_SERVICE_TYPE_ONDEWO_ANALYTICS | 21 | ONDEWO Analytics Provides comprehensive analytics and metrics for call center operations and KPI tracking. Enables real-time dashboards, historical analysis, and predictive insights. |
+| CCAI_SERVICE_TYPE_ONDEWO_ANALYTICS_DASHBOARD | 22 | ONDEWO Analytics Dashboard Visual dashboard for displaying analytics, KPIs, and performance metrics. Provides interactive reports for supervisors, managers, and executives. |
+| CCAI_SERVICE_TYPE_ONDEWO_VTSI_OUTBOUND_CAMPAIGN | 23 | ONDEWO VOIP Telephone System Integration (VTSI) Outbound Calling Handles outbound call campaigns and call management. Enables sales outreach, follow-ups, and proactive customer communication. |
+| CCAI_SERVICE_TYPE_ONDEWO_VTSI_INBOUND_CAMPAIGN | 24 | ONDEWO VOIP Telephone System Integration (VTSI) Inbound Campaign Manages inbound call campaigns and call routing for marketing or support purposes. Enables targeted call handling and customer engagement strategies. |
 
 
  <!-- end enums -->
@@ -3988,6 +4643,7 @@ Message for adding notifications in a batch.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | notifications | [Notification](#ondewo.nlu.Notification) | repeated | List of notifications to be added. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. Mask to control which fields of the returned notifications are filled with data. |
 
 
 
@@ -4019,13 +4675,45 @@ Comment message
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | resource name of the comment |
 | text | [string](#string) |  | text of the comment |
-| user_id | [string](#string) |  | User id as resource name Format: <pre><code>projects/&lt;project_uuid&gt;/agent/users/&lt;user_uuid&gt;</code></pre> |
-| comment_about_name | [string](#string) |  | name of the resource for which the comment is about Format: <pre><code>projects/&lt;project_uuid&gt;/agent/&lt;resource_type&gt;/&lt;resource_uuid&gt;/.../</code></pre> |
+| user_id | [string](#string) |  | User id as resource name. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/users/&lt;user_uuid&gt;</code></pre> |
+| comment_about_name | [string](#string) |  | name of the resource for which the comment is about. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/&lt;resource_type&gt;/&lt;resource_uuid&gt;/.../</code></pre> |
 | parent_comment_name | [string](#string) |  | The resource name of the parent comment. A parent comment is a reply to a certain comment. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/&lt;resource_type&gt;/&lt;resource_uuid&gt;/.../</code></pre> |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
 | modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| is_resolved | [bool](#bool) | optional | Whether the comment has been resolved. Defaults to false. Declared `optional` so field presence is tracked: on UpdateSessionComments an unset value leaves the stored resolved status unchanged, so editing a comment's text never clobbers its resolved flag. |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteNotificationsRequest"></a>
+
+### DeleteNotificationsRequest
+Message for deleting one or more notifications by their resource names.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| notification_names | [string](#string) | repeated | Resource names of the notifications to delete. |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetNotificationRequest"></a>
+
+### GetNotificationRequest
+Message for retrieving a single notification by its resource name.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the notification to retrieve. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. Mask to control which fields of the notification are returned. |
 
 
 
@@ -4063,14 +4751,14 @@ Message for listing notifications based on certain criteria.
 | notification_filter | [NotificationFilter](#ondewo.nlu.NotificationFilter) |  | Optional filter to narrow the response down to specific notifications. |
 | page_token | [string](#string) |  | Optional. Token for pagination, obtained from a previous list request. The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
-| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. Mask to control which fields will be filled with data. Example: path=["notification.user_names"] |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. Mask to control which fields will be filled with data. <br> Example: path=["notification.user_names"] |
 
 
 
@@ -4092,6 +4780,30 @@ Message containing the response to a list request for notifications.
 
 
 
+<a name="ondewo.nlu.LogEntry"></a>
+
+### LogEntry
+A generic log entry structure.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the log entry. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/logs/&lt;log_uuid&gt;</code></pre> |
+| log_entry_sequence_index | [int32](#int32) |  | Sequence index within the run. |
+| display_name | [string](#string) |  | Name of the log. |
+| log_entry_timestamp | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Timestamp of the log. |
+| log_entry_receive_timestamp | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Output only. Timestamp when the log was received. |
+| log_entry_severity | [LogSeverity](#ondewo.nlu.LogSeverity) |  | Severity of the log. |
+| log_entry_phase | [string](#string) |  | Execution phase (e.g. "discovery", "extraction"). |
+| log_entry_operation_name | [string](#string) |  | Name of the operation. |
+| log_entry_details | [google.protobuf.Struct](#google.protobuf.Struct) |  | Raw details in Struct format. |
+| log_entry_context | [google.protobuf.Struct](#google.protobuf.Struct) |  | Domain-specific metadata in Struct format. |
+
+
+
+
+
+
 <a name="ondewo.nlu.Notification"></a>
 
 ### Notification
@@ -4101,15 +4813,15 @@ Notification message
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | resource name of the notification |
-| user_name | [string](#string) |  | User id as resource name Format: <pre><code>projects/&lt;project_uuid&gt;/agent/users/&lt;user_uuid&gt;</code></pre> |
-| title | [string](#string) |  | User id as resource name Format: <pre><code>projects/&lt;project_uuid&gt;/agent/users/&lt;user_uuid&gt;</code></pre> |
+| user_name | [string](#string) |  | User id as resource name. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/users/&lt;user_uuid&gt;</code></pre> |
+| title | [string](#string) |  | User id as resource name. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/users/&lt;user_uuid&gt;</code></pre> |
 | description_short | [string](#string) |  | A short notification text is displayed directly with max. 50 chars which is a truncated version of the long message |
 | description_long | [string](#string) |  | A long notification text |
 | notification_flagged_status | [NotificationFlaggedStatus](#ondewo.nlu.NotificationFlaggedStatus) |  | Has a notification been flagged by a specific user |
 | notification_flagged_timestamp | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | When the user marked the notification as read |
 | notification_read_status | [NotificationReadStatus](#ondewo.nlu.NotificationReadStatus) |  | Has a notification been read by a specific user |
 | notification_read_timestamp | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | When the user marked the notification as read, i.e. read the notification |
-| notification_origin | [NotificationOrigin](#ondewo.nlu.NotificationOrigin) |  | The origin of a notification A Notification origin can be from a product (service), e.g. ondewo-nlu, ondewo-s2t, ondewo-t2s, etc. |
+| notification_origin | [NotificationOrigin](#ondewo.nlu.NotificationOrigin) |  | The origin of a notification. A Notification origin can be from a product (service), e.g. ondewo-nlu, ondewo-s2t, ondewo-t2s, etc. |
 | origin_name | [string](#string) |  | The name of resource of where the notification originated |
 | origin_language | [string](#string) |  | language of the origin resource e.g. language of the nlu agent or language of the speech-to-text service |
 | notification_type | [NotificationType](#ondewo.nlu.NotificationType) |  | The type of notification |
@@ -4118,6 +4830,7 @@ Notification message
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
 | modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| link | [string](#string) |  | Optional deep-link / route target the notification navigates to when clicked, e.g. a relative AIM route to the referenced intent or entity. Empty when the notification is not clickable. |
 
 
 
@@ -4141,6 +4854,7 @@ Message for filtering notifications based on various criteria.
 | latest | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Filter notifications with a time range ending at the specified latest time. |
 | user_names | [string](#string) | repeated | Resource names of users to filter notifications for. |
 | origin_names | [string](#string) | repeated | Resource names of the origin of the notification to filter notifications. |
+| notification_types | [NotificationType](#ondewo.nlu.NotificationType) | repeated | Types of the notifications to filter. |
 
 
 
@@ -4157,6 +4871,7 @@ Message for setting the flagged status of notifications.
 | ----- | ---- | ----- | ----------- |
 | notification_names | [string](#string) | repeated | Names of notifications to set the flagged status for. |
 | flagged | [bool](#bool) | repeated | Flagged status to set for the specified notifications. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. Mask to control which fields of the returned notifications are filled with data. |
 
 
 
@@ -4173,6 +4888,7 @@ Message for setting the read status of notifications.
 | ----- | ---- | ----- | ----------- |
 | notification_names | [string](#string) | repeated | Names of notifications to set the read status for. |
 | flagged | [bool](#bool) | repeated | Read status to set for the specified notifications. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. Mask to control which fields of the returned notifications are filled with data. |
 
 
 
@@ -4187,13 +4903,65 @@ statistic response
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [uint32](#uint32) |  | Response wrapper for the "Get<Stat>" endpoints |
+| value | [uint32](#uint32) |  | Response wrapper for the &quot;Get&lt;Stat&gt;&quot; endpoints |
+
+
+
+
+
+
+<a name="ondewo.nlu.StreamNotificationsRequest"></a>
+
+### StreamNotificationsRequest
+Message for streaming notifications in real time via
+<a href="index.html#ondewo.nlu.Users.StreamNotifications">Users.StreamNotifications</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| notification_filter | [NotificationFilter](#ondewo.nlu.NotificationFilter) |  | Optional filter to narrow the stream down to specific notifications (same semantics as <a href="index.html#ondewo.nlu.NotificationFilter">NotificationFilter</a> used by ListNotifications). The caller is always additionally scoped to their own notifications server-side. |
+| include_existing | [bool](#bool) |  | When true, the currently-stored matching notifications are replayed first (oldest first) before the stream switches to pushing only newly-created notifications. When false (the default) only notifications created after the stream opened are pushed. |
+
+
+
+
+
+
+<a name="ondewo.nlu.UpdateNotificationRequest"></a>
+
+### UpdateNotificationRequest
+Message for updating a single notification.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| notification | [Notification](#ondewo.nlu.Notification) |  | The notification to update, identified by its resource name. |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Mask controlling which fields of the notification are updated. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. Mask to control which fields of the returned notification are filled with data. |
 
 
 
 
 
  <!-- end messages -->
+
+
+<a name="ondewo.nlu.LogSeverity"></a>
+
+### LogSeverity
+Log levels for various system operations based on Loguru log levels.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LOG_SEVERITY_UNSPECIFIED | 0 | Unspecified log level. |
+| LOG_SEVERITY_TRACE | 1 | Trace level - lowest level, most detailed. |
+| LOG_SEVERITY_DEBUG | 2 | Debug level - detailed information for troubleshooting. |
+| LOG_SEVERITY_INFO | 3 | Info level - general operational messages. |
+| LOG_SEVERITY_SUCCESS | 4 | Success level - successful completion of an operation. |
+| LOG_SEVERITY_WARNING | 5 | Warning level - potential issues that don't stop execution. |
+| LOG_SEVERITY_ERROR | 6 | Error level - serious issues that might affect results. |
+| LOG_SEVERITY_CRITICAL | 7 | Critical level - critical failures that stop the process. |
+
 
 
 <a name="ondewo.nlu.NotificationFlaggedStatus"></a>
@@ -4226,6 +4994,7 @@ Enumerates the possible origins for a notification.
 | NOTIFICATION_ORIGIN_ONDEWO_T2S | 7 | ondewo-t2s service |
 | NOTIFICATION_ORIGIN_ONDEWO_VTSI | 8 | ondewo-vtsi service |
 | NOTIFICATION_ORIGIN_ONDEWO_VTSI_RABBITMQ | 9 | ondewo-vtsi-rabbitmq service |
+| NOTIFICATION_ORIGIN_ONDEWO_SURVEY | 10 | ondewo-survey service |
 
 
 
@@ -4317,12 +5086,12 @@ Represents a context.
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | Required. The display name of the context (must be unique per session).
 
-Note: we are deviating from the dialogflow format `projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/contexts/&lt;context_uuid&gt;`.
+Note: we are deviating from the dialogflow format <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/contexts/&lt;context_uuid&gt;</code>.
 
-- DetectIntent only returns - the short display name in the "name" field in query_result.output_contexts - only expects the short display name in the "name" field in query_parameters.contexts - Also inside the persisted session object only the short display name is used. - SessionStep.contexts only contains the short display name - SessionReviewStep.contexts only contains the short display name |
-| lifespan_count | [int32](#int32) |  | Optional. The number of conversational query requests after which the context expires. If set to `0` (the default) the context expires immediately. Contexts expire automatically after 10 minutes even if there are no matching queries. |
-| parameters | [Context.ParametersEntry](#ondewo.nlu.Context.ParametersEntry) | repeated | Optional. The collection of parameters associated with this context. Refer to [this doc](https://dialogflow.com/docs/actions-and-parameters) for syntax. Keys are the display names of context parameters. |
-| lifespan_time | [float](#float) |  | Optional. The time span in seconds after which the context expires. By default it does not expire. |
+<ul> <li>DetectIntent only returns <ul> <li>the short display name in the &quot;name&quot; field in query_result.output_contexts</li> <li>only expects the short display name in the &quot;name&quot; field in query_parameters.contexts</li> </ul> </li> <li>Also inside the persisted session object only the short display name is used. <ul> <li>SessionStep.contexts only contains the short display name</li> <li>SessionReviewStep.contexts only contains the short display name</li> </ul> </li> </ul> |
+| lifespan_count | [int32](#int32) |  | Optional. The number of conversational query requests after which the context expires. If set to <code>0</code> (the default) the context expires immediately. Contexts expire automatically after 10 minutes even if there are no matching queries. |
+| parameters | [Context.ParametersEntry](#ondewo.nlu.Context.ParametersEntry) | repeated | Optional. The collection of parameters associated with this context. Refer to <a href="https://dialogflow.com/docs/actions-and-parameters">this doc</a> for syntax. Keys are the display names of context parameters. |
+| lifespan_time | [float](#float) | optional | Optional. The time span in seconds after which the context expires. By default it does not expire. |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
@@ -4336,7 +5105,7 @@ Note: we are deviating from the dialogflow format `projects/&lt;project_uuid&gt;
 <a name="ondewo.nlu.Context.Parameter"></a>
 
 ### Context.Parameter
-
+Represents a parameter associated with a context
 
 
 | Field | Type | Label | Description |
@@ -4374,7 +5143,7 @@ Note: we are deviating from the dialogflow format `projects/&lt;project_uuid&gt;
 <a name="ondewo.nlu.CreateContextRequest"></a>
 
 ### CreateContextRequest
-The request message for [Contexts.CreateContext][google.cloud.dialogflow.v2.Contexts.CreateContext].
+The request message for <a href="index.html#ondewo.nlu.Contexts.CreateContext">Contexts.CreateContext</a>.
 
 
 | Field | Type | Label | Description |
@@ -4390,15 +5159,12 @@ The request message for [Contexts.CreateContext][google.cloud.dialogflow.v2.Cont
 <a name="ondewo.nlu.DeleteAllContextsRequest"></a>
 
 ### DeleteAllContextsRequest
-The request message for [Contexts.DeleteAllContexts][google.cloud.dialogflow.v2.Contexts.DeleteAllContexts].
-
-Required. The name of the session to delete all contexts from.
-Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre>
+The request message for <a href="index.html#ondewo.nlu.Contexts.DeleteAllContexts">Contexts.DeleteAllContexts</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session_id | [string](#string) |  |  |
+| session_id | [string](#string) |  | Required. The name of the session to delete all contexts from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
 
 
 
@@ -4408,12 +5174,12 @@ Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid
 <a name="ondewo.nlu.DeleteContextRequest"></a>
 
 ### DeleteContextRequest
-The request message for [Contexts.DeleteContext][google.cloud.dialogflow.v2.Contexts.DeleteContext].
+The request message for <a href="index.html#ondewo.nlu.Contexts.DeleteContext">Contexts.DeleteContext</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Required. The name of the context to delete. Format: `projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/contexts/&lt;context_uuid&gt;`. |
+| name | [string](#string) |  | Required. The name of the context to delete. Format: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/contexts/&lt;context_uuid&gt;</code>. |
 
 
 
@@ -4423,12 +5189,12 @@ The request message for [Contexts.DeleteContext][google.cloud.dialogflow.v2.Cont
 <a name="ondewo.nlu.GetContextRequest"></a>
 
 ### GetContextRequest
-The request message for [Contexts.GetContext][google.cloud.dialogflow.v2.Contexts.GetContext].
+The request message for <a href="index.html#ondewo.nlu.Contexts.GetContext">Contexts.GetContext</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Required. The name of the context. Format: `projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/contexts/&lt;context_uuid&gt;`. |
+| name | [string](#string) |  | Required. The name of the context. Format: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/contexts/&lt;context_uuid&gt;</code>. |
 
 
 
@@ -4438,7 +5204,7 @@ The request message for [Contexts.GetContext][google.cloud.dialogflow.v2.Context
 <a name="ondewo.nlu.ListContextsRequest"></a>
 
 ### ListContextsRequest
-The request message for [Contexts.ListContexts][google.cloud.dialogflow.v2.Contexts.ListContexts].
+The request message for <a href="index.html#ondewo.nlu.Contexts.ListContexts">Contexts.ListContexts</a>.
 
 
 | Field | Type | Label | Description |
@@ -4446,13 +5212,13 @@ The request message for [Contexts.ListContexts][google.cloud.dialogflow.v2.Conte
 | session_id | [string](#string) |  | Required. The session to list all contexts from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
 
 
 
@@ -4462,7 +5228,7 @@ Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" 
 <a name="ondewo.nlu.ListContextsResponse"></a>
 
 ### ListContextsResponse
-The response message for [Contexts.ListContexts][google.cloud.dialogflow.v2.Contexts.ListContexts].
+The response message for <a href="index.html#ondewo.nlu.Contexts.ListContexts">Contexts.ListContexts</a>.
 
 
 | Field | Type | Label | Description |
@@ -4478,7 +5244,7 @@ The response message for [Contexts.ListContexts][google.cloud.dialogflow.v2.Cont
 <a name="ondewo.nlu.UpdateContextRequest"></a>
 
 ### UpdateContextRequest
-The request message for [Contexts.UpdateContext][google.cloud.dialogflow.v2.Contexts.UpdateContext].
+The request message for <a href="index.html#ondewo.nlu.Contexts.UpdateContext">Contexts.UpdateContext</a>.
 
 
 | Field | Type | Label | Description |
@@ -4500,23 +5266,11 @@ The request message for [Contexts.UpdateContext][google.cloud.dialogflow.v2.Cont
 <a name="ondewo.nlu.Contexts"></a>
 
 ### Contexts
-A context represents additional information included with user input or with
-an intent returned by the Dialogflow API. Contexts are helpful for
-differentiating user input which may be vague or have a different meaning
-depending on additional details from your application such as user setting
-and preferences, previous user input, where the user is in your application,
-geographic location, and so on.
+A context represents additional information included with user input or with an intent returned by the Dialogflow API. Contexts are helpful for differentiating user input which may be vague or have a different meaning depending on additional details from your application such as user setting and preferences, previous user input, where the user is in your application, geographic location, and so on.
 
-You can include contexts as input parameters of a
-[DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
-[StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) request,
-or as output contexts included in the returned intent.
-Contexts expire when an intent is matched, after the number of `DetectIntent`
-requests specified by the `lifespan_count` parameter, or after 10 minutes
-if no intents are matched for a `DetectIntent` request.
-
-For more information about contexts, see the
-[Dialogflow documentation](https://dialogflow.com/docs/contexts).
+You can include contexts as input parameters of a <a href="index.html#ondewo.nlu.Sessions.DetectIntent">DetectIntent</a> (or <a href="index.html#ondewo.nlu.Sessions.StreamingDetectIntent">StreamingDetectIntent</a>) request, or as output contexts included in the returned intent.
+Contexts expire when an intent is matched, after the number of <code>DetectIntent</code> requests specified by the <code>lifespan_count</code> parameter, or after 10 minutes if no intents are matched for a <code>DetectIntent</code> request.
+For more information about contexts, see the <a href="https://dialogflow.com/docs/contexts">Dialogflow documentation</a>.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
@@ -4561,7 +5315,7 @@ This message is a request to delete a batch of entities
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| names | [string](#string) | repeated | The unique identifiers of the entities. Format: `projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;/entities/&lt;entity_uuid&gt;`. |
+| names | [string](#string) | repeated | The unique identifiers of the entities. Format: <code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;/entities/&lt;entity_uuid&gt;</code>. |
 
 
 
@@ -4587,12 +5341,12 @@ This message is a response of deletion of a batch of entities
 <a name="ondewo.nlu.BatchDeleteEntityTypesRequest"></a>
 
 ### BatchDeleteEntityTypesRequest
-The request message for [EntityTypes.BatchDeleteEntityTypes][google.cloud.dialogflow.v2.EntityTypes.BatchDeleteEntityTypes].
+The request message for <a href="index.html#ondewo.nlu.EntityTypes.BatchDeleteEntityTypes">EntityTypes.BatchDeleteEntityTypes</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The name of the agent to delete all entities types for. Format: `projects/&lt;project_uuid&gt;/agent`. |
+| parent | [string](#string) |  | Required. The name of the agent to delete all entities types for. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
 | entity_type_names | [string](#string) | repeated | Required. The names entity types to delete. All names must point to the same agent as `parent`. |
 
 
@@ -4624,7 +5378,7 @@ This message is a request to get a batch of entities
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| names | [string](#string) | repeated | The unique identifiers of the entities. Format: `projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;/entities/&lt;entity_uuid&gt;`. |
+| names | [string](#string) | repeated | The unique identifiers of the entities. Format: <code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;/entities/&lt;entity_uuid&gt;</code>. |
 
 
 
@@ -4649,15 +5403,15 @@ This message is a request to update a batch of entities
 <a name="ondewo.nlu.BatchUpdateEntityTypesRequest"></a>
 
 ### BatchUpdateEntityTypesRequest
-The request message for [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes].
+The request message for <a href="index.html#ondewo.nlu.EntityTypes.BatchUpdateEntityTypes">EntityTypes.BatchUpdateEntityTypes</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The name of the agent to update or create entity types in. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
-| entity_type_batch_uri | [string](#string) |  | The URI to a Google Cloud Storage file containing entity types to update or create. The file format can either be a serialized proto (of EntityBatch type) or a JSON object. Note: The URI must start with "gs://". |
+| entity_type_batch_uri | [string](#string) |  | The URI to a Google Cloud Storage file containing entity types to update or create. The file format can either be a serialized proto (of EntityBatch type) or a JSON object. Note: The URI must start with &quot;gs://&quot;. |
 | entity_type_batch_inline | [EntityTypeBatch](#ondewo.nlu.EntityTypeBatch) |  | The collection of entity type to update or create. |
-| language_code | [string](#string) |  | Optional. The language of entity synonyms defined in `entity_types`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
+| language_code | [string](#string) |  | Optional. The language of entity synonyms defined in <code>entity_types</code>. If not specified, the agent&apos;s default language is used. <a href="https://dialogflow.com/docs/reference/language">More than a dozen languages</a> are supported. Note: languages must be enabled in the agent, before they can be used. |
 | update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields get updated. |
 
 
@@ -4668,7 +5422,7 @@ The request message for [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialog
 <a name="ondewo.nlu.BatchUpdateEntityTypesResponse"></a>
 
 ### BatchUpdateEntityTypesResponse
-The response message for [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialogflow.v2.EntityTypes.BatchUpdateEntityTypes].
+The response message for <a href="index.html#ondewo.nlu.EntityTypes.BatchUpdateEntityTypes">EntityTypes.BatchUpdateEntityTypes</a>.
 
 
 | Field | Type | Label | Description |
@@ -4688,7 +5442,7 @@ The response message for [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialo
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| entity_type_name | [string](#string) |  | Required. Name of the entity type in which to create the entity value. Format: `projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;/entities/&lt;entity_uuid&gt;`. |
+| entity_type_name | [string](#string) |  | Required. Name of the entity type in which to create the entity value. Format: <code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;/entities/&lt;entity_uuid&gt;</code>. |
 | entity | [EntityType.Entity](#ondewo.nlu.EntityType.Entity) |  | The entity value to create |
 
 
@@ -4699,14 +5453,14 @@ The response message for [EntityTypes.BatchUpdateEntityTypes][google.cloud.dialo
 <a name="ondewo.nlu.CreateEntityTypeRequest"></a>
 
 ### CreateEntityTypeRequest
-The request message for [EntityTypes.CreateEntityType][google.cloud.dialogflow.v2.EntityTypes.CreateEntityType].
+The request message for <a href="index.html#ondewo.nlu.EntityTypes.CreateEntityType">EntityTypes.CreateEntityType</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The agent to create a entity type for. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | entity_type | [EntityType](#ondewo.nlu.EntityType) |  | Required. The entity type to create. |
-| language_code | [string](#string) |  | Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
+| language_code | [string](#string) |  | Optional. The language of entity synonyms defined in <code>entity_type</code>. If not specified, the agent&apos;s default language is used. <a href="https://dialogflow.com/docs/reference/language">More than a dozen languages</a> are supported. Note: languages must be enabled in the agent, before they can be used. |
 | entity_type_view | [EntityTypeView](#ondewo.nlu.EntityTypeView) |  | Optional. The resource view to apply to the returned Entity Type |
 
 
@@ -4722,7 +5476,7 @@ This message is a request to delete a batch of entities
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The unique identifiers of the entities. Format: `projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;/entities/&lt;entity_uuid&gt;`. |
+| name | [string](#string) |  | The unique identifiers of the entities. Format: <code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;/entities/&lt;entity_uuid&gt;</code>. |
 
 
 
@@ -4737,8 +5491,8 @@ This message contains the status of an entity deletion
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| successfully_deleted | [google.protobuf.Empty](#google.protobuf.Empty) |  |  |
-| error_message | [string](#string) |  |  |
+| successfully_deleted | [google.protobuf.Empty](#google.protobuf.Empty) |  | Set when the entity was successfully deleted |
+| error_message | [string](#string) |  | The error message when deleting the entity failed |
 
 
 
@@ -4748,7 +5502,7 @@ This message contains the status of an entity deletion
 <a name="ondewo.nlu.DeleteEntityTypeRequest"></a>
 
 ### DeleteEntityTypeRequest
-The request message for [EntityTypes.DeleteEntityType][google.cloud.dialogflow.v2.EntityTypes.DeleteEntityType].
+The request message for <a href="index.html#ondewo.nlu.EntityTypes.DeleteEntityType">EntityTypes.DeleteEntityType</a>.
 
 
 | Field | Type | Label | Description |
@@ -4786,7 +5540,7 @@ language queries.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Required for all methods except `create` (`create` populates the name automatically. The unique identifier of the entity type. Format: `projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;`. |
+| name | [string](#string) |  | Required for all methods except <code>create</code> (<code>create</code> populates the name automatically. The unique identifier of the entity type. Format: <code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;</code>. |
 | display_name | [string](#string) |  | Required. The name of the entity type. |
 | kind | [EntityType.Kind](#ondewo.nlu.EntityType.Kind) |  | Required. Indicates the kind of entity type. |
 | auto_expansion_mode | [EntityType.AutoExpansionMode](#ondewo.nlu.EntityType.AutoExpansionMode) |  | Optional. Indicates whether the entity type can be automatically expanded. |
@@ -4808,26 +5562,26 @@ language queries.
 <a name="ondewo.nlu.EntityType.Entity"></a>
 
 ### EntityType.Entity
-Optional. Represents an entity.
+Represents an entity value within an entity type
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| value | [string](#string) |  | Required. For `KIND_MAP` entity types: </br> A canonical name to be used in place of synonyms.</br> For `KIND_LIST` entity types:</br> A string that can contain references to other entity types (with or without aliases). </br>
+| value | [string](#string) |  | Required. For <code>KIND_MAP</code> entity types: A canonical name to be used in place of synonyms. For <code>KIND_LIST</code> entity types: A string that can contain references to other entity types (with or without aliases).
 
 Values can also be described as regexes with postprocessing options such as:
 
- <pre><code> * regex('//1') => references the first group match of the regex defined as a synonym * regex('//2') => references the second group match of the regex defined as a synonym * regex('//1') => references the first group match of the regex defined as a synonym </code></pre>
+<pre><code> * regex('//1') => references the first group match of the regex defined as a synonym * regex('//2') => references the second group match of the regex defined as a synonym * regex('//1') => references the first group match of the regex defined as a synonym </code></pre>
 
-Values can also be described as regexes with one or more postprocessing options such as one postprocessing option to remove all whitespaces <code>regex('&lt;#RW#&gt;\\1')</code> or by a combination of several postprocessing options such as remove all whitespaces and lower casing <code>regex('&lt;#RW#&gt;&lt;#LC#&gt;\\1') </code>.
+Values can also be described as regexes with one or more postprocessing options such as one postprocessing option to remove all whitespaces <code>regex('&lt;#RW#&gt;\\1')</code> or by a combination of several postprocessing options such as remove all whitespaces and lower casing <code>regex('&lt;#RW#&gt;&lt;#LC#&gt;\\1')</code>.
 
 All processing options are:
 
- <pre><code> * regex('&lt;#TW&gt;//1') => matches 1st group and trims duplicated whitespaces to one single space * regex('&lt;#RW&gt;//1') => matches 1st group and removes all whitespaces * regex('&lt;#UC&gt;//1') => matches 1st group and converts to upper case * regex('&lt;#LC&gt;//1') => matches 1st group and converts to lower case * regex('&lt;#CC&gt;//1') => matches 1st group and converts to camelCase * regex('&lt;#SC&gt;//1') => matches 1st group and converts to snake_case </code></pre> |
-| synonyms | [string](#string) | repeated | Required. A collection of synonyms. For `KIND_LIST` entity types this must contain exactly one synonym equal to `value`. Synonyms can be regex expressions, i.e. regular expressions, that are python compatible. See here for supported regex: https://docs.python.org/3/library/re.html Examples are:
+<pre><code> * regex('&lt;#TW&gt;//1') => matches 1st group and trims duplicated whitespaces to one single space * regex('&lt;#RW&gt;//1') => matches 1st group and removes all whitespaces * regex('&lt;#UC&gt;//1') => matches 1st group and converts to upper case * regex('&lt;#LC&gt;//1') => matches 1st group and converts to lower case * regex('&lt;#CC&gt;//1') => matches 1st group and converts to camelCase * regex('&lt;#SC&gt;//1') => matches 1st group and converts to snake_case </code></pre> |
+| synonyms | [string](#string) | repeated | Required. A collection of synonyms. For <code>KIND_LIST</code> entity types this must contain exactly one synonym equal to <code>value</code>. Synonyms can be regex expressions, i.e. regular expressions, that are python compatible. See here for supported regex: <a href="https://docs.python.org/3/library/re.html">https://docs.python.org/3/library/re.html</a> Examples are:
 
- <pre><code> * regex('[a-zA-Z]+') => just letters * regex('\d{1,5}') => just numbers * regex('^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$') => mix of numbers, letters and dot * regex('(?i)(^|\s)(0\s{0,3}') => with matching groups and case insensitivity </code></pre> |
-| name | [string](#string) |  | The unique identifier of the entity. Format: `projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;/entities/&lt;entity_uuid&gt;`. |
+<pre><code> * regex('[a-zA-Z]+') => just letters * regex('\d{1,5}') => just numbers * regex('^[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$') => mix of numbers, letters and dot * regex('(?i)(^|\s)(0\s{0,3}') => with matching groups and case insensitivity </code></pre> |
+| name | [string](#string) |  | The unique identifier of the entity. Format: <code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;/entities/&lt;entity_uuid&gt;</code>. |
 | display_name | [string](#string) |  | The name of the entity. |
 | synonym_count | [int32](#int32) |  | Optional. Total count of entity synonyms |
 | language_code | [string](#string) |  | Required. The language to list entity synonyms for. |
@@ -4864,8 +5618,8 @@ This message contains Entity type sorting
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| sorting_field | [EntityTypeSorting.EntityTypeSortingField](#ondewo.nlu.EntityTypeSorting.EntityTypeSortingField) |  |  |
-| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) |  |  |
+| sorting_field | [EntityTypeSorting.EntityTypeSortingField](#ondewo.nlu.EntityTypeSorting.EntityTypeSortingField) |  | The field to sort the entity types by |
+| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) |  | The sorting mode: ascending or descending |
 
 
 
@@ -4880,8 +5634,8 @@ This message contains entity value sorting
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| sorting_field | [EntityValueSorting.EntityValueSortingField](#ondewo.nlu.EntityValueSorting.EntityValueSortingField) |  |  |
-| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) |  |  |
+| sorting_field | [EntityValueSorting.EntityValueSortingField](#ondewo.nlu.EntityValueSorting.EntityValueSortingField) |  | The field to sort the entity values by |
+| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) |  | The sorting mode: ascending or descending |
 
 
 
@@ -4896,7 +5650,7 @@ This message is a request to get a an entity
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The unique identifiers of the entities. Format: `projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;/entities/&lt;entity_uuid&gt;`. |
+| name | [string](#string) |  | The unique identifiers of the entities. Format: <code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;/entities/&lt;entity_uuid&gt;</code>. |
 
 
 
@@ -4906,22 +5660,22 @@ This message is a request to get a an entity
 <a name="ondewo.nlu.GetEntityTypeRequest"></a>
 
 ### GetEntityTypeRequest
-The request message for [EntityTypes.GetEntityType][google.cloud.dialogflow.v2.EntityTypes.GetEntityType].
+The request message for <a href="index.html#ondewo.nlu.EntityTypes.GetEntityType">EntityTypes.GetEntityType</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | Required. The name of the entity type. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;</code></pre> |
-| language_code | [string](#string) |  | Optional. The language to retrieve entity synonyms for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
+| language_code | [string](#string) |  | Optional. The language to retrieve entity synonyms for. If not specified, the agent&apos;s default language is used. <a href="https://dialogflow.com/docs/reference/language">More than a dozen languages</a> are supported. Note: languages must be enabled in the agent, before they can be used. |
 | page_token | [string](#string) |  | The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
 | entity_type_view | [EntityTypeView](#ondewo.nlu.EntityTypeView) |  | Optional. The resource view to apply to the returned Entity Type |
 
 
@@ -4937,19 +5691,19 @@ This message is a request to get a list of entities
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| entity_type_name | [string](#string) |  | The unique identifier of the entity type. Format: `projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt; |
-| language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. |
+| entity_type_name | [string](#string) |  | The unique identifier of the entity type. Format: <code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;</code> |
+| language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent&apos;s default language is used. |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
 | sort_by_field | [EntityValueSorting](#ondewo.nlu.EntityValueSorting) |  | Optional. Defines the sorting of the list. Default, no sorting. |
-| search_by_pattern | [string](#string) |  | Optional. Defines a pattern to search for in the entity type "values" and "synonyms" Example: Pattern: "dark" Results: [Entity Value] [Entity Synonyms] Red red, scarlett, dark red, ... Blue blue, indico, dark blue, sky blue, ... Dark obscure, black, opaque, ... |
+| search_by_pattern | [string](#string) |  | Optional. Defines a pattern to search for in the entity type &quot;values&quot; and &quot;synonyms&quot; Example: <pre><code> Pattern: &quot;dark&quot; Results: [Entity Value] [Entity Synonyms] Red red, scarlett, dark red, ... Blue blue, indico, dark blue, sky blue, ... Dark obscure, black, opaque, ... </code></pre> |
 
 
 
@@ -4975,22 +5729,22 @@ This message is a response of listing entities
 <a name="ondewo.nlu.ListEntityTypesRequest"></a>
 
 ### ListEntityTypesRequest
-The request message for [EntityTypes.ListEntityTypes][google.cloud.dialogflow.v2.EntityTypes.ListEntityTypes].
+The request message for <a href="index.html#ondewo.nlu.EntityTypes.ListEntityTypes">EntityTypes.ListEntityTypes</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The agent to list all entity types from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
-| language_code | [string](#string) |  | Optional. The language to list entity synonyms for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
+| language_code | [string](#string) |  | Optional. The language to list entity synonyms for. If not specified, the agent&apos;s default language is used. <a href="https://dialogflow.com/docs/reference/language">More than a dozen languages</a> are supported. Note: languages must be enabled in the agent, before they can be used. |
 | page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
 | entity_type_view | [EntityTypeView](#ondewo.nlu.EntityTypeView) |  | Optional. The resource view to apply to the returned entity type. |
 | filter_by_category | [EntityTypeCategory](#ondewo.nlu.EntityTypeCategory) |  | Optional. Applies a filter to the list. Default, no filter. |
 | sort_by_field | [EntityTypeSorting](#ondewo.nlu.EntityTypeSorting) |  | Optional. Defines the sorting of the list. Default, no sorting. |
@@ -5003,7 +5757,7 @@ Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" 
 <a name="ondewo.nlu.ListEntityTypesResponse"></a>
 
 ### ListEntityTypesResponse
-The response message for [EntityTypes.ListEntityTypes][google.cloud.dialogflow.v2.EntityTypes.ListEntityTypes].
+The response message for <a href="index.html#ondewo.nlu.EntityTypes.ListEntityTypes">EntityTypes.ListEntityTypes</a>.
 
 
 | Field | Type | Label | Description |
@@ -5034,13 +5788,13 @@ This message is a request to update an entity
 <a name="ondewo.nlu.UpdateEntityTypeRequest"></a>
 
 ### UpdateEntityTypeRequest
-The request message for [EntityTypes.UpdateEntityType][google.cloud.dialogflow.v2.EntityTypes.UpdateEntityType].
+The request message for <a href="index.html#ondewo.nlu.EntityTypes.UpdateEntityType">EntityTypes.UpdateEntityType</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | entity_type | [EntityType](#ondewo.nlu.EntityType) |  | Required. The entity type to update. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;</code></pre> |
-| language_code | [string](#string) |  | Optional. The language of entity synonyms defined in `entity_type`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
+| language_code | [string](#string) |  | Optional. The language of entity synonyms defined in <code>entity_type</code>. If not specified, the agent&apos;s default language is used. <a href="https://dialogflow.com/docs/reference/language">More than a dozen languages</a> are supported. Note: languages must be enabled in the agent, before they can be used. |
 | update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields get updated. |
 | entity_type_view | [EntityTypeView](#ondewo.nlu.EntityTypeView) |  | Optional. The resource view to apply to the returned Entity Type |
 
@@ -5072,8 +5826,8 @@ the entity (for example, new kinds of shopping list items).
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| ACTIVE | 0 |  |
-| INACTIVE | 1 |  |
+| ACTIVE | 0 | Entity type is active |
+| INACTIVE | 1 | Entity type is inactive |
 
 
 
@@ -5093,7 +5847,7 @@ Represents kinds of entities.
 <a name="ondewo.nlu.EntityTypeCategory"></a>
 
 ### EntityTypeCategory
-Represents the category of entity types to filter by in the "List Entity Types" request
+Represents the category of entity types to filter by in the &quot;List Entity Types&quot; request
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -5110,12 +5864,12 @@ Structure of Entity type sorting field
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NO_ENTITY_TYPE_SORTING | 0 |  |
-| SORT_ENTITY_TYPE_BY_NAME | 1 |  |
-| SORT_ENTITY_TYPE_BY_CREATION_DATE | 2 |  |
-| SORT_ENTITY_TYPE_BY_LAST_UPDATED | 3 |  |
-| SORT_ENTITY_TYPE_BY_ENTITY_VALUE_COUNT | 4 |  |
-| SORT_ENTITY_TYPE_BY_SYNONYM_COUNT | 5 |  |
+| NO_ENTITY_TYPE_SORTING | 0 | No sorting applied |
+| SORT_ENTITY_TYPE_BY_NAME | 1 | Sort by entity type name |
+| SORT_ENTITY_TYPE_BY_CREATION_DATE | 2 | Sort by creation date |
+| SORT_ENTITY_TYPE_BY_LAST_UPDATED | 3 | Sort by last updated date |
+| SORT_ENTITY_TYPE_BY_ENTITY_VALUE_COUNT | 4 | Sort by entity value count |
+| SORT_ENTITY_TYPE_BY_SYNONYM_COUNT | 5 | Sort by synonym count |
 
 
 
@@ -5144,9 +5898,9 @@ Structure of Entity value sorting field
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | NO_ENTITY_VALUE_SORTING | 0 | Default behaviour: Sorts by value |
-| SORT_ENTITY_VALUE_BY_DISPLAY_NAME | 1 |  |
-| SORT_ENTITY_VALUE_BY_VALUE | 2 |  |
-| SORT_ENTITY_VALUE_BY_SYNONYM_COUNT | 3 |  |
+| SORT_ENTITY_VALUE_BY_DISPLAY_NAME | 1 | Sort by display name |
+| SORT_ENTITY_VALUE_BY_VALUE | 2 | Sort by value |
+| SORT_ENTITY_VALUE_BY_SYNONYM_COUNT | 3 | Sort by synonym count |
 
 
  <!-- end enums -->
@@ -5157,33 +5911,21 @@ Structure of Entity value sorting field
 <a name="ondewo.nlu.EntityTypes"></a>
 
 ### EntityTypes
-Entities are extracted from user input and represent parameters that are
-meaningful to your application. For example, a date range, a proper name
-such as a geographic location or landmark, and so on. Entities represent
-actionable data for your application.
+Entities are extracted from user input and represent parameters that are meaningful to your application. For example, a date range, a proper name such as a geographic location or landmark, and so on. Entities represent actionable data for your application.
 
-When you define an entity, you can also include synonyms that all map to
-that entity. For example, "soft drink", "soda", "pop", and so on.
+When you define an entity, you can also include synonyms that all map to that entity. For example, &quot;soft drink&quot;, &quot;soda&quot;, &quot;pop&quot;, and so on.
 
 There are three types of entities:
 
-*   **System** - entities that are defined by the Dialogflow API for common
-    data types such as date, time, currency, and so on. A system entity is
-    represented by the `EntityType` type.
+<ul>
+  <li><strong>System</strong> - entities that are defined by the Dialogflow API for common data types such as date, time, currency, and so on. A system entity is represented by the <code>EntityType</code> type.</li>
 
-*   **Developer** - entities that are defined by you that represent
-    actionable data that is meaningful to your application. For example,
-    you could define a `pizza.sauce` entity for red or white pizza sauce,
-    a `pizza.cheese` entity for the different types of cheese on a pizza,
-    a `pizza.topping` entity for different toppings, and so on. A developer
-    entity is represented by the `EntityType` type.
+  <li><strong>Developer</strong> - entities that are defined by you that represent actionable data that is meaningful to your application. For example, you could define a <code>pizza.sauce</code> entity for red or white pizza sauce, a <code>pizza.cheese</code> entity for the different types of cheese on a pizza, a <code>pizza.topping</code> entity for different toppings, and so on. A developer entity is represented by the <code>EntityType</code> type.</li>
 
-*   **User** - entities that are built for an individual user such as
-    favorites, preferences, playlists, and so on. A user entity is
-    represented by the [SessionEntityType][google.cloud.dialogflow.v2.SessionEntityType] type.
+  <li><strong>User</strong> - entities that are built for an individual user such as favorites, preferences, playlists, and so on. A user entity is represented by the <a href="index.html#ondewo.nlu.SessionEntityType">SessionEntityType</a> type.</li>
+</ul>
 
-For more information about entity types, see the
-[Dialogflow documentation](https://dialogflow.com/docs/entities).
+For more information about entity types, see the <a href="https://dialogflow.com/docs/entities">Dialogflow documentation</a>.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
@@ -5194,10 +5936,10 @@ For more information about entity types, see the
 | DeleteEntityType | [DeleteEntityTypeRequest](#ondewo.nlu.DeleteEntityTypeRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes the specified entity type. |
 | BatchUpdateEntityTypes | [BatchUpdateEntityTypesRequest](#ondewo.nlu.BatchUpdateEntityTypesRequest) | [Operation](#ondewo.nlu.Operation) | Updates/Creates multiple entity types in the specified agent.
 
-Operation <response: [BatchUpdateEntityTypesResponse][google.cloud.dialogflow.v2.BatchUpdateEntityTypesResponse], metadata: [google.protobuf.Struct][google.protobuf.Struct]> |
+Operation &lt;response: <a href="index.html#ondewo.nlu.BatchUpdateEntityTypesResponse">BatchUpdateEntityTypesResponse</a>, metadata: <a href="https://protobuf.dev/reference/protobuf/google.protobuf/#struct">google.protobuf.Struct</a>&gt; |
 | BatchDeleteEntityTypes | [BatchDeleteEntityTypesRequest](#ondewo.nlu.BatchDeleteEntityTypesRequest) | [Operation](#ondewo.nlu.Operation) | Deletes entity types in the specified agent.
 
-Operation <response: [google.protobuf.Empty][google.protobuf.Empty], metadata: [google.protobuf.Struct][google.protobuf.Struct]> |
+Operation &lt;response: <a href="https://protobuf.dev/reference/protobuf/google.protobuf/#empty">google.protobuf.Empty</a>, metadata: <a href="https://protobuf.dev/reference/protobuf/google.protobuf/#struct">google.protobuf.Struct</a>&gt; |
 | GetEntity | [GetEntityRequest](#ondewo.nlu.GetEntityRequest) | [EntityType.Entity](#ondewo.nlu.EntityType.Entity) | Retrieves the specified entity . |
 | CreateEntity | [CreateEntityRequest](#ondewo.nlu.CreateEntityRequest) | [EntityType.Entity](#ondewo.nlu.EntityType.Entity) | Creates an entity in the specified agent. |
 | UpdateEntity | [UpdateEntityRequest](#ondewo.nlu.UpdateEntityRequest) | [EntityType.Entity](#ondewo.nlu.EntityType.Entity) | Updates the specified entity . |
@@ -5227,7 +5969,7 @@ Request to create a batch of parameters in the specified intent
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parameter_requests | [BatchCreateParametersRequest.CreateParameterRequest](#ondewo.nlu.BatchCreateParametersRequest.CreateParameterRequest) | repeated |  |
+| parameter_requests | [BatchCreateParametersRequest.CreateParameterRequest](#ondewo.nlu.BatchCreateParametersRequest.CreateParameterRequest) | repeated | List of parameters to create |
 
 
 
@@ -5237,7 +5979,7 @@ Request to create a batch of parameters in the specified intent
 <a name="ondewo.nlu.BatchCreateParametersRequest.CreateParameterRequest"></a>
 
 ### BatchCreateParametersRequest.CreateParameterRequest
-
+Request to create a single parameter
 
 
 | Field | Type | Label | Description |
@@ -5258,7 +6000,7 @@ Request to create a list of new response messages and adds it to an intent
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| response_message_requests | [BatchCreateResponseMessagesRequest.CreateResponseMessageRequest](#ondewo.nlu.BatchCreateResponseMessagesRequest.CreateResponseMessageRequest) | repeated |  |
+| response_message_requests | [BatchCreateResponseMessagesRequest.CreateResponseMessageRequest](#ondewo.nlu.BatchCreateResponseMessagesRequest.CreateResponseMessageRequest) | repeated | The list of response messages to create |
 
 
 
@@ -5268,7 +6010,7 @@ Request to create a list of new response messages and adds it to an intent
 <a name="ondewo.nlu.BatchCreateResponseMessagesRequest.CreateResponseMessageRequest"></a>
 
 ### BatchCreateResponseMessagesRequest.CreateResponseMessageRequest
-
+Request to create a single response message
 
 
 | Field | Type | Label | Description |
@@ -5289,7 +6031,7 @@ This message is a request of a creation of a batch of training phrases
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| training_phrase_requests | [BatchCreateTrainingPhrasesRequest.CreateTrainingPhraseRequest](#ondewo.nlu.BatchCreateTrainingPhrasesRequest.CreateTrainingPhraseRequest) | repeated |  |
+| training_phrase_requests | [BatchCreateTrainingPhrasesRequest.CreateTrainingPhraseRequest](#ondewo.nlu.BatchCreateTrainingPhrasesRequest.CreateTrainingPhraseRequest) | repeated | The list of training phrases to create |
 
 
 
@@ -5299,7 +6041,7 @@ This message is a request of a creation of a batch of training phrases
 <a name="ondewo.nlu.BatchCreateTrainingPhrasesRequest.CreateTrainingPhraseRequest"></a>
 
 ### BatchCreateTrainingPhrasesRequest.CreateTrainingPhraseRequest
-
+Request to create a single training phrase
 
 
 | Field | Type | Label | Description |
@@ -5315,13 +6057,13 @@ This message is a request of a creation of a batch of training phrases
 <a name="ondewo.nlu.BatchDeleteIntentsRequest"></a>
 
 ### BatchDeleteIntentsRequest
-The request message for [Intents.BatchDeleteIntents][google.cloud.dialogflow.v2.Intents.BatchDeleteIntents].
+The request message for <a href="index.html#ondewo.nlu.Intents.BatchDeleteIntents">Intents.BatchDeleteIntents</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The name of the agent to delete all entities types for. Format: `projects/&lt;project_uuid&gt;/agent`. |
-| intents | [Intent](#ondewo.nlu.Intent) | repeated | Required. The collection of intents to delete. Only intent `name` must be filled in. |
+| parent | [string](#string) |  | Required. The name of the agent to delete all entities types for. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| intents | [Intent](#ondewo.nlu.Intent) | repeated | Required. The collection of intents to delete. Only intent <code>name</code> must be filled in. |
 
 
 
@@ -5351,8 +6093,8 @@ This message contains response of deleted parameters
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| delete_statuses | [BatchDeleteParametersResponse.DeleteParameterStatus](#ondewo.nlu.BatchDeleteParametersResponse.DeleteParameterStatus) | repeated |  |
-| has_errors | [bool](#bool) |  |  |
+| delete_statuses | [BatchDeleteParametersResponse.DeleteParameterStatus](#ondewo.nlu.BatchDeleteParametersResponse.DeleteParameterStatus) | repeated | The deletion status for each requested parameter |
+| has_errors | [bool](#bool) |  | Indicates if some of the parameter deletions have errors |
 
 
 
@@ -5362,13 +6104,13 @@ This message contains response of deleted parameters
 <a name="ondewo.nlu.BatchDeleteParametersResponse.DeleteParameterStatus"></a>
 
 ### BatchDeleteParametersResponse.DeleteParameterStatus
-
+Status of a parameter deletion operation
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| successfully_deleted | [google.protobuf.Empty](#google.protobuf.Empty) |  |  |
-| error_message | [string](#string) |  |  |
+| successfully_deleted | [google.protobuf.Empty](#google.protobuf.Empty) |  | Set when the parameter was successfully deleted |
+| error_message | [string](#string) |  | The error message when deleting this parameter failed |
 
 
 
@@ -5398,8 +6140,8 @@ Response containing list with deleted response messages
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| delete_statuses | [BatchDeleteResponseMessagesResponse.DeleteResponseMessageStatus](#ondewo.nlu.BatchDeleteResponseMessagesResponse.DeleteResponseMessageStatus) | repeated |  |
-| has_errors | [bool](#bool) |  |  |
+| delete_statuses | [BatchDeleteResponseMessagesResponse.DeleteResponseMessageStatus](#ondewo.nlu.BatchDeleteResponseMessagesResponse.DeleteResponseMessageStatus) | repeated | The deletion status for each requested response message |
+| has_errors | [bool](#bool) |  | Indicates if some of the response message deletions have errors |
 
 
 
@@ -5409,13 +6151,13 @@ Response containing list with deleted response messages
 <a name="ondewo.nlu.BatchDeleteResponseMessagesResponse.DeleteResponseMessageStatus"></a>
 
 ### BatchDeleteResponseMessagesResponse.DeleteResponseMessageStatus
-
+Status of a response message deletion operation
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| successfully_deleted | [google.protobuf.Empty](#google.protobuf.Empty) |  |  |
-| error_message | [string](#string) |  |  |
+| successfully_deleted | [google.protobuf.Empty](#google.protobuf.Empty) |  | Set when the response message was successfully deleted |
+| error_message | [string](#string) |  | The error message when deleting this response message failed |
 
 
 
@@ -5445,8 +6187,8 @@ This message is a response of deleting a batch of training phrases
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| delete_statuses | [BatchDeleteTrainingPhrasesResponse.DeleteTrainingPhraseStatus](#ondewo.nlu.BatchDeleteTrainingPhrasesResponse.DeleteTrainingPhraseStatus) | repeated |  |
-| has_errors | [bool](#bool) |  |  |
+| delete_statuses | [BatchDeleteTrainingPhrasesResponse.DeleteTrainingPhraseStatus](#ondewo.nlu.BatchDeleteTrainingPhrasesResponse.DeleteTrainingPhraseStatus) | repeated | The deletion status for each requested training phrase |
+| has_errors | [bool](#bool) |  | Indicates if some of the training phrase deletions have errors |
 
 
 
@@ -5456,13 +6198,13 @@ This message is a response of deleting a batch of training phrases
 <a name="ondewo.nlu.BatchDeleteTrainingPhrasesResponse.DeleteTrainingPhraseStatus"></a>
 
 ### BatchDeleteTrainingPhrasesResponse.DeleteTrainingPhraseStatus
-
+Status of a training phrase deletion operation
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| successfully_deleted | [google.protobuf.Empty](#google.protobuf.Empty) |  |  |
-| error_message | [string](#string) |  |  |
+| successfully_deleted | [google.protobuf.Empty](#google.protobuf.Empty) |  | Set when the training phrase was successfully deleted |
+| error_message | [string](#string) |  | The error message when deleting this training phrase failed |
 
 
 
@@ -5477,7 +6219,7 @@ Request to get batch of parameters in a specified intent
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| names | [string](#string) | repeated | Required. The names of the response messages. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;/parameters/&lt;parameter_uuid</code></pre> |
+| names | [string](#string) | repeated | Required. The names of the response messages. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;/parameters/&lt;parameter_uuid&gt;</code></pre> |
 
 
 
@@ -5522,7 +6264,7 @@ Response containing a batch of parameters in the specified intent
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parameter_statuses | [BatchParametersStatusResponse.ParameterStatus](#ondewo.nlu.BatchParametersStatusResponse.ParameterStatus) | repeated |  |
+| parameter_statuses | [BatchParametersStatusResponse.ParameterStatus](#ondewo.nlu.BatchParametersStatusResponse.ParameterStatus) | repeated | The status for each parameter in the batch |
 | has_errors | [bool](#bool) |  | indicates if statuses of some of the parameters have errors |
 
 
@@ -5533,13 +6275,13 @@ Response containing a batch of parameters in the specified intent
 <a name="ondewo.nlu.BatchParametersStatusResponse.ParameterStatus"></a>
 
 ### BatchParametersStatusResponse.ParameterStatus
-
+Status of a parameter operation
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parameter | [Intent.Parameter](#ondewo.nlu.Intent.Parameter) |  |  |
-| error_message | [string](#string) |  |  |
+| parameter | [Intent.Parameter](#ondewo.nlu.Intent.Parameter) |  | The successfully processed parameter |
+| error_message | [string](#string) |  | The error message when processing this parameter failed |
 
 
 
@@ -5554,7 +6296,7 @@ This message is a response of a batch responses of message status
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| response_message_statuses | [BatchResponseMessagesStatusResponse.ResponseMessageStatus](#ondewo.nlu.BatchResponseMessagesStatusResponse.ResponseMessageStatus) | repeated |  |
+| response_message_statuses | [BatchResponseMessagesStatusResponse.ResponseMessageStatus](#ondewo.nlu.BatchResponseMessagesStatusResponse.ResponseMessageStatus) | repeated | The status for each response message in the batch |
 | has_errors | [bool](#bool) |  | indicates if statuses of some of the response messages have errors |
 
 
@@ -5565,13 +6307,13 @@ This message is a response of a batch responses of message status
 <a name="ondewo.nlu.BatchResponseMessagesStatusResponse.ResponseMessageStatus"></a>
 
 ### BatchResponseMessagesStatusResponse.ResponseMessageStatus
-
+Status of a response message operation
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| response_message | [Intent.Message](#ondewo.nlu.Intent.Message) |  |  |
-| error_message | [string](#string) |  |  |
+| response_message | [Intent.Message](#ondewo.nlu.Intent.Message) |  | The successfully processed response message |
+| error_message | [string](#string) |  | The error message when processing this response message failed |
 
 
 
@@ -5597,15 +6339,15 @@ This message is a response of the status of a batch of training phrases
 <a name="ondewo.nlu.BatchUpdateIntentsRequest"></a>
 
 ### BatchUpdateIntentsRequest
-The request message for [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents].
+The request message for <a href="index.html#ondewo.nlu.Intents.BatchUpdateIntents">Intents.BatchUpdateIntents</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The name of the agent to update or create intents in. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
-| intent_batch_uri | [string](#string) |  | The URI to a Google Cloud Storage file containing intents to update or create. The file format can either be a serialized proto (of IntentBatch type) or JSON object. Note: The URI must start with "gs://". |
+| intent_batch_uri | [string](#string) |  | The URI to a Google Cloud Storage file containing intents to update or create. The file format can either be a serialized proto (of IntentBatch type) or JSON object. Note: The URI must start with &quot;gs://&quot;. |
 | intent_batch_inline | [IntentBatch](#ondewo.nlu.IntentBatch) |  | The collection of intents to update or create. |
-| language_code | [string](#string) |  | Optional. The language of training phrases, parameters and rich messages defined in `intents`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
+| language_code | [string](#string) |  | Optional. The language of training phrases, parameters and rich messages defined in <code>intents</code>. If not specified, the agent&apos;s default language is used. <a href="https://dialogflow.com/docs/reference/language">More than a dozen languages</a> are supported. Note: languages must be enabled in the agent, before they can be used. |
 | update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields get updated. |
 | intent_view | [IntentView](#ondewo.nlu.IntentView) |  | Optional. The resource view to apply to the returned intent. |
 
@@ -5617,7 +6359,7 @@ The request message for [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.
 <a name="ondewo.nlu.BatchUpdateIntentsResponse"></a>
 
 ### BatchUpdateIntentsResponse
-The response message for [Intents.BatchUpdateIntents][google.cloud.dialogflow.v2.Intents.BatchUpdateIntents].
+The response message for <a href="index.html#ondewo.nlu.Intents.BatchUpdateIntents">Intents.BatchUpdateIntents</a>.
 
 
 | Field | Type | Label | Description |
@@ -5677,14 +6419,14 @@ This message is a request to update a batch of training phrases
 <a name="ondewo.nlu.CreateIntentRequest"></a>
 
 ### CreateIntentRequest
-The request message for [Intents.CreateIntent][google.cloud.dialogflow.v2.Intents.CreateIntent].
+The request message for <a href="index.html#ondewo.nlu.Intents.CreateIntent">Intents.CreateIntent</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The agent to create a intent for. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | intent | [Intent](#ondewo.nlu.Intent) |  | Required. The intent to create. |
-| language_code | [string](#string) |  | Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
+| language_code | [string](#string) |  | Optional. The language of training phrases, parameters and rich messages defined in <code>intent</code>. If not specified, the agent&apos;s default language is used. <a href="https://dialogflow.com/docs/reference/language">More than a dozen languages</a> are supported. Note: languages must be enabled in the agent, before they can be used. |
 | intent_view | [IntentView](#ondewo.nlu.IntentView) |  | Optional. The resource view to apply to the returned intent. |
 
 
@@ -5695,7 +6437,7 @@ The request message for [Intents.CreateIntent][google.cloud.dialogflow.v2.Intent
 <a name="ondewo.nlu.DeleteIntentRequest"></a>
 
 ### DeleteIntentRequest
-The request message for [Intents.DeleteIntent][google.cloud.dialogflow.v2.Intents.DeleteIntent].
+The request message for <a href="index.html#ondewo.nlu.Intents.DeleteIntent">Intents.DeleteIntent</a>.
 
 
 | Field | Type | Label | Description |
@@ -5715,7 +6457,7 @@ This message is a request to get all intent tags
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The name of the agent to delete all entities types for. Format: `projects/&lt;project_uuid&gt;/agent`. |
+| parent | [string](#string) |  | Required. The name of the agent to delete all entities types for. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
 
 
 
@@ -5725,23 +6467,23 @@ This message is a request to get all intent tags
 <a name="ondewo.nlu.GetIntentRequest"></a>
 
 ### GetIntentRequest
-The request message for [Intents.GetIntent][google.cloud.dialogflow.v2.Intents.GetIntent].
+The request message for <a href="index.html#ondewo.nlu.Intents.GetIntent">Intents.GetIntent</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | Required. The name of the intent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
-| language_code | [string](#string) |  | Optional. The language to retrieve training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
+| language_code | [string](#string) |  | Optional. The language to retrieve training phrases, parameters and rich messages for. If not specified, the agent&apos;s default language is used. <a href="https://dialogflow.com/docs/reference/language">More than a dozen languages</a> are supported. Note: languages must be enabled in the agent, before they can be used. |
 | intent_view | [IntentView](#ondewo.nlu.IntentView) |  | Optional. The resource view to apply to the returned intent. |
 | page_token | [string](#string) |  | The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
 
 
 
@@ -5782,26 +6524,25 @@ This message is a response of getting intent tags
 
 ### Intent
 Represents an intent.
-Intents convert a number of user expressions or patterns into an action. An
-action is an extraction of a user command or sentence semantics.
+Intents convert a number of user expressions or patterns into an action. An action is an extraction of a user command or sentence semantics.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Required for all methods except `create` (`create` populates the name automatically. The unique identifier of this intent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
+| name | [string](#string) |  | Required for all methods except <code>create</code> (<code>create</code> populates the name automatically. The unique identifier of this intent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
 | display_name | [string](#string) |  | Required. The name of this intent. |
 | webhook_state | [Intent.WebhookState](#ondewo.nlu.Intent.WebhookState) |  | Required. Indicates whether webhooks are enabled for the intent. |
 | priority | [int32](#int32) |  | Optional. The priority of this intent. Higher numbers represent higher priorities. Zero or negative numbers mean that the intent is disabled. |
 | is_fallback | [bool](#bool) |  | Optional. Indicates whether this is a fallback intent. |
-| ml_disabled | [bool](#bool) |  | Optional. Indicates whether Machine Learning is disabled for the intent. Note: If `ml_disabled` setting is set to true, then this intent is not taken into account during inference in `ML ONLY` match mode. Also, auto-markup in the UI is turned off. |
+| ml_disabled | [bool](#bool) |  | Optional. Indicates whether Machine Learning is disabled for the intent. Note: If <code>ml_disabled</code> setting is set to true, then this intent is not taken into account during inference in <code>ML ONLY</code> match mode. Also, auto-markup in the UI is turned off. |
 | input_context_names | [string](#string) | repeated | Optional. The list of context names required for this intent to be triggered. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/-/contexts/&lt;context_uuid&gt;</code></pre> |
 | events | [string](#string) | repeated | Optional. The collection of event names that trigger the intent. If the collection of input contexts is not empty, all of the contexts must be present in the active user session for an event to trigger this intent. |
 | training_phrases | [Intent.TrainingPhrase](#ondewo.nlu.Intent.TrainingPhrase) | repeated | Optional. The collection of examples/templates that the agent is trained on. |
 | action | [string](#string) |  | Optional. The name of the action associated with the intent. |
-| output_contexts | [Context](#ondewo.nlu.Context) | repeated | Optional. The collection of contexts that are activated when the intent is matched. Context messages in this collection should not set the parameters field. Setting the `lifespan_count` to 0 will reset the context when the intent is matched. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/-/contexts/&lt;context_uuid&gt;</code></pre> |
+| output_contexts | [Context](#ondewo.nlu.Context) | repeated | Optional. The collection of contexts that are activated when the intent is matched. Context messages in this collection should not set the parameters field. Setting the <code>lifespan_count</code> to 0 will reset the context when the intent is matched. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/-/contexts/&lt;context_uuid&gt;</code></pre> |
 | reset_contexts | [bool](#bool) |  | Optional. Indicates whether to delete all contexts in the current session when this intent is matched. |
 | parameters | [Intent.Parameter](#ondewo.nlu.Intent.Parameter) | repeated | Optional. The collection of parameters associated with the intent. |
-| messages | [Intent.Message](#ondewo.nlu.Intent.Message) | repeated | Optional. The collection of rich messages corresponding to the `Response` field in the Dialogflow console. |
+| messages | [Intent.Message](#ondewo.nlu.Intent.Message) | repeated | Optional. The collection of rich messages corresponding to the <code>Response</code> field in the Dialogflow console. |
 | default_response_platforms | [Intent.Message.Platform](#ondewo.nlu.Intent.Message.Platform) | repeated | Optional. The list of platforms for which the first response will be taken from among the messages assigned to the DEFAULT_PLATFORM. |
 | root_followup_intent_name | [string](#string) |  | The unique identifier of the root intent in the chain of followup intents. It identifies the correct followup intents chain for this intent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
 | parent_followup_intent_name | [string](#string) |  | The unique identifier of the parent intent in the chain of followup intents. It identifies the parent followup intent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
@@ -5814,7 +6555,7 @@ action is an extraction of a user command or sentence semantics.
 | status | [Intent.IntentStatus](#ondewo.nlu.Intent.IntentStatus) |  | Indicates whether the intent is active or not |
 | start_date | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Optional. Provides information that can be used in custom scripts |
 | end_date | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Optional. Provides information that can be used in custom scripts |
-| tags | [string](#string) | repeated | Optional. Adds arbitrary "categories" for which one could filter the intents |
+| tags | [string](#string) | repeated | Optional. Adds arbitrary &quot;categories&quot; for which one could filter the intents |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
@@ -5844,7 +6585,7 @@ Represents a single followup intent in the chain.
 <a name="ondewo.nlu.Intent.Message"></a>
 
 ### Intent.Message
-Corresponds to the `Response` field in the Dialogflow console.
+Corresponds to the <code>Response</code> field in the Dialogflow console.
 
 
 | Field | Type | Label | Description |
@@ -6018,7 +6759,7 @@ This message contains HTML text
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| text | [string](#string) | repeated | Collection of the agent's responses in HTML format |
+| text | [string](#string) | repeated | Collection of the agent&apos;s responses in HTML format |
 
 
 
@@ -6044,8 +6785,7 @@ The image response message.
 <a name="ondewo.nlu.Intent.Message.LinkOutSuggestion"></a>
 
 ### Intent.Message.LinkOutSuggestion
-The suggestion chip message that allows the user to jump out to the app
-or website associated with this agent.
+The suggestion chip message that allows the user to jump out to the app or website associated with this agent.
 
 
 | Field | Type | Label | Description |
@@ -6111,8 +6851,7 @@ The quick replies response message.
 <a name="ondewo.nlu.Intent.Message.SelectItemInfo"></a>
 
 ### Intent.Message.SelectItemInfo
-Additional info about the select item for when it is triggered in a
-dialog.
+Additional info about the select item for when it is triggered in a dialog.
 
 
 | Field | Type | Label | Description |
@@ -6145,10 +6884,7 @@ The simple response message containing speech or text.
 <a name="ondewo.nlu.Intent.Message.SimpleResponses"></a>
 
 ### Intent.Message.SimpleResponses
-The collection of simple response candidates.
-This message in `QueryResult.fulfillment_messages` and
-`WebhookResponse.fulfillment_messages` should contain only one
-`SimpleResponse`.
+The collection of simple response candidates. This message in <code>QueryResult.fulfillment_messages</code> and <code>WebhookResponse.fulfillment_messages</code> should contain only one <code>SimpleResponse</code>.
 
 
 | Field | Type | Label | Description |
@@ -6163,8 +6899,7 @@ This message in `QueryResult.fulfillment_messages` and
 <a name="ondewo.nlu.Intent.Message.Suggestion"></a>
 
 ### Intent.Message.Suggestion
-The suggestion chip message that the user can tap to quickly post a reply
-to the conversation.
+The suggestion chip message that the user can tap to quickly post a reply to the conversation.
 
 
 | Field | Type | Label | Description |
@@ -6199,7 +6934,7 @@ The text response message.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| text | [string](#string) | repeated | Optional. The collection of the agent's responses. |
+| text | [string](#string) | repeated | Optional. The collection of the agent&apos;s responses. |
 
 
 
@@ -6232,9 +6967,9 @@ Represents intent parameters.
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | The unique identifier of this parameter. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;/parameters/&lt;parameter_uuid&gt;</code></pre> |
 | display_name | [string](#string) |  | Required. The name of the parameter. |
-| value | [string](#string) |  | Optional. The definition of the parameter value. It can be: - a constant string, - a parameter value defined as `$parameter_name`, - an original parameter value defined as `$parameter_name.original`, - a parameter value from some context defined as `#context_name.parameter_name`. |
-| default_value | [string](#string) |  | Optional. The default value to use when the `value` yields an empty result. Default values can be extracted from contexts by using the following syntax: `#context_name.parameter_name`. |
-| entity_type_name | [string](#string) |  | Optional. The unique identifier of the entity type in format `projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;` that describes values of the parameter. If the parameter is required, this must be provided. |
+| value | [string](#string) |  | Optional. The definition of the parameter value. It can be: <ul> <li>a constant string,</li> <li>a parameter value defined as <code>$parameter_name</code>,</li> <li>an original parameter value defined as <code>$parameter_name.original</code>,</li> <li>a parameter value from some context defined as <code>#context_name.parameter_name</code>.</li> </ul> |
+| default_value | [string](#string) |  | Optional. The default value to use when the <code>value</code> yields an empty result. Default values can be extracted from contexts by using the following syntax: <code>#context_name.parameter_name</code>. |
+| entity_type_name | [string](#string) |  | Optional. The unique identifier of the entity type in format <code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;</code> that describes values of the parameter. If the parameter is required, this must be provided. |
 | entity_type_display_name | [string](#string) |  | Optional. The name of the entity type that describes values of the parameter. If the parameter is required, this must be provided. |
 | mandatory | [bool](#bool) |  | Optional. Indicates whether the parameter is required. That is, whether the intent cannot be completed without collecting the parameter value. |
 | prompts | [Intent.Parameter.Prompt](#ondewo.nlu.Intent.Parameter.Prompt) | repeated | Optional. The collection of prompts that the agent can present to the user in order to collect value for the parameter. |
@@ -6303,13 +7038,13 @@ entity type only or both entity type and entity value.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| entity_type_name | [string](#string) |  | Required. The unique entity type identifier in format `projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;`. |
+| entity_type_name | [string](#string) |  | Required. The unique entity type identifier in format <code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;</code>. |
 | entity_type_display_name | [string](#string) |  | Optional. The entity type name. |
-| entity_value_name | [string](#string) |  | Optional. The unique entity value identifier in format `projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;/entities/&lt;entity_uuid&gt;`. The entity value must belong to the entity type defined in entity_type_name. |
+| entity_value_name | [string](#string) |  | Optional. The unique entity value identifier in format <code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;/entities/&lt;entity_uuid&gt;</code>. The entity value must belong to the entity type defined in entity_type_name. |
 | entity_value_display_name | [string](#string) |  | Optional. The entity value name. |
 | start | [int32](#int32) |  | Required. Defines a character position, where the entity starts in the training phrase text (0-indexed). |
-| end | [int32](#int32) |  | Required. Defines a character position + 1, where the entity ends in the training phrase. Example: "Meet you tomorrow" -> Entity(entity_type_display_name="sys.date", start=9, end=17) |
-| parameter_name | [string](#string) |  | Optional. The unique parameter identifier in format `projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;/parameters/&lt;parameter_uuid&gt;` for the value extracted from the annotated part of the example. The parameter must be one of the parameters defined in the top-level intent message. Can be unset if the parameter is created in the same create/update intent request as the annotation. |
+| end | [int32](#int32) |  | Required. Defines a character position + 1, where the entity ends in the training phrase. Example: &quot;Meet you tomorrow&quot; -&gt; Entity(entity_type_display_name=&quot;sys.date&quot;, start=9, end=17) |
+| parameter_name | [string](#string) |  | Optional. The unique parameter identifier in format <code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;/parameters/&lt;parameter_uuid&gt;</code> for the value extracted from the annotated part of the example. The parameter must be one of the parameters defined in the top-level intent message. Can be unset if the parameter is created in the same create/update intent request as the annotation. |
 | parameter_display_name | [string](#string) |  | Optional. The parameter name. |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
@@ -6344,8 +7079,8 @@ This message contains sorting of an intent
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| sorting_field | [IntentSorting.IntentSortingField](#ondewo.nlu.IntentSorting.IntentSortingField) |  |  |
-| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) |  |  |
+| sorting_field | [IntentSorting.IntentSortingField](#ondewo.nlu.IntentSorting.IntentSortingField) |  | The field to sort the intents by |
+| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) |  | The sorting mode: ascending or descending |
 
 
 
@@ -6371,23 +7106,23 @@ This message is a request to get an intent tag
 <a name="ondewo.nlu.ListIntentsRequest"></a>
 
 ### ListIntentsRequest
-The request message for [Intents.ListIntents][google.cloud.dialogflow.v2.Intents.ListIntents].
+The request message for <a href="index.html#ondewo.nlu.Intents.ListIntents">Intents.ListIntents</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
-| language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent before they can be used. |
+| language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent&apos;s default language is used. <a href="https://dialogflow.com/docs/reference/language">More than a dozen languages</a> are supported. Note: languages must be enabled in the agent before they can be used. |
 | intent_view | [IntentView](#ondewo.nlu.IntentView) |  | Optional. The resource view to apply to the returned intent. |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
 | filter_by_category | [IntentCategory](#ondewo.nlu.IntentCategory) |  | Optional. Applies a filter to the list. Default, no filter. |
 | sort_by_field | [IntentSorting](#ondewo.nlu.IntentSorting) |  | Optional. Defines the sorting of the list. Default, no sorting. |
 | filter_by_tags | [string](#string) | repeated | Optional. Applies a filter to the list by tags. Default, no filter. |
@@ -6400,7 +7135,7 @@ Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" 
 <a name="ondewo.nlu.ListIntentsResponse"></a>
 
 ### ListIntentsResponse
-The response message for [Intents.ListIntents][google.cloud.dialogflow.v2.Intents.ListIntents].
+The response message for <a href="index.html#ondewo.nlu.Intents.ListIntents">Intents.ListIntents</a>.
 
 
 | Field | Type | Label | Description |
@@ -6425,13 +7160,13 @@ The request message for TrainingPhraseRequest
 | language_code | [string](#string) |  | Optional. The language code used to filter out prompts. |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
 
 
 
@@ -6447,7 +7182,7 @@ The response message for ListTrainingPhrase
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parameters | [Intent.Parameter](#ondewo.nlu.Intent.Parameter) | repeated | The list of parameters. There will be a maximum number of items returned based on the page_token field in the request. |
-| next_page_token | [string](#string) |  | Token to retrieve the next page of results, or empty if there are no more results in the list. Format: `current_index-<CURRENT_INDEX>--page_size-<PAGE_SIZE>--sub_field-<SUB_FIELD>` where <CURRENT_INDEX> and <PAGE_SIZE> are of type int, <SUB_FIELD> is of type str (example: `parameters`) |
+| next_page_token | [string](#string) |  | Token to retrieve the next page of results, or empty if there are no more results in the list. Format: <code>current_index-&lt;CURRENT_INDEX&gt;--page_size-&lt;PAGE_SIZE&gt;--sub_field-&lt;SUB_FIELD&gt;</code> where &lt;CURRENT_INDEX&gt; and &lt;PAGE_SIZE&gt; are of type int, &lt;SUB_FIELD&gt; is of type str (example: <code>parameters</code>) |
 
 
 
@@ -6463,16 +7198,16 @@ The request message for ResponseMessageRequest
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | intent_name | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
-| language_code | [string](#string) |  | Optional. The language to list response messages, parameters and rich messages for. If not specified, the agent's default language is used. |
+| language_code | [string](#string) |  | Optional. The language to list response messages, parameters and rich messages for. If not specified, the agent&apos;s default language is used. |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
 
 
 
@@ -6488,7 +7223,7 @@ The response message for ListResponseMessage
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | response_messages | [Intent.Message](#ondewo.nlu.Intent.Message) | repeated | The list of response messages. There will be a maximum number of items returned based on the page_token field in the request. |
-| next_page_token | [string](#string) |  | Token to retrieve the next page of results, or empty if there are no more results in the list. Format: `current_index-<CURRENT_INDEX>--page_size-<PAGE_SIZE>--sub_field-<SUB_FIELD>` where <CURRENT_INDEX> and <PAGE_SIZE> are of type int, <SUB_FIELD> is of type str (example: `messages`) |
+| next_page_token | [string](#string) |  | Token to retrieve the next page of results, or empty if there are no more results in the list. Format: <code>current_index-&lt;CURRENT_INDEX&gt;--page_size-&lt;PAGE_SIZE&gt;--sub_field-&lt;SUB_FIELD&gt;</code> where &lt;CURRENT_INDEX&gt; and &lt;PAGE_SIZE&gt; are of type int, &lt;SUB_FIELD&gt; is of type str (example: <code>messages</code>) |
 
 
 
@@ -6504,16 +7239,16 @@ The request message for TrainingPhraseRequest
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | intent_name | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
-| language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. |
+| language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent&apos;s default language is used. |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
 
 
 
@@ -6529,7 +7264,7 @@ The response message for ListTrainingPhrase
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | training_phrases | [Intent.TrainingPhrase](#ondewo.nlu.Intent.TrainingPhrase) | repeated | The list of training phrases. There will be a maximum number of items returned based on the page_token field in the request. |
-| next_page_token | [string](#string) |  | Token to retrieve the next page of results, or empty if there are no more results in the list. Format: `current_index-<CURRENT_INDEX>--page_size-<PAGE_SIZE>--sub_field-<SUB_FIELD>` where <CURRENT_INDEX> and <PAGE_SIZE> are of type int, <SUB_FIELD> is of type str (example: `training_phrases`) |
+| next_page_token | [string](#string) |  | Token to retrieve the next page of results, or empty if there are no more results in the list. Format: <code>current_index-&lt;CURRENT_INDEX&gt;--page_size-&lt;PAGE_SIZE&gt;--sub_field-&lt;SUB_FIELD&gt;</code> where &lt;CURRENT_INDEX&gt; and &lt;PAGE_SIZE&gt; are of type int, &lt;SUB_FIELD&gt; is of type str (example: <code>training_phrases</code>) |
 
 
 
@@ -6544,18 +7279,18 @@ The request message for TrainingPhraseRequest
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The name of the agent to delete all entities types for. Format: `projects/&lt;project_uuid&gt;/agent`. |
+| parent | [string](#string) |  | Required. The name of the agent to delete all entities types for. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
 | language_code | [string](#string) |  | Optional. The language code used to filter out prompts. |
 | intent_ids | [string](#string) | repeated | Optional. List of intent uuids to filter by. Only training phrases that have this intent uuid will be returned If not passed, returns all |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
 
 
 
@@ -6571,7 +7306,7 @@ This message contains a list of training phrases filtered by intent ids, languag
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | training_phrases | [string](#string) | repeated | List of user_says values. There will be a maximum number of items returned based on the page_token field in the request. |
-| next_page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. Format: `current_index-<CURRENT_INDEX>--page_size-<PAGE_SIZE>--sub_field-<SUB_FIELD>` where <CURRENT_INDEX> and <PAGE_SIZE> are of type int, <SUB_FIELD> is of type str (example: `parameters`) |
+| next_page_token | [string](#string) |  | Optional. The next_page_token value returned from a previous list request. Format: <code>current_index-&lt;CURRENT_INDEX&gt;--page_size-&lt;PAGE_SIZE&gt;--sub_field-&lt;SUB_FIELD&gt;</code> where &lt;CURRENT_INDEX&gt; and &lt;PAGE_SIZE&gt; are of type int, &lt;SUB_FIELD&gt; is of type str (example: <code>parameters</code>) |
 
 
 
@@ -6586,8 +7321,8 @@ This message containing the training phrases status
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| training_phrase | [Intent.TrainingPhrase](#ondewo.nlu.Intent.TrainingPhrase) |  |  |
-| error_message | [string](#string) |  |  |
+| training_phrase | [Intent.TrainingPhrase](#ondewo.nlu.Intent.TrainingPhrase) |  | The successfully processed training phrase |
+| error_message | [string](#string) |  | The error message when processing this training phrase failed |
 
 
 
@@ -6597,13 +7332,13 @@ This message containing the training phrases status
 <a name="ondewo.nlu.UpdateIntentRequest"></a>
 
 ### UpdateIntentRequest
-The request message for [Intents.UpdateIntent][google.cloud.dialogflow.v2.Intents.UpdateIntent].
+The request message for <a href="index.html#ondewo.nlu.Intents.UpdateIntent">Intents.UpdateIntent</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | intent | [Intent](#ondewo.nlu.Intent) |  | Required. The intent to update. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
-| language_code | [string](#string) |  | Optional. The language of training phrases, parameters and rich messages defined in `intent`. If not specified, the agent's default language is used. [More than a dozen languages](https://dialogflow.com/docs/reference/language) are supported. Note: languages must be enabled in the agent, before they can be used. |
+| language_code | [string](#string) |  | Optional. The language of training phrases, parameters and rich messages defined in <code>intent</code>. If not specified, the agent&apos;s default language is used. <a href="https://dialogflow.com/docs/reference/language">More than a dozen languages</a> are supported. Note: languages must be enabled in the agent, before they can be used. |
 | update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields get updated. |
 | intent_view | [IntentView](#ondewo.nlu.IntentView) |  | Optional. The resource view to apply to the returned intent. |
 
@@ -6621,8 +7356,8 @@ Structure of status of an Intent
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| ACTIVE | 0 |  |
-| INACTIVE | 1 |  |
+| ACTIVE | 0 | Intent is active |
+| INACTIVE | 1 | Intent is inactive |
 
 
 
@@ -6641,27 +7376,27 @@ Represents different platforms that a rich message can be intended for.
 | SKYPE | 5 | Skype. |
 | LINE | 6 | Line. |
 | VIBER | 7 | Viber. |
-| ACTIONS_ON_GOOGLE | 8 | Actions on Google. When using Actions on Google, you can choose one of the specific Intent.Message types that mention support for Actions on Google, or you can use the advanced Intent.Message.payload field. The payload field provides access to AoG features not available in the specific message types. If using the Intent.Message.payload field, it should have a structure similar to the JSON message shown here. For more information, see [Actions on Google Webhook Format](https://developers.google.com/actions/dialogflow/webhook) <pre>{ "expectUserResponse": true, "isSsml": false, "noInputPrompts": [], "richResponse": { "items": [ { "simpleResponse": { "displayText": "hi", "textToSpeech": "hello" } } ], "suggestions": [ { "title": "Say this" }, { "title": "or this" } ] }, "systemIntent": { "data": { "@type": "type.googleapis.com/google.actions.v2.OptionValueSpec", "listSelect": { "items": [ { "optionInfo": { "key": "key1", "synonyms": [ "key one" ] }, "title": "must not be empty, but unique" }, { "optionInfo": { "key": "key2", "synonyms": [ "key two" ] }, "title": "must not be empty, but unique" } ] } }, "intent": "actions.intent.OPTION" } }</pre> |
-| PLACEHOLDER_1 | 9 |  |
-| PLACEHOLDER_2 | 10 |  |
-| PLACEHOLDER_3 | 11 |  |
-| PLACEHOLDER_4 | 12 |  |
-| PLACEHOLDER_5 | 13 |  |
-| PLACEHOLDER_6 | 14 |  |
-| PLACEHOLDER_7 | 15 |  |
-| PLACEHOLDER_8 | 16 |  |
-| PLACEHOLDER_9 | 17 |  |
-| PLACEHOLDER_10 | 18 |  |
-| PLACEHOLDER_11 | 19 |  |
-| PLACEHOLDER_12 | 20 |  |
-| PLACEHOLDER_13 | 21 |  |
-| PLACEHOLDER_14 | 22 |  |
-| PLACEHOLDER_15 | 23 |  |
-| PLACEHOLDER_16 | 24 |  |
-| PLACEHOLDER_17 | 25 |  |
-| PLACEHOLDER_18 | 26 |  |
-| PLACEHOLDER_19 | 27 |  |
-| PLACEHOLDER_20 | 28 |  |
+| ACTIONS_ON_GOOGLE | 8 | Actions on Google. When using Actions on Google, you can choose one of the specific Intent.Message types that mention support for Actions on Google, or you can use the advanced Intent.Message.payload field. The payload field provides access to AoG features not available in the specific message types. If using the Intent.Message.payload field, it should have a structure similar to the JSON message shown here. For more information, see <a href="https://developers.google.com/actions/dialogflow/webhook">Actions on Google Webhook Format</a> <pre><code>{ &quot;expectUserResponse&quot;: true, &quot;isSsml&quot;: false, &quot;noInputPrompts&quot;: [], &quot;richResponse&quot;: { &quot;items&quot;: [ { &quot;simpleResponse&quot;: { &quot;displayText&quot;: &quot;hi&quot;, &quot;textToSpeech&quot;: &quot;hello&quot; } } ], &quot;suggestions&quot;: [ { &quot;title&quot;: &quot;Say this&quot; }, { &quot;title&quot;: &quot;or this&quot; } ] }, &quot;systemIntent&quot;: { &quot;data&quot;: { &quot;@type&quot;: &quot;type.googleapis.com/google.actions.v2.OptionValueSpec&quot;, &quot;listSelect&quot;: { &quot;items&quot;: [ { &quot;optionInfo&quot;: { &quot;key&quot;: &quot;key1&quot;, &quot;synonyms&quot;: [ &quot;key one&quot; ] }, &quot;title&quot;: &quot;must not be empty, but unique&quot; }, { &quot;optionInfo&quot;: { &quot;key&quot;: &quot;key2&quot;, &quot;synonyms&quot;: [ &quot;key two&quot; ] }, &quot;title&quot;: &quot;must not be empty, but unique&quot; } ] } }, &quot;intent&quot;: &quot;actions.intent.OPTION&quot; } }</code></pre> |
+| PLACEHOLDER_1 | 9 | Placeholder platform 1 |
+| PLACEHOLDER_2 | 10 | Placeholder platform 2 |
+| PLACEHOLDER_3 | 11 | Placeholder platform 3 |
+| PLACEHOLDER_4 | 12 | Placeholder platform 4 |
+| PLACEHOLDER_5 | 13 | Placeholder platform 5 |
+| PLACEHOLDER_6 | 14 | Placeholder platform 6 |
+| PLACEHOLDER_7 | 15 | Placeholder platform 7 |
+| PLACEHOLDER_8 | 16 | Placeholder platform 8 |
+| PLACEHOLDER_9 | 17 | Placeholder platform 9 |
+| PLACEHOLDER_10 | 18 | Placeholder platform 10 |
+| PLACEHOLDER_11 | 19 | Placeholder platform 11 |
+| PLACEHOLDER_12 | 20 | Placeholder platform 12 |
+| PLACEHOLDER_13 | 21 | Placeholder platform 13 |
+| PLACEHOLDER_14 | 22 | Placeholder platform 14 |
+| PLACEHOLDER_15 | 23 | Placeholder platform 15 |
+| PLACEHOLDER_16 | 24 | Placeholder platform 16 |
+| PLACEHOLDER_17 | 25 | Placeholder platform 17 |
+| PLACEHOLDER_18 | 26 | Placeholder platform 18 |
+| PLACEHOLDER_19 | 27 | Placeholder platform 19 |
+| PLACEHOLDER_20 | 28 | Placeholder platform 20 |
 
 
 
@@ -6694,7 +7429,7 @@ Represents the different states that webhooks can be in.
 <a name="ondewo.nlu.IntentCategory"></a>
 
 ### IntentCategory
-Represents the type of intents to filter by in the "List Intents" request
+Represents the type of intents to filter by in the &quot;List Intents&quot; request
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -6714,13 +7449,13 @@ Structure of intent sorting field
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| NO_INTENT_SORTING | 0 |  |
-| SORT_INTENT_BY_NAME | 1 |  |
-| SORT_INTENT_BY_CREATION_DATE | 2 |  |
-| SORT_INTENT_BY_LAST_UPDATED | 3 |  |
-| SORT_INTENT_BY_USERSAYS_COUNT | 4 |  |
-| SORT_INTENT_BY_START_DATE | 5 |  |
-| SORT_INTENT_BY_END_DATE | 6 |  |
+| NO_INTENT_SORTING | 0 | No sorting applied |
+| SORT_INTENT_BY_NAME | 1 | Sort by intent name |
+| SORT_INTENT_BY_CREATION_DATE | 2 | Sort by creation date |
+| SORT_INTENT_BY_LAST_UPDATED | 3 | Sort by last updated date |
+| SORT_INTENT_BY_USERSAYS_COUNT | 4 | Sort by training phrase (user says) count |
+| SORT_INTENT_BY_START_DATE | 5 | Sort by start date |
+| SORT_INTENT_BY_END_DATE | 6 | Sort by end date |
 
 
 
@@ -6748,37 +7483,19 @@ does not return training phrases in the response by default.
 <a name="ondewo.nlu.Intents"></a>
 
 ### Intents
-An intent represents a mapping between input from a user and an action to
-be taken by your application. When you pass user input to the
-[DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
-[StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) method, the
-Dialogflow API analyzes the input and searches
-for a matching intent. If no match is found, the Dialogflow API returns a
-fallback intent (`is_fallback` = true).
+An intent represents a mapping between input from a user and an action to be taken by your application. When you pass user input to the <a href="index.html#ondewo.nlu.Sessions.DetectIntent">DetectIntent</a> (or <a href="index.html#ondewo.nlu.Sessions.StreamingDetectIntent">StreamingDetectIntent</a>) method, the Dialogflow API analyzes the input and searches for a matching intent. If no match is found, the Dialogflow API returns a fallback intent (<code>is_fallback</code> = true).
 
-You can provide additional information for the Dialogflow API to use to
-match user input to an intent by adding the following to your intent.
+You can provide additional information for the Dialogflow API to use to match user input to an intent by adding the following to your intent.
 
-*   **Contexts** - provide additional context for intent analysis. For
-    example, if an intent is related to an object in your application that
-    plays music, you can provide a context to determine when to match the
-    intent if the user input is “turn it off”.  You can include a context
-    that matches the intent when there is previous user input of
-    "play music", and not when there is previous user input of
-    "turn on the light".
+<ul>
+  <li><strong>Contexts</strong> - provide additional context for intent analysis. For example, if an intent is related to an object in your application that plays music, you can provide a context to determine when to match the intent if the user input is &quot;turn it off&quot;.  You can include a context that matches the intent when there is previous user input of &quot;play music&quot;, and not when there is previous user input of &quot;turn on the light&quot;.</li>
 
-*   **Events** - allow for matching an intent by using an event name
-    instead of user input. Your application can provide an event name and
-    related parameters to the Dialogflow API to match an intent. For
-    example, when your application starts, you can send a welcome event
-    with a user name parameter to the Dialogflow API to match an intent with
-    a personalized welcome message for the user.
+  <li><strong>Events</strong> - allow for matching an intent by using an event name instead of user input. Your application can provide an event name and related parameters to the Dialogflow API to match an intent. For example, when your application starts, you can send a welcome event with a user name parameter to the Dialogflow API to match an intent with a personalized welcome message for the user.</li>
 
-*   **Training phrases** - provide examples of user input to train the
-    Dialogflow API agent to better match intents.
+  <li><strong>Training phrases</strong> - provide examples of user input to train the Dialogflow API agent to better match intents.</li>
+</ul>
 
-For more information about intents, see the
-[Dialogflow documentation](https://dialogflow.com/docs/intents).
+For more information about intents, see the <a href="https://dialogflow.com/docs/intents">Dialogflow documentation</a>.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
@@ -6789,10 +7506,8 @@ For more information about intents, see the
 | DeleteIntent | [DeleteIntentRequest](#ondewo.nlu.DeleteIntentRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes the specified intent. |
 | BatchUpdateIntents | [BatchUpdateIntentsRequest](#ondewo.nlu.BatchUpdateIntentsRequest) | [BatchUpdateIntentsResponse](#ondewo.nlu.BatchUpdateIntentsResponse) | Updates/Creates multiple intents in the specified agent.
 
-Operation <response: [BatchUpdateIntentsResponse][google.cloud.dialogflow.v2.BatchUpdateIntentsResponse]> |
-| BatchDeleteIntents | [BatchDeleteIntentsRequest](#ondewo.nlu.BatchDeleteIntentsRequest) | [Operation](#ondewo.nlu.Operation) | Deletes intents in the specified agent.
-
-Operation <response: [google.protobuf.Empty][google.protobuf.Empty]> |
+Operation &lt;response: <a href="index.html#ondewo.nlu.BatchUpdateIntentsResponse">BatchUpdateIntentsResponse</a>&gt; |
+| BatchDeleteIntents | [BatchDeleteIntentsRequest](#ondewo.nlu.BatchDeleteIntentsRequest) | [Operation](#ondewo.nlu.Operation) | Deletes intents in the specified agent. <br> Operation &lt;response: <a href="https://protobuf.dev/reference/protobuf/google.protobuf/#empty">google.protobuf.Empty</a>&gt; |
 | TagIntent | [IntentTagRequest](#ondewo.nlu.IntentTagRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Tags a specific intent with tag(s) |
 | DeleteIntentTag | [IntentTagRequest](#ondewo.nlu.IntentTagRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes tag(s) for a specific intent |
 | GetIntentTags | [GetIntentTagsRequest](#ondewo.nlu.GetIntentTagsRequest) | [GetIntentTagsResponse](#ondewo.nlu.GetIntentTagsResponse) | Gets all the tags for a specific intent |
@@ -6818,6 +7533,3085 @@ Operation <response: [google.protobuf.Empty][google.protobuf.Empty]> |
 
 
 
+<a name="ondewo/nlu/llm_evaluation.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## ondewo/nlu/llm_evaluation.proto
+
+
+
+<a name="ondewo.nlu.AddLlmEvaluationExampleRequest"></a>
+
+### AddLlmEvaluationExampleRequest
+Request to append a single example to an existing dataset.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_dataset_name | [string](#string) |  | Resource name of the dataset to extend. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| llm_evaluation_example | [LlmEvaluationExample](#ondewo.nlu.LlmEvaluationExample) |  | Example payload to append. |
+| parent | [string](#string) |  | Project owning the dataset. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required, must match the dataset's). |
+
+
+
+
+
+
+<a name="ondewo.nlu.AddLlmEvaluationExamplesRequest"></a>
+
+### AddLlmEvaluationExamplesRequest
+Request to append multiple examples to an existing dataset.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_dataset_name | [string](#string) |  | Resource name of the dataset to extend. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| llm_evaluation_examples | [LlmEvaluationExample](#ondewo.nlu.LlmEvaluationExample) | repeated | Examples to append. |
+| parent | [string](#string) |  | Project owning the dataset. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required, must match the dataset's). |
+
+
+
+
+
+
+<a name="ondewo.nlu.AddLlmEvaluationExamplesResponse"></a>
+
+### AddLlmEvaluationExamplesResponse
+Response for AddExamples.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_examples | [LlmEvaluationExample](#ondewo.nlu.LlmEvaluationExample) | repeated | Example records created. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ApplyLlmEvaluationAbRolloutRequest"></a>
+
+### ApplyLlmEvaluationAbRolloutRequest
+Request to apply an A/B rollout: promotes the chosen variant's config to the
+project's classifier default, stops the experiment and writes the audit
+decision. Idempotent — re-applying the same already-applied experiment returns
+the existing decision rather than promoting twice.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the experiment to roll out. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAbExperiments/&lt;experiment_uuid&gt;</code>. |
+| variant_id | [string](#string) |  | Required. Variant slug whose config to promote to the project classifier default. The operator's explicit choice; the server applies exactly this variant. |
+| optimize_metric | [LlmEvaluationAbOptimizeMetric](#ondewo.nlu.LlmEvaluationAbOptimizeMetric) |  | The metric the decision was made on, recorded on the audit decision. |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.CancelLlmEvaluationExperimentRequest"></a>
+
+### CancelLlmEvaluationExperimentRequest
+Request to cancel a running experiment.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the experiment to cancel. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.CompareLlmEvaluationExperimentsRequest"></a>
+
+### CompareLlmEvaluationExperimentsRequest
+Request to compare two-or-more experiments.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_experiment_names | [string](#string) | repeated | Resource names of the experiments to compare (two-or-more). Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| llm_evaluation_baseline_experiment_name | [string](#string) |  | Optional. Resource name of the baseline experiment used for delta computation. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the experiments. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required, all experiments must share the same). |
+
+
+
+
+
+
+<a name="ondewo.nlu.CreateLlmEvaluationAbExperimentRequest"></a>
+
+### CreateLlmEvaluationAbExperimentRequest
+Request to create a new A/B experiment.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_ab_experiment | [LlmEvaluationAbExperiment](#ondewo.nlu.LlmEvaluationAbExperiment) |  | A/B experiment payload (name / status / audit fields are server-populated). |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.CreateLlmEvaluationDatasetRequest"></a>
+
+### CreateLlmEvaluationDatasetRequest
+Request to create a new evaluation dataset.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the dataset. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| display_name | [string](#string) |  | Required. Human-readable display name (unique within the (project, language_code) tuple). |
+| description | [string](#string) |  | Free-form description. |
+| llm_evaluation_examples | [LlmEvaluationExample](#ondewo.nlu.LlmEvaluationExample) | repeated | Optional initial set of examples. |
+| tags | [string](#string) | repeated | Free-form tags for grouping / filtering. |
+| language_code | [string](#string) |  | BCP-47 language code the dataset is authored for. Required — the same dataset name may coexist across different languages. |
+
+
+
+
+
+
+<a name="ondewo.nlu.CreateLlmEvaluationExamplesFromSessionRequest"></a>
+
+### CreateLlmEvaluationExamplesFromSessionRequest
+Request to convert a recorded session into evaluation examples ("golden transcripts").
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the session and the dataset. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| session_name | [string](#string) |  | Resource name of the recorded session to convert. Format: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code>. |
+| llm_evaluation_dataset_name | [string](#string) |  | Resource name of the dataset receiving the created examples. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| session_step_names | [string](#string) | repeated | Optional. Session steps to convert (resource names). Empty = all steps, in session order. |
+| llm_evaluation_example_extraction_mode | [LlmEvaluationExampleExtractionMode](#ondewo.nlu.LlmEvaluationExampleExtractionMode) |  | How the selected steps are turned into examples. |
+| display_name | [string](#string) |  | Optional. Display-name prefix for the created example(s); the server appends a per-example suffix. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required, must match the dataset's). |
+| include_tool_calls | [bool](#bool) |  | When true, tool calls recorded in the session's telemetry are captured as expected tool calls on the created examples. |
+| include_retrieval_context | [bool](#bool) |  | When true, retrieved chunks recorded by retriever spans are captured as frozen retrieval context on the created examples. |
+
+
+
+
+
+
+<a name="ondewo.nlu.CreateLlmEvaluationExamplesFromSessionResponse"></a>
+
+### CreateLlmEvaluationExamplesFromSessionResponse
+Response for CreateExamplesFromSession.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_examples | [LlmEvaluationExample](#ondewo.nlu.LlmEvaluationExample) | repeated | Example records created. |
+
+
+
+
+
+
+<a name="ondewo.nlu.CreateLlmEvaluationOnlineConfigRequest"></a>
+
+### CreateLlmEvaluationOnlineConfigRequest
+Request to create a new online-evaluation config.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_online_config | [LlmEvaluationOnlineConfig](#ondewo.nlu.LlmEvaluationOnlineConfig) |  | Config payload (name / audit / last-evaluated fields are server-populated). |
+| parent | [string](#string) |  | Project owning the config. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.CreateLlmEvaluationReleaseGateRequest"></a>
+
+### CreateLlmEvaluationReleaseGateRequest
+Request to create a new release gate.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_release_gate | [LlmEvaluationReleaseGate](#ondewo.nlu.LlmEvaluationReleaseGate) |  | Release gate payload (name / revision / audit fields are server-populated). |
+| parent | [string](#string) |  | Project owning the gate. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.CreateLlmEvaluationReportRequest"></a>
+
+### CreateLlmEvaluationReportRequest
+Request to persist a generated report.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_report | [LlmEvaluationReport](#ondewo.nlu.LlmEvaluationReport) |  | Report payload (name / audit fields are server-populated). |
+| parent | [string](#string) |  | Project owning the report. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.CreateLlmEvaluationScheduleRequest"></a>
+
+### CreateLlmEvaluationScheduleRequest
+Request to create a new schedule.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_schedule | [LlmEvaluationSchedule](#ondewo.nlu.LlmEvaluationSchedule) |  | Schedule payload (name / audit / last-next-run fields are server-populated). |
+| parent | [string](#string) |  | Project owning the schedule. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.CreateLlmEvaluationScorecardRequest"></a>
+
+### CreateLlmEvaluationScorecardRequest
+Request to create a new scorecard.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_scorecard | [LlmEvaluationScorecard](#ondewo.nlu.LlmEvaluationScorecard) |  | Scorecard payload (name / audit fields are server-populated). |
+| parent | [string](#string) |  | Project owning the scorecard. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteLlmEvaluationAbExperimentRequest"></a>
+
+### DeleteLlmEvaluationAbExperimentRequest
+Request to delete an A/B experiment and all owned sticky-assignment rows.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the experiment to delete. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAbExperiments/&lt;experiment_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteLlmEvaluationDatasetRequest"></a>
+
+### DeleteLlmEvaluationDatasetRequest
+Request to delete a dataset and all owned examples.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the dataset to delete. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the dataset. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteLlmEvaluationExampleRequest"></a>
+
+### DeleteLlmEvaluationExampleRequest
+Request to delete an example.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the example to delete. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;/examples/&lt;example_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the example. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteLlmEvaluationExperimentRequest"></a>
+
+### DeleteLlmEvaluationExperimentRequest
+Request to delete an experiment.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the experiment to delete. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteLlmEvaluationFeedbackRequest"></a>
+
+### DeleteLlmEvaluationFeedbackRequest
+Request to delete a single feedback record.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the feedback record to delete. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;/evaluatorRuns/&lt;evaluator_run_uuid&gt;/feedbacks/&lt;feedback_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the feedback. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteLlmEvaluationOnlineConfigRequest"></a>
+
+### DeleteLlmEvaluationOnlineConfigRequest
+Request to delete an online-evaluation config.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the config to delete. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationOnlineConfigs/&lt;config_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the config. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteLlmEvaluationReleaseGateRequest"></a>
+
+### DeleteLlmEvaluationReleaseGateRequest
+Request to delete a release gate and all owned gate runs.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the gate to delete. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationReleaseGates/&lt;gate_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the gate. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteLlmEvaluationReportRequest"></a>
+
+### DeleteLlmEvaluationReportRequest
+Request to delete a report.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the report to delete. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationReports/&lt;report_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the report. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteLlmEvaluationScheduleRequest"></a>
+
+### DeleteLlmEvaluationScheduleRequest
+Request to delete a schedule.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the schedule to delete. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationSchedules/&lt;schedule_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the schedule. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteLlmEvaluationScorecardRequest"></a>
+
+### DeleteLlmEvaluationScorecardRequest
+Request to delete a scorecard.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the scorecard to delete. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationScorecards/&lt;scorecard_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the scorecard. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationAbExperimentRequest"></a>
+
+### GetLlmEvaluationAbExperimentRequest
+Request to get a single A/B experiment.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the experiment to fetch. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAbExperiments/&lt;experiment_uuid&gt;</code>. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationAbExperimentResultsRequest"></a>
+
+### GetLlmEvaluationAbExperimentResultsRequest
+Request to compute per-variant telemetry rollups for an A/B experiment.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the experiment whose results to compute. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAbExperiments/&lt;experiment_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationAbExperimentResultsResponse"></a>
+
+### GetLlmEvaluationAbExperimentResultsResponse
+Response for GetAbExperimentResults: one rollup per variant.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_ab_experiment_name | [string](#string) |  | Resource name of the experiment these results belong to. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAbExperiments/&lt;experiment_uuid&gt;</code>. |
+| variant_results | [LlmEvaluationAbVariantResult](#ondewo.nlu.LlmEvaluationAbVariantResult) | repeated | Per-variant telemetry rollups (one entry per variant). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationAbRolloutDecisionRequest"></a>
+
+### GetLlmEvaluationAbRolloutDecisionRequest
+Request to get a single A/B rollout decision (the applied audit record) for an
+experiment.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the rollout decision to fetch. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAbRolloutDecisions/&lt;decision_uuid&gt;</code>. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| parent | [string](#string) |  | Project owning the decision. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationAbRolloutRecommendationRequest"></a>
+
+### GetLlmEvaluationAbRolloutRecommendationRequest
+Request to compute a rollout recommendation for an A/B experiment. Read-only /
+stateless — computes the winner-vs-control statistics on demand under the
+supplied guard-rails and returns a LlmEvaluationAbRolloutRecommendation
+without mutating anything.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the experiment to evaluate. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAbExperiments/&lt;experiment_uuid&gt;</code>. |
+| optimize_metric | [LlmEvaluationAbOptimizeMetric](#ondewo.nlu.LlmEvaluationAbOptimizeMetric) |  | Required. The metric to optimize when picking the winner. |
+| confidence_level | [double](#double) |  | Optional. Confidence level for the significance test in <code>(0.0, 1.0)</code> (e.g. <code>0.95</code> for 95%). Unset / 0 defaults to <code>0.95</code>. |
+| min_sessions_per_variant | [int32](#int32) |  | Optional. Minimum number of sessions required per variant before a winner may be called; below it the recommendation reports <code>needs_more_data</code>. Unset / 0 applies the server default. |
+| min_effect_size | [double](#double) |  | Optional. Minimum absolute effect size required to call a winner; guards against statistically-significant-but-trivial differences. Unset / 0 applies the server default. |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationAnnotationQueueItemRequest"></a>
+
+### GetLlmEvaluationAnnotationQueueItemRequest
+Request to get a single annotation-queue item.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the item to fetch. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAnnotationQueueItems/&lt;item_uuid&gt;</code>. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| parent | [string](#string) |  | Project owning the item. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationDatasetRequest"></a>
+
+### GetLlmEvaluationDatasetRequest
+Request to get a single evaluation dataset.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the dataset to fetch. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. Example: paths=["name", "llm_evaluation_examples"] |
+| parent | [string](#string) |  | Project owning the dataset. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationExampleRequest"></a>
+
+### GetLlmEvaluationExampleRequest
+Request to get a single example.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the example to fetch. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;/examples/&lt;example_uuid&gt;</code>. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. Example: paths=["name", "inputs", "expected_outputs"] |
+| parent | [string](#string) |  | Project owning the example. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationExperimentRequest"></a>
+
+### GetLlmEvaluationExperimentRequest
+Request to fetch a previously-run experiment.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the experiment to fetch. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. Example: paths=["display_name", "status", "llm_evaluation_evaluator_runs"] |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationOnlineConfigRequest"></a>
+
+### GetLlmEvaluationOnlineConfigRequest
+Request to get a single online-evaluation config.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the config to fetch. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationOnlineConfigs/&lt;config_uuid&gt;</code>. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| parent | [string](#string) |  | Project owning the config. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationOnlineResultRequest"></a>
+
+### GetLlmEvaluationOnlineResultRequest
+Request to get a single online-evaluation result.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the result to fetch. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationOnlineResults/&lt;result_uuid&gt;</code>. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| parent | [string](#string) |  | Project owning the result. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationProjectSettingsRequest"></a>
+
+### GetLlmEvaluationProjectSettingsRequest
+Request to get the evaluation settings singleton.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the settings. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationReleaseGateRequest"></a>
+
+### GetLlmEvaluationReleaseGateRequest
+Request to get a single release gate.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the gate to fetch. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationReleaseGates/&lt;gate_uuid&gt;</code>. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| parent | [string](#string) |  | Project owning the gate. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationReleaseGateRunRequest"></a>
+
+### GetLlmEvaluationReleaseGateRunRequest
+Request to get a single release gate run.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the gate run to fetch. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationReleaseGates/&lt;gate_uuid&gt;/runs/&lt;run_uuid&gt;</code>. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| parent | [string](#string) |  | Project owning the gate run. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationReportRequest"></a>
+
+### GetLlmEvaluationReportRequest
+Request to get a single report (incl. payload bytes).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the report to fetch. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationReports/&lt;report_uuid&gt;</code>. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| parent | [string](#string) |  | Project owning the report. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationScheduleRequest"></a>
+
+### GetLlmEvaluationScheduleRequest
+Request to get a single schedule.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the schedule to fetch. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationSchedules/&lt;schedule_uuid&gt;</code>. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| parent | [string](#string) |  | Project owning the schedule. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLlmEvaluationScorecardRequest"></a>
+
+### GetLlmEvaluationScorecardRequest
+Request to get a single scorecard.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the scorecard to fetch. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationScorecards/&lt;scorecard_uuid&gt;</code>. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| parent | [string](#string) |  | Project owning the scorecard. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationAbExperimentsRequest"></a>
+
+### ListLlmEvaluationAbExperimentsRequest
+Request to list A/B experiments within a project.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the experiments. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| page_token | [string](#string) |  | Optional. Page token for pagination. Retrieves a large result set in smaller, more manageable portions. The token encodes the current index and the page size.
+
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - First page, page size 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Second page, page size 20.</li> </ul> Index starts at 0. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+| llm_evaluation_ab_experiment_filter | [LlmEvaluationAbExperimentFilter](#ondewo.nlu.LlmEvaluationAbExperimentFilter) |  | Optional. Filter conditions to narrow the returned experiments. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationAbExperimentsResponse"></a>
+
+### ListLlmEvaluationAbExperimentsResponse
+Response for ListAbExperiments.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_ab_experiments | [LlmEvaluationAbExperiment](#ondewo.nlu.LlmEvaluationAbExperiment) | repeated | A/B experiments matching the request. |
+| next_page_token | [string](#string) |  | Pagination token for the next page (empty if this is the last page). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationAbRolloutDecisionsRequest"></a>
+
+### ListLlmEvaluationAbRolloutDecisionsRequest
+Request to list A/B rollout decisions within a project, optionally narrowed by
+filter (typically by experiment).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the decisions. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| page_token | [string](#string) |  | Optional. Page token for pagination. Retrieves a large result set in smaller, more manageable portions. The token encodes the current index and the page size.
+
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - First page, page size 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Second page, page size 20.</li> </ul> Index starts at 0. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+| llm_evaluation_ab_rollout_decision_filter | [LlmEvaluationAbRolloutDecisionFilter](#ondewo.nlu.LlmEvaluationAbRolloutDecisionFilter) |  | Optional. Filter conditions to narrow the returned decisions. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationAbRolloutDecisionsResponse"></a>
+
+### ListLlmEvaluationAbRolloutDecisionsResponse
+Response for ListAbRolloutDecisions.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_ab_rollout_decisions | [LlmEvaluationAbRolloutDecision](#ondewo.nlu.LlmEvaluationAbRolloutDecision) | repeated | Rollout decisions matching the request. |
+| next_page_token | [string](#string) |  | Pagination token for the next page (empty if this is the last page). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationAnnotationQueueItemsRequest"></a>
+
+### ListLlmEvaluationAnnotationQueueItemsRequest
+Request to list annotation-queue items within a project.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the items. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| page_token | [string](#string) |  | Optional. Page token for pagination. Retrieves a large result set in smaller, more manageable portions. The token encodes the current index and the page size.
+
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - First page, page size 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Second page, page size 20.</li> </ul> Index starts at 0. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+| llm_evaluation_annotation_queue_item_filter | [LlmEvaluationAnnotationQueueItemFilter](#ondewo.nlu.LlmEvaluationAnnotationQueueItemFilter) |  | Optional. Filter conditions to narrow the returned items. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationAnnotationQueueItemsResponse"></a>
+
+### ListLlmEvaluationAnnotationQueueItemsResponse
+Response for ListAnnotationQueueItems.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_annotation_queue_items | [LlmEvaluationAnnotationQueueItem](#ondewo.nlu.LlmEvaluationAnnotationQueueItem) | repeated | Items matching the request. |
+| next_page_token | [string](#string) |  | Pagination token for the next page (empty if this is the last page). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationDatasetsRequest"></a>
+
+### ListLlmEvaluationDatasetsRequest
+Request to list evaluation datasets within a project.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the datasets. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| page_token | [string](#string) |  | Optional. Page token for pagination. Retrieves a large result set in smaller, more manageable portions. The token encodes the current index and the page size.
+
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - First page, page size 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Second page, page size 20.</li> </ul> Index starts at 0. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. Example: paths=["llm_evaluation_datasets.display_name", "llm_evaluation_datasets.tags"] |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+| llm_evaluation_dataset_filter | [LlmEvaluationDatasetFilter](#ondewo.nlu.LlmEvaluationDatasetFilter) |  | Optional. Filter conditions to narrow the returned datasets. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationDatasetsResponse"></a>
+
+### ListLlmEvaluationDatasetsResponse
+Response for ListDatasets.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_datasets | [LlmEvaluationDataset](#ondewo.nlu.LlmEvaluationDataset) | repeated | Datasets matching the request. |
+| next_page_token | [string](#string) |  | Pagination token for the next page (empty if this is the last page). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationEvaluatorsRequest"></a>
+
+### ListLlmEvaluationEvaluatorsRequest
+Request to list available evaluators.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project scope (registry may be filtered by project capabilities). Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationEvaluatorsResponse"></a>
+
+### ListLlmEvaluationEvaluatorsResponse
+Response for ListEvaluators.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_evaluator_specs | [LlmEvaluationEvaluatorSpec](#ondewo.nlu.LlmEvaluationEvaluatorSpec) | repeated | Available evaluators with metadata. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationExamplesRequest"></a>
+
+### ListLlmEvaluationExamplesRequest
+Request to list examples in a dataset.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_dataset_name | [string](#string) |  | Resource name of the dataset to enumerate examples from. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| page_token | [string](#string) |  | Optional. Page token for pagination. Retrieves a large result set in smaller, more manageable portions. The token encodes the current index and the page size.
+
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - First page, page size 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Second page, page size 20.</li> </ul> Index starts at 0. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. Example: paths=["llm_evaluation_examples.display_name", "llm_evaluation_examples.inputs"] |
+| parent | [string](#string) |  | Project owning the dataset. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+| llm_evaluation_example_filter | [LlmEvaluationExampleFilter](#ondewo.nlu.LlmEvaluationExampleFilter) |  | Optional. Filter conditions to narrow the returned examples. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationExamplesResponse"></a>
+
+### ListLlmEvaluationExamplesResponse
+Response for ListExamples.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_examples | [LlmEvaluationExample](#ondewo.nlu.LlmEvaluationExample) | repeated | Examples in the dataset matching the request. |
+| next_page_token | [string](#string) |  | Pagination token for the next page (empty if this is the last page). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationExperimentsRequest"></a>
+
+### ListLlmEvaluationExperimentsRequest
+Request to list experiments in a project, optionally narrowed by filter.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the experiments. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| page_token | [string](#string) |  | Optional. Page token for pagination. Retrieves a large result set in smaller, more manageable portions. The token encodes the current index and the page size.
+
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - First page, page size 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Second page, page size 20.</li> </ul> Index starts at 0. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. Example: paths=["llm_evaluation_experiments.display_name", "llm_evaluation_experiments.status"] |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+| llm_evaluation_experiment_filter | [LlmEvaluationExperimentFilter](#ondewo.nlu.LlmEvaluationExperimentFilter) |  | Optional. Filter conditions to narrow the returned experiments. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationExperimentsResponse"></a>
+
+### ListLlmEvaluationExperimentsResponse
+Response for ListExperiments.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_experiments | [LlmEvaluationExperiment](#ondewo.nlu.LlmEvaluationExperiment) | repeated | Experiments matching the request. |
+| next_page_token | [string](#string) |  | Pagination token for the next page (empty if this is the last page). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationFeedbackRequest"></a>
+
+### ListLlmEvaluationFeedbackRequest
+Request to list feedback records, optionally narrowed by filter.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page_token | [string](#string) |  | Optional. Page token for pagination. Retrieves a large result set in smaller, more manageable portions. The token encodes the current index and the page size.
+
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - First page, page size 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Second page, page size 20.</li> </ul> Index starts at 0. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. Example: paths=["llm_evaluation_feedbacks.score", "llm_evaluation_feedbacks.categorical_value"] |
+| parent | [string](#string) |  | Project owning the feedback records. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+| llm_evaluation_feedback_filter | [LlmEvaluationFeedbackFilter](#ondewo.nlu.LlmEvaluationFeedbackFilter) |  | Optional. Filter conditions to narrow the returned feedback records. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationFeedbackResponse"></a>
+
+### ListLlmEvaluationFeedbackResponse
+Response for ListFeedback.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_feedbacks | [LlmEvaluationFeedback](#ondewo.nlu.LlmEvaluationFeedback) | repeated | Feedback records matching the request. |
+| next_page_token | [string](#string) |  | Pagination token for the next page (empty if this is the last page). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationOnlineConfigsRequest"></a>
+
+### ListLlmEvaluationOnlineConfigsRequest
+Request to list online-evaluation configs within a project.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the configs. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| page_token | [string](#string) |  | Optional. Page token for pagination. Retrieves a large result set in smaller, more manageable portions. The token encodes the current index and the page size.
+
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - First page, page size 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Second page, page size 20.</li> </ul> Index starts at 0. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+| llm_evaluation_online_config_filter | [LlmEvaluationOnlineConfigFilter](#ondewo.nlu.LlmEvaluationOnlineConfigFilter) |  | Optional. Filter conditions to narrow the returned configs. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationOnlineConfigsResponse"></a>
+
+### ListLlmEvaluationOnlineConfigsResponse
+Response for ListOnlineConfigs.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_online_configs | [LlmEvaluationOnlineConfig](#ondewo.nlu.LlmEvaluationOnlineConfig) | repeated | Configs matching the request. |
+| next_page_token | [string](#string) |  | Pagination token for the next page (empty if this is the last page). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationOnlineResultsRequest"></a>
+
+### ListLlmEvaluationOnlineResultsRequest
+Request to list online-evaluation results within a project.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the results. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| page_token | [string](#string) |  | Optional. Page token for pagination. Retrieves a large result set in smaller, more manageable portions. The token encodes the current index and the page size.
+
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - First page, page size 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Second page, page size 20.</li> </ul> Index starts at 0. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+| llm_evaluation_online_result_filter | [LlmEvaluationOnlineResultFilter](#ondewo.nlu.LlmEvaluationOnlineResultFilter) |  | Optional. Filter conditions to narrow the returned results. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationOnlineResultsResponse"></a>
+
+### ListLlmEvaluationOnlineResultsResponse
+Response for ListOnlineResults.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_online_results | [LlmEvaluationOnlineResult](#ondewo.nlu.LlmEvaluationOnlineResult) | repeated | Results matching the request. |
+| next_page_token | [string](#string) |  | Pagination token for the next page (empty if this is the last page). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationReleaseGateRunsRequest"></a>
+
+### ListLlmEvaluationReleaseGateRunsRequest
+Request to list release gate runs within a project.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the gate runs. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| page_token | [string](#string) |  | Optional. Page token for pagination. Retrieves a large result set in smaller, more manageable portions. The token encodes the current index and the page size.
+
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - First page, page size 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Second page, page size 20.</li> </ul> Index starts at 0. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+| llm_evaluation_release_gate_run_filter | [LlmEvaluationReleaseGateRunFilter](#ondewo.nlu.LlmEvaluationReleaseGateRunFilter) |  | Optional. Filter conditions to narrow the returned gate runs. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationReleaseGateRunsResponse"></a>
+
+### ListLlmEvaluationReleaseGateRunsResponse
+Response for ListReleaseGateRuns.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_release_gate_runs | [LlmEvaluationReleaseGateRun](#ondewo.nlu.LlmEvaluationReleaseGateRun) | repeated | Gate runs matching the request, newest first. |
+| next_page_token | [string](#string) |  | Pagination token for the next page (empty if this is the last page). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationReleaseGatesRequest"></a>
+
+### ListLlmEvaluationReleaseGatesRequest
+Request to list release gates within a project.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the gates. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| page_token | [string](#string) |  | Optional. Page token for pagination. Retrieves a large result set in smaller, more manageable portions. The token encodes the current index and the page size.
+
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - First page, page size 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Second page, page size 20.</li> </ul> Index starts at 0. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+| llm_evaluation_release_gate_filter | [LlmEvaluationReleaseGateFilter](#ondewo.nlu.LlmEvaluationReleaseGateFilter) |  | Optional. Filter conditions to narrow the returned gates. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationReleaseGatesResponse"></a>
+
+### ListLlmEvaluationReleaseGatesResponse
+Response for ListReleaseGates.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_release_gates | [LlmEvaluationReleaseGate](#ondewo.nlu.LlmEvaluationReleaseGate) | repeated | Release gates matching the request. |
+| next_page_token | [string](#string) |  | Pagination token for the next page (empty if this is the last page). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationReportsRequest"></a>
+
+### ListLlmEvaluationReportsRequest
+Request to list reports within a project.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the reports. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| page_token | [string](#string) |  | Optional. Page token for pagination. Retrieves a large result set in smaller, more manageable portions. The token encodes the current index and the page size.
+
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - First page, page size 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Second page, page size 20.</li> </ul> Index starts at 0. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. Payload bytes are omitted unless paths include <code>llm_evaluation_reports.payload</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+| llm_evaluation_report_filter | [LlmEvaluationReportFilter](#ondewo.nlu.LlmEvaluationReportFilter) |  | Optional. Filter conditions to narrow the returned reports. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationReportsResponse"></a>
+
+### ListLlmEvaluationReportsResponse
+Response for ListReports.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_reports | [LlmEvaluationReport](#ondewo.nlu.LlmEvaluationReport) | repeated | Reports matching the request (payload omitted unless requested via field_mask). |
+| next_page_token | [string](#string) |  | Pagination token for the next page (empty if this is the last page). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationSchedulesRequest"></a>
+
+### ListLlmEvaluationSchedulesRequest
+Request to list schedules within a project.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the schedules. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| page_token | [string](#string) |  | Optional. Page token for pagination. Retrieves a large result set in smaller, more manageable portions. The token encodes the current index and the page size.
+
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - First page, page size 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Second page, page size 20.</li> </ul> Index starts at 0. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+| llm_evaluation_schedule_filter | [LlmEvaluationScheduleFilter](#ondewo.nlu.LlmEvaluationScheduleFilter) |  | Optional. Filter conditions to narrow the returned schedules. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationSchedulesResponse"></a>
+
+### ListLlmEvaluationSchedulesResponse
+Response for ListSchedules.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_schedules | [LlmEvaluationSchedule](#ondewo.nlu.LlmEvaluationSchedule) | repeated | Schedules matching the request. |
+| next_page_token | [string](#string) |  | Pagination token for the next page (empty if this is the last page). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationScorecardsRequest"></a>
+
+### ListLlmEvaluationScorecardsRequest
+Request to list scorecards within a project.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the scorecards. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| page_token | [string](#string) |  | Optional. Page token for pagination. Retrieves a large result set in smaller, more manageable portions. The token encodes the current index and the page size.
+
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - First page, page size 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Second page, page size 20.</li> </ul> Index starts at 0. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+| llm_evaluation_scorecard_filter | [LlmEvaluationScorecardFilter](#ondewo.nlu.LlmEvaluationScorecardFilter) |  | Optional. Filter conditions to narrow the returned scorecards. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLlmEvaluationScorecardsResponse"></a>
+
+### ListLlmEvaluationScorecardsResponse
+Response for ListScorecards.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_scorecards | [LlmEvaluationScorecard](#ondewo.nlu.LlmEvaluationScorecard) | repeated | Scorecards matching the request. |
+| next_page_token | [string](#string) |  | Pagination token for the next page (empty if this is the last page). |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationAbExperiment"></a>
+
+### LlmEvaluationAbExperiment
+An A/B experiment: a set of routing variants split over live DetectIntent
+traffic for a (project, language_code) scope.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the A/B experiment. Read-only; populated by the server. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAbExperiments/&lt;experiment_uuid&gt;</code>. |
+| display_name | [string](#string) |  | Required. Human-readable display name (unique within the (project, language_code) tuple). |
+| description | [string](#string) |  | Free-form description. |
+| status | [LlmEvaluationAbExperimentStatus](#ondewo.nlu.LlmEvaluationAbExperimentStatus) |  | Lifecycle status. Read-only; transitioned via Start / Stop RPCs. |
+| variants | [LlmEvaluationAbVariant](#ondewo.nlu.LlmEvaluationAbVariant) | repeated | The routing variants of this experiment. |
+| traffic_config | [LlmEvaluationAbTrafficConfig](#ondewo.nlu.LlmEvaluationAbTrafficConfig) |  | Traffic-splitting configuration (enrollment rate, assignment salt). |
+| started_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock time the experiment was started (set by Start). Read-only. |
+| stopped_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock time the experiment was stopped (set by Stop). Read-only. |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope. |
+| llm_evaluation_ab_rollout_decision_name | [string](#string) |  | Optional. Resource name of the rollout decision that was applied to this experiment (set once an operator explicitly applies a variant via <code>LlmEvaluationApplyAbRollout</code>; empty while no rollout has been applied). Lets a results view link straight to the applied audit record. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAbRolloutDecisions/&lt;decision_uuid&gt;</code>. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationAbExperimentFilter"></a>
+
+### LlmEvaluationAbExperimentFilter
+Filter conditions for ListAbExperiments. All fields are optional; multiple
+fields set at the same time are combined via logical AND.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| display_name | [string](#string) |  | Optional. Match only experiments whose display name contains this substring (case-insensitive). |
+| status | [LlmEvaluationAbExperimentStatus](#ondewo.nlu.LlmEvaluationAbExperimentStatus) |  | Optional. Match only experiments with this status. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationAbRolloutDecision"></a>
+
+### LlmEvaluationAbRolloutDecision
+The persisted audit record of an A/B rollout that an operator explicitly
+applied: it captures which variant's config was promoted to the project's
+classifier default, on which metric, and the statistics at the moment of
+application. Written + returned by <code>LlmEvaluationApplyAbRollout</code>;
+read back via <code>LlmEvaluationGetAbRolloutDecision</code> /
+<code>LlmEvaluationListAbRolloutDecisions</code>. There is no auto-rollout —
+every decision row corresponds to an explicit operator action.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the rollout decision. Read-only; populated by the server. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAbRolloutDecisions/&lt;decision_uuid&gt;</code>. |
+| llm_evaluation_ab_experiment_name | [string](#string) |  | Resource name of the A/B experiment this decision was applied to. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAbExperiments/&lt;experiment_uuid&gt;</code>. |
+| applied_variant_id | [string](#string) |  | Variant slug whose config was promoted to the project classifier default. |
+| optimize_metric | [LlmEvaluationAbOptimizeMetric](#ondewo.nlu.LlmEvaluationAbOptimizeMetric) |  | The metric the rollout was decided on (recorded for the audit trail). |
+| p_value | [double](#double) |  | Two-sided p-value of the applied-variant-vs-control test at application time. |
+| effect_size | [double](#double) |  | Observed effect size (applied variant vs. control) at application time. |
+| applied_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock time the rollout was applied. Read-only. |
+| applied_by | [string](#string) |  | User id (in form of a valid UUID) of the operator who applied the rollout. |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| parent | [string](#string) |  | Project owning the decision. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationAbRolloutDecisionFilter"></a>
+
+### LlmEvaluationAbRolloutDecisionFilter
+Filter conditions for ListAbRolloutDecisions. All fields are optional;
+multiple fields set at the same time are combined via logical AND.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_ab_experiment_name | [string](#string) |  | Optional. Match only decisions applied to this A/B experiment (resource name). Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAbExperiments/&lt;experiment_uuid&gt;</code>. |
+| applied_by | [string](#string) |  | Optional. Match only decisions applied by this user id (UUID). |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationAbRolloutRecommendation"></a>
+
+### LlmEvaluationAbRolloutRecommendation
+A computed, read-only rollout recommendation for an A/B experiment: which
+variant currently wins against the control on the chosen optimize metric,
+under the requested statistical guard-rails. Stateless — recomputed on demand
+by <code>LlmEvaluationGetAbRolloutRecommendation</code> from the per-variant
+results rollup; nothing is persisted and no traffic / config changes. The
+operator decides whether to apply it via <code>LlmEvaluationApplyAbRollout</code>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| optimize_metric | [LlmEvaluationAbOptimizeMetric](#ondewo.nlu.LlmEvaluationAbOptimizeMetric) |  | The metric the recommendation was computed against (echoed from the request). |
+| winner_variant_id | [string](#string) |  | Variant slug that currently wins against the control on this metric, once the guard-rails (significance, effect size, minimum sessions) are met. Empty while <code>needs_more_data</code> is true or no variant beats the control. |
+| control_variant_id | [string](#string) |  | Variant slug of the control (baseline) arm the winner was compared against. |
+| p_value | [double](#double) |  | Two-sided p-value of the winner-vs-control test on the optimize metric. |
+| effect_size | [double](#double) |  | Observed effect size between winner and control (absolute risk difference for rate metrics, standardized / raw mean difference for continuous metrics). |
+| is_significant | [bool](#bool) |  | Whether the result is statistically significant at the requested confidence level AND clears the requested minimum effect size. |
+| sessions_per_variant | [LlmEvaluationAbRolloutRecommendation.SessionsPerVariantEntry](#ondewo.nlu.LlmEvaluationAbRolloutRecommendation.SessionsPerVariantEntry) | repeated | Number of sessions observed per variant in scope, keyed by variant slug. Used to surface the guard-rail check against the requested minimum. |
+| needs_more_data | [bool](#bool) |  | True when at least one arm has not yet reached the requested minimum number of sessions, so no winner can be called yet (collect more traffic). |
+| reason | [string](#string) |  | Human-readable rationale for the recommendation (e.g. the winner and its margin, or "needs N more sessions on variant X", or "no variant beats control"). |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationAbRolloutRecommendation.SessionsPerVariantEntry"></a>
+
+### LlmEvaluationAbRolloutRecommendation.SessionsPerVariantEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationAbTrafficConfig"></a>
+
+### LlmEvaluationAbTrafficConfig
+Traffic-splitting configuration for an A/B experiment.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| enrollment_rate | [double](#double) |  | Fraction of eligible sessions (0.0-1.0) actually enrolled into the experiment; the remainder use the project default path. <code>1.0</code> enrolls every eligible session. |
+| assignment_salt | [string](#string) |  | Optional. Salt mixed into the deterministic session-bucketing hash so that re-running the same experiment id re-randomizes the assignment. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationAbVariant"></a>
+
+### LlmEvaluationAbVariant
+One routing variant of an A/B experiment. The variant overrides the model used
+for the sessions assigned to it. A variant is one of two shapes depending on
+the project's classifier:
+<ul>
+  <li><b>IntentAgent projects</b> — the variant overrides the LLM connection
+      via <code>ccai_service_names</code> (+ optional <code>model_name</code> /
+      <code>prompt_version</code>).</li>
+  <li><b>RAG projects</b> (<code>IntentRagflowClassifier</code>) — the variant
+      overrides the chat-assistant LLM CcaiService and retrieval parameters via
+      <code>rag_variant_config</code>.</li>
+</ul>
+The two override shapes are mutually exclusive per variant; the server applies
+whichever matches the project's classifier type.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| variant_id | [string](#string) |  | Required. Stable slug identifying the variant within its experiment (e.g. "control", "qwen3-fp8"). Lower-case, used as the assignment key. |
+| display_name | [string](#string) |  | Required. Human-readable display name. |
+| ccai_service_names | [string](#string) | repeated | CcaiService name(s) defining this variant's LLM connection (IntentAgent projects). Mutually exclusive with <code>rag_variant_config</code>. Format: <code>projects/&lt;project_uuid&gt;/agent/ccaiServices/&lt;ccai_service_uuid&gt;</code>. |
+| traffic_weight | [double](#double) |  | Traffic weight for this variant. Expressed as a percentage in the <code>[0.0, 100.0]</code> range; the variant weights of a started experiment must sum to <code>100.0</code>. |
+| is_control | [bool](#bool) |  | Whether this variant is the control (baseline) arm. |
+| model_name | [string](#string) |  | Optional. Concrete model identifier override (e.g. "Qwen/Qwen3-27b-fp8"). |
+| prompt_version | [string](#string) |  | Optional. Logical prompt version recorded for this variant. |
+| config | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. Free-form target descriptor (the serialized CcaiServiceList / routing override applied for sessions assigned to this variant). |
+| rag_variant_config | [RagVariantConfig](#ondewo.nlu.RagVariantConfig) |  | Optional. RAGFlow override for a RAG-classifier project: the chat-assistant LLM CcaiService + retrieval parameters applied to sessions assigned to this variant. Used instead of <code>ccai_service_names</code> when the project's classifier is <code>IntentRagflowClassifier</code>; empty / zero fields inside it inherit the project's base config. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationAbVariantResult"></a>
+
+### LlmEvaluationAbVariantResult
+Per-variant rollup returned by GetAbExperimentResults. Stateless / computed.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| variant_id | [string](#string) |  | Variant slug these results belong to. |
+| session_count | [int64](#int64) |  | Number of distinct sessions assigned to this variant in scope. |
+| telemetry | [google.protobuf.Struct](#google.protobuf.Struct) |  | Aggregated LLM telemetry over this variant's sessions, as a JSON-encoded <code>ondewo.nlu.LlmTelemetryReport</code> (see <code>session.proto</code>). Carried as a Struct rather than the typed message because <code>session.proto</code> already imports this file (for <code>LlmEvaluationFeedback</code> on <code>LlmTelemetry</code>), so a typed import back would form an illegal proto import cycle; the report is produced by the same server-side aggregator that fills the typed <code>LlmTelemetryReport</code> on the statistics RPCs. |
+| derived_metrics | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. Derived comparison metrics (e.g. token / latency / error / cost deltas versus the control variant), keyed by metric name. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationAnnotationQueueItem"></a>
+
+### LlmEvaluationAnnotationQueueItem
+A human-review annotation-queue item: one per failing session step enqueued by
+the online-evaluation worker. The reviewer annotates (status / reason) and may
+promote the offending session into a regression dataset.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the queue item. Read-only; populated by the server. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAnnotationQueueItems/&lt;item_uuid&gt;</code>. |
+| session_name | [string](#string) |  | Resource name of the offending session. Format: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code>. |
+| session_step_name | [string](#string) |  | Resource name of the offending session step. Format: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/sessionSteps/&lt;step_uuid&gt;</code>. |
+| llm_evaluation_online_result_name | [string](#string) |  | Resource name of the online result that triggered the enqueue. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationOnlineResults/&lt;result_uuid&gt;</code>. |
+| status | [LlmEvaluationAnnotationStatus](#ondewo.nlu.LlmEvaluationAnnotationStatus) |  | Current lifecycle status. |
+| assigned_to | [string](#string) |  | Optional. User id (UUID) the item is assigned to for review. |
+| reason | [string](#string) |  | Human-readable reason / rationale (e.g. <code>"faithfulness=0.2 &lt; 0.5"</code>). |
+| llm_evaluation_dataset_name | [string](#string) |  | Resource name of the dataset the item was promoted into. Set when the item reaches PROMOTED status. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| parent | [string](#string) |  | Project owning the item. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationAnnotationQueueItemFilter"></a>
+
+### LlmEvaluationAnnotationQueueItemFilter
+Filter conditions for ListAnnotationQueueItems. All fields are optional;
+multiple fields set at the same time are combined via logical AND.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| status | [LlmEvaluationAnnotationStatus](#ondewo.nlu.LlmEvaluationAnnotationStatus) |  | Optional. Match only items with this status. |
+| assigned_to | [string](#string) |  | Optional. Match only items assigned to this user id (UUID). |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationComparison"></a>
+
+### LlmEvaluationComparison
+Pairwise comparison report across multiple experiments.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the comparison. Read-only; populated by the server. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationComparisons/&lt;comparison_uuid&gt;</code>. |
+| display_name | [string](#string) |  | Human-readable display name. |
+| llm_evaluation_experiment_names | [string](#string) | repeated | Resource names of the experiments being compared (two-or-more). Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| llm_evaluation_baseline_experiment_name | [string](#string) |  | Optional. Resource name of the baseline experiment used for delta computation. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| llm_evaluation_pairwise_results | [LlmEvaluationPairwiseResult](#ondewo.nlu.LlmEvaluationPairwiseResult) | repeated | One entry per example. |
+| aggregate | [google.protobuf.Struct](#google.protobuf.Struct) |  | Aggregate stats: win-rate, mean-delta, ... |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationDataset"></a>
+
+### LlmEvaluationDataset
+A dataset is a named collection of evaluation examples plus optional metadata.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the dataset. Read-only; populated by the server. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| display_name | [string](#string) |  | Required. Human-readable display name (unique within the (project, language_code) tuple). |
+| description | [string](#string) |  | Free-form description. |
+| llm_evaluation_examples | [LlmEvaluationExample](#ondewo.nlu.LlmEvaluationExample) | repeated | Examples contained in this dataset. May be returned empty by List endpoints; use ListExamples for paginated retrieval. |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| tags | [string](#string) | repeated | Free-form tags for grouping / filtering. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| parent | [string](#string) |  | Project owning the dataset. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language code (e.g. <code>"en"</code>, <code>"de"</code>, <code>"en-US"</code>) identifying which language the dataset was authored for. Datasets are scoped per (project, language_code) — the same dataset name may exist independently per language. |
+| llm_evaluation_dataset_type | [LlmEvaluationDatasetType](#ondewo.nlu.LlmEvaluationDatasetType) |  | Kind of examples the dataset holds (single-turn, multi-turn conversation flow, RAG question-answering, adversarial red-team probes, simulated). |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationDatasetFilter"></a>
+
+### LlmEvaluationDatasetFilter
+Filter conditions for ListDatasets. All fields are optional; multiple fields
+set at the same time are combined via logical AND.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| display_name | [string](#string) |  | Optional. Match only datasets whose display name contains this substring (case-insensitive). |
+| tags | [string](#string) | repeated | Optional. Match only datasets carrying every tag in this list. |
+| llm_evaluation_dataset_type | [LlmEvaluationDatasetType](#ondewo.nlu.LlmEvaluationDatasetType) |  | Optional. Match only datasets of this type. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationEvaluatorParameterSpec"></a>
+
+### LlmEvaluationEvaluatorParameterSpec
+Specification of one configurable evaluator parameter.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Parameter key (e.g. "criteria", "threshold", "expected_output_key"). |
+| display_name | [string](#string) |  | Human-readable display name. |
+| description | [string](#string) |  | Free-form description. |
+| value_type | [string](#string) |  | Value type: "string" | "double" | "bool" | "string_list" | "json". |
+| default_value | [string](#string) |  | JSON-encoded default value. |
+| required | [bool](#bool) |  | Whether the parameter must be supplied. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationEvaluatorRun"></a>
+
+### LlmEvaluationEvaluatorRun
+Result of running one evaluator against one example.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the evaluator run. Read-only; populated by the server. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;/evaluatorRuns/&lt;evaluator_run_uuid&gt;</code>. |
+| display_name | [string](#string) |  | Human-readable display name. |
+| llm_evaluation_example_name | [string](#string) |  | Resource name of the example the evaluator was run against. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;/examples/&lt;example_uuid&gt;</code>. |
+| llm_telemetry_run_id | [string](#string) |  | Ties this evaluator run back to the LlmTelemetry produced when running the target. |
+| llm_evaluation_evaluator_type | [LlmEvaluationEvaluatorType](#ondewo.nlu.LlmEvaluationEvaluatorType) |  | Family of evaluator implementations. |
+| evaluator_name | [string](#string) |  | Logical name of the evaluator (e.g. "faithfulness", "exact_match"). |
+| llm_evaluation_feedbacks | [LlmEvaluationFeedback](#ondewo.nlu.LlmEvaluationFeedback) | repeated | One or more feedback records produced by the evaluator. |
+| llm_evaluation_experiment_name | [string](#string) |  | Resource name of the owning experiment. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| started_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock start of the evaluator run. |
+| finished_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock end of the evaluator run. |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| llm_evaluation_turn_results | [LlmEvaluationTurnResult](#ondewo.nlu.LlmEvaluationTurnResult) | repeated | Per-turn results for multi-turn (conversation-flow) runs: one entry per executed conversation turn, carrying expected vs. actual outputs and the per-turn telemetry join key. Empty for single-turn runs. |
+| repetition_index | [int32](#int32) |  | Zero-based repetition index when the experiment ran with repetitions > 1. |
+| actual_output | [google.protobuf.Struct](#google.protobuf.Struct) |  | Actual output produced by the target for this run (answer text, tool calls, final state) — first-class so result views need not parse feedback <code>raw</code> payloads. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationEvaluatorSpec"></a>
+
+### LlmEvaluationEvaluatorSpec
+Server-side metadata describing one available evaluator.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| evaluator_name | [string](#string) |  | Logical evaluator name used in RunExperiment requests (e.g. "faithfulness"). |
+| display_name | [string](#string) |  | Human-readable display name. |
+| description | [string](#string) |  | Free-form description of what the evaluator measures. |
+| llm_evaluation_evaluator_type | [LlmEvaluationEvaluatorType](#ondewo.nlu.LlmEvaluationEvaluatorType) |  | Family of evaluator implementations. |
+| llm_evaluation_evaluator_category | [LlmEvaluationEvaluatorCategory](#ondewo.nlu.LlmEvaluationEvaluatorCategory) |  | Category the evaluator belongs to. |
+| required_example_fields | [string](#string) | repeated | Dotted paths of example fields the evaluator requires (e.g. "inputs.question", "expected_outputs.answer", "inputs.turns"). |
+| multi_turn | [bool](#bool) |  | True when the evaluator consumes multi-turn conversations. |
+| default_threshold | [double](#double) |  | Default pass threshold (0.0-1.0). |
+| requires_judge | [bool](#bool) |  | True when the evaluator requires a judge LLM. |
+| llm_evaluation_evaluator_parameter_specs | [LlmEvaluationEvaluatorParameterSpec](#ondewo.nlu.LlmEvaluationEvaluatorParameterSpec) | repeated | Configurable parameters accepted via evaluator_configs / evaluator_overrides. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationExample"></a>
+
+### LlmEvaluationExample
+A single example in an evaluation dataset.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the example. Read-only; populated by the server. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;/examples/&lt;example_uuid&gt;</code>. |
+| display_name | [string](#string) |  | Human-readable display name. |
+| description | [string](#string) |  | Free-form description. |
+| inputs | [google.protobuf.Struct](#google.protobuf.Struct) |  | Structured inputs payload — agent inputs, prompt vars, retrieval context, ... |
+| expected_outputs | [google.protobuf.Struct](#google.protobuf.Struct) |  | Structured expected outputs — gold answer, expected tool sequence, ... |
+| metadata | [google.protobuf.Struct](#google.protobuf.Struct) |  | Free-form metadata. |
+| llm_evaluation_dataset_name | [string](#string) |  | Resource name of the owning dataset. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| parent | [string](#string) |  | Project owning the example (denormalized from parent dataset for cheap per-project filtering). Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language code (denormalized from parent dataset for cheap filtering). |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationExampleFilter"></a>
+
+### LlmEvaluationExampleFilter
+Filter conditions for ListExamples. All fields are optional; multiple fields
+set at the same time are combined via logical AND.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| display_name | [string](#string) |  | Optional. Match only examples whose display name contains this substring (case-insensitive). |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationExperiment"></a>
+
+### LlmEvaluationExperiment
+A single experiment run over a dataset.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the experiment. Read-only; populated by the server. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| llm_evaluation_dataset_name | [string](#string) |  | Resource name of the source dataset. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| display_name | [string](#string) |  | Required. Human-readable display name. |
+| description | [string](#string) |  | Free-form description. |
+| git_sha | [string](#string) |  | Pin the experiment to a source-tree revision for reproducibility. |
+| prompt_version | [string](#string) |  | Logical version identifier of the prompt under test. |
+| model_name | [string](#string) |  | Concrete model identifier exercised by the experiment. |
+| config | [google.protobuf.Struct](#google.protobuf.Struct) |  | Arbitrary configuration captured at run time. |
+| llm_evaluation_evaluator_runs | [LlmEvaluationEvaluatorRun](#ondewo.nlu.LlmEvaluationEvaluatorRun) | repeated | One entry per evaluator x example combination. |
+| started_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock start of the experiment run. |
+| finished_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock end of the experiment run. |
+| duration_in_s | [double](#double) |  | Convenience duration (finished_at - started_at). |
+| n_examples | [int32](#int32) |  | Number of dataset examples consumed. |
+| n_passed | [int32](#int32) |  | Number of evaluator runs that produced a passing score. |
+| n_failed | [int32](#int32) |  | Number of evaluator runs that produced a failing score. |
+| llm_evaluation_baseline_experiment_name | [string](#string) |  | Optional. Resource name of a baseline experiment for regression detection. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| llm_evaluation_experiment_status | [LlmEvaluationExperimentStatus](#ondewo.nlu.LlmEvaluationExperimentStatus) |  | Current lifecycle status of the experiment (pending / running / succeeded / failed / cancelled). |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| language_code | [string](#string) |  | BCP-47 language code (denormalized from parent dataset). Experiments are scoped per (project, language_code); experiment name uniqueness is enforced per (project, language_code) tuple. |
+| ccai_service_names | [string](#string) | repeated | CcaiService name(s) whose LLM connection details defined the model(s) evaluated in this run (echoed from RunLlmEvaluationExperimentRequest for audit / reproducibility). |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| repetitions | [int32](#int32) |  | Number of repetitions each (example, evaluator) pair was executed with (echoed from RunLlmEvaluationExperimentRequest; 0 is treated as 1). |
+| llm_evaluation_schedule_name | [string](#string) |  | Optional. Resource name of the schedule that created this experiment (empty for manually-triggered experiments). Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationSchedules/&lt;schedule_uuid&gt;</code>. |
+| llm_evaluation_experiment_kind | [LlmEvaluationExperimentKind](#ondewo.nlu.LlmEvaluationExperimentKind) |  | Kind of experiment (standard single-turn, multi-turn flow, red-team, gate candidate, gate safety, scheduled). |
+| llm_evaluation_release_gate_run_name | [string](#string) |  | Optional. Resource name of the release gate run this experiment belongs to (set for gate-candidate and gate-safety experiments). Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationReleaseGates/&lt;gate_uuid&gt;/runs/&lt;run_uuid&gt;</code>. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationExperimentFilter"></a>
+
+### LlmEvaluationExperimentFilter
+Filter conditions for ListExperiments. All fields are optional; multiple
+fields set at the same time are combined via logical AND.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| display_name | [string](#string) |  | Optional. Match only experiments whose display name contains this substring (case-insensitive). |
+| llm_evaluation_experiment_status | [LlmEvaluationExperimentStatus](#ondewo.nlu.LlmEvaluationExperimentStatus) |  | Optional. Match only experiments with this lifecycle status. |
+| llm_evaluation_dataset_name | [string](#string) |  | Optional. Match only experiments tied to this dataset (resource name). Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| model_name | [string](#string) |  | Optional. Match only experiments exercising this concrete model identifier. |
+| llm_evaluation_schedule_name | [string](#string) |  | Optional. Match only experiments created by this schedule (resource name). Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationSchedules/&lt;schedule_uuid&gt;</code>. |
+| llm_evaluation_experiment_kind | [LlmEvaluationExperimentKind](#ondewo.nlu.LlmEvaluationExperimentKind) |  | Optional. Match only experiments of this kind. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationFeedback"></a>
+
+### LlmEvaluationFeedback
+A single feedback record (score + optional categorical + comment + raw payload).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the feedback record. Read-only; populated by the server. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;/evaluatorRuns/&lt;evaluator_run_uuid&gt;/feedbacks/&lt;feedback_uuid&gt;</code>. |
+| display_name | [string](#string) |  | Human-readable display name. |
+| criterion | [string](#string) |  | Free-form criterion label: "correctness", "faithfulness", "hallucination", "context_precision", "tool_trajectory", "format", "groundedness", "tone", "exact_match", "embedding_distance", "bleu", "rouge", "regression", ... |
+| score | [double](#double) | optional | Numeric score (0.0-1.0 by convention). Defaults to 0.0 (proto3 has no field presence on this scalar, so an unset score and a genuine 0.0 are indistinguishable); for purely categorical feedback, rely on categorical_value rather than this field. |
+| categorical_value | [string](#string) |  | Categorical value when applicable ("pass" | "fail" | "yes" | "no" | tier). |
+| comment | [string](#string) |  | Human-readable comment / rationale. |
+| annotator_user_id | [string](#string) |  | Human reviewer id or "evaluator:&lt;name&gt;". |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| raw | [google.protobuf.Struct](#google.protobuf.Struct) |  | Verbatim evaluator JSON output kept for forensic replay. |
+| llm_evaluation_evaluator_run_name | [string](#string) |  | Resource name of the owning evaluator run (may be empty for top-level experiment-scoped feedback submitted via SubmitFeedback). Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;/evaluatorRuns/&lt;evaluator_run_uuid&gt;</code>. |
+| llm_evaluation_experiment_name | [string](#string) |  | Resource name of the owning experiment. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| llm_evaluation_example_name | [string](#string) |  | Resource name of the example the feedback targets. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;/examples/&lt;example_uuid&gt;</code>. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationFeedbackFilter"></a>
+
+### LlmEvaluationFeedbackFilter
+Filter conditions for ListFeedback. All fields are optional; multiple fields
+set at the same time are combined via logical AND.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_experiment_name | [string](#string) |  | Optional. Match only feedback attached to this experiment (resource name). Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| llm_evaluation_example_name | [string](#string) |  | Optional. Match only feedback targeting this example (resource name). Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;/examples/&lt;example_uuid&gt;</code>. |
+| llm_evaluation_evaluator_run_name | [string](#string) |  | Optional. Match only feedback produced by this evaluator run (resource name). Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;/evaluatorRuns/&lt;evaluator_run_uuid&gt;</code>. |
+| criterion | [string](#string) |  | Optional. Match only feedback with this criterion label (e.g. "correctness", "faithfulness"). |
+| categorical_value | [string](#string) |  | Optional. Match only feedback with this categorical value ("pass" | "fail" | "yes" | "no" | tier). |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationJudgeConfig"></a>
+
+### LlmEvaluationJudgeConfig
+Judge-LLM configuration used by LLM-as-judge evaluators.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ccai_service_name | [string](#string) |  | Resource name of the CcaiService whose LLM connection details (host / port / model / auth) the judge uses. Preferred over free-form model_name. |
+| model_name | [string](#string) |  | Free-form judge model label (fallback / display). |
+| temperature | [double](#double) |  | Sampling temperature for the judge model. |
+| verbose_reasoning | [bool](#bool) |  | When true, the judge's full reasoning is kept in feedback <code>comment</code> / <code>raw</code> payloads. |
+| evaluator_overrides | [google.protobuf.Struct](#google.protobuf.Struct) |  | Per-evaluator overrides keyed by evaluator name. Values are objects matching the evaluator's parameter specs from LlmEvaluationListEvaluators (e.g. <code>{"geeval": {"criteria": "...", "threshold": 0.7}}</code>). |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationOnlineConfig"></a>
+
+### LlmEvaluationOnlineConfig
+An online-evaluation config: a per-(project, language_code) definition that a
+swarm-safe background worker uses to sample already-persisted live session
+steps, score the recorded answer with a reference-free evaluator set, and
+enqueue failing steps into the annotation queue. Mirrors the LlmEvaluationSchedule
+scoping / audit / enabled-flag shape.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the online config. Read-only; populated by the server. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationOnlineConfigs/&lt;config_uuid&gt;</code>. |
+| display_name | [string](#string) |  | Required. Human-readable display name (unique within the (project, language_code) tuple). |
+| description | [string](#string) |  | Free-form description. |
+| evaluator_names | [string](#string) | repeated | Reference-free evaluator names the worker runs on each sampled step (e.g. <code>"answer_relevancy"</code>, <code>"faithfulness"</code>, <code>"toxicity"</code>). AIM restricts the picker to reference-free evaluators via LlmEvaluationListEvaluators. |
+| sample_rate | [double](#double) |  | Fraction of candidate steps to score, in the range 0.0-1.0. Applied deterministically per step. |
+| enabled | [bool](#bool) |  | Whether the worker samples for this config. Disabled configs keep their configuration. |
+| target_dataset_name | [string](#string) |  | Optional. Default promotion target dataset for steps enqueued by this config. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| fail_threshold | [double](#double) | optional | Score cutoff (0.0-1.0). Scored steps whose aggregate score is below this threshold are enqueued into the annotation queue. Defaults to 0.5. |
+| settle_seconds | [int32](#int32) |  | Settle window in seconds: the worker only considers steps older than this, so per-step telemetry has landed before scoring. Defaults to 30. |
+| require_telemetry | [bool](#bool) |  | When true, only steps with recorded LLM telemetry are sampled (shorthand for the session-filter flag of the same name). |
+| llm_evaluation_online_session_filter | [LlmEvaluationOnlineSessionFilter](#ondewo.nlu.LlmEvaluationOnlineSessionFilter) |  | Optional. Filter narrowing which session steps are sampled. |
+| last_evaluated_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock time of the worker's most recent evaluation pass for this config. Read-only; set by the worker. |
+| n_sessions_evaluated | [int64](#int64) |  | Running count of session steps this config has scored. Read-only; set by the worker. |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| parent | [string](#string) |  | Project owning the config. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationOnlineConfigFilter"></a>
+
+### LlmEvaluationOnlineConfigFilter
+Filter conditions for ListOnlineConfigs. All fields are optional; multiple
+fields set at the same time are combined via logical AND.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| display_name | [string](#string) |  | Optional. Match only configs whose display name contains this substring (case-insensitive). |
+| enabled_only | [bool](#bool) |  | Optional. When true, match only enabled configs. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationOnlineResult"></a>
+
+### LlmEvaluationOnlineResult
+A self-contained online-evaluation result: one row per scored session step.
+Per-criterion feedbacks are stored as an embedded repeated LlmEvaluationFeedback
+list (exactly like LlmEvaluationTurnResult.feedbacks — NOT persisted into the
+experiment-scoped llm_feedback table). Produced by the online-evaluation worker;
+read-only over the API.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the result. Read-only; populated by the server. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationOnlineResults/&lt;result_uuid&gt;</code>. |
+| llm_evaluation_online_config_name | [string](#string) |  | Resource name of the online config that produced this result. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationOnlineConfigs/&lt;config_uuid&gt;</code>. |
+| session_name | [string](#string) |  | Resource name of the scored session. Format: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code>. |
+| session_step_name | [string](#string) |  | Resource name of the scored session step. Format: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/sessionSteps/&lt;step_uuid&gt;</code>. |
+| llm_evaluation_feedbacks | [LlmEvaluationFeedback](#ondewo.nlu.LlmEvaluationFeedback) | repeated | Per-criterion feedback records, one per configured evaluator (embedded list; the same LlmEvaluationFeedback message reused as the per-criterion result element). |
+| passed | [bool](#bool) |  | Whether the step passed every criterion (aggregate_score >= the config's fail_threshold and no criterion failed). |
+| aggregate_score | [double](#double) |  | Aggregate roll-up score across the criteria (0.0-1.0). |
+| evaluated_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock time the worker scored this step. Read-only. |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID (the worker / system identity). |
+| parent | [string](#string) |  | Project owning the result. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationOnlineResultFilter"></a>
+
+### LlmEvaluationOnlineResultFilter
+Filter conditions for ListOnlineResults. All fields are optional; multiple
+fields set at the same time are combined via logical AND.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_online_config_name | [string](#string) |  | Optional. Match only results produced by this online config. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationOnlineConfigs/&lt;config_uuid&gt;</code>. |
+| passed | [bool](#bool) |  | Optional. Match only results with this pass-state. |
+| filter_by_passed | [bool](#bool) |  | Optional. When true, the <code>passed</code> field is applied as a filter; when false the <code>passed</code> field is ignored (so unset means "any"). |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationOnlineSessionFilter"></a>
+
+### LlmEvaluationOnlineSessionFilter
+Optional filter narrowing which already-persisted live session steps an
+online-evaluation config samples. All fields are optional; multiple fields set
+at the same time are combined via logical AND.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| labels | [string](#string) | repeated | Optional. Match only session steps whose session carries every one of these labels (e.g. <code>"AI_FLAGGED"</code>). |
+| language_codes | [string](#string) | repeated | Optional. Restrict sampling to these BCP-47 language codes. Empty = the owning config's language_code only. |
+| platforms | [string](#string) | repeated | Optional. Restrict sampling to these integration platforms. |
+| require_telemetry | [bool](#bool) |  | Optional. When true, only sample steps that have recorded LLM telemetry (a <code>session_step_llm_telemetry</code> row), so reference-free judges requiring the trace can run. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationPairwiseResult"></a>
+
+### LlmEvaluationPairwiseResult
+Per-example pairwise comparison entry.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_example_name | [string](#string) |  | Resource name of the example being compared. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;/examples/&lt;example_uuid&gt;</code>. |
+| llm_evaluation_winner_experiment_name | [string](#string) |  | Resource name of the winning experiment. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| score_delta | [double](#double) |  | Score delta against the baseline (positive means winner improved). |
+| reason | [string](#string) |  | Free-form reason / rationale. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationProjectSettings"></a>
+
+### LlmEvaluationProjectSettings
+Per-(project, language_code) evaluation settings singleton.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the settings singleton. Read-only. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationProjectSettings</code>. |
+| llm_evaluation_judge_config | [LlmEvaluationJudgeConfig](#ondewo.nlu.LlmEvaluationJudgeConfig) |  | Judge-LLM configuration for LLM-as-judge evaluators. |
+| default_weights | [google.protobuf.Struct](#google.protobuf.Struct) |  | Default per-criterion weights (criterion name -> numeric weight) applied by comparison / scorecard views when no explicit weights are configured. |
+| default_pass_cutoff_score | [double](#double) |  | Default score cutoff (0.0-1.0) above which an evaluator run counts as passed. |
+| default_scorecard_name | [string](#string) |  | Optional. Resource name of the default scorecard. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationScorecards/&lt;scorecard_uuid&gt;</code>. |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| parent | [string](#string) |  | Project owning the settings. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationReleaseGate"></a>
+
+### LlmEvaluationReleaseGate
+A release gate: a named set of thresholds over evaluator scores, regression
+deltas and telemetry that decides whether a candidate configuration ships.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the release gate. Read-only; populated by the server. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationReleaseGates/&lt;gate_uuid&gt;</code>. |
+| display_name | [string](#string) |  | Required. Human-readable display name (unique within the (project, language_code) tuple). |
+| description | [string](#string) |  | Free-form description. |
+| revision | [int32](#int32) |  | Server-managed revision counter, incremented on semantic updates (suite, baseline, evaluators, thresholds, weights, safety). Read-only. |
+| llm_evaluation_dataset_name | [string](#string) |  | Resource name of the benchmark suite (dataset) the gate runs. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| llm_evaluation_baseline_experiment_name | [string](#string) |  | Optional. Resource name of the baseline experiment for regression checks. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| llm_evaluation_evaluator_names | [string](#string) | repeated | Logical names of the evaluators the gate runs against the suite. |
+| thresholds | [LlmEvaluationReleaseGateThresholds](#ondewo.nlu.LlmEvaluationReleaseGateThresholds) |  | Threshold set evaluated against the candidate experiment. |
+| safety | [LlmEvaluationReleaseGateSafetyConfig](#ondewo.nlu.LlmEvaluationReleaseGateSafetyConfig) |  | Optional safety section (separate adversarial experiment). |
+| weights | [google.protobuf.Struct](#google.protobuf.Struct) |  | Per-criterion weights used for the weighted composite score (criterion name -> numeric weight; normalized server-side). |
+| pass_cutoff_score | [double](#double) |  | Score cutoff (0.0-1.0) above which an evaluator run counts as passed. |
+| staleness_window_days | [int32](#int32) |  | Number of days after which a gate verdict is considered stale. |
+| ccai_service_names | [string](#string) | repeated | Default CcaiService name(s) defining the candidate target's LLM connection (can be overridden per run). |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| parent | [string](#string) |  | Project owning the release gate. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationReleaseGateCheck"></a>
+
+### LlmEvaluationReleaseGateCheck
+One evaluated check inside a release gate run verdict.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | Stable check identifier, e.g. "pass_rate", "criterion.&lt;name&gt;", "regression.&lt;name&gt;", "latency_p95_seconds", "safety.&lt;name&gt;", "acceptance_must_pass". |
+| threshold | [double](#double) |  | Threshold the check compared against. |
+| actual | [double](#double) |  | Actual value observed. |
+| actual_available | [bool](#bool) |  | False when the input needed for the check was unavailable (e.g. telemetry not recorded); <code>actual</code> is meaningless in that case. |
+| passed | [bool](#bool) |  | Whether the check passed. |
+| partial | [bool](#bool) |  | True when the actual value was only window-attributed (partial telemetry). |
+| provenance | [string](#string) |  | Where the actual value came from: "LIVE" | "DERIVED" | "TELEMETRY". |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationReleaseGateFilter"></a>
+
+### LlmEvaluationReleaseGateFilter
+Filter conditions for ListReleaseGates. All fields are optional; multiple
+fields set at the same time are combined via logical AND.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| display_name | [string](#string) |  | Optional. Match only gates whose display name contains this substring (case-insensitive). |
+| llm_evaluation_dataset_name | [string](#string) |  | Optional. Match only gates running this suite (dataset resource name). Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationReleaseGateRun"></a>
+
+### LlmEvaluationReleaseGateRun
+One persisted execution of a release gate: experiments + computed verdict.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the gate run. Read-only; populated by the server. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationReleaseGates/&lt;gate_uuid&gt;/runs/&lt;run_uuid&gt;</code>. |
+| llm_evaluation_release_gate_name | [string](#string) |  | Resource name of the gate this run belongs to. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationReleaseGates/&lt;gate_uuid&gt;</code>. |
+| gate_revision | [int32](#int32) |  | Gate revision at run time. |
+| gate_snapshot | [google.protobuf.Struct](#google.protobuf.Struct) |  | Full gate document snapshot taken at run time, so the verdict stays interpretable after later gate edits. |
+| llm_evaluation_experiment_name | [string](#string) |  | Resource name of the candidate experiment. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| llm_evaluation_safety_experiment_name | [string](#string) |  | Optional. Resource name of the safety (adversarial) experiment. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| llm_evaluation_baseline_experiment_name | [string](#string) |  | Optional. Resource name of the baseline experiment used for regression checks. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| llm_evaluation_release_gate_verdict | [LlmEvaluationReleaseGateVerdict](#ondewo.nlu.LlmEvaluationReleaseGateVerdict) |  | Computed verdict. Read-only; persisted server-side. |
+| checks | [LlmEvaluationReleaseGateCheck](#ondewo.nlu.LlmEvaluationReleaseGateCheck) | repeated | Individual checks the verdict was derived from. Read-only. |
+| started_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock start of the gate run. |
+| finished_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock end of the gate run (verdict computation finished). |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| parent | [string](#string) |  | Project owning the gate run. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationReleaseGateRunFilter"></a>
+
+### LlmEvaluationReleaseGateRunFilter
+Filter conditions for ListReleaseGateRuns. All fields are optional; multiple
+fields set at the same time are combined via logical AND.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_release_gate_name | [string](#string) |  | Optional. Match only runs of this gate (resource name). Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationReleaseGates/&lt;gate_uuid&gt;</code>. |
+| llm_evaluation_release_gate_verdict | [LlmEvaluationReleaseGateVerdict](#ondewo.nlu.LlmEvaluationReleaseGateVerdict) |  | Optional. Match only runs with this verdict. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationReleaseGateSafetyConfig"></a>
+
+### LlmEvaluationReleaseGateSafetyConfig
+Safety section of a release gate: a separate adversarial experiment scored
+with safety evaluators.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| enabled | [bool](#bool) |  | Whether the safety section is evaluated as part of gate runs. |
+| adversarial_dataset_name | [string](#string) |  | Resource name of the adversarial (red-team) dataset to run. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| evaluator_names | [string](#string) | repeated | Logical names of safety evaluators to run (e.g. "toxicity", "bias", "pii_leakage"). |
+| max_toxicity | [double](#double) | optional | Maximum tolerated mean toxicity score (0.0-1.0). |
+| max_bias | [double](#double) | optional | Maximum tolerated mean bias score (0.0-1.0). |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationReleaseGateThresholds"></a>
+
+### LlmEvaluationReleaseGateThresholds
+Threshold set evaluated by a release gate. Nested in a dedicated message so
+presence can be detected at the message level (proto3 scalars carry no presence).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| min_pass_rate | [double](#double) |  | Minimum pass rate (0.0-1.0) the candidate experiment must reach. |
+| max_regression_per_criterion | [double](#double) | optional | Maximum tolerated per-criterion mean-score regression (0.0-1.0) versus the baseline experiment. |
+| max_p95_latency_seconds | [double](#double) |  | Maximum tolerated p95 latency in seconds (requires telemetry join). |
+| acceptance_must_pass | [bool](#bool) |  | If true, every example tagged "acceptance" must pass for the gate to pass. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationReport"></a>
+
+### LlmEvaluationReport
+An immutable persisted report artifact (release summaries, gate sign-offs,
+exported evaluation snapshots).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the report. Read-only; populated by the server. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationReports/&lt;report_uuid&gt;</code>. |
+| display_name | [string](#string) |  | Required. Human-readable display name. |
+| description | [string](#string) |  | Free-form description. |
+| report_type | [string](#string) |  | Logical report type identifier (e.g. <code>"release-summary.v1"</code>). |
+| mime_type | [string](#string) |  | MIME type of the payload (e.g. <code>"text/markdown"</code>, <code>"text/csv"</code>, <code>"application/pdf"</code>). |
+| payload | [bytes](#bytes) |  | Report payload. Omitted from List responses unless explicitly requested via field_mask. |
+| metadata | [google.protobuf.Struct](#google.protobuf.Struct) |  | Source references (gate runs, experiments, filters) captured at creation time. |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| parent | [string](#string) |  | Project owning the report. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationReportFilter"></a>
+
+### LlmEvaluationReportFilter
+Filter conditions for ListReports. All fields are optional; multiple fields
+set at the same time are combined via logical AND.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| display_name | [string](#string) |  | Optional. Match only reports whose display name contains this substring (case-insensitive). |
+| report_type | [string](#string) |  | Optional. Match only reports of this logical type. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationSchedule"></a>
+
+### LlmEvaluationSchedule
+A schedule for recurring experiment / release gate runs.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the schedule. Read-only; populated by the server. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationSchedules/&lt;schedule_uuid&gt;</code>. |
+| display_name | [string](#string) |  | Required. Human-readable display name (unique within the (project, language_code) tuple). |
+| description | [string](#string) |  | Free-form description. |
+| cron_expression | [string](#string) |  | 5-field cron expression in UTC (e.g. <code>"0 2 * * *"</code>). Exactly one of <code>cron_expression</code> / <code>interval_seconds</code> must be set. |
+| interval_seconds | [int32](#int32) |  | Fixed interval between runs in seconds. Exactly one of <code>cron_expression</code> / <code>interval_seconds</code> must be set. |
+| enabled | [bool](#bool) |  | Whether the schedule fires. Disabled schedules keep their configuration. |
+| llm_evaluation_schedule_action | [LlmEvaluationScheduleAction](#ondewo.nlu.LlmEvaluationScheduleAction) |  | What the schedule executes when it fires. |
+| run_llm_evaluation_experiment_request | [RunLlmEvaluationExperimentRequest](#ondewo.nlu.RunLlmEvaluationExperimentRequest) |  | RUN_EXPERIMENT only. Template request dispatched on every firing (display_name is suffixed with the firing timestamp). |
+| llm_evaluation_release_gate_name | [string](#string) |  | RUN_RELEASE_GATE only. Resource name of the gate to run. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationReleaseGates/&lt;gate_uuid&gt;</code>. |
+| last_run_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock time of the most recent firing. Read-only. |
+| next_run_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock time of the next planned firing. Read-only. |
+| last_run_resource_name | [string](#string) |  | Resource name created by the most recent firing (experiment or gate run). Read-only. |
+| last_run_status | [LlmEvaluationExperimentStatus](#ondewo.nlu.LlmEvaluationExperimentStatus) |  | Status of the experiment created by the most recent firing. Read-only. |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| parent | [string](#string) |  | Project owning the schedule. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationScheduleFilter"></a>
+
+### LlmEvaluationScheduleFilter
+Filter conditions for ListSchedules. All fields are optional; multiple fields
+set at the same time are combined via logical AND.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| display_name | [string](#string) |  | Optional. Match only schedules whose display name contains this substring (case-insensitive). |
+| enabled_only | [bool](#bool) |  | Optional. When true, match only enabled schedules. |
+| llm_evaluation_schedule_action | [LlmEvaluationScheduleAction](#ondewo.nlu.LlmEvaluationScheduleAction) |  | Optional. Match only schedules with this action. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationScorecard"></a>
+
+### LlmEvaluationScorecard
+A scorecard: a named weighted multi-criteria roll-up definition applied to
+experiments for release reporting.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique resource name of the scorecard. Read-only; populated by the server. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationScorecards/&lt;scorecard_uuid&gt;</code>. |
+| display_name | [string](#string) |  | Required. Human-readable display name (unique within the (project, language_code) tuple). |
+| description | [string](#string) |  | Free-form description. |
+| llm_evaluation_scorecard_components | [LlmEvaluationScorecardComponent](#ondewo.nlu.LlmEvaluationScorecardComponent) | repeated | Weighted criterion components. |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| parent | [string](#string) |  | Project owning the scorecard. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationScorecardComponent"></a>
+
+### LlmEvaluationScorecardComponent
+One weighted criterion row of a scorecard.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| criterion | [string](#string) |  | Criterion label the component aggregates (e.g. "faithfulness"). |
+| weight | [double](#double) |  | Relative weight of the component (normalized server-side). |
+| target_score | [double](#double) |  | Target score (0.0-1.0) the criterion should reach. |
+| evaluator_name | [string](#string) |  | Optional. Logical evaluator name backing the criterion. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationScorecardFilter"></a>
+
+### LlmEvaluationScorecardFilter
+Filter conditions for ListScorecards. All fields are optional; multiple
+fields set at the same time are combined via logical AND.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| display_name | [string](#string) |  | Optional. Match only scorecards whose display name contains this substring (case-insensitive). |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationSimulationPersona"></a>
+
+### LlmEvaluationSimulationPersona
+One simulated user persona.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| persona | [string](#string) |  | Short persona label (e.g. "impatient customer"). |
+| scenario | [string](#string) |  | Scenario the simulated user pursues (e.g. "wants a refund for a double charge"). |
+| expected_outcome | [string](#string) |  | Expected outcome of a successful conversation (used as expected output on generated examples). |
+| user_description | [string](#string) |  | Free-form additional description of the simulated user's behavior. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmEvaluationTurnResult"></a>
+
+### LlmEvaluationTurnResult
+Result of executing one conversation turn of a multi-turn (flow) example.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| turn_index | [int32](#int32) |  | Zero-based index of the turn within the example's scripted conversation. |
+| user_input | [google.protobuf.Struct](#google.protobuf.Struct) |  | The user input that was sent for this turn (text, contexts, parameters). |
+| expected_output | [google.protobuf.Struct](#google.protobuf.Struct) |  | Expected output for this turn as authored in the example (expected tool calls, final state, answer). |
+| actual_output | [google.protobuf.Struct](#google.protobuf.Struct) |  | Actual output produced by the target for this turn (answer text, tool calls, final state). |
+| llm_telemetry_run_id | [string](#string) |  | Ties this turn back to the LlmTelemetry produced when running the target for this turn (per-turn telemetry join key). |
+| session_step_name | [string](#string) |  | Optional. Resource name of the session step created by executing this turn against the live target (deep link into trace views). |
+| llm_evaluation_feedbacks | [LlmEvaluationFeedback](#ondewo.nlu.LlmEvaluationFeedback) | repeated | Per-turn feedback records produced by turn-aware evaluators. |
+| duration_in_s | [double](#double) |  | Wall-clock duration of this turn in seconds. |
+
+
+
+
+
+
+<a name="ondewo.nlu.PromoteLlmEvaluationAnnotationQueueItemRequest"></a>
+
+### PromoteLlmEvaluationAnnotationQueueItemRequest
+Request to promote an annotation-queue item into a regression dataset. Thin
+server-side composition over LlmEvaluationCreateExamplesFromSession; the item
+status is flipped to PROMOTED and the dataset name stamped on success.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the item to promote. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAnnotationQueueItems/&lt;item_uuid&gt;</code>. |
+| target_dataset_name | [string](#string) |  | Resource name of the dataset receiving the created example(s). Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| llm_evaluation_example_extraction_mode | [LlmEvaluationExampleExtractionMode](#ondewo.nlu.LlmEvaluationExampleExtractionMode) |  | How the item's session steps are turned into examples (reused mode enum). |
+| include_tool_calls | [bool](#bool) |  | When true, tool calls recorded in the session's telemetry are captured as expected tool calls on the created examples. |
+| include_retrieval_context | [bool](#bool) |  | When true, retrieved chunks recorded by retriever spans are captured as frozen retrieval context on the created examples. |
+| parent | [string](#string) |  | Project owning the item and the dataset. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.PromoteLlmEvaluationAnnotationQueueItemResponse"></a>
+
+### PromoteLlmEvaluationAnnotationQueueItemResponse
+Response for PromoteAnnotationQueueItem.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_examples | [LlmEvaluationExample](#ondewo.nlu.LlmEvaluationExample) | repeated | Example record(s) created in the target dataset. |
+| llm_evaluation_annotation_queue_item | [LlmEvaluationAnnotationQueueItem](#ondewo.nlu.LlmEvaluationAnnotationQueueItem) |  | The promoted queue item (status flipped to PROMOTED, dataset name stamped). |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagVariantConfig"></a>
+
+### RagVariantConfig
+RAGFlow variant override for an A/B experiment running on a RAG-classifier
+project (<code>IntentRagflowClassifier</code>). Where an IntentAgent variant
+overrides the LLM via <code>ccai_service_names</code>, a RAG variant overrides
+the project's chat-assistant LLM CcaiService and the retrieval parameters used
+when answering the assigned sessions. Override-or-inherit semantics apply per
+field: an empty / zero value means "inherit the project's base
+IntentRagflowClassifier config for this field".
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| chat_assistant_llm_ccai_service_name | [string](#string) |  | CcaiService name whose LLM connection details back the chat-assistant LLM for sessions assigned to this variant (overrides the project's <code>chat_assistant_llm_ccai_service_name</code>). Empty = inherit. Format: <code>projects/&lt;project_uuid&gt;/agent/ccaiServices/&lt;ccai_service_uuid&gt;</code>. |
+| top_k | [int32](#int32) |  | Retrieval top_k: the maximum number of chunks retrieved per turn (overrides the project's <code>retrieval_max_retrieval_chunks</code>). 0 = inherit. |
+| similarity_threshold | [double](#double) |  | Retrieval similarity threshold in <code>[0.0, 1.0]</code>: chunks scoring below it are dropped (overrides the project's <code>chat_assistant_similarity_threshold</code>). 0.0 = inherit. |
+| vector_similarity_weight | [double](#double) |  | Vector-vs-keyword similarity weight in <code>[0.0, 1.0]</code> (overrides the project's <code>retrieval_vector_similarity_weight</code>, surfaced to RAGFlow as the chat assistant's keywords-similarity weight). 0.0 = inherit. |
+| rerank_model_ccai_service_name | [string](#string) |  | Optional. CcaiService name backing the rerank model for sessions assigned to this variant (overrides the project's <code>chat_assistant_rerank_ccai_service_name</code>). Empty = inherit (or no reranking when the project itself configures none). Format: <code>projects/&lt;project_uuid&gt;/agent/ccaiServices/&lt;ccai_service_uuid&gt;</code>. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RunLlmEvaluationExperimentRequest"></a>
+
+### RunLlmEvaluationExperimentRequest
+Request to run a fresh experiment.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| llm_evaluation_dataset_name | [string](#string) |  | Resource name of the dataset to evaluate against. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| display_name | [string](#string) |  | Required. Human-readable display name. |
+| git_sha | [string](#string) |  | Source-tree revision pin for reproducibility. |
+| prompt_version | [string](#string) |  | Logical prompt version identifier. |
+| model_name | [string](#string) |  | Concrete model identifier under test. |
+| config | [google.protobuf.Struct](#google.protobuf.Struct) |  | Arbitrary run-time configuration. |
+| llm_evaluation_evaluator_names | [string](#string) | repeated | Logical names of evaluators to run (resolved server-side to evaluator implementations). |
+| llm_evaluation_baseline_experiment_name | [string](#string) |  | Optional. Resource name of a baseline experiment for regression detection. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| language_code | [string](#string) |  | BCP-47 language code the experiment runs against. Required — selects which language-scoped dataset is loaded. |
+| ccai_service_names | [string](#string) | repeated | Logical names of the CcaiService(s) that carry the LLM connection details (host/port/model/ auth) of the model(s) under evaluation, resolved server-side — mirroring the IntentRagflowClassifier / IntentAgent <code>ccai_service_names</code> pattern. Each named service defines one LLM to evaluate; supplying several evaluates and compares multiple LLMs in a single run. Takes precedence over the free-form <code>model_name</code> label. |
+| repetitions | [int32](#int32) |  | Optional. Number of repetitions per (example, evaluator) pair for consistency / dispersion analysis. 0 is treated as 1. |
+| llm_evaluation_experiment_kind | [LlmEvaluationExperimentKind](#ondewo.nlu.LlmEvaluationExperimentKind) |  | Optional. Kind of experiment to run. Unspecified defaults to STANDARD (or FLOW when the dataset type is FLOW). |
+| evaluator_configs | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. Per-evaluator parameter overrides for this run, keyed by evaluator name. Values are objects matching the evaluator's parameter specs from LlmEvaluationListEvaluators (e.g. <code>{"geeval": {"criteria": "...", "threshold": 0.7}}</code>). |
+
+
+
+
+
+
+<a name="ondewo.nlu.RunLlmEvaluationReleaseGateRequest"></a>
+
+### RunLlmEvaluationReleaseGateRequest
+Request to run a release gate against a candidate target.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the gate to run. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationReleaseGates/&lt;gate_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the gate. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+| ccai_service_names | [string](#string) | repeated | Optional. CcaiService name(s) defining the candidate target's LLM connection; overrides the gate's default <code>ccai_service_names</code>. |
+| git_sha | [string](#string) |  | Optional. Source-tree revision pin recorded on the candidate experiment. |
+| prompt_version | [string](#string) |  | Optional. Logical prompt version recorded on the candidate experiment. |
+
+
+
+
+
+
+<a name="ondewo.nlu.SimulateLlmEvaluationConversationsRequest"></a>
+
+### SimulateLlmEvaluationConversationsRequest
+Request to generate synthetic multi-turn evaluation conversations.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Project owning the dataset. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| llm_evaluation_dataset_name | [string](#string) |  | Resource name of the dataset receiving the generated examples. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationDatasets/&lt;dataset_uuid&gt;</code>. |
+| llm_evaluation_simulation_personas | [LlmEvaluationSimulationPersona](#ondewo.nlu.LlmEvaluationSimulationPersona) | repeated | Personas to simulate. At least one is required for STANDARD simulations. |
+| num_conversations | [int32](#int32) |  | Number of conversations to generate (across all personas). |
+| max_turns | [int32](#int32) |  | Maximum number of user turns per generated conversation. |
+| ccai_service_names | [string](#string) | repeated | CcaiService name(s) defining the LLM connection used to simulate the user side of the conversations. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required, must match the dataset's). |
+| config | [google.protobuf.Struct](#google.protobuf.Struct) |  | Arbitrary simulator configuration captured for reproducibility. |
+| llm_evaluation_simulation_kind | [LlmEvaluationSimulationKind](#ondewo.nlu.LlmEvaluationSimulationKind) |  | Kind of simulation (standard persona-driven vs adversarial red-teaming). |
+| attack_types | [string](#string) | repeated | ADVERSARIAL only. Attack types to probe (e.g. "prompt_injection", "pii_extraction", "jailbreak", "off_topic_drift"). Empty = all built-in types. |
+
+
+
+
+
+
+<a name="ondewo.nlu.StartLlmEvaluationAbExperimentRequest"></a>
+
+### StartLlmEvaluationAbExperimentRequest
+Request to start an A/B experiment (validates weights, sets RUNNING).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the experiment to start. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAbExperiments/&lt;experiment_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.StopLlmEvaluationAbExperimentRequest"></a>
+
+### StopLlmEvaluationAbExperimentRequest
+Request to stop a running A/B experiment (sets STOPPED).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the experiment to stop. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationAbExperiments/&lt;experiment_uuid&gt;</code>. |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.SubmitLlmEvaluationFeedbackRequest"></a>
+
+### SubmitLlmEvaluationFeedbackRequest
+Request to submit a single feedback record.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_experiment_name | [string](#string) |  | Resource name of the experiment the feedback applies to. Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;</code>. |
+| llm_evaluation_evaluator_run_name | [string](#string) |  | Optional. Resource name of the evaluator run the feedback attaches to. Empty for top-level experiment-scoped feedback (e.g. human review at experiment granularity). Format: <code>projects/&lt;project_uuid&gt;/agent/llmEvaluationExperiments/&lt;experiment_uuid&gt;/evaluatorRuns/&lt;evaluator_run_uuid&gt;</code>. |
+| llm_evaluation_feedback | [LlmEvaluationFeedback](#ondewo.nlu.LlmEvaluationFeedback) |  | Feedback payload. |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.UpdateLlmEvaluationAbExperimentRequest"></a>
+
+### UpdateLlmEvaluationAbExperimentRequest
+Request to update an existing A/B experiment.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_ab_experiment | [LlmEvaluationAbExperiment](#ondewo.nlu.LlmEvaluationAbExperiment) |  | Experiment payload (only fields covered by <code>update_mask</code> are applied). |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Mask of fields to update on the experiment record. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data on the returned experiment. |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.UpdateLlmEvaluationAnnotationQueueItemRequest"></a>
+
+### UpdateLlmEvaluationAnnotationQueueItemRequest
+Request to update an annotation-queue item (status / assignee / reason transitions).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_annotation_queue_item | [LlmEvaluationAnnotationQueueItem](#ondewo.nlu.LlmEvaluationAnnotationQueueItem) |  | Item payload (only fields covered by <code>update_mask</code> are applied). |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Mask of fields to update on the item record. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data on the returned item. |
+| parent | [string](#string) |  | Project owning the item. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.UpdateLlmEvaluationDatasetRequest"></a>
+
+### UpdateLlmEvaluationDatasetRequest
+Request to update an existing dataset.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_dataset | [LlmEvaluationDataset](#ondewo.nlu.LlmEvaluationDataset) |  | Dataset payload (only fields covered by <code>update_mask</code> are applied). |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Mask of fields to update on the dataset record. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data on the returned dataset. |
+| parent | [string](#string) |  | Project owning the dataset. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.UpdateLlmEvaluationExampleRequest"></a>
+
+### UpdateLlmEvaluationExampleRequest
+Request to update an existing example.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_example | [LlmEvaluationExample](#ondewo.nlu.LlmEvaluationExample) |  | Example payload (only fields covered by <code>update_mask</code> are applied). |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Mask of fields to update on the example record. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data on the returned example. |
+| parent | [string](#string) |  | Project owning the example. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.UpdateLlmEvaluationExperimentRequest"></a>
+
+### UpdateLlmEvaluationExperimentRequest
+Request to update an experiment's metadata.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_experiment | [LlmEvaluationExperiment](#ondewo.nlu.LlmEvaluationExperiment) |  | Experiment payload (only fields covered by <code>update_mask</code> are applied). |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Mask of fields to update on the experiment record. Evaluator runs and feedback are immutable and ignored here. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data on the returned experiment. |
+| parent | [string](#string) |  | Project owning the experiment. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.UpdateLlmEvaluationFeedbackRequest"></a>
+
+### UpdateLlmEvaluationFeedbackRequest
+Request to update an existing feedback record.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_feedback | [LlmEvaluationFeedback](#ondewo.nlu.LlmEvaluationFeedback) |  | Feedback payload (only fields covered by <code>update_mask</code> are applied; typically <code>score</code>, <code>categorical_value</code> and / or <code>comment</code>). |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Mask of fields to update on the feedback record. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data on the returned feedback record. |
+| parent | [string](#string) |  | Project owning the feedback. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.UpdateLlmEvaluationOnlineConfigRequest"></a>
+
+### UpdateLlmEvaluationOnlineConfigRequest
+Request to update an existing online-evaluation config.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_online_config | [LlmEvaluationOnlineConfig](#ondewo.nlu.LlmEvaluationOnlineConfig) |  | Config payload (only fields covered by <code>update_mask</code> are applied). |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Mask of fields to update on the config record. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data on the returned config. |
+| parent | [string](#string) |  | Project owning the config. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.UpdateLlmEvaluationProjectSettingsRequest"></a>
+
+### UpdateLlmEvaluationProjectSettingsRequest
+Request to update the evaluation settings singleton.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_project_settings | [LlmEvaluationProjectSettings](#ondewo.nlu.LlmEvaluationProjectSettings) |  | Settings payload (only fields covered by <code>update_mask</code> are applied). |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Mask of fields to update on the settings record. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data on the returned settings. |
+| parent | [string](#string) |  | Project owning the settings. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.UpdateLlmEvaluationReleaseGateRequest"></a>
+
+### UpdateLlmEvaluationReleaseGateRequest
+Request to update an existing release gate.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_release_gate | [LlmEvaluationReleaseGate](#ondewo.nlu.LlmEvaluationReleaseGate) |  | Gate payload (only fields covered by <code>update_mask</code> are applied). |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Mask of fields to update on the gate record. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data on the returned gate. |
+| parent | [string](#string) |  | Project owning the gate. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.UpdateLlmEvaluationScheduleRequest"></a>
+
+### UpdateLlmEvaluationScheduleRequest
+Request to update an existing schedule.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_schedule | [LlmEvaluationSchedule](#ondewo.nlu.LlmEvaluationSchedule) |  | Schedule payload (only fields covered by <code>update_mask</code> are applied). |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Mask of fields to update on the schedule record. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data on the returned schedule. |
+| parent | [string](#string) |  | Project owning the schedule. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+
+<a name="ondewo.nlu.UpdateLlmEvaluationScorecardRequest"></a>
+
+### UpdateLlmEvaluationScorecardRequest
+Request to update an existing scorecard.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_evaluation_scorecard | [LlmEvaluationScorecard](#ondewo.nlu.LlmEvaluationScorecard) |  | Scorecard payload (only fields covered by <code>update_mask</code> are applied). |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Mask of fields to update on the scorecard record. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data on the returned scorecard. |
+| parent | [string](#string) |  | Project owning the scorecard. Format: <code>projects/&lt;project_uuid&gt;/agent</code>. |
+| language_code | [string](#string) |  | BCP-47 language-code scope (required). |
+
+
+
+
+
+ <!-- end messages -->
+
+
+<a name="ondewo.nlu.LlmEvaluationAbExperimentStatus"></a>
+
+### LlmEvaluationAbExperimentStatus
+Lifecycle status of an A/B experiment.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LLM_EVALUATION_AB_EXPERIMENT_STATUS_UNSPECIFIED | 0 | Default / unset. |
+| LLM_EVALUATION_AB_EXPERIMENT_STATUS_DRAFT | 1 | Defined but not yet started; no traffic is split. |
+| LLM_EVALUATION_AB_EXPERIMENT_STATUS_RUNNING | 2 | Started; live DetectIntent traffic is being split across the variants. |
+| LLM_EVALUATION_AB_EXPERIMENT_STATUS_STOPPED | 3 | Stopped; traffic split has ended. Sticky assignments and results are retained. |
+| LLM_EVALUATION_AB_EXPERIMENT_STATUS_ARCHIVED | 4 | Archived; read-only, hidden from the default list. |
+
+
+
+<a name="ondewo.nlu.LlmEvaluationAbOptimizeMetric"></a>
+
+### LlmEvaluationAbOptimizeMetric
+The metric an A/B rollout optimizes when comparing each variant against the
+control. Each value maps to a quantity already produced by the per-variant
+results rollup (see GetAbExperimentResults). Higher-is-better vs.
+lower-is-better is implied by the metric (e.g. PASS_RATE / CRITERION_SCORE /
+SAFETY_SCORE are higher-is-better; ERROR_RATE / MEAN_LATENCY are
+lower-is-better) and applied server-side when picking the winner.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LLM_EVALUATION_AB_OPTIMIZE_METRIC_UNSPECIFIED | 0 | Default / unset. |
+| LLM_EVALUATION_AB_OPTIMIZE_METRIC_PASS_RATE | 1 | Fraction of sessions that passed (1 - error_rate). Higher is better. |
+| LLM_EVALUATION_AB_OPTIMIZE_METRIC_ERROR_RATE | 2 | Fraction of sessions that errored. Lower is better. |
+| LLM_EVALUATION_AB_OPTIMIZE_METRIC_MEAN_LATENCY | 3 | Mean first-token / response latency in seconds. Lower is better. |
+| LLM_EVALUATION_AB_OPTIMIZE_METRIC_CRITERION_SCORE | 4 | Mean offline-criterion score in <code>[0.0, 1.0]</code>. Higher is better. |
+| LLM_EVALUATION_AB_OPTIMIZE_METRIC_SAFETY_SCORE | 5 | Mean native-safety score in <code>[0.0, 1.0]</code>. Higher is better. |
+
+
+
+<a name="ondewo.nlu.LlmEvaluationAnnotationStatus"></a>
+
+### LlmEvaluationAnnotationStatus
+Lifecycle status of an annotation-queue item.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LLM_EVALUATION_ANNOTATION_STATUS_UNSPECIFIED | 0 | Default / unset. |
+| LLM_EVALUATION_ANNOTATION_STATUS_PENDING | 1 | Enqueued, awaiting human review. |
+| LLM_EVALUATION_ANNOTATION_STATUS_REVIEWED | 2 | Reviewed by a human (verdict / reason recorded), not yet promoted or dismissed. |
+| LLM_EVALUATION_ANNOTATION_STATUS_PROMOTED | 3 | Promoted into a regression dataset (promoted_dataset_name stamped). |
+| LLM_EVALUATION_ANNOTATION_STATUS_DISMISSED | 4 | Dismissed (not a genuine failure; will not be promoted). |
+
+
+
+<a name="ondewo.nlu.LlmEvaluationDatasetType"></a>
+
+### LlmEvaluationDatasetType
+Kind of examples an evaluation dataset holds.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LLM_EVALUATION_DATASET_TYPE_UNSPECIFIED | 0 | Default / unset (treated as SINGLE_TURN). |
+| LLM_EVALUATION_DATASET_TYPE_SINGLE_TURN | 1 | Single-turn examples (one input, one expected output). |
+| LLM_EVALUATION_DATASET_TYPE_FLOW | 2 | Multi-turn conversation-flow examples (scripted user turns with expected tool calls / final state / answers per turn). |
+| LLM_EVALUATION_DATASET_TYPE_RAG | 3 | RAG question-answering examples (question, gold answer, expected sources). |
+| LLM_EVALUATION_DATASET_TYPE_RED_TEAM | 4 | Adversarial red-team probes (prompt injection, PII extraction, jailbreaks, ...). |
+| LLM_EVALUATION_DATASET_TYPE_SIMULATED | 5 | Synthetically generated examples (conversation simulator output). |
+
+
+
+<a name="ondewo.nlu.LlmEvaluationEvaluatorCategory"></a>
+
+### LlmEvaluationEvaluatorCategory
+Category an evaluator belongs to.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LLM_EVALUATION_EVALUATOR_CATEGORY_UNSPECIFIED | 0 | Default / unset. |
+| LLM_EVALUATION_EVALUATOR_CATEGORY_RAG | 1 | Retrieval-augmented-generation quality (faithfulness, contextual precision, ...). |
+| LLM_EVALUATION_EVALUATOR_CATEGORY_AGENTIC | 2 | Agentic behavior (tool correctness, task completion, MCP usage, ...). |
+| LLM_EVALUATION_EVALUATOR_CATEGORY_CONVERSATIONAL | 3 | Multi-turn conversational quality (knowledge retention, role adherence, ...). |
+| LLM_EVALUATION_EVALUATOR_CATEGORY_SAFETY | 4 | Safety (toxicity, bias, PII leakage, hallucination, ...). |
+| LLM_EVALUATION_EVALUATOR_CATEGORY_HEURISTIC | 5 | Deterministic heuristics (exact match, embedding distance, JSON validity, ...). |
+| LLM_EVALUATION_EVALUATOR_CATEGORY_CUSTOM | 6 | User-configurable custom metrics (G-Eval rubrics, DAG metrics, ...). |
+
+
+
+<a name="ondewo.nlu.LlmEvaluationEvaluatorType"></a>
+
+### LlmEvaluationEvaluatorType
+Family of evaluator implementations.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LLM_EVALUATION_EVALUATOR_TYPE_UNSPECIFIED | 0 | Default / unset. |
+| LLM_EVALUATION_EVALUATOR_TYPE_LLM_AS_JUDGE | 1 | LLM acting as a judge (LangSmith-style). |
+| LLM_EVALUATION_EVALUATOR_TYPE_HUMAN | 2 | Human reviewer. |
+| LLM_EVALUATION_EVALUATOR_TYPE_HEURISTIC | 3 | Deterministic heuristic (regex, exact match, ...). |
+| LLM_EVALUATION_EVALUATOR_TYPE_CUSTOM_CODE | 4 | Custom Python code provided by the user. |
+| LLM_EVALUATION_EVALUATOR_TYPE_PAIRWISE | 5 | Pairwise comparison evaluator. |
+
+
+
+<a name="ondewo.nlu.LlmEvaluationExampleExtractionMode"></a>
+
+### LlmEvaluationExampleExtractionMode
+How session steps are converted into evaluation examples.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LLM_EVALUATION_EXAMPLE_EXTRACTION_MODE_UNSPECIFIED | 0 | Default / unset (treated as SINGLE_TURN). |
+| LLM_EVALUATION_EXAMPLE_EXTRACTION_MODE_SINGLE_TURN | 1 | One single-turn example per selected session step. |
+| LLM_EVALUATION_EXAMPLE_EXTRACTION_MODE_MULTI_TURN_FLOW | 2 | One multi-turn (conversation-flow) example with one turn per selected session step, in session order. |
+
+
+
+<a name="ondewo.nlu.LlmEvaluationExperimentKind"></a>
+
+### LlmEvaluationExperimentKind
+Kind of an experiment run.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LLM_EVALUATION_EXPERIMENT_KIND_UNSPECIFIED | 0 | Default / unset (treated as STANDARD). |
+| LLM_EVALUATION_EXPERIMENT_KIND_STANDARD | 1 | Standard single-turn evaluation run. |
+| LLM_EVALUATION_EXPERIMENT_KIND_FLOW | 2 | Multi-turn conversation-flow run (per-turn results populated). |
+| LLM_EVALUATION_EXPERIMENT_KIND_RED_TEAM | 3 | Red-team / adversarial safety run. |
+| LLM_EVALUATION_EXPERIMENT_KIND_GATE_CANDIDATE | 4 | Candidate experiment dispatched by a release gate run. |
+| LLM_EVALUATION_EXPERIMENT_KIND_GATE_SAFETY | 5 | Safety experiment dispatched by a release gate run. |
+| LLM_EVALUATION_EXPERIMENT_KIND_SCHEDULED | 6 | Experiment dispatched by a recurring schedule. |
+
+
+
+<a name="ondewo.nlu.LlmEvaluationExperimentStatus"></a>
+
+### LlmEvaluationExperimentStatus
+Lifecycle status of an experiment.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LLM_EVALUATION_EXPERIMENT_STATUS_UNSPECIFIED | 0 | Default / unset. |
+| LLM_EVALUATION_EXPERIMENT_STATUS_PENDING | 1 | Queued, not yet started. |
+| LLM_EVALUATION_EXPERIMENT_STATUS_RUNNING | 2 | Currently running. |
+| LLM_EVALUATION_EXPERIMENT_STATUS_SUCCEEDED | 3 | Finished successfully. |
+| LLM_EVALUATION_EXPERIMENT_STATUS_FAILED | 4 | Finished with errors. |
+| LLM_EVALUATION_EXPERIMENT_STATUS_CANCELLED | 5 | Cancelled by user request. |
+
+
+
+<a name="ondewo.nlu.LlmEvaluationReleaseGateVerdict"></a>
+
+### LlmEvaluationReleaseGateVerdict
+Verdict of a release gate run.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LLM_EVALUATION_RELEASE_GATE_VERDICT_UNSPECIFIED | 0 | Default / unset. |
+| LLM_EVALUATION_RELEASE_GATE_VERDICT_PENDING | 1 | Experiments still running; verdict not yet computed. |
+| LLM_EVALUATION_RELEASE_GATE_VERDICT_PASS | 2 | All checks passed. |
+| LLM_EVALUATION_RELEASE_GATE_VERDICT_FAIL | 3 | At least one check failed. |
+| LLM_EVALUATION_RELEASE_GATE_VERDICT_STALE | 4 | Verdict is older than the gate's staleness window. |
+
+
+
+<a name="ondewo.nlu.LlmEvaluationScheduleAction"></a>
+
+### LlmEvaluationScheduleAction
+What a schedule executes when it fires.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LLM_EVALUATION_SCHEDULE_ACTION_UNSPECIFIED | 0 | Default / unset. |
+| LLM_EVALUATION_SCHEDULE_ACTION_RUN_EXPERIMENT | 1 | Run the experiment template (recurring regression run). |
+| LLM_EVALUATION_SCHEDULE_ACTION_RUN_RELEASE_GATE | 2 | Run the referenced release gate. |
+
+
+
+<a name="ondewo.nlu.LlmEvaluationSimulationKind"></a>
+
+### LlmEvaluationSimulationKind
+Kind of conversation simulation.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LLM_EVALUATION_SIMULATION_KIND_UNSPECIFIED | 0 | Default / unset (treated as STANDARD). |
+| LLM_EVALUATION_SIMULATION_KIND_STANDARD | 1 | Persona-driven user simulation for coverage / stress testing. |
+| LLM_EVALUATION_SIMULATION_KIND_ADVERSARIAL | 2 | Adversarial (red-team) simulation probing safety weaknesses. |
+
+
+ <!-- end enums -->
+
+ <!-- end HasExtensions -->
+
+
+<a name="ondewo.nlu.LlmEvaluations"></a>
+
+### LlmEvaluations
+LangSmith-style evaluation surface: datasets, examples, experiments, evaluator
+runs, feedback (LLM-as-judge / human / heuristic / custom code / pairwise),
+pairwise comparisons, release gates + persisted gate runs, scorecards,
+per-project evaluation settings (judge configuration), the evaluator registry,
+golden-transcript recording from sessions, conversation simulation
+(standard + adversarial red-teaming), recurring schedules and report artifacts.
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| LlmEvaluationCreateDataset | [CreateLlmEvaluationDatasetRequest](#ondewo.nlu.CreateLlmEvaluationDatasetRequest) | [LlmEvaluationDataset](#ondewo.nlu.LlmEvaluationDataset) | Create a new evaluation dataset. |
+| LlmEvaluationGetDataset | [GetLlmEvaluationDatasetRequest](#ondewo.nlu.GetLlmEvaluationDatasetRequest) | [LlmEvaluationDataset](#ondewo.nlu.LlmEvaluationDataset) | Get an evaluation dataset by resource name. |
+| LlmEvaluationListDatasets | [ListLlmEvaluationDatasetsRequest](#ondewo.nlu.ListLlmEvaluationDatasetsRequest) | [ListLlmEvaluationDatasetsResponse](#ondewo.nlu.ListLlmEvaluationDatasetsResponse) | List evaluation datasets in the project, optionally filtered + paginated. |
+| LlmEvaluationUpdateDataset | [UpdateLlmEvaluationDatasetRequest](#ondewo.nlu.UpdateLlmEvaluationDatasetRequest) | [LlmEvaluationDataset](#ondewo.nlu.LlmEvaluationDataset) | Update metadata of an existing evaluation dataset (examples managed via Add/Update/Delete RPCs). |
+| LlmEvaluationDeleteDataset | [DeleteLlmEvaluationDatasetRequest](#ondewo.nlu.DeleteLlmEvaluationDatasetRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete an evaluation dataset and all owned examples. |
+| LlmEvaluationAddExample | [AddLlmEvaluationExampleRequest](#ondewo.nlu.AddLlmEvaluationExampleRequest) | [LlmEvaluationExample](#ondewo.nlu.LlmEvaluationExample) | Add a single example to an existing dataset. |
+| LlmEvaluationAddExamples | [AddLlmEvaluationExamplesRequest](#ondewo.nlu.AddLlmEvaluationExamplesRequest) | [AddLlmEvaluationExamplesResponse](#ondewo.nlu.AddLlmEvaluationExamplesResponse) | Add multiple examples to an existing dataset in one call. |
+| LlmEvaluationGetExample | [GetLlmEvaluationExampleRequest](#ondewo.nlu.GetLlmEvaluationExampleRequest) | [LlmEvaluationExample](#ondewo.nlu.LlmEvaluationExample) | Get a single evaluation example by resource name. |
+| LlmEvaluationListExamples | [ListLlmEvaluationExamplesRequest](#ondewo.nlu.ListLlmEvaluationExamplesRequest) | [ListLlmEvaluationExamplesResponse](#ondewo.nlu.ListLlmEvaluationExamplesResponse) | List examples in a dataset, optionally filtered + paginated. |
+| LlmEvaluationUpdateExample | [UpdateLlmEvaluationExampleRequest](#ondewo.nlu.UpdateLlmEvaluationExampleRequest) | [LlmEvaluationExample](#ondewo.nlu.LlmEvaluationExample) | Update fields of an existing evaluation example. |
+| LlmEvaluationDeleteExample | [DeleteLlmEvaluationExampleRequest](#ondewo.nlu.DeleteLlmEvaluationExampleRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete an evaluation example. |
+| LlmEvaluationRunExperiment | [RunLlmEvaluationExperimentRequest](#ondewo.nlu.RunLlmEvaluationExperimentRequest) | [Operation](#ondewo.nlu.Operation) | Run a fresh experiment over a dataset. Long-running operation: the returned Operation resolves to the completed LlmEvaluationExperiment once all evaluators have produced feedback. |
+| LlmEvaluationGetExperiment | [GetLlmEvaluationExperimentRequest](#ondewo.nlu.GetLlmEvaluationExperimentRequest) | [LlmEvaluationExperiment](#ondewo.nlu.LlmEvaluationExperiment) | Retrieve a previously-run experiment by resource name. |
+| LlmEvaluationListExperiments | [ListLlmEvaluationExperimentsRequest](#ondewo.nlu.ListLlmEvaluationExperimentsRequest) | [ListLlmEvaluationExperimentsResponse](#ondewo.nlu.ListLlmEvaluationExperimentsResponse) | List experiments in a project, optionally filtered + paginated. |
+| LlmEvaluationUpdateExperiment | [UpdateLlmEvaluationExperimentRequest](#ondewo.nlu.UpdateLlmEvaluationExperimentRequest) | [LlmEvaluationExperiment](#ondewo.nlu.LlmEvaluationExperiment) | Update metadata of an experiment (e.g. baseline pointer, display_name). Evaluator runs and feedback are immutable; use LlmEvaluationSubmitFeedback / LlmEvaluationDeleteFeedback for downstream annotations. |
+| LlmEvaluationDeleteExperiment | [DeleteLlmEvaluationExperimentRequest](#ondewo.nlu.DeleteLlmEvaluationExperimentRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete an experiment and all owned evaluator runs + feedbacks. |
+| LlmEvaluationCancelExperiment | [CancelLlmEvaluationExperimentRequest](#ondewo.nlu.CancelLlmEvaluationExperimentRequest) | [LlmEvaluationExperiment](#ondewo.nlu.LlmEvaluationExperiment) | Cancel a still-running experiment. No-op if already finished. |
+| LlmEvaluationCompareExperiments | [CompareLlmEvaluationExperimentsRequest](#ondewo.nlu.CompareLlmEvaluationExperimentsRequest) | [LlmEvaluationComparison](#ondewo.nlu.LlmEvaluationComparison) | Compare two-or-more experiments and emit a pairwise comparison report. |
+| LlmEvaluationSubmitFeedback | [SubmitLlmEvaluationFeedbackRequest](#ondewo.nlu.SubmitLlmEvaluationFeedbackRequest) | [LlmEvaluationFeedback](#ondewo.nlu.LlmEvaluationFeedback) | Submit a single feedback record (used by human reviewers / external evaluators). |
+| LlmEvaluationListFeedback | [ListLlmEvaluationFeedbackRequest](#ondewo.nlu.ListLlmEvaluationFeedbackRequest) | [ListLlmEvaluationFeedbackResponse](#ondewo.nlu.ListLlmEvaluationFeedbackResponse) | List feedback records, optionally filtered + paginated. |
+| LlmEvaluationDeleteFeedback | [DeleteLlmEvaluationFeedbackRequest](#ondewo.nlu.DeleteLlmEvaluationFeedbackRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete a single feedback record. |
+| LlmEvaluationUpdateFeedback | [UpdateLlmEvaluationFeedbackRequest](#ondewo.nlu.UpdateLlmEvaluationFeedbackRequest) | [LlmEvaluationFeedback](#ondewo.nlu.LlmEvaluationFeedback) | Update a single feedback record (e.g. correct a human review score or comment). |
+| LlmEvaluationCreateReleaseGate | [CreateLlmEvaluationReleaseGateRequest](#ondewo.nlu.CreateLlmEvaluationReleaseGateRequest) | [LlmEvaluationReleaseGate](#ondewo.nlu.LlmEvaluationReleaseGate) | Create a new release gate (a named set of thresholds over evaluator scores, regression deltas and telemetry that decides whether a candidate configuration ships). |
+| LlmEvaluationGetReleaseGate | [GetLlmEvaluationReleaseGateRequest](#ondewo.nlu.GetLlmEvaluationReleaseGateRequest) | [LlmEvaluationReleaseGate](#ondewo.nlu.LlmEvaluationReleaseGate) | Get a release gate by resource name. |
+| LlmEvaluationListReleaseGates | [ListLlmEvaluationReleaseGatesRequest](#ondewo.nlu.ListLlmEvaluationReleaseGatesRequest) | [ListLlmEvaluationReleaseGatesResponse](#ondewo.nlu.ListLlmEvaluationReleaseGatesResponse) | List release gates in the project, optionally filtered + paginated. |
+| LlmEvaluationUpdateReleaseGate | [UpdateLlmEvaluationReleaseGateRequest](#ondewo.nlu.UpdateLlmEvaluationReleaseGateRequest) | [LlmEvaluationReleaseGate](#ondewo.nlu.LlmEvaluationReleaseGate) | Update an existing release gate. Semantic changes (suite, baseline, evaluators, thresholds, weights, safety) increment the server-managed revision. |
+| LlmEvaluationDeleteReleaseGate | [DeleteLlmEvaluationReleaseGateRequest](#ondewo.nlu.DeleteLlmEvaluationReleaseGateRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete a release gate and all owned gate runs. |
+| LlmEvaluationRunReleaseGate | [RunLlmEvaluationReleaseGateRequest](#ondewo.nlu.RunLlmEvaluationReleaseGateRequest) | [Operation](#ondewo.nlu.Operation) | Run a release gate against a candidate target. Long-running operation: the returned Operation resolves to the completed LlmEvaluationReleaseGateRun once the candidate (and optional safety) experiments finished and the verdict has been computed and persisted server-side. |
+| LlmEvaluationGetReleaseGateRun | [GetLlmEvaluationReleaseGateRunRequest](#ondewo.nlu.GetLlmEvaluationReleaseGateRunRequest) | [LlmEvaluationReleaseGateRun](#ondewo.nlu.LlmEvaluationReleaseGateRun) | Get a single release gate run (persisted verdict + checks) by resource name. |
+| LlmEvaluationListReleaseGateRuns | [ListLlmEvaluationReleaseGateRunsRequest](#ondewo.nlu.ListLlmEvaluationReleaseGateRunsRequest) | [ListLlmEvaluationReleaseGateRunsResponse](#ondewo.nlu.ListLlmEvaluationReleaseGateRunsResponse) | List release gate runs, optionally filtered + paginated. |
+| LlmEvaluationCreateScorecard | [CreateLlmEvaluationScorecardRequest](#ondewo.nlu.CreateLlmEvaluationScorecardRequest) | [LlmEvaluationScorecard](#ondewo.nlu.LlmEvaluationScorecard) | Create a new scorecard (weighted multi-criteria roll-up definition). |
+| LlmEvaluationGetScorecard | [GetLlmEvaluationScorecardRequest](#ondewo.nlu.GetLlmEvaluationScorecardRequest) | [LlmEvaluationScorecard](#ondewo.nlu.LlmEvaluationScorecard) | Get a scorecard by resource name. |
+| LlmEvaluationListScorecards | [ListLlmEvaluationScorecardsRequest](#ondewo.nlu.ListLlmEvaluationScorecardsRequest) | [ListLlmEvaluationScorecardsResponse](#ondewo.nlu.ListLlmEvaluationScorecardsResponse) | List scorecards in the project, optionally filtered + paginated. |
+| LlmEvaluationUpdateScorecard | [UpdateLlmEvaluationScorecardRequest](#ondewo.nlu.UpdateLlmEvaluationScorecardRequest) | [LlmEvaluationScorecard](#ondewo.nlu.LlmEvaluationScorecard) | Update an existing scorecard. |
+| LlmEvaluationDeleteScorecard | [DeleteLlmEvaluationScorecardRequest](#ondewo.nlu.DeleteLlmEvaluationScorecardRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete a scorecard. |
+| LlmEvaluationGetProjectSettings | [GetLlmEvaluationProjectSettingsRequest](#ondewo.nlu.GetLlmEvaluationProjectSettingsRequest) | [LlmEvaluationProjectSettings](#ondewo.nlu.LlmEvaluationProjectSettings) | Get the per-(project, language_code) evaluation settings singleton (judge configuration, default weights, pass cutoffs). The server auto-creates default settings on first access. |
+| LlmEvaluationUpdateProjectSettings | [UpdateLlmEvaluationProjectSettingsRequest](#ondewo.nlu.UpdateLlmEvaluationProjectSettingsRequest) | [LlmEvaluationProjectSettings](#ondewo.nlu.LlmEvaluationProjectSettings) | Update the per-(project, language_code) evaluation settings singleton. |
+| LlmEvaluationListEvaluators | [ListLlmEvaluationEvaluatorsRequest](#ondewo.nlu.ListLlmEvaluationEvaluatorsRequest) | [ListLlmEvaluationEvaluatorsResponse](#ondewo.nlu.ListLlmEvaluationEvaluatorsResponse) | List the evaluators available on this server, with metadata describing the category, required example fields, multi-turn support, default threshold, judge requirement and configurable parameters of each evaluator. |
+| LlmEvaluationCreateExamplesFromSession | [CreateLlmEvaluationExamplesFromSessionRequest](#ondewo.nlu.CreateLlmEvaluationExamplesFromSessionRequest) | [CreateLlmEvaluationExamplesFromSessionResponse](#ondewo.nlu.CreateLlmEvaluationExamplesFromSessionResponse) | Convert a recorded session (or a selection of its session steps) into evaluation examples ("golden transcripts") inside an existing dataset. |
+| LlmEvaluationSimulateConversations | [SimulateLlmEvaluationConversationsRequest](#ondewo.nlu.SimulateLlmEvaluationConversationsRequest) | [Operation](#ondewo.nlu.Operation) | Generate synthetic multi-turn evaluation conversations by simulating users (persona-driven; STANDARD kind) or attackers (red-teaming; ADVERSARIAL kind) against the live target. Long-running operation: the returned Operation resolves once the generated examples have been persisted into the receiving dataset. |
+| LlmEvaluationCreateSchedule | [CreateLlmEvaluationScheduleRequest](#ondewo.nlu.CreateLlmEvaluationScheduleRequest) | [LlmEvaluationSchedule](#ondewo.nlu.LlmEvaluationSchedule) | Create a new schedule for recurring experiment / release gate runs. |
+| LlmEvaluationGetSchedule | [GetLlmEvaluationScheduleRequest](#ondewo.nlu.GetLlmEvaluationScheduleRequest) | [LlmEvaluationSchedule](#ondewo.nlu.LlmEvaluationSchedule) | Get a schedule by resource name. |
+| LlmEvaluationListSchedules | [ListLlmEvaluationSchedulesRequest](#ondewo.nlu.ListLlmEvaluationSchedulesRequest) | [ListLlmEvaluationSchedulesResponse](#ondewo.nlu.ListLlmEvaluationSchedulesResponse) | List schedules in the project, optionally filtered + paginated. |
+| LlmEvaluationUpdateSchedule | [UpdateLlmEvaluationScheduleRequest](#ondewo.nlu.UpdateLlmEvaluationScheduleRequest) | [LlmEvaluationSchedule](#ondewo.nlu.LlmEvaluationSchedule) | Update an existing schedule (cron / interval, enabled flag, request template). |
+| LlmEvaluationDeleteSchedule | [DeleteLlmEvaluationScheduleRequest](#ondewo.nlu.DeleteLlmEvaluationScheduleRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete a schedule. Experiments / gate runs already created by it are kept. |
+| LlmEvaluationCreateReport | [CreateLlmEvaluationReportRequest](#ondewo.nlu.CreateLlmEvaluationReportRequest) | [LlmEvaluationReport](#ondewo.nlu.LlmEvaluationReport) | Persist a generated report as an immutable artifact (incl. payload bytes). |
+| LlmEvaluationGetReport | [GetLlmEvaluationReportRequest](#ondewo.nlu.GetLlmEvaluationReportRequest) | [LlmEvaluationReport](#ondewo.nlu.LlmEvaluationReport) | Get a report by resource name (incl. payload bytes). |
+| LlmEvaluationListReports | [ListLlmEvaluationReportsRequest](#ondewo.nlu.ListLlmEvaluationReportsRequest) | [ListLlmEvaluationReportsResponse](#ondewo.nlu.ListLlmEvaluationReportsResponse) | List reports, optionally filtered + paginated. Payload bytes are omitted unless explicitly requested via field_mask. |
+| LlmEvaluationDeleteReport | [DeleteLlmEvaluationReportRequest](#ondewo.nlu.DeleteLlmEvaluationReportRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete a report. |
+| LlmEvaluationCreateAbExperiment | [CreateLlmEvaluationAbExperimentRequest](#ondewo.nlu.CreateLlmEvaluationAbExperimentRequest) | [LlmEvaluationAbExperiment](#ondewo.nlu.LlmEvaluationAbExperiment) | Create a new A/B experiment (a set of routing variants over live DetectIntent traffic). Created in DRAFT status; traffic is only split once it is started via LlmEvaluationStartAbExperiment. |
+| LlmEvaluationGetAbExperiment | [GetLlmEvaluationAbExperimentRequest](#ondewo.nlu.GetLlmEvaluationAbExperimentRequest) | [LlmEvaluationAbExperiment](#ondewo.nlu.LlmEvaluationAbExperiment) | Get an A/B experiment by resource name. |
+| LlmEvaluationListAbExperiments | [ListLlmEvaluationAbExperimentsRequest](#ondewo.nlu.ListLlmEvaluationAbExperimentsRequest) | [ListLlmEvaluationAbExperimentsResponse](#ondewo.nlu.ListLlmEvaluationAbExperimentsResponse) | List A/B experiments in the project, optionally filtered + paginated. |
+| LlmEvaluationUpdateAbExperiment | [UpdateLlmEvaluationAbExperimentRequest](#ondewo.nlu.UpdateLlmEvaluationAbExperimentRequest) | [LlmEvaluationAbExperiment](#ondewo.nlu.LlmEvaluationAbExperiment) | Update an existing A/B experiment (variants, traffic config, metadata). Only allowed in DRAFT / STOPPED status; running experiments must be stopped first. |
+| LlmEvaluationDeleteAbExperiment | [DeleteLlmEvaluationAbExperimentRequest](#ondewo.nlu.DeleteLlmEvaluationAbExperimentRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete an A/B experiment and all owned sticky-assignment rows. |
+| LlmEvaluationStartAbExperiment | [StartLlmEvaluationAbExperimentRequest](#ondewo.nlu.StartLlmEvaluationAbExperimentRequest) | [LlmEvaluationAbExperiment](#ondewo.nlu.LlmEvaluationAbExperiment) | Start an A/B experiment: validates that the variant traffic weights are well-formed (sum to the configured total), stamps started_at and transitions the experiment to RUNNING so live traffic begins to be split. |
+| LlmEvaluationStopAbExperiment | [StopLlmEvaluationAbExperimentRequest](#ondewo.nlu.StopLlmEvaluationAbExperimentRequest) | [LlmEvaluationAbExperiment](#ondewo.nlu.LlmEvaluationAbExperiment) | Stop a running A/B experiment: stamps stopped_at and transitions to STOPPED. Existing sticky assignments are retained for results computation. |
+| LlmEvaluationGetAbExperimentResults | [GetLlmEvaluationAbExperimentResultsRequest](#ondewo.nlu.GetLlmEvaluationAbExperimentResultsRequest) | [GetLlmEvaluationAbExperimentResultsResponse](#ondewo.nlu.GetLlmEvaluationAbExperimentResultsResponse) | Compute per-variant telemetry rollups for an A/B experiment. Stateless / computed on demand: gathers each variant's sessions and aggregates their LlmTelemetry into a per-variant LlmTelemetryReport. There is no auto-rollout. |
+| LlmEvaluationGetAbRolloutRecommendation | [GetLlmEvaluationAbRolloutRecommendationRequest](#ondewo.nlu.GetLlmEvaluationAbRolloutRecommendationRequest) | [LlmEvaluationAbRolloutRecommendation](#ondewo.nlu.LlmEvaluationAbRolloutRecommendation) | Compute a rollout recommendation for an A/B experiment: which variant wins against the control on the chosen optimize metric under the supplied statistical guard-rails (confidence level, minimum sessions per variant, minimum effect size). Stateless / read-only — computed on demand from the per-variant results; nothing is persisted and no traffic / config changes. |
+| LlmEvaluationApplyAbRollout | [ApplyLlmEvaluationAbRolloutRequest](#ondewo.nlu.ApplyLlmEvaluationAbRolloutRequest) | [LlmEvaluationAbRolloutDecision](#ondewo.nlu.LlmEvaluationAbRolloutDecision) | Apply a rollout for an A/B experiment: promotes the chosen variant's config as the project's classifier default, stops the experiment, and writes + returns the LlmEvaluationAbRolloutDecision audit record. The operator picks the variant explicitly (there is no auto-rollout). Idempotent: re-applying an already-rolled-out experiment returns the existing decision. |
+| LlmEvaluationGetAbRolloutDecision | [GetLlmEvaluationAbRolloutDecisionRequest](#ondewo.nlu.GetLlmEvaluationAbRolloutDecisionRequest) | [LlmEvaluationAbRolloutDecision](#ondewo.nlu.LlmEvaluationAbRolloutDecision) | Get the applied rollout decision (audit record) by resource name. |
+| LlmEvaluationListAbRolloutDecisions | [ListLlmEvaluationAbRolloutDecisionsRequest](#ondewo.nlu.ListLlmEvaluationAbRolloutDecisionsRequest) | [ListLlmEvaluationAbRolloutDecisionsResponse](#ondewo.nlu.ListLlmEvaluationAbRolloutDecisionsResponse) | List applied rollout decisions in the project, optionally filtered (e.g. by experiment) + paginated. |
+| LlmEvaluationCreateOnlineConfig | [CreateLlmEvaluationOnlineConfigRequest](#ondewo.nlu.CreateLlmEvaluationOnlineConfigRequest) | [LlmEvaluationOnlineConfig](#ondewo.nlu.LlmEvaluationOnlineConfig) | Create a new online-evaluation config: a per-(project, language_code) definition selecting a reference-free evaluator set + a sample rate. A swarm-safe background worker samples already-persisted live session steps, scores the recorded answer with these evaluators and enqueues failing steps into the annotation queue. |
+| LlmEvaluationGetOnlineConfig | [GetLlmEvaluationOnlineConfigRequest](#ondewo.nlu.GetLlmEvaluationOnlineConfigRequest) | [LlmEvaluationOnlineConfig](#ondewo.nlu.LlmEvaluationOnlineConfig) | Get an online-evaluation config by resource name. |
+| LlmEvaluationListOnlineConfigs | [ListLlmEvaluationOnlineConfigsRequest](#ondewo.nlu.ListLlmEvaluationOnlineConfigsRequest) | [ListLlmEvaluationOnlineConfigsResponse](#ondewo.nlu.ListLlmEvaluationOnlineConfigsResponse) | List online-evaluation configs in the project, optionally filtered + paginated. |
+| LlmEvaluationUpdateOnlineConfig | [UpdateLlmEvaluationOnlineConfigRequest](#ondewo.nlu.UpdateLlmEvaluationOnlineConfigRequest) | [LlmEvaluationOnlineConfig](#ondewo.nlu.LlmEvaluationOnlineConfig) | Update an existing online-evaluation config (enabled flag, evaluator set, sample rate, thresholds, session filter). |
+| LlmEvaluationDeleteOnlineConfig | [DeleteLlmEvaluationOnlineConfigRequest](#ondewo.nlu.DeleteLlmEvaluationOnlineConfigRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete an online-evaluation config. Already-produced online results and annotation-queue items are kept. |
+| LlmEvaluationGetOnlineResult | [GetLlmEvaluationOnlineResultRequest](#ondewo.nlu.GetLlmEvaluationOnlineResultRequest) | [LlmEvaluationOnlineResult](#ondewo.nlu.LlmEvaluationOnlineResult) | Get a single online-evaluation result (per scored session step) by resource name. |
+| LlmEvaluationListOnlineResults | [ListLlmEvaluationOnlineResultsRequest](#ondewo.nlu.ListLlmEvaluationOnlineResultsRequest) | [ListLlmEvaluationOnlineResultsResponse](#ondewo.nlu.ListLlmEvaluationOnlineResultsResponse) | List online-evaluation results, optionally filtered by config / pass-state + paginated. Read-only: result rows are produced by the online-evaluation worker (no Create RPC). |
+| LlmEvaluationGetAnnotationQueueItem | [GetLlmEvaluationAnnotationQueueItemRequest](#ondewo.nlu.GetLlmEvaluationAnnotationQueueItemRequest) | [LlmEvaluationAnnotationQueueItem](#ondewo.nlu.LlmEvaluationAnnotationQueueItem) | Get a single annotation-queue item by resource name. |
+| LlmEvaluationListAnnotationQueueItems | [ListLlmEvaluationAnnotationQueueItemsRequest](#ondewo.nlu.ListLlmEvaluationAnnotationQueueItemsRequest) | [ListLlmEvaluationAnnotationQueueItemsResponse](#ondewo.nlu.ListLlmEvaluationAnnotationQueueItemsResponse) | List annotation-queue items, optionally filtered by status / assignee + paginated. Items are enqueued by the online-evaluation worker (no Create RPC). |
+| LlmEvaluationUpdateAnnotationQueueItem | [UpdateLlmEvaluationAnnotationQueueItemRequest](#ondewo.nlu.UpdateLlmEvaluationAnnotationQueueItemRequest) | [LlmEvaluationAnnotationQueueItem](#ondewo.nlu.LlmEvaluationAnnotationQueueItem) | Update an annotation-queue item (status / assignee / reason transitions: PENDING -> REVIEWED / DISMISSED). |
+| LlmEvaluationPromoteAnnotationQueueItem | [PromoteLlmEvaluationAnnotationQueueItemRequest](#ondewo.nlu.PromoteLlmEvaluationAnnotationQueueItemRequest) | [PromoteLlmEvaluationAnnotationQueueItemResponse](#ondewo.nlu.PromoteLlmEvaluationAnnotationQueueItemResponse) | Promote an annotation-queue item into a regression dataset. Thin server-side composition: delegates to LlmEvaluationCreateExamplesFromSession with the item's session (+ selected steps), flips the item status to PROMOTED and stamps the promoted dataset name. Returns the created example(s). |
+
+ <!-- end services -->
+
+
+
 <a name="ondewo/nlu/operation_metadata.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -6836,7 +10630,7 @@ can be a sub-operation itself
 | ----- | ---- | ----- | ----------- |
 | status | [OperationMetadata.Status](#ondewo.nlu.OperationMetadata.Status) |  | long-running operation status code |
 | parent_operation_name | [string](#string) |  | optional parent operation name |
-| sub_operation_names | [string](#string) | repeated | list of the sub-operations' names of the operation |
+| sub_operation_names | [string](#string) | repeated | list of the sub-operations&apos; names of the operation |
 | create_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | the time the operation was submitted. |
 | start_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | the time operation processing started. |
 | end_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | the time operation processing completed. |
@@ -6844,7 +10638,7 @@ can be a sub-operation itself
 | cancel_command | [string](#string) |  | command executed at cancel operation |
 | user_id_created | [string](#string) |  | id of the user who created the operation |
 | user_id_cancelled | [string](#string) |  | id of the user who cancelled the operation |
-| project_parent | [string](#string) |  | project parent name, e.g. "projects/pepper/agent" |
+| project_parent | [string](#string) |  | project parent name, e.g. &quot;projects/pepper/agent&quot; |
 | operation_type | [OperationMetadata.OperationType](#ondewo.nlu.OperationMetadata.OperationType) |  | operation type |
 | host_name | [string](#string) |  | name of the host where the operation was executed |
 | num_reruns | [int32](#int32) |  | number of times the operation was re-run |
@@ -6867,8 +10661,8 @@ can be a sub-operation itself
 <a name="ondewo.nlu.OperationMetadata.OperationType"></a>
 
 ### OperationMetadata.OperationType
-Type of operation. It can be creating, importing, exporting, deleting, restoring, building cache,
-training or exporting benchmark an agent
+Type of operation.
+It can be creating, importing, exporting, deleting, restoring, building cache, training or exporting benchmark an agent
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -6882,19 +10676,23 @@ training or exporting benchmark an agent
 | TRAIN_AGENT | 7 | train agent |
 | EXPORT_BENCHMARK_AGENT | 8 | export benchmark agent to a zip file |
 | INDEX_AGENT | 9 | force loading agent data for full text search |
+| RUN_RAG_CRAWLER | 10 | run a rag crawler |
+| ADD_RAG_CRAWLER_RESULT_TO_DATASET | 11 | add a rag crawler result to a dataset |
+| REMOVE_RAG_CRAWLER_RESULT_FROM_DATASET | 12 | remove a rag crawler result from a dataset |
+| CHANGE_DATASET_EMBEDDING_MODEL | 13 | change the embedding model of dataset that already contains parsed documents |
 
 
 
 <a name="ondewo.nlu.OperationMetadata.Status"></a>
 
 ### OperationMetadata.Status
-Structure to set status of operation. An operation may not be started if NOT_STARTED is set, in
-progress if IN_PROGRESS, finished if DONE, interrupted if CANCELED or failed if FAILED.
+Structure to set status of operation.
+An operation may not be started if NOT_STARTED is set, in progress if IN_PROGRESS, finished if DONE, interrupted if CANCELED or failed if FAILED.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | STATUS_UNSPECIFIED | 0 | unspecified status code |
-| NOT_STARTED | 1 | operation haven't started yet |
+| NOT_STARTED | 1 | operation haven&apos;t started yet |
 | IN_PROGRESS | 2 | operation currently in progress |
 | DONE | 3 | operation has completed without any error |
 | CANCELLED | 4 | operation has completed with cancellation by user |
@@ -6919,7 +10717,7 @@ progress if IN_PROGRESS, finished if DONE, interrupted if CANCELED or failed if 
 <a name="ondewo.nlu.CancelOperationRequest"></a>
 
 ### CancelOperationRequest
-The request message for [Operations.CancelOperation][ondewo.nlu.Operations.CancelOperation].
+The request message for <a href="index.html#ondewo.nlu.Operations.CancelOperation">Operations.CancelOperation</a>.
 
 
 | Field | Type | Label | Description |
@@ -6934,7 +10732,7 @@ The request message for [Operations.CancelOperation][ondewo.nlu.Operations.Cance
 <a name="ondewo.nlu.DeleteOperationRequest"></a>
 
 ### DeleteOperationRequest
-The request message for [Operations.DeleteOperation][ondewo.nlu.Operations.DeleteOperation].
+The request message for <a href="index.html#ondewo.nlu.Operations.DeleteOperation">Operations.DeleteOperation</a>.
 
 
 | Field | Type | Label | Description |
@@ -6949,12 +10747,71 @@ The request message for [Operations.DeleteOperation][ondewo.nlu.Operations.Delet
 <a name="ondewo.nlu.GetOperationRequest"></a>
 
 ### GetOperationRequest
-The request message for [Operations.GetOperation][ondewo.nlu.Operations.GetOperation].
+The request message for <a href="index.html#ondewo.nlu.Operations.GetOperation">Operations.GetOperation</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | The name of the operation resource. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetRemoteOperationContainerLogsRequest"></a>
+
+### GetRemoteOperationContainerLogsRequest
+The request message for <a href="index.html#ondewo.nlu.Operations.GetRemoteOperationContainerLogs">Operations.GetRemoteOperationContainerLogs</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The name of the operation resource whose container logs should be returned. |
+| min_log_level | [LogSeverity](#ondewo.nlu.LogSeverity) |  | Only return lines at or above this loguru severity. <code>LOG_SEVERITY_UNSPECIFIED</code> (the default) returns every line regardless of level. |
+| start_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Only return lines whose timestamp is at or after this instant. Unset returns from the start of the available logs. |
+| end_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Only return lines whose timestamp is at or before this instant. Unset returns up to the latest available log line. |
+| max_lines | [int32](#int32) |  | Return at most this many lines, keeping the most recent matches. <code>0</code> (the default) applies a server-side safety cap. |
+| regex | [string](#string) |  | Only return lines whose message matches this regular expression (Python <code>re</code> syntax). Empty (the default) disables regex filtering. |
+| container_id | [string](#string) |  | Optional. Scope the query to a single container of the operation, identified by its docker container id. Empty (the default) queries the operation&apos;s currently-registered container, preserving the legacy single-container behavior. When the container has finished and been removed, its persisted logs are served from the server-side log archive. |
+| before_seq | [int64](#int64) |  | Optional cursor for infinite-scroll-UP paging: return the newest lines with <a href="index.html#ondewo.nlu.RemoteOperationContainerLogLine">seq</a> &lt; <code>before_seq</code> (older window). <code>0</code> (the default) disables backward paging. |
+| after_seq | [int64](#int64) |  | Optional cursor for infinite-scroll-DOWN paging: return lines with <code>seq</code> &gt; <code>after_seq</code> (newer window). <code>0</code> (the default) disables forward paging. |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetRemoteOperationContainerLogsResponse"></a>
+
+### GetRemoteOperationContainerLogsResponse
+The response message for <a href="index.html#ondewo.nlu.Operations.GetRemoteOperationContainerLogs">Operations.GetRemoteOperationContainerLogs</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| log_lines | [RemoteOperationContainerLogLine](#ondewo.nlu.RemoteOperationContainerLogLine) | repeated | The matching log lines, oldest first. Secrets are redacted server-side. |
+| truncated | [bool](#bool) |  | True when older matching lines were dropped because <code>max_lines</code> was reached. |
+| min_available_seq | [int64](#int64) |  | The smallest <code>seq</code> currently available for this container (its oldest captured line). A client paging up has reached the beginning when the returned lines start at this value. |
+| max_available_seq | [int64](#int64) |  | The largest <code>seq</code> currently available for this container (its newest captured line). |
+| has_more_older | [bool](#bool) |  | True when older lines than the returned window still exist (i.e. the window&apos;s first <code>seq</code> &gt; <code>min_available_seq</code>) — the client may keep scrolling up. |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetRemoteOperationContainerStatusRequest"></a>
+
+### GetRemoteOperationContainerStatusRequest
+The request message for <a href="index.html#ondewo.nlu.Operations.GetRemoteOperationContainerStatus">Operations.GetRemoteOperationContainerStatus</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The name of the operation resource whose container status should be returned. |
+| container_id | [string](#string) |  | Optional. Scope the status to a single container of the operation, identified by its docker container id. Empty (the default) returns the status of the operation&apos;s currently-registered container, preserving the legacy single-container behavior. |
 
 
 
@@ -6964,7 +10821,7 @@ The request message for [Operations.GetOperation][ondewo.nlu.Operations.GetOpera
 <a name="ondewo.nlu.ListOperationsRequest"></a>
 
 ### ListOperationsRequest
-The request message for [Operations.ListOperations][ondewo.nlu.Operations.ListOperations].
+The request message for <a href="index.html#ondewo.nlu.Operations.ListOperations">Operations.ListOperations</a>.
 
 
 | Field | Type | Label | Description |
@@ -6974,14 +10831,15 @@ The request message for [Operations.ListOperations][ondewo.nlu.Operations.ListOp
 | page_size | [int32](#int32) |  | The standard list page size. |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
 | operation_filter | [OperationFilter](#ondewo.nlu.OperationFilter) |  | Optional. A filter to narrow the response down to operations of interest. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -6991,7 +10849,7 @@ Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" 
 <a name="ondewo.nlu.ListOperationsResponse"></a>
 
 ### ListOperationsResponse
-The response message for [Operations.ListOperations][ondewo.nlu.Operations.ListOperations].
+The response message for <a href="index.html#ondewo.nlu.Operations.ListOperations">Operations.ListOperations</a>.
 
 
 | Field | Type | Label | Description |
@@ -7004,20 +10862,50 @@ The response message for [Operations.ListOperations][ondewo.nlu.Operations.ListO
 
 
 
-<a name="ondewo.nlu.Operation"></a>
+<a name="ondewo.nlu.ListRemoteOperationContainersRequest"></a>
 
-### Operation
-This resource represents a long-running operation that is the result of a
-network API call.
+### ListRemoteOperationContainersRequest
+The request message for <a href="index.html#ondewo.nlu.Operations.ListRemoteOperationContainers">Operations.ListRemoteOperationContainers</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the `name` should have the format of `operations/some/unique/name`. |
+| name | [string](#string) |  | The name of the operation resource whose containers should be listed. |
+| include_sub_operations | [bool](#bool) |  | When true, also include the containers of the operation&apos;s sub-operations (<a href="index.html#ondewo.nlu.OperationMetadata">OperationMetadata.sub_operation_names</a>). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListRemoteOperationContainersResponse"></a>
+
+### ListRemoteOperationContainersResponse
+The response message for <a href="index.html#ondewo.nlu.Operations.ListRemoteOperationContainers">Operations.ListRemoteOperationContainers</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| containers | [RemoteOperationContainer](#ondewo.nlu.RemoteOperationContainer) | repeated | The containers started by the operation (and, when requested, its sub-operations), oldest first. |
+
+
+
+
+
+
+<a name="ondewo.nlu.Operation"></a>
+
+### Operation
+This resource represents a long-running operation that is the result of a network API call.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The server-assigned name, which is only unique within the same service that originally returns it. If you use the default HTTP mapping, the <code>name</code> should have the format of <code>operations/some/unique/name</code>. |
 | metadata | [OperationMetadata](#ondewo.nlu.OperationMetadata) |  | Service-specific metadata associated with the operation. It typically contains progress information and common metadata such as create time. Some services might not provide such metadata. Any method that returns a long-running operation should document the metadata type, if any. |
-| done | [bool](#bool) |  | If the value is `false`, it means the operation is still in progress. If true, the operation is completed, and either `error` or `response` is available. |
+| done | [bool](#bool) |  | If the value is <code>false</code>, it means the operation is still in progress. If true, the operation is completed, and either <code>error</code> or <code>response</code> is available. |
 | error | [google.rpc.Status](#google.rpc.Status) |  | The error result of the operation in case of failure or cancellation. |
-| response | [google.protobuf.Any](#google.protobuf.Any) |  | The normal response of the operation in case of success. If the original method returns no data on success, such as `Delete`, the response is `google.protobuf.Empty`. If the original method is standard `Get`/`Create`/`Update`, the response should be the resource. For other methods, the response should have the type `XxxResponse`, where `Xxx` is the original method name. For example, if the original method name is `TakeSnapshot()`, the inferred response type is `TakeSnapshotResponse`. |
+| response | [google.protobuf.Any](#google.protobuf.Any) |  | The normal response of the operation in case of success. If the original method returns no data on success, such as <code>Delete</code>, the response is <code>google.protobuf.Empty</code>. If the original method is standard <code>Get</code>/<code>Create</code>/<code>Update</code>, the response should be the resource. For other methods, the response should have the type <code>XxxResponse</code>, where <code>Xxx</code> is the original method name. For example, if the original method name is <code>TakeSnapshot()</code>, the inferred response type is <code>TakeSnapshotResponse</code>. |
 
 
 
@@ -7045,7 +10933,164 @@ All fields below are optional. Multiple fields specified at the same time are ch
 
 
 
+
+<a name="ondewo.nlu.RemoteOperationContainer"></a>
+
+### RemoteOperationContainer
+Describes one docker container started by a remote operation. A single operation may start several
+containers sequentially (hardware-check, GPU pre-allocation, build-cache, and one training container
+per algorithm), so containers are enumerated by
+<a href="index.html#ondewo.nlu.Operations.ListRemoteOperationContainers">Operations.ListRemoteOperationContainers</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| container_id | [string](#string) |  | The docker container id (64-hex). Empty until captured at launch. |
+| container_name | [string](#string) |  | The deterministic docker container name (the <code>--name</code>). |
+| host_name | [string](#string) |  | The host the container runs (or ran) on. |
+| lifecycle_state | [RemoteOperationContainerLifecycleState](#ondewo.nlu.RemoteOperationContainerLifecycleState) |  | The last-known lifecycle state of the container. |
+| operation_name | [string](#string) |  | The operation resource that started this container. May be a sub-operation of the queried operation when <code>include_sub_operations</code> was set. |
+| image | [string](#string) |  | The docker image reference the container was started from. |
+| phase | [string](#string) |  | A human-readable phase label for the container within the operation, e.g. <code>hw_check</code>, <code>gpu_prealloc</code>, <code>build_cache</code>, <code>train</code>, <code>rag_crawl</code>. |
+| exit_code | [int32](#int32) |  | The container exit code. Only meaningful once the container has exited. |
+| oom_killed | [bool](#bool) |  | True when the container was killed by the out-of-memory killer. |
+| started_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | When the container started, if known. |
+| finished_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | When the container finished, if it has exited. |
+| logs_available | [bool](#bool) |  | True when logs for this container can still be fetched — either the container is live, or its logs were persisted to the server-side archive after it finished. |
+| environment_variables | [RemoteOperationContainer.EnvironmentVariablesEntry](#ondewo.nlu.RemoteOperationContainer.EnvironmentVariablesEntry) | repeated | The container&apos;s environment variables (docker <code>Config.Env</code>), as a name→value map. Secret values (passwords, tokens, private keys, certificates) are redacted server-side; plain non-secret values such as numeric limits remain visible. Persisted at launch so it is available even after the container is removed. |
+| command | [string](#string) | repeated | The container&apos;s command/args (docker <code>Config.Cmd</code>). |
+| memory_limit_bytes | [int64](#int64) |  | The container&apos;s hard memory limit in bytes (docker <code>HostConfig.Memory</code>). <code>0</code> means unlimited. |
+| nano_cpus | [int64](#int64) |  | The container&apos;s CPU limit in billionths of a CPU (docker <code>HostConfig.NanoCpus</code>); cores = <code>nano_cpus</code> / 1e9. <code>0</code> means unset (see <code>cpu_quota</code>). |
+| cpuset_cpus | [string](#string) |  | The CPUs the container is pinned to (docker <code>HostConfig.CpusetCpus</code>), empty when unset. |
+| cpu_quota | [int64](#int64) |  | The CFS CPU quota (docker <code>HostConfig.CpuQuota</code>); cores = <code>cpu_quota</code> / <code>cpu_period</code> when both are &gt; 0. |
+| cpu_period | [int64](#int64) |  | The CFS CPU period (docker <code>HostConfig.CpuPeriod</code>). |
+
+
+
+
+
+
+<a name="ondewo.nlu.RemoteOperationContainer.EnvironmentVariablesEntry"></a>
+
+### RemoteOperationContainer.EnvironmentVariablesEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ondewo.nlu.RemoteOperationContainerLogLine"></a>
+
+### RemoteOperationContainerLogLine
+A single parsed container log line, emitted by both the streaming and the query RPCs.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| timestamp | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | The timestamp parsed from the loguru line prefix, if present. |
+| level | [LogSeverity](#ondewo.nlu.LogSeverity) |  | The loguru severity parsed from the line, or <code>LOG_SEVERITY_UNSPECIFIED</code> if the line carried no recognizable level (e.g. a continuation / traceback line). |
+| message | [string](#string) |  | The log message text, with ANSI colour codes stripped and secrets redacted. |
+| container_id | [string](#string) |  | The docker container id this line was produced by. Lets a client attribute or group lines when an operation ran several containers. Empty when the id was not captured. |
+| container_name | [string](#string) |  | The docker container name this line was produced by. Empty when unavailable. |
+| seq | [int64](#int64) |  | The monotonically-increasing sequence number of this line within its container&apos;s captured log (assigned by the server-side capture). Used as the cursor for infinite-scroll paging. <code>0</code> when the line was produced by a legacy path that did not assign a sequence. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RemoteOperationContainerStatus"></a>
+
+### RemoteOperationContainerStatus
+The response message for <a href="index.html#ondewo.nlu.Operations.GetRemoteOperationContainerStatus">Operations.GetRemoteOperationContainerStatus</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The name of the operation resource this status describes. |
+| lifecycle_state | [RemoteOperationContainerLifecycleState](#ondewo.nlu.RemoteOperationContainerLifecycleState) |  | The lifecycle state of the container. |
+| host_name | [string](#string) |  | The host the container was dispatched to (empty when the dispatch record is unavailable). |
+| container_name | [string](#string) |  | The container name (empty when the dispatch record is unavailable). |
+| container_id | [string](#string) |  | The docker container id (64-hex), empty when it was not captured or the record is unavailable. |
+| exit_code | [int32](#int32) |  | The container exit code. Only meaningful when <code>lifecycle_state</code> is <code>EXITED</code> or <code>DEAD</code>. |
+| oom_killed | [bool](#bool) |  | True when the container was killed by the out-of-memory killer. |
+| health_status | [string](#string) |  | The Docker healthcheck status (<code>healthy</code> / <code>unhealthy</code> / <code>starting</code>), empty when the container declares no healthcheck. |
+| started_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | When the container started, if known. |
+| finished_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | When the container finished, if it has exited. |
+| observed_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | When this status was observed by the server. |
+| environment_variables | [RemoteOperationContainerStatus.EnvironmentVariablesEntry](#ondewo.nlu.RemoteOperationContainerStatus.EnvironmentVariablesEntry) | repeated | The container&apos;s environment variables (docker <code>Config.Env</code>), as a name→value map. Secret values (passwords, tokens, private keys, certificates) are redacted server-side; plain non-secret values such as numeric limits remain visible. |
+| command | [string](#string) | repeated | The container&apos;s command/args (docker <code>Config.Cmd</code>). |
+| memory_limit_bytes | [int64](#int64) |  | The container&apos;s hard memory limit in bytes (docker <code>HostConfig.Memory</code>). <code>0</code> means unlimited. |
+| nano_cpus | [int64](#int64) |  | The container&apos;s CPU limit in billionths of a CPU (docker <code>HostConfig.NanoCpus</code>); cores = <code>nano_cpus</code> / 1e9. <code>0</code> means unset (see <code>cpu_quota</code>). |
+| cpuset_cpus | [string](#string) |  | The CPUs the container is pinned to (docker <code>HostConfig.CpusetCpus</code>), empty when unset. |
+| cpu_quota | [int64](#int64) |  | The CFS CPU quota (docker <code>HostConfig.CpuQuota</code>), the older cpu-limit form; cores = <code>cpu_quota</code> / <code>cpu_period</code> when both are &gt; 0. |
+| cpu_period | [int64](#int64) |  | The CFS CPU period (docker <code>HostConfig.CpuPeriod</code>). |
+| image | [string](#string) |  | The docker image reference the container was started from (docker <code>Config.Image</code>). |
+
+
+
+
+
+
+<a name="ondewo.nlu.RemoteOperationContainerStatus.EnvironmentVariablesEntry"></a>
+
+### RemoteOperationContainerStatus.EnvironmentVariablesEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ondewo.nlu.StreamRemoteOperationContainerLogsRequest"></a>
+
+### StreamRemoteOperationContainerLogsRequest
+The request message for <a href="index.html#ondewo.nlu.Operations.StreamRemoteOperationContainerLogs">Operations.StreamRemoteOperationContainerLogs</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The name of the operation resource whose container logs should be streamed. |
+| min_log_level | [LogSeverity](#ondewo.nlu.LogSeverity) |  | Only stream lines at or above this loguru severity. <code>LOG_SEVERITY_UNSPECIFIED</code> (the default) streams every line regardless of level. |
+| tail_lines | [int32](#int32) |  | Replay at most this many of the most recent existing log lines before switching to live follow. <code>0</code> (the default) starts the follow with no historical replay. |
+| container_id | [string](#string) |  | Optional. Scope the stream to a single container of the operation, identified by its docker container id (as returned by <a href="index.html#ondewo.nlu.RemoteOperationContainer">RemoteOperationContainer</a>). Empty (the default) streams the operation&apos;s currently-registered container, preserving the legacy single-container behavior. |
+
+
+
+
+
  <!-- end messages -->
+
+
+<a name="ondewo.nlu.RemoteOperationContainerLifecycleState"></a>
+
+### RemoteOperationContainerLifecycleState
+The lifecycle state of a remote-operation container, mirroring the Docker container lifecycle.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| REMOTE_OPERATION_CONTAINER_LIFECYCLE_STATE_UNSPECIFIED | 0 | The lifecycle state could not be determined. |
+| REMOTE_OPERATION_CONTAINER_LIFECYCLE_STATE_NOT_FOUND | 1 | No container with the recorded name exists on the recorded host (never started, already reaped, or the dispatch record was garbage-collected after completion). |
+| REMOTE_OPERATION_CONTAINER_LIFECYCLE_STATE_CREATED | 2 | The container has been created but is not yet running. |
+| REMOTE_OPERATION_CONTAINER_LIFECYCLE_STATE_RUNNING | 3 | The container is running. |
+| REMOTE_OPERATION_CONTAINER_LIFECYCLE_STATE_PAUSED | 4 | The container is paused. |
+| REMOTE_OPERATION_CONTAINER_LIFECYCLE_STATE_RESTARTING | 5 | The container is in the process of restarting. |
+| REMOTE_OPERATION_CONTAINER_LIFECYCLE_STATE_EXITED | 6 | The container has exited (successfully or with an error — see <code>exit_code</code>). |
+| REMOTE_OPERATION_CONTAINER_LIFECYCLE_STATE_DEAD | 7 | The container is dead (Docker could not stop/remove it cleanly). |
+
 
  <!-- end enums -->
 
@@ -7057,22 +11102,18 @@ All fields below are optional. Multiple fields specified at the same time are ch
 ### Operations
 Manages long-running operations with an API service.
 
-When an API method normally takes long time to complete, it can be designed
-to return [Operation][ondewo.nlu.Operation] to the client, and the client can use this
-interface to receive the real response asynchronously by polling the
-operation resource, or pass the operation resource to another API (such as
-Google Cloud Pub/Sub API) to receive the response.  Any API service that
-returns long-running operations should implement the `Operations` interface
-so developers can have a consistent client experience.
+When an API method normally takes long time to complete, it can be designed to return <a href="index.html#ondewo.nlu.Operation">Operation</a> to the client, and the client can use this interface to receive the real response asynchronously by polling the operation resource, or pass the operation resource to another API (such as Google Cloud Pub/Sub API) to receive the response.  Any API service that returns long-running operations should implement the <code>Operations</code> interface so developers can have a consistent client experience.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| ListOperations | [ListOperationsRequest](#ondewo.nlu.ListOperationsRequest) | [ListOperationsResponse](#ondewo.nlu.ListOperationsResponse) | Lists operations that match the specified filter in the request. If the server doesn't support this method, it returns `UNIMPLEMENTED`.
-
-NOTE: the `name` binding below allows API services to override the binding to use different resource name schemes, such as `users/*/operations`. |
+| ListOperations | [ListOperationsRequest](#ondewo.nlu.ListOperationsRequest) | [ListOperationsResponse](#ondewo.nlu.ListOperationsResponse) | Lists operations that match the specified filter in the request. If the server doesn&apos;t support this method, it returns <code>UNIMPLEMENTED</code>. <br> NOTE: the <code>name</code> binding below allows API services to override the binding to use different resource name schemes, such as <code>users/*/operations</code>. |
 | GetOperation | [GetOperationRequest](#ondewo.nlu.GetOperationRequest) | [Operation](#ondewo.nlu.Operation) | Gets the latest state of a long-running operation. Clients can use this method to poll the operation result at intervals as recommended by the API service. |
-| DeleteOperation | [DeleteOperationRequest](#ondewo.nlu.DeleteOperationRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. |
-| CancelOperation | [CancelOperationRequest](#ondewo.nlu.CancelOperationRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn't support this method, it returns `google.rpc.Code.UNIMPLEMENTED`. Clients can use [Operations.GetOperation][ondewo.nlu.Operations.GetOperation] or other methods to verify whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an [Operation.error][ondewo.nlu.Operation.error] value with a [google.rpc.Status.code][google.rpc.Status.code] of 1, corresponding to `Code.CANCELLED`. |
+| DeleteOperation | [DeleteOperationRequest](#ondewo.nlu.DeleteOperationRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes a long-running operation. This method indicates that the client is no longer interested in the operation result. It does not cancel the operation. If the server doesn&apos;t support this method, it returns <code>google.rpc.Code.UNIMPLEMENTED</code> |
+| CancelOperation | [CancelOperationRequest](#ondewo.nlu.CancelOperationRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Starts asynchronous cancellation on a long-running operation. The server makes a best effort to cancel the operation, but success is not guaranteed. If the server doesn&apos;t support this method, it returns <code>google.rpc.Code.UNIMPLEMENTED</code>. Clients can use <a href="index.html#ondewo.nlu.Operations.GetOperation">Operations.GetOperation</a> or other methods to verify whether the cancellation succeeded or whether the operation completed despite cancellation. On successful cancellation, the operation is not deleted; instead, it becomes an operation with an <a href="index.html#ondewo.nlu.Operation">Operation.error</a> value with a <a href="https://developers.google.com/actions-center/reference/grpc-api/status_codes">google.rpc.Status.code</a> of 1, corresponding to <code>Code.CANCELLED</code>. |
+| StreamRemoteOperationContainerLogs | [StreamRemoteOperationContainerLogsRequest](#ondewo.nlu.StreamRemoteOperationContainerLogsRequest) | [RemoteOperationContainerLogLine](#ondewo.nlu.RemoteOperationContainerLogLine) stream | Streams the live container logs of a remote-operation container (LLM evaluation, simulation, crawl, training) as they are produced, in the manner of <code>docker logs --follow</code>. The stream stays open until the container exits or the client disconnects. Each message is a single parsed log line. Secrets in the log text are redacted server-side before streaming. |
+| GetRemoteOperationContainerLogs | [GetRemoteOperationContainerLogsRequest](#ondewo.nlu.GetRemoteOperationContainerLogsRequest) | [GetRemoteOperationContainerLogsResponse](#ondewo.nlu.GetRemoteOperationContainerLogsResponse) | Returns a bounded, filtered snapshot of a remote-operation container&apos;s logs. Supports a time window (<code>start_time</code> / <code>end_time</code>), a minimum loguru log level, a regular-expression match on the message, and a cap on the number of returned lines. Secrets in the log text are redacted server-side before the response is returned. |
+| GetRemoteOperationContainerStatus | [GetRemoteOperationContainerStatusRequest](#ondewo.nlu.GetRemoteOperationContainerStatusRequest) | [RemoteOperationContainerStatus](#ondewo.nlu.RemoteOperationContainerStatus) | Returns the health and lifecycle status of a remote-operation container: whether it still exists, whether it is running/exited, its exit code, OOM-kill flag and Docker health status. |
+| ListRemoteOperationContainers | [ListRemoteOperationContainersRequest](#ondewo.nlu.ListRemoteOperationContainersRequest) | [ListRemoteOperationContainersResponse](#ondewo.nlu.ListRemoteOperationContainersResponse) | Lists every docker container that a remote operation started (a single operation may run several containers sequentially, e.g. hardware-check, GPU pre-allocation, build-cache and one training container per algorithm). When <code>include_sub_operations</code> is set, the containers of the operation&apos;s sub-operations are included as well. Each entry carries the container id + name, its host, lifecycle state and whether logs are still available (live or persisted). |
 
  <!-- end services -->
 
@@ -7094,7 +11135,7 @@ This message is a request to create project role
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
-| role | [ProjectRole](#ondewo.nlu.ProjectRole) |  | If the role_id is not provided, an incremental value will be assigned The "name" and "role_type" are mandatory values The permissions all default to False if not provided specifically |
+| role | [ProjectRole](#ondewo.nlu.ProjectRole) |  | If the role_id is not provided, an incremental value will be assigned The &quot;name&quot; and &quot;role_type&quot; are mandatory values The permissions all default to False if not provided specifically |
 | project_role_view | [ProjectRoleView](#ondewo.nlu.ProjectRoleView) |  | Optional. specify the view of the created project role, PROJECT_ROLE_VIEW_FULL by default |
 
 
@@ -7130,6 +11171,7 @@ This message is a request to get project role
 | role_id | [uint32](#uint32) |  | role is identified by role id |
 | role_name | [string](#string) |  | role can also be uniquely identified by its name |
 | project_role_view | [ProjectRoleView](#ondewo.nlu.ProjectRoleView) |  | Optional. specify the view of the project role, PROJECT_ROLE_VIEW_FULL by default |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -7147,14 +11189,15 @@ This message is a request to list project role
 | parent | [string](#string) |  | Required. The project that the agent to fetch is associated with. Format: <pre><code>projects/&lt;project_uuid&gt;/agents</code></pre> |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
 | project_role_view | [ProjectRoleView](#ondewo.nlu.ProjectRoleView) |  | Optional. specify the view of the project roles, PROJECT_ROLE_VIEW_FULL by default |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -7241,7 +11284,7 @@ Structure of project role view
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| PROJECT_ROLE_VIEW_UNSPECIFIED | 0 | The view depends on the endpoint: * CreateProjectRole: FULL * GetProjectRole: FULL * UpdateProjectRole: FULL * ListProjectRoles: FULL |
+| PROJECT_ROLE_VIEW_UNSPECIFIED | 0 | The view depends on the endpoint: <ul> <li>CreateProjectRole: FULL</li> <li>GetProjectRole: FULL</li> <li>UpdateProjectRole: FULL</li> <li>ListProjectRoles: FULL</li> </ul> |
 | PROJECT_ROLE_VIEW_SHALLOW | 1 | only role ID and name fields are populated |
 | PROJECT_ROLE_VIEW_FULL | 2 | all fields including permissions are populated |
 
@@ -7315,7 +11358,7 @@ Request to get project element statistics
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Required. The name/path of the concept to get the statistic from. Example: <pre><code> * projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt; * projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt; * projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;/entityValues&lt;entity_value_uuid&gt; </code></pre> |
+| name | [string](#string) |  | Required. The name/path of the concept to get the statistic from. Example: <ul> <li><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></li> <li><code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;</code></li> <li><code>projects/&lt;project_uuid&gt;/agent/entityTypes/&lt;entity_type_uuid&gt;/entityValues/&lt;entity_value_uuid&gt;</code></li> </ul> |
 | language_code | [string](#string) |  | Language code |
 
 
@@ -7359,6 +11402,1808 @@ Project Root Statistics
 | GetResponseCount | [GetProjectElementStatRequest](#ondewo.nlu.GetProjectElementStatRequest) | [StatResponse](#ondewo.nlu.StatResponse) | Returns the responses count within a project |
 | GetEntityValueCount | [GetProjectElementStatRequest](#ondewo.nlu.GetProjectElementStatRequest) | [StatResponse](#ondewo.nlu.StatResponse) | Returns the entity value count within a project |
 | GetEntitySynonymCount | [GetProjectElementStatRequest](#ondewo.nlu.GetProjectElementStatRequest) | [StatResponse](#ondewo.nlu.StatResponse) | Returns the entity synonyms count within a project |
+
+ <!-- end services -->
+
+
+
+<a name="ondewo/nlu/rag.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## ondewo/nlu/rag.proto
+File-level comment for <code>ondewo/nlu/rag.proto</code>.
+This file contains a single service <a href="#ondewo.nlu.Rags">Rags</a>. The Rags service provides RAG (Retrieval-Augmented Generation) and web crawler functionality.
+Fields marked as <code>optional</code> carry explicit presence, so that an explicitly set default value (<code>0</code>, <code>false</code>, <code>""</code>) can be distinguished from a field that was never set. Without the <code>optional</code> keyword it would for instance not be possible to distinguish between an integer <code>0</code> and <code>null</code>.
+The marker is applied where that distinction is actually consumed — the partial-update inputs (an unset field leaves the stored value untouched, an explicit default clears it) and the retrieval overrides that are forwarded to RAGFlow (an explicit <code>0.0</code> or <code>false</code> must override the server-side default rather than fall back to it). Fields that carry no such distinction are deliberately left without the keyword, and for message-typed fields it is omitted because proto3 gives them explicit presence anyway.
+
+
+<a name="ondewo.nlu.RagAddCrawlerResultsToDatasetsRequest"></a>
+
+### RagAddCrawlerResultsToDatasetsRequest
+Request message for adding crawler output to one or more datasets.<br>
+Either <code>crawler_names</code> or <code>crawler_result_names</code> (or both) must be provided.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent that owns the crawler. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| crawler_names | [string](#string) | repeated | Optional. Resource names of crawlers whose results should be imported.<br> The specified crawlers must have at least one successful run. All of the results of the last completed run are uploaded to the datasets. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawlers/&lt;crawler_uuid&gt;</code></pre> |
+| crawler_result_names | [string](#string) | repeated | Optional. Resource names of crawler results to upload in addition to the results of the crawlers specified in <code>crawler_names</code>. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawler_results/&lt;crawler_result_uuid&gt;</code></pre> |
+| dataset_ids | [string](#string) | repeated | Required. IDs of the datasets to add the crawl results to. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagChunk"></a>
+
+### RagChunk
+Chunk of text extracted from a document.<br>
+Chunks are the basic retrieval units used for vector similarity search in RAG.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | Chunk ID (computed as xxhash of content combined with document_id). |
+| dataset_id | [string](#string) |  | Parent dataset ID. |
+| document_id | [string](#string) |  | Parent document ID. |
+| content | [string](#string) |  | Chunk text content (the actual text segment extracted from the document). |
+| important_keywords | [string](#string) | repeated | Important keywords extracted from or manually assigned to this chunk. |
+| questions | [string](#string) | repeated | Associated questions for Q&amp;A chunks (used when <code>chunk_method=qa</code>). |
+| image_id | [string](#string) |  | Associated image ID if this chunk references an image. |
+| positions | [google.protobuf.ListValue](#google.protobuf.ListValue) | repeated | Position information in the original document.<br> Each position is an array of 5 integers representing location data (format varies by document type). |
+| create_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. |
+| document_keyword | [string](#string) |  | Document name used as a keyword for retrieval. |
+| similarity | [float](#float) | optional | Similarity score between <code>0.0</code> and <code>1.0</code> (only populated in retrieval responses). |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawler"></a>
+
+### RagCrawler
+RagCrawler definition.
+
+This object represents a reusable crawler profile that can be run multiple times.
+It is modeled after Crawl4AI concepts:
+<ul>
+    <li>seed/sitemap discovery (<code>RagCrawlerSources</code>)</li>
+    <li>URL/domain constraints (<code>RagCrawlerFilters</code>)</li>
+    <li>authentication/session bootstrap (<code>RagCrawlerAuth</code>, <code>RagCrawlerBrowserConfig</code>)</li>
+    <li>run behavior and extraction output (<code>RagCrawlerConfig</code>)</li>
+</ul>
+
+The same crawler can be executed multiple times; each execution creates
+a separate crawler run and result set.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the RagCrawler Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawlers/&lt;crawler_uuid&gt;</code></pre> Automatically generated in backend if empty |
+| display_name | [string](#string) |  | Optional. Human-readable crawler name shown in UIs/logs. Should be unique per agent to simplify operational troubleshooting. |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
+| created_by | [string](#string) |  | User id in form of a valid UUID. |
+| modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| crawler_sources | [RagCrawlerSources](#ondewo.nlu.RagCrawlerSources) |  | Optional. Crawl entry points. Configure crawl entry points: URL seeds and/or sitemap sources. |
+| crawler_seed_url_filters | [RagCrawlerSeedUrlFilters](#ondewo.nlu.RagCrawlerSeedUrlFilters) |  | Optional. Seed URL filters. Filters are applied to the seed URLs before they are crawled. |
+| crawler_auth | [RagCrawlerAuth](#ondewo.nlu.RagCrawlerAuth) |  | Optional. Login/auth setup used before crawl requests. |
+| crawler_browser_config | [RagCrawlerBrowserConfig](#ondewo.nlu.RagCrawlerBrowserConfig) |  | Optional. Browser runtime setup (engine, viewport, cookies, proxy, headers). Roughly corresponds to Crawl4AI <code>BrowserConfig</code>. Use this when target sites require JS, custom headers, session cookies, or proxy routing. |
+| crawler_config | [RagCrawlerConfig](#ondewo.nlu.RagCrawlerConfig) |  | Optional. Crawl execution behavior and extraction settings. Roughly corresponds to Crawl4AI <code>CrawlerRunConfig</code>. |
+| retry_config | [RagCrawlerRetryConfig](#ondewo.nlu.RagCrawlerRetryConfig) |  | Optional. Retry configuration for crawler runs. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerAuth"></a>
+
+### RagCrawlerAuth
+Authentication configuration.
+
+Supports both browser/form login and HTTP auth patterns used by Crawl4AI pipelines when crawling protected content.
+HTTP Auth is used on all pages of the sources, while html_auth is a separate authentication flow used in the beginning of the crawl to extract the cookies. This is done through a login screen. If HTTP Auth is set, this would ALSO be used on the HTML auth page.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| http_auth | [RagCrawlerHttpAuth](#ondewo.nlu.RagCrawlerHttpAuth) |  | Optional. HTTP Basic auth settings. |
+| html_auth | [RagCrawlerHtmlAuth](#ondewo.nlu.RagCrawlerHtmlAuth) |  | Optional. Form/HTML login selector and credential settings. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerBrowserConfig"></a>
+
+### RagCrawlerBrowserConfig
+Browser runtime configuration.
+
+This block maps closely to Crawl4AI BrowserConfig and controls browser
+process setup (engine, headless mode, viewport, context, proxy, cookies,
+user-agent behavior, and launch arguments).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| crawler_headers | [google.protobuf.Struct](#google.protobuf.Struct) | repeated | Optional. HTTP headers sent on page/resource requests. Repeated entries allow duplicate header names and preserve order. |
+| crawler_cookies | [RagCrawlerCookie](#ondewo.nlu.RagCrawlerCookie) | repeated | Optional. Initial cookies. |
+| crawler_user_agent | [string](#string) | optional | Optional. User-Agent sent with requests. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerConcurrencyConfig"></a>
+
+### RagCrawlerConcurrencyConfig
+Concurrency and pacing controls for crawler runs.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| max_concurrent_requests | [int32](#int32) |  | Optional. Max number of concurrent in-flight requests/pages. Increase for throughput; reduce for fragile sites/rate limits. |
+| slow_crawl | [bool](#bool) |  | Optional. Enable slow crawl mode with fixed delays between requests to avoid rate limits. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerConfig"></a>
+
+### RagCrawlerConfig
+Crawl run behavior.
+
+This block controls scheduling, traversal, extraction outputs, retries,
+diagnostics capture, and deep crawling options for each crawler run.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| concurrency_config | [RagCrawlerConcurrencyConfig](#ondewo.nlu.RagCrawlerConcurrencyConfig) |  | Optional. Concurrency and pacing controls for crawler requests. |
+| deep_crawler_config | [RagCrawlerDeepCrawlerConfig](#ondewo.nlu.RagCrawlerDeepCrawlerConfig) |  | Optional. Deep crawler behavior (enable + depth/pages/scoring/filter chain). |
+| output_config | [RagCrawlerResultsConfig](#ondewo.nlu.RagCrawlerResultsConfig) |  | Optional. Structured output configuration (format + metadata policy). |
+| status_filter | [RagCrawlerStatusFilter](#ondewo.nlu.RagCrawlerStatusFilter) |  | Optional. HTTP status filtering: which fetched pages become result documents. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerContentResult"></a>
+
+### RagCrawlerContentResult
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| metadata | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. Extracted page metadata. Includes only fields configured in <code>RagCrawlerConfig.output_config.meta_data_extractors</code>. |
+| markdown | [string](#string) | optional | Optional. Extracted markdown output. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerContentScope"></a>
+
+### RagCrawlerContentScope
+CSS-selector based content scoping for markdown extraction.
+
+When set, Markdown is generated only from the elements matched by <code>include_selectors</code> (if any), after removing elements matched by <code>exclude_selectors</code>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| include_selectors | [string](#string) | repeated | Optional. CSS selectors to scope extraction to (keep only matching subtrees). Empty means the whole page is used. |
+| exclude_selectors | [string](#string) | repeated | Optional. CSS selectors whose matching elements are removed before extraction (e.g. navigation, footer, sidebars, internal-only blocks). |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerCookie"></a>
+
+### RagCrawlerCookie
+Cookie representation for initial browser session state.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cookie_name | [string](#string) |  | Required. Cookie name. |
+| cookie_value | [string](#string) |  | Required. Cookie value. |
+| cookie_domain | [string](#string) |  | Optional. Cookie domain. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerDeepCrawlerConfig"></a>
+
+### RagCrawlerDeepCrawlerConfig
+Deep crawler options grouped under one config node.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| is_active | [bool](#bool) |  | Optional. Enable deep crawler behavior (link following beyond seeds). Default <code>false</code>. If <code>false</code>, <code>config</code> is ignored. |
+| crawl_strategy | [RagCrawlerCrawlStrategy](#ondewo.nlu.RagCrawlerCrawlStrategy) |  | Optional. Crawl traversal strategy. BFS is often best for broad site coverage; DFS for deep section traversal. Default <code>RAG_CRAWLER_CRAWL_STRATEGY_BFS</code>. |
+| max_depth | [int32](#int32) | optional | Optional. Maximum link depth from seed URLs. <code>0</code> usually means only seed pages. |
+| max_pages | [int32](#int32) |  | Optional. Hard cap on total processed pages for this run. |
+| deep_crawler_filters | [RagCrawlerFilters](#ondewo.nlu.RagCrawlerFilters) |  | Optional. URL and domain restrictions. |
+| normalize_url_case | [bool](#bool) | optional | Optional. Normalize URL case (lowercase the path) during link discovery/deduplication. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerDensityPruning"></a>
+
+### RagCrawlerDensityPruning
+Density-based content pruning (Crawl4AI PruningContentFilter).
+
+Removes low-text-density and very short nodes by a composite density score.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| is_active | [bool](#bool) | optional | Optional. Enable density pruning. Default <code>true</code>. |
+| threshold | [float](#float) | optional | Optional. Density score threshold. Default <code>0.5</code>. |
+| threshold_type | [RagCrawlerPruningThresholdType](#ondewo.nlu.RagCrawlerPruningThresholdType) | optional | Optional. Threshold interpretation. Default <code>RAG_CRAWLER_PRUNING_THRESHOLD_TYPE_FIXED</code>. |
+| min_word_threshold | [int32](#int32) | optional | Optional. Nodes with fewer than this many words are removed. Default <code>10</code>. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerExecutionInfo"></a>
+
+### RagCrawlerExecutionInfo
+Consolidated diagnostics and HTTP execution metadata for a crawl result.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ssl_certificate | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. SSL certificate details. |
+| success | [bool](#bool) | optional | Optional. Crawl status flag. |
+| error_message | [string](#string) | optional | Optional. Error details if crawl failed. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerFilters"></a>
+
+### RagCrawlerFilters
+URL and domain restrictions.
+
+Filters are evaluated during link discovery/scheduling and help avoid
+crawling irrelevant, duplicate, or unsafe sections (auth/logout pages,
+marketing subdomains, binary downloads, etc.).
+These include domains to be excluded in the sources (e.g. through sitemaps or seed URLs)
+and domains to be excluded in the deep crawl or extraction of pages to be crawled.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| allowed_domains | [string](#string) | repeated | Optional. Domain allow-list (host-level gating). |
+| disallowed_domains | [string](#string) | repeated | Optional. Domain block-list. |
+| allow_internal_links | [bool](#bool) |  | Optional. Include internal links. |
+| allow_external_links | [bool](#bool) |  | Optional. Include external links. |
+| allow_social_media_links | [bool](#bool) |  | Optional. Include social media links. |
+| allowed_regex | [string](#string) | repeated | Optional. Path allow-list by regular expression. |
+| disallowed_regex | [string](#string) | repeated | Optional. Path block-list by regular expression. |
+| allowed_paths | [string](#string) | repeated | Optional. Explicit path allow-list. |
+| disallowed_paths | [string](#string) | repeated | Optional. Explicit path block-list. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerHtmlAuth"></a>
+
+### RagCrawlerHtmlAuth
+Form/HTML login configuration.
+
+Selector types and selector strings identify login form fields in the page
+DOM. Credentials are then filled before form submission.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| html_auth_base_url | [string](#string) |  | Optional. Base URL used for auth/login navigation. |
+| html_auth_username_selector_type | [RagCrawlerSelectorType](#ondewo.nlu.RagCrawlerSelectorType) |  | Optional. Username field selector type. |
+| html_auth_username_selector | [string](#string) |  | Optional. Username field selector value. |
+| html_auth_username | [string](#string) |  | Optional. Username credential. |
+| html_auth_password_selector_type | [RagCrawlerSelectorType](#ondewo.nlu.RagCrawlerSelectorType) |  | Optional. Password field selector type. |
+| html_auth_password_selector | [string](#string) |  | Optional. Password field selector value. |
+| html_auth_password | [string](#string) |  | Optional. Password credential. |
+| authentication_execution_type | [RagCrawlerAuthenticationExecutionType](#ondewo.nlu.RagCrawlerAuthenticationExecutionType) |  | Optional. Authentication execution type |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerHttpAuth"></a>
+
+### RagCrawlerHttpAuth
+HTTP Basic authentication settings.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| http_auth_username | [string](#string) |  | HTTP Basic Authentication username. |
+| http_auth_password | [string](#string) |  | HTTP Basic Authentication password. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerMetaDataExtractor"></a>
+
+### RagCrawlerMetaDataExtractor
+Metadata extractor configuration.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| type | [RagCrawlerMetaDataExtractorType](#ondewo.nlu.RagCrawlerMetaDataExtractorType) |  | Optional. Regex pattern to match metadata field names. |
+| value | [string](#string) |  | Optional. Value to extract (e.g. regex pattern, fixed value, CSS selector, XPath selector, ID selector). |
+| key | [string](#string) |  | Optional. Metadata field name to extract (e.g. url, title, description, author, keywords, tags, created_date, modified_date, scraped_at). |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerResult"></a>
+
+### RagCrawlerResult
+Crawler result entity.
+
+Each result corresponds to one crawled URL in a crawler run and includes
+extracted content, metadata, diagnostics, and optional binary artifacts.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the crawler result. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawler_results/&lt;crawler_result_uuid&gt;</code></pre> |
+| crawler_name | [string](#string) |  | Resource name of the source crawler profile. |
+| operation_name | [string](#string) |  | Resource name of the crawler run that produced this result. |
+| source_url | [string](#string) |  | URL this content came from. |
+| file_resource | [FileResource](#ondewo.nlu.FileResource) |  | Classified primary file resource built from source URL and detected MIME/type. If its a HTML page, it will be stored in the DocumentFileResource Bytes. See FileResource Documentation for all other file types. |
+| last_crawled_date | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Timestamp when this URL was last processed by crawler. |
+| content_result | [RagCrawlerContentResult](#ondewo.nlu.RagCrawlerContentResult) |  | Optional. Consolidated extracted content for this page. |
+| page_last_updated_date | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Optional. Timestamp when source page was last updated. Source precedence: HTTP Last-Modified header, then sitemap <lastmod> fallback. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerResultsConfig"></a>
+
+### RagCrawlerResultsConfig
+Structured output configuration.
+
+Use this block to define result payload shape and metadata behavior,
+similar to Crawl4AI markdown/output-generation toggles.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| inject_frontmatter | [bool](#bool) | optional | Optional. Inject YAML frontmatter into markdown output. If the content is HTML based, it will automatically be converted to markdown. Optionally, you can inject YAML frontmatter into the markdown output. Default <code>true</code>. |
+| meta_data_extractors | [RagCrawlerMetaDataExtractor](#ondewo.nlu.RagCrawlerMetaDataExtractor) | repeated | Optional. Metadata extractors. |
+| content_scope | [RagCrawlerContentScope](#ondewo.nlu.RagCrawlerContentScope) |  | Optional. CSS-selector based content scoping for markdown extraction. |
+| density_pruning | [RagCrawlerDensityPruning](#ondewo.nlu.RagCrawlerDensityPruning) |  | Optional. Density-based content pruning (Crawl4AI PruningContentFilter). If not set the <code>RagCrawlerDensityPruning</code> defaults are used. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerRetryConfig"></a>
+
+### RagCrawlerRetryConfig
+Timeout settings for crawler operations.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| page_load_timeout_seconds | [int32](#int32) | optional | Optional. Page load/render timeout in seconds. |
+| retry_max_attempts | [int32](#int32) | optional | Optional. Maximum retry attempts per page source. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerSeedUrlFilters"></a>
+
+### RagCrawlerSeedUrlFilters
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| allowed_regex | [string](#string) | repeated | Optional. Regex allow-list for full URLs. |
+| disallowed_regex | [string](#string) | repeated | Optional. Regex block-list for full URLs. |
+| allowed_domains | [string](#string) | repeated | Optional. Domain allow-list (host-level gating). |
+| disallowed_domains | [string](#string) | repeated | Optional. Domain block-list. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerSources"></a>
+
+### RagCrawlerSources
+Crawl entry points.
+
+Both inputs can be provided at the same time:
+- Sitemaps are expanded into a crawl URL list (in discovery order)
+- Seed URLs are appended afterwards (in the order provided)
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| urls | [string](#string) | repeated | Direct seed URLs to enqueue as starting points. |
+| sitemaps | [string](#string) | repeated | Sitemap URLs used for URL discovery. Typical values are <code>/sitemap.xml</code> or sitemap index files. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCrawlerStatusFilter"></a>
+
+### RagCrawlerStatusFilter
+HTTP status filtering for crawled pages.
+
+When active, a fetched page becomes a result document only if its HTTP status is accepted.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| is_active | [bool](#bool) | optional | Optional. Enable HTTP status filtering. Default <code>false</code>. |
+| accepted_status_codes | [int32](#int32) | repeated | Optional. Accepted HTTP status codes. If empty while active, only the 2xx range (<code>200</code>-<code>299</code>) is accepted. Add specific codes here to accept extras. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCreateCrawlerRequest"></a>
+
+### RagCreateCrawlerRequest
+Request message for creating a crawler for a dataset of an agent.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent to create crawlers for. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| crawler | [RagCrawler](#ondewo.nlu.RagCrawler) |  | Required. Crawler definition to create. If <code>crawler.name</code> is empty, backend will generate it. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawlers/&lt;crawler_uuid&gt;</code></pre> |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which RagCrawler fields get returned. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagCreateDatasetRequest"></a>
+
+### RagCreateDatasetRequest
+Request message for creating a new dataset.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent to create the dataset for. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| name | [string](#string) |  | Required. Unique name of the dataset to create. Must follow these requirements: <ul> <li>contain only characters from the basic multilingual Unicode plane</li> <li>maximum 128 characters</li> <li>case-insensitive</li> </ul> |
+| description | [string](#string) |  | Optional. Dataset description. Maximum 65,535 characters. |
+| avatar | [string](#string) |  | Optional. Base64-encoded avatar image in the format <code>"data:image/[png|jpeg];base64,&lt;base64_string&gt;"</code>. Maximum 65,535 characters. |
+| chunk_method | [RagChunkMethod](#ondewo.nlu.RagChunkMethod) |  | Optional. Default chunking method for documents in this dataset. |
+| parser_config | [RagParserConfig](#ondewo.nlu.RagParserConfig) |  | Optional. Configuration settings for the dataset parser. The used fields vary depending on the selected <code>chunk_method</code>. |
+| embedding_model_ccai_service_name | [string](#string) |  | Optional if <code>dataset_default_embedding_ccai_service_name</code> is set in the ONDEWO config, otherwise mandatory. CCAI service to use for embedding the documents in the dataset. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagDataset"></a>
+
+### RagDataset
+Dataset containing documents for RAG.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | Dataset UUID. |
+| avatar | [string](#string) |  | Base64-encoded avatar image. |
+| name | [string](#string) |  | Dataset name. |
+| description | [string](#string) |  | Dataset description. |
+| document_count | [int32](#int32) | optional | Number of documents in the dataset. |
+| token_num | [int32](#int32) | optional | Number of tokens in the dataset. |
+| chunk_count | [int32](#int32) | optional | Number of chunks of all documents in the dataset. |
+| chunk_method | [RagChunkMethod](#ondewo.nlu.RagChunkMethod) |  | Default chunking method for documents in this dataset. |
+| parser_config | [RagParserConfig](#ondewo.nlu.RagParserConfig) |  | Document parser configuration (auto-generated based on chunk_method). |
+| pagerank | [int32](#int32) | optional | Pagerank. |
+| parsing_status | [RagDatasetParsingStatus](#ondewo.nlu.RagDatasetParsingStatus) |  | Parsing status of all documents in the dataset. Might be empty if the system failed to get the parsing statistics. |
+| create_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. |
+| update_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Last update date and time. |
+| embedding_model_ccai_service_name | [string](#string) |  | CCAI service name of the embedding model used by this dataset. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagDatasetList"></a>
+
+### RagDatasetList
+Response message for listing datasets.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| datasets | [RagDataset](#ondewo.nlu.RagDataset) | repeated | List of datasets. |
+| total | [int32](#int32) |  | Total number of datasets that match the given filters |
+| next_page_token | [string](#string) |  | Page token string (following the format described in <code>RagListDatasetsRequest</code>) for retrieving the next results page |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagDatasetParsingStatus"></a>
+
+### RagDatasetParsingStatus
+Parsing status statistics of all documents in a dataset
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| unstart | [int32](#int32) |  | number of documents that have not started processing. |
+| running | [int32](#int32) |  | number of documents that are currently being processed. |
+| cancel | [int32](#int32) |  | number of documents for which parsing was cancelled. |
+| done | [int32](#int32) |  | number of documents that have successfully finished parsing. |
+| fail | [int32](#int32) |  | number of documents for which parsing has failed. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagDeleteCrawlerRequest"></a>
+
+### RagDeleteCrawlerRequest
+Request message for deleting a crawler of a dataset for the specified agent.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the RagCrawler Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawlers/&lt;crawler_uuid&gt;</code></pre> |
+| parent | [string](#string) |  | Required. The agent owning the crawler. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagDeleteCrawlerResponse"></a>
+
+### RagDeleteCrawlerResponse
+Response message for deleting a crawler of a dataset for the specified agent.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the RagCrawler Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawlers/&lt;crawler_uuid&gt;</code></pre> |
+| error_message | [string](#string) |  | Error message if there are any. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagDeleteCrawlerRunsRequest"></a>
+
+### RagDeleteCrawlerRunsRequest
+Request message for deleting crawler runs.
+
+Deletion candidates are the union of:
+- explicit run names in <code>crawler_run_names</code>
+- all runs belonging to crawlers listed in <code>crawler_names</code>
+
+If both lists are empty, the call is a no-op.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent that owns the crawler runs. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| crawler_run_names | [string](#string) | repeated | Optional. Explicit crawler run names to delete. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawler_runs/&lt;crawler_run_uuid&gt;</code></pre> |
+| crawler_names | [string](#string) | repeated | Optional. Crawler names whose runs should be deleted. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawlers/&lt;crawler_uuid&gt;</code></pre> |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagDeleteCrawlerRunsResponse"></a>
+
+### RagDeleteCrawlerRunsResponse
+Response message for deleting crawler runs.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted_count | [int32](#int32) |  | Number of deleted crawler runs. |
+| deleted_run_names | [string](#string) | repeated | Resource names of deleted crawler runs. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagDeleteCrawlersRequest"></a>
+
+### RagDeleteCrawlersRequest
+Request message for deleting multiple crawlers of a dataset for the specified agent.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent owning the crawlers. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| names | [string](#string) | repeated | Optional. Crawler resource names to delete. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawlers/&lt;crawler_uuid&gt;</code></pre> |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagDeleteCrawlersResponse"></a>
+
+### RagDeleteCrawlersResponse
+Response message for deleting multiple crawlers of a dataset for the specified agent.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| delete_crawler_responses | [RagDeleteCrawlerResponse](#ondewo.nlu.RagDeleteCrawlerResponse) | repeated | responses to delete crawlers |
+| error_message | [string](#string) |  | error message if there are any |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagDeleteDocumentsRequest"></a>
+
+### RagDeleteDocumentsRequest
+Request message for deleting one or more documents of a single dataset.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent to delete datasets from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| dataset_id | [string](#string) |  | Required. ID of dataset containing the documents to delete. |
+| ids | [string](#string) | repeated | Optional. IDs of documents to delete. Duplicate IDs are ignored. |
+| delete_all | [bool](#bool) |  | Optional. Delete all documents of the specified dataset if set to <code>true</code> |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagDeleteRequest"></a>
+
+### RagDeleteRequest
+Request message for deleting one or more of a RAGFlow resource.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent to delete datasets from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| ids | [string](#string) | repeated | Optional. IDs of resources to delete. Duplicate IDs are ignored. |
+| delete_all | [bool](#bool) |  | Optional. Delete all resources if set to <code>true</code> |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagDocAgg"></a>
+
+### RagDocAgg
+Aggregated document retrieval results containing how many chunks of the given document where retrieved
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| doc_name | [string](#string) |  | Document name |
+| doc_id | [string](#string) |  | Document ID |
+| count | [int32](#int32) |  | Number of retrieved chunks |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagDocument"></a>
+
+### RagDocument
+Document uploaded to a dataset.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| id | [string](#string) |  | Document UUID. |
+| thumbnail | [string](#string) |  | Base64-encoded thumbnail image in the format <code>"data:image/[png|jpeg];base64,&lt;base64_string&gt;"</code>. Maximum 65,535 characters. |
+| dataset_id | [string](#string) |  | Parent dataset ID. |
+| chunk_method | [RagChunkMethod](#ondewo.nlu.RagChunkMethod) |  | Chunking method used for this document. |
+| parser_config | [RagParserConfig](#ondewo.nlu.RagParserConfig) |  | Parser configuration used for chunking this document. |
+| type | [RagDocumentType](#ondewo.nlu.RagDocumentType) |  | Broad file category |
+| name | [string](#string) |  | Document filename. |
+| size | [int64](#int64) | optional | File size in bytes. |
+| chunk_count | [int32](#int32) | optional | Number of chunks extracted from this document (initially <code>0</code> until parsed). |
+| token_count | [int32](#int32) | optional | Number of tokens across all chunks in this document. |
+| progress | [float](#float) | optional | Processing progress as a decimal value between <code>0.0</code> (not started) and <code>1.0</code> (complete). |
+| progress_msg | [string](#string) |  | Human-readable progress message describing current processing state. |
+| process_begin_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Processing start date and time. |
+| process_duration | [float](#float) | optional | Total processing duration in seconds. |
+| meta_fields | [google.protobuf.Struct](#google.protobuf.Struct) |  | Custom metadata fields specific to this document (arbitrary key-value pairs). |
+| run | [RagDocumentStatus](#ondewo.nlu.RagDocumentStatus) |  | Document processing status. |
+| status | [string](#string) |  | Status indicating if document is enabled (<code>"1"</code>=enabled, <code>"0"</code>=disabled). |
+| create_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. |
+| update_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Last update date and time. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagDocumentIdsRequest"></a>
+
+### RagDocumentIdsRequest
+Request message for any endpoints that need a list of document IDs as input, e.g. delete documents, parse documents, stop parsing documents.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent to delete documents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| dataset_id | [string](#string) |  | Required. Dataset ID of the dataset containing the documents in <code>document_ids</code>. |
+| document_ids | [string](#string) | repeated | Optional. Document IDs for the request. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagDocumentList"></a>
+
+### RagDocumentList
+Response message for listing documents.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| documents | [RagDocument](#ondewo.nlu.RagDocument) | repeated | List of documents for the current page. |
+| total | [int32](#int32) |  | Total number of documents matching the filter criteria (not limited by pagination). |
+| next_page_token | [string](#string) |  | Page token string (following the format described in <code>RagListDocumentsRequest</code>) for retrieving the next results page |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagDownloadDocumentRequest"></a>
+
+### RagDownloadDocumentRequest
+Request message for downloading the document file.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent to download the document from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| dataset_id | [string](#string) |  | Required. Dataset ID containing the document. |
+| document_id | [string](#string) |  | Required. Document ID to download. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagFileChunk"></a>
+
+### RagFileChunk
+File chunk for streaming downloads.<br>
+First chunk contains metadata, subsequent chunks only contain data.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| metadata | [RagFileMetadata](#ondewo.nlu.RagFileMetadata) |  | Required in first chunk, ignored in later chunks. File metadata. |
+| data | [bytes](#bytes) |  | Optional. Chunk of file content. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagFileMetadata"></a>
+
+### RagFileMetadata
+File metadata for streaming uploads/downloads.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| file_name | [string](#string) |  | Required. Filename. Maximum length 255. |
+| content_type | [string](#string) |  | Optional. MIME type (e.g., <code>"application/pdf"</code>, <code>"image/png"</code>). |
+| size | [int64](#int64) |  | Optional. Minimum 0. File size in bytes (if known, 0 if unknown). |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagGetCrawlerAttachedDatasetsRequest"></a>
+
+### RagGetCrawlerAttachedDatasetsRequest
+Request message for getting datasets attached to a crawler.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent owning the crawler. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| crawler_name | [string](#string) |  | Required. Resource name of the crawler. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawlers/&lt;crawler_uuid&gt;</code></pre> |
+| page_size | [int32](#int32) |  | Optional. Maximum number of datasets to return.
+
+If unset or non-positive, backend default is used. |
+| page_token | [string](#string) |  | Optional. Specifies which page to return. The page token is a string of the format <pre><code>current_index-&lt;idx&gt;--page_size-&lt;size&gt;</code></pre>
+
+<ul> <li><code>&lt;size&gt;</code> must be an integer &geq; <code>1</code>. The maximum number of results to return.</li> <li><code>&lt;idx&gt;</code> must be an integer &geq; <code>0</code>. The start index in the requested list, starting from which a maximum of <code>&lt;size&gt;</code> elements are returned.</li> </ul>
+
+<em>Important note</em>: The <code>&lt;idx&gt;</code> is the index in the requested sequence NOT the page number. E.g. if the requested list has 100 elements then <code>current_index-5--page_size-15</code> returns the elements at index 5-19 and not the 5-th page of 15 elements.
+
+Both <code>current_index-&lt;idx&gt;</code> and <code>page_size-&lt;size&gt;</code> are optional and default to <code>0</code> and <code>10</code> respectively. The following are all valid <code>page_token</code>s <br> <ul> <li><code> </code> (empty string/missing value) - index 0, page size 10</li> <li><code>current_index-3</code> - index 3, page size 10</li> <li><code>page_size-20</code> - index 0, page size 20</li> <li><code>current_index-3--page_size-20</code> - index 3, page size 20</li> </ul> |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which <code>RagDataset</code> fields get returned. |
+| orderby | [string](#string) |  | Optional. Sort field (default: <code>create_time</code>). |
+| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) | optional | Optional. Sort descending (default: <code>SORTING_MODE_DESCENDING</code>). |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagGetCrawlerAttachedDatasetsResponse"></a>
+
+### RagGetCrawlerAttachedDatasetsResponse
+Response message for getting datasets attached to a crawler.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| datasets | [RagDataset](#ondewo.nlu.RagDataset) | repeated | Datasets attached to the crawler. |
+| next_page_token | [string](#string) |  | Page token string (following the format described in <code>RagGetCrawlerAttachedDatasetsRequest</code>) for retrieving the next results page |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagGetCrawlerRequest"></a>
+
+### RagGetCrawlerRequest
+Request message for getting a crawler.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Required. Resource name of the RagCrawler. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawlers/&lt;crawler_uuid&gt;</code></pre> |
+| parent | [string](#string) |  | Required. The agent owning the crawler. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which RagCrawler fields get returned. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagGetCrawlerResultRequest"></a>
+
+### RagGetCrawlerResultRequest
+Request message for getting a single crawler result from a crawler run.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent that owns the crawler run. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| operation_name | [string](#string) |  | Required. Resource name of the crawler run. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawler_runs/&lt;crawler_run_uuid&gt;</code></pre> |
+| url | [string](#string) |  | Required. Exact URL of the crawler result to retrieve. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which RagCrawlerResult fields get returned. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagGetCrawlerResultsRequest"></a>
+
+### RagGetCrawlerResultsRequest
+Request message for getting crawler results of a crawler run.
+
+Results are returned in pages. Request the first page with an empty
+<code>page_token</code>, then continue with each response <code>next_page_token</code>.
+
+Example:
+<pre><code>RagGetCrawlerResults(run_name, page_token="")
+-> next_page_token="..."
+RagGetCrawlerResults(run_name, page_token="...")
+</code></pre>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent that owns the crawler run. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| operation_name | [string](#string) |  | Required. Resource name of the crawler run. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawler_runs/&lt;crawler_run_uuid&gt;</code></pre> |
+| page_token | [string](#string) |  | Optional. Specifies which page to return. The page token is a string of the format <pre><code>current_index-&lt;idx&gt;--page_size-&lt;size&gt;</code></pre>
+
+<ul> <li><code>&lt;size&gt;</code> must be an integer &geq; <code>1</code>. The maximum number of results to return.</li> <li><code>&lt;idx&gt;</code> must be an integer &geq; <code>0</code>. The start index in the requested list, starting from which a maximum of <code>&lt;size&gt;</code> elements are returned.</li> </ul>
+
+<em>Important note</em>: The <code>&lt;idx&gt;</code> is the index in the requested sequence NOT the page number. E.g. if the requested list has 100 elements then <code>current_index-5--page_size-15</code> returns the elements at index 5-19 and not the 5-th page of 15 elements.
+
+Both <code>current_index-&lt;idx&gt;</code> and <code>page_size-&lt;size&gt;</code> are optional and default to <code>0</code> and <code>10</code> respectively. The following are all valid <code>page_token</code>s <br> <ul> <li><code> </code> (empty string/missing value) - index 0, page size 10</li> <li><code>current_index-3</code> - index 3, page size 10</li> <li><code>page_size-20</code> - index 0, page size 20</li> <li><code>current_index-3--page_size-20</code> - index 3, page size 20</li> </ul> |
+| url_query | [string](#string) |  | Optional. Filter by URL substring. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which <code>RagCrawlerResult</code> fields get returned. |
+| orderby | [string](#string) |  | Optional. Sort field (default: <code>last_crawled_date</code>). |
+| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) | optional | Optional. Sort descending. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagGetCrawlerResultsResponse"></a>
+
+### RagGetCrawlerResultsResponse
+Response message for getting crawler results.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| crawler_results | [RagCrawlerResult](#ondewo.nlu.RagCrawlerResult) | repeated | List of crawler results for the crawler run. |
+| next_page_token | [string](#string) |  | Page token string (following the format described in <code>RagGetCrawlerResultsRequest</code>) for retrieving the next results page |
+| total_size | [int32](#int32) |  | Total number of crawler results available after applying request filters (for example <code>url_query</code>). |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagGetCrawlerRunLogsRequest"></a>
+
+### RagGetCrawlerRunLogsRequest
+Request message for getting crawler run logs.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent that owns the crawler run. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| operation_name | [string](#string) |  | Required. Resource name of the crawler run. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawler_runs/&lt;crawler_run_uuid&gt;</code></pre> |
+| page_token | [string](#string) |  | Optional. Specifies which page to return. |
+| page_size | [int32](#int32) |  | Optional. Number of logs per page. |
+| level_filters | [LogSeverity](#ondewo.nlu.LogSeverity) | repeated | Optional. Filter by one or more log levels. |
+| phase_filter | [string](#string) |  | Optional. Filter by specific phase (exact match). |
+| search_query | [string](#string) |  | Optional. Search string for the message or details. |
+| start_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Optional. Filter logs generated after this time. |
+| end_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Optional. Filter logs generated before this time. |
+| source_url_filter | [string](#string) |  | Optional. Filter by source URL (substring match). |
+| orderby | [string](#string) |  | Optional. Sort field. Accept any field of <code>LogEntry</code>. Default: <code>log_entry_timestamp</code>. |
+| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) | optional | Optional. Sort descending. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which <code>LogEntry</code> fields get returned. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagGetCrawlerRunLogsResponse"></a>
+
+### RagGetCrawlerRunLogsResponse
+Response message for getting crawler run logs.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| operation_name | [string](#string) |  | Resource name of the crawler run operation. |
+| crawler_name | [string](#string) |  | Resource name of the crawler profile. |
+| status | [OperationMetadata.Status](#ondewo.nlu.OperationMetadata.Status) |  | Operation status of the run. |
+| entries | [LogEntry](#ondewo.nlu.LogEntry) | repeated | List of log entries for the requested page. |
+| next_page_token | [string](#string) |  | Page token string for retrieving the next results page. |
+| total_log_entries | [int32](#int32) |  | Total number of log entries available after applying filters. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagGetCrawlerRunRequest"></a>
+
+### RagGetCrawlerRunRequest
+Request message for getting a crawler run.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent that owns the crawler run. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| crawler_run_name | [string](#string) |  | Required. Resource name of the crawler run. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawler_runs/&lt;crawler_run_uuid&gt;</code></pre> |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagGraphRagConfig"></a>
+
+### RagGraphRagConfig
+GraphRAG configuration.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| use_graphrag | [bool](#bool) | optional | Optional. Default <code>false</code>. |
+| entity_types | [string](#string) | repeated | Optional. Default <code>["organization", "person", "geo", "event", "category"]</code>. |
+| method | [RagGraphRagMethod](#ondewo.nlu.RagGraphRagMethod) |  | Optional. Default <code>light</code>. |
+| community | [bool](#bool) | optional | Optional. Default <code>false</code>. |
+| resolution | [bool](#bool) | optional | Optional. Default <code>false</code>. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagListCrawlerRunsRequest"></a>
+
+### RagListCrawlerRunsRequest
+Request message for listing crawler runs.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent that owns the crawler runs. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| crawler_name | [string](#string) |  | Optional. Restrict to one crawler. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawlers/&lt;crawler_uuid&gt;</code></pre> |
+| page_token | [string](#string) |  | Optional. Specifies which page to return. The page token is a string of the format <pre><code>current_index-&lt;idx&gt;--page_size-&lt;size&gt;</code></pre>
+
+<ul> <li><code>&lt;size&gt;</code> must be an integer &geq; <code>1</code>. The maximum number of results to return.</li> <li><code>&lt;idx&gt;</code> must be an integer &geq; <code>0</code>. The start index in the requested list, starting from which a maximum of <code>&lt;size&gt;</code> elements are returned.</li> </ul>
+
+<em>Important note</em>: The <code>&lt;idx&gt;</code> is the index in the requested sequence NOT the page number. E.g. if the requested list has 100 elements then <code>current_index-5--page_size-15</code> returns the elements at index 5-19 and not the 5-th page of 15 elements.
+
+Both <code>current_index-&lt;idx&gt;</code> and <code>page_size-&lt;size&gt;</code> are optional and default to <code>0</code> and <code>10</code> respectively. The following are all valid <code>page_token</code>s <br> <ul> <li><code> </code> (empty string/missing value) - index 0, page size 10</li> <li><code>current_index-3</code> - index 3, page size 10</li> <li><code>page_size-20</code> - index 0, page size 20</li> <li><code>current_index-3--page_size-20</code> - index 3, page size 20</li> </ul> |
+| status | [OperationMetadata.Status](#ondewo.nlu.OperationMetadata.Status) |  | Optional. Filter by operation status. |
+| orderby | [string](#string) |  | Optional. Sort field (default: <code>created_at</code>). |
+| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) | optional | Optional. Sort descending. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagListCrawlerRunsResponse"></a>
+
+### RagListCrawlerRunsResponse
+Response message for listing crawler runs.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| crawler_runs | [Operation](#ondewo.nlu.Operation) | repeated | List of crawler run operations. |
+| next_page_token | [string](#string) |  | Page token string (following the format described in <code>RagListCrawlerRunsRequest</code>) for retrieving the next results page |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagListCrawlersRequest"></a>
+
+### RagListCrawlersRequest
+Request message for listing crawlers of a dataset for the specified agent.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent to list crawlers for. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the agent of the dataset. |
+| page_token | [string](#string) |  | Optional. Specifies which page to return. The page token is a string of the format <pre><code>current_index-&lt;idx&gt;--page_size-&lt;size&gt;</code></pre>
+
+<ul> <li><code>&lt;size&gt;</code> must be an integer &geq; <code>1</code>. The maximum number of results to return.</li> <li><code>&lt;idx&gt;</code> must be an integer &geq; <code>0</code>. The start index in the requested list, starting from which a maximum of <code>&lt;size&gt;</code> elements are returned.</li> </ul>
+
+<em>Important note</em>: The <code>&lt;idx&gt;</code> is the index in the requested sequence NOT the page number. E.g. if the requested list has 100 elements then <code>current_index-5--page_size-15</code> returns the elements at index 5-19 and not the 5-th page of 15 elements.
+
+Both <code>current_index-&lt;idx&gt;</code> and <code>page_size-&lt;size&gt;</code> are optional and default to <code>0</code> and <code>10</code> respectively. The following are all valid <code>page_token</code>s <br> <ul> <li><code> </code> (empty string/missing value) - index 0, page size 10</li> <li><code>current_index-3</code> - index 3, page size 10</li> <li><code>page_size-20</code> - index 0, page size 20</li> <li><code>current_index-3--page_size-20</code> - index 3, page size 20</li> </ul> |
+| dataset_name | [string](#string) |  | Optional. Filter by dataset name. |
+| crawler_name | [string](#string) |  | Optional. Filter by crawler name. |
+| orderby | [string](#string) |  | Optional. Sort field (default: <code>create_time</code>). |
+| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) | optional | Optional. Sort descending. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The Mask to control which RagCrawler fields get returned for each crawler in the list response. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagListCrawlersResponse"></a>
+
+### RagListCrawlersResponse
+Response message for listing crawlers.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| crawlers | [RagCrawler](#ondewo.nlu.RagCrawler) | repeated | List of crawlers. |
+| next_page_token | [string](#string) |  | Page token string (following the format described in <code>RagListCrawlersRequest</code>) for retrieving the next results page |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagListDatasetsRequest"></a>
+
+### RagListDatasetsRequest
+Request message for listing datasets with pagination and filtering.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent to list all datasets from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| page_token | [string](#string) |  | Optional. Specifies which page to return. The page token is a string of the format <pre><code>current_index-&lt;idx&gt;--page_size-&lt;size&gt;</code></pre>
+
+<ul> <li><code>&lt;size&gt;</code> must be an integer &geq; <code>1</code>. The maximum number of results to return.</li> <li><code>&lt;idx&gt;</code> must be an integer &geq; <code>0</code>. The start index in the requested list, starting from which a maximum of <code>&lt;size&gt;</code> elements are returned.</li> </ul>
+
+<em>Important note</em>: The <code>&lt;idx&gt;</code> is the index in the requested sequence NOT the page number. E.g. if the requested list has 100 elements then <code>current_index-5--page_size-15</code> returns the elements at index 5-19 and not the 5-th page of 15 elements. <br> Both <code>current_index-&lt;idx&gt;</code> and <code>page_size-&lt;size&gt;</code> are optional and default to <code>0</code> and <code>10</code> respectively. The following are all valid <code>page_token</code>s
+
+<ul> <li><code> </code> (empty string/missing value) - index 0, page size 10</li> <li><code>current_index-3</code> - index 3, page size 10</li> <li><code>page_size-20</code> - index 0, page size 20</li> <li><code>current_index-3--page_size-20</code> - index 3, page size 20</li> </ul> |
+| id | [string](#string) |  | Optional. Filter by dataset ID. |
+| name | [string](#string) |  | Optional. Filter by dataset name. |
+| orderby | [string](#string) |  | Optional. Sort field. Can be one of <ul> <li><code>id</code></li> <li><code>name</code></li> <li><code>description</code></li> <li><code>document_count</code></li> <li><code>token_num</code></li> <li><code>chunk_count</code></li> <li><code>chunk_method</code></li> <li><code>pagerank</code></li> <li><code>create_time</code></li> <li><code>update_time</code></li> </ul> (default: <code>create_time</code>). |
+| desc | [bool](#bool) | optional | **Deprecated.** Optional. Sort descending (default: <code>true</code>). |
+| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) |  | Optional. Specify whether to sort ascending or descending (default: ascending). |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which <code>RagDataset</code> fields get returned. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagListDocumentsRequest"></a>
+
+### RagListDocumentsRequest
+Request message for listing documents in a dataset with pagination and filtering.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent to list documents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| dataset_id | [string](#string) |  | Required. Dataset ID to list documents from. |
+| id | [string](#string) |  | Optional. Filter by specific document ID. |
+| name | [string](#string) |  | Optional. Filter by document name (exact match). |
+| page_token | [string](#string) |  | Optional. Specifies which page to return. The page token is a string of the format <pre><code>current_index-&lt;idx&gt;--page_size-&lt;size&gt;</code></pre>
+
+<ul> <li><code>&lt;size&gt;</code> must be an integer &geq; <code>1</code>. The maximum number of results to return.</li> <li><code>&lt;idx&gt;</code> must be an integer &geq; <code>0</code>. The start index in the requested list, starting from which a maximum of <code>&lt;size&gt;</code> elements are returned.</li> </ul>
+
+<em>Important note</em>: The <code>&lt;idx&gt;</code> is the index in the requested sequence NOT the page number. E.g. if the requested list has 100 elements then <code>current_index-5--page_size-15</code> returns the elements at index 5-19 and not the 5-th page of 15 elements.
+
+Both <code>current_index-&lt;idx&gt;</code> and <code>page_size-&lt;size&gt;</code> are optional and default to <code>0</code> and <code>10</code> respectively. The following are all valid <code>page_token</code>s <br> <ul> <li><code> </code> (empty string/missing value) - index 0, page size 10</li> <li><code>current_index-3</code> - index 3, page size 10</li> <li><code>page_size-20</code> - index 0, page size 20</li> <li><code>current_index-3--page_size-20</code> - index 3, page size 20</li> </ul> |
+| orderby | [string](#string) |  | Optional. Sort field (default: <code>"create_time"</code>). Accept any field of <code>RagDocument</code>. |
+| desc | [bool](#bool) | optional | **Deprecated.** Optional. Sort in descending order (default: <code>true</code>). |
+| keywords | [string](#string) |  | Optional. Filter by document names containing <code>keywords</code>. |
+| suffix | [string](#string) | repeated | Optional. Suffixes to filter by (e.g. <code>["pdf", "png", "docx"]</code>). |
+| run_status | [RagDocumentStatus](#ondewo.nlu.RagDocumentStatus) | repeated | Optional. Document statuses to filter by. |
+| create_time_from | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Optional. Filter by creation time start. |
+| create_time_to | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Optional. Filter by creation time end. |
+| metadata_condition | [RagMetadataConditions](#ondewo.nlu.RagMetadataConditions) |  | Optional. Metadata filter condition to restrict results based on document metadata.<br> |
+| sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) |  | Optional. Specify whether to sort ascending or descending (default: ascending). |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which <code>RagDocument</code> fields get returned. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagMetadataCondition"></a>
+
+### RagMetadataCondition
+Condition to filter document metadata on.
+String comparison is always case-insensitive.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Required. Metadata field name. |
+| comparison_operator | [RagComparisonOperator](#ondewo.nlu.RagComparisonOperator) |  | Required. Comparison operator. |
+| value | [string](#string) |  | Required. Value to compare to.<br> Must always be a string, but can also be the string representation of a different type, e.g. string representation of a dict <code>"{"key1": 3, "key2": "value"}"</code>. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagMetadataConditions"></a>
+
+### RagMetadataConditions
+List of document metadata conditions.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| logic | [RagLogic](#ondewo.nlu.RagLogic) |  | Optional. Whether to apply the conditions with a logical <em>and</em> or logical <em>or</em>. |
+| conditions | [RagMetadataCondition](#ondewo.nlu.RagMetadataCondition) | repeated | Optional. List of conditions. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagParserConfig"></a>
+
+### RagParserConfig
+Document parser configuration.
+
+Used fields depend on the chunking method of the document.
+<ul>
+    <li><code>naive</code>: uses the following fields (all optional)</li>
+    <ul>
+        <li><code>auto_keywords</code></li>
+        <li><code>auto_questions</code></li>
+        <li><code>chunk_token_num</code></li>
+        <li><code>delimiter</code></li>
+        <li><code>html4excel</code></li>
+        <li><code>layout_recognize</code></li>
+        <li><code>tag_kb_ids</code></li>
+        <li><code>task_page_size</code></li>
+        <li><code>raptor</code></li>
+        <li><code>graphrag</code></li>
+    </ul>
+    <li><code>qa</code>, <code>manual</code>, <code>paper</code>, <code>book</code>, <code>laws</code>, <code>presentation</code>: uses only the <code>raptor</code> field</li>
+    <li><code>table</code>, <code>picture</code>, <code>one</code>, <code>email</code>: does not use any field (expects empty message)</li>
+</ul>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| auto_keywords | [int32](#int32) | optional | Optional. Minimum 0, maximum 32, default 0. See <a href="https://ragflow.io/docs/dev/autokeyword_autoquestion">https://ragflow.io/docs/dev/autokeyword_autoquestion</a> for details. |
+| auto_questions | [int32](#int32) | optional | Optional. Minimum 0, maximum 10, default 0. See <a href="https://ragflow.io/docs/dev/autokeyword_autoquestion">https://ragflow.io/docs/dev/autokeyword_autoquestion</a> for details. |
+| chunk_token_num | [int32](#int32) |  | Optional. Minimum 1, maximum 2048, default 512. |
+| delimiter | [string](#string) |  | Optional. Default <code>"\n"</code>. |
+| html4excel | [bool](#bool) | optional | Optional. Convert Excel documents to HTML. Default <code>false</code>. |
+| layout_recognize | [string](#string) |  | Optional. Default <code>"DeepDOC"</code>. |
+| tag_kb_ids | [string](#string) | repeated | Optional. List of dataset IDs. See <a href="https://ragflow.io/docs/dev/use_tag_sets">https://ragflow.io/docs/dev/use_tag_sets</a> for details. |
+| topn_tags | [int32](#int32) |  | Optional. Minimum 1. Maximum 10. Default 1. |
+| filename_embd_weight | [float](#float) | optional | Optional. Minimum 0.0. Maximum 1.0. Default 0.1. |
+| task_page_size | [int32](#int32) |  | Optional. Minimum 1, default 12. Only applies to PDFs. |
+| raptor | [RagRaptorConfig](#ondewo.nlu.RagRaptorConfig) |  | Optional. RAPTOR-specific settings. Default <code>{ "use_raptor": false }</code>. |
+| graphrag | [RagGraphRagConfig](#ondewo.nlu.RagGraphRagConfig) |  | Optional. GRAPHRAG-specific settings. Default <code>{ "use_graphrag": false }</code>. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagPartialSuccess"></a>
+
+### RagPartialSuccess
+On complete success: no fields set (empty message).
+On partial success/failure: both fields set.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| success_count | [int32](#int32) |  | Number of successful operations. |
+| errors | [string](#string) | repeated | Error messages for failed operations. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagRaptorConfig"></a>
+
+### RagRaptorConfig
+RAPTOR configuration. Refer to <a href="https://arxiv.org/html/2401.18059v1">RAPTOR paper</a> for more information about RAPTOR.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| use_raptor | [bool](#bool) | optional | Optional. Default <code>false</code>. Whether to use RAPTOR for this dataset. |
+| prompt | [string](#string) |  | Optional. Prompt to use for RAPTOR. Default:<br> <code>"Please summarize the following paragraphs. Be careful with the numbers, do not make things up. Paragraphs as following:\n {cluster_content}\nThe above is the content you need to summarize."</code> |
+| max_token | [int32](#int32) |  | Optional. Minimum 1. Maximum 2048. Default 256. |
+| threshold | [float](#float) | optional | Optional. Minimum 0.0. Maximum 1.0. Default 0.1. |
+| max_cluster | [int32](#int32) |  | Optional. Minimum 1. Maximum 1024. Default 64. |
+| random_seed | [int64](#int64) | optional | Optional. Minimum 0. Default 0. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagRemoveCrawlerResultsFromDatasetsRequest"></a>
+
+### RagRemoveCrawlerResultsFromDatasetsRequest
+Request message for removing previously imported crawler output from one or more datasets.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent that owns the crawler. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| crawler_name | [string](#string) |  | Required. Resource name of crawler whose results should be removed. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawlers/&lt;crawler_uuid&gt;</code></pre> |
+| crawler_result_names | [string](#string) | repeated | Required. Resource names of crawler results to remove. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawler_results/&lt;crawler_result_uuid&gt;</code></pre> |
+| dataset_ids | [string](#string) | repeated | Required. Dataset IDs from which the crawler outputs should be removed.
+
+Example: <pre><code>crawler_names = ["projects/p/agent/crawlers/c1"] crawler_result_names = ["projects/p/agent/crawler_results/r1", "projects/p/agent/crawler_results/r2"] dataset_ids = ["dataset-a", "dataset-b"]</code></pre> |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagRetrievalRequest"></a>
+
+### RagRetrievalRequest
+Request message for retrieving chunks using vector similarity search.<br>
+Supports hybrid search combining vector similarity with keyword matching.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent to retrieve chunks for. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| dataset_ids | [string](#string) | repeated | Required. Dataset IDs to search. |
+| page_token | [string](#string) |  | Optional. Specifies which page to return. The page token is a string of the format <pre><code>current_index-&lt;idx&gt;--page_size-&lt;size&gt;</code></pre>
+
+<ul> <li><code>&lt;size&gt;</code> must be an integer &geq; <code>1</code>. The maximum number of results to return.</li> <li><code>&lt;idx&gt;</code> must be an integer &geq; <code>0</code>. The start index in the requested list, starting from which a maximum of <code>&lt;size&gt;</code> elements are returned.</li> </ul>
+
+<em>Important note</em>: The <code>&lt;idx&gt;</code> is the index in the requested sequence NOT the page number. E.g. if the requested list has 100 elements then <code>current_index-5--page_size-15</code> returns the elements at index 5-19 and not the 5-th page of 15 elements.
+
+Both <code>current_index-&lt;idx&gt;</code> and <code>page_size-&lt;size&gt;</code> are optional and default to <code>0</code> and <code>10</code> respectively. The following are all valid <code>page_token</code>s <br> <ul> <li><code> </code> (empty string/missing value) - index 0, page size 10</li> <li><code>current_index-3</code> - index 3, page size 10</li> <li><code>page_size-20</code> - index 0, page size 20</li> <li><code>current_index-3--page_size-20</code> - index 3, page size 20</li> </ul> |
+| question | [string](#string) |  | Required. Query string to search for. |
+| document_ids | [string](#string) | repeated | Optional. Filter by specific document IDs within the datasets. |
+| use_kg | [bool](#bool) | optional | Optional. Include knowledge graph retrieval to enhance results with graph relationships. |
+| cross_languages | [string](#string) | repeated | Optional. Cross-language translation codes to enable multilingual retrieval.<br> List elements can be any form of language name/code (parsed by LLM). |
+| metadata_condition | [RagMetadataConditions](#ondewo.nlu.RagMetadataConditions) |  | Optional. Metadata filter condition to restrict results based on document metadata. |
+| similarity_threshold | [float](#float) | optional | Optional. Minimum similarity score threshold between <code>0.0</code> and <code>1.0</code> (default: <code>0.2</code>). |
+| vector_similarity_weight | [float](#float) | optional | Optional. Weight for vector similarity versus keyword matching between <code>0.0</code> and <code>1.0</code> (default: <code>0.3</code>).<br> Higher values favor vector similarity, lower values favor keyword matching. |
+| top_k | [int32](#int32) |  | Optional. Minimum 1. Maximum number of chunks to retrieve before reranking (default: <code>1024</code>). |
+| highlight | [bool](#bool) | optional | Optional. Whether to highlight matched content in the returned chunks. |
+| keyword | [bool](#bool) | optional | Optional. Extract additional keywords from the query to improve retrieval. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which <code>RagChunk</code> fields get returned. |
+| rerank_model_ccai_service_name | [string](#string) | optional | Optional. Rerank model used to refine the initial retrieval scores. If not provided, the default model is used (if one is set). If empty, the results are not reranked. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagRetrievalResponse"></a>
+
+### RagRetrievalResponse
+Response message for chunk retrieval.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| chunks | [RagChunk](#ondewo.nlu.RagChunk) | repeated | Retrieved chunks with similarity scores populated (ordered by relevance). |
+| doc_aggs | [RagDocAgg](#ondewo.nlu.RagDocAgg) | repeated | Statistics of the matched documents. |
+| total | [int32](#int32) |  | Total number of chunks matching the query (before pagination). |
+| next_page_token | [string](#string) |  | Page token string (following the format described in <code>RagRetrievalRequest</code>) for retrieving the next results page |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagStartCrawlerRequest"></a>
+
+### RagStartCrawlerRequest
+Request message for running a crawler.
+
+This starts a long-running operation and returns immediately.
+Clients should poll operation status via <code>RagGetCrawlerRun</code>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent that owns the crawler. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| crawler_name | [string](#string) |  | Required. Resource name of the crawler to run. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawlers/&lt;crawler_uuid&gt;</code></pre> |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagStopCrawlerRequest"></a>
+
+### RagStopCrawlerRequest
+Request message for stopping a crawler run.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent that owns the crawler run. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| name | [string](#string) |  | Required. Resource name of the crawler run. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawler_runs/&lt;crawler_run_uuid&gt;</code></pre> |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagStopCrawlerResponse"></a>
+
+### RagStopCrawlerResponse
+Result of stopping a crawler run
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the crawler run that was stopped. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/crawler_runs/&lt;crawler_run_uuid&gt;</code></pre> |
+| error_message | [string](#string) |  | Error message if there are any; empty when the stop request was accepted successfully. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagUpdateCrawlerRequest"></a>
+
+### RagUpdateCrawlerRequest
+Request message for updating a crawler (partial update).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| crawler | [RagCrawler](#ondewo.nlu.RagCrawler) |  | Required. The crawler to update. Only configuration fields can be updated. The name field must be set and must match an existing crawler. Timestamps and audit fields are auto-managed by the service. |
+| parent | [string](#string) |  | Required. The agent owning the crawler. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. FieldMask to specify which fields to update. If not provided, all configuration fields in crawler are updated. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which crawler fields get returned. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagUpdateDatasetRequest"></a>
+
+### RagUpdateDatasetRequest
+Request message for updating an existing dataset.
+The same field constraints as for <code>RagCreateDatasetRequest</code> apply here.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent to update the dataset for. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| dataset_id | [string](#string) |  | Required. Dataset ID. |
+| name | [string](#string) |  | Optional. New dataset name. |
+| description | [string](#string) | optional | Optional. New dataset description. |
+| avatar | [string](#string) | optional | Optional. New avatar image. |
+| chunk_method | [RagChunkMethod](#ondewo.nlu.RagChunkMethod) |  | Optional. New chunk method. |
+| parser_config | [RagParserConfig](#ondewo.nlu.RagParserConfig) |  | Optional. New parser config (deep merged with existing). |
+| pagerank | [int32](#int32) | optional | Optional. Minimum 0. Maximum 100. PageRank value. |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. FieldMask to specify which fields to update. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which <code>RagDataset</code> fields get returned. |
+| embedding_model_ccai_service_name | [string](#string) |  | Optional. CCAI service to use for embedding the documents in the dataset. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagUpdateDocumentRequest"></a>
+
+### RagUpdateDocumentRequest
+Request message for updating an existing document's metadata and configuration.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required. The agent to update the document for. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required. The language of the project to use. |
+| dataset_id | [string](#string) |  | Required. Dataset ID containing the document. |
+| document_id | [string](#string) |  | Required. Document ID to update. |
+| name | [string](#string) |  | Optional. Maximum length 255. New document name (file extension must remain the same). |
+| chunk_method | [RagChunkMethod](#ondewo.nlu.RagChunkMethod) |  | Optional. New chunking method (resets document to <code>UNSTART</code> status and deletes all existing chunks). |
+| parser_config | [RagParserConfig](#ondewo.nlu.RagParserConfig) |  | Optional. New parser configuration (deep merged with existing configuration). |
+| enabled | [bool](#bool) | optional | Optional. Document enabled/disabled status. |
+| meta_fields | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. Custom metadata fields for document-specific metadata (replaces existing metadata). |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. FieldMask to specify which fields to update. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which <code>RagDocument</code> fields get returned. |
+
+
+
+
+
+
+<a name="ondewo.nlu.RagUploadDocumentRequest"></a>
+
+### RagUploadDocumentRequest
+Request message for uploading a document to a dataset.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | Required in first chunk, ignored in later chunks. The agent to upload documents for. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| language_code | [string](#string) |  | Required in first chunk, ignored in later chunks. The language of the project to use. |
+| dataset_id | [string](#string) |  | Required in first chunk, ignored in later chunks. Target dataset ID to upload documents to. |
+| metadata | [RagFileMetadata](#ondewo.nlu.RagFileMetadata) |  | Required in first chunk, ignored in later chunks. File metadata. |
+| data | [bytes](#bytes) |  | Optional. Chunk of file content. |
+
+
+
+
+
+ <!-- end messages -->
+
+
+<a name="ondewo.nlu.RagChunkMethod"></a>
+
+### RagChunkMethod
+Chunking method for documents. See <a href="https://ragflow.io/docs/dev/configure_knowledge_base#select-chunking-method">https://ragflow.io/docs/dev/configure_knowledge_base#select-chunking-method</a> for details.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| RAG_CHUNK_METHOD_UNSPECIFIED | 0 | Unspecified. Defaults to <code>RAG_CHUNK_METHOD_NAIVE</code> |
+| RAG_CHUNK_METHOD_NAIVE | 1 | General (default). |
+| RAG_CHUNK_METHOD_BOOK | 2 | Book. |
+| RAG_CHUNK_METHOD_EMAIL | 3 | Email. |
+| RAG_CHUNK_METHOD_LAWS | 4 | Laws. |
+| RAG_CHUNK_METHOD_MANUAL | 5 | Manual. |
+| RAG_CHUNK_METHOD_ONE | 6 | One. |
+| RAG_CHUNK_METHOD_PAPER | 7 | Paper. |
+| RAG_CHUNK_METHOD_PICTURE | 8 | Picture. |
+| RAG_CHUNK_METHOD_PRESENTATION | 9 | Presentation. |
+| RAG_CHUNK_METHOD_QA | 10 | Q&A. |
+| RAG_CHUNK_METHOD_TABLE | 11 | Table. |
+| RAG_CHUNK_METHOD_TAG | 12 | Tag. |
+
+
+
+<a name="ondewo.nlu.RagComparisonOperator"></a>
+
+### RagComparisonOperator
+Valid metadata condition comparison operators
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| RAG_COMPARISON_OPERATOR_UNSPECIFIED | 0 | Unspecified. Must never be used. |
+| RAG_COMPARISON_OPERATOR_CONTAINS | 1 | String representation of metadata field contains value.<br> If metadata field is a list, checks if the string representation of <em>any</em> field contains value. |
+| RAG_COMPARISON_OPERATOR_NOT_CONTAINS | 2 | String representation of metadata field does not contain value.<br> If metadata field is a list, checks if the string representation of <em>no</em> fields contains value. |
+| RAG_COMPARISON_OPERATOR_IN | 3 | Checks with Python's <code>in</code> operator.<br> If metadata field is a list, <em>all</em> elements must satisfy the condition. |
+| RAG_COMPARISON_OPERATOR_NOT_IN | 4 | Checks with Python's <code>not in</code> operator.<br> If metadata field is a list, <em>all</em> elements must satisfy the condition. |
+| RAG_COMPARISON_OPERATOR_START_WITH | 5 | String representation of metadata field starts with value.<br> If metadata field is a list, checks if the joined string of the string representations of all list elements starts with the value. |
+| RAG_COMPARISON_OPERATOR_END_WITH | 6 | String representation of metadata field ends with value.<br> If metadata field is a list, checks if the joined string of the string representations of all list elements ends with the value. |
+| RAG_COMPARISON_OPERATOR_EMPTY | 7 | Is empty (Python <em>falsy</em>). |
+| RAG_COMPARISON_OPERATOR_NOT_EMPTY | 8 | Is not empty (Python <em>truthy</em>). |
+| RAG_COMPARISON_OPERATOR_EQ | 9 | Equals. |
+| RAG_COMPARISON_OPERATOR_NEQ | 10 | Does not equal. |
+| RAG_COMPARISON_OPERATOR_GT | 11 | Greater than. |
+| RAG_COMPARISON_OPERATOR_LT | 12 | Less than. |
+| RAG_COMPARISON_OPERATOR_GEQ | 13 | Greater than or equal. |
+| RAG_COMPARISON_OPERATOR_LEQ | 14 | Less than or equal. |
+
+
+
+<a name="ondewo.nlu.RagCrawlerAuthenticationExecutionType"></a>
+
+### RagCrawlerAuthenticationExecutionType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| RAG_CRAWLER_AUTHENTICATION_EXECUTION_TYPE_UNSPECIFIED | 0 | Authentication execution type not specified. |
+| RAG_CRAWLER_AUTHENTICATION_EXECUTION_TYPE_SERVER_SIDE | 1 | Authentication execution type is server side. |
+| RAG_CRAWLER_AUTHENTICATION_EXECUTION_TYPE_CLIENT_SIDE | 2 | Authentication execution type is client side. |
+
+
+
+<a name="ondewo.nlu.RagCrawlerCrawlStrategy"></a>
+
+### RagCrawlerCrawlStrategy
+Crawl traversal strategy.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| RAG_CRAWLER_CRAWL_STRATEGY_UNSPECIFIED | 0 | Unspecified |
+| RAG_CRAWLER_CRAWL_STRATEGY_BFS | 1 | Breadth-first traversal. |
+| RAG_CRAWLER_CRAWL_STRATEGY_DFS | 2 | Depth-first traversal. |
+| RAG_CRAWLER_CRAWL_STRATEGY_BEST_FIRST | 3 | Best-first traversal based on relevance scoring. |
+
+
+
+<a name="ondewo.nlu.RagCrawlerMetaDataExtractorType"></a>
+
+### RagCrawlerMetaDataExtractorType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| RAG_CRAWLER_META_DATA_EXTRACTOR_TPYE_UNSPECIFIED | 0 | Unspecified. |
+| RAG_CRAWLER_META_DATA_EXTRACTOR_TYPE_REGEX | 1 | Regex pattern. |
+| RAG_CRAWLER_META_DATA_EXTRACTOR_TYPE_FIXED_VALUE | 2 | Fixed value. |
+| RAG_CRAWLER_META_DATA_EXTRACTOR_TYPE_CSS_SELECTOR | 3 | CSS selector. |
+| RAG_CRAWLER_META_DATA_EXTRACTOR_TYPE_XPATH_SELECTOR | 4 | XPath selector. |
+| RAG_CRAWLER_META_DATA_EXTRACTOR_TYPE_ID_SELECTOR | 5 | ID selector. |
+
+
+
+<a name="ondewo.nlu.RagCrawlerPruningThresholdType"></a>
+
+### RagCrawlerPruningThresholdType
+Interpretation of the density-pruning threshold.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| RAG_CRAWLER_PRUNING_THRESHOLD_TYPE_UNSPECIFIED | 0 | Unspecified (treated as FIXED). |
+| RAG_CRAWLER_PRUNING_THRESHOLD_TYPE_FIXED | 1 | Fixed cutoff: nodes scoring below <code>threshold</code> are removed. |
+| RAG_CRAWLER_PRUNING_THRESHOLD_TYPE_DYNAMIC | 2 | Dynamic: the threshold is adjusted per-document by the pruning heuristic. |
+
+
+
+<a name="ondewo.nlu.RagCrawlerSelectorType"></a>
+
+### RagCrawlerSelectorType
+
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| RAG_CRAWLER_SELECTOR_TYPE_UNSPECIFIED | 0 | Unspecified. |
+| RAG_CRAWLER_SELECTOR_TYPE_ID | 1 | ID selector. |
+| RAG_CRAWLER_SELECTOR_TYPE_CSS_CLASS | 2 | CSS class selector. |
+| RAG_CRAWLER_SELECTOR_TYPE_XPATH | 3 | XPath selector. |
+
+
+
+<a name="ondewo.nlu.RagDocumentStatus"></a>
+
+### RagDocumentStatus
+Document processing status.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| RAG_DOCUMENT_STATUS_UNSPECIFIED | 0 | Unspecified. |
+| RAG_DOCUMENT_STATUS_UNSTART | 1 | Document has not started processing. |
+| RAG_DOCUMENT_STATUS_RUNNING | 2 | Document is currently being processed. |
+| RAG_DOCUMENT_STATUS_CANCEL | 3 | Document processing was cancelled. |
+| RAG_DOCUMENT_STATUS_DONE | 4 | Document processing completed successfully. |
+| RAG_DOCUMENT_STATUS_FAIL | 5 | Document processing failed. |
+
+
+
+<a name="ondewo.nlu.RagDocumentType"></a>
+
+### RagDocumentType
+Broad document category.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| RAG_DOCUMENT_TYPE_UNSPECIFIED | 0 | Unspecified. |
+| RAG_DOCUMENT_TYPE_PDF | 1 | PDF |
+| RAG_DOCUMENT_TYPE_DOC | 2 | general documents (e.g. text, slides, spreadsheets, code, ...) |
+| RAG_DOCUMENT_TYPE_VISUAL | 3 | images and videos |
+| RAG_DOCUMENT_TYPE_AURAL | 4 | audio |
+| RAG_DOCUMENT_TYPE_VIRTUAL | 5 | empty virtual files |
+| RAG_DOCUMENT_TYPE_FOLDER | 6 | folders |
+| RAG_DOCUMENT_TYPE_OTHER | 7 | unrecognized document types |
+
+
+
+<a name="ondewo.nlu.RagGraphRagMethod"></a>
+
+### RagGraphRagMethod
+Knowledge graph construction methods.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| RAG_GRAPH_RAG_METHOD_UNSPECIFIED | 0 | Unspecified. Defaults to <code>RAG_GRAPH_RAG_METHOD_GENERAL</code> |
+| RAG_GRAPH_RAG_METHOD_LIGHT | 1 | Use prompts provided by <a href="https://github.com/HKUDS/LightRAG">LightRAG</a>. |
+| RAG_GRAPH_RAG_METHOD_GENERAL | 2 | Use prompts provided by <a href="https://github.com/microsoft/graphrag">GraphRAG</a>. |
+
+
+
+<a name="ondewo.nlu.RagLogic"></a>
+
+### RagLogic
+Metadata conditions logical operators
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| RAG_LOGIC_UNSPECIFIED | 0 | Unspecified. Must never be used. |
+| RAG_LOGIC_AND | 1 | Return results that match <em>all</em> conditions. |
+| RAG_LOGIC_OR | 2 | Return results that match <em>any</em> condition. |
+
+
+ <!-- end enums -->
+
+ <!-- end HasExtensions -->
+
+
+<a name="ondewo.nlu.Rags"></a>
+
+### Rags
+Provides RAG and web crawler endpoints.
+Most of the RAG related endpoints largely mirror <a href="https://github.com/ondewo/ragflow">RAGFlow's</a> HTTP API endpoints. For more information on RAGFlow refer to the <a href="https://ragflow.io/docs/dev/">official documentation</a>
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| RagCreateDataset | [RagCreateDatasetRequest](#ondewo.nlu.RagCreateDatasetRequest) | [RagDataset](#ondewo.nlu.RagDataset) | Create a new dataset (knowledge base).<br> |
+| RagUpdateDataset | [RagUpdateDatasetRequest](#ondewo.nlu.RagUpdateDatasetRequest) | [RagDataset](#ondewo.nlu.RagDataset) | Update an existing dataset's configuration.<br> |
+| RagDeleteDatasets | [RagDeleteRequest](#ondewo.nlu.RagDeleteRequest) | [RagPartialSuccess](#ondewo.nlu.RagPartialSuccess) | Delete one or more datasets (batch operation).<br> If ids is null or empty, deletes all user's datasets.<br> Deletes all associated documents, files, and chunks. |
+| RagListDatasets | [RagListDatasetsRequest](#ondewo.nlu.RagListDatasetsRequest) | [RagDatasetList](#ondewo.nlu.RagDatasetList) | List datasets with pagination and filtering.<br> Returns datasets from all tenants the user has access to. |
+| RagUploadDocument | [RagUploadDocumentRequest](#ondewo.nlu.RagUploadDocumentRequest) stream | [RagDocument](#ondewo.nlu.RagDocument) | Uploads a document to a dataset and starts parsing it.<br> If the <code>run</code> field of the returned document is not <code>RAG_DOCUMENT_STATUS_RUNNING</code> this indicates a failure to start parsing the document. |
+| RagUpdateDocument | [RagUpdateDocumentRequest](#ondewo.nlu.RagUpdateDocumentRequest) | [RagDocument](#ondewo.nlu.RagDocument) | Update document metadata and configuration.<br> If the chunk method is changed, the document is automatically re-parsed.<br> If the <code>run</code> field of the returned document is not <code>RAG_DOCUMENT_STATUS_RUNNING</code> this indicates a failure to start parsing the document. |
+| RagDownloadDocument | [RagDownloadDocumentRequest](#ondewo.nlu.RagDownloadDocumentRequest) | [RagFileChunk](#ondewo.nlu.RagFileChunk) stream | Download the original document file.<br> Returns binary file stream from storage.<br> First chunk contains metadata, subsequent chunks only contain data. |
+| RagListDocuments | [RagListDocumentsRequest](#ondewo.nlu.RagListDocumentsRequest) | [RagDocumentList](#ondewo.nlu.RagDocumentList) | List documents in a dataset with pagination and filtering.<br> Supports time range filtering and keyword search. |
+| RagDeleteDocuments | [RagDeleteDocumentsRequest](#ondewo.nlu.RagDeleteDocumentsRequest) | [RagPartialSuccess](#ondewo.nlu.RagPartialSuccess) | Delete one or more documents from a dataset (batch operation).<br> If ids empty, deletes all documents. Removes chunks and storage files. |
+| RagRetrieval | [RagRetrievalRequest](#ondewo.nlu.RagRetrievalRequest) | [RagRetrievalResponse](#ondewo.nlu.RagRetrievalResponse) | Retrieve chunks using vector similarity search.<br> Supports reranking, metadata filtering, and knowledge graph retrieval. |
+| RagParseDocuments | [RagDocumentIdsRequest](#ondewo.nlu.RagDocumentIdsRequest) | [RagPartialSuccess](#ondewo.nlu.RagPartialSuccess) | Start parsing documents into chunks.<br> Queues documents for background processing. |
+| RagStopParsing | [RagDocumentIdsRequest](#ondewo.nlu.RagDocumentIdsRequest) | [RagPartialSuccess](#ondewo.nlu.RagPartialSuccess) | Stop parsing documents. |
+| RagCreateCrawler | [RagCreateCrawlerRequest](#ondewo.nlu.RagCreateCrawlerRequest) | [RagCrawler](#ondewo.nlu.RagCrawler) | Create a rag crawler for a dataset of an agent. |
+| RagGetCrawler | [RagGetCrawlerRequest](#ondewo.nlu.RagGetCrawlerRequest) | [RagCrawler](#ondewo.nlu.RagCrawler) | Get a rag crawler by resource name. |
+| RagListCrawlers | [RagListCrawlersRequest](#ondewo.nlu.RagListCrawlersRequest) | [RagListCrawlersResponse](#ondewo.nlu.RagListCrawlersResponse) | List rag crawlers of a dataset for the specified agent. |
+| RagUpdateCrawler | [RagUpdateCrawlerRequest](#ondewo.nlu.RagUpdateCrawlerRequest) | [RagCrawler](#ondewo.nlu.RagCrawler) | Update a rag crawler (partial update of configuration fields). |
+| RagDeleteCrawler | [RagDeleteCrawlerRequest](#ondewo.nlu.RagDeleteCrawlerRequest) | [RagDeleteCrawlerResponse](#ondewo.nlu.RagDeleteCrawlerResponse) | Delete a rag crawler of a dataset for the specified agent. |
+| RagStartCrawler | [RagStartCrawlerRequest](#ondewo.nlu.RagStartCrawlerRequest) | [Operation](#ondewo.nlu.Operation) | Run a crawler. |
+| RagStopCrawler | [RagStopCrawlerRequest](#ondewo.nlu.RagStopCrawlerRequest) | [RagStopCrawlerResponse](#ondewo.nlu.RagStopCrawlerResponse) | Stop a pending or running crawler run. |
+| RagGetCrawlerRun | [RagGetCrawlerRunRequest](#ondewo.nlu.RagGetCrawlerRunRequest) | [Operation](#ondewo.nlu.Operation) | Get a crawler run by resource name. |
+| RagListCrawlerRuns | [RagListCrawlerRunsRequest](#ondewo.nlu.RagListCrawlerRunsRequest) | [RagListCrawlerRunsResponse](#ondewo.nlu.RagListCrawlerRunsResponse) | List crawler runs for a crawler. |
+| RagDeleteCrawlerRuns | [RagDeleteCrawlerRunsRequest](#ondewo.nlu.RagDeleteCrawlerRunsRequest) | [RagDeleteCrawlerRunsResponse](#ondewo.nlu.RagDeleteCrawlerRunsResponse) | Delete crawler runs by explicit run names and/or crawler names. |
+| RagGetCrawlerResult | [RagGetCrawlerResultRequest](#ondewo.nlu.RagGetCrawlerResultRequest) | [RagCrawlerResult](#ondewo.nlu.RagCrawlerResult) | Get a single crawler result by crawler run resource name and URL. |
+| RagGetCrawlerResults | [RagGetCrawlerResultsRequest](#ondewo.nlu.RagGetCrawlerResultsRequest) | [RagGetCrawlerResultsResponse](#ondewo.nlu.RagGetCrawlerResultsResponse) | Get crawler results by crawler run resource name. |
+| RagAddCrawlerResultsToDatasets | [RagAddCrawlerResultsToDatasetsRequest](#ondewo.nlu.RagAddCrawlerResultsToDatasetsRequest) | [Operation](#ondewo.nlu.Operation) | Add rag crawler output to one or more datasets. |
+| RagRemoveCrawlerResultsFromDatasets | [RagRemoveCrawlerResultsFromDatasetsRequest](#ondewo.nlu.RagRemoveCrawlerResultsFromDatasetsRequest) | [Operation](#ondewo.nlu.Operation) | Remove previously imported crawler output from one or more datasets. |
+| RagGetCrawlerAttachedDatasets | [RagGetCrawlerAttachedDatasetsRequest](#ondewo.nlu.RagGetCrawlerAttachedDatasetsRequest) | [RagGetCrawlerAttachedDatasetsResponse](#ondewo.nlu.RagGetCrawlerAttachedDatasetsResponse) | Get datasets currently attached to a crawler. |
+| RagDeleteCrawlers | [RagDeleteCrawlersRequest](#ondewo.nlu.RagDeleteCrawlersRequest) | [RagDeleteCrawlersResponse](#ondewo.nlu.RagDeleteCrawlersResponse) | Delete multiple crawlers. |
+| RagGetCrawlerRunLogs | [RagGetCrawlerRunLogsRequest](#ondewo.nlu.RagGetCrawlerRunLogsRequest) | [RagGetCrawlerRunLogsResponse](#ondewo.nlu.RagGetCrawlerRunLogsResponse) | Get crawler run logs. |
 
  <!-- end services -->
 
@@ -7464,6 +13309,22 @@ This message is a request to add a comment to a session
 
 
 
+<a name="ondewo.nlu.AddSessionFeedbackRequest"></a>
+
+### AddSessionFeedbackRequest
+Request to record feedback about a whole session.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| session_id | [string](#string) |  | The id of the session. |
+| feedback | [SessionFeedback](#ondewo.nlu.SessionFeedback) |  | The feedback to record. session_step_id is left empty for session-level feedback. |
+
+
+
+
+
+
 <a name="ondewo.nlu.AddSessionLabelsRequest"></a>
 
 ### AddSessionLabelsRequest
@@ -7480,15 +13341,32 @@ This message is a request to add session labels
 
 
 
-<a name="ondewo.nlu.AudioFileResource"></a>
+<a name="ondewo.nlu.AddSessionStepFeedbackRequest"></a>
 
-### AudioFileResource
-
+### AddSessionStepFeedbackRequest
+Request to record feedback about a single session step (turn).
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The unique identifier of the session for which the latest review should be returned Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/audios/&lt;audio_uuid&gt;</code></pre> |
+| session_id | [string](#string) |  | The id of the session. |
+| session_step_id | [string](#string) |  | The id of the session step (turn) the feedback is about. |
+| feedback | [SessionFeedback](#ondewo.nlu.SessionFeedback) |  | The feedback to record. |
+
+
+
+
+
+
+<a name="ondewo.nlu.AudioFileResource"></a>
+
+### AudioFileResource
+Represents an audio file resource attached to a session (input recording or generated TTS output).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The unique identifier of the audio file resource. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/audios/&lt;audio_uuid&gt;</code></pre> |
 | bytes | [bytes](#bytes) |  | Bytes of the audio file |
 | language | [string](#string) |  | Language of the audio file |
 | duration_in_s | [float](#float) |  | Duration in seconds and milliseconds of the audio file |
@@ -7499,7 +13377,7 @@ This message is a request to add session labels
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
 | modified_by | [string](#string) |  | User id in form of a valid UUID. |
-| display_name | [string](#string) |  | Bytes of the audio file |
+| display_name | [string](#string) |  | Display name of the audio file, e.g., MyRecording.wav, or a user-assigned label. |
 
 
 
@@ -7517,7 +13395,7 @@ Message used to filter sessions based on contextual information
 | context_name | [string](#string) |  | name of the context |
 | key | [string](#string) |  | name of the key of the context parameter |
 | value | [string](#string) |  | value of the parameter |
-| operator | [ComparisonOperator](#ondewo.nlu.ComparisonOperator) |  |  |
+| operator | [ComparisonOperator](#ondewo.nlu.ComparisonOperator) |  | comparison operator to use for filtering |
 
 
 
@@ -7547,7 +13425,8 @@ Optional. If not provided, it will be auto-generated |
 <a name="ondewo.nlu.CreateSessionReviewRequest"></a>
 
 ### CreateSessionReviewRequest
-SESSION-REVIEW RELATED MESSAGES *** //
+Request to persist a session review for a given session.
+As a side effect, training data in ondewo-cai may also be updated.
 
 
 | Field | Type | Label | Description |
@@ -7555,7 +13434,7 @@ SESSION-REVIEW RELATED MESSAGES *** //
 | session_id | [string](#string) |  | The unique identifier for the session under review Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
 | parent_review_id | [string](#string) |  | Optional: The unique identifier of the parent review Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/reviews/&lt;session_review_uuid&gt;</code></pre> |
 | session_review | [SessionReview](#ondewo.nlu.SessionReview) |  | The reviews for all steps in the session |
-| session_review_view | [SessionReview.View](#ondewo.nlu.SessionReview.View) |  |  |
+| session_review_view | [SessionReview.View](#ondewo.nlu.SessionReview.View) |  | Represents the options for views of a session_review. A session_review can be a sizable object. Therefore, we provide a resource view that does not return all data |
 
 
 
@@ -7565,14 +13444,14 @@ SESSION-REVIEW RELATED MESSAGES *** //
 <a name="ondewo.nlu.CreateSessionStepRequest"></a>
 
 ### CreateSessionStepRequest
-CreateSessionStepRequest stores a session step into the session
+Request to append a new SessionStep to an existing session.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session_id | [string](#string) |  | The unique identifier for the given review Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/sessionsteps/&lt;session_step_uuid&gt;</code></pre>. |
-| session_step | [SessionStep](#ondewo.nlu.SessionStep) |  | The session step to be added |
-| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | field mask specifying what the request should return, e.g. only name, created_at etc. |
+| session_id | [string](#string) |  | The unique identifier of the parent session. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre>. |
+| session_step | [SessionStep](#ondewo.nlu.SessionStep) |  | The session step to be added. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Field mask specifying which fields the returned SessionStep should carry (e.g. only <code>name</code>, <code>created_at</code>). |
 
 
 
@@ -7621,6 +13500,21 @@ This message is a request to delete a session comment
 | ----- | ---- | ----- | ----------- |
 | session_id | [string](#string) |  | The id of the session |
 | comment_names | [string](#string) | repeated | The comment names to delete from the session |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteSessionFeedbackRequest"></a>
+
+### DeleteSessionFeedbackRequest
+Request to delete (withdraw) a feedback.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The resource name of the feedback to delete. |
 
 
 
@@ -7676,21 +13570,15 @@ This message is a request to delete a session step of a session
 <a name="ondewo.nlu.DetectIntentRequest"></a>
 
 ### DetectIntentRequest
-The request to detect user's intent.
+The request to detect user&apos;s intent.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session | [string](#string) |  | Required. The name of the session this query is sent to. Format: `projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;`. It's up to the API caller to choose an appropriate session ID. It can be a random number or some type of user identifier (preferably hashed). The length of the session ID must not exceed 36 bytes. |
+| session | [string](#string) |  | Required. The name of the session this query is sent to. Format: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code>. It&apos;s up to the API caller to choose an appropriate session ID. It can be a random number or some type of user identifier (preferably hashed). The length of the session ID must not exceed 36 bytes. |
 | query_params | [QueryParameters](#ondewo.nlu.QueryParameters) |  | Optional. The parameters of this query. |
-| query_input | [QueryInput](#ondewo.nlu.QueryInput) |  | Required. The input specification. It can be set to:
-
-1. an audio config which instructs the speech recognizer how to process the speech audio,
-
-2. a conversational query in the form of text, or
-
-3. an event that specifies which intent to trigger. |
-| input_audio | [bytes](#bytes) |  | Optional. The natural language speech audio to be processed. This field should be populated iff `query_input` is set to an input audio config. A single request can contain up to 1 minute of speech audio data. |
+| query_input | [QueryInput](#ondewo.nlu.QueryInput) |  | Required. The input specification. It can be set to: <ol> <li>an audio config which instructs the speech recognizer how to process the speech audio,</li> <li>a conversational query in the form of text, or</li> <li>an event that specifies which intent to trigger.</li> </ol> |
+| input_audio | [bytes](#bytes) |  | Optional. The natural language speech audio to be processed. This field should be populated iff <code>query_input</code> is set to an input audio config. A single request can contain up to 1 minute of speech audio data. |
 
 
 
@@ -7707,7 +13595,8 @@ The message returned from the DetectIntent method.
 | ----- | ---- | ----- | ----------- |
 | response_id | [string](#string) |  | The unique identifier of the response. It can be used to locate a response in the training example set or for reporting issues. |
 | query_result | [QueryResult](#ondewo.nlu.QueryResult) |  | The results of the conversational query or event processing. |
-| webhook_status | [google.rpc.Status](#google.rpc.Status) |  | Specifies the status of the webhook request. `webhook_status` is never populated in webhook requests. |
+| webhook_status | [google.rpc.Status](#google.rpc.Status) |  | Specifies the status of the webhook request. <code>webhook_status</code> is never populated in webhook requests. |
+| llm_telemetry_report | [LlmTelemetryReport](#ondewo.nlu.LlmTelemetryReport) |  | Aggregated LLM telemetry — duplicated convenience copy of <code>query_result.llm_telemetry_report</code> for unary clients. |
 
 
 
@@ -7726,7 +13615,7 @@ This message contains a detected intent
 | score | [float](#float) |  | score of intent detection |
 | algorithm | [string](#string) |  | intent detection algorithm |
 | fulfillment_messages | [Intent.Message](#ondewo.nlu.Intent.Message) | repeated | collection of rich messages to present to the user This field is set only for the first detected intent. For the rest of the intents the messages are not resolved and the raw messages for the current language code are available in self.intent.messages |
-| required_param_missing | [bool](#bool) |  | This field is set to: - `true` if the matched intent has required parameters and not all of the required parameter values have been collected. - `false` if all required parameter values have been collected, or if the matched intent doesn't contain any required parameters. |
+| required_param_missing | [bool](#bool) |  | This field is set to: <ul> <li><code>true</code> if the matched intent has required parameters and not all of the required parameter values have been collected.</li> <li><code>false</code> if all required parameter values have been collected, or if the matched intent doesn&apos;t contain any required parameters.</li> </ul> |
 
 
 
@@ -7757,18 +13646,111 @@ Represents a document file resource (e.g., text, markdown, PDF, DOCX).
 <a name="ondewo.nlu.EventInput"></a>
 
 ### EventInput
-Events allow for matching intents by event name instead of the natural
-language input. For instance, input `<event: { name: “welcome_event”,
-parameters: { name: “Sam” } }>` can trigger a personalized welcome response.
-The parameter `name` may be used by the agent in the response:
-`“Hello #welcome_event.name! What can I do for you today?”`.
+Events allow for matching intents by event name instead of the natural language input.
+For instance, input <code>&lt;event: { name: &quot;welcome_event&quot;, parameters: { name: &quot;Sam&quot; } }&gt;</code> can trigger a personalized welcome response.
+The parameter <code>name</code> may be used by the agent in the response: <code>&quot;Hello #welcome_event.name! What can I do for you today?&quot;</code>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | name | [string](#string) |  | Required. The unique identifier of the event. |
 | parameters | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. The collection of parameters associated with the event. |
-| language_code | [string](#string) |  | Required. The language of this query. See [Language Support](https://dialogflow.com/docs/languages) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language. |
+| language_code | [string](#string) |  | Required. The language of this query. See <a href="https://dialogflow.com/docs/languages">Language Support</a> for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language. |
+
+
+
+
+
+
+<a name="ondewo.nlu.FeedbackBreakdownBucket"></a>
+
+### FeedbackBreakdownBucket
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  | The bucket key (e.g. a language code, an intent display name, an author type). |
+| thumbs_up_count | [int32](#int32) |  | Number of thumbs-up feedback in this bucket. |
+| thumbs_down_count | [int32](#int32) |  | Number of thumbs-down feedback in this bucket. |
+| total | [int32](#int32) |  | Total feedback in this bucket (including unrated comment-only feedback). |
+
+
+
+
+
+
+<a name="ondewo.nlu.FeedbackFilter"></a>
+
+### FeedbackFilter
+A key + up/down counts breakdown bucket (by language / intent / author type / ...).
+A feedback-native filter for feedback list + analytics requests, complementing SessionFilter (which
+filters the parent sessions). All set fields are AND-combined; repeated fields are OR-within-field.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ratings | [FeedbackRating](#ondewo.nlu.FeedbackRating) | repeated | Keep only feedback with one of these ratings (thumbs up / down / unspecified). |
+| author_types | [FeedbackAuthorType](#ondewo.nlu.FeedbackAuthorType) | repeated | Keep only feedback left by one of these author types. |
+| has_comment | [bool](#bool) | optional | When set, keep only feedback that has (true) or lacks (false) a free-text comment. |
+| earliest | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Keep only feedback created at or after this time (feedback created_at, not session time). |
+| latest | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Keep only feedback created at or before this time. |
+| criteria | [string](#string) | repeated | Keep only feedback whose criterion is one of these. |
+| language_codes | [string](#string) | repeated | Keep only feedback whose language code is one of these. |
+| annotator_user_ids | [string](#string) | repeated | Keep only feedback whose authenticated annotator is one of these user ids. |
+| origin_ids | [string](#string) | repeated | Keep only feedback whose channel origin id is one of these. |
+| score_min | [float](#float) | optional | When set, keep only feedback with a numeric score at or above this value. |
+| score_max | [float](#float) | optional | When set, keep only feedback with a numeric score at or below this value. |
+| scope | [FeedbackScope](#ondewo.nlu.FeedbackScope) |  | Restrict to session-level or step-level feedback (unspecified means both). |
+
+
+
+
+
+
+<a name="ondewo.nlu.FeedbackStatistics"></a>
+
+### FeedbackStatistics
+Aggregated feedback statistics for an agent.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total_feedback | [int32](#int32) |  | Total feedback records. |
+| thumbs_up_count | [int32](#int32) |  | Number of thumbs-up feedback. |
+| thumbs_down_count | [int32](#int32) |  | Number of thumbs-down feedback. |
+| session_level_count | [int32](#int32) |  | Number of session-level feedback. |
+| session_step_level_count | [int32](#int32) |  | Number of session-step-level feedback. |
+| comment_count | [int32](#int32) |  | Number of feedback that carry a free-text comment. |
+| session_review_count | [int32](#int32) |  | Roll-up of existing session reviews (additional quality signal). |
+| session_comment_count | [int32](#int32) |  | Roll-up of existing session comments (additional quality signal). |
+| by_language | [FeedbackBreakdownBucket](#ondewo.nlu.FeedbackBreakdownBucket) | repeated | Up/down breakdown by language code. |
+| by_intent | [FeedbackBreakdownBucket](#ondewo.nlu.FeedbackBreakdownBucket) | repeated | Up/down breakdown by matched intent. |
+| by_author_type | [FeedbackBreakdownBucket](#ondewo.nlu.FeedbackBreakdownBucket) | repeated | Up/down breakdown by author type. |
+| unspecified_rating_count | [int32](#int32) |  | Number of feedback with no rating (comment-only / unspecified rating). |
+| scored_count | [int32](#int32) |  | Number of feedback that carry a numeric score. |
+| average_score | [float](#float) |  | Mean of the numeric scores across scored feedback (0 when none). |
+| by_origin | [FeedbackBreakdownBucket](#ondewo.nlu.FeedbackBreakdownBucket) | repeated | Up/down breakdown by channel origin id. |
+| by_criterion | [FeedbackBreakdownBucket](#ondewo.nlu.FeedbackBreakdownBucket) | repeated | Up/down breakdown by criterion. |
+
+
+
+
+
+
+<a name="ondewo.nlu.FeedbackTimeSeriesBucket"></a>
+
+### FeedbackTimeSeriesBucket
+One time bucket of feedback counts.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| bucket_start | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | The (inclusive) start of the time bucket. |
+| thumbs_up_count | [int32](#int32) |  | Number of thumbs-up feedback in this bucket. |
+| thumbs_down_count | [int32](#int32) |  | Number of thumbs-down feedback in this bucket. |
+| total | [int32](#int32) |  | Total feedback in this bucket. |
+| bucket_end | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | The (exclusive) end of the time bucket. |
 
 
 
@@ -7804,6 +13786,7 @@ This message is a request to get one one file combining all audios of a specific
 | parent | [string](#string) |  | Required. The project of this agent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | session_id | [string](#string) |  | The unique identifier of the session for which the audio files should be combined Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/&lt</code></pre> |
 | resource_view | [ResourceView](#ondewo.nlu.ResourceView) |  | Represents the options for views of resources |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -7823,14 +13806,15 @@ This message is a request to get audio files specified
 | resource_view | [ResourceView](#ondewo.nlu.ResourceView) |  | Represents the options for views of resources |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - Retrieves the first page with a page size of 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li><code>&quot;&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size-20&quot;</code></li> <li><code>&quot;current_index-10--page_size-20&quot;</code></li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li><code>&quot;1&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index--1--page_size-20&quot;</code></li> <li><code>&quot;current_index1--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size--20&quot;</code></li> </ul> |
 | sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) |  | sorting mode |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -7854,6 +13838,79 @@ This message is a request to retrieve the audio files specified
 
 
 
+<a name="ondewo.nlu.GetFeedbackStatisticsRequest"></a>
+
+### GetFeedbackStatisticsRequest
+Request for aggregated feedback statistics.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The agent parent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the sessions considered. |
+| include_review_and_comment_rollup | [bool](#bool) |  | Optional. When true, roll up existing session reviews and comments as additional signals. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields of the statistics get returned. |
+| feedback_filter | [FeedbackFilter](#ondewo.nlu.FeedbackFilter) |  | Optional. A feedback-native filter (rating / author / comment / score / criterion / date window). |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetFeedbackStatisticsResponse"></a>
+
+### GetFeedbackStatisticsResponse
+Response carrying aggregated feedback statistics.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| statistics | [FeedbackStatistics](#ondewo.nlu.FeedbackStatistics) |  | The aggregated statistics. |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetFeedbackStatisticsTimeSeriesRequest"></a>
+
+### GetFeedbackStatisticsTimeSeriesRequest
+Request for feedback statistics bucketed over time.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The agent parent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the sessions considered. |
+| bucket_width_seconds | [int32](#int32) |  | The width of each time bucket in seconds. |
+| max_buckets | [int32](#int32) |  | The maximum number of buckets to return. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields get returned. |
+| feedback_filter | [FeedbackFilter](#ondewo.nlu.FeedbackFilter) |  | Optional. A feedback-native filter. |
+| granularity | [FeedbackTimeGranularity](#ondewo.nlu.FeedbackTimeGranularity) |  | Optional. Calendar granularity; when set (non-unspecified) it overrides bucket_width_seconds. |
+| time_zone | [string](#string) |  | Optional. IANA timezone for calendar bucketing (e.g. "Europe/Vienna"); defaults to UTC. |
+| start | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Optional. Inclusive start of the series window; when set, empty leading buckets are zero-filled. |
+| end | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Optional. Exclusive end of the series window; defaults to now. |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetFeedbackStatisticsTimeSeriesResponse"></a>
+
+### GetFeedbackStatisticsTimeSeriesResponse
+Response carrying feedback counts bucketed over time.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| buckets | [FeedbackTimeSeriesBucket](#ondewo.nlu.FeedbackTimeSeriesBucket) | repeated | The time buckets, oldest first. |
+
+
+
+
+
+
 <a name="ondewo.nlu.GetLatestSessionReviewRequest"></a>
 
 ### GetLatestSessionReviewRequest
@@ -7864,6 +13921,23 @@ This message is a request to get latest session review
 | ----- | ---- | ----- | ----------- |
 | session_id | [string](#string) |  | The unique identifier of the session for which the latest review should be returned Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
 | session_review_view | [SessionReview.View](#ondewo.nlu.SessionReview.View) |  | An enum specifying the amount of information to be returned for the desired session review |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetSessionFeedbackRequest"></a>
+
+### GetSessionFeedbackRequest
+Request to fetch a single feedback by resource name.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The resource name of the feedback. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields get returned. |
 
 
 
@@ -7896,7 +13970,8 @@ This message is a request to get session review
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | session_review_id | [string](#string) |  | The unique identifier of the session review to be returned |
-| session_review_view | [SessionReview.View](#ondewo.nlu.SessionReview.View) |  |  |
+| session_review_view | [SessionReview.View](#ondewo.nlu.SessionReview.View) |  | The view of the session review to be returned |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -7922,14 +13997,14 @@ This message is a request to get a session step
 <a name="ondewo.nlu.ImageFileResource"></a>
 
 ### ImageFileResource
-
+Represents an image file resource (e.g., JPEG, PNG, GIF) attached to a session.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The unique identifier of the session for which the latest review should be returned Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/images/&lt;image_uuid&gt;</code></pre> |
+| name | [string](#string) |  | The unique identifier of the image file resource. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/images/&lt;image_uuid&gt;</code></pre> |
 | display_name | [string](#string) |  | File name of the image, e.g., MyPicture.jpg, or a user assigned display name |
-| bytes | [bytes](#bytes) |  | Bytes of the audio file |
+| bytes | [bytes](#bytes) |  | Raw bytes of the image file. |
 | created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Creation date and time. Read-only field. |
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
@@ -7949,9 +14024,9 @@ Instructs the speech recognizer how to process the audio content.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | audio_encoding | [AudioEncoding](#ondewo.nlu.AudioEncoding) |  | Required. Audio encoding of the audio content to process. |
-| sample_rate_hertz | [int32](#int32) |  | Required. Sample rate (in Hertz) of the audio content sent in the query. Refer to [Cloud Speech API documentation](/speech/docs/basics) for more details. |
-| language_code | [string](#string) |  | Required. The language of the supplied audio. Dialogflow does not do translations. See [Language Support](https://dialogflow.com/docs/languages) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language. |
-| phrase_hints | [string](#string) | repeated | Optional. The collection of phrase hints which are used to boost accuracy of speech recognition. Refer to [Cloud Speech API documentation](/speech/docs/basics#phrase-hints) for more details. |
+| sample_rate_hertz | [int32](#int32) |  | Required. Sample rate (in Hertz) of the audio content sent in the query. Refer to <a href="/speech/docs/basics">Cloud Speech API documentation</a> for more details. |
+| language_code | [string](#string) |  | Required. The language of the supplied audio. Dialogflow does not do translations. See <a href="https://dialogflow.com/docs/languages">Language Support</a> for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language. |
+| phrase_hints | [string](#string) | repeated | Optional. The collection of phrase hints which are used to boost accuracy of speech recognition. Refer to <a href="/speech/docs/basics#phrase-hints">Cloud Speech API documentation</a> for more details. |
 
 
 
@@ -7968,6 +14043,7 @@ request to list all account_ids of all sessions
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | The parent for which the account_ids for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -8002,14 +14078,15 @@ This message is a request to list all available audio files of a session
 | resource_view | [ResourceView](#ondewo.nlu.ResourceView) |  | Represents the options for views of resources |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - Retrieves the first page with a page size of 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li><code>&quot;&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size-20&quot;</code></li> <li><code>&quot;current_index-10--page_size-20&quot;</code></li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li><code>&quot;1&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index--1--page_size-20&quot;</code></li> <li><code>&quot;current_index1--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size--20&quot;</code></li> </ul> |
 | sorting_mode | [SortingMode](#ondewo.nlu.SortingMode) |  | sorting mode |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -8074,6 +14151,7 @@ request to list all identified_user_ids of all sessions
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | The parent for which the identified_user_ids for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -8105,6 +14183,7 @@ request to list all input_contexts of all sessions
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | The parent for which the input_contexts for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -8136,6 +14215,7 @@ request to list all language codes of all sessions
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | The parent for which the language_codes for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -8167,6 +14247,7 @@ request to list all matched_entity_types of all sessions
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | The parent for which the matched_entity_types for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -8198,6 +14279,7 @@ request to list all matched_intents of all sessions
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | The parent for which the matched_intents for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -8229,6 +14311,7 @@ request to list all origin_ids of all sessions
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | The parent for which the origin_ids for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -8260,6 +14343,7 @@ request to list all output_contexts of all sessions
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | The parent for which the output_contexts for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -8291,6 +14375,7 @@ request to list all labels of all sessions
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | The parent for which the platforms for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -8343,6 +14428,25 @@ This message is a response of listing session property_ids
 
 
 
+<a name="ondewo.nlu.ListSessionCommentsOfAllSessionsRequest"></a>
+
+### ListSessionCommentsOfAllSessionsRequest
+This message is a request to list comments of all sessions of an agent
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The parent for which the comments of all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+| page_token | [string](#string) |  | Optional. The page token to support pagination. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
+| is_resolved | [bool](#bool) | optional | Optional. Filter comments by their resolved status. If unset, comments with any resolved status are returned. |
+
+
+
+
+
+
 <a name="ondewo.nlu.ListSessionCommentsRequest"></a>
 
 ### ListSessionCommentsRequest
@@ -8351,16 +14455,18 @@ This message is a request to list comments of a session
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session_id | [string](#string) |  | The unique identifier for the session for which reviews should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
+| session_id | [string](#string) |  | The unique identifier for the session for which comments should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - Retrieves the first page with a page size of 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li><code>&quot;&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size-20&quot;</code></li> <li><code>&quot;current_index-10--page_size-20&quot;</code></li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li><code>&quot;1&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index--1--page_size-20&quot;</code></li> <li><code>&quot;current_index1--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size--20&quot;</code></li> </ul> |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
+| is_resolved | [bool](#bool) | optional | Optional. Filter comments by their resolved status. If unset, comments with any resolved status are returned. |
 
 
 
@@ -8378,13 +14484,67 @@ This message is a request to list comments of a session
 | comment | [Comment](#ondewo.nlu.Comment) | repeated | The comments of a specific session Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/comments/&lt;comment_uuid&gt;</code></pre> |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - Retrieves the first page with a page size of 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li><code>&quot;&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size-20&quot;</code></li> <li><code>&quot;current_index-10--page_size-20&quot;</code></li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li><code>&quot;1&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index--1--page_size-20&quot;</code></li> <li><code>&quot;current_index1--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size--20&quot;</code></li> </ul> |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListSessionFeedbackOfAllSessionsRequest"></a>
+
+### ListSessionFeedbackOfAllSessionsRequest
+Request to list feedback across all sessions of an agent.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| parent | [string](#string) |  | The parent for which the feedback of all sessions should be listed. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+| page_token | [string](#string) |  | Optional. The page token to support pagination. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields get returned. |
+| feedback_filter | [FeedbackFilter](#ondewo.nlu.FeedbackFilter) |  | Optional. A feedback-native filter (rating / author / comment / score / criterion / date window). |
+| order_by | [string](#string) |  | Optional. Sort order, e.g. "created_at desc" (default), "created_at asc", "rating desc". |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListSessionFeedbackRequest"></a>
+
+### ListSessionFeedbackRequest
+Request to list all feedback attached to a session.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| session_id | [string](#string) |  | The id of the session. |
+| page_token | [string](#string) |  | Optional. The page token to support pagination. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields get returned. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListSessionFeedbackResponse"></a>
+
+### ListSessionFeedbackResponse
+A page of feedback.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| feedback | [SessionFeedback](#ondewo.nlu.SessionFeedback) | repeated | The feedback of the requested scope. |
+| next_page_token | [string](#string) |  | The page token for the next page (empty when there are no more pages). |
+| total_count | [int32](#int32) |  | Total number of feedback matching the filter across all pages. |
 
 
 
@@ -8401,6 +14561,7 @@ request to list all labels of all sessions
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | The parent for which the labels for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -8449,13 +14610,13 @@ This message is a request to list session reviews
 | session_review_view | [SessionReview.View](#ondewo.nlu.SessionReview.View) |  | An enum specifying the amount of information to be returned per session review |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - Retrieves the first page with a page size of 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li><code>&quot;&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size-20&quot;</code></li> <li><code>&quot;current_index-10--page_size-20&quot;</code></li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li><code>&quot;1&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index--1--page_size-20&quot;</code></li> <li><code>&quot;current_index1--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size--20&quot;</code></li> </ul> |
 
 
 
@@ -8490,13 +14651,13 @@ This message is a request to list sessions
 | session_view | [Session.View](#ondewo.nlu.Session.View) |  | An enum specifying the amount of information to be returned per session |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - Retrieves the first page with a page size of 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li><code>&quot;&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size-20&quot;</code></li> <li><code>&quot;current_index-10--page_size-20&quot;</code></li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li><code>&quot;1&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index--1--page_size-20&quot;</code></li> <li><code>&quot;current_index1--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size--20&quot;</code></li> </ul> |
 | session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
 | field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields will be filled with data. Example: path=["session_info.duration_in_s_min"] |
 
@@ -8531,6 +14692,7 @@ request to list all tags of all sessions
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | The parent for which the tags for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -8562,6 +14724,7 @@ request to list all user_ids of all sessions
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | The parent for which the user_ids for all sessions should be listed Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | session_filter | [SessionFilter](#ondewo.nlu.SessionFilter) |  | Optional. A filter to narrow the response down to sessions of interest. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -8583,13 +14746,639 @@ This message is a response of listing session user_ids
 
 
 
+<a name="ondewo.nlu.LlmAgentUsage"></a>
+
+### LlmAgentUsage
+Per-intent-agent usage rollup across the scope.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| agent_name | [string](#string) |  | intent_agent executor / agent name owning the calls. |
+| agent_role | [string](#string) |  | Optional agent role. |
+| team_name | [string](#string) |  | Optional team name. |
+| call_count | [int64](#int64) |  | Number of LLM calls attributed to this agent in scope. |
+| llm_token_usage | [LlmTokenUsage](#ondewo.nlu.LlmTokenUsage) |  | Summed token usage for this agent. |
+| tool_call_count | [int64](#int64) |  | Tool-call count attributed to this agent. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmCacheStats"></a>
+
+### LlmCacheStats
+Prompt-cache efficiency aggregate across the LLM calls in scope.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cached_input_tokens | [int64](#int64) |  | Tokens served from prompt cache (cached_input_tokens summed). |
+| cache_creation_input_tokens | [int64](#int64) |  | Tokens written to prompt cache (cache_creation_input_tokens summed). |
+| uncached_input_tokens | [int64](#int64) |  | Non-cached input tokens. |
+| cache_hit_rate | [double](#double) |  | cached_input_tokens / (cached_input_tokens + uncached_input_tokens). |
+| token_savings | [int64](#int64) |  | Input tokens avoided by cache reuse. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmCallFinishedEvent"></a>
+
+### LlmCallFinishedEvent
+Emitted on a streaming DetectIntent when an LLM invocation finishes.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_call_id | [string](#string) |  | Collector-assigned id grouping events for this LLM call. |
+| end_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock end time of the LLM call. |
+| duration_in_s | [double](#double) |  | Convenience duration (end_time - start_time). |
+| llm_token_usage | [LlmTokenUsage](#ondewo.nlu.LlmTokenUsage) |  | Final token totals for this LLM call. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmCallStartedEvent"></a>
+
+### LlmCallStartedEvent
+Emitted on a streaming DetectIntent when an LLM invocation starts.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_call_id | [string](#string) |  | Collector-assigned id grouping all events emitted for this LLM call. |
+| provider | [string](#string) |  | Provider tag: "autogen" | "langchain" | "openai" | "anthropic" | ... |
+| model_name | [string](#string) |  | Concrete model identifier (e.g. "claude-3-5-sonnet-20241022"). |
+| agent_name | [string](#string) |  | intent_agent executor / agent name owning the call. |
+| start_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock start of the LLM call. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmCcaiServiceUsage"></a>
+
+### LlmCcaiServiceUsage
+Per-CCAI-service usage rollup across the scope.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ccai_service_provider | [CcaiServiceProvider](#ondewo.nlu.CcaiServiceProvider) |  | CCAI service provider enum value. |
+| ccai_service_name | [string](#string) |  | Resource name of the CCAI service. |
+| call_count | [int64](#int64) |  | Number of LLM calls attributed to this CCAI service in scope. |
+| llm_token_usage | [LlmTokenUsage](#ondewo.nlu.LlmTokenUsage) |  | Summed token usage for this CCAI service. |
+| base_url | [string](#string) |  | Base URL used by this CCAI service. |
+| model_names | [string](#string) | repeated | Distinct model names seen under this CCAI service. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmErrorStat"></a>
+
+### LlmErrorStat
+One error class aggregate.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| error_class | [string](#string) |  | Error class / type (LlmTelemetry.error_class). |
+| count | [int64](#int64) |  | Number of occurrences in scope. |
+| rate | [double](#double) |  | count / total LLM calls in scope. |
+| sample_message | [string](#string) |  | A representative error_message sample (may be truncated / redacted). |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmErrorStats"></a>
+
+### LlmErrorStats
+Error breakdown aggregate across the scope.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total_error_count | [int64](#int64) |  | Total failed LLM calls in scope. |
+| overall_error_rate | [double](#double) |  | total_error_count / total LLM calls in scope. |
+| errors_by_class | [LlmErrorStat](#ondewo.nlu.LlmErrorStat) | repeated | Per-error-class breakdown, descending by count. |
+| retry_count_total | [int64](#int64) |  | Total retries observed (LlmTelemetry.retry_count summed). |
+| max_fallback_depth | [int32](#int32) |  | Max fallback depth observed (LlmTelemetry.fallback_depth max). |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmFinishReasonStat"></a>
+
+### LlmFinishReasonStat
+One finish-reason aggregate.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| finish_reason | [string](#string) |  | Finish reason ("stop" | "length" | "tool_calls" | "content_filter" | "error" | ...). |
+| count | [int64](#int64) |  | Number of occurrences in scope. |
+| rate | [double](#double) |  | count / total LLM calls in scope. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmLatencyStats"></a>
+
+### LlmLatencyStats
+Latency aggregate (seconds) across the LLM calls in scope.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| call_count | [int64](#int64) |  | Number of LLM calls included in these latency stats. |
+| mean_duration_seconds | [double](#double) |  | Mean end-to-end call duration in seconds. |
+| p50_duration_seconds | [double](#double) |  | 50th percentile end-to-end call duration in seconds. |
+| p95_duration_seconds | [double](#double) |  | 95th percentile end-to-end call duration in seconds. |
+| p99_duration_seconds | [double](#double) |  | 99th percentile end-to-end call duration in seconds. |
+| max_duration_seconds | [double](#double) |  | Maximum observed end-to-end call duration in seconds. |
+| mean_first_token_latency_seconds | [double](#double) |  | Mean time-to-first-token in seconds (streaming calls only). |
+| p95_first_token_latency_seconds | [double](#double) |  | 95th percentile time-to-first-token in seconds. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmModelUsage"></a>
+
+### LlmModelUsage
+Per-model usage rollup across the scope.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| model_name | [string](#string) |  | Concrete model identifier (e.g. "claude-3-5-sonnet-20241022"). |
+| provider | [string](#string) |  | Provider tag owning the model (e.g. "anthropic"). |
+| call_count | [int64](#int64) |  | Number of LLM calls to this model in scope. |
+| llm_token_usage | [LlmTokenUsage](#ondewo.nlu.LlmTokenUsage) |  | Summed token usage (input / output / total) for this model. |
+| tool_call_count | [int64](#int64) |  | Tool-call count attributed to this model. |
+| error_count | [int64](#int64) |  | Error count attributed to this model. |
+| duration_seconds_total | [double](#double) |  | Summed call duration in seconds for this model. |
+| cache_stats | [LlmCacheStats](#ondewo.nlu.LlmCacheStats) |  | Optional cache stats for this model. |
+| ccai_service_name | [string](#string) |  | Resource name of the CCAI service that issued the calls. |
+| ccai_service_provider | [CcaiServiceProvider](#ondewo.nlu.CcaiServiceProvider) |  | Provider of the CCAI service. |
+| base_url | [string](#string) |  | Base URL used for the calls (proxy / compatible provider). |
+| thinking_tokens_total | [int64](#int64) |  | Summed thinking-block tokens for this model. |
+| thinking_duration_seconds_total | [double](#double) |  | Summed thinking-block duration in seconds for this model. |
+| tool_call_tokens_total | [int64](#int64) |  | Summed tool-call tokens for this model. |
+| tool_call_duration_seconds_total | [double](#double) |  | Summed tool-call duration in seconds for this model. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmProviderUsage"></a>
+
+### LlmProviderUsage
+Per-provider usage rollup across the scope.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| provider | [string](#string) |  | Provider tag (e.g. "anthropic", "openai", "ollama"). |
+| call_count | [int64](#int64) |  | Number of LLM calls to this provider in scope. |
+| llm_token_usage | [LlmTokenUsage](#ondewo.nlu.LlmTokenUsage) |  | Summed token usage for this provider. |
+| error_count | [int64](#int64) |  | Error count attributed to this provider. |
+| duration_seconds_total | [double](#double) |  | Summed call duration in seconds for this provider. |
+| model_names | [string](#string) | repeated | Distinct model names seen under this provider. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmReasoningEffortStat"></a>
+
+### LlmReasoningEffortStat
+One reasoning-effort aggregate.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| reasoning_effort | [ReasoningEffort](#ondewo.nlu.ReasoningEffort) |  | Reasoning effort enum value. |
+| count | [int64](#int64) |  | Number of LLM calls at this effort level in scope. |
+| rate | [double](#double) |  | count / total LLM calls in scope. |
+| llm_token_usage | [LlmTokenUsage](#ondewo.nlu.LlmTokenUsage) |  | Summed token usage at this effort level. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmRetrievalMetadata"></a>
+
+### LlmRetrievalMetadata
+Typed view of the chunks retrieved for one LLM call. Populated alongside the
+unstructured <code>outputs.retrieved_chunks</code> Struct (field 18 on
+LlmTelemetry, kept for back-compat); both carry the same chunk list.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| chunks | [LlmRetrievedChunk](#ondewo.nlu.LlmRetrievedChunk) | repeated | The retrieved chunks in retrieval-result order. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmRetrievedChunk"></a>
+
+### LlmRetrievedChunk
+One retrieved RAG chunk surfaced during an LLM call. Mirrors the five-field
+chunk already emitted into <code>outputs.retrieved_chunks</code> (Struct) plus
+a typed <code>rank</code>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| document_id | [string](#string) |  | Source document identifier the chunk was retrieved from. |
+| chunk_id | [string](#string) |  | Chunk identifier within the source document. |
+| score | [double](#double) |  | Retrieval similarity / relevance score assigned by the retriever. |
+| text | [string](#string) |  | Chunk text (already truncated to the emit-time character cap, ~2000 chars). |
+| source_uri | [string](#string) |  | Source URI (document URL or document name) for click-through. |
+| rank | [int32](#int32) |  | Zero-based position of this chunk in the retrieval result order (RAGFlow reference order / LangChain document order). |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmSafetyAssessment"></a>
+
+### LlmSafetyAssessment
+Native safety assessment for one LLM call, computed at telemetry build time by
+a dependency-free (regex / substring) assessor over the call's input / output
+text. Additive, optional: absent when safety scoring is disabled. This is the
+live MONITORING signal; the offline LLM-judge safety evaluators live in
+<code>llm_evaluation.proto</code>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| flagged_categories | [string](#string) | repeated | Detector categories that fired across input and output (<code>prompt_injection</code> | <code>jailbreak</code> | <code>pii</code> | <code>info_leak</code>). Empty when nothing was flagged. |
+| has_pii | [bool](#bool) |  | True when any PII pattern (email / phone / IBAN / credit-card / national-id) was detected in input or output. |
+| has_injection_attempt | [bool](#bool) |  | True when a prompt-injection pattern was detected in the input. |
+| has_jailbreak_attempt | [bool](#bool) |  | True when a jailbreak / role-override pattern was detected in the input. |
+| safety_score | [double](#double) |  | Overall safety score in <code>[0.0, 1.0]</code> where <code>1.0</code> means fully safe (no findings) and lower values indicate higher risk. |
+| findings | [LlmSafetyFinding](#ondewo.nlu.LlmSafetyFinding) | repeated | Per-finding detail records (category / severity / matched pattern / location). |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmSafetyCategoryStat"></a>
+
+### LlmSafetyCategoryStat
+Per-category native-safety aggregate across the LLM calls in scope.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category | [string](#string) |  | Detector category (<code>prompt_injection</code> | <code>jailbreak</code> | <code>pii</code> | <code>info_leak</code>). |
+| count | [int64](#int64) |  | Number of calls flagged for this category in scope. |
+| rate | [double](#double) |  | count / total_assessed. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmSafetyFinding"></a>
+
+### LlmSafetyFinding
+One concrete safety finding inside an LlmSafetyAssessment.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| category | [string](#string) |  | Detector category that fired (e.g. <code>prompt_injection</code>, <code>jailbreak</code>, <code>pii</code>, <code>info_leak</code>). |
+| severity | [string](#string) |  | Severity tag ("low" | "medium" | "high" | "critical"). |
+| matched_pattern | [string](#string) |  | The pattern / detector rule that matched (may be a redacted excerpt). |
+| location | [LlmSafetyLocation](#ondewo.nlu.LlmSafetyLocation) |  | Whether the finding was located in the input or the output. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmSafetyStats"></a>
+
+### LlmSafetyStats
+Native-safety breakdown aggregate across the LLM calls in scope. Computed from
+the per-call LlmSafetyAssessment records.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total_assessed | [int64](#int64) |  | Number of LLM calls that carried a safety assessment in scope. |
+| flagged_count | [int64](#int64) |  | Number of assessed calls with at least one flagged category. |
+| overall_safety_score | [double](#double) |  | Mean LlmSafetyAssessment.safety_score across assessed calls (<code>1.0</code> = fully safe). |
+| category_stats | [LlmSafetyCategoryStat](#ondewo.nlu.LlmSafetyCategoryStat) | repeated | Per-category counts and rates, descending by count. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmTelemetry"></a>
+
+### LlmTelemetry
+Telemetry for a single LLM invocation inside one DetectIntent turn.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| provider | [string](#string) |  | Provider tag: "autogen" | "langchain" | "openai" | "anthropic" | ... |
+| model_name | [string](#string) |  | Concrete model identifier (e.g. "Qwen/Qwen3.6-27b-fp8"). |
+| agent_name | [string](#string) |  | intent_agent executor / agent name. |
+| llm_token_usage | [LlmTokenUsage](#ondewo.nlu.LlmTokenUsage) |  | Totals for this call. |
+| llm_tool_call_metadatas | [LlmToolCallMetadata](#ondewo.nlu.LlmToolCallMetadata) | repeated | Tool calls observed during this LLM invocation. |
+| tool_call_count | [int32](#int32) |  | Denormalized len(llm_tool_call_metadatas). |
+| llm_thinking_metadata | [LlmThinkingMetadata](#ondewo.nlu.LlmThinkingMetadata) |  | Thinking block when surfaced by the model. |
+| start_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock start of the LLM call. |
+| end_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock end of the LLM call. |
+| duration_in_s | [double](#double) |  | Convenience duration (end_time - start_time). |
+| run_id | [string](#string) |  | LangChain / LangSmith run identifier for this LLM call (UUID). |
+| parent_run_id | [string](#string) |  | LangChain / LangSmith identifier of the parent run that spawned this call, forming the LangSmith run tree. |
+| run_type | [string](#string) |  | LangSmith run taxonomy: chain | llm | tool | retriever | agent | parser | prompt. |
+| component_name | [string](#string) |  | Serialized component name from LangChain callbacks (e.g. "ChatOpenAI"). |
+| tags | [string](#string) | repeated | Tags propagated via RunnableConfig. |
+| metadata | [google.protobuf.Struct](#google.protobuf.Struct) |  | Free-form metadata propagated via RunnableConfig. |
+| inputs | [google.protobuf.Struct](#google.protobuf.Struct) |  | Redaction-aware snapshot of inputs at the run boundary. |
+| outputs | [google.protobuf.Struct](#google.protobuf.Struct) |  | Redaction-aware snapshot of outputs at the run boundary. |
+| error_class | [string](#string) |  | Exception class name when the LLM call failed; empty on success. |
+| error_message | [string](#string) |  | Exception message text when the LLM call failed; empty on success. |
+| traceback | [string](#string) |  | Formatted stack trace when the LLM call failed; empty on success. |
+| streaming_chunk_count | [int32](#int32) |  | Streaming chunk count observed during the call. |
+| first_token_latency_seconds | [double](#double) |  | Time-to-first-token (start_time -> first chunk). |
+| system_fingerprint | [string](#string) |  | OpenAI system_fingerprint when available. |
+| cached | [bool](#bool) |  | Whether the result was served from a client-side cache. |
+| retry_count | [int32](#int32) |  | Retry count for the underlying provider call. |
+| fallback_depth | [int32](#int32) |  | Index inside a with_fallbacks([...]) chain when the call succeeded. |
+| temperature | [double](#double) |  | Sampling temperature requested for the LLM call (request kwargs). |
+| top_p | [double](#double) |  | Top-p (nucleus sampling) parameter requested for the LLM call. |
+| max_tokens | [int32](#int32) |  | Maximum number of tokens the model was allowed to produce. |
+| n_generations | [int32](#int32) |  | Number of generations the model was asked to return (<code>n</code> in OpenAI API). |
+| finish_reasons | [string](#string) | repeated | One finish reason per generation (e.g. <code>stop</code>, <code>length</code>, <code>tool_calls</code>, <code>content_filter</code>). |
+| cached_input_tokens | [int32](#int32) |  | Number of input tokens served from the provider-side prompt cache (Anthropic <code>cache_read_input_tokens</code>). |
+| cache_creation_input_tokens | [int32](#int32) |  | Number of input tokens written to the provider-side prompt cache (Anthropic <code>cache_creation_input_tokens</code>). |
+| langsmith_run_url | [string](#string) |  | LangSmith run URL for direct click-through when LangSmith tracing is active. |
+| team_name | [string](#string) |  | Autogen team display name owning the call. |
+| team_id | [string](#string) |  | Autogen team identifier (UUID). |
+| agent_role | [string](#string) |  | Autogen agent role tag (user_proxy | assistant | tool_executor | reflection). |
+| sender_agent | [string](#string) |  | Name of the autogen agent that produced the message. |
+| recipient_agent | [string](#string) |  | Name of the autogen agent that received the message. |
+| turn_index | [int32](#int32) |  | Zero-based position of this LLM call inside the autogen <code>run_stream()</code> sequence. |
+| reflection_iterations | [int32](#int32) |  | Number of reflection loops executed in <code>robust_assistant_agent</code> for this call. |
+| termination_reason | [string](#string) |  | Autogen <code>TaskResult.stop_reason</code> string when surfaced. |
+| evaluator_runs_join_key | [string](#string) |  | Join key linking this LLM call to an evaluator run (see llm_evaluation.proto). |
+| llm_evaluation_feedbacks | [LlmEvaluationFeedback](#ondewo.nlu.LlmEvaluationFeedback) | repeated | Immediate inline feedback recorded inside the turn (e.g. self-grading by a reflection agent). Each entry is a single LlmEvaluationFeedback record. |
+| ccai_service_name | [string](#string) |  | Resource name of the CCAI service that issued this LLM call. |
+| base_url | [string](#string) |  | The base URL for the OpenAI API. Overrides the default endpoint, useful for proxies or compatible third-party providers. |
+| default_headers | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. Default HTTP headers to include with every request to the OpenAI API. |
+| default_query | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. Default query parameters to append to every request URL sent to the OpenAI API. Values can be of any type (string, number, boolean, list), hence the use of Struct. |
+| frequency_penalty | [float](#float) | optional | Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the likelihood of the model repeating the same line verbatim. |
+| openai_metadata | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. Developer-defined tags and values used for filtering completions in the OpenAI dashboard. |
+| presence_penalty | [float](#float) | optional | Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on whether they have already appeared in the text, increasing the likelihood of the model discussing new topics. |
+| reasoning_effort | [ReasoningEffort](#ondewo.nlu.ReasoningEffort) | optional | Optional. Constrains the effort level for reasoning models (e.g. o1, o3). Controls the trade-off between speed and quality. |
+| user | [string](#string) | optional | Optional. A unique identifier representing the end-user, which helps OpenAI monitor and detect abuse. |
+| timeout | [float](#float) | optional | Optional. The timeout in seconds for requests to the OpenAI API. Applies to the entire request lifecycle including connection, sending, and receiving. |
+| strict_response_validation | [bool](#bool) | optional | Optional. If true, enables strict validation of response payloads returned by the OpenAI API. |
+| extra_headers | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. Additional HTTP headers to send with the request. These are merged with and override default_headers for this specific request only. |
+| extra_query | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. Additional query parameters to send with the request. These are merged with and override default_query for this specific request only. |
+| extra_body | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. Additional JSON properties to include in the request body. Useful for accessing new or undocumented API parameters. |
+| ccai_service_provider | [CcaiServiceProvider](#ondewo.nlu.CcaiServiceProvider) |  | Provider of the ccai service |
+| llm_safety_assessment | [LlmSafetyAssessment](#ondewo.nlu.LlmSafetyAssessment) |  | Native (regex / substring, no-LLM) safety assessment computed at telemetry build time over the call's input / output text. Distinct from the offline LLM-judge safety evaluators in <code>llm_evaluation.proto</code>: this is the live MONITORING signal on real DetectIntent traffic. Unset when safety scoring is disabled. |
+| llm_retrieval_metadata | [LlmRetrievalMetadata](#ondewo.nlu.LlmRetrievalMetadata) |  | Typed view of the retrieved RAG chunks for this LLM call. Populated alongside the unstructured <code>outputs.retrieved_chunks</code> Struct (field 18, kept for back-compat); both carry the same chunk list. Unset for non-retrieval calls. |
+| llm_call_id | [string](#string) |  | Id of THIS LLM call. Same identifier the streaming telemetry events carry as <code>llm_call_id</code> (<code>LlmLlmCallStartedEvent</code>, <code>LlmToolCallStartedEvent</code>, ...), so an aggregate or a persisted row can be correlated back to the live event stream. Distinct from <code>run_id</code> (field 11), which is the UPSTREAM framework's id (autogen / langchain). |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmTelemetryReport"></a>
+
+### LlmTelemetryReport
+Aggregated telemetry across all LLM calls in one DetectIntent turn, or across
+a session / agent-domain scope when used as a statistics report payload. The
+breakdown fields (6+) are populated only for the matching report type; a
+*_LLM_TOTAL_STATISTICS report populates all of them.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_token_usage | [LlmTokenUsage](#ondewo.nlu.LlmTokenUsage) |  | Summed LlmTokenUsage across llm_telemetries. |
+| tool_call_count_total | [int32](#int32) |  | Sum of LlmTelemetry.tool_call_count across llm_telemetries. |
+| llm_call_count | [int32](#int32) |  | Denormalized len(llm_telemetries). |
+| llm_telemetries | [LlmTelemetry](#ondewo.nlu.LlmTelemetry) | repeated | Per-LLM-invocation breakdown. |
+| duration_seconds_total | [double](#double) |  | Sum of LlmTelemetry.duration_in_s across llm_telemetries. |
+| models_used | [LlmModelUsage](#ondewo.nlu.LlmModelUsage) | repeated | Per-model usage rollup. Populated for *_LLM_MODELS_USED and *_LLM_TOTAL_STATISTICS. |
+| providers_used | [LlmProviderUsage](#ondewo.nlu.LlmProviderUsage) | repeated | Per-provider usage rollup. Populated for *_LLM_PROVIDERS_USED and *_LLM_TOTAL_STATISTICS. |
+| ccai_services_used | [LlmCcaiServiceUsage](#ondewo.nlu.LlmCcaiServiceUsage) | repeated | Per-CCAI-service usage rollup. Populated for *_LLM_CCAI_SERVICES_USED and *_LLM_TOTAL_STATISTICS. |
+| agents_used | [LlmAgentUsage](#ondewo.nlu.LlmAgentUsage) | repeated | Per-intent-agent usage rollup. Populated for *_LLM_AGENTS_USED and *_LLM_TOTAL_STATISTICS. |
+| tools_used | [LlmToolUsage](#ondewo.nlu.LlmToolUsage) | repeated | Tool-usage rollup. Populated for *_LLM_TOP_X_TOOLS / *_LLM_LEAST_X_TOOLS and *_LLM_TOTAL_STATISTICS. |
+| latency_stats | [LlmLatencyStats](#ondewo.nlu.LlmLatencyStats) |  | Latency aggregate. Populated for *_LLM_LATENCY and *_LLM_TOTAL_STATISTICS. |
+| cache_stats | [LlmCacheStats](#ondewo.nlu.LlmCacheStats) |  | Cache efficiency aggregate. Populated for *_LLM_CACHE_EFFICIENCY and *_LLM_TOTAL_STATISTICS. |
+| error_stats | [LlmErrorStats](#ondewo.nlu.LlmErrorStats) |  | Error aggregate. Populated for *_LLM_ERRORS and *_LLM_TOTAL_STATISTICS. |
+| finish_reason_distribution | [LlmFinishReasonStat](#ondewo.nlu.LlmFinishReasonStat) | repeated | Finish-reason distribution. Populated for *_LLM_FINISH_REASONS and *_LLM_TOTAL_STATISTICS. |
+| reasoning_effort_distribution | [LlmReasoningEffortStat](#ondewo.nlu.LlmReasoningEffortStat) | repeated | Reasoning-effort distribution. Populated for *_LLM_REASONING_EFFORT and *_LLM_TOTAL_STATISTICS. |
+| thinking_tokens_total | [int64](#int64) |  | Scope-wide summed thinking-block tokens. |
+| thinking_duration_seconds_total | [double](#double) |  | Scope-wide summed thinking-block duration in seconds. |
+| tool_call_tokens_total | [int64](#int64) |  | Scope-wide summed tool-call tokens. |
+| tool_call_duration_seconds_total | [double](#double) |  | Scope-wide summed tool-call duration in seconds. |
+| safety_stats | [LlmSafetyStats](#ondewo.nlu.LlmSafetyStats) |  | Native safety aggregate (counts / rates / mean score). Populated for *_LLM_SAFETY and *_LLM_TOTAL_STATISTICS reports. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmThinkingDeltaEvent"></a>
+
+### LlmThinkingDeltaEvent
+Emitted on a streaming DetectIntent for each thinking-delta chunk.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_call_id | [string](#string) |  | Groups events under an LlmTelemetry entry. |
+| text_delta | [string](#string) |  | Incremental thinking text chunk (subject to redaction policy on the client). |
+| timestamp | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock timestamp of the chunk. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmThinkingMetadata"></a>
+
+### LlmThinkingMetadata
+Thinking / reasoning block emitted by the model (e.g. Anthropic extended thinking,
+OpenAI o-series reasoning).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_token_usage | [LlmTokenUsage](#ondewo.nlu.LlmTokenUsage) |  | Token attribution for the thinking block when surfaced by the provider. |
+| start_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock start of the thinking block. |
+| end_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock end of the thinking block. |
+| duration_in_s | [double](#double) |  | Convenience duration (end_time - start_time). |
+| thinking_text | [string](#string) |  | Raw thinking text. Subject to redaction depending on telemetry policy. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmTokenUsage"></a>
+
+### LlmTokenUsage
+Token usage counters for a single LLM call (or aggregate).
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| total_tokens | [int64](#int64) |  | Sum of input and output tokens for this call (or aggregate across calls). |
+| input_tokens | [int64](#int64) |  | Number of prompt / input tokens consumed. |
+| output_tokens | [int64](#int64) |  | Number of completion / output tokens produced. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmTokenUsageUpdateEvent"></a>
+
+### LlmTokenUsageUpdateEvent
+Emitted on a streaming DetectIntent when running token counts update.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| llm_call_id | [string](#string) |  | Groups events under an LlmTelemetry entry. |
+| llm_token_usage | [LlmTokenUsage](#ondewo.nlu.LlmTokenUsage) |  | Running totals for that llm_call. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmToolCallFinishedEvent"></a>
+
+### LlmToolCallFinishedEvent
+Emitted on a streaming DetectIntent when a tool call finishes.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| tool_call_id | [string](#string) |  | Stable id matching the matching LlmToolCallStartedEvent. |
+| end_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock end time of the tool call. |
+| duration_in_s | [double](#double) |  | Convenience duration (end_time - start_time). |
+| llm_token_usage | [LlmTokenUsage](#ondewo.nlu.LlmTokenUsage) |  | Token attribution for this tool call when available. |
+| result | [google.protobuf.Struct](#google.protobuf.Struct) |  | Tool result payload (may be omitted on failure or redaction). |
+| error_message | [string](#string) |  | Populated only when the tool call failed; empty string on success. |
+| llm_call_id | [string](#string) |  | Groups events under an LlmTelemetry entry. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmToolCallMetadata"></a>
+
+### LlmToolCallMetadata
+Metadata for one tool call executed by the LLM.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| tool_call_id | [string](#string) |  | Stable id assigned by the upstream framework (autogen / langchain). |
+| tool_name | [string](#string) |  | Name of the tool / function invoked. |
+| start_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock start time of the tool call. |
+| end_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock end time of the tool call. |
+| duration_in_s | [double](#double) |  | Convenience duration (end_time - start_time). |
+| llm_token_usage | [LlmTokenUsage](#ondewo.nlu.LlmTokenUsage) |  | Token attribution for this tool call when available. |
+| arguments | [google.protobuf.Struct](#google.protobuf.Struct) |  | Tool arguments as a structured payload. May be omitted on incremental events. |
+| result | [google.protobuf.Struct](#google.protobuf.Struct) |  | Tool result as a structured payload. May be omitted on incremental events. |
+| error_message | [string](#string) |  | Populated only when the tool call failed; empty string on success. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmToolCallStartedEvent"></a>
+
+### LlmToolCallStartedEvent
+Emitted on a streaming DetectIntent when a tool call starts.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| tool_call_id | [string](#string) |  | Stable id assigned by the upstream framework (autogen / langchain). |
+| tool_name | [string](#string) |  | Name of the tool / function invoked. |
+| arguments | [google.protobuf.Struct](#google.protobuf.Struct) |  | Tool arguments as a structured payload (Struct kept as-is; not a custom Message). |
+| start_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock start time of the tool call. |
+| llm_call_id | [string](#string) |  | Groups events under an LlmTelemetry entry. |
+
+
+
+
+
+
+<a name="ondewo.nlu.LlmToolUsage"></a>
+
+### LlmToolUsage
+One tool's invocation aggregate across the scope.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| tool_name | [string](#string) |  | Name of the tool / function. |
+| call_count | [int64](#int64) |  | Number of times the tool was invoked in scope. |
+| error_count | [int64](#int64) |  | Number of failed invocations. |
+| error_rate | [double](#double) |  | error_count / call_count. |
+| duration_seconds_total | [double](#double) |  | Summed tool-call duration in seconds. |
+| mean_duration_seconds | [double](#double) |  | Mean tool-call duration in seconds. |
+| llm_token_usage | [LlmTokenUsage](#ondewo.nlu.LlmTokenUsage) |  | Summed tool-call token usage (input / output / total). |
+| arguments | [google.protobuf.Struct](#google.protobuf.Struct) |  | Arguments the representative invocation was called with, as a structured payload (Struct kept as-is; not a custom Message). Unset when the source metadata carried none. |
+| llm_call_id | [string](#string) |  | Groups the representative invocation under its <code>LlmTelemetry</code> entry. |
+| tool_call_id | [string](#string) |  | Stable id of the representative invocation, assigned by the upstream framework (autogen / langchain). |
+
+
+
+
+
+
 <a name="ondewo.nlu.QueryInput"></a>
 
 ### QueryInput
 Represents the query input. It can contain either:
 
-1.  An audio config which
-    instructs the speech recognizer how to process the speech audio.
+1.  An audio config which instructs the speech recognizer how to process the speech audio.
 
 2.  A conversational query in the form of text,.
 
@@ -8616,11 +15405,15 @@ Represents the parameters of the conversational query.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| time_zone | [string](#string) |  | Optional. The time zone of this conversational query from the [time zone database](https://www.iana.org/time-zones), e.g., America/New_York, Europe/Paris. If not provided, the time zone specified in agent settings is used. |
+| time_zone | [string](#string) |  | Optional. The time zone of this conversational query from the <a href="https://www.iana.org/time-zones">time zone database</a>, e.g., America/New_York, Europe/Paris. If not provided, the time zone specified in agent settings is used. |
 | geo_location | [google.type.LatLng](#google.type.LatLng) |  | Optional. The geo location of this conversational query. |
 | contexts | [Context](#ondewo.nlu.Context) | repeated | Optional. The collection of contexts to be activated before this query is executed. |
 | reset_contexts | [bool](#bool) |  | Optional. Specifies whether to delete all contexts in the current session before the new ones are activated. |
-| payload | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. This field can be used to pass custom data into the webhook associated with the agent. Arbitrary JSON objects are supported. key:<pre>language=LanguageCode.de.value</pre> key:<pre>timestamp=time.time()</pre> key:<pre>source='https://ondewo.com'</pre> key:<pre>configuration='config_example_123'</pre> |
+| payload | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. This field can be used to pass custom data into the webhook associated with the agent.
+
+Following <code>key:value</code> pairs are supported in the JSON objects:
+
+key: <code>language</code> <pre>language=LanguageCode.de.value</pre> key: <code>timestamp</code> <pre>timestamp=time.time() # float python timestamp in seconds since epoch </pre> key: <code>source</code> <pre>source=&apos;https://ondewo.com&apos;</pre> key: <code>configuration</code> <pre>configuration=&apos;config_example_123&apos;</pre> key: <code>single_intent_algorithm</code> <pre>single_intent_algorithm=&apos;IntentClassifierType.OndewoIntentAgent&apos;</pre> =&gt; allowed other values for <code>single_intent_algorithm</code>: <pre> IntentClassifierType.DefaultFallBackAlgorithm IntentClassifierType.DeviationEndingDetection IntentClassifierType.IntentExitDetector IntentClassifierType.OndewoIntentAgent IntentClassifierType.OndewoIntentBertClassifier IntentClassifierType.OndewoIntentExactContextDetector IntentClassifierType.OndewoIntentExactMatch IntentClassifierType.OndewoIntentExitDetector IntentClassifierType.OndewoIntentLogisticRegression IntentClassifierType.OndewoIntentMetaClassifier IntentClassifierType.OndewoIntentNamedExactMatch IntentClassifierType.OndewoIntentNamedSimilarityMatch IntentClassifierType.OndewoIntentParameterMatch IntentClassifierType.OndewoIntentRandomForestClassifier IntentClassifierType.OndewoIntentRankingMatch IntentClassifierType.OndewoIntentSimilarityMatch IntentClassifierType.OndewoIntentSupportVectorClassifier IntentClassifierType.OndewoWeightedEnsemble </pre> key: <code>single_ner_algorithm</code> <pre>single_ner_algorithm=&apos;NerMethodType.OndewoNerRegex&apos;</pre> <pre> =&gt; allowed other values for <code>single_ner_algorithm</code>: NerMethodType.OndewoNerBert NerMethodType.OndewoNerDateNer NerMethodType.OndewoNerDictionary NerMethodType.OndewoNerDuckling NerMethodType.OndewoNerFuzzy NerMethodType.OndewoNerHybrid NerMethodType.OndewoNerRegex NerMethodType.OndewoNerSpacy NerMethodType.OndewoNerTfNer </pre> |
 | labels | [string](#string) | repeated | labels associated to this request |
 | platforms | [Intent.Message.Platform](#ondewo.nlu.Intent.Message.Platform) | repeated | Only messages for the specified Intent.Message.Platform platforms are sent to the user in the <code>DetectIntentResponse</code> |
 | account_id | [string](#string) |  | Id of the account, e.g. Company Ondewo |
@@ -8628,10 +15421,10 @@ Represents the parameters of the conversational query.
 | datastream_id | [string](#string) |  | Id of the datastream of the property of the account, e.g. Subdomain sub1.ondewo.com or sub2.ondewo.com This field can also be used for a customized tracking id or tag id |
 | origin_id | [string](#string) |  | Id of the the origin of the user request
 
-For a phone bot, this is the phone number +123456789 the user called (Note: This is not the user's phone number) For a chatbot or voicebot on the web, this is the URL on which the bo, e.g. https://ondewo.com/webchat For a voice assistant device, this is the device-id or the app id This field can also be used for a customized tracking id or tag id
+For a phone bot, this is the phone number +123456789 the user called (Note: This is not the user&apos;s phone number) For a chatbot or voicebot on the web, this is the URL on which the bo, e.g. https://ondewo.com/webchat For a voice assistant device, this is the device-id or the app id This field can also be used for a customized tracking id or tag id
 
 https://aim-develop.ondewo.com/ |
-| identified_user_id | [string](#string) |  | Id of the "identified user" e.g. for a chatbot the email address or for a phone bot the phone number of the user This field can also be used for a customized tracking id or tag id |
+| identified_user_id | [string](#string) |  | Id of the &quot;identified user&quot; e.g. for a chatbot the email address or for a phone bot the phone number of the user This field can also be used for a customized tracking id or tag id |
 | transcriptions | [S2tTranscription](#ondewo.nlu.S2tTranscription) | repeated | transcriptions of the user input sorted by score |
 
 
@@ -8647,24 +15440,49 @@ Represents the result of conversational query or event processing.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| query_text | [string](#string) |  | The original conversational query text: - If natural language text was provided as input, `query_text` contains a copy of the input. - If natural language speech audio was provided as input, `query_text` contains the speech recognition result. If speech recognizer produced multiple alternatives, a particular one is picked. - If an event was provided as input, `query_text` is not set. |
+| query_text | [string](#string) |  | The original conversational query text: <ul> <li>If natural language text was provided as input, <code>query_text</code> contains a copy of the input.</li> <li>If natural language speech audio was provided as input, <code>query_text</code> contains the speech recognition result. If speech recognizer produced multiple alternatives, a particular one is picked.</li> <li>If an event was provided as input, <code>query_text</code> is not set.</li> </ul> |
 | speech_recognition_confidence | [float](#float) |  | The Speech recognition confidence between 0.0 and 1.0. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set.
 
-You should not rely on this field as it isn't guaranteed to be accurate, or even set. In particular this field isn't set in Webhook calls and for StreamingDetectIntent since the streaming endpoint has separate confidence estimates per portion of the audio in StreamingRecognitionResult. |
+You should not rely on this field as it isn&apos;t guaranteed to be accurate, or even set. In particular this field isn&apos;t set in Webhook calls and for StreamingDetectIntent since the streaming endpoint has separate confidence estimates per portion of the audio in StreamingRecognitionResult. |
 | action | [string](#string) |  | The action name from the matched intent. |
 | parameters | [google.protobuf.Struct](#google.protobuf.Struct) |  | The collection of extracted parameters. |
-| all_required_params_present | [bool](#bool) |  | This field is set to: - `false` if the matched intent has required parameters and not all of the required parameter values have been collected. - `true` if all required parameter values have been collected, or if the matched intent doesn't contain any required parameters. |
+| all_required_params_present | [bool](#bool) |  | This field is set to: <ul> <li><code>false</code> if the matched intent has required parameters and not all of the required parameter values have been collected.</li> <li><code>true</code> if all required parameter values have been collected, or if the matched intent doesn&apos;t contain any required parameters.</li> </ul> |
 | fulfillment_text | [string](#string) |  | The text to be pronounced to the user or shown on the screen. |
 | fulfillment_messages | [Intent.Message](#ondewo.nlu.Intent.Message) | repeated | The collection of rich messages to present to the user. |
-| webhook_source | [string](#string) |  | If the query was fulfilled by a webhook call, this field is set to the value of the `source` field returned in the webhook response. |
-| webhook_payload | [google.protobuf.Struct](#google.protobuf.Struct) |  | If the query was fulfilled by a webhook call, this field is set to the value of the `payload` field returned in the webhook response. |
-| output_contexts | [Context](#ondewo.nlu.Context) | repeated | The collection of output contexts. If applicable, `output_contexts.parameters` contains entries with name `<parameter name>.original` containing the original parameter values before the query. |
-| intent | [Intent](#ondewo.nlu.Intent) |  | The intent that matched the conversational query. Some, not all fields are filled in this message, including but not limited to: `name`, `display_name` and `webhook_state`. |
+| webhook_source | [string](#string) |  | If the query was fulfilled by a webhook call, this field is set to the value of the <code>source</code> field returned in the webhook response. |
+| webhook_payload | [google.protobuf.Struct](#google.protobuf.Struct) |  | If the query was fulfilled by a webhook call, this field is set to the value of the <code>payload</code> field returned in the webhook response. |
+| output_contexts | [Context](#ondewo.nlu.Context) | repeated | The collection of output contexts. If applicable, <code>output_contexts.parameters</code> contains entries with name <code>&lt;parameter name&gt;.original</code> containing the original parameter values before the query. |
+| intent | [Intent](#ondewo.nlu.Intent) |  | The intent that matched the conversational query. Some, not all fields are filled in this message, including but not limited to: <code>name</code>, <code>display_name</code> and <code>webhook_state</code>. |
 | intent_detection_confidence | [float](#float) |  | The intent detection confidence. Values range from 0.0 (completely uncertain) to 1.0 (completely certain). |
 | query_text_original | [string](#string) |  | The user input gets pre-processed by spelling correction, stop word removal etc. This property holds the string that is passed to the entity recognition and intent detection |
 | diagnostic_info | [google.protobuf.Struct](#google.protobuf.Struct) |  | The free-form diagnostic info. For example, this field could contain webhook call latency. |
-| language_code | [string](#string) |  | The language that was triggered during intent detection. See [Language Support](https://dialogflow.com/docs/reference/language) for a list of the currently supported language codes. |
+| language_code | [string](#string) |  | The language that was triggered during intent detection. See <a href="https://dialogflow.com/docs/reference/language">Language Support</a> for a list of the currently supported language codes. |
 | file_resources | [FileResource](#ondewo.nlu.FileResource) | repeated | Generated or attached files, e.g., llm generates a picture or file attachment |
+| llm_telemetry_report | [LlmTelemetryReport](#ondewo.nlu.LlmTelemetryReport) |  | Aggregated LLM telemetry (tokens, tool calls, thinking) for this turn. |
+| referenced_chunks | [ReferencedChunk](#ondewo.nlu.ReferencedChunk) | repeated | Source chunks the answer cited via in-text <code>[ID:N]</code> markers, documents. Empty when the turn was not answered from a RAG dataset. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ReferencedChunk"></a>
+
+### ReferencedChunk
+Chunk information for a document chunk referenced in a RAG based <code>StreamingDetectIntentResponse</code>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| reference_index | [int32](#int32) |  | Index by which this chunk is referenced in the response text. For index <code>N</code> the reference in the response text has format <code>[ID:N]</code> |
+| dataset_id | [string](#string) |  | ID of the dataset the chunk belongs to. |
+| document_id | [string](#string) |  | ID of the document the chunk belongs to. |
+| chunk_id | [string](#string) |  | ID of the chunk. |
+| document_name | [string](#string) |  | Name of the document the chunk belongs to. |
+| content | [string](#string) |  | Text of the chunk. |
+| similarity | [float](#float) |  | Similarity score of this chunk for response it is retruned with. |
+| document_url | [string](#string) |  | For crawled documents the URL of the source document. For any other document it is left empty. |
+| deep_link_url | [string](#string) |  | For crawled documents link to the source document that directly jumps to the chunk's location on the page using a text fragment anchor (a bit fragile and might not always work). For any other document it is left empty. |
 
 
 
@@ -8712,6 +15530,48 @@ Session of a user interaction
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
 | modified_by | [string](#string) |  | User id in form of a valid UUID. |
+
+
+
+
+
+
+<a name="ondewo.nlu.SessionFeedback"></a>
+
+### SessionFeedback
+A single piece of user feedback about a whole session or a single session step (turn).
+
+The rating is intentionally extensible: <code>rating</code> carries the thumbs signal surfaced in the UI
+today, while <code>score</code> and <code>categorical_value</code> allow richer scales (star / NPS / CSAT)
+to be added later without a schema change. The feedback is pinned to the exact forensic context it is
+about (<code>session_id</code>, <code>session_step_id</code>, <code>response_id</code>,
+<code>session_step_llm_telemetry_id</code>) so the full conversation state up to the feedback can be
+reconstructed from the already-persisted session step.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The resource name of the feedback. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/feedback/&lt;feedback_uuid&gt;</code></pre> |
+| session_id | [string](#string) |  | The session this feedback belongs to. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
+| session_step_id | [string](#string) |  | The session step (turn) this feedback targets. Empty for session-level feedback. |
+| response_id | [string](#string) |  | Optional. The specific detect-intent response this feedback pins. |
+| session_step_llm_telemetry_id | [string](#string) |  | Optional. The specific LLM-telemetry sub-event (llm call / tool call) this feedback pins. |
+| rating | [FeedbackRating](#ondewo.nlu.FeedbackRating) |  | The thumbs rating. |
+| categorical_value | [string](#string) |  | Optional. An extensible categorical value (e.g. star bucket, NPS/CSAT bucket). |
+| score | [float](#float) | optional | Optional. A numeric score in [0, 1] for future continuous scales.
+
+Explicit presence (<code>optional</code>): a score of <code>0.0</code> is a MEANINGFUL rating — the worst point of a 0-10 NPS or 0-5 CSAT scale — and without presence it is indistinguishable from "no score given". The server persists an absent score as SQL NULL and excludes it from <code>average_score</code> / <code>scored_count</code> and from the <code>score_min</code> / <code>score_max</code> range filters, so conflating the two silently dropped exactly the worst ratings and biased the reported average upward. Use <code>HasField("score")</code> to distinguish. Matches <code>FeedbackFilter.score_min</code> / <code>score_max</code>, which are already optional. |
+| comment | [string](#string) |  | Optional. Free-text comment. |
+| criterion | [string](#string) |  | Optional. A dimension the feedback is about (e.g. "helpfulness", "accuracy"). |
+| author_type | [FeedbackAuthorType](#ondewo.nlu.FeedbackAuthorType) |  | Who left the feedback. |
+| annotator_user_id | [string](#string) |  | The authenticated author's user id (Keycloak sub); empty for anonymous end-users. |
+| origin_id | [string](#string) |  | Optional. The channel origin id (webchat / webphone) identifying an anonymous end-user. |
+| identified_user_id | [string](#string) |  | Optional. The identified end-user id, when the channel provides one. |
+| raw | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. An extensibility escape hatch for channel-specific metadata. |
+| created_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | When the feedback was created. |
+| modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | When the feedback was last modified. |
+| created_by | [string](#string) |  | Who created the feedback. |
+| modified_by | [string](#string) |  | Who last modified the feedback. |
 
 
 
@@ -8844,7 +15704,7 @@ The list of contexts of each step collected in an outer list
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| contexts | [Context](#ondewo.nlu.Context) | repeated |  |
+| contexts | [Context](#ondewo.nlu.Context) | repeated | List of contexts for a session step |
 
 
 
@@ -8904,12 +15764,12 @@ This string represents what has been passed to the entity recognition and intent
 <a name="ondewo.nlu.SessionStep"></a>
 
 ### SessionStep
-SessionStep is a single user interaction as part of a session
+SessionStep is a single user interaction as part of a session.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | The unique identifier for the given review Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/sessionsteps/&lt;session_step_uuid&gt;</code></pre> |
+| name | [string](#string) |  | The unique identifier of the session step. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/sessionsteps/&lt;session_step_uuid&gt;</code></pre> |
 | detect_intent_request | [DetectIntentRequest](#ondewo.nlu.DetectIntentRequest) |  | The detect intent request of the session step |
 | detect_intent_response | [DetectIntentResponse](#ondewo.nlu.DetectIntentResponse) |  | The detect intent response of the session step |
 | contexts | [Context](#ondewo.nlu.Context) | repeated | The contexts which were active at the beginning of this step |
@@ -8919,6 +15779,7 @@ SessionStep is a single user interaction as part of a session
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
 | modified_by | [string](#string) |  | User id in form of a valid UUID. |
 | audio_file_resources | [AudioFileResource](#ondewo.nlu.AudioFileResource) | repeated | audio file resources associated with the session step |
+| llm_telemetry_report | [LlmTelemetryReport](#ondewo.nlu.LlmTelemetryReport) |  | Aggregated LLM telemetry for this step (one entry per LLM invocation, plus turn-level totals). |
 
 
 
@@ -8928,32 +15789,19 @@ SessionStep is a single user interaction as part of a session
 <a name="ondewo.nlu.StreamingDetectIntentRequest"></a>
 
 ### StreamingDetectIntentRequest
-The top-level message sent by the client to the
-`StreamingDetectIntent` method.
-
+The top-level message sent by the client to the <code>StreamingDetectIntent</code> method.
 Multiple request messages should be sent in order:
-
-1.  The first message must contain `session`, `query_input` plus optionally
-    `query_params` and/or `single_utterance`. The message must not contain `input_audio`.
-
-2.  If `query_input` was set to a streaming input audio config,
-    all subsequent messages must contain only `input_audio`.
-    Otherwise, finish the request stream.
+1.  The first message must contain <code>session</code>, <code>query_input</code> plus optionally <code>query_params</code> and/or <code>single_utterance</code>. The message must not contain <code>input_audio</code>.
+2.  If <code>query_input</code> was set to a streaming input audio config, all subsequent messages must contain only <code>input_audio</code>. Otherwise, finish the request stream.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| session | [string](#string) |  | Required. The name of the session the query is sent to. Format of the session name: `projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;`. It’s up to the API caller to choose an appropriate &lt;session_uuid&gt;. It can be a random number or some type of user identifier (preferably hashed). The length of the session ID must not exceed 36 characters. |
+| session | [string](#string) |  | Required. The name of the session the query is sent to. Format of the session name: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code>. It&apos;s up to the API caller to choose an appropriate &lt;session_uuid&gt;. It can be a random number or some type of user identifier (preferably hashed). The length of the session ID must not exceed 36 characters. |
 | query_params | [QueryParameters](#ondewo.nlu.QueryParameters) |  | Optional. The parameters of this query. |
-| query_input | [QueryInput](#ondewo.nlu.QueryInput) |  | Required. The input specification. It can be set to:
-
-1. an audio config which instructs the speech recognizer how to process the speech audio,
-
-2. a conversational query in the form of text, or
-
-3. an event that specifies which intent to trigger. |
-| single_utterance | [bool](#bool) |  | Optional. If `false` (default), recognition does not cease until the client closes the stream. If `true`, the recognizer will detect a single spoken utterance in input audio. Recognition ceases when it detects the audio's voice has stopped or paused. In this case, once a detected intent is received, the client should close the stream and start a new request with a new stream as needed. This setting is ignored when `query_input` is a piece of text or an event. |
-| input_audio | [bytes](#bytes) |  | Optional. The input audio content to be recognized. Must be sent if `query_input` was set to a streaming input audio config. The complete audio over all streaming messages must not exceed 1 minute. |
+| query_input | [QueryInput](#ondewo.nlu.QueryInput) |  | Required. The input specification. It can be set to: <ol> <li>an audio config which instructs the speech recognizer how to process the speech audio,</li> <li>a conversational query in the form of text, or</li> <li>an event that specifies which intent to trigger.</li> </ol> |
+| single_utterance | [bool](#bool) |  | Optional. If <code>false</code> (default), recognition does not cease until the client closes the stream. If <code>true</code>, the recognizer will detect a single spoken utterance in input audio. Recognition ceases when it detects the audio&apos;s voice has stopped or paused. In this case, once a detected intent is received, the client should close the stream and start a new request with a new stream as needed. This setting is ignored when <code>query_input</code> is a piece of text or an event. |
+| input_audio | [bytes](#bytes) |  | Optional. The input audio content to be recognized. Must be sent if <code>query_input</code> was set to a streaming input audio config. The complete audio over all streaming messages must not exceed 1 minute. |
 
 
 
@@ -8963,18 +15811,10 @@ Multiple request messages should be sent in order:
 <a name="ondewo.nlu.StreamingDetectIntentResponse"></a>
 
 ### StreamingDetectIntentResponse
-The top-level message returned from the
-`StreamingDetectIntent` method.
-
+The top-level message returned from the <code>StreamingDetectIntent</code> method.
 Multiple response messages can be returned in order:
-
-1.  If the input was set to streaming audio, the first one or more messages
-    contain `recognition_result`. Each `recognition_result` represents a more
-    complete transcript of what the user said. The last `recognition_result`
-    has `is_final` set to `true`.
-
-2.  The next message contains `response_id`, `query_result`
-    and optionally `webhook_status` if a WebHook was called.
+1.  If the input was set to streaming audio, the first one or more messages contain <code>recognition_result</code>. Each <code>recognition_result</code> represents a more complete transcript of what the user said. The last <code>recognition_result</code> has <code>is_final</code> set to <code>true</code>.
+2.  The next message contains <code>response_id</code>, <code>query_result</code> and optionally <code>webhook_status</code> if a WebHook was called.
 
 
 | Field | Type | Label | Description |
@@ -8983,6 +15823,12 @@ Multiple response messages can be returned in order:
 | recognition_result | [StreamingRecognitionResult](#ondewo.nlu.StreamingRecognitionResult) |  | The result of speech recognition. |
 | query_result | [QueryResult](#ondewo.nlu.QueryResult) |  | The result of the conversational query or event processing. |
 | webhook_status | [google.rpc.Status](#google.rpc.Status) |  | Specifies the status of the webhook request. |
+| llm_call_started | [LlmCallStartedEvent](#ondewo.nlu.LlmCallStartedEvent) |  | Emitted when an LLM call has started. |
+| llm_call_finished | [LlmCallFinishedEvent](#ondewo.nlu.LlmCallFinishedEvent) |  | Emitted when an LLM call has finished. |
+| llm_tool_call_started | [LlmToolCallStartedEvent](#ondewo.nlu.LlmToolCallStartedEvent) |  | Emitted when an LLM tool call has started. |
+| llm_tool_call_finished | [LlmToolCallFinishedEvent](#ondewo.nlu.LlmToolCallFinishedEvent) |  | Emitted when an LLM tool call has finished. |
+| llm_thinking_delta | [LlmThinkingDeltaEvent](#ondewo.nlu.LlmThinkingDeltaEvent) |  | Emitted for an incremental LLM thinking (reasoning) update. |
+| llm_token_usage_update | [LlmTokenUsageUpdateEvent](#ondewo.nlu.LlmTokenUsageUpdateEvent) |  | Emitted when the running LLM token-usage totals are updated. |
 
 
 
@@ -8992,49 +15838,46 @@ Multiple response messages can be returned in order:
 <a name="ondewo.nlu.StreamingRecognitionResult"></a>
 
 ### StreamingRecognitionResult
-Contains a speech recognition result corresponding to a portion of the audio
-that is currently being processed or an indication that this is the end
-of the single requested utterance.
+Contains a speech recognition result corresponding to a portion of the audio that is currently being processed or an indication that this is the end of the single requested utterance.
 
 Example:
 
-1.  transcript: "tube"
+1.  transcript: &quot;tube&quot;
 
-2.  transcript: "to be a"
+2.  transcript: &quot;to be a&quot;
 
-3.  transcript: "to be"
+3.  transcript: &quot;to be&quot;
 
-4.  transcript: "to be or not to be"
+4.  transcript: &quot;to be or not to be&quot;
     is_final: true
 
-5.  transcript: " that's"
+5.  transcript: &quot; that&apos;s&quot;
 
-6.  transcript: " that is"
+6.  transcript: &quot; that is&quot;
 
-7.  recognition_event_type: `RECOGNITION_EVENT_END_OF_SINGLE_UTTERANCE`
+7.  recognition_event_type: <code>RECOGNITION_EVENT_END_OF_SINGLE_UTTERANCE</code>
 
-8.  transcript: " that is the question"
+8.  transcript: &quot; that is the question&quot;
     is_final: true
 
-Only two of the responses contain final results (#4 and #8 indicated by
-`is_final: true`). Concatenating these generates the full transcript: "to be
-or not to be that is the question".
+Only two of the responses contain final results (#4 and #8 indicated by <code>is_final: true</code>). Concatenating these generates the full transcript: <code>"to be or not to be that is the question"</code>.
 
 In each response we populate:
 
-*  for `MESSAGE_TYPE_TRANSCRIPT`: `transcript` and possibly `is_final`.
-
-*  for `MESSAGE_TYPE_END_OF_SINGLE_UTTERANCE`: only `event_type`.
+<ul>
+    <li>for <code>MESSAGE_TYPE_TRANSCRIPT</code>: <code>transcript</code> and possibly <code>is_final</code>.</li>
+    <li>for <code>MESSAGE_TYPE_END_OF_SINGLE_UTTERANCE</code>: only <code>event_type</code>.</li>
+</ul>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | message_type | [StreamingRecognitionResult.MessageType](#ondewo.nlu.StreamingRecognitionResult.MessageType) |  | Type of the result message. |
-| transcript | [string](#string) |  | Transcript text representing the words that the user spoke. Populated if and only if `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. |
-| is_final | [bool](#bool) |  | The default of 0.0 is a sentinel value indicating `confidence` was not set. If `false`, the `StreamingRecognitionResult` represents an interim result that may change. If `true`, the recognizer will not return any further hypotheses about this piece of the audio. May only be populated for `event_type` = `RECOGNITION_EVENT_TRANSCRIPT`. |
+| transcript | [string](#string) |  | Transcript text representing the words that the user spoke. Populated if and only if <code>event_type</code> = <code>RECOGNITION_EVENT_TRANSCRIPT</code>. |
+| is_final | [bool](#bool) |  | The default of 0.0 is a sentinel value indicating <code>confidence</code> was not set. If <code>false</code>, the <code>StreamingRecognitionResult</code> represents an interim result that may change. If <code>true</code>, the recognizer will not return any further hypotheses about this piece of the audio. May only be populated for <code>event_type</code> = <code>RECOGNITION_EVENT_TRANSCRIPT</code>. |
 | confidence | [float](#float) |  | The Speech confidence between 0.0 and 1.0 for the current portion of audio. A higher number indicates an estimated greater likelihood that the recognized words are correct. The default of 0.0 is a sentinel value indicating that confidence was not set.
 
-This field is typically only provided if `is_final` is true and you should not rely on it being accurate or even set. |
+This field is typically only provided if <code>is_final</code> is true and you should not rely on it being accurate or even set. |
 
 
 
@@ -9050,7 +15893,7 @@ Represents the natural language text to be processed.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | text | [string](#string) |  | Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 bytes. |
-| language_code | [string](#string) |  | Required. The language of this conversational query. See [Language Support](https://dialogflow.com/docs/languages) for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language. |
+| language_code | [string](#string) |  | Required. The language of this conversational query. See <a href="https://dialogflow.com/docs/languages">Language Support</a> for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language. |
 
 
 
@@ -9067,6 +15910,22 @@ This message is a request to update a session comment
 | ----- | ---- | ----- | ----------- |
 | session_id | [string](#string) |  | The id of the session |
 | comment | [Comment](#ondewo.nlu.Comment) |  | The comment of a session to be updated |
+
+
+
+
+
+
+<a name="ondewo.nlu.UpdateSessionFeedbackRequest"></a>
+
+### UpdateSessionFeedbackRequest
+Request to update (revise) an existing feedback.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| feedback | [SessionFeedback](#ondewo.nlu.SessionFeedback) |  | The feedback to update; feedback.name identifies the record. |
+| update_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The fields of the feedback to update. |
 
 
 
@@ -9120,19 +15979,18 @@ Represents a video file resource (e.g., MP4, AVI).
 
 ### AudioEncoding
 Audio encoding of the audio content sent in the conversational query request.
-Refer to the [Cloud Speech API documentation](/speech/docs/basics) for more
-details.
+Refer to the <a href="/speech/docs/basics">Cloud Speech API documentation</a> for more details.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
 | AUDIO_ENCODING_UNSPECIFIED | 0 | Not specified. |
 | AUDIO_ENCODING_LINEAR_16 | 1 | Uncompressed 16-bit signed little-endian samples (Linear PCM). |
-| AUDIO_ENCODING_FLAC | 2 | [`FLAC`](https://xiph.org/flac/documentation.html) (Free Lossless Audio Codec) is the recommended encoding because it is lossless (therefore recognition is not compromised) and requires only about half the bandwidth of `LINEAR16`. `FLAC` stream encoding supports 16-bit and 24-bit samples, however, not all fields in `STREAMINFO` are supported. |
+| AUDIO_ENCODING_FLAC | 2 | <a href="https://xiph.org/flac/documentation.html">FLAC</a> (Free Lossless Audio Codec) is the recommended encoding because it is lossless (therefore recognition is not compromised) and requires only about half the bandwidth of <code>LINEAR16</code>. <code>FLAC</code> stream encoding supports 16-bit and 24-bit samples, however, not all fields in <code>STREAMINFO</code> are supported. |
 | AUDIO_ENCODING_MULAW | 3 | 8-bit samples that compand 14-bit audio samples using G.711 PCMU/mu-law. |
-| AUDIO_ENCODING_AMR | 4 | Adaptive Multi-Rate Narrowband codec. `sample_rate_hertz` must be 8000. |
-| AUDIO_ENCODING_AMR_WB | 5 | Adaptive Multi-Rate wideband codec. `sample_rate_hertz` must be 16000. |
-| AUDIO_ENCODING_OGG_OPUS | 6 | Opus encoded audio frames in Ogg container ([OggOpus](https://wiki.xiph.org/OggOpus)). `sample_rate_hertz` must be 16000. |
-| AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE | 7 | Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, `OGG_OPUS` is highly preferred over Speex encoding. The [Speex](https://speex.org/) encoding supported by Dialogflow API has a header byte in each block, as in MIME type `audio/x-speex-with-header-byte`. It is a variant of the RTP Speex encoding defined in [RFC 5574](https://tools.ietf.org/html/rfc5574). The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. `sample_rate_hertz` must be 16000. |
+| AUDIO_ENCODING_AMR | 4 | Adaptive Multi-Rate Narrowband codec. <code>sample_rate_hertz</code> must be 8000. |
+| AUDIO_ENCODING_AMR_WB | 5 | Adaptive Multi-Rate wideband codec. <code>sample_rate_hertz</code> must be 16000. |
+| AUDIO_ENCODING_OGG_OPUS | 6 | Opus encoded audio frames in Ogg container (<a href="https://wiki.xiph.org/OggOpus">OggOpus</a>). <code>sample_rate_hertz</code> must be 16000. |
+| AUDIO_ENCODING_SPEEX_WITH_HEADER_BYTE | 7 | Although the use of lossy encodings is not recommended, if a very low bitrate encoding is required, <code>OGG_OPUS</code> is highly preferred over Speex encoding. The <a href="https://speex.org/">Speex</a> encoding supported by Dialogflow API has a header byte in each block, as in MIME type <code>audio/x-speex-with-header-byte</code>. It is a variant of the RTP Speex encoding defined in <a href="https://tools.ietf.org/html/rfc5574">RFC 5574</a>. The stream is a sequence of blocks, one block per RTP packet. Each block starts with a byte containing the length of the block, in bytes, followed by one or more frames of Speex data, padded to an integral number of bytes (octets) as specified in RFC 5574. In other words, each RTP header is replaced with a single byte containing the block length. Only Speex wideband is supported. <code>sample_rate_hertz</code> must be 16000. |
 
 
 
@@ -9167,6 +16025,92 @@ Type of operator to compare
 
 
 
+<a name="ondewo.nlu.FeedbackAuthorType"></a>
+
+### FeedbackAuthorType
+Who left a piece of feedback — distinguishes trusted reviewers from anonymous production end-users.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| FEEDBACK_AUTHOR_TYPE_UNSPECIFIED | 0 | Unknown author type. |
+| FEEDBACK_AUTHOR_TYPE_HUMAN_REVIEWER | 1 | A logged-in human reviewer / test user (an authenticated Keycloak identity; annotator_user_id is set). |
+| FEEDBACK_AUTHOR_TYPE_TECHNICAL_USER | 2 | A technical / service user. |
+| FEEDBACK_AUTHOR_TYPE_END_USER_ANONYMOUS | 3 | An anonymous production end-user of the webchat / webphone channel (no authenticated identity; identified only by the session and channel origin). |
+
+
+
+<a name="ondewo.nlu.FeedbackRating"></a>
+
+### FeedbackRating
+The thumbs rating a user gives as feedback.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| FEEDBACK_RATING_UNSPECIFIED | 0 | No rating provided (e.g. a comment-only feedback). |
+| FEEDBACK_RATING_THUMBS_UP | 1 | Positive feedback (thumbs up). |
+| FEEDBACK_RATING_THUMBS_DOWN | 2 | Negative feedback (thumbs down). |
+
+
+
+<a name="ondewo.nlu.FeedbackScope"></a>
+
+### FeedbackScope
+The scope a feedback filter targets: session-level, step-level, or both.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| FEEDBACK_SCOPE_UNSPECIFIED | 0 | Both session-level and step-level feedback. |
+| FEEDBACK_SCOPE_SESSION_LEVEL | 1 | Only session-level feedback (session_step_id empty). |
+| FEEDBACK_SCOPE_STEP_LEVEL | 2 | Only session-step-level feedback (session_step_id set). |
+
+
+
+<a name="ondewo.nlu.FeedbackTimeGranularity"></a>
+
+### FeedbackTimeGranularity
+The calendar granularity of a feedback time series. When set (non-unspecified) it overrides the
+fixed-width bucket_width_seconds on the request.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| FEEDBACK_TIME_GRANULARITY_UNSPECIFIED | 0 | Unspecified — use the request's fixed-width bucket_width_seconds instead. |
+| FEEDBACK_TIME_GRANULARITY_HOUR | 1 | Hourly calendar buckets. |
+| FEEDBACK_TIME_GRANULARITY_DAY | 2 | Daily calendar buckets. |
+| FEEDBACK_TIME_GRANULARITY_WEEK | 3 | Weekly calendar buckets (ISO weeks, Monday start). |
+| FEEDBACK_TIME_GRANULARITY_MONTH | 4 | Monthly calendar buckets. |
+| FEEDBACK_TIME_GRANULARITY_YEAR | 5 | Yearly calendar buckets. |
+
+
+
+<a name="ondewo.nlu.LlmSafetyLocation"></a>
+
+### LlmSafetyLocation
+Where a safety finding was located in the LLM call.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| LLM_SAFETY_LOCATION_UNSPECIFIED | 0 | Default / unset. |
+| LLM_SAFETY_LOCATION_INPUT | 1 | The finding was matched in the model input (prompt / user turn). |
+| LLM_SAFETY_LOCATION_OUTPUT | 2 | The finding was matched in the model output (completion). |
+
+
+
+<a name="ondewo.nlu.ReasoningEffort"></a>
+
+### ReasoningEffort
+Effort level for reasoning models (e.g. o1, o3). Controls the trade-off
+between speed and quality.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| REASONING_EFFORT_UNSPECIFIED | 0 | Unspecified reasoning effort. |
+| REASONING_EFFORT_MINIMAL | 1 | Minimal reasoning effort. |
+| REASONING_EFFORT_LOW | 2 | Low reasoning effort. |
+| REASONING_EFFORT_MEDIUM | 3 | Medium reasoning effort. |
+| REASONING_EFFORT_HIGH | 4 | High reasoning effort. |
+
+
+
 <a name="ondewo.nlu.ResourceView"></a>
 
 ### ResourceView
@@ -9185,8 +16129,7 @@ Represents the options for views of resources.
 
 ### Session.View
 Represents the options for views of a session.
-A session can be a sizable object. Therefore, we provide a resource view that
-does not return all data
+A session can be a sizable object. Therefore, we provide a resource view that does not return all data
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -9200,8 +16143,7 @@ does not return all data
 
 ### SessionReview.View
 Represents the options for views of a session_review.
-A session_review can be a sizable object. Therefore, we provide a resource view that
-does not return all data
+A session_review can be a sizable object. Therefore, we provide a resource view that does not return all data
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -9220,20 +16162,21 @@ Type of the response message.
 | ---- | ------ | ----------- |
 | MESSAGE_TYPE_UNSPECIFIED | 0 | Not specified. Should never be used. |
 | TRANSCRIPT | 1 | Message contains a (possibly partial) transcript. |
-| END_OF_SINGLE_UTTERANCE | 2 | Event indicates that the server has detected the end of the user's speech utterance and expects no additional speech. Therefore, the server will not process additional audio (although it may subsequently return additional results). The client should stop sending additional audio data, half-close the gRPC connection, and wait for any additional results until the server closes the gRPC connection. This message is only sent if `single_utterance` was set to `true`, and is not used otherwise. |
+| END_OF_SINGLE_UTTERANCE | 2 | Event indicates that the server has detected the end of the user&apos;s speech utterance and expects no additional speech. Therefore, the server will not process additional audio (although it may subsequently return additional results). The client should stop sending additional audio data, half-close the gRPC connection, and wait for any additional results until the server closes the gRPC connection. This message is only sent if <code>single_utterance</code> was set to <code>true</code>, and is not used otherwise. |
 
 
 
 <a name="ondewo.nlu.TranscriptionType"></a>
 
 ### TranscriptionType
-
+Identifies whether a transcription was produced by an automatic
+speech-to-text system or by a human annotator.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
-| TRANSCRIPTION_TYPE_UNSPECIFIED | 0 | unspecified |
-| TRANSCRIPTION_TYPE_S2T | 1 | Automatic transcription by a speech to text system |
-| TRANSCRIPTION_TYPE_HUMAN | 2 | Manual human transcription |
+| TRANSCRIPTION_TYPE_UNSPECIFIED | 0 | Sentinel value when the source of the transcription was not specified. |
+| TRANSCRIPTION_TYPE_S2T | 1 | Automatic transcription produced by a speech-to-text system. |
+| TRANSCRIPTION_TYPE_HUMAN | 2 | Manual transcription produced by a human annotator. |
 
 
  <!-- end enums -->
@@ -9244,16 +16187,13 @@ Type of the response message.
 <a name="ondewo.nlu.Sessions"></a>
 
 ### Sessions
-A session represents an interaction with a user. You retrieve user input
-and pass it to the [DetectIntent][google.cloud.dialogflow.v2.Sessions.DetectIntent] (or
-[StreamingDetectIntent][google.cloud.dialogflow.v2.Sessions.StreamingDetectIntent]) method to determine
-user intent and respond.
+A session represents an interaction with a user. You retrieve user input and pass it to the <a href="index.html#ondewo.nlu.Sessions.DetectIntent">DetectIntent</a> (or <a href="index.html#ondewo.nlu.Sessions.StreamingDetectIntent">StreamingDetectIntent</a>) method to determine user intent and respond.
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | DetectIntent | [DetectIntentRequest](#ondewo.nlu.DetectIntentRequest) | [DetectIntentResponse](#ondewo.nlu.DetectIntentResponse) | Processes a natural language query and returns structured, actionable data as a result. This method is not idempotent, because it may cause contexts and session entity types to be updated, which in turn might affect results of future queries. |
 | StreamingDetectIntent | [StreamingDetectIntentRequest](#ondewo.nlu.StreamingDetectIntentRequest) stream | [StreamingDetectIntentResponse](#ondewo.nlu.StreamingDetectIntentResponse) stream | Processes a natural language query in audio format in a streaming fashion and returns structured, actionable data as a result. This method is only available via the gRPC API (not REST). |
-| ListSessions | [ListSessionsRequest](#ondewo.nlu.ListSessionsRequest) | [ListSessionsResponse](#ondewo.nlu.ListSessionsResponse) | SESSION RELATED ENDPOINTS *** // ListSessions: returns list of sessions from ondewo-kb; by default returns only session IDs |
+| ListSessions | [ListSessionsRequest](#ondewo.nlu.ListSessionsRequest) | [ListSessionsResponse](#ondewo.nlu.ListSessionsResponse) | ListSessions: returns list of sessions from ondewo-kb; by default returns only session IDs |
 | GetSession | [GetSessionRequest](#ondewo.nlu.GetSessionRequest) | [Session](#ondewo.nlu.Session) | GetSession: returns a session(=conversation) from ondewo-kb |
 | CreateSession | [CreateSessionRequest](#ondewo.nlu.CreateSessionRequest) | [Session](#ondewo.nlu.Session) | CreateSession: creates and returns a session(=conversation) from ondewo-kb |
 | CreateSessionStep | [CreateSessionStepRequest](#ondewo.nlu.CreateSessionStepRequest) | [SessionStep](#ondewo.nlu.SessionStep) | CreateSessionStep: creates a new session step for a session |
@@ -9261,28 +16201,38 @@ user intent and respond.
 | UpdateSessionStep | [UpdateSessionStepRequest](#ondewo.nlu.UpdateSessionStepRequest) | [SessionStep](#ondewo.nlu.SessionStep) | UpdateSessionStep: updates an existing session step in a session |
 | DeleteSessionStep | [DeleteSessionStepRequest](#ondewo.nlu.DeleteSessionStepRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | DeleteSessionStep: deletes an existing session step from the session |
 | DeleteSession | [DeleteSessionRequest](#ondewo.nlu.DeleteSessionRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | DeleteSession: delete a session(=conversation) from ondewo-kb (for testing only) |
-| ListSessionLabels | [ListSessionLabelsRequest](#ondewo.nlu.ListSessionLabelsRequest) | [ListSessionLabelsResponse](#ondewo.nlu.ListSessionLabelsResponse) | SESSION-LABEL RELATED ENDPOINTS *** // |
-| ListSessionLabelsOfAllSessions | [ListSessionLabelsOfAllSessionsRequest](#ondewo.nlu.ListSessionLabelsOfAllSessionsRequest) | [ListSessionLabelsResponse](#ondewo.nlu.ListSessionLabelsResponse) |  |
-| ListLanguageCodesOfAllSessions | [ListLanguageCodesOfAllSessionsRequest](#ondewo.nlu.ListLanguageCodesOfAllSessionsRequest) | [ListLanguageCodesResponse](#ondewo.nlu.ListLanguageCodesResponse) |  |
-| ListMatchedIntentsOfAllSessions | [ListMatchedIntentsOfAllSessionsRequest](#ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest) | [ListMatchedIntentsResponse](#ondewo.nlu.ListMatchedIntentsResponse) |  |
-| ListMatchedEntityTypesOfAllSessions | [ListMatchedEntityTypesOfAllSessionsRequest](#ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest) | [ListMatchedEntityTypesResponse](#ondewo.nlu.ListMatchedEntityTypesResponse) |  |
-| ListUserIdsOfAllSessions | [ListUserIdsOfAllSessionsRequest](#ondewo.nlu.ListUserIdsOfAllSessionsRequest) | [ListUserIdsResponse](#ondewo.nlu.ListUserIdsResponse) |  |
-| ListIdentifiedUserIdsOfAllSessions | [ListIdentifiedUserIdsOfAllSessionsRequest](#ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest) | [ListIdentifiedUserIdsResponse](#ondewo.nlu.ListIdentifiedUserIdsResponse) |  |
-| ListTagsOfAllSessions | [ListTagsOfAllSessionsRequest](#ondewo.nlu.ListTagsOfAllSessionsRequest) | [ListTagsResponse](#ondewo.nlu.ListTagsResponse) |  |
-| ListInputContextsOfAllSessions | [ListInputContextsOfAllSessionsRequest](#ondewo.nlu.ListInputContextsOfAllSessionsRequest) | [ListInputContextsResponse](#ondewo.nlu.ListInputContextsResponse) |  |
-| ListOutputContextsOfAllSessions | [ListOutputContextsOfAllSessionsRequest](#ondewo.nlu.ListOutputContextsOfAllSessionsRequest) | [ListOutputContextsResponse](#ondewo.nlu.ListOutputContextsResponse) |  |
-| ListPlatformsOfAllSessions | [ListPlatformsOfAllSessionsRequest](#ondewo.nlu.ListPlatformsOfAllSessionsRequest) | [ListPlatformsResponse](#ondewo.nlu.ListPlatformsResponse) |  |
-| ListAccountIdsOfAllSessions | [ListAccountIdsOfAllSessionsRequest](#ondewo.nlu.ListAccountIdsOfAllSessionsRequest) | [ListAccountIdsResponse](#ondewo.nlu.ListAccountIdsResponse) |  |
-| ListPropertyIdsOfAllSessions | [ListPropertyIdsOfAllSessionsRequest](#ondewo.nlu.ListPropertyIdsOfAllSessionsRequest) | [ListPropertyIdsResponse](#ondewo.nlu.ListPropertyIdsResponse) |  |
-| ListDatastreamIdsOfAllSessions | [ListDatastreamIdsOfAllSessionsRequest](#ondewo.nlu.ListDatastreamIdsOfAllSessionsRequest) | [ListDatastreamIdsResponse](#ondewo.nlu.ListDatastreamIdsResponse) |  |
-| ListOriginIdsOfAllSessions | [ListOriginIdsOfAllSessionsRequest](#ondewo.nlu.ListOriginIdsOfAllSessionsRequest) | [ListOriginIdsResponse](#ondewo.nlu.ListOriginIdsResponse) |  |
-| AddSessionLabels | [AddSessionLabelsRequest](#ondewo.nlu.AddSessionLabelsRequest) | [Session](#ondewo.nlu.Session) |  |
-| DeleteSessionLabels | [DeleteSessionLabelsRequest](#ondewo.nlu.DeleteSessionLabelsRequest) | [Session](#ondewo.nlu.Session) |  |
-| AddSessionComment | [AddSessionCommentRequest](#ondewo.nlu.AddSessionCommentRequest) | [Comment](#ondewo.nlu.Comment) |  |
-| DeleteSessionComments | [DeleteSessionCommentsRequest](#ondewo.nlu.DeleteSessionCommentsRequest) | [Session](#ondewo.nlu.Session) |  |
-| UpdateSessionComments | [UpdateSessionCommentsRequest](#ondewo.nlu.UpdateSessionCommentsRequest) | [Session](#ondewo.nlu.Session) |  |
-| ListSessionComments | [ListSessionCommentsRequest](#ondewo.nlu.ListSessionCommentsRequest) | [ListSessionCommentsResponse](#ondewo.nlu.ListSessionCommentsResponse) |  |
-| ListSessionReviews | [ListSessionReviewsRequest](#ondewo.nlu.ListSessionReviewsRequest) | [ListSessionReviewsResponse](#ondewo.nlu.ListSessionReviewsResponse) | SESSION-REVIEW RELATED ENDPOINTS *** // ListSessionReviews: returns list of session reviews from ondewo-kb; by default only returns session review IDs |
+| ListSessionLabels | [ListSessionLabelsRequest](#ondewo.nlu.ListSessionLabelsRequest) | [ListSessionLabelsResponse](#ondewo.nlu.ListSessionLabelsResponse) | Returns the list of labels attached to a single session. |
+| ListSessionLabelsOfAllSessions | [ListSessionLabelsOfAllSessionsRequest](#ondewo.nlu.ListSessionLabelsOfAllSessionsRequest) | [ListSessionLabelsResponse](#ondewo.nlu.ListSessionLabelsResponse) | Returns the distinct set of labels observed across all sessions of the agent, optionally narrowed by a SessionFilter. |
+| ListLanguageCodesOfAllSessions | [ListLanguageCodesOfAllSessionsRequest](#ondewo.nlu.ListLanguageCodesOfAllSessionsRequest) | [ListLanguageCodesResponse](#ondewo.nlu.ListLanguageCodesResponse) | Returns the distinct set of language codes observed across all sessions of the agent, optionally narrowed by a SessionFilter. |
+| ListMatchedIntentsOfAllSessions | [ListMatchedIntentsOfAllSessionsRequest](#ondewo.nlu.ListMatchedIntentsOfAllSessionsRequest) | [ListMatchedIntentsResponse](#ondewo.nlu.ListMatchedIntentsResponse) | Returns the distinct set of intents matched across all sessions of the agent, optionally narrowed by a SessionFilter. |
+| ListMatchedEntityTypesOfAllSessions | [ListMatchedEntityTypesOfAllSessionsRequest](#ondewo.nlu.ListMatchedEntityTypesOfAllSessionsRequest) | [ListMatchedEntityTypesResponse](#ondewo.nlu.ListMatchedEntityTypesResponse) | Returns the distinct set of entity types recognised across all sessions of the agent, optionally narrowed by a SessionFilter. |
+| ListUserIdsOfAllSessions | [ListUserIdsOfAllSessionsRequest](#ondewo.nlu.ListUserIdsOfAllSessionsRequest) | [ListUserIdsResponse](#ondewo.nlu.ListUserIdsResponse) | Returns the distinct set of <code>user_id</code> values observed across all sessions of the agent, optionally narrowed by a SessionFilter. |
+| ListIdentifiedUserIdsOfAllSessions | [ListIdentifiedUserIdsOfAllSessionsRequest](#ondewo.nlu.ListIdentifiedUserIdsOfAllSessionsRequest) | [ListIdentifiedUserIdsResponse](#ondewo.nlu.ListIdentifiedUserIdsResponse) | Returns the distinct set of <code>identified_user_id</code> values observed across all sessions of the agent, optionally narrowed by a SessionFilter. |
+| ListTagsOfAllSessions | [ListTagsOfAllSessionsRequest](#ondewo.nlu.ListTagsOfAllSessionsRequest) | [ListTagsResponse](#ondewo.nlu.ListTagsResponse) | Returns the distinct set of intent tags observed across all sessions of the agent, optionally narrowed by a SessionFilter. |
+| ListInputContextsOfAllSessions | [ListInputContextsOfAllSessionsRequest](#ondewo.nlu.ListInputContextsOfAllSessionsRequest) | [ListInputContextsResponse](#ondewo.nlu.ListInputContextsResponse) | Returns the distinct set of input contexts observed across all sessions of the agent, optionally narrowed by a SessionFilter. |
+| ListOutputContextsOfAllSessions | [ListOutputContextsOfAllSessionsRequest](#ondewo.nlu.ListOutputContextsOfAllSessionsRequest) | [ListOutputContextsResponse](#ondewo.nlu.ListOutputContextsResponse) | Returns the distinct set of output contexts observed across all sessions of the agent, optionally narrowed by a SessionFilter. |
+| ListPlatformsOfAllSessions | [ListPlatformsOfAllSessionsRequest](#ondewo.nlu.ListPlatformsOfAllSessionsRequest) | [ListPlatformsResponse](#ondewo.nlu.ListPlatformsResponse) | Returns the distinct set of <code>Intent.Message.Platform</code> values observed across all sessions of the agent, optionally narrowed by a SessionFilter. |
+| ListAccountIdsOfAllSessions | [ListAccountIdsOfAllSessionsRequest](#ondewo.nlu.ListAccountIdsOfAllSessionsRequest) | [ListAccountIdsResponse](#ondewo.nlu.ListAccountIdsResponse) | Returns the distinct set of <code>account_id</code> values observed across all sessions of the agent, optionally narrowed by a SessionFilter. |
+| ListPropertyIdsOfAllSessions | [ListPropertyIdsOfAllSessionsRequest](#ondewo.nlu.ListPropertyIdsOfAllSessionsRequest) | [ListPropertyIdsResponse](#ondewo.nlu.ListPropertyIdsResponse) | Returns the distinct set of <code>property_id</code> values observed across all sessions of the agent, optionally narrowed by a SessionFilter. |
+| ListDatastreamIdsOfAllSessions | [ListDatastreamIdsOfAllSessionsRequest](#ondewo.nlu.ListDatastreamIdsOfAllSessionsRequest) | [ListDatastreamIdsResponse](#ondewo.nlu.ListDatastreamIdsResponse) | Returns the distinct set of <code>datastream_id</code> values observed across all sessions of the agent, optionally narrowed by a SessionFilter. |
+| ListOriginIdsOfAllSessions | [ListOriginIdsOfAllSessionsRequest](#ondewo.nlu.ListOriginIdsOfAllSessionsRequest) | [ListOriginIdsResponse](#ondewo.nlu.ListOriginIdsResponse) | Returns the distinct set of <code>origin_id</code> values observed across all sessions of the agent, optionally narrowed by a SessionFilter. |
+| AddSessionLabels | [AddSessionLabelsRequest](#ondewo.nlu.AddSessionLabelsRequest) | [Session](#ondewo.nlu.Session) | Attaches the supplied labels to a session and returns the updated session. |
+| DeleteSessionLabels | [DeleteSessionLabelsRequest](#ondewo.nlu.DeleteSessionLabelsRequest) | [Session](#ondewo.nlu.Session) | Removes the supplied labels from a session and returns the updated session. |
+| AddSessionComment | [AddSessionCommentRequest](#ondewo.nlu.AddSessionCommentRequest) | [Comment](#ondewo.nlu.Comment) | Appends a comment to a session and returns the persisted comment. |
+| DeleteSessionComments | [DeleteSessionCommentsRequest](#ondewo.nlu.DeleteSessionCommentsRequest) | [Session](#ondewo.nlu.Session) | Removes the comments named in the request from a session and returns the updated session. |
+| UpdateSessionComments | [UpdateSessionCommentsRequest](#ondewo.nlu.UpdateSessionCommentsRequest) | [Session](#ondewo.nlu.Session) | Updates an existing comment on a session and returns the updated session. |
+| ListSessionComments | [ListSessionCommentsRequest](#ondewo.nlu.ListSessionCommentsRequest) | [ListSessionCommentsResponse](#ondewo.nlu.ListSessionCommentsResponse) | Lists the comments attached to a session with pagination support, optionally narrowed by resolved status. |
+| ListSessionCommentsOfAllSessions | [ListSessionCommentsOfAllSessionsRequest](#ondewo.nlu.ListSessionCommentsOfAllSessionsRequest) | [ListSessionCommentsResponse](#ondewo.nlu.ListSessionCommentsResponse) | Lists the comments attached to all sessions of the agent with pagination support, optionally narrowed by a SessionFilter and by resolved status. |
+| AddSessionFeedback | [AddSessionFeedbackRequest](#ondewo.nlu.AddSessionFeedbackRequest) | [SessionFeedback](#ondewo.nlu.SessionFeedback) | Records user feedback (thumbs up/down + optional comment + optional score/categorical value) about a whole session and returns the persisted feedback. Works for authenticated reviewers/test users and, where enabled, anonymous production end-users (webchat/webphone). |
+| AddSessionStepFeedback | [AddSessionStepFeedbackRequest](#ondewo.nlu.AddSessionStepFeedbackRequest) | [SessionFeedback](#ondewo.nlu.SessionFeedback) | Records user feedback about a single session step (turn), pinned to the exact response, and returns the persisted feedback. |
+| GetSessionFeedback | [GetSessionFeedbackRequest](#ondewo.nlu.GetSessionFeedbackRequest) | [SessionFeedback](#ondewo.nlu.SessionFeedback) | Returns a single session/step feedback by its resource name. |
+| UpdateSessionFeedback | [UpdateSessionFeedbackRequest](#ondewo.nlu.UpdateSessionFeedbackRequest) | [SessionFeedback](#ondewo.nlu.SessionFeedback) | Updates an existing feedback (a user revising their thumbs / comment) and returns it. |
+| DeleteSessionFeedback | [DeleteSessionFeedbackRequest](#ondewo.nlu.DeleteSessionFeedbackRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes a feedback (a user withdrawing their feedback). |
+| ListSessionFeedback | [ListSessionFeedbackRequest](#ondewo.nlu.ListSessionFeedbackRequest) | [ListSessionFeedbackResponse](#ondewo.nlu.ListSessionFeedbackResponse) | Lists all feedback (session-level and step-level) attached to a session with pagination support. |
+| ListSessionFeedbackOfAllSessions | [ListSessionFeedbackOfAllSessionsRequest](#ondewo.nlu.ListSessionFeedbackOfAllSessionsRequest) | [ListSessionFeedbackResponse](#ondewo.nlu.ListSessionFeedbackResponse) | Lists feedback across all sessions of the agent, optionally narrowed by a SessionFilter. |
+| GetFeedbackStatistics | [GetFeedbackStatisticsRequest](#ondewo.nlu.GetFeedbackStatisticsRequest) | [GetFeedbackStatisticsResponse](#ondewo.nlu.GetFeedbackStatisticsResponse) | Returns aggregated feedback statistics for an agent (thumbs up/down counts + breakdowns), optionally rolling up existing session reviews and comments as additional quality signals. |
+| GetFeedbackStatisticsTimeSeries | [GetFeedbackStatisticsTimeSeriesRequest](#ondewo.nlu.GetFeedbackStatisticsTimeSeriesRequest) | [GetFeedbackStatisticsTimeSeriesResponse](#ondewo.nlu.GetFeedbackStatisticsTimeSeriesResponse) | Returns feedback statistics bucketed over time for trend charts. |
+| ListSessionReviews | [ListSessionReviewsRequest](#ondewo.nlu.ListSessionReviewsRequest) | [ListSessionReviewsResponse](#ondewo.nlu.ListSessionReviewsResponse) | ListSessionReviews: returns list of session reviews from ondewo-kb; by default only returns session review IDs |
 | GetSessionReview | [GetSessionReviewRequest](#ondewo.nlu.GetSessionReviewRequest) | [SessionReview](#ondewo.nlu.SessionReview) | GetSessionReview: returns a session-review from ondewo-kb or computes the first review if none exists |
 | GetLatestSessionReview | [GetLatestSessionReviewRequest](#ondewo.nlu.GetLatestSessionReviewRequest) | [SessionReview](#ondewo.nlu.SessionReview) | GetLatestSessionReview: returns a session-review from ondewo-kb or computes the first review if none exists |
 | CreateSessionReview | [CreateSessionReviewRequest](#ondewo.nlu.CreateSessionReviewRequest) | [SessionReview](#ondewo.nlu.SessionReview) | CreateSessionReview: persist a session review in ondewo-kb as a side effect: also update training data in ondewo-cai |
@@ -9311,7 +16261,7 @@ Request to create server role
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| role | [ServerRole](#ondewo.nlu.ServerRole) |  | If the role_id is not provided, an incremental value will be assigned The "name" and "role_type" are mandatory values The permissions all default to False if not provided specifically |
+| role | [ServerRole](#ondewo.nlu.ServerRole) |  | If the role_id is not provided, an incremental value will be assigned The &quot;name&quot; and &quot;role_type&quot; are mandatory values The permissions all default to False if not provided specifically |
 
 
 
@@ -9375,7 +16325,7 @@ Request to delete specific user preferences.
 | ----- | ---- | ----- | ----------- |
 | user_name | [string](#string) |  | The name of the user. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/users/&lt;user_uuid&gt;</code></pre> |
 | keys | [string](#string) | repeated | List of keys to delete from user preferences. |
-| regex_include | [string](#string) |  | Optional: In addition to the keys specified also include all <pre>keys</pre> that match the provided <pre>regex_include</pre> regular expression. If user does not add regex_filter, then only the keys specified in the keys field are deleted. If both, a key in the keys field and in the regex_include is matched then the key is deleted without raising an error. |
+| regex_include | [string](#string) |  | Optional: In addition to the keys specified also include all <code>keys</code> that match the provided <code>regex_include</code> regular expression. If user does not add regex_filter, then only the keys specified in the keys field are deleted. If both, a key in the keys field and in the regex_include is matched then the key is deleted without raising an error. |
 
 
 
@@ -9424,6 +16374,7 @@ Request to get server role
 | ----- | ---- | ----- | ----------- |
 | role_id | [uint32](#uint32) |  | role is identified by role id |
 | role_name | [string](#string) |  | role can also be uniquely identified by its name |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -9440,7 +16391,8 @@ Request to get user preferences.
 | ----- | ---- | ----- | ----------- |
 | user_name | [string](#string) |  | The name of the user. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/users/&lt;user_uuid&gt;</code></pre> |
 | keys | [string](#string) | repeated | Specific keys to retrieve from user preferences. If keys are specified multiple times then only one KeyValue pair is returned |
-| regex_include | [string](#string) |  | Optional: In addition to the keys specified also include all <pre>keys</pre> that match the provided <pre>regex_include</pre> regular expression. If user does not add regex_filter, then only the keys specified in the keys field are returned. If both, a key in the keys field and in the regex_include will be matched than only a single <pre>KeyValuePair</pre> is returned. |
+| regex_include | [string](#string) |  | Optional: In addition to the keys specified also include all <code>keys</code> that match the provided <code>regex_include</code> regular expression. If user does not add regex_filter, then only the keys specified in the keys field are returned. If both, a key in the keys field and in the regex_include will be matched than only a single <code>KeyValuePair</code> is returned. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -9474,6 +16426,7 @@ Request to get user
 | ----- | ---- | ----- | ----------- |
 | user_id | [string](#string) |  | the user is identified by user id |
 | user_email | [string](#string) |  | the user can identified by their email |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional field mask to specify which fields to return in the response |
 
 
 
@@ -9490,13 +16443,14 @@ Server permissions
 | ----- | ---- | ----- | ----------- |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - Retrieves the first page with a page size of 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li><code>&quot;&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size-20&quot;</code></li> <li><code>&quot;current_index-10--page_size-20&quot;</code></li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li><code>&quot;1&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index--1--page_size-20&quot;</code></li> <li><code>&quot;current_index1--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size--20&quot;</code></li> </ul> |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -9529,13 +16483,14 @@ Request to list server roles
 | ----- | ---- | ----- | ----------- |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - Retrieves the first page with a page size of 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li><code>&quot;&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size-20&quot;</code></li> <li><code>&quot;current_index-10--page_size-20&quot;</code></li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li><code>&quot;1&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index--1--page_size-20&quot;</code></li> <li><code>&quot;current_index1--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size--20&quot;</code></li> </ul> |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -9584,6 +16539,7 @@ Request to list all user preferences for a specific user.
 | ----- | ---- | ----- | ----------- |
 | user_name | [string](#string) |  | The name of the user. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/users/&lt;user_uuid&gt;</code></pre> |
 | regex_filter | [string](#string) |  | Optional: Only list keys that match the provided regular expression |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -9617,13 +16573,14 @@ Request to list user
 | ----- | ---- | ----- | ----------- |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - Retrieves the first page with a page size of 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li><code>&quot;&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size-20&quot;</code></li> <li><code>&quot;current_index-10--page_size-20&quot;</code></li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li><code>&quot;1&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index--1--page_size-20&quot;</code></li> <li><code>&quot;current_index1--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size--20&quot;</code></li> </ul> |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. The mask to control which fields gets returned. |
 
 
 
@@ -9640,38 +16597,6 @@ Response containing list of users
 | ----- | ---- | ----- | ----------- |
 | users | [User](#ondewo.nlu.User) | repeated | The list of users. There will be a maximum number of items returned based on the page_token field in the request. |
 | next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. next_page_token is current_index-2 |
-
-
-
-
-
-
-<a name="ondewo.nlu.LoginRequest"></a>
-
-### LoginRequest
-Authentication messages
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| user_email | [string](#string) |  | user email |
-| password | [string](#string) |  | user password |
-
-
-
-
-
-
-<a name="ondewo.nlu.LoginResponse"></a>
-
-### LoginResponse
-This message is a response of logging
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| user | [User](#ondewo.nlu.User) |  | user object - user_id must be there |
-| auth_token | [string](#string) |  | authentication token after successful login of the user to access NLU services |
 
 
 
@@ -9774,7 +16699,7 @@ this message contains all the fields that required for user db
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | user_id | [string](#string) |  | when creating user user_id is empty, then it will be generated on creation time on backend |
-| display_name | [string](#string) |  | Optional field display_name is the name that will be used on the frontend to interact with the user it shouldn't be unique. If not provided user_name will also be used as display name |
+| display_name | [string](#string) |  | Optional field display_name is the name that will be used on the frontend to interact with the user it shouldn&apos;t be unique. If not provided user_name will also be used as display name |
 | server_role_id | [uint32](#uint32) |  | server role type of the given user. If nothing is provided, the user is set to USER (minimum access) |
 | user_email | [string](#string) |  | user e-mail should be a valid e-mail and unique |
 | user_profile_picture | [bytes](#bytes) |  | user profile picture |
@@ -9831,7 +16756,7 @@ Structure of server role
 | ---- | ------ | ----------- |
 | SERVER_UNSPECIFIED | 0 | unspecified server role |
 | SERVER_USER | 1 | read-only access |
-| SERVER_MANAGER | 2 | SERVER_USER's permissions + CRUD of projects and Users |
+| SERVER_MANAGER | 2 | SERVER_USER&apos;s permissions + CRUD of projects and Users |
 | SERVER_ADMIN | 3 | this role can do everything |
 | SERVER_INACTIVE | 4 | this role can do nothing. Used to set a user as inactive in the server. |
 
@@ -9861,11 +16786,15 @@ gRPC service for managing users and server roles.
 | UpdateServerRole | [UpdateServerRoleRequest](#ondewo.nlu.UpdateServerRoleRequest) | [ServerRole](#ondewo.nlu.ServerRole) | Updates a server role. |
 | ListServerRoles | [ListServerRolesRequest](#ondewo.nlu.ListServerRolesRequest) | [ListServerRolesResponse](#ondewo.nlu.ListServerRolesResponse) | Lists server roles. |
 | ListServerPermissions | [ListServerPermissionsRequest](#ondewo.nlu.ListServerPermissionsRequest) | [ListServerPermissionsResponse](#ondewo.nlu.ListServerPermissionsResponse) | Lists server permissions. |
-| Login | [LoginRequest](#ondewo.nlu.LoginRequest) | [LoginResponse](#ondewo.nlu.LoginResponse) | Requests login. |
 | CheckLogin | [.google.protobuf.Empty](#google.protobuf.Empty) | [.google.protobuf.Empty](#google.protobuf.Empty) | Checks login. |
 | ListNotifications | [ListNotificationsRequest](#ondewo.nlu.ListNotificationsRequest) | [ListNotificationsResponse](#ondewo.nlu.ListNotificationsResponse) | Lists notifications based on specified filters. |
 | SetNotificationsFlaggedStatus | [SetNotificationsFlaggedStatusRequest](#ondewo.nlu.SetNotificationsFlaggedStatusRequest) | [ListNotificationsResponse](#ondewo.nlu.ListNotificationsResponse) | Sets the flagged status for multiple notifications. |
 | SetNotificationsReadStatus | [SetNotificationsReadStatusRequest](#ondewo.nlu.SetNotificationsReadStatusRequest) | [ListNotificationsResponse](#ondewo.nlu.ListNotificationsResponse) | Sets the read status for multiple notifications. |
+| AddNotifications | [AddNotificationsRequest](#ondewo.nlu.AddNotificationsRequest) | [AddNotificationsResponse](#ondewo.nlu.AddNotificationsResponse) | Adds one or more notifications. |
+| GetNotification | [GetNotificationRequest](#ondewo.nlu.GetNotificationRequest) | [Notification](#ondewo.nlu.Notification) | Retrieves a single notification by its resource name. |
+| UpdateNotification | [UpdateNotificationRequest](#ondewo.nlu.UpdateNotificationRequest) | [Notification](#ondewo.nlu.Notification) | Updates a single notification, applying only the fields named in the update mask. |
+| DeleteNotifications | [DeleteNotificationsRequest](#ondewo.nlu.DeleteNotificationsRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes one or more notifications by their resource names. |
+| StreamNotifications | [StreamNotificationsRequest](#ondewo.nlu.StreamNotificationsRequest) | [Notification](#ondewo.nlu.Notification) stream | Streams notifications for the authenticated caller in real time: each newly-added notification that matches the request filter is pushed to the client as it is created (backed server-side by a Postgres LISTEN/NOTIFY channel). The stream stays open until the client disconnects. When <code>include_existing</code> is set the currently-stored matching notifications are replayed first (newest last) before switching to the live tail. |
 | GetUserPreferences | [GetUserPreferencesRequest](#ondewo.nlu.GetUserPreferencesRequest) | [GetUserPreferencesResponse](#ondewo.nlu.GetUserPreferencesResponse) | Retrieves user preferences based on the provided request. |
 | SetUserPreferences | [SetUserPreferencesRequest](#ondewo.nlu.SetUserPreferencesRequest) | [SetUserPreferencesResponse](#ondewo.nlu.SetUserPreferencesResponse) | Sets or updates user preferences based on the provided request. |
 | DeleteUserPreferences | [DeleteUserPreferencesRequest](#ondewo.nlu.DeleteUserPreferencesRequest) | [DeleteUserPreferencesResponse](#ondewo.nlu.DeleteUserPreferencesResponse) | Deletes specific user preferences based on the provided request. |
@@ -9891,10 +16820,10 @@ Request message to AddTrainingPhraseFromCSV rpc
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
-| language_code | [string](#string) |  | Required. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used. |
+| language_code | [string](#string) |  | Required. The language to list training phrases, parameters and rich messages for. If not specified, the agent&apos;s default language is used. Note: languages must be enabled in the agent before they can be used. |
 | csv_contents | [bytes](#bytes) |  | Required. Contents of the .csv file containing training phrases to be added to the intents |
 | extract_entities | [bool](#bool) |  | Optional. Whether or not to extract entities for the new training phrases |
-| special_characters | [string](#string) |  | Optional. Before new training phrases are added to their corresponding intent, they are cleaned with cleaning scripts. These cleaning scripts remove certain special characters, if they are found at the beginning of the text or if they appear in annotations. Overrides the default: '.,;!?:' |
+| special_characters | [string](#string) |  | Optional. Before new training phrases are added to their corresponding intent, they are cleaned with cleaning scripts. These cleaning scripts remove certain special characters, if they are found at the beginning of the text or if they appear in annotations. Overrides the default: <code>&apos;.,;!?:&apos;</code> |
 | training_phrase_cleaner_options | [TrainingPhraseCleanerOptions](#ondewo.nlu.TrainingPhraseCleanerOptions) |  | Optional. Options for the training phrase cleaner to override the default settings |
 | number_of_workers | [int32](#int32) |  | Optional. Number of threads used to accomplish the task |
 
@@ -9912,10 +16841,10 @@ Request message to AddTrainingPhrase rpc
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
-| language_code | [string](#string) |  | Required. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used. |
+| language_code | [string](#string) |  | Required. The language to list training phrases, parameters and rich messages for. If not specified, the agent&apos;s default language is used. Note: languages must be enabled in the agent before they can be used. |
 | training_phrase_list | [AddTrainingPhrasesRequest.TrainingPhraseForIntent](#ondewo.nlu.AddTrainingPhrasesRequest.TrainingPhraseForIntent) | repeated | Required. List of training phrases to be added to the intent |
 | extract_entities | [bool](#bool) |  | Optional. Whether or not to extract entities for the new training phrases |
-| special_characters | [string](#string) |  | Optional. Characters to be recognized as special characters for cleaning the training phrases. Overrides the default: '.,;!?:' |
+| special_characters | [string](#string) |  | Optional. Characters to be recognized as special characters for cleaning the training phrases. Overrides the default: <code>&apos;.,;!?:&apos;</code> |
 | training_phrase_cleaner_options | [TrainingPhraseCleanerOptions](#ondewo.nlu.TrainingPhraseCleanerOptions) |  | Optional. Options for the training phrase cleaner to override the default settings |
 | number_of_workers | [int32](#int32) |  | Optional. Number of threads used to accomplish the task |
 
@@ -9927,8 +16856,7 @@ Request message to AddTrainingPhrase rpc
 <a name="ondewo.nlu.AddTrainingPhrasesRequest.TrainingPhraseForIntent"></a>
 
 ### AddTrainingPhrasesRequest.TrainingPhraseForIntent
-Message that contains the new training phrase, together with the intent display name
-and, optionally the entity annotations
+Message that contains the new training phrase, together with the intent display name and, optionally the entity annotations
 
 
 | Field | Type | Label | Description |
@@ -9966,11 +16894,11 @@ Request to clean the entity types
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
-| language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used. |
-| special_characters | [string](#string) |  | Optional. Characters to be recognized as special characters for cleaning. Overrides the default: '.,;!?:' |
-| substring_white_list | [string](#string) | repeated | Optional. List of substring that shall not be cleaned/deleted. Example: ['St.', 'U.S.', 'sys.', '24.12.', 'Nr.', 'TelNr.'] |
+| language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent&apos;s default language is used. Note: languages must be enabled in the agent before they can be used. |
+| special_characters | [string](#string) |  | Optional. Characters to be recognized as special characters for cleaning. Overrides the default: <code>&apos;.,;!?:&apos;</code> |
+| substring_white_list | [string](#string) | repeated | Optional. List of substring that shall not be cleaned/deleted. Example: <code>[&apos;St.&apos;, &apos;U.S.&apos;, &apos;sys.&apos;, &apos;24.12.&apos;, &apos;Nr.&apos;, &apos;TelNr.&apos;]</code> |
 | max_entity_count_update | [int32](#int32) |  | Optional. Entity type that contain more than max_entity_count_update entities will not be cleaned. Relevant for auto-generated entity values (e.g. City Names) Default = 10000 |
-| forbidden_entity_type_patterns | [string](#string) | repeated | Optional. List of strings or regexes. Entity types will be deleted if their display name matches an element of this list Example: ['sys.ignore.'] -> would delete entity types with display names sys.ignore.* |
+| forbidden_entity_type_patterns | [string](#string) | repeated | Optional. List of strings or regexes. Entity types will be deleted if their display name matches an element of this list Example: <code>[&apos;sys.ignore.&apos;]</code> -&gt; would delete entity types with display names sys.ignore.* |
 | dry_run | [bool](#bool) |  | Required. Do not apply changes to the database if set to True |
 | number_of_workers | [int32](#int32) |  | Optional. Number of threads used to accomplish the task |
 
@@ -10006,9 +16934,9 @@ The request to clean the all intents.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
-| language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used. |
-| special_characters | [string](#string) |  | Optional. Characters to be recognized as special characters for cleaning. Overrides the default: '.,;!?:' |
-| substring_white_list | [string](#string) | repeated | Optional. List of substring that shall not be cleaned/deleted. Example: ['St.', 'U.S.', 'sys.', '24.12.', 'Nr.', 'TelNr.'] Default = None |
+| language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent&apos;s default language is used. Note: languages must be enabled in the agent before they can be used. |
+| special_characters | [string](#string) |  | Optional. Characters to be recognized as special characters for cleaning. Overrides the default: <code>&apos;.,;!?:&apos;</code> |
+| substring_white_list | [string](#string) | repeated | Optional. List of substring that shall not be cleaned/deleted. Example: <code>[&apos;St.&apos;, &apos;U.S.&apos;, &apos;sys.&apos;, &apos;24.12.&apos;, &apos;Nr.&apos;, &apos;TelNr.&apos;]</code> Default = None |
 | dry_run | [bool](#bool) |  | Required. Do not apply changes to the database if set to True |
 | training_phrase_cleaner_options | [TrainingPhraseCleanerOptions](#ondewo.nlu.TrainingPhraseCleanerOptions) |  | Optional. Options for the cleaning of the training phrases. |
 | reannotate_entities_options | [ReannotateEntitiesOptions](#ondewo.nlu.ReannotateEntitiesOptions) |  | Optional. Options for re-annotation of entities (default = REANNOTATE_NEVER) |
@@ -10045,9 +16973,9 @@ Request to clean a single entity type
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | entity_type_name | [string](#string) |  | Required. The name of the entity_type |
-| language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used. |
-| special_characters | [string](#string) |  | Optional. Characters to be recognized as special characters for cleaning. Overrides the default: '.,;!?:' |
-| substring_white_list | [string](#string) | repeated | Optional. List of substring that shall not be cleaned/deleted. Example: ['St.', 'U.S.', 'sys.', '24.12.', 'Nr.', 'TelNr.'] |
+| language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent&apos;s default language is used. Note: languages must be enabled in the agent before they can be used. |
+| special_characters | [string](#string) |  | Optional. Characters to be recognized as special characters for cleaning. Overrides the default: <code>&apos;.,;!?:&apos;</code> |
+| substring_white_list | [string](#string) | repeated | Optional. List of substring that shall not be cleaned/deleted. Example: <code>[&apos;St.&apos;, &apos;U.S.&apos;, &apos;sys.&apos;, &apos;24.12.&apos;, &apos;Nr.&apos;, &apos;TelNr.&apos;]</code> |
 | max_entity_count_update | [int32](#int32) |  | Optional. Entity type that contain more than max_entity_count_update entities will not be cleaned. Relevant for auto-generated entity values (e.g. City Names) Default = 10000 |
 | dry_run | [bool](#bool) |  | Required. Do not apply changes to the database if set to True |
 
@@ -10082,9 +17010,9 @@ The request message to clean a single intents.
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | intent_name | [string](#string) |  | Required. The name of the intent. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/intents/&lt;intent_uuid&gt;</code></pre> |
-| language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent's default language is used. Note: languages must be enabled in the agent before they can be used. |
-| special_characters | [string](#string) |  | Optional. Characters to be recognized as special characters for cleaning. Overrides the default: '.,;!?:' |
-| substring_white_list | [string](#string) | repeated | Optional. List of substring that shall not be cleaned/deleted. Example: ['St.', 'U.S.', 'sys.', '24.12.', 'Nr.', 'TelNr.'] Default = None |
+| language_code | [string](#string) |  | Optional. The language to list training phrases, parameters and rich messages for. If not specified, the agent&apos;s default language is used. Note: languages must be enabled in the agent before they can be used. |
+| special_characters | [string](#string) |  | Optional. Characters to be recognized as special characters for cleaning. Overrides the default: <code>&apos;.,;!?:&apos;</code> |
+| substring_white_list | [string](#string) | repeated | Optional. List of substring that shall not be cleaned/deleted. Example: <code>[&apos;St.&apos;, &apos;U.S.&apos;, &apos;sys.&apos;, &apos;24.12.&apos;, &apos;Nr.&apos;, &apos;TelNr.&apos;]</code> Default = None |
 | dry_run | [bool](#bool) |  | Required. Do not apply changes to the database if set to True |
 | training_phrase_cleaner_options | [TrainingPhraseCleanerOptions](#ondewo.nlu.TrainingPhraseCleanerOptions) |  | Optional. Options for the cleaning of the training phrases. |
 | reannotate_entities_options | [ReannotateEntitiesOptions](#ondewo.nlu.ReannotateEntitiesOptions) |  | Optional. Options for re-annotation of entities (default = REANNOTATE_NEVER) |
@@ -10218,7 +17146,7 @@ Validation request for entity type values
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| entity_type | [EntityType.Entity](#ondewo.nlu.EntityType.Entity) |  |  |
+| entity_type | [EntityType.Entity](#ondewo.nlu.EntityType.Entity) |  | The entity (with embedded regex) to validate |
 
 
 
@@ -10294,9 +17222,7 @@ Encapsulates entity re-annotation options
 <a name="ondewo.nlu.Utilities"></a>
 
 ### Utilities
-This is collection of utility endpoints, intended to language-independent operations,
-such as code checks, regex checks, etc.
-Holds a collection of utility functions
+This is collection of utility endpoints, intended to language-independent operations, such as code checks, regex checks, etc. Holds a collection of utility functions
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
@@ -10323,15 +17249,14 @@ Holds a collection of utility functions
 <a name="ondewo.nlu.CreateSessionEntityTypeRequest"></a>
 
 ### CreateSessionEntityTypeRequest
-The request message for
-[SessionEntityTypes.CreateSessionEntityType][google.cloud.dialogflow.v2.SessionEntityTypes.CreateSessionEntityType].
+The request message for <a href="index.html#ondewo.nlu.Webhook.CreateSessionEntityType">Webhook.CreateSessionEntityType</a>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | parent | [string](#string) |  | Required. The agent to list all intents from. Format: <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
 | session_entity_type | [SessionEntityType](#ondewo.nlu.SessionEntityType) |  | Required. The session entity type to create. |
-| session_id | [string](#string) |  | Required. The session to create a session entity type for. Format: <pre><code>projects/&lt;project_uuid&gt;/agents/sessions/&lt;session_uuid&gt;</code></pre> or <pre><code>projects/&lt;project_uuid&gt;/agents/sessions/&lt;session_uuid&gt;</code></pre> `projects/&lt;project_uuid&gt;/agent/environments/&lt;environment_uuid&gt;/users/&lt;user_uuid&gt;/ sessions/&lt;session_uuid&gt;`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. Required. The project that the agent to fetch is associated with. The session to create a session entity type for. Format: <pre><code>projects/&lt;project_uuid&gt;/agents/sessions/&lt;session_uuid&gt;</code></pre> |
+| session_id | [string](#string) |  | Required. The session to create a session entity type for. Format: <pre><code>projects/&lt;project_uuid&gt;/agents/sessions/&lt;session_uuid&gt;</code></pre> or <pre><code>projects/&lt;project_uuid&gt;/agents/sessions/&lt;session_uuid&gt;</code></pre> <code>projects/&lt;project_uuid&gt;/agent/environments/&lt;environment_uuid&gt;/users/&lt;user_uuid&gt;/ sessions/&lt;session_uuid&gt;</code>. If <code>Environment ID</code> is not specified, we assume default <code>&apos;draft&apos;</code> environment. If <code>User ID</code> is not specified, we assume default <code>&apos;-&apos;</code> user. Required. The project that the agent to fetch is associated with. The session to create a session entity type for. Format: <pre><code>projects/&lt;project_uuid&gt;/agents/sessions/&lt;session_uuid&gt;</code></pre> |
 
 
 
@@ -10341,13 +17266,12 @@ The request message for
 <a name="ondewo.nlu.DeleteSessionEntityTypeRequest"></a>
 
 ### DeleteSessionEntityTypeRequest
-The request message for
-[SessionEntityTypes.DeleteSessionEntityType][google.cloud.dialogflow.v2.SessionEntityTypes.DeleteSessionEntityType].
+The request message for <a href="index.html#ondewo.nlu.Webhook.DeleteSessionEntityType">Webhook.DeleteSessionEntityType</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Required. The name of the entity type to delete. Format: `projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/entityTypes/<Entity Type Display Name>` or `projects/&lt;project_uuid&gt;/agent/environments/ <&lt;environment_uuid&gt;/users/&lt;user_uuid&gt;/sessions/&lt;session_uuid&gt;/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. |
+| name | [string](#string) |  | Required. The name of the entity type to delete. Format: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/entityTypes/&lt;Entity Type Display Name&gt;</code> or <code>projects/&lt;project_uuid&gt;/agent/environments/ &lt;&lt;environment_uuid&gt;/users/&lt;user_uuid&gt;/sessions/&lt;session_uuid&gt;/entityTypes/&lt;Entity Type Display Name&gt;</code>. If <code>Environment ID</code> is not specified, we assume default <code>&apos;draft&apos;</code> environment. If <code>User ID</code> is not specified, we assume default <code>&apos;-&apos;</code> user. |
 
 
 
@@ -10357,13 +17281,12 @@ The request message for
 <a name="ondewo.nlu.GetSessionEntityTypeRequest"></a>
 
 ### GetSessionEntityTypeRequest
-The request message for
-[SessionEntityTypes.GetSessionEntityType][google.cloud.dialogflow.v2.SessionEntityTypes.GetSessionEntityType].
+The request message for <a href="index.html#ondewo.nlu.Webhook.GetSessionEntityType">Webhook.GetSessionEntityType</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Required. The name of the session entity type. Format: `projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/entityTypes/<Entity Type Display Name>` or `projects/&lt;project_uuid&gt;/agent/environments/ <&lt;environment_uuid&gt;/users/&lt;user_uuid&gt;/sessions/&lt;session_uuid&gt;/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. |
+| name | [string](#string) |  | Required. The name of the session entity type. Format: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/entityTypes/&lt;Entity Type Display Name&gt;</code> or <code>projects/&lt;project_uuid&gt;/agent/environments/ &lt;&lt;environment_uuid&gt;/users/&lt;user_uuid&gt;/sessions/&lt;session_uuid&gt;/entityTypes/&lt;Entity Type Display Name&gt;</code>. If <code>Environment ID</code> is not specified, we assume default <code>&apos;draft&apos;</code> environment. If <code>User ID</code> is not specified, we assume default <code>&apos;-&apos;</code> user. |
 
 
 
@@ -10373,23 +17296,22 @@ The request message for
 <a name="ondewo.nlu.ListSessionEntityTypesRequest"></a>
 
 ### ListSessionEntityTypesRequest
-The request message for
-[SessionEntityTypes.ListSessionEntityTypes][google.cloud.dialogflow.v2.SessionEntityTypes.ListSessionEntityTypes].
+The request message for <a href="index.html#ondewo.nlu.Webhook.ListSessionEntityTypes">Webhook.ListSessionEntityTypes</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| parent | [string](#string) |  | Required. The session to list all session entity types from. Format: `projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;` or `projects/&lt;project_uuid&gt;/agent/environments/&lt;environment_uuid&gt;/users/&lt;user_uuid&gt;/ sessions/&lt;session_uuid&gt;`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user. |
+| parent | [string](#string) |  | Required. The session to list all session entity types from. Format: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code> or <code>projects/&lt;project_uuid&gt;/agent/environments/&lt;environment_uuid&gt;/users/&lt;user_uuid&gt;/ sessions/&lt;session_uuid&gt;</code>. If <code>Environment ID</code> is not specified, we assume default <code>&apos;draft&apos;</code> environment. If <code>User ID</code> is not specified, we assume default <code>&apos;-&apos;</code> user. |
 | page_size | [int32](#int32) |  | Optional. The maximum number of items to return in a single page. By default 100 and at most 1000. |
 | page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
 
-Valid page token strings: * "" (empty string) - Retrieves the first page. * "current_index-0--page_size-20" - Retrieves the first page with a page size of 20. * "current_index-1--page_size-20" - Retrieves the second page with a page size of 20.
+Valid page token strings: <ul> <li><code>&quot;&quot;</code> (empty string) - Retrieves the first page.</li> <li><code>&quot;current_index-0--page_size-20&quot;</code> - Retrieves the first page with a page size of 20.</li> <li><code>&quot;current_index-1--page_size-20&quot;</code> - Retrieves the second page with a page size of 20.</li> </ul>
 
 Index starts at 0.
 
-Examples of valid page token strings: * "" * "current_index-0--page_size-20" * "current_index-1--page_size-20" * "current_index-10--page_size-20"
+Examples of valid page token strings: <ul> <li><code>&quot;&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size-20&quot;</code></li> <li><code>&quot;current_index-10--page_size-20&quot;</code></li> </ul>
 
-Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" * "current_index--1--page_size-20" * "current_index1--page_size-20" * "current_index-1--page_size--20" |
+Examples of invalid page token strings: <ul> <li><code>&quot;1&quot;</code></li> <li><code>&quot;current_index-0--page_size-20&quot;</code></li> <li><code>&quot;current_index--1--page_size-20&quot;</code></li> <li><code>&quot;current_index1--page_size-20&quot;</code></li> <li><code>&quot;current_index-1--page_size--20&quot;</code></li> </ul> |
 
 
 
@@ -10399,8 +17321,7 @@ Examples of invalid page token strings: * "1" * "current_index-0--page_size-20" 
 <a name="ondewo.nlu.ListSessionEntityTypesResponse"></a>
 
 ### ListSessionEntityTypesResponse
-The response message for
-[SessionEntityTypes.ListSessionEntityTypes][google.cloud.dialogflow.v2.SessionEntityTypes.ListSessionEntityTypes].
+The response message for <a href="index.html#ondewo.nlu.Webhook.ListSessionEntityTypes">Webhook.ListSessionEntityTypes</a>.
 
 
 | Field | Type | Label | Description |
@@ -10416,16 +17337,15 @@ The response message for
 <a name="ondewo.nlu.OriginalDetectIntentRequest"></a>
 
 ### OriginalDetectIntentRequest
-Represents the contents of the original request that was passed to
-the `[Streaming]DetectIntent` call.
+Represents the contents of the original request that was passed to the <code>[Streaming]DetectIntent</code> call.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| source | [string](#string) |  | The source of this request, e.g., `google`, `facebook`, `slack` or other "platforms". . Used to identify the "platform" |
-| payload | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. This field is set to the value of the `QueryParameters.payload` field passed in the request. Some integrations that query an agent may provide additional data in the payload.
+| source | [string](#string) |  | The source of this request, e.g., <code>google</code>, <code>facebook</code>, <code>slack</code> or other &quot;platforms&quot;. . Used to identify the &quot;platform&quot; |
+| payload | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. This field is set to the value of the <code>QueryParameters.payload</code> field passed in the request. Some integrations that query an agent may provide additional data in the payload.
 
-In particular this can be of the form: <pre>{ "a": { "b": "c" } }</pre> |
+In particular this can be of the form: <pre>{ &quot;a&quot;: { &quot;b&quot;: &quot;c&quot; } }</pre> |
 
 
 
@@ -10455,7 +17375,7 @@ This message is a response of pinging
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| is_reachable | [bool](#bool) |  | This is the response message of a Ping request. It's purpose is to report the reachability of a Webhook server. |
+| is_reachable | [bool](#bool) |  | This is the response message of a Ping request. It&apos;s purpose is to report the reachability of a Webhook server. |
 
 
 
@@ -10465,21 +17385,16 @@ This message is a response of pinging
 <a name="ondewo.nlu.SessionEntityType"></a>
 
 ### SessionEntityType
-A session represents a conversation between a Dialogflow agent and an
-end-user. You can create special entities, called session entities, during a
-session. Session entities can extend or replace custom entity types and only
-exist during the session that they were created for. All session data,
-including session entities, is stored by Dialogflow for 20 minutes.
+A session represents a conversation between a Dialogflow agent and an end-user. You can create special entities, called session entities, during a session. Session entities can extend or replace custom entity types and only exist during the session that they were created for. All session data, including session entities, is stored by Dialogflow for 20 minutes.
 
-For more information, see the [session entity
-guide](https://cloud.google.com/dialogflow/docs/entities-session).
+For more information, see the <a href="https://cloud.google.com/dialogflow/docs/entities-session">session entity guide</a>.
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| name | [string](#string) |  | Required. The unique identifier of this session entity type. Format: `projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/entityTypes/<Entity Type Display Name>`, or `projects/&lt;project_uuid&gt;/agent/environments/ <&lt;environment_uuid&gt;/users/&lt;user_uuid&gt;/sessions/&lt;session_uuid&gt;/entityTypes/<Entity Type Display Name>`. If `Environment ID` is not specified, we assume default 'draft' environment. If `User ID` is not specified, we assume default '-' user.
+| name | [string](#string) |  | Required. The unique identifier of this session entity type. Format: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;/entityTypes/&lt;Entity Type Display Name&gt;</code>, or <code>projects/&lt;project_uuid&gt;/agent/environments/ &lt;&lt;environment_uuid&gt;/users/&lt;user_uuid&gt;/sessions/&lt;session_uuid&gt;/entityTypes/&lt;Entity Type Display Name&gt;</code>. If <code>Environment ID</code> is not specified, we assume default <code>&apos;draft&apos;</code> environment. If <code>User ID</code> is not specified, we assume default <code>&apos;-&apos;</code> user.
 
-`<Entity Type Display Name>` must be the display name of an existing entity type in the same agent that will be overridden or supplemented. |
+<code>&lt;Entity Type Display Name&gt;</code> must be the display name of an existing entity type in the same agent that will be overridden or supplemented. |
 | entity_override_mode | [SessionEntityType.EntityOverrideMode](#ondewo.nlu.SessionEntityType.EntityOverrideMode) |  | Required. Indicates whether the additional data should override or supplement the custom entity type definition. |
 | entities | [EntityType.Entity](#ondewo.nlu.EntityType.Entity) | repeated | Required. The collection of entities associated with this session entity type. |
 
@@ -10491,8 +17406,7 @@ guide](https://cloud.google.com/dialogflow/docs/entities-session).
 <a name="ondewo.nlu.UpdateSessionEntityTypeRequest"></a>
 
 ### UpdateSessionEntityTypeRequest
-The request message for
-[SessionEntityTypes.UpdateSessionEntityType][google.cloud.dialogflow.v2.SessionEntityTypes.UpdateSessionEntityType].
+The request message for <a href="index.html#ondewo.nlu.Webhook.UpdateSessionEntityType">Webhook.UpdateSessionEntityType</a>.
 
 
 | Field | Type | Label | Description |
@@ -10513,9 +17427,9 @@ The request message for a webhook call.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| response_id | [string](#string) |  | The unique identifier of the response. Contains the same value as `[Streaming]DetectIntentResponse.response_id`. |
-| query_result | [QueryResult](#ondewo.nlu.QueryResult) |  | The result of the conversational query or event processing. Contains the same value as `[Streaming]DetectIntentResponse.query_result`. |
-| original_detect_intent_request | [OriginalDetectIntentRequest](#ondewo.nlu.OriginalDetectIntentRequest) |  | Optional. The contents of the original request that was passed to `[Streaming]DetectIntent` call. |
+| response_id | [string](#string) |  | The unique identifier of the response. Contains the same value as <code>[Streaming]DetectIntentResponse.response_id</code>. |
+| query_result | [QueryResult](#ondewo.nlu.QueryResult) |  | The result of the conversational query or event processing. Contains the same value as <code>[Streaming]DetectIntentResponse.query_result</code>. |
+| original_detect_intent_request | [OriginalDetectIntentRequest](#ondewo.nlu.OriginalDetectIntentRequest) |  | Optional. The contents of the original request that was passed to <code>[Streaming]DetectIntent</code> call. |
 | session | [string](#string) |  | The unique identifier of detectIntent request session. Can be used to identify end-user inside webhook implementation. Format: <pre><code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code></pre> |
 | headers | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. The headers of the request message |
 
@@ -10532,15 +17446,15 @@ The response message for a webhook call.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| fulfillment_text | [string](#string) |  | Optional. The text to be shown on the screen. This value is passed directly to `QueryResult.fulfillment_text`. |
-| fulfillment_messages | [Intent.Message](#ondewo.nlu.Intent.Message) | repeated | Optional. The collection of rich messages to present to the user. This value is passed directly to `QueryResult.fulfillment_messages`. |
-| source | [string](#string) |  | Optional. This value is passed directly to `QueryResult.webhook_source`. |
-| payload | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. This value is passed directly to `QueryResult.webhook_payload`. See the related `fulfillment_messages[i].payload field`, which may be used as an alternative to this field.
+| fulfillment_text | [string](#string) |  | Optional. The text to be shown on the screen. This value is passed directly to <code>QueryResult.fulfillment_text</code>. |
+| fulfillment_messages | [Intent.Message](#ondewo.nlu.Intent.Message) | repeated | Optional. The collection of rich messages to present to the user. This value is passed directly to <code>QueryResult.fulfillment_messages</code>. |
+| source | [string](#string) |  | Optional. This value is passed directly to <code>QueryResult.webhook_source</code>. |
+| payload | [google.protobuf.Struct](#google.protobuf.Struct) |  | Optional. This value is passed directly to <code>QueryResult.webhook_payload</code>. See the related <code>fulfillment_messages[i].payload field</code>, which may be used as an alternative to this field.
 
-This field can be used for Actions on Google responses. It should have a structure similar to the JSON message shown here. For more information, see [Actions on Google Webhook Format](https://developers.google.com/actions/dialogflow/webhook) <pre>{ "google": { "expectUserResponse": true, "richResponse": { "items": [ { "simpleResponse": { "textToSpeech": "this is a simple response" } } ] } } }</pre> |
-| output_contexts | [Context](#ondewo.nlu.Context) | repeated | Optional. The collection of output contexts. This value is passed directly to `QueryResult.output_contexts`. |
-| followup_event_input | [EventInput](#ondewo.nlu.EventInput) |  | Optional. Makes the platform immediately invoke another `DetectIntent` call internally with the specified event as input. |
-| session_entity_types | [SessionEntityType](#ondewo.nlu.SessionEntityType) | repeated | Optional. Additional session entity types to replace or extend developer entity types with. The entity synonyms apply to all languages and persist for the session. Setting this data from a webhook overwrites the session entity types that have been set using `detectIntent` method. |
+This field can be used for Actions on Google responses. It should have a structure similar to the JSON message shown here. For more information, see <a href="https://developers.google.com/actions/dialogflow/webhook">Actions on Google Webhook Format</a> <pre>{ &quot;google&quot;: { &quot;expectUserResponse&quot;: true, &quot;richResponse&quot;: { &quot;items&quot;: [ { &quot;simpleResponse&quot;: { &quot;textToSpeech&quot;: &quot;this is a simple response&quot; } } ] } } }</pre> |
+| output_contexts | [Context](#ondewo.nlu.Context) | repeated | Optional. The collection of output contexts. This value is passed directly to <code>QueryResult.output_contexts</code>. |
+| followup_event_input | [EventInput](#ondewo.nlu.EventInput) |  | Optional. Makes the platform immediately invoke another <code>DetectIntent</code> call internally with the specified event as input. |
+| session_entity_types | [SessionEntityType](#ondewo.nlu.SessionEntityType) | repeated | Optional. Additional session entity types to replace or extend developer entity types with. The entity synonyms apply to all languages and persist for the session. Setting this data from a webhook overwrites the session entity types that have been set using <code>detectIntent</code> method. |
 
 
 
@@ -10560,7 +17474,7 @@ The types of modifications for a session entity type.
 | ENTITY_OVERRIDE_MODE_OVERRIDE | 1 | The collection of session entities overrides the collection of entities in the corresponding custom entity type. |
 | ENTITY_OVERRIDE_MODE_SUPPLEMENT | 2 | The collection of session entities extends the collection of entities in the corresponding custom entity type.
 
-Note: Even in this override mode calls to `ListSessionEntityTypes`, `GetSessionEntityType`, `CreateSessionEntityType` and `UpdateSessionEntityType` only return the additional entities added in this session entity type. If you want to get the supplemented list, please call [EntityTypes.GetEntityType][google.cloud.dialogflow.v2.EntityTypes.GetEntityType] on the custom entity type and merge. |
+Note: Even in this override mode calls to <code>ListSessionEntityTypes</code>, <code>GetSessionEntityType</code>, <code>CreateSessionEntityType</code> and <code>UpdateSessionEntityType</code> only return the additional entities added in this session entity type. If you want to get the supplemented list, please call <a href="index.html#ondewo.nlu.EntityTypes.GetEntityType">EntityTypes.GetEntityType</a> on the custom entity type and merge. |
 
 
  <!-- end enums -->
@@ -10576,19 +17490,19 @@ service to send requests to a webhook server
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
 | ResponseRefinement | [WebhookRequest](#ondewo.nlu.WebhookRequest) | [WebhookResponse](#ondewo.nlu.WebhookResponse) | send a request for /response_refinement/ to the webhook server fulfillment messages can be overwritten by the webhook server |
-| SlotFilling | [WebhookRequest](#ondewo.nlu.WebhookRequest) | [WebhookResponse](#ondewo.nlu.WebhookResponse) | send a request for /slot_filling/ to the webhook server parameter values can be provided & context information can be changed by the webhook server |
+| SlotFilling | [WebhookRequest](#ondewo.nlu.WebhookRequest) | [WebhookResponse](#ondewo.nlu.WebhookResponse) | send a request for /slot_filling/ to the webhook server parameter values can be provided &amp; context information can be changed by the webhook server |
 | Ping | [PingRequest](#ondewo.nlu.PingRequest) | [PingResponse](#ondewo.nlu.PingResponse) | send a Ping to the webhook server to verify server health will return True if http status_code==200 is detected in the response |
 | CreateSessionEntityType | [CreateSessionEntityTypeRequest](#ondewo.nlu.CreateSessionEntityTypeRequest) | [SessionEntityType](#ondewo.nlu.SessionEntityType) | Creates a session entity type.
 
 If the specified session entity type already exists, overrides the session entity type.
 
-This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration. |
+This method doesn&apos;t work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration. |
 | UpdateSessionEntityType | [UpdateSessionEntityTypeRequest](#ondewo.nlu.UpdateSessionEntityTypeRequest) | [SessionEntityType](#ondewo.nlu.SessionEntityType) | Updates the specified session entity type.
 
-This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration. |
+This method doesn&apos;t work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration. |
 | DeleteSessionEntityType | [DeleteSessionEntityTypeRequest](#ondewo.nlu.DeleteSessionEntityTypeRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes the specified session entity type.
 
-This method doesn't work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration. |
+This method doesn&apos;t work with Google Assistant integration. Contact Dialogflow support if you need to use session entities with Google Assistant integration. |
 
  <!-- end services -->
 
@@ -10604,7 +17518,7 @@ This method doesn't work with Google Assistant integration. Contact Dialogflow s
 <a name="ondewo.s2t.AcousticModels"></a>
 
 ### AcousticModels
-AcousticModels contains information about different types of acoustic models.
+<p>AcousticModels contains information about different types of acoustic models.</p>
 
 
 | Field | Type | Label | Description |
@@ -10618,6 +17532,7 @@ AcousticModels contains information about different types of acoustic models.
 | s2t_cloud_service_deepgram | [S2tCloudServiceDeepgram](#ondewo.s2t.S2tCloudServiceDeepgram) |  | Deepgram cloud service inference settings. |
 | s2t_cloud_service_google | [S2tCloudServiceGoogle](#ondewo.s2t.S2tCloudServiceGoogle) |  | Google cloud service inference settings. |
 | s2t_cloud_service_microsoft | [S2tCloudServiceMicrosoft](#ondewo.s2t.S2tCloudServiceMicrosoft) |  | Microsoft Azure cloud service inference settings. |
+| parakeet | [Parakeet](#ondewo.s2t.Parakeet) |  | Configuration for the Parakeet model. |
 
 
 
@@ -10627,12 +17542,12 @@ AcousticModels contains information about different types of acoustic models.
 <a name="ondewo.s2t.AddDataToUserLanguageModelRequest"></a>
 
 ### AddDataToUserLanguageModelRequest
-AddDataToUserLanguageModelRequest is used to request the addition of data to a user-specific language model.
+<p>AddDataToUserLanguageModelRequest is used to request the addition of data to a user-specific language model.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language_model_name | [string](#string) |  | Name of the language model to which to add data. Example: "user_lm_1" |
+| language_model_name | [string](#string) |  | Name of the language model to which to add data. Example: &quot;user_lm_1&quot; |
 | zipped_data | [bytes](#bytes) |  | Zip file containing data in the form of text files. Example: A zip file with text files containing sentences or phrases in the target language. |
 
 
@@ -10643,7 +17558,7 @@ AddDataToUserLanguageModelRequest is used to request the addition of data to a u
 <a name="ondewo.s2t.CkptFile"></a>
 
 ### CkptFile
-CkptFile contains information about checkpoint files.
+<p>CkptFile contains information about checkpoint files.</p>
 
 
 | Field | Type | Label | Description |
@@ -10658,12 +17573,12 @@ CkptFile contains information about checkpoint files.
 <a name="ondewo.s2t.CreateUserLanguageModelRequest"></a>
 
 ### CreateUserLanguageModelRequest
-CreateUserLanguageModelRequest is used to request the creation of a new user-specific language model.
+<p>CreateUserLanguageModelRequest is used to request the creation of a new user-specific language model.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language_model_name | [string](#string) |  | Name of the language model to create. Example: "user_lm_1" |
+| language_model_name | [string](#string) |  | Name of the language model to create. Example: &quot;user_lm_1&quot; |
 
 
 
@@ -10673,12 +17588,12 @@ CreateUserLanguageModelRequest is used to request the creation of a new user-spe
 <a name="ondewo.s2t.DeleteUserLanguageModelRequest"></a>
 
 ### DeleteUserLanguageModelRequest
-DeleteUserLanguageModelRequest is used to request the deletion of a user-specific language model.
+<p>DeleteUserLanguageModelRequest is used to request the deletion of a user-specific language model.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language_model_name | [string](#string) |  | Name of the language model to delete. Example: "user_lm_1" |
+| language_model_name | [string](#string) |  | Name of the language model to delete. Example: &quot;user_lm_1&quot; |
 
 
 
@@ -10688,13 +17603,13 @@ DeleteUserLanguageModelRequest is used to request the deletion of a user-specifi
 <a name="ondewo.s2t.LanguageModelPipelineId"></a>
 
 ### LanguageModelPipelineId
-LanguageModelPipelineId contains information about a pipeline and its available language models.
+<p>LanguageModelPipelineId contains information about a pipeline and its available language models.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| pipeline_id | [string](#string) |  | A pipeline ID. Example: "pipeline_1" |
-| model_names | [string](#string) | repeated | A list of all available language models for the corresponding pipeline ID. Example: ["model_1", "model_2"] |
+| pipeline_id | [string](#string) |  | A pipeline ID. Example: &quot;pipeline_1&quot; |
+| model_names | [string](#string) | repeated | A list of all available language models for the corresponding pipeline ID. Example: [&quot;model_1&quot;, &quot;model_2&quot;] |
 
 
 
@@ -10704,7 +17619,7 @@ LanguageModelPipelineId contains information about a pipeline and its available 
 <a name="ondewo.s2t.LanguageModels"></a>
 
 ### LanguageModels
-LanguageModels contains information about language models.
+<p>LanguageModels contains information about language models.</p>
 
 
 | Field | Type | Label | Description |
@@ -10723,7 +17638,7 @@ LanguageModels contains information about language models.
 <a name="ondewo.s2t.ListS2tDomainsRequest"></a>
 
 ### ListS2tDomainsRequest
-Request message to list available domains. Optionally also filters can be set.
+<p>Request message to list available domains. Optionally also filters can be set.</p>
 
 
 | Field | Type | Label | Description |
@@ -10739,12 +17654,12 @@ Request message to list available domains. Optionally also filters can be set.
 <a name="ondewo.s2t.ListS2tDomainsResponse"></a>
 
 ### ListS2tDomainsResponse
-Response message to list available domains
+<p>Response message to list available domains</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| domains | [string](#string) | repeated | domains available. Example: ["medical", "finance"] |
+| domains | [string](#string) | repeated | domains available. Example: [&quot;medical&quot;, &quot;finance&quot;] |
 
 
 
@@ -10754,12 +17669,12 @@ Response message to list available domains
 <a name="ondewo.s2t.ListS2tLanguageModelsRequest"></a>
 
 ### ListS2tLanguageModelsRequest
-ListS2tLanguageModelsRequest is used to request a list of available language models for specified pipelines.
+<p>ListS2tLanguageModelsRequest is used to request a list of available language models for specified pipelines.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| ids | [string](#string) | repeated | List of pipeline IDs to retrieve their available language models. Example: ["pipeline_1", "pipeline_2"] |
+| ids | [string](#string) | repeated | List of pipeline IDs to retrieve their available language models. Example: [&quot;pipeline_1&quot;, &quot;pipeline_2&quot;] |
 
 
 
@@ -10769,12 +17684,12 @@ ListS2tLanguageModelsRequest is used to request a list of available language mod
 <a name="ondewo.s2t.ListS2tLanguageModelsResponse"></a>
 
 ### ListS2tLanguageModelsResponse
-ListS2tLanguageModelsResponse is used to return the available language models for specified pipelines.
+<p>ListS2tLanguageModelsResponse is used to return the available language models for specified pipelines.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| lm_pipeline_ids | [LanguageModelPipelineId](#ondewo.s2t.LanguageModelPipelineId) | repeated | Response is a list of LanguageModelPipelineId, where each element contains a pipeline ID and its associated language models. Example: [{pipeline_id: "pipeline_1", model_names: ["model_1", "model_2"]}, {pipeline_id: "pipeline_2", model_names: ["model_3"]}] |
+| lm_pipeline_ids | [LanguageModelPipelineId](#ondewo.s2t.LanguageModelPipelineId) | repeated | Response is a list of <code>LanguageModelPipelineId</code>, where each element contains a pipeline ID and its associated language models. Example: [{pipeline_id: &quot;pipeline_1&quot;, model_names: [&quot;model_1&quot;, &quot;model_2&quot;]}, {pipeline_id: &quot;pipeline_2&quot;, model_names: [&quot;model_3&quot;]}] |
 
 
 
@@ -10784,13 +17699,13 @@ ListS2tLanguageModelsResponse is used to return the available language models fo
 <a name="ondewo.s2t.ListS2tLanguagesRequest"></a>
 
 ### ListS2tLanguagesRequest
-ListS2tLanguagesRequest is used to request a list of available languages. Optionally, filters can be set.
+<p>ListS2tLanguagesRequest is used to request a list of available languages. Optionally, filters can be set.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| domains | [string](#string) | repeated | Filter for domains. Example: ["medical", "finance"] |
-| pipeline_owners | [string](#string) | repeated | Filter for pipeline owners. Example: ["ondewo", "partner_company"] |
+| domains | [string](#string) | repeated | Filter for domains. Example: [&quot;medical&quot;, &quot;finance&quot;] |
+| pipeline_owners | [string](#string) | repeated | Filter for pipeline owners. Example: [&quot;ondewo&quot;, &quot;partner_company&quot;] |
 
 
 
@@ -10800,7 +17715,7 @@ ListS2tLanguagesRequest is used to request a list of available languages. Option
 <a name="ondewo.s2t.ListS2tLanguagesResponse"></a>
 
 ### ListS2tLanguagesResponse
-Response message to list available languages
+<p>Response message to list available languages</p>
 
 
 | Field | Type | Label | Description |
@@ -10812,10 +17727,41 @@ Response message to list available languages
 
 
 
+<a name="ondewo.s2t.ListS2tNormalizationPipelinesRequest"></a>
+
+### ListS2tNormalizationPipelinesRequest
+<p>The request message for <code>ListS2tNormalizationPipelines</code>.</p>
+<p>Filter pipelines by attributes in request.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| language | [string](#string) |  | Optional. Define the language. |
+
+
+
+
+
+
+<a name="ondewo.s2t.ListS2tNormalizationPipelinesResponse"></a>
+
+### ListS2tNormalizationPipelinesResponse
+<p>The response message for <code>ListS2tNormalizationPipelines</code>.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| s2t_normalization_pipelines | [string](#string) | repeated | Required. Representation of a list of normalization pipelines configurations. Retrieved by <code>ListS2tNormalizationPipelines</code>, containing the configurations of normalization pipelines with the specifications received in the <code>ListS2tNormalizationPipelinesRequest</code>. |
+
+
+
+
+
+
 <a name="ondewo.s2t.ListS2tPipelinesRequest"></a>
 
 ### ListS2tPipelinesRequest
-Request to list all speech-to-text pipelines. Optionally also filter criteria can be set
+<p>Request to list all speech-to-text pipelines. Optionally also filter criteria can be set</p>
 
 
 | Field | Type | Label | Description |
@@ -10833,12 +17779,12 @@ Request to list all speech-to-text pipelines. Optionally also filter criteria ca
 <a name="ondewo.s2t.ListS2tPipelinesResponse"></a>
 
 ### ListS2tPipelinesResponse
-ListS2tPipelinesResponse is used to return a list of all speech-to-text pipelines.
+<p>ListS2tPipelinesResponse is used to return a list of all speech-to-text pipelines.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| pipeline_configs | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | repeated | A list of Speech2TextConfig message instances containing the configuration of each pipeline. Example: [{id: "pipeline_1", description: {language: "en"}, active: true, ...}, {id: "pipeline_2", description: {language: "fr"}, active: true, ...}] |
+| pipeline_configs | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | repeated | A list of <code>Speech2TextConfig</code> message instances containing the configuration of each pipeline. Example: [{id: &quot;pipeline_1&quot;, description: {language: &quot;en&quot;}, active: true, ...}, {id: &quot;pipeline_2&quot;, description: {language: &quot;fr&quot;}, active: true, ...}] |
 
 
 
@@ -10848,7 +17794,7 @@ ListS2tPipelinesResponse is used to return a list of all speech-to-text pipeline
 <a name="ondewo.s2t.Logging"></a>
 
 ### Logging
-Logging contains configuration for logging.
+<p>Logging contains configuration for logging.</p>
 
 
 | Field | Type | Label | Description |
@@ -10861,10 +17807,109 @@ Logging contains configuration for logging.
 
 
 
+<a name="ondewo.s2t.OpenaiLlmOptions"></a>
+
+### OpenaiLlmOptions
+<p>Configuration options for OpenAI client chat completion requests used in turn detection and LLM post-processing.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| api_key | [string](#string) | optional | Optional. The API key used to authenticate with the OpenAI API. |
+| organization | [string](#string) | optional | Optional. The organization ID associated with the OpenAI account, used for billing and access control. |
+| project | [string](#string) | optional | Optional. The project ID associated with the OpenAI account. |
+| webhook_secret | [string](#string) | optional | Optional. The webhook secret used to validate incoming webhook events from OpenAI. |
+| base_url | [string](#string) | optional | Optional. The base URL for the OpenAI API. Overrides the default endpoint, useful for proxies or compatible third-party providers. |
+| websocket_base_url | [string](#string) | optional | Optional. The base URL for OpenAI WebSocket connections. Overrides the default WebSocket endpoint. |
+| timeout | [float](#float) | optional | Optional. The timeout in seconds for requests to the OpenAI API. Applies to the entire request lifecycle including connection, sending, and receiving. |
+| max_retries | [int32](#int32) | optional | Optional. The maximum number of retries to attempt when a request fails due to a transient error. Defaults to 2. |
+| default_headers | [OpenaiLlmOptions.DefaultHeadersEntry](#ondewo.s2t.OpenaiLlmOptions.DefaultHeadersEntry) | repeated | Optional. Default HTTP headers to include with every request to the OpenAI API. |
+| default_query | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Default query parameters to append to every request URL sent to the OpenAI API. Values can be of any type (string, number, boolean, list), hence the use of Struct. |
+| strict_response_validation | [bool](#bool) | optional | Optional. If true, enables strict validation of response payloads returned by the OpenAI API. |
+| model | [string](#string) |  | Required. The name or identifier of the OpenAI model to use for chat completion (e.g., "gpt-4o", "gpt-4o-mini", "o3"). |
+| frequency_penalty | [float](#float) | optional | Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on their existing frequency in the text so far, decreasing the likelihood of the model repeating the same line verbatim. |
+| logit_bias | [OpenaiLlmOptions.LogitBiasEntry](#ondewo.s2t.OpenaiLlmOptions.LogitBiasEntry) | repeated | Optional. Modifies the likelihood of specified tokens appearing in the completion. Maps token IDs (as strings) to bias values from -100 to 100. Mathematically added to the logits before sampling. |
+| logprobs | [bool](#bool) | optional | Optional. Whether to return log probabilities of the output tokens. If true, returns the log probabilities of each output token in the response. |
+| max_completion_tokens | [int32](#int32) | optional | Optional. An upper bound for the number of tokens that can be generated for a completion, including visible output tokens and reasoning tokens. |
+| max_tokens | [int32](#int32) | optional | Optional. The maximum number of tokens that can be generated in the chat completion. Deprecated in favor of max_completion_tokens. |
+| metadata | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Set of 16 key-value pairs that can be attached to an object. This can be useful for storing additional information about the object in a structured format, and querying for objects via API or the dashboard. |
+| n | [int32](#int32) | optional | Optional. The number of chat completion choices to generate for each input message. Note that costs are multiplied by the number of choices generated. |
+| presence_penalty | [float](#float) | optional | Optional. A number between -2.0 and 2.0. Positive values penalize new tokens based on whether they have already appeared in the text, increasing the likelihood of the model discussing new topics. |
+| prompt_cache_key | [string](#string) | optional | Optional. Used by OpenAI to cache responses for similar requests to optimize your cache hit rates. Replaces the `user` field. [Learn more](https://platform.openai.com/docs/guides/prompt-caching). |
+| reasoning_effort | [ReasoningEffort](#ondewo.s2t.ReasoningEffort) | optional | Optional. Constrains effort on reasoning for [reasoning models](https://platform.openai.com/docs/guides/reasoning). Currently supported values are `none`, `minimal`, `low`, `medium`, `high`, and `xhigh`. Reducing reasoning effort can result in faster responses and fewer tokens used on reasoning in a response. |
+| seed | [int64](#int64) | optional | Optional. If specified, the system will make a best effort to sample deterministically given the same seed and parameters, enabling reproducible outputs. |
+| service_tier | [ServiceTier](#ondewo.s2t.ServiceTier) | optional | Optional. Specifies the processing type used for serving the request. - If set to 'auto', then the request will be processed with the service tier configured in the Project settings. Unless otherwise configured, the Project will use 'default'. - If set to 'default', then the request will be processed with the standard pricing and performance for the selected model. - If set to '[flex](https://platform.openai.com/docs/guides/flex-processing)' or '[priority](https://openai.com/api-priority-processing/)', then the request will be processed with the corresponding service tier. - When not set, the default behavior is 'auto'. When the `service_tier` parameter is set, the response body will include the `service_tier` value based on the processing mode actually used to serve the request. This response value may be different from the value set in the parameter. |
+| stop | [string](#string) | repeated | Optional. Not supported with latest reasoning models `o3` and `o4-mini`. Up to 4 sequences where the API will stop generating further tokens. The returned text will not contain the stop sequence. |
+| store | [bool](#bool) | optional | Optional. Whether to store the output of this chat completion request for use in model distillation, evals, or the stored completions dashboard. |
+| temperature | [float](#float) | optional | Optional. What sampling temperature to use, between 0 and 2. Higher values (e.g., 0.8) make the output more random, while lower values (e.g., 0.2) make it more focused and deterministic. |
+| top_logprobs | [int32](#int32) | optional | Optional. An integer between 0 and 20 specifying the number of most likely tokens to return at each token position, each with an associated log probability. Requires logprobs to be true. |
+| top_p | [float](#float) | optional | Optional. An alternative to sampling with temperature, called nucleus sampling. The model considers only the tokens with top_p probability mass. Ranges from 0 to 1. |
+| user | [string](#string) | optional | Optional. This field is being replaced by `safety_identifier` and `prompt_cache_key`. Use `prompt_cache_key` instead to maintain caching optimizations. A stable identifier for your end-users. Used to boost cache hit rates by better bucketing similar requests and to help OpenAI detect and prevent abuse. [Learn more](https://platform.openai.com/docs/guides/safety-best-practices#safety-identifiers). |
+| verbosity | [Verbosity](#ondewo.s2t.Verbosity) | optional | Optional. Constrains the verbosity of the model's response. Lower values will result in more concise responses, while higher values will result in more verbose responses. Currently supported values are `low`, `medium`, and `high`. |
+| extra_headers | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Additional HTTP headers to send with the request. These are merged with and override default_headers for this specific request only. |
+| extra_query | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Additional query parameters to send with the request. These are merged with and override default_query for this specific request only. |
+| extra_body | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Additional JSON properties to include in the request body. Useful for accessing new or undocumented API parameters. |
+
+
+
+
+
+
+<a name="ondewo.s2t.OpenaiLlmOptions.DefaultHeadersEntry"></a>
+
+### OpenaiLlmOptions.DefaultHeadersEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [string](#string) |  |  |
+
+
+
+
+
+
+<a name="ondewo.s2t.OpenaiLlmOptions.LogitBiasEntry"></a>
+
+### OpenaiLlmOptions.LogitBiasEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [int32](#int32) |  |  |
+
+
+
+
+
+
+<a name="ondewo.s2t.Parakeet"></a>
+
+### Parakeet
+<p>Parakeet contains information about the Parakeet model.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| triton_model_name | [string](#string) |  | Name of the Triton model. |
+| triton_model_version | [string](#string) |  | Version of the Triton model. |
+| check_status_timeout | [int64](#int64) |  | Timeout for checking model status. |
+| triton_server_host | [string](#string) |  | Host name of triton inference server that serves the Parakeet model |
+| triton_server_port | [int64](#int64) |  | Port number of triton inference server that serves the Parakeet model |
+
+
+
+
+
+
 <a name="ondewo.s2t.PostProcessing"></a>
 
 ### PostProcessing
-PostProcessing contains the configuration for post-processing.
+<p>PostProcessing contains the configuration for post-processing.</p>
 
 
 | Field | Type | Label | Description |
@@ -10880,7 +17925,7 @@ PostProcessing contains the configuration for post-processing.
 <a name="ondewo.s2t.PostProcessingOptions"></a>
 
 ### PostProcessingOptions
-Configuration of the post-processing options
+<p>Configuration of the post-processing options</p>
 
 
 | Field | Type | Label | Description |
@@ -10888,6 +17933,7 @@ Configuration of the post-processing options
 | spelling_correction | [bool](#bool) |  | Whether to use spelling correction |
 | normalize | [bool](#bool) |  | Whether to disable normalization |
 | config | [PostProcessing](#ondewo.s2t.PostProcessing) |  | Post-processing configuration specifying the active post-processors in the pipeline, as well as their individual configuration. If not set, all values are replaced by the ones in current pipeline. |
+| llm_post_processing | [bool](#bool) |  | Whether to disable LLM post-processing |
 
 
 
@@ -10897,13 +17943,14 @@ Configuration of the post-processing options
 <a name="ondewo.s2t.PostProcessors"></a>
 
 ### PostProcessors
-PostProcessors contains configurations for post-processors.
+<p>PostProcessors contains configurations for post-processors.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | sym_spell | [SymSpell](#ondewo.s2t.SymSpell) |  | Configuration of the SymSpell spelling correction. |
-| normalization | [S2TNormalization](#ondewo.s2t.S2TNormalization) |  | Configuration of the normalization object. |
+| normalization | [S2tNormalization](#ondewo.s2t.S2tNormalization) |  | Configuration of the normalization object. |
+| llm_post_processing | [S2tLlmPostProcessing](#ondewo.s2t.S2tLlmPostProcessing) |  | Configuration of the LLM post-processing. |
 
 
 
@@ -10913,7 +17960,7 @@ PostProcessors contains configurations for post-processors.
 <a name="ondewo.s2t.PtFiles"></a>
 
 ### PtFiles
-PtFiles contains information about PT files.
+<p>PtFiles contains information about PT files.</p>
 
 
 | Field | Type | Label | Description |
@@ -10929,84 +17976,18 @@ PtFiles contains information about PT files.
 <a name="ondewo.s2t.Pyannote"></a>
 
 ### Pyannote
-Pyannote contains configuration for the Pyannote voice activity detection model.
-Library: [pyannote-audio](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb)
+<p>Pyannote contains configuration for the Pyannote voice activity detection model.</p>
+<p>Library: <a href="https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb">pyannote-audio</a></p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | model_name | [string](#string) |  | Full name of the Pyannote model. |
 | min_audio_size | [int64](#int64) |  | Minimum audio size for processing. |
-| min_duration_off | [float](#float) |  | Fill inactive regions shorter than that many seconds. Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb) |
-| min_duration_on | [float](#float) |  | Remove active regions shorter than that many seconds Example [notebook](https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb) |
+| min_duration_off | [float](#float) |  | Fill inactive regions shorter than that many seconds. Example <a href="https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb">notebook</a> |
+| min_duration_on | [float](#float) |  | Remove active regions shorter than that many seconds. Example <a href="https://github.com/pyannote/pyannote-audio/blob/develop/tutorials/voice_activity_detection.ipynb">notebook</a> |
 | triton_server_host | [string](#string) |  | Host name of triton inference server that serves the Pyannote model |
 | triton_server_port | [int64](#int64) |  | Port number of triton inference server that serves the Pyannote model |
-
-
-
-
-
-
-<a name="ondewo.s2t.S2TDescription"></a>
-
-### S2TDescription
-S2TDescription contains descriptive information about the speech-to-text pipeline.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| language | [string](#string) |  | Language of the speech-to-text system. |
-| pipeline_owner | [string](#string) |  | Owner of the pipeline. |
-| domain | [string](#string) |  | Domain of the speech-to-text system. |
-| comments | [string](#string) |  | Comments about the system. |
-
-
-
-
-
-
-<a name="ondewo.s2t.S2TGetServiceInfoResponse"></a>
-
-### S2TGetServiceInfoResponse
-S2TGetServiceInfoResponse is used to return version information about the speech-to-text service.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| version | [string](#string) |  | Version number based on semantic versioning, e.g. "4.2.0". |
-
-
-
-
-
-
-<a name="ondewo.s2t.S2TInference"></a>
-
-### S2TInference
-S2TInference contains information about inference models used in the speech-to-text pipeline.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| acoustic_models | [AcousticModels](#ondewo.s2t.AcousticModels) |  | Configuration for the acoustic models. |
-| language_models | [LanguageModels](#ondewo.s2t.LanguageModels) |  | Configuration for the language models. |
-| inference_backend | [InferenceBackend](#ondewo.s2t.InferenceBackend) |  | Configuration for the inference backend. |
-
-
-
-
-
-
-<a name="ondewo.s2t.S2TNormalization"></a>
-
-### S2TNormalization
-S2TNormalization contains configuration for the speech-to-text normalization.
-
-
-| Field | Type | Label | Description |
-| ----- | ---- | ----- | ----------- |
-| language | [string](#string) |  | Language for normalization of transcriptions. |
-| pipeline | [string](#string) | repeated | List of names of active normalizations. |
 
 
 
@@ -11016,7 +17997,7 @@ S2TNormalization contains configuration for the speech-to-text normalization.
 <a name="ondewo.s2t.S2tCloudProviderConfig"></a>
 
 ### S2tCloudProviderConfig
-Configuration for cloud provider settings for Speech-to-Text (S2T).
+<p>Configuration for cloud provider settings for Speech-to-Text (S2T).</p>
 
 
 | Field | Type | Label | Description |
@@ -11034,15 +18015,15 @@ Configuration for cloud provider settings for Speech-to-Text (S2T).
 <a name="ondewo.s2t.S2tCloudProviderConfigAmazon"></a>
 
 ### S2tCloudProviderConfigAmazon
-Configuration details specific to the Amazon web service speech-to-text provider.
+<p>Configuration details specific to the Amazon web service speech-to-text provider.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| enable_partial_results_stabilization | [bool](#bool) | optional | Optional. Enables or disables partial_results_stabilization feature. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization |
-| partial_results_stability | [string](#string) | optional | Optional. You can use this field to set the stability level of the transcription results. A higher stability level means that the transcription results are less likely to change. Higher stability levels can come with lower overall transcription accuracy. Acceptable values: ["low", "medium", "high"]. Defaults to "high" if not set explicitly. More details at: https://aws.amazon.com/blogs/machine-learning/amazon-transcribe-now-supports-partial-results-stabilization-for-streaming-audio/ |
-| language_model_name | [string](#string) | optional | Optional. The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html |
-| vocabulary_name | [string](#string) | optional | Optional. The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html |
+| enable_partial_results_stabilization | [bool](#bool) | optional | Optional. Enables or disables <code>partial_results_stabilization</code> feature. More details at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization">https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization</a> |
+| partial_results_stability | [string](#string) | optional | Optional. You can use this field to set the stability level of the transcription results. A higher stability level means that the transcription results are less likely to change. Higher stability levels can come with lower overall transcription accuracy. Acceptable values: [&quot;low&quot;, &quot;medium&quot;, &quot;high&quot;]. Defaults to &quot;high&quot; if not set explicitly. More details at: <a href="https://aws.amazon.com/blogs/machine-learning/amazon-transcribe-now-supports-partial-results-stabilization-for-streaming-audio/">https://aws.amazon.com/blogs/machine-learning/amazon-transcribe-now-supports-partial-results-stabilization-for-streaming-audio/</a> |
+| language_model_name | [string](#string) | optional | Optional. The name of your customize language model you want to use. More details at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html">https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html</a> |
+| vocabulary_name | [string](#string) | optional | Optional. The name of your customize vocabulary you want to use. More details at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html">https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html</a> |
 
 
 
@@ -11052,16 +18033,16 @@ Configuration details specific to the Amazon web service speech-to-text provider
 <a name="ondewo.s2t.S2tCloudProviderConfigDeepgram"></a>
 
 ### S2tCloudProviderConfigDeepgram
-Configuration details specific to the Deepgram speech-to-text provider.
+<p>Configuration details specific to the Deepgram speech-to-text provider.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| punctuate | [bool](#bool) | optional | Optional. Enables or disables punctuate feature of Deepgram to add punctuations to the resulted transcript. More details at: https://developers.deepgram.com/docs/punctuation |
-| smart_format | [bool](#bool) | optional | Optional. Enables or disables smart_format feature of Deepgram transcription result to improve readability. More details at: https://developers.deepgram.com/docs/smart-format |
-| numerals | [bool](#bool) | optional | Optional. Enables or disables numerals feature of Deepgram to convert numbers to numeric form in the resulted transcript. More details at: https://developers.deepgram.com/docs/numerals |
-| measurements | [bool](#bool) | optional | Optional. Enables or disables measurements feature of Deepgram to convert measurement units (i.e. Kilogram) to abbreviated form (i.e. Kg) in the resulted transcript. More details at: https://developers.deepgram.com/docs/measurements |
-| dictation | [bool](#bool) | optional | Optional. Enables or disables dictation feature of Deepgram to convert spoken dictation commands into their corresponding punctuation marks. More details at: https://developers.deepgram.com/docs/dictation |
+| punctuate | [bool](#bool) | optional | Optional. Enables or disables <code>punctuate</code> feature of Deepgram to add punctuations to the resulted transcript. More details at: <a href="https://developers.deepgram.com/docs/punctuation">https://developers.deepgram.com/docs/punctuation</a> |
+| smart_format | [bool](#bool) | optional | Optional. Enables or disables <code>smart_format</code> feature of Deepgram transcription result to improve readability. More details at: <a href="https://developers.deepgram.com/docs/smart-format">https://developers.deepgram.com/docs/smart-format</a> |
+| numerals | [bool](#bool) | optional | Optional. Enables or disables <code>numerals</code> feature of Deepgram to convert numbers to numeric form in the resulted transcript. More details at: <a href="https://developers.deepgram.com/docs/numerals">https://developers.deepgram.com/docs/numerals</a> |
+| measurements | [bool](#bool) | optional | Optional. Enables or disables <code>measurements</code> feature of Deepgram to convert measurement units (i.e. Kilogram) to abbreviated form (i.e. Kg) in the resulted transcript. More details at: <a href="https://developers.deepgram.com/docs/measurements">https://developers.deepgram.com/docs/measurements</a> |
+| dictation | [bool](#bool) | optional | Optional. Enables or disables <code>dictation</code> feature of Deepgram to convert spoken dictation commands into their corresponding punctuation marks. More details at: <a href="https://developers.deepgram.com/docs/dictation">https://developers.deepgram.com/docs/dictation</a> |
 
 
 
@@ -11071,16 +18052,16 @@ Configuration details specific to the Deepgram speech-to-text provider.
 <a name="ondewo.s2t.S2tCloudProviderConfigGoogle"></a>
 
 ### S2tCloudProviderConfigGoogle
-Configuration details specific to the Google speech-to-text provider.
+<p>Configuration details specific to the Google speech-to-text provider.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| enable_automatic_punctuation | [bool](#bool) | optional | Optional. Enables or disables automatic_punctuation feature of Google s2t to add punctuations to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/automatic-punctuation |
-| enable_word_time_offsets | [bool](#bool) | optional | Optional. Enables or disables word_time_offsets feature of Google s2t to add word-level timestamps (time-offset) to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/async-time-offsets |
-| enable_word_confidence | [bool](#bool) | optional | Optional. Enables or disables word_confidence feature of Google s2t to add word-level confidence scores to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/word-confidence |
-| transcript_normalization | [bool](#bool) | optional | Optional. Enables or disables transcript_normalization feature of Google s2t to automatically replace parts of the transcript with phrases of your choosing. More details at: https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization |
-| max_alternatives | [int32](#int32) | optional | Optional. Maximum number of recognition hypotheses to be returned, may be returned fewer than max_alternatives. Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitted, will return a maximum of one. |
+| enable_automatic_punctuation | [bool](#bool) | optional | Optional. Enables or disables <code>automatic_punctuation</code> feature of Google s2t to add punctuations to the resulted transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/automatic-punctuation">https://cloud.google.com/speech-to-text/docs/automatic-punctuation</a> |
+| enable_word_time_offsets | [bool](#bool) | optional | Optional. Enables or disables <code>word_time_offsets</code> feature of Google s2t to add word-level timestamps (time-offset) to the resulted transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/async-time-offsets">https://cloud.google.com/speech-to-text/docs/async-time-offsets</a> |
+| enable_word_confidence | [bool](#bool) | optional | Optional. Enables or disables <code>word_confidence</code> feature of Google s2t to add word-level confidence scores to the resulted transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/word-confidence">https://cloud.google.com/speech-to-text/docs/word-confidence</a> |
+| transcript_normalization | [bool](#bool) | optional | Optional. Enables or disables <code>transcript_normalization</code> feature of Google s2t to automatically replace parts of the transcript with phrases of your choosing. More details at: <a href="https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization">https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization</a> |
+| max_alternatives | [int32](#int32) | optional | Optional. Maximum number of recognition hypotheses to be returned, may be returned fewer than <code>max_alternatives</code>. Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitted, will return a maximum of one. |
 
 
 
@@ -11090,13 +18071,13 @@ Configuration details specific to the Google speech-to-text provider.
 <a name="ondewo.s2t.S2tCloudProviderConfigMicrosoft"></a>
 
 ### S2tCloudProviderConfigMicrosoft
-Configuration details specific to the Microsoft Azure speech-to-text provider.
+<p>Configuration details specific to the Microsoft Azure speech-to-text provider.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| use_fast_transcription_api | [bool](#bool) | optional | Optional. Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in preview version. More details at: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create |
-| use_detailed_output_format | [bool](#bool) | optional | Optional. Enables or disables the `detailed` format for the result of Microsoft Azure s2t service to add timestamps and confidences to the resulted transcript. |
+| use_fast_transcription_api | [bool](#bool) | optional | Optional. Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in preview version. More details at: <a href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create">https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create</a> |
+| use_detailed_output_format | [bool](#bool) | optional | Optional. Enables or disables the <code>detailed</code> format for the result of Microsoft Azure s2t service to add timestamps and confidences to the resulted transcript. |
 
 
 
@@ -11106,17 +18087,17 @@ Configuration details specific to the Microsoft Azure speech-to-text provider.
 <a name="ondewo.s2t.S2tCloudServiceAmazon"></a>
 
 ### S2tCloudServiceAmazon
-S2tCloudServiceAmazon message contains settings for the Amazon web service Cloud service inference.
+<p>S2tCloudServiceAmazon message contains settings for the Amazon web service Cloud service inference.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language | [string](#string) |  | Language of the audio to transcribe by Amazon web service s2t cloud service. It should be 4-letter language code (BCP-47) e.g. 'en-US' or 'de-DE'. |
-| streaming_available | [bool](#bool) |  | Specifies if streaming mode of Amazon web service speech to text is available for the selected language, otherwise batch mode transcription is used. See the list of languages and available transcription modes at: https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html |
-| enable_partial_results_stabilization | [bool](#bool) |  | Enables or disables partial_results_stabilization feature. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization |
-| partial_results_stability | [string](#string) |  | You can use this field to set the stability level of the transcription results. A higher stability level means that the transcription results are less likely to change. Higher stability levels can come with lower overall transcription accuracy. Defaults to "high" if not set explicitly. |
-| language_model_name | [string](#string) |  | The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html |
-| vocabulary_name | [string](#string) |  | The name of your customize language model you want to use. More details at: https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html |
+| language | [string](#string) |  | Language of the audio to transcribe by Amazon web service s2t cloud service. It should be 4-letter language code (BCP-47) e.g. &apos;en-US&apos; or &apos;de-DE&apos;. |
+| streaming_available | [bool](#bool) |  | Specifies if streaming mode of Amazon web service speech to text is available for the selected language, otherwise batch mode transcription is used. See the list of languages and available transcription modes at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html">https://docs.aws.amazon.com/transcribe/latest/dg/supported-languages.html</a> |
+| enable_partial_results_stabilization | [bool](#bool) |  | Enables or disables <code>partial_results_stabilization</code> feature. More details at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization">https://docs.aws.amazon.com/transcribe/latest/dg/streaming-partial-results.html#streaming-partial-result-stabilization</a> |
+| partial_results_stability | [string](#string) |  | You can use this field to set the stability level of the transcription results. A higher stability level means that the transcription results are less likely to change. Higher stability levels can come with lower overall transcription accuracy. Defaults to &quot;high&quot; if not set explicitly. |
+| language_model_name | [string](#string) |  | The name of your customize language model you want to use. More details at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html">https://docs.aws.amazon.com/transcribe/latest/dg/custom-language-models.html</a> |
+| vocabulary_name | [string](#string) |  | The name of your customize vocabulary you want to use. More details at: <a href="https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html">https://docs.aws.amazon.com/transcribe/latest/dg/custom-vocabulary.html</a> |
 
 
 
@@ -11126,18 +18107,18 @@ S2tCloudServiceAmazon message contains settings for the Amazon web service Cloud
 <a name="ondewo.s2t.S2tCloudServiceDeepgram"></a>
 
 ### S2tCloudServiceDeepgram
-S2tCloudServiceDeepgram message contains settings for the Deepgram Cloud service inference.
+<p>S2tCloudServiceDeepgram message contains settings for the Deepgram Cloud service inference.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| model_name | [string](#string) |  | Model name from one of the speech-to-text models provided by Deepgram for the desired use-case. Provided model names and details at: https://developers.deepgram.com/docs/model |
-| language | [string](#string) |  | Language of the audio to transcribe by Deepgram s2t cloud service. It should be 4-letter language code (BCP-47) e.g. 'en-US' or 'de-DE'. |
-| punctuate | [bool](#bool) |  | Enables or disables punctuate feature of Deepgram to add punctuations to the resulted transcript. More details at: https://developers.deepgram.com/docs/punctuation |
-| smart_format | [bool](#bool) |  | Enables or disables smart_format feature of Deepgram transcription result to improve readability. More details at: https://developers.deepgram.com/docs/smart-format |
-| numerals | [bool](#bool) |  | Enables or disables numerals feature of Deepgram to convert numbers to numeric form in the resulted transcript. More details at: https://developers.deepgram.com/docs/numerals |
-| measurements | [bool](#bool) |  | Enables or disables measurements feature of Deepgram to convert measurement units (i.e. Kilogram) to abbreviated form (i.e. Kg) in the resulted transcript. More details at: https://developers.deepgram.com/docs/measurements |
-| dictation | [bool](#bool) |  | Enables or disables dictation feature of Deepgram to convert spoken dictation commands into their corresponding punctuation marks. More details at: https://developers.deepgram.com/docs/dictation |
+| model_name | [string](#string) |  | Model name from one of the speech-to-text models provided by Deepgram for the desired use-case. Provided model names and details at: <a href="https://developers.deepgram.com/docs/model">https://developers.deepgram.com/docs/model</a> |
+| language | [string](#string) |  | Language of the audio to transcribe by Deepgram s2t cloud service. It should be 4-letter language code (BCP-47) e.g. &apos;en-US&apos; or &apos;de-DE&apos;. |
+| punctuate | [bool](#bool) |  | Enables or disables <code>punctuate</code> feature of Deepgram to add punctuations to the resulted transcript. More details at: <a href="https://developers.deepgram.com/docs/punctuation">https://developers.deepgram.com/docs/punctuation</a> |
+| smart_format | [bool](#bool) |  | Enables or disables <code>smart_format</code> feature of Deepgram transcription result to improve readability. More details at: <a href="https://developers.deepgram.com/docs/smart-format">https://developers.deepgram.com/docs/smart-format</a> |
+| numerals | [bool](#bool) |  | Enables or disables <code>numerals</code> feature of Deepgram to convert numbers to numeric form in the resulted transcript. More details at: <a href="https://developers.deepgram.com/docs/numerals">https://developers.deepgram.com/docs/numerals</a> |
+| measurements | [bool](#bool) |  | Enables or disables <code>measurements</code> feature of Deepgram to convert measurement units (i.e. Kilogram) to abbreviated form (i.e. Kg) in the resulted transcript. More details at: <a href="https://developers.deepgram.com/docs/measurements">https://developers.deepgram.com/docs/measurements</a> |
+| dictation | [bool](#bool) |  | Enables or disables <code>dictation</code> feature of Deepgram to convert spoken dictation commands into their corresponding punctuation marks. More details at: <a href="https://developers.deepgram.com/docs/dictation">https://developers.deepgram.com/docs/dictation</a> |
 
 
 
@@ -11147,18 +18128,18 @@ S2tCloudServiceDeepgram message contains settings for the Deepgram Cloud service
 <a name="ondewo.s2t.S2tCloudServiceGoogle"></a>
 
 ### S2tCloudServiceGoogle
-S2tCloudServiceGoogle message contains settings for the Google Cloud service inference.
+<p>S2tCloudServiceGoogle message contains settings for the Google Cloud service inference.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| model_name | [string](#string) |  | Model name from one of the speech-to-text models provided by Google for the desired use-case. Provided model names and details at: https://cloud.google.com/speech-to-text/docs/transcription-model |
-| language | [string](#string) |  | Language of the audio to transcribe by Google s2t cloud service. It should be 4-letter language code (BCP-47) e.g. 'en-US' or 'de-DE'. |
-| enable_automatic_punctuation | [bool](#bool) |  | Enables or disables automatic_punctuation feature of Google s2t to add punctuations to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/automatic-punctuation |
-| enable_word_time_offsets | [bool](#bool) |  | Enables or disables word_time_offsets feature of Google s2t to add word-level timestamps (time-offsets) to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/async-time-offsets |
-| enable_word_confidence | [bool](#bool) |  | Enables or disables word_confidence feature of Google s2t to add word-level confidence scores to the resulted transcript. More details at: https://cloud.google.com/speech-to-text/docs/word-confidence |
-| transcript_normalization | [bool](#bool) |  | Enables or disables transcript_normalization feature of Google s2t to automatically replace parts of the transcript with phrases of your choosing. More details at: https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization |
-| max_alternatives | [int32](#int32) |  | Maximum number of recognition hypotheses to be returned. The server may return fewer than max_alternatives. Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitted, will return a maximum of one. |
+| model_name | [string](#string) |  | Model name from one of the speech-to-text models provided by Google for the desired use-case. Provided model names and details at: <a href="https://cloud.google.com/speech-to-text/docs/transcription-model">https://cloud.google.com/speech-to-text/docs/transcription-model</a> |
+| language | [string](#string) |  | Language of the audio to transcribe by Google s2t cloud service. It should be 4-letter language code (BCP-47) e.g. &apos;en-US&apos; or &apos;de-DE&apos;. |
+| enable_automatic_punctuation | [bool](#bool) |  | Enables or disables <code>automatic_punctuation</code> feature of Google s2t to add punctuations to the resulted transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/automatic-punctuation">https://cloud.google.com/speech-to-text/docs/automatic-punctuation</a> |
+| enable_word_time_offsets | [bool](#bool) |  | Enables or disables <code>word_time_offsets</code> feature of Google s2t to add word-level timestamps (time-offsets) to the resulted transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/async-time-offsets">https://cloud.google.com/speech-to-text/docs/async-time-offsets</a> |
+| enable_word_confidence | [bool](#bool) |  | Enables or disables <code>word_confidence</code> feature of Google s2t to add word-level confidence scores to the resulted transcript. More details at: <a href="https://cloud.google.com/speech-to-text/docs/word-confidence">https://cloud.google.com/speech-to-text/docs/word-confidence</a> |
+| transcript_normalization | [bool](#bool) |  | Enables or disables <code>transcript_normalization</code> feature of Google s2t to automatically replace parts of the transcript with phrases of your choosing. More details at: <a href="https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization">https://cloud.google.com/speech-to-text/v2/docs/reference/rpc/google.cloud.speech.v2#transcriptnormalization</a> |
+| max_alternatives | [int32](#int32) |  | Maximum number of recognition hypotheses to be returned. The server may return fewer than <code>max_alternatives</code>. Valid values are 0-30. A value of 0 or 1 will return a maximum of one. If omitted, will return a maximum of one. |
 
 
 
@@ -11168,14 +18149,201 @@ S2tCloudServiceGoogle message contains settings for the Google Cloud service inf
 <a name="ondewo.s2t.S2tCloudServiceMicrosoft"></a>
 
 ### S2tCloudServiceMicrosoft
-S2tCloudServiceMicrosoft message contains settings for the Microsoft Azure Cloud service inference.
+<p>S2tCloudServiceMicrosoft message contains settings for the Microsoft Azure Cloud service inference.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language | [string](#string) |  | Language of the audio to transcribe by Microsoft Azure s2t cloud service. It should be 4-letter language code (BCP-47) e.g. 'en-US' or 'de-DE'. |
-| use_fast_transcription_api | [bool](#bool) |  | Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in preview version. More details at: https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create |
-| use_detailed_output_format | [bool](#bool) |  | Enables or disables the `detailed` format for the result of Microsoft Azure s2t service to add timestamps and confidences to the resulted transcript. |
+| language | [string](#string) |  | Language of the audio to transcribe by Microsoft Azure s2t cloud service. It should be 4-letter language code (BCP-47) e.g. &apos;en-US&apos; or &apos;de-DE&apos;. |
+| use_fast_transcription_api | [bool](#bool) |  | Enables or disables the Microsoft Azure fast transcription API. It is faster than SDK but is in preview version. More details at: <a href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create">https://learn.microsoft.com/en-us/azure/ai-services/speech-service/fast-transcription-create</a> |
+| use_detailed_output_format | [bool](#bool) |  | Enables or disables the <code>detailed</code> format for the result of Microsoft Azure s2t service to add timestamps and confidences to the resulted transcript. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tDescription"></a>
+
+### S2tDescription
+<p>S2tDescription contains descriptive information about the speech-to-text pipeline.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| language | [string](#string) |  | Language of the speech-to-text system. |
+| pipeline_owner | [string](#string) |  | Owner of the pipeline. |
+| domain | [string](#string) |  | Domain of the speech-to-text system. |
+| comments | [string](#string) |  | Comments about the system. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tGetServiceInfoResponse"></a>
+
+### S2tGetServiceInfoResponse
+<p>S2tGetServiceInfoResponse is used to return version information about the speech-to-text service.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| version | [string](#string) |  | Version number based on semantic versioning, e.g. &quot;4.2.0&quot;. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tInference"></a>
+
+### S2tInference
+<p>S2tInference contains information about inference models used in the speech-to-text pipeline.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| acoustic_models | [AcousticModels](#ondewo.s2t.AcousticModels) |  | Configuration for the acoustic models. |
+| language_models | [LanguageModels](#ondewo.s2t.LanguageModels) |  | Configuration for the language models. |
+| inference_backend | [InferenceBackend](#ondewo.s2t.InferenceBackend) |  | Configuration for the inference backend. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tLlmPostProcessing"></a>
+
+### S2tLlmPostProcessing
+<p>S2tLlmPostProcessing contains configuration for the speech-to-text postprocessing with LLM.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| s2t_llm_post_processing_openai_options | [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions) | optional | Optional. Configuration options for the OpenAI client used for post-processing. |
+| s2t_llm_post_processing_system_prompt | [string](#string) | optional | Optional. System prompt used to guide the LLM model for post-processing. |
+| s2t_llm_post_processing_ending_prompt | [string](#string) | optional | Optional. Ending prompt appended to the accumulated prompts of the active post-processing tasks. |
+| s2t_llm_post_processing_casing_options | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the options to casing task in LLM post-processing. |
+| s2t_llm_post_processing_punctuation_options | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the options to punctuation task in LLM post-processing. |
+| s2t_llm_post_processing_spelling_correction_options | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the options to spelling-correction task in LLM post-processing. |
+| s2t_llm_post_processing_semantic_correction_options | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the options to semantic-correction task in LLM post-processing. |
+| s2t_llm_post_processing_translation_options | [S2tLlmPostProcessingTranslationOptions](#ondewo.s2t.S2tLlmPostProcessingTranslationOptions) | optional | Optional. Configuration of the options to translation task in LLM post-processing. |
+| s2t_llm_post_processing_inverse_normalization_options | [S2tLlmPostProcessingInverseNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingInverseNormalizationOptions) | optional | Optional. Configuration of the options to inverse-normalization task in LLM post-processing. |
+| s2t_llm_post_processing_normalization_options | [S2tLlmPostProcessingNormalizationOptions](#ondewo.s2t.S2tLlmPostProcessingNormalizationOptions) | optional | Optional. Configuration of the options to normalization task in LLM post-processing. |
+| s2t_llm_post_processing_summarization_options | [S2tLlmPostProcessingSummarizationOptions](#ondewo.s2t.S2tLlmPostProcessingSummarizationOptions) | optional | Optional. Configuration of the options to summarization task in LLM post-processing. |
+| s2t_llm_post_processing_user_prompt_options | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the options to user-prompt task in LLM post-processing. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tLlmPostProcessingInverseNormalizationOptions"></a>
+
+### S2tLlmPostProcessingInverseNormalizationOptions
+<p>Configuration of the options to inverse-normalization task in LLM post-processing.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| active | [bool](#bool) | optional | Optional. Indicates if the inverse-normalization task of LLM post-processing is active. |
+| email | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the inverse-normalization of email address sub-task. |
+| phone_number | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the inverse-normalization of phone number sub-task. |
+| date_and_time | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the inverse-normalization of date and time sub-task. |
+| credit_card_number | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the inverse-normalization of credit card number sub-task. |
+| social_security_number | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the inverse-normalization of social security number sub-task. |
+| time_zone | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the inverse-normalization of time zone sub-task. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tLlmPostProcessingNormalizationOptions"></a>
+
+### S2tLlmPostProcessingNormalizationOptions
+<p>Configuration of the options to normalization task in LLM post-processing.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| active | [bool](#bool) | optional | Optional. Indicates if the normalization task of LLM post-processing is active. |
+| email | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the normalization of email address sub-task. |
+| phone_number | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the normalization of phone number sub-task. |
+| date_and_time | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the normalization of date and time sub-task. |
+| credit_card_number | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the normalization of credit card number sub-task. |
+| social_security_number | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the normalization of social security number sub-task. |
+| time_zone | [S2tLlmPostProcessingSubTaskOptions](#ondewo.s2t.S2tLlmPostProcessingSubTaskOptions) | optional | Optional. Configuration of the normalization of time zone sub-task. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tLlmPostProcessingSubTaskOptions"></a>
+
+### S2tLlmPostProcessingSubTaskOptions
+<p>Common configuration for an individual LLM post-processing sub-task (e.g. email, phone number,
+date and time, credit card number, social security number, time zone).
+Used by both normalization and inverse-normalization tasks.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| active | [bool](#bool) | optional | Optional. Indicates if this sub-task is active. |
+| prompt | [string](#string) | optional | Optional. Custom prompt to guide the LLM for this sub-task. Overrides the default prompt when set. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tLlmPostProcessingSummarizationOptions"></a>
+
+### S2tLlmPostProcessingSummarizationOptions
+<p>Configuration of the options to summarization task in LLM post-processing.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| active | [bool](#bool) | optional | Optional. Indicates if the summarization task of LLM post-processing is active. |
+| prompt | [string](#string) | optional | Optional. Custom prompt to guide the LLM for summarization. Overrides the default prompt when set. |
+| min_chars | [int32](#int32) | optional | Optional. Minimum number of characters of the summary generated in summarization task of LLM post-processing. |
+| max_chars | [int32](#int32) | optional | Optional. Maximum number of characters of the summary generated in summarization task of LLM post-processing. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tLlmPostProcessingTranslationOptions"></a>
+
+### S2tLlmPostProcessingTranslationOptions
+<p>Configuration of the options to translation task in LLM post-processing.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| active | [bool](#bool) | optional | Optional. Indicates if the translation task of LLM post-processing is active. |
+| language | [string](#string) | optional | Optional. Target language of the translation task of LLM post-processing. |
+| prompt | [string](#string) | optional | Optional. Custom prompt to guide the LLM for translation. Overrides the default prompt when set. |
+
+
+
+
+
+
+<a name="ondewo.s2t.S2tNormalization"></a>
+
+### S2tNormalization
+<p>S2tNormalization contains configuration for the speech-to-text normalization.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| language | [string](#string) |  | Language for normalization of transcriptions. |
+| pipeline | [string](#string) | repeated | List of names of active normalizations. |
 
 
 
@@ -11185,7 +18353,7 @@ S2tCloudServiceMicrosoft message contains settings for the Microsoft Azure Cloud
 <a name="ondewo.s2t.S2tPipelineId"></a>
 
 ### S2tPipelineId
-The pipeline id for a specific pipeline configuration
+<p>The pipeline id for a specific pipeline configuration</p>
 
 
 | Field | Type | Label | Description |
@@ -11200,15 +18368,15 @@ The pipeline id for a specific pipeline configuration
 <a name="ondewo.s2t.Speech2TextConfig"></a>
 
 ### Speech2TextConfig
-Speech2TextConfig is a configuration message for the speech-to-text pipeline
+<p>Speech2TextConfig is a configuration message for the speech-to-text pipeline</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | id | [string](#string) |  | Unique identifier for the configuration. |
-| description | [S2TDescription](#ondewo.s2t.S2TDescription) |  | Description of the speech-to-text system. |
+| description | [S2tDescription](#ondewo.s2t.S2tDescription) |  | Description of the speech-to-text system. |
 | active | [bool](#bool) |  | Indicates if the configuration is active. |
-| inference | [S2TInference](#ondewo.s2t.S2TInference) |  | Configuration for inference models. |
+| inference | [S2tInference](#ondewo.s2t.S2tInference) |  | Configuration for inference models. |
 | streaming_server | [StreamingServer](#ondewo.s2t.StreamingServer) |  | Configuration for the streaming server. |
 | voice_activity_detection | [VoiceActivityDetection](#ondewo.s2t.VoiceActivityDetection) |  | Configuration for voice activity detection. |
 | post_processing | [PostProcessing](#ondewo.s2t.PostProcessing) |  | Configuration for post-processing. |
@@ -11222,7 +18390,7 @@ Speech2TextConfig is a configuration message for the speech-to-text pipeline
 <a name="ondewo.s2t.StreamingServer"></a>
 
 ### StreamingServer
-StreamingServer contains information about the streaming server.
+<p>StreamingServer contains information about the streaming server.</p>
 
 
 | Field | Type | Label | Description |
@@ -11240,7 +18408,7 @@ StreamingServer contains information about the streaming server.
 <a name="ondewo.s2t.StreamingSpeechRecognition"></a>
 
 ### StreamingSpeechRecognition
-StreamingSpeechRecognition contains information about streaming speech recognition settings.
+<p>StreamingSpeechRecognition contains information about streaming speech recognition settings.</p>
 
 
 | Field | Type | Label | Description |
@@ -11250,6 +18418,7 @@ StreamingSpeechRecognition contains information about streaming speech recogniti
 | sampling_rate | [int64](#int64) |  | Sampling rate for audio input. |
 | min_audio_chunk_size | [int64](#int64) |  | Minimum audio chunk size for processing. |
 | next_chunk_timeout | [float](#float) |  | Timeout between audio chunks; if exceeded, the stream will be stopped. |
+| turn_detection | [TurnDetectionOptions](#ondewo.s2t.TurnDetectionOptions) |  | Configuration of the options to turn-detection in utterances |
 
 
 
@@ -11259,7 +18428,7 @@ StreamingSpeechRecognition contains information about streaming speech recogniti
 <a name="ondewo.s2t.SymSpell"></a>
 
 ### SymSpell
-SymSpell contains configuration for the SymSpell spelling correction.
+<p>SymSpell contains configuration for the SymSpell spelling correction.</p>
 
 
 | Field | Type | Label | Description |
@@ -11276,12 +18445,12 @@ SymSpell contains configuration for the SymSpell spelling correction.
 <a name="ondewo.s2t.TrainUserLanguageModelRequest"></a>
 
 ### TrainUserLanguageModelRequest
-TrainUserLanguageModelRequest is used to request the training of a user-specific language model.
+<p>TrainUserLanguageModelRequest is used to request the training of a user-specific language model.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| language_model_name | [string](#string) |  | Name of the language model to train. Example: "user_lm_1" |
+| language_model_name | [string](#string) |  | Name of the language model to train. Example: &quot;user_lm_1&quot; |
 | order | [int64](#int64) |  | Order n of the ngram. Example: 3 (for trigram model) |
 
 
@@ -11292,7 +18461,7 @@ TrainUserLanguageModelRequest is used to request the training of a user-specific
 <a name="ondewo.s2t.TranscribeFileRequest"></a>
 
 ### TranscribeFileRequest
-A request to transcribe an audio file
+<p>A request to transcribe an audio file</p>
 
 
 | Field | Type | Label | Description |
@@ -11308,7 +18477,7 @@ A request to transcribe an audio file
 <a name="ondewo.s2t.TranscribeFileResponse"></a>
 
 ### TranscribeFileResponse
-The response message for a transcribe file request
+<p>The response message for a transcribe file request</p>
 
 
 | Field | Type | Label | Description |
@@ -11325,7 +18494,7 @@ The response message for a transcribe file request
 <a name="ondewo.s2t.TranscribeRequestConfig"></a>
 
 ### TranscribeRequestConfig
-Configuration for a request to transcribe audio
+<p>Configuration for a request to transcribe audio</p>
 
 
 | Field | Type | Label | Description |
@@ -11338,9 +18507,9 @@ Configuration for a request to transcribe audio
 | pyannote | [Pyannote](#ondewo.s2t.Pyannote) |  | Voice activity detection with pyannote |
 | return_options | [TranscriptionReturnOptions](#ondewo.s2t.TranscriptionReturnOptions) |  | The transcribe return options |
 | language | [string](#string) | optional | Optional. Specify language of transcription to return |
-| task | [string](#string) | optional | Optional. Specify task of s2t model, e.g. 'transcribe' and 'translate' |
-| s2t_service_config | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. s2t_service_config provides the configuration of the service such as API key, bearer tokens, JWT, and other header information as key value pairs, e.g., <pre><code>MY_API_KEY='LKJDIFe244LKJOI'</code></pre> A. For Amazon S2T service, the following arguments should be passed in form of a dict: A.1 aws_access_key_id (required) Access key id to access Amazon WEb Service. A.2 aws_secret_access_key (required) Secret access key to access Amazon WEb Service. A.3 region (required) Region name of Amazon Server. Example: s2t_config_service={'aws_access_key_id': 'YOUR_AWS_ACCESS_KEY_ID', 'aws_secret_access_key': 'YOUR_AWS_SECRET_ACCESS_KEY', 'region': 'YOUR_AMAZON_SERVER_REGION_NAME'} B. For Deepgram S2T service, the following argument should be passed in form of a dict: B.1 api_key (required) API key of Deepgram account to access Deepgram S2T service. Example: s2t_config_service={'api_key': 'YOUR_DEEPGRAM_API_KEY'} C. For Google cloud S2T service, the following arguments should be passed in form of a dict: C.1- api_key (required) API key of Google cloud to access its S2T service. C.2- api_endpoint (optional) Regional API endpoint of Google cloud S2T service. (Defaults to 'eu-speech.googleapis.com') Example: s2t_config_service={'api_key': 'YOUR_GOOGLE_CLOUD_API_KEY', 'api_endpoint': 'YOUR_GOOGLE_CLOUD_API_ENDPOINT'} D. For Microsoft Azure S2T service, the following arguments should be passed in form of a dict: D.1 subscription_key (required) Subscription key to access Microsoft Azure Service. D.2 region (required) Region name of Microsoft Azure Server. Example: s2t_config_service={'subscription_key': 'YOUR_MICROSOFT_AZURE_SUBSCRIPTION_KEY', 'region': 'YOUR_MICROSOFT_AZURE_SERVER_REGION_NAME'} Note: ondewo-s2t will raise an error if you don't pass any of the required arguments above. |
-| s2t_cloud_provider_config | [S2tCloudProviderConfig](#ondewo.s2t.S2tCloudProviderConfig) | optional | Optional. Defines the cloud provider's specific configuration for using speech to text cloud services The default value is None. |
+| task | [string](#string) | optional | Optional. Specify task of s2t model, e.g. &apos;transcribe&apos; and &apos;translate&apos; |
+| s2t_service_config | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. <code>s2t_service_config</code> provides the configuration of the service such as API key, bearer tokens, JWT, and other header information as key value pairs, e.g., <pre><code>MY_API_KEY=&apos;LKJDIFe244LKJOI&apos;</code></pre> For Amazon S2T service, the following arguments should be passed in form of a dict: <ul> <li><code>aws_access_key_id</code> (required) Access key id to access Amazon Web Service.</li> <li><code>aws_secret_access_key</code> (required) Secret access key to access Amazon Web Service.</li> <li><code>region</code> (required) Region name of Amazon Server.</li> </ul> Example: <code>s2t_config_service={&apos;aws_access_key_id&apos;: &apos;YOUR_AWS_ACCESS_KEY_ID&apos;, &apos;aws_secret_access_key&apos;: &apos;YOUR_AWS_SECRET_ACCESS_KEY&apos;, &apos;region&apos;: &apos;YOUR_AMAZON_SERVER_REGION_NAME&apos;}</code> For Deepgram S2T service, the following argument should be passed in form of a dict: <ul> <li><code>api_key</code> (required) API key of Deepgram account to access Deepgram S2T service.</li> </ul> Example: <code>s2t_config_service={&apos;api_key&apos;: &apos;YOUR_DEEPGRAM_API_KEY&apos;}</code> <br> For Google cloud S2T service, the following arguments should be passed in form of a dict: <ul> <li><code>api_key</code> (required) API key of Google cloud to access its S2T service.</li> <li><code>api_endpoint</code> (optional) Regional API endpoint of Google cloud S2T service. (Defaults to &apos;eu-speech.googleapis.com&apos;)</li> </ul> Example: <code>s2t_config_service={&apos;api_key&apos;: &apos;YOUR_GOOGLE_CLOUD_API_KEY&apos;, &apos;api_endpoint&apos;: &apos;YOUR_GOOGLE_CLOUD_API_ENDPOINT&apos;}</code> For Microsoft Azure S2T service, the following arguments should be passed in form of a dict: <ul> <li><code>subscription_key</code> (required) Subscription key to access Microsoft Azure Service.</li> <li><code>region</code> (required) Region name of Microsoft Azure Server.</li> </ul> Example: <code>s2t_config_service={&apos;subscription_key&apos;: &apos;YOUR_MICROSOFT_AZURE_SUBSCRIPTION_KEY&apos;, &apos;region&apos;: &apos;YOUR_MICROSOFT_AZURE_SERVER_REGION_NAME&apos;}</code> Note: ondewo-s2t will raise an error if you don&apos;t pass any of the required arguments above. |
+| s2t_cloud_provider_config | [S2tCloudProviderConfig](#ondewo.s2t.S2tCloudProviderConfig) | optional | Optional. Defines the cloud provider&apos;s specific configuration for using speech to text cloud services. The default value is None. |
 
 
 
@@ -11350,7 +18519,7 @@ Configuration for a request to transcribe audio
 <a name="ondewo.s2t.TranscribeStreamRequest"></a>
 
 ### TranscribeStreamRequest
-Request to transcribe an audio stream
+<p>Request to transcribe an audio stream</p>
 
 
 | Field | Type | Label | Description |
@@ -11368,7 +18537,7 @@ Request to transcribe an audio stream
 <a name="ondewo.s2t.TranscribeStreamResponse"></a>
 
 ### TranscribeStreamResponse
-The response message of a stream transcription
+<p>The response message of a stream transcription</p>
 
 
 | Field | Type | Label | Description |
@@ -11390,7 +18559,7 @@ The response message of a stream transcription
 <a name="ondewo.s2t.Transcription"></a>
 
 ### Transcription
-The transcription message
+<p>The transcription message</p>
 
 
 | Field | Type | Label | Description |
@@ -11408,7 +18577,7 @@ The transcription message
 <a name="ondewo.s2t.TranscriptionAlternative"></a>
 
 ### TranscriptionAlternative
-
+<p>The alternative transcription message</p>
 
 
 | Field | Type | Label | Description |
@@ -11425,7 +18594,7 @@ The transcription message
 <a name="ondewo.s2t.TranscriptionReturnOptions"></a>
 
 ### TranscriptionReturnOptions
-Configuration of the return values of a transcribe request
+<p>Configuration of the return values of a transcribe request</p>
 
 
 | Field | Type | Label | Description |
@@ -11444,16 +18613,36 @@ Configuration of the return values of a transcribe request
 
 
 
+<a name="ondewo.s2t.TurnDetectionOptions"></a>
+
+### TurnDetectionOptions
+<p>Configuration of the options to turn-detection in utterances</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| active | [bool](#bool) | optional | Optional. Indicates if the turn-detection feature is active. |
+| full_utterance_deployment | [bool](#bool) | optional | Optional. Whether to transcribe the whole utterance when turn moment is detected. It is helpful to increase accuracy of transcriptions in cost of drop in speed. If deactivated, it just transcribe from last short silence period and concatenates the transcriptions of small audio chunks between tiny silences. |
+| turn_detection_system_prompt | [string](#string) | optional | Optional. System prompt used to guide the turn-detection model. |
+| turn_detection_user_prompt | [string](#string) | optional | Optional. User prompt used as input to the turn-detection model. |
+| turn_detection_llm_openai_options | [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions) | optional | Optional. Configuration options for the OpenAI client used for turn detection. |
+
+
+
+
+
+
 <a name="ondewo.s2t.UtteranceDetectionOptions"></a>
 
 ### UtteranceDetectionOptions
-Configuration of the options to detect utterances
+<p>Configuration of the options to detect utterances</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | transcribe_not_final | [bool](#bool) |  | Return also immediate transcription results |
 | next_chunk_timeout | [float](#float) |  | if time between audio chunks exceeds next_chunk_timeout, stream will be stopped |
+| turn_detection | [TurnDetectionOptions](#ondewo.s2t.TurnDetectionOptions) |  | The turn detection options |
 
 
 
@@ -11463,7 +18652,7 @@ Configuration of the options to detect utterances
 <a name="ondewo.s2t.VoiceActivityDetection"></a>
 
 ### VoiceActivityDetection
-VoiceActivityDetection contains information about voice activity detection settings.
+<p>VoiceActivityDetection contains information about voice activity detection settings.</p>
 
 
 | Field | Type | Label | Description |
@@ -11480,7 +18669,7 @@ VoiceActivityDetection contains information about voice activity detection setti
 <a name="ondewo.s2t.Wav2Vec"></a>
 
 ### Wav2Vec
-Wav2Vec contains information about the Wav2Vec model.
+<p>Wav2Vec contains information about the Wav2Vec model.</p>
 
 
 | Field | Type | Label | Description |
@@ -11496,7 +18685,7 @@ Wav2Vec contains information about the Wav2Vec model.
 <a name="ondewo.s2t.Wav2VecTriton"></a>
 
 ### Wav2VecTriton
-Wav2VecTriton contains information about the Wav2Vec model using Triton.
+<p>Wav2VecTriton contains information about the Wav2Vec model using Triton.</p>
 
 
 | Field | Type | Label | Description |
@@ -11516,7 +18705,7 @@ Wav2VecTriton contains information about the Wav2Vec model using Triton.
 <a name="ondewo.s2t.Whisper"></a>
 
 ### Whisper
-Whisper contains information about the Whisper model.
+<p>Whisper contains information about the Whisper model.</p>
 
 
 | Field | Type | Label | Description |
@@ -11534,7 +18723,7 @@ Whisper contains information about the Whisper model.
 <a name="ondewo.s2t.WhisperTriton"></a>
 
 ### WhisperTriton
-WhisperTriton contains information about the Whisper model using Triton.
+<p>WhisperTriton contains information about the Whisper model using Triton.</p>
 
 
 | Field | Type | Label | Description |
@@ -11556,7 +18745,7 @@ WhisperTriton contains information about the Whisper model using Triton.
 <a name="ondewo.s2t.WordAlternative"></a>
 
 ### WordAlternative
-
+<p>The word alternative message</p>
 
 
 | Field | Type | Label | Description |
@@ -11572,7 +18761,7 @@ WhisperTriton contains information about the Whisper model using Triton.
 <a name="ondewo.s2t.WordDetail"></a>
 
 ### WordDetail
-WordDetail provides word-specific information for recognized words.
+<p>WordDetail provides word-specific information for recognized words.</p>
 
 
 | Field | Type | Label | Description |
@@ -11607,7 +18796,7 @@ The decoding configuration
 <a name="ondewo.s2t.InferenceBackend"></a>
 
 ### InferenceBackend
-
+The inference backend configuration
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -11620,6 +18809,51 @@ The decoding configuration
 | INFERENCE_BACKEND_CLOUD_SERVICE_MICROSOFT | 6 | Run Microsoft Azure S2T cloud service |
 
 
+
+<a name="ondewo.s2t.ReasoningEffort"></a>
+
+### ReasoningEffort
+<p>Effort level for reasoning models (e.g., o1, o3). Controls the trade-off between speed and quality.</p>
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| REASONING_EFFORT_UNSPECIFIED | 0 | Unspecified reasoning effort. |
+| REASONING_EFFORT_MINIMAL | 1 | Minimal reasoning effort. |
+| REASONING_EFFORT_LOW | 2 | Low reasoning effort. |
+| REASONING_EFFORT_MEDIUM | 3 | Medium reasoning effort. |
+| REASONING_EFFORT_HIGH | 4 | High reasoning effort. |
+
+
+
+<a name="ondewo.s2t.ServiceTier"></a>
+
+### ServiceTier
+<p>Latency tier to use for processing an OpenAI request. Affects cost and throughput.</p>
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| SERVICE_TIER_UNSPECIFIED | 0 | Unspecified service tier. |
+| SERVICE_TIER_AUTO | 1 | Auto service tier. |
+| SERVICE_TIER_DEFAULT | 2 | Default service tier. |
+| SERVICE_TIER_FLEX | 3 | Flex service tier. |
+| SERVICE_TIER_SCALE | 4 | Scale service tier. |
+| SERVICE_TIER_PRIORITY | 5 | Priority service tier. |
+
+
+
+<a name="ondewo.s2t.Verbosity"></a>
+
+### Verbosity
+<p>Verbosity level for the response output.</p>
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| VERBOSITY_UNSPECIFIED | 0 | Unspecified verbosity. |
+| VERBOSITY_LOW | 1 | Low verbosity. |
+| VERBOSITY_MEDIUM | 2 | Medium verbosity. |
+| VERBOSITY_HIGH | 3 | High verbosity. |
+
+
  <!-- end enums -->
 
  <!-- end HasExtensions -->
@@ -11628,25 +18862,26 @@ The decoding configuration
 <a name="ondewo.s2t.Speech2Text"></a>
 
 ### Speech2Text
-Speech-to-text service
+<p>Speech-to-text service</p>
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| TranscribeFile | [TranscribeFileRequest](#ondewo.s2t.TranscribeFileRequest) | [TranscribeFileResponse](#ondewo.s2t.TranscribeFileResponse) | Transcribes an audio file |
-| TranscribeStream | [TranscribeStreamRequest](#ondewo.s2t.TranscribeStreamRequest) stream | [TranscribeStreamResponse](#ondewo.s2t.TranscribeStreamResponse) stream | Transcribes an audio stream. |
-| GetS2tPipeline | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | Gets a speech to text pipeline corresponding to the id specified in S2tPipelineId. If no corresponding id is found, raises ModuleNotFoundError in server. |
-| CreateS2tPipeline | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | Creates a new speech to text pipeline from a Speech2TextConfig and registers the new pipeline in the server. |
-| DeleteS2tPipeline | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | [.google.protobuf.Empty](#google.protobuf.Empty) | Deletes a pipeline corresponding to the id parsed in S2TPipelineId. If no corresponding id is found, raises ModuleNotFoundError in server. |
-| UpdateS2tPipeline | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | [.google.protobuf.Empty](#google.protobuf.Empty) | Updates a pipeline with the id specified in Speech2TextConfig with the new config. If no corresponding id is found, raises ModuleNotFoundError in server. |
-| ListS2tPipelines | [ListS2tPipelinesRequest](#ondewo.s2t.ListS2tPipelinesRequest) | [ListS2tPipelinesResponse](#ondewo.s2t.ListS2tPipelinesResponse) | Lists all speech to text pipelines. |
-| ListS2tLanguages | [ListS2tLanguagesRequest](#ondewo.s2t.ListS2tLanguagesRequest) | [ListS2tLanguagesResponse](#ondewo.s2t.ListS2tLanguagesResponse) | Returns a message containing a list of all languages for which there exist pipelines. |
-| ListS2tDomains | [ListS2tDomainsRequest](#ondewo.s2t.ListS2tDomainsRequest) | [ListS2tDomainsResponse](#ondewo.s2t.ListS2tDomainsResponse) | Returns a message containing a list of all domains for which there exist pipelines. |
-| GetServiceInfo | [.google.protobuf.Empty](#google.protobuf.Empty) | [S2TGetServiceInfoResponse](#ondewo.s2t.S2TGetServiceInfoResponse) | Returns a message containing the version of the running speech to text server. |
-| ListS2tLanguageModels | [ListS2tLanguageModelsRequest](#ondewo.s2t.ListS2tLanguageModelsRequest) | [ListS2tLanguageModelsResponse](#ondewo.s2t.ListS2tLanguageModelsResponse) | Given a list of pipeline ids, returns a list of LanguageModelPipelineId messages containing the pipeline id and a list of the language models loaded in the pipeline. |
-| CreateUserLanguageModel | [CreateUserLanguageModelRequest](#ondewo.s2t.CreateUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Create a user language model. |
-| DeleteUserLanguageModel | [DeleteUserLanguageModelRequest](#ondewo.s2t.DeleteUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Delete a user language model. |
-| AddDataToUserLanguageModel | [AddDataToUserLanguageModelRequest](#ondewo.s2t.AddDataToUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Add data to a user language model. |
-| TrainUserLanguageModel | [TrainUserLanguageModelRequest](#ondewo.s2t.TrainUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | Train a user language model. |
+| TranscribeFile | [TranscribeFileRequest](#ondewo.s2t.TranscribeFileRequest) | [TranscribeFileResponse](#ondewo.s2t.TranscribeFileResponse) | <p>Transcribes an audio file</p> |
+| TranscribeStream | [TranscribeStreamRequest](#ondewo.s2t.TranscribeStreamRequest) stream | [TranscribeStreamResponse](#ondewo.s2t.TranscribeStreamResponse) stream | <p>Transcribes an audio stream.</p> |
+| GetS2tPipeline | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | <p>Gets a speech to text pipeline corresponding to the id specified in <code>S2tPipelineId</code>. If no corresponding id is found, raises <code>ModuleNotFoundError</code> in server.</p> |
+| CreateS2tPipeline | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | <p>Creates a new speech to text pipeline from a <code>Speech2TextConfig</code> and registers the new pipeline in the server.</p> |
+| DeleteS2tPipeline | [S2tPipelineId](#ondewo.s2t.S2tPipelineId) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Deletes a pipeline corresponding to the id parsed in <code>S2tPipelineId</code>. If no corresponding id is found, raises <code>ModuleNotFoundError</code> in server.</p> |
+| UpdateS2tPipeline | [Speech2TextConfig](#ondewo.s2t.Speech2TextConfig) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Updates a pipeline with the id specified in <code>Speech2TextConfig</code> with the new config. If no corresponding id is found, raises <code>ModuleNotFoundError</code> in server.</p> |
+| ListS2tPipelines | [ListS2tPipelinesRequest](#ondewo.s2t.ListS2tPipelinesRequest) | [ListS2tPipelinesResponse](#ondewo.s2t.ListS2tPipelinesResponse) | <p>Lists all speech to text pipelines.</p> |
+| ListS2tLanguages | [ListS2tLanguagesRequest](#ondewo.s2t.ListS2tLanguagesRequest) | [ListS2tLanguagesResponse](#ondewo.s2t.ListS2tLanguagesResponse) | <p>Returns a message containing a list of all languages for which there exist pipelines.</p> |
+| ListS2tDomains | [ListS2tDomainsRequest](#ondewo.s2t.ListS2tDomainsRequest) | [ListS2tDomainsResponse](#ondewo.s2t.ListS2tDomainsResponse) | <p>Returns a message containing a list of all domains for which there exist pipelines.</p> |
+| GetServiceInfo | [.google.protobuf.Empty](#google.protobuf.Empty) | [S2tGetServiceInfoResponse](#ondewo.s2t.S2tGetServiceInfoResponse) | <p>Returns a message containing the version of the running speech to text server.</p> |
+| ListS2tLanguageModels | [ListS2tLanguageModelsRequest](#ondewo.s2t.ListS2tLanguageModelsRequest) | [ListS2tLanguageModelsResponse](#ondewo.s2t.ListS2tLanguageModelsResponse) | <p>Given a list of pipeline ids, returns a list of <code>LanguageModelPipelineId</code> messages containing the pipeline id and a list of the language models loaded in the pipeline.</p> |
+| CreateUserLanguageModel | [CreateUserLanguageModelRequest](#ondewo.s2t.CreateUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Create a user language model.</p> |
+| DeleteUserLanguageModel | [DeleteUserLanguageModelRequest](#ondewo.s2t.DeleteUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Delete a user language model.</p> |
+| AddDataToUserLanguageModel | [AddDataToUserLanguageModelRequest](#ondewo.s2t.AddDataToUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Add data to a user language model.</p> |
+| TrainUserLanguageModel | [TrainUserLanguageModelRequest](#ondewo.s2t.TrainUserLanguageModelRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Train a user language model.</p> |
+| ListS2tNormalizationPipelines | [ListS2tNormalizationPipelinesRequest](#ondewo.s2t.ListS2tNormalizationPipelinesRequest) | [ListS2tNormalizationPipelinesResponse](#ondewo.s2t.ListS2tNormalizationPipelinesResponse) | <p>Retrieves a list of normalization pipelines based on specific requirements.</p> |
 
  <!-- end services -->
 
@@ -11662,7 +18897,7 @@ Speech-to-text service
 <a name="ondewo.t2s.Apodization"></a>
 
 ### Apodization
-Apodization message contains settings for apodization postprocessing.
+<p>Apodization message contains settings for apodization postprocessing.</p>
 
 
 | Field | Type | Label | Description |
@@ -11677,7 +18912,7 @@ Apodization message contains settings for apodization postprocessing.
 <a name="ondewo.t2s.BatchSynthesizeRequest"></a>
 
 ### BatchSynthesizeRequest
-BatchSynthesizeRequest message is used to send a batch request for synthesis.
+<p>BatchSynthesizeRequest message is used to send a batch request for synthesis.</p>
 
 
 | Field | Type | Label | Description |
@@ -11692,7 +18927,7 @@ BatchSynthesizeRequest message is used to send a batch request for synthesis.
 <a name="ondewo.t2s.BatchSynthesizeResponse"></a>
 
 ### BatchSynthesizeResponse
-BatchSynthesizeResponse message is used to store the responses for a batch synthesis request.
+<p>BatchSynthesizeResponse message is used to store the responses for a batch synthesis request.</p>
 
 
 | Field | Type | Label | Description |
@@ -11707,7 +18942,7 @@ BatchSynthesizeResponse message is used to store the responses for a batch synth
 <a name="ondewo.t2s.Caching"></a>
 
 ### Caching
-Caching message contains settings for caching.
+<p>Caching message contains settings for caching.</p>
 
 
 | Field | Type | Label | Description |
@@ -11727,7 +18962,7 @@ Caching message contains settings for caching.
 <a name="ondewo.t2s.CompositeInference"></a>
 
 ### CompositeInference
-CompositeInference message combines text-to-mel and mel-to-audio inference settings.
+<p>CompositeInference message combines text-to-mel and mel-to-audio inference settings.</p>
 
 
 | Field | Type | Label | Description |
@@ -11743,7 +18978,7 @@ CompositeInference message combines text-to-mel and mel-to-audio inference setti
 <a name="ondewo.t2s.CreateCustomPhonemizerRequest"></a>
 
 ### CreateCustomPhonemizerRequest
-CreateCustomPhonemizerRequest message represents the request for creating a custom phonemizer.
+<p>CreateCustomPhonemizerRequest message represents the request for creating a custom phonemizer.</p>
 
 
 | Field | Type | Label | Description |
@@ -11759,7 +18994,7 @@ CreateCustomPhonemizerRequest message represents the request for creating a cust
 <a name="ondewo.t2s.CustomPhonemizerProto"></a>
 
 ### CustomPhonemizerProto
-CustomPhonemizerProto message represents a custom phonemizer.
+<p>CustomPhonemizerProto message represents a custom phonemizer.</p>
 
 
 | Field | Type | Label | Description |
@@ -11775,7 +19010,7 @@ CustomPhonemizerProto message represents a custom phonemizer.
 <a name="ondewo.t2s.GlowTTS"></a>
 
 ### GlowTTS
-GlowTTS message contains settings for the GlowTTS inference.
+<p>GlowTTS message contains settings for the GlowTTS inference.</p>
 
 
 | Field | Type | Label | Description |
@@ -11796,7 +19031,7 @@ GlowTTS message contains settings for the GlowTTS inference.
 <a name="ondewo.t2s.GlowTTSTriton"></a>
 
 ### GlowTTSTriton
-GlowTTSTriton message contains settings for the GlowTTS Triton inference.
+<p>GlowTTSTriton message contains settings for the GlowTTS Triton inference.</p>
 
 
 | Field | Type | Label | Description |
@@ -11808,8 +19043,8 @@ GlowTTSTriton message contains settings for the GlowTTS Triton inference.
 | max_text_length | [int64](#int64) |  | The maximum text length allowed. |
 | param_config_path | [string](#string) |  | The path to the parameter configuration. |
 | triton_model_name | [string](#string) |  | The name of the Triton model. |
-| triton_server_host | [string](#string) |  | The host of the Triton inference server which servers the model. |
-| triton_server_port | [int64](#int64) |  | The port of the Triton inference server which servers the model. |
+| triton_server_host | [string](#string) |  | The host of the Triton inference server which serves the model. |
+| triton_server_port | [int64](#int64) |  | The port of the Triton inference server which serves the model. |
 
 
 
@@ -11819,7 +19054,7 @@ GlowTTSTriton message contains settings for the GlowTTS Triton inference.
 <a name="ondewo.t2s.HiFiGan"></a>
 
 ### HiFiGan
-HiFiGan message contains settings for the HiFiGan inference.
+<p>HiFiGan message contains settings for the HiFiGan inference.</p>
 
 
 | Field | Type | Label | Description |
@@ -11837,15 +19072,15 @@ HiFiGan message contains settings for the HiFiGan inference.
 <a name="ondewo.t2s.HiFiGanTriton"></a>
 
 ### HiFiGanTriton
-HiFiGanTriton message contains settings for the HiFiGan Triton inference.
+<p>HiFiGanTriton message contains settings for the HiFiGan Triton inference.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | config_path | [string](#string) |  | The path to the HiFiGan Triton configuration. |
 | triton_model_name | [string](#string) |  | The name of the Triton model. |
-| triton_server_host | [string](#string) |  | The host of the Triton inference server which servers the model. |
-| triton_server_port | [int64](#int64) |  | The port of the Triton inference server which servers the model. |
+| triton_server_host | [string](#string) |  | The host of the Triton inference server which serves the model. |
+| triton_server_port | [int64](#int64) |  | The port of the Triton inference server which serves the model. |
 
 
 
@@ -11855,7 +19090,7 @@ HiFiGanTriton message contains settings for the HiFiGan Triton inference.
 <a name="ondewo.t2s.ListCustomPhonemizerRequest"></a>
 
 ### ListCustomPhonemizerRequest
-ListCustomPhonemizerRequest message represents the request for listing custom phonemizers.
+<p>ListCustomPhonemizerRequest message represents the request for listing custom phonemizers.</p>
 
 
 | Field | Type | Label | Description |
@@ -11870,7 +19105,7 @@ ListCustomPhonemizerRequest message represents the request for listing custom ph
 <a name="ondewo.t2s.ListCustomPhonemizerResponse"></a>
 
 ### ListCustomPhonemizerResponse
-ListCustomPhonemizerResponse message represents the response for listing custom phonemizers.
+<p>ListCustomPhonemizerResponse message represents the response for listing custom phonemizers.</p>
 
 
 | Field | Type | Label | Description |
@@ -11885,9 +19120,9 @@ ListCustomPhonemizerResponse message represents the response for listing custom 
 <a name="ondewo.t2s.ListT2sDomainsRequest"></a>
 
 ### ListT2sDomainsRequest
-Domain Request representation.
-The request message for ListT2sDomains.
-Filter domains of pipelines by attributed in request.
+<p>Domain Request representation.</p>
+<p>The request message for ListT2sDomains.</p>
+<p>Filter domains of pipelines by attributed in request.</p>
 
 
 | Field | Type | Label | Description |
@@ -11905,8 +19140,8 @@ Filter domains of pipelines by attributed in request.
 <a name="ondewo.t2s.ListT2sDomainsResponse"></a>
 
 ### ListT2sDomainsResponse
-Domains Response representation.
-The response message for ListT2sDomains.
+<p>Domains Response representation.</p>
+<p>The response message for ListT2sDomains.</p>
 
 
 | Field | Type | Label | Description |
@@ -11921,9 +19156,9 @@ The response message for ListT2sDomains.
 <a name="ondewo.t2s.ListT2sLanguagesRequest"></a>
 
 ### ListT2sLanguagesRequest
-Language Request representation.
-The request message for ListT2sLanguages.
-Filter languages of pipelines by attributed in request.
+<p>Language Request representation.</p>
+<p>The request message for ListT2sLanguages.</p>
+<p>Filter languages of pipelines by attributed in request.</p>
 
 
 | Field | Type | Label | Description |
@@ -11941,8 +19176,8 @@ Filter languages of pipelines by attributed in request.
 <a name="ondewo.t2s.ListT2sLanguagesResponse"></a>
 
 ### ListT2sLanguagesResponse
-Language Response representation.
-The response message for ListT2sLanguages.
+<p>Language Response representation.</p>
+<p>The response message for ListT2sLanguages.</p>
 
 
 | Field | Type | Label | Description |
@@ -11954,12 +19189,44 @@ The response message for ListT2sLanguages.
 
 
 
+<a name="ondewo.t2s.ListT2sNormalizationPipelinesRequest"></a>
+
+### ListT2sNormalizationPipelinesRequest
+<p>The request message for ListT2sNormalizationPipelines.</p>
+<p>Filter pipelines by attributed in request.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| language | [string](#string) |  | Optional. Define the language. |
+
+
+
+
+
+
+<a name="ondewo.t2s.ListT2sNormalizationPipelinesResponse"></a>
+
+### ListT2sNormalizationPipelinesResponse
+<p>Pipeline Response representation.</p>
+<p>The response message for ListT2sNormalizationPipelines.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| t2s_normalization_pipelines | [string](#string) | repeated | Required. Representation of a list of normalization pipelines configurations. Retrieved by ListT2sNormalizationPipelines, containing the configurations of normalization pipelines with the specifications received in the ListT2sNormalizationPipelinesRequest. |
+
+
+
+
+
+
 <a name="ondewo.t2s.ListT2sPipelinesRequest"></a>
 
 ### ListT2sPipelinesRequest
-Pipeline Request representation.
-The request message for ListT2sPipelines.
-Filter pipelines by attributed in request.
+<p>Pipeline Request representation.</p>
+<p>The request message for ListT2sPipelines.</p>
+<p>Filter pipelines by attributed in request.</p>
 
 
 | Field | Type | Label | Description |
@@ -11978,8 +19245,8 @@ Filter pipelines by attributed in request.
 <a name="ondewo.t2s.ListT2sPipelinesResponse"></a>
 
 ### ListT2sPipelinesResponse
-Pipeline Response representation.
-The response message for ListT2sPipelines.
+<p>Pipeline Response representation.</p>
+<p>The response message for ListT2sPipelines.</p>
 
 
 | Field | Type | Label | Description |
@@ -11994,7 +19261,7 @@ The response message for ListT2sPipelines.
 <a name="ondewo.t2s.Logmnse"></a>
 
 ### Logmnse
-Logmnse message contains settings for Logmnse postprocessing.
+<p>Logmnse message contains settings for Logmnse postprocessing.</p>
 
 
 | Field | Type | Label | Description |
@@ -12011,7 +19278,7 @@ Logmnse message contains settings for Logmnse postprocessing.
 <a name="ondewo.t2s.Map"></a>
 
 ### Map
-Map message represents a word-to-phoneme mapping in a custom phonemizer.
+<p>Map message represents a word-to-phoneme mapping in a custom phonemizer.</p>
 
 
 | Field | Type | Label | Description |
@@ -12027,7 +19294,7 @@ Map message represents a word-to-phoneme mapping in a custom phonemizer.
 <a name="ondewo.t2s.MbMelganTriton"></a>
 
 ### MbMelganTriton
-MbMelganTriton message contains settings for the MbMelgan Triton inference.
+<p>MbMelganTriton message contains settings for the MbMelgan Triton inference.</p>
 
 
 | Field | Type | Label | Description |
@@ -12035,8 +19302,8 @@ MbMelganTriton message contains settings for the MbMelgan Triton inference.
 | config_path | [string](#string) |  | The path to the MbMelgan Triton configuration. |
 | stats_path | [string](#string) |  | The path to the MbMelgan statistics. |
 | triton_model_name | [string](#string) |  | The name of the Triton model. |
-| triton_server_host | [string](#string) |  | The host of the Triton inference server which servers the model. |
-| triton_server_port | [int64](#int64) |  | The port of the Triton inference server which servers the model. |
+| triton_server_host | [string](#string) |  | The host of the Triton inference server which serves the model. |
+| triton_server_port | [int64](#int64) |  | The port of the Triton inference server which serves the model. |
 
 
 
@@ -12046,12 +19313,12 @@ MbMelganTriton message contains settings for the MbMelgan Triton inference.
 <a name="ondewo.t2s.Mel2Audio"></a>
 
 ### Mel2Audio
-Mel2Audio message contains settings for mel-to-audio inference.
+<p>Mel2Audio message contains settings for mel-to-audio inference.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  | The type of mel-to-audio inference. |
+| type | [string](#string) |  | The type of mel-to-audio inference (vocoder), selecting which of the settings below is applied (mb_melgan_triton, hifi_gan or hifi_gan_triton). |
 | mb_melgan_triton | [MbMelganTriton](#ondewo.t2s.MbMelganTriton) |  | MbMelgan Triton inference settings. |
 | hifi_gan | [HiFiGan](#ondewo.t2s.HiFiGan) |  | HiFiGan inference settings. |
 | hifi_gan_triton | [HiFiGanTriton](#ondewo.t2s.HiFiGanTriton) |  | HiFiGan Triton inference settings. |
@@ -12064,7 +19331,7 @@ Mel2Audio message contains settings for mel-to-audio inference.
 <a name="ondewo.t2s.NormalizeTextRequest"></a>
 
 ### NormalizeTextRequest
-NormalizeTextRequest message is used to request text normalization.
+<p>NormalizeTextRequest message is used to request text normalization.</p>
 
 
 | Field | Type | Label | Description |
@@ -12080,7 +19347,7 @@ NormalizeTextRequest message is used to request text normalization.
 <a name="ondewo.t2s.NormalizeTextResponse"></a>
 
 ### NormalizeTextResponse
-NormalizeTextResponse message is used to store the normalized text response.
+<p>NormalizeTextResponse message is used to store the normalized text response.</p>
 
 
 | Field | Type | Label | Description |
@@ -12095,7 +19362,7 @@ NormalizeTextResponse message is used to store the normalized text response.
 <a name="ondewo.t2s.PhonemizerId"></a>
 
 ### PhonemizerId
-PhonemizerId message represents the ID of a phonemizer.
+<p>PhonemizerId message represents the ID of a phonemizer.</p>
 
 
 | Field | Type | Label | Description |
@@ -12110,7 +19377,7 @@ PhonemizerId message represents the ID of a phonemizer.
 <a name="ondewo.t2s.Postprocessing"></a>
 
 ### Postprocessing
-Postprocessing message contains settings for postprocessing.
+<p>Postprocessing message contains settings for postprocessing.</p>
 
 
 | Field | Type | Label | Description |
@@ -12126,24 +19393,78 @@ Postprocessing message contains settings for postprocessing.
 
 
 
+<a name="ondewo.t2s.Qwen3TtsBase"></a>
+
+### Qwen3TtsBase
+<p>Qwen3TtsBase message contains settings for inference of qwen3-TTS-Base model.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| model_name | [string](#string) |  | Model name for the inference server. |
+| language | [string](#string) |  | Language for inference server |
+| embedding_path | [string](#string) |  | Path of the embedding file |
+| qwen3_tts_server_host | [string](#string) |  | Host name for the inference server |
+| qwen3_tts_server_port | [int64](#int64) |  | Port of the inference server |
+| qwen3_tts_server_header | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Authorization headers for the inference server |
+
+
+
+
+
+
+<a name="ondewo.t2s.Qwen3TtsCustomVoice"></a>
+
+### Qwen3TtsCustomVoice
+<p>Qwen3TtsCustomVoice message contains settings for inference of qwen3-TTS-CustomVoice model.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| voice_id | [string](#string) |  | Voice id indicating the speaker name |
+| model_name | [string](#string) |  | Model name for the inference server. |
+| language | [string](#string) |  | Language for inference server |
+| qwen3_tts_server_host | [string](#string) |  | Host name for the inference server |
+| qwen3_tts_server_port | [int64](#int64) |  | Port of the inference server |
+| qwen3_tts_server_header | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Authorization headers for the inference server |
+
+
+
+
+
+
 <a name="ondewo.t2s.RequestConfig"></a>
 
 ### RequestConfig
-Represents a Configuration for the text to speech conversion.
+<p>Represents a Configuration for the text to speech conversion.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | t2s_pipeline_id | [string](#string) |  | Required. Represents the pipeline id of the model configuration that will be used. |
-| length_scale | [float](#float) |  | Optional. This parameter is used for time stretching which is the process of changing the speed or duration of an audio. It should be much more than 1.0. O is not a valid number for this variable. The default value is 1. |
+| length_scale | [float](#float) |  | Optional. This parameter is used for time stretching which is the process of changing the speed or duration of an audio. It should be much more than 1.0. 0 is not a valid number for this variable. The default value is 1. |
 | noise_scale | [float](#float) |  | Optional. Defines the noise in the generated audio. It should be between 0.0 and 1. The default value is 0.0 |
 | sample_rate | [int32](#int32) |  | Optional. Defines the sample rate of the generated wav file. The default value is 22050. |
 | pcm | [Pcm](#ondewo.t2s.Pcm) |  | Optional. Defines the pulse-code modulation of the wav file. The default value is PCM_16. |
 | audio_format | [AudioFormat](#ondewo.t2s.AudioFormat) |  | Optional. Defines the format of the desired audio. The default value is wav. |
 | use_cache | [bool](#bool) |  | Optional. Define if cache should be used or not. The default value is False. |
-| normalizer | [string](#string) |  | Optional. Define what normalizer to synthesize the text with. The default value is the language of the pipeline. |
-| t2s_service_config | [google.protobuf.Struct](#google.protobuf.Struct) | optional | t2s_service_config provides the configuration of the service such as API key, bearer tokens, JWT, and other header information as key value pairs, e.g., <pre><code>MY_API_KEY='LKJDIFe244LKJOI'</code></pre> |
+| t2s_service_config | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. t2s_service_config provides the configuration of the service such as API key, bearer tokens, JWT, and other header information as key value pairs, e.g., <pre><code>MY_API_KEY=&apos;LKJDIFe244LKJOI&apos;</code></pre>
+
+A. For Amazon T2S service, the following arguments should be passed: <ul> <li>A1. <code>aws_access_key_id</code> (required) Access key id to access Amazon WEB Service.</li> <li>A2. <code>aws_secret_access_key</code> (required) Secret access key to access Amazon WEB Service.</li> <li>A3. <code>region</code> (required) Region name of Amazon Server.</li> </ul> Example: <pre><code>t2s_config_service={&apos;aws_access_key_id&apos;: &apos;YOUR_AWS_ACCESS_KEY_ID&apos;, &apos;aws_secret_access_key&apos;: &apos;YOUR_AWS_SECRET_ACCESS_KEY&apos;, &apos;region&apos;: &apos;YOUR_AMAZON_SERVER_REGION_NAME&apos;}</code></pre>
+
+B. For ElevenLabs T2s service, the following arguments should be passed: <ul> <li>B1. <code>api_key</code> (required) API key of ElevenLabs cloud provider to access its T2S service.</li> </ul> Example: <pre><code>t2s_config_service={&apos;api_key&apos;: &apos;YOUR_ELEVENLABS_API_KEY&apos;}</code></pre>
+
+C. For Google cloud T2S service, the following arguments should be passed: <ul> <li>C1. <code>api_key</code> (required) API key of Google cloud provider to access its T2S service.</li> <li>C2. <code>api_endpoint</code> (optional) Regional API endpoint of Google cloud T2S service. (Defaults to &apos;eu-texttospeech.googleapis.com&apos;)</li> </ul> Example: <pre><code>t2s_config_service={&apos;api_key&apos;: &apos;YOUR_GOOGLE_CLOUD_API_KEY&apos;, &apos;api_endpoint&apos;: &apos;YOUR_GOOGLE_CLOUD_API_ENDPOINT&apos;}</code></pre>
+
+D. For Microsoft Azure T2s service, the following arguments should be passed: <ul> <li>D1. <code>subscription_key</code> (required) Subscription key to access Microsoft Azure Service.</li> <li>D2. <code>region</code> (required) Region name of Microsoft Azure Server.</li> </ul> Example: <pre><code>t2s_config_service={&apos;subscription_key&apos;: &apos;YOUR_MICROSOFT_AZURE_SUBSCRIPTION_KEY&apos;, &apos;region&apos;: &apos;YOUR_MICROSOFT_AZURE_SERVER_REGION_NAME&apos;}</code></pre>
+
+Note: ondewo-t2s will raise an error if you don&apos;t pass any of the required arguments above. |
 | t2s_cloud_provider_config | [T2sCloudProviderConfig](#ondewo.t2s.T2sCloudProviderConfig) | optional | Optional. Defines the cloud provider's specific configuration for using text to speech cloud services The default value is None. |
+| t2s_normalization | [T2SNormalization](#ondewo.t2s.T2SNormalization) |  | Optional. Define t2s_normalization config parameters for this specific request. The default values are set in the config file and the values set via RequestConfig are set just for this specific request and will not update the pipeline. |
+| word_to_phoneme_mapping | [google.protobuf.Struct](#google.protobuf.Struct) | optional | Optional. Define a dict which specifies the phonemes for a special word. |
+| instruction | [string](#string) | optional | Optional. Define an instruction or prompt to be passed to the TTS/LLM backend for this request.
+
+<p>This field is only honored by the <b>qwen3-tts-voicedesign</b> model, where it is a natural-language description of the target voice to design, e.g. <pre><code>a calm female voice with a slight British accent</code></pre></p> <p>It is ignored by every other pipeline, including the qwen3-tts CustomVoice and base models and the local vits / glow-tts models. To control the delivery / emotion of the qwen3-tts CustomVoice model, embed the control tags in the request text instead (see <code>SynthesizeRequest.text</code>), not via this field.</p> |
 
 
 
@@ -12153,7 +19474,7 @@ Represents a Configuration for the text to speech conversion.
 <a name="ondewo.t2s.SingleInference"></a>
 
 ### SingleInference
-SingleInference message inference settings of text2audio models.
+<p>SingleInference message inference settings of text2audio models.</p>
 
 
 | Field | Type | Label | Description |
@@ -12165,40 +19486,70 @@ SingleInference message inference settings of text2audio models.
 
 
 
+<a name="ondewo.t2s.StreamingSynthesizeRequest"></a>
+
+### StreamingSynthesizeRequest
+<p>StreamingSynthesizeRequest is used to perform streaming synthesize.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| text | [string](#string) |  | Required. Represents the text that will be transformed to speech. All the properties according to the input text in SynthesizeRequest can be also applied here. |
+| config | [RequestConfig](#ondewo.t2s.RequestConfig) |  | Required. Represents the specifications needed to do the text to speech transformation. |
+
+
+
+
+
+
+<a name="ondewo.t2s.StreamingSynthesizeResponse"></a>
+
+### StreamingSynthesizeResponse
+<p>Represents a Streaming Synthesize Response.</p>
+<p>A Streaming Synthesize Response contains the generated audio, requested text and and
+all other properties of this generated audio.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| audio_uuid | [string](#string) |  | Required. The unique identifier (UUID) assigned to the generated audio. |
+| audio | [bytes](#bytes) |  | Required. Generated file with the parameters described in request. |
+| generation_time | [float](#float) |  | Required. Time taken to generate the audio, in seconds. |
+| audio_length | [float](#float) |  | Required. Length (duration) of the generated audio, in seconds. |
+| text | [string](#string) |  | Required. Text from which audio was generated. |
+| config | [RequestConfig](#ondewo.t2s.RequestConfig) |  | Required. Configuration from which audio was generated. |
+| normalized_text | [string](#string) |  | Optional. Normalized text. |
+| sample_rate | [float](#float) |  | Optional. Sampling rate of the generated audio, in Hertz (Hz). |
+
+
+
+
+
+
 <a name="ondewo.t2s.SynthesizeRequest"></a>
 
 ### SynthesizeRequest
-Represents a Synthesize Request.
-A Synthesize Request contains the information need to perform a text to speech conversion.
+<p>Represents a Synthesize Request.</p>
+<p>A Synthesize Request contains the information need to perform a text to speech conversion.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | text | [string](#string) |  | Required. Represents the text that will be transformed to speech.
 
-<p> Synthesize text: </p>
+<p>The text may be plain text, or it may embed SSML markup, phonemes and voice-control tags to shape how it is spoken. The sections below list every supported form with a copy-paste example. Which forms take effect depends on the pipeline (model) selected via <code>RequestConfig.t2s_pipeline_id</code>; unsupported tags are stripped and the plain text is still spoken.</p>
 
-- Simple text: <pre><code>Hello, how are you?</code></pre>
+<p><b>1. Plain text</b></p> <ul> <li>Simple text: <pre><code>Hello, how are you?</code></pre></li> </ul>
 
-<p>Examples to modulate the voice based on SSML tags and Arpabet phonemes:</p>
+<p><b>2. SSML <code>&lt;say-as&gt;</code> tags (local vits / qwen3-tts and cloud providers)</b></p> <p>Rewrites the enclosed text into its spoken form (spelled out letters, digits, symbols, ...). Supported by the local normalization pipeline and forwarded to the cloud providers.</p> <ul> <li>Phone: <pre><code>&lt;say-as interpret-as=&quot;phone&quot;&gt;+12354321&lt;/say-as&gt;</code></pre></li> <li>Email: <pre><code>&lt;say-as interpret-as=&quot;email&quot;&gt;voices@ondewo.com&lt;/say-as&gt;</code></pre></li> <li>URL: <pre><code>&lt;say-as interpret-as=&quot;url&quot;&gt;ondewo.com/en/&lt;/say-as&gt;</code></pre></li> <li>Spell (spell out each character): <pre><code>&lt;say-as interpret-as=&quot;spell&quot;&gt;AP732&lt;/say-as&gt;</code></pre></li> <li>Spell with names (e.g. &quot;A like Anton&quot;): <pre><code>&lt;say-as interpret-as=&quot;spell-with-names&quot;&gt;AHO32&lt;/say-as&gt;</code></pre></li> <li>Callsigns short: <pre><code>&lt;say-as interpret-as=&quot;callsign-short&quot;&gt;AUA439&lt;/say-as&gt;</code></pre></li> <li>Callsigns long: <pre><code>&lt;say-as interpret-as=&quot;callsign-long&quot;&gt;AAL439&lt;/say-as&gt;</code></pre></li> </ul>
 
-- SSML Tag Phone: <pre><code>&lt;say-as interpret-as="phone">+12354321&lt;/say-as&gt;</code></pre>
+<p><b>3. Pauses / breaks</b></p> <ul> <li>Break tag (seconds): <pre><code>I am going to take a 2 seconds break &lt;break time=&quot;2.0&quot;/&gt; done</code></pre></li> <li>Break tag (milliseconds, cloud providers): <pre><code>please wait &lt;break time=&quot;500ms&quot;/&gt; done</code></pre></li> </ul>
 
-- SSML Tag Email: <pre><code>&lt;say-as interpret-as="email">voices@ondewo.com&lt;/say-as&gt;</code></pre>
+<p><b>4. Phonemes / pronunciation control</b></p> <p>The phoneme alphabet depends exclusively on the model type:</p> <p><b>4a. IPA phonemes (vits and cloud providers only)</b> - the vits models and the cloud providers (Amazon Polly, Microsoft Azure and Google Cloud TTS) control pronunciation with the SSML <code>&lt;phoneme&gt;</code> element using the IPA alphabet (<code>alphabet=&quot;ipa&quot;</code>). The IPA string goes in the <code>ph</code> attribute and the written word between the tags:</p> <ul> <li>English: <pre><code>I would like a &lt;phoneme alphabet=&quot;ipa&quot; ph=&quot;t&#601;&#712;me&#618;to&#650;&quot;&gt;tomato&lt;/phoneme&gt; please</code></pre></li> <li>German: <pre><code>Ich h&auml;tte gerne ein &lt;phoneme alphabet=&quot;ipa&quot; ph=&quot;&#712;ba&#618;&#643;pi&#720;l&quot;&gt;Beispiel&lt;/phoneme&gt; bitte</code></pre></li> </ul> <p><b>4b. Arpabet phonemes (glow model only)</b> - the glow model controls pronunciation with Arpabet phonemes, supplied through the same SSML <code>&lt;phoneme&gt;</code> element but with <code>alphabet=&quot;arpabet&quot;</code>. The ARPAbet transcription goes in the <code>ph</code> attribute and the written word between the tags (the phonemes are <b>not</b> written in curly braces <code>{}</code> in the request text):</p> <ul> <li>English: <pre><code>Please say &lt;phoneme alphabet=&quot;arpabet&quot; ph=&quot;T EH1 S T&quot;&gt;test&lt;/phoneme&gt; out loud</code></pre></li> <li>German: <pre><code>Ich sage &lt;phoneme alphabet=&quot;arpabet&quot; ph=&quot;T EH1 S T&quot;&gt;test&lt;/phoneme&gt; laut</code></pre></li> </ul> <p><b>4c. qwen3-tts has no phonemes - use the verbalized form instead</b> - the qwen3-tts models do <b>not</b> support Arpabet or IPA phonemes; the <code>&lt;phoneme&gt;</code> element and its <code>ph</code> string are ignored. Instead, to have a special text (symbols, codes, abbreviations, ...) spoken correctly, pass its <b>verbalization</b>: the plain, written-out spoken form of the text in the target language. For example, to have <code>A-7+8*</code> pronounced correctly:</p> <ul> <li>English: <pre><code>ai dash seven plus eight asterisk</code></pre></li> <li>German: <pre><code>ah bindestrich sieben plus acht sternchen</code></pre></li> </ul>
 
-- SSML Tag URL: <pre><code>&lt;say-as interpret-as="url">ondewo.com/en/&lt;/say-as&gt;</code></pre>
+<p><b>5. Voice control for qwen3-tts (emotion / style / prosody)</b></p> <p>These ONDEWO-namespaced tags are compiled into the model instruction and stripped from the spoken text, so the transcription stays the plain sentence while the delivery changes. They only take effect on the qwen3-tts <b>CustomVoice</b> model; on the base and voicedesign models they are stripped and a warning is logged.</p> <ul> <li>Style - one of the five primary styles <code>apologetic</code>, <code>calm</code>, <code>empathetic</code>, <code>firm</code>, <code>lively</code>, or one of the accepted synonyms <code>cheerful</code> / <code>happy</code> / <code>joyful</code>, <code>sad</code> / <code>sorrowful</code>, <code>angry</code> / <code>furious</code>, <code>excited</code>, <code>serious</code>, <code>tender</code> / <code>gentle</code>. An unknown name falls back to <code>neutral</code> and a warning is logged: <pre><code>&lt;ondewo:style name=&quot;calm&quot;&gt;please stay calm everything will be fine&lt;/ondewo:style&gt;</code></pre></li> <li>Emphasis - selects the intensity tier of the chosen style: <code>strong</code> (intense), <code>moderate</code> (the default when no emphasis is given) or <code>reduced</code> / <code>none</code> (mild): <pre><code>&lt;ondewo:style name=&quot;firm&quot;&gt;&lt;emphasis level=&quot;strong&quot;&gt;listen carefully&lt;/emphasis&gt;&lt;/ondewo:style&gt;</code></pre></li> <li>Prosody - <code>rate</code> (<code>x-slow</code>/<code>slow</code>/<code>medium</code>/<code>fast</code>/<code>x-fast</code> or a percentage such as <code>+20%</code>/<code>-20%</code>/<code>120%</code>), <code>pitch</code> (<code>x-low</code>/<code>low</code>/<code>medium</code>/<code>high</code>/<code>x-high</code>, a semitone offset such as <code>+4st</code>/<code>-4st</code> or a percentage such as <code>+10%</code>/<code>-10%</code>) and <code>volume</code> (<code>silent</code>/<code>x-soft</code>/<code>soft</code>/<code>medium</code>/<code>loud</code>/<code>x-loud</code> or a decibel offset such as <code>+6dB</code>/<code>-6dB</code>): <pre><code>&lt;prosody rate=&quot;slow&quot; pitch=&quot;+4st&quot; volume=&quot;loud&quot;&gt;hello there&lt;/prosody&gt;</code></pre></li> <li>Nested combination (style + emphasis + prosody): <pre><code>&lt;ondewo:style name=&quot;calm&quot;&gt;&lt;emphasis level=&quot;moderate&quot;&gt;&lt;prosody rate=&quot;slow&quot; pitch=&quot;low&quot; volume=&quot;soft&quot;&gt;hello there&lt;/prosody&gt;&lt;/emphasis&gt;&lt;/ondewo:style&gt;</code></pre></li> <li>Free-form instruction (CustomVoice only) - describe the delivery in natural language in the <code>instruction</code> attribute. The attribute value is used verbatim as the model instruction and takes precedence over the style / emphasis / prosody tags; the wrapped inner text is kept as the spoken text and it should be always in English: <pre><code>&lt;ondewo:instruct instruction=&quot;speak slowly in a warm and reassuring tone&quot;&gt;hello there&lt;/ondewo:instruct&gt;</code></pre></li> <li>Inline audio tags (CustomVoice only) - emotional expressions / sound effects in square brackets. They are compiled into the instruction and stripped from the spoken text. The supported tags are: <ul> <li>Voice-related: <code>[laughs]</code>, <code>[laughs harder]</code>, <code>[starts laughing]</code>, <code>[wheezing]</code>, <code>[whispers]</code>, <code>[sighs]</code>, <code>[exhales]</code>, <code>[sarcastic]</code>, <code>[curious]</code>, <code>[excited]</code>, <code>[crying]</code>, <code>[snorts]</code>, <code>[mischievously]</code></li> <li>Sound effects: <code>[gunshot]</code>, <code>[applause]</code>, <code>[clapping]</code>, <code>[explosion]</code>, <code>[swallows]</code>, <code>[gulps]</code></li> <li>Unique and special: <code>[sings]</code>, <code>[woo]</code>, <code>[fart]</code></li> <li>Accent (variable form): <code>[strong &lt;accent&gt; accent]</code>, e.g. <code>[strong French accent]</code></li> </ul> <pre><code>[whispers] hello there</code></pre></li> </ul> <p>See also <code>RequestConfig.instruction</code> for supplying the instruction / voice description directly instead of embedding it in the text.</p>
 
-- SSML Tag Spell: <pre><code>&lt;say-as interpret-as="spell">AP732&lt;/say-as&gt;</code></pre>
-
-- SSML Tag Spell With Names: <pre><code>&lt;say-as interpret-as="spell-with-names">AHO32&lt;/say-as&gt;</code></pre>
-
-- SSML Tag Callsigns Short: <pre><code>&lt;say-as interpret-as="callsign-short">AUA439&lt;/say-as&gt;</code></pre>
-
-- SSML Tag Callsigns Long: <pre><code>&lt;say-as interpret-as="callsign-long">AAL439&lt;/say-as&gt;</code></pre>
-
-- SSML Tag Break Tag: <pre><code>I am going to take a 2 seconds break <break time="2.0"/> done</code></pre>
-
-- Arpabet Phonemes: <pre><code>Hello I am {AE2 L EH0 G Z AE1 N D R AH0}</code></pre> |
+<p><b>6. Provider-specific SSML (cloud pipelines only)</b></p> <p>Each cloud provider documents its own SSML vocabulary; use the elements matching the provider behind the selected pipeline. Standard <code>&lt;prosody&gt;</code>, <code>&lt;emphasis&gt;</code> and <code>&lt;break&gt;</code> are common to all three.</p> <ul> <li>Google Cloud TTS: <pre><code>&lt;google:style name=&quot;calm&quot;&gt;please stay calm everything will be fine&lt;/google:style&gt;</code></pre></li> <li>Microsoft Azure: <pre><code>&lt;mstts:express-as style=&quot;cheerful&quot;&gt;please stay calm everything will be fine&lt;/mstts:express-as&gt;</code></pre></li> <li>Amazon Polly (whispered): <pre><code>&lt;amazon:effect name=&quot;whispered&quot;&gt;please stay calm everything will be fine&lt;/amazon:effect&gt;</code></pre></li> <li>Amazon Polly (soft phonation): <pre><code>&lt;amazon:effect phonation=&quot;soft&quot;&gt;please stay calm everything will be fine&lt;/amazon:effect&gt;</code></pre></li> </ul> |
 | config | [RequestConfig](#ondewo.t2s.RequestConfig) |  | Required. Represents the specifications needed to do the text to speech transformation. |
 
 
@@ -12209,19 +19560,20 @@ A Synthesize Request contains the information need to perform a text to speech c
 <a name="ondewo.t2s.SynthesizeResponse"></a>
 
 ### SynthesizeResponse
-Represents a Synthesize Response.
-A Synthesize Request contains the converted text to audio and the requested configuration.
+<p>Represents a Synthesize Response.</p>
+<p>A Synthesize Response contains the generated audio, requested text and all other properties of this generated audio.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| audio_uuid | [string](#string) |  | Required. Represents the pipeline id of the model configuration that will be used. |
+| audio_uuid | [string](#string) |  | Required. The unique identifier (UUID) assigned to the generated audio. |
 | audio | [bytes](#bytes) |  | Required. Generated file with the parameters described in request. |
-| generation_time | [float](#float) |  | Required. Time to generate audio. |
-| audio_length | [float](#float) |  | Required. Audio length. |
+| generation_time | [float](#float) |  | Required. Time taken to generate the audio, in seconds. |
+| audio_length | [float](#float) |  | Required. Length (duration) of the generated audio, in seconds. |
 | text | [string](#string) |  | Required. Text from which audio was generated. |
 | config | [RequestConfig](#ondewo.t2s.RequestConfig) |  | Required. Configuration from which audio was generated. |
 | normalized_text | [string](#string) |  | Optional. Normalized text. |
+| sample_rate | [float](#float) |  | Optional. Sampling rate of the generated audio, in Hertz (Hz). |
 
 
 
@@ -12231,7 +19583,7 @@ A Synthesize Request contains the converted text to audio and the requested conf
 <a name="ondewo.t2s.T2SCustomLengthScales"></a>
 
 ### T2SCustomLengthScales
-T2SCustomLengthScales message contains custom length scales for text types.
+<p>T2SCustomLengthScales message contains custom length scales for text types.</p>
 
 
 | Field | Type | Label | Description |
@@ -12253,13 +19605,13 @@ T2SCustomLengthScales message contains custom length scales for text types.
 <a name="ondewo.t2s.T2SDescription"></a>
 
 ### T2SDescription
-T2SDescription message is used to describe the text-to-speech service.
+<p>T2SDescription message is used to describe the text-to-speech service.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | language | [string](#string) |  | The language supported by the service. |
-| speaker_sex | [string](#string) |  |  |
+| speaker_sex | [string](#string) |  | The speaker's sex or gender. |
 | pipeline_owner | [string](#string) |  | The owner of the text-to-speech pipeline. |
 | comments | [string](#string) |  | Additional comments or notes. |
 | speaker_name | [string](#string) |  | The name of the speaker. |
@@ -12273,7 +19625,7 @@ T2SDescription message is used to describe the text-to-speech service.
 <a name="ondewo.t2s.T2SGetServiceInfoResponse"></a>
 
 ### T2SGetServiceInfoResponse
-Version information of the service
+<p>Version information of the service</p>
 
 
 | Field | Type | Label | Description |
@@ -12288,14 +19640,14 @@ Version information of the service
 <a name="ondewo.t2s.T2SInference"></a>
 
 ### T2SInference
-T2SInference message is used to specify the text-to-speech inference settings.
+<p>T2SInference message is used to specify the text-to-speech inference settings.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  | The type of inference. |
-| composite_inference | [CompositeInference](#ondewo.t2s.CompositeInference) |  | Composite inference settings. |
-| single_inference | [SingleInference](#ondewo.t2s.SingleInference) |  | Single inference settings. |
+| type | [string](#string) |  | The type of inference, selecting which of the settings below is applied: composite_inference (two-stage text-to-mel then mel-to-audio) or single_inference (single-stage text-to-audio). |
+| composite_inference | [CompositeInference](#ondewo.t2s.CompositeInference) |  | Composite (two-stage) inference settings, used when type selects composite inference. |
+| single_inference | [SingleInference](#ondewo.t2s.SingleInference) |  | Single (one-stage) inference settings, used when type selects single inference. |
 | caching | [Caching](#ondewo.t2s.Caching) |  | Caching settings. |
 
 
@@ -12306,7 +19658,7 @@ T2SInference message is used to specify the text-to-speech inference settings.
 <a name="ondewo.t2s.T2SNormalization"></a>
 
 ### T2SNormalization
-Represents the configuration for text-to-speech normalization.
+<p>Represents the configuration for text-to-speech normalization.</p>
 
 
 | Field | Type | Label | Description |
@@ -12328,7 +19680,7 @@ Represents the configuration for text-to-speech normalization.
 <a name="ondewo.t2s.T2sCloudProviderConfig"></a>
 
 ### T2sCloudProviderConfig
-Configuration for cloud provider settings for Text-to-Speech (T2S).
+<p>Configuration for cloud provider settings for Text-to-Speech (T2S).</p>
 
 
 | Field | Type | Label | Description |
@@ -12345,16 +19697,16 @@ Configuration for cloud provider settings for Text-to-Speech (T2S).
 <a name="ondewo.t2s.T2sCloudProviderConfigElevenLabs"></a>
 
 ### T2sCloudProviderConfigElevenLabs
-Configuration details specific to the Eleven Labs text-to-speech provider.
+<p>Configuration details specific to the Eleven Labs text-to-speech provider.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| stability | [float](#float) |  | Stability level for inference, influencing consistency of generated speech. |
-| similarity_boost | [float](#float) |  | Boost value for similarity to enhance the similarity of the generated voice to a target voice. |
-| style | [float](#float) |  | Style parameter to control the expression or emotion in speech. |
+| stability | [float](#float) |  | Stability level for inference, influencing consistency of generated speech. It is in the range [0.0, 1.0]. |
+| similarity_boost | [float](#float) |  | Boost value for similarity to enhance the similarity of the generated voice to a target voice. It is in the range [0.0, 1.0]. |
+| style | [float](#float) |  | Style parameter to control the expression or emotion in speech. It is in the range [0.0, 1.0]. |
 | use_speaker_boost | [bool](#bool) |  | Enables or disables speaker boost for emphasis on clarity and loudness. |
-| apply_text_normalization | [string](#string) |  | Specifies type of text normalization to apply during processing. |
+| apply_text_normalization | [string](#string) |  | Specifies type of text normalization to apply during processing. Available options are 'auto', 'on', and 'off'. |
 
 
 
@@ -12364,14 +19716,14 @@ Configuration details specific to the Eleven Labs text-to-speech provider.
 <a name="ondewo.t2s.T2sCloudProviderConfigGoogle"></a>
 
 ### T2sCloudProviderConfigGoogle
-Configuration details specific to the Google text-to-speech provider.
+<p>Configuration details specific to the Google text-to-speech provider.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| speaking_rate | [float](#float) |  | Speaking rate for inference, controlling the speed of generated speech. |
-| volume_gain_db | [float](#float) |  | Volume gain in dB applied to the generated speech. |
-| pitch | [float](#float) |  | Pitch adjustment for inference, allowing control over voice pitch. |
+| speaking_rate | [float](#float) |  | Speaking rate for inference, controlling the speed of generated speech. It is in the range [0.25, 4.0]. |
+| volume_gain_db | [float](#float) |  | Volume gain in dB applied to the generated speech. It is in the range [-96.0, 16.0]. |
+| pitch | [float](#float) |  | Pitch adjustment for inference, allowing control over voice pitch. It is in the range in the range [-20.0, 20.0]. |
 
 
 
@@ -12381,7 +19733,7 @@ Configuration details specific to the Google text-to-speech provider.
 <a name="ondewo.t2s.T2sCloudProviderConfigMicrosoft"></a>
 
 ### T2sCloudProviderConfigMicrosoft
-Configuration details specific to the Microsoft text-to-speech provider.
+<p>Configuration details specific to the Microsoft text-to-speech provider.</p>
 
 
 | Field | Type | Label | Description |
@@ -12396,7 +19748,7 @@ Configuration details specific to the Microsoft text-to-speech provider.
 <a name="ondewo.t2s.T2sCloudServiceAmazon"></a>
 
 ### T2sCloudServiceAmazon
-T2sCloudServiceAmazon message contains settings for the Amazon Cloud service inference.
+<p>T2sCloudServiceAmazon message contains settings for the Amazon Cloud service inference.</p>
 
 
 | Field | Type | Label | Description |
@@ -12412,7 +19764,7 @@ T2sCloudServiceAmazon message contains settings for the Amazon Cloud service inf
 <a name="ondewo.t2s.T2sCloudServiceElevenLabs"></a>
 
 ### T2sCloudServiceElevenLabs
-T2sCloudServiceElevenLabs message contains settings for the ElevenLabs Cloud service inference.
+<p>T2sCloudServiceElevenLabs message contains settings for the ElevenLabs Cloud service inference.</p>
 
 
 | Field | Type | Label | Description |
@@ -12431,7 +19783,7 @@ T2sCloudServiceElevenLabs message contains settings for the ElevenLabs Cloud ser
 <a name="ondewo.t2s.T2sCloudServiceGoogle"></a>
 
 ### T2sCloudServiceGoogle
-T2sCloudServiceGoogle message contains settings for the Google Cloud service inference.
+<p>T2sCloudServiceGoogle message contains settings for the Google Cloud service inference.</p>
 
 
 | Field | Type | Label | Description |
@@ -12440,6 +19792,7 @@ T2sCloudServiceGoogle message contains settings for the Google Cloud service inf
 | speaking_rate | [float](#float) |  | Speaking rate to control the speed of audio. |
 | volume_gain_db | [float](#float) |  | Volume gain in db to control volume of the audio. |
 | pitch | [float](#float) |  | pitch value of the audio |
+| speaker_language | [string](#string) |  | speaker_language indicating the speaker language code |
 
 
 
@@ -12449,7 +19802,7 @@ T2sCloudServiceGoogle message contains settings for the Google Cloud service inf
 <a name="ondewo.t2s.T2sCloudServiceMicrosoft"></a>
 
 ### T2sCloudServiceMicrosoft
-T2sCloudServiceMicrosoft message contains settings for the Microsoft Cloud service inference.
+<p>T2sCloudServiceMicrosoft message contains settings for the Microsoft Cloud service inference.</p>
 
 
 | Field | Type | Label | Description |
@@ -12465,8 +19818,8 @@ T2sCloudServiceMicrosoft message contains settings for the Microsoft Cloud servi
 <a name="ondewo.t2s.T2sPipelineId"></a>
 
 ### T2sPipelineId
-Pipeline Id representation.
-Used in the creation, deletion and getter of pipelines.
+<p>Pipeline Id representation.</p>
+<p>Used in the creation, deletion and getter of pipelines.</p>
 
 
 | Field | Type | Label | Description |
@@ -12481,18 +19834,20 @@ Used in the creation, deletion and getter of pipelines.
 <a name="ondewo.t2s.Text2Audio"></a>
 
 ### Text2Audio
-Text2Audio message contains settings for text-to-audio inference.
+<p>Text2Audio message contains settings for text-to-audio inference.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  | The type of text-to-audio inference. |
+| type | [string](#string) |  | The type of text-to-audio inference, selecting which of the settings below is applied: a local model (vits, vits_triton) or a cloud / neural service (t2s_cloud_service_elevenlabs, t2s_cloud_service_amazon, t2s_cloud_service_google, t2s_cloud_service_microsoft, qwen3_tts_custom_voice, qwen3_tts_base). |
 | vits | [Vits](#ondewo.t2s.Vits) |  | Vits inference settings. |
 | vits_triton | [VitsTriton](#ondewo.t2s.VitsTriton) |  | Vits Triton inference settings. |
 | t2s_cloud_service_elevenlabs | [T2sCloudServiceElevenLabs](#ondewo.t2s.T2sCloudServiceElevenLabs) |  | ElevenLabs cloud service inference settings. |
 | t2s_cloud_service_amazon | [T2sCloudServiceAmazon](#ondewo.t2s.T2sCloudServiceAmazon) |  | Amazon cloud service inference settings. |
 | t2s_cloud_service_google | [T2sCloudServiceGoogle](#ondewo.t2s.T2sCloudServiceGoogle) |  | Google cloud service inference settings. |
 | t2s_cloud_service_microsoft | [T2sCloudServiceMicrosoft](#ondewo.t2s.T2sCloudServiceMicrosoft) |  | Microsoft cloud service inference settings. |
+| qwen3_tts_custom_voice | [Qwen3TtsCustomVoice](#ondewo.t2s.Qwen3TtsCustomVoice) |  | Qwen3-TTS-custom-voice inference settings. |
+| qwen3_tts_base | [Qwen3TtsBase](#ondewo.t2s.Qwen3TtsBase) |  | Qwen3-TTS-base inference settings for voice cloning. |
 
 
 
@@ -12502,12 +19857,12 @@ Text2Audio message contains settings for text-to-audio inference.
 <a name="ondewo.t2s.Text2Mel"></a>
 
 ### Text2Mel
-Text2Mel message contains settings for text-to-mel inference.
+<p>Text2Mel message contains settings for text-to-mel inference.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| type | [string](#string) |  | The type of text-to-mel inference. |
+| type | [string](#string) |  | The type of text-to-mel inference, selecting which of the settings below is applied (glow_tts or glow_tts_triton). |
 | glow_tts | [GlowTTS](#ondewo.t2s.GlowTTS) |  | GlowTTS inference settings. |
 | glow_tts_triton | [GlowTTSTriton](#ondewo.t2s.GlowTTSTriton) |  | GlowTTS Triton inference settings. |
 
@@ -12519,7 +19874,7 @@ Text2Mel message contains settings for text-to-mel inference.
 <a name="ondewo.t2s.Text2SpeechConfig"></a>
 
 ### Text2SpeechConfig
-Configuration of text-to-speech models representation.
+<p>Configuration of text-to-speech models representation.</p>
 
 
 | Field | Type | Label | Description |
@@ -12527,7 +19882,7 @@ Configuration of text-to-speech models representation.
 | id | [string](#string) |  | Required. Defines the id of the pipeline. |
 | description | [T2SDescription](#ondewo.t2s.T2SDescription) |  | Required. Defines the description of the pipeline representation. |
 | active | [bool](#bool) |  | Required. Defines if the pipeline is active or inactive. |
-| inference | [T2SInference](#ondewo.t2s.T2SInference) |  | Required. Defines he inference of the pipeline representation. |
+| inference | [T2SInference](#ondewo.t2s.T2SInference) |  | Required. Defines the inference of the pipeline representation. |
 | normalization | [T2SNormalization](#ondewo.t2s.T2SNormalization) |  | Required. Defines the normalization process of the pipeline representation. |
 | postprocessing | [Postprocessing](#ondewo.t2s.Postprocessing) |  | Required. Defines the postprocessing process of the pipeline representation. |
 
@@ -12539,7 +19894,7 @@ Configuration of text-to-speech models representation.
 <a name="ondewo.t2s.UpdateCustomPhonemizerRequest"></a>
 
 ### UpdateCustomPhonemizerRequest
-UpdateCustomPhonemizerRequest message represents the request for updating a custom phonemizer.
+<p>UpdateCustomPhonemizerRequest message represents the request for updating a custom phonemizer.</p>
 
 
 | Field | Type | Label | Description |
@@ -12556,7 +19911,7 @@ UpdateCustomPhonemizerRequest message represents the request for updating a cust
 <a name="ondewo.t2s.Vits"></a>
 
 ### Vits
-
+<p>Vits message contains settings for the Vits inference.</p>
 
 
 | Field | Type | Label | Description |
@@ -12577,7 +19932,7 @@ UpdateCustomPhonemizerRequest message represents the request for updating a cust
 <a name="ondewo.t2s.VitsTriton"></a>
 
 ### VitsTriton
-VitsTriton message contains settings for the Vits Triton inference.
+<p>VitsTriton message contains settings for the Vits Triton inference.</p>
 
 
 | Field | Type | Label | Description |
@@ -12589,8 +19944,29 @@ VitsTriton message contains settings for the Vits Triton inference.
 | max_text_length | [int64](#int64) |  | The maximum text length allowed. |
 | param_config_path | [string](#string) |  | The path to the parameter configuration. |
 | triton_model_name | [string](#string) |  | The name of the Triton model. |
-| triton_server_host | [string](#string) |  | The host of the Triton inference server which servers the model. |
-| triton_server_port | [int64](#int64) |  | The port of the Triton inference server which servers the model. |
+| triton_server_host | [string](#string) |  | The host of the Triton inference server which serves the model. |
+| triton_server_port | [int64](#int64) |  | The port of the Triton inference server which serves the model. |
+
+
+
+
+
+
+<a name="ondewo.t2s.VoiceCloningRequest"></a>
+
+### VoiceCloningRequest
+<p>VoiceCloningRequest message represents the request for cloning a voice.</p>
+<p>A VoiceCloningRequest contains a sample audio of the speaker to be cloned together with
+its transcription and the information about the speaker and the model to use for cloning.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| sample_audio | [bytes](#bytes) |  | Required. The sample audio of the speaker whose voice should be cloned. |
+| transcription | [string](#string) |  | Required. The transcription of the sample audio. |
+| speaker_name | [string](#string) |  | Required. The name of the speaker to associate with the cloned voice. |
+| speaker_language | [string](#string) |  | Required. The language of the speaker in the sample audio. |
+| model_name | [string](#string) |  | Required. The name of the model used for voice cloning. |
 
 
 
@@ -12600,7 +19976,7 @@ VitsTriton message contains settings for the Vits Triton inference.
 <a name="ondewo.t2s.VoiceSettings"></a>
 
 ### VoiceSettings
-VoiceSettings message contains settings for ElevenLabs inference.
+<p>VoiceSettings message contains settings for ElevenLabs inference.</p>
 
 
 | Field | Type | Label | Description |
@@ -12618,7 +19994,7 @@ VoiceSettings message contains settings for ElevenLabs inference.
 <a name="ondewo.t2s.Wiener"></a>
 
 ### Wiener
-Wiener message contains settings for Wiener postprocessing.
+<p>Wiener message contains settings for Wiener postprocessing.</p>
 
 
 | Field | Type | Label | Description |
@@ -12639,7 +20015,7 @@ Wiener message contains settings for Wiener postprocessing.
 <a name="ondewo.t2s.AudioFormat"></a>
 
 ### AudioFormat
-AudioFormat enum represents various audio file formats for storing digital audio data.
+<p>AudioFormat enum represents various audio file formats for storing digital audio data.</p>
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -12656,7 +20032,7 @@ AudioFormat enum represents various audio file formats for storing digital audio
 <a name="ondewo.t2s.Pcm"></a>
 
 ### Pcm
-Represents a pulse-code modulation technique.
+<p>Represents a pulse-code modulation technique.</p>
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -12674,6 +20050,7 @@ Represents a pulse-code modulation technique.
 
 ### UpdateCustomPhonemizerRequest.UpdateMethod
 The update method to be used.
+UpdateMethod enum defines the method for updating custom phonemizers.
 
 | Name | Number | Description |
 | ---- | ------ | ----------- |
@@ -12690,58 +20067,29 @@ The update method to be used.
 <a name="ondewo.t2s.Text2Speech"></a>
 
 ### Text2Speech
-Text2Speech service provides endpoints for text-to-speech generation.
+<p>Text2Speech service provides endpoints for text-to-speech generation.</p>
 
 | Method Name | Request Type | Response Type | Description |
 | ----------- | ------------ | ------------- | ------------|
-| Synthesize | [SynthesizeRequest](#ondewo.t2s.SynthesizeRequest) | [SynthesizeResponse](#ondewo.t2s.SynthesizeResponse) | Synthesize RPC
-
-Synthesizes a specific text sent in the request with the provided configuration requirements and retrieves a response that includes the synthesized text as audio and the requested configuration. |
-| BatchSynthesize | [BatchSynthesizeRequest](#ondewo.t2s.BatchSynthesizeRequest) | [BatchSynthesizeResponse](#ondewo.t2s.BatchSynthesizeResponse) | BatchSynthesize RPC
-
-Performs batch synthesis by accepting a batch of synthesis requests and returning a batch response. This can be more efficient for generating predictions on the AI model in bulk. |
-| NormalizeText | [NormalizeTextRequest](#ondewo.t2s.NormalizeTextRequest) | [NormalizeTextResponse](#ondewo.t2s.NormalizeTextResponse) | NormalizeText RPC
-
-Normalizes a text according to the specific pipeline's normalization rules. |
-| GetT2sPipeline | [T2sPipelineId](#ondewo.t2s.T2sPipelineId) | [Text2SpeechConfig](#ondewo.t2s.Text2SpeechConfig) | GetT2sPipeline RPC
-
-Retrieves the configuration of the specified text-to-speech pipeline. |
-| CreateT2sPipeline | [Text2SpeechConfig](#ondewo.t2s.Text2SpeechConfig) | [T2sPipelineId](#ondewo.t2s.T2sPipelineId) | CreateT2sPipeline RPC
-
-Creates a new text-to-speech pipeline with the provided configuration and returns its pipeline ID. |
-| DeleteT2sPipeline | [T2sPipelineId](#ondewo.t2s.T2sPipelineId) | [.google.protobuf.Empty](#google.protobuf.Empty) | DeleteT2sPipeline RPC
-
-Deletes the specified text-to-speech pipeline. |
-| UpdateT2sPipeline | [Text2SpeechConfig](#ondewo.t2s.Text2SpeechConfig) | [.google.protobuf.Empty](#google.protobuf.Empty) | UpdateT2sPipeline RPC
-
-Updates the specified text-to-speech pipeline with the given configuration. |
-| ListT2sPipelines | [ListT2sPipelinesRequest](#ondewo.t2s.ListT2sPipelinesRequest) | [ListT2sPipelinesResponse](#ondewo.t2s.ListT2sPipelinesResponse) | ListT2sPipelines RPC
-
-Retrieves a list of text-to-speech pipelines based on specific requirements. |
-| ListT2sLanguages | [ListT2sLanguagesRequest](#ondewo.t2s.ListT2sLanguagesRequest) | [ListT2sLanguagesResponse](#ondewo.t2s.ListT2sLanguagesResponse) | ListT2sLanguages RPC
-
-Retrieves a list of languages available based on specific configuration requirements. |
-| ListT2sDomains | [ListT2sDomainsRequest](#ondewo.t2s.ListT2sDomainsRequest) | [ListT2sDomainsResponse](#ondewo.t2s.ListT2sDomainsResponse) | ListT2sDomains RPC
-
-Retrieves a list of domains available based on specific configuration requirements. |
-| GetServiceInfo | [.google.protobuf.Empty](#google.protobuf.Empty) | [T2SGetServiceInfoResponse](#ondewo.t2s.T2SGetServiceInfoResponse) | GetServiceInfo RPC
-
-Retrieves the version information of the running text-to-speech server. |
-| GetCustomPhonemizer | [PhonemizerId](#ondewo.t2s.PhonemizerId) | [CustomPhonemizerProto](#ondewo.t2s.CustomPhonemizerProto) | GetCustomPhonemizer RPC
-
-Retrieves a custom phonemizer based on the provided PhonemizerId. |
-| CreateCustomPhonemizer | [CreateCustomPhonemizerRequest](#ondewo.t2s.CreateCustomPhonemizerRequest) | [PhonemizerId](#ondewo.t2s.PhonemizerId) | CreateCustomPhonemizer RPC
-
-Creates a custom phonemizer based on the provided CreateCustomPhonemizerRequest. Returns the PhonemizerId associated with the created custom phonemizer. |
-| DeleteCustomPhonemizer | [PhonemizerId](#ondewo.t2s.PhonemizerId) | [.google.protobuf.Empty](#google.protobuf.Empty) | DeleteCustomPhonemizer RPC
-
-Deletes a custom phonemizer based on the provided PhonemizerId. Returns an Empty response upon successful deletion. |
-| UpdateCustomPhonemizer | [UpdateCustomPhonemizerRequest](#ondewo.t2s.UpdateCustomPhonemizerRequest) | [CustomPhonemizerProto](#ondewo.t2s.CustomPhonemizerProto) | UpdateCustomPhonemizer RPC
-
-Updates the specified custom phonemizer with the provided configuration. |
-| ListCustomPhonemizer | [ListCustomPhonemizerRequest](#ondewo.t2s.ListCustomPhonemizerRequest) | [ListCustomPhonemizerResponse](#ondewo.t2s.ListCustomPhonemizerResponse) | ListCustomPhonemizer RPC
-
-Retrieves a list of custom phonemizers based on specific requirements. |
+| Synthesize | [SynthesizeRequest](#ondewo.t2s.SynthesizeRequest) | [SynthesizeResponse](#ondewo.t2s.SynthesizeResponse) | <p>Synthesizes a specific text sent in the request with the provided configuration requirements and retrieves a response that includes the synthesized text as audio and the requested configuration.</p> |
+| BatchSynthesize | [BatchSynthesizeRequest](#ondewo.t2s.BatchSynthesizeRequest) | [BatchSynthesizeResponse](#ondewo.t2s.BatchSynthesizeResponse) | <p>Performs batch synthesis by accepting a batch of synthesis requests and returning a batch response. This can be more efficient for generating predictions on the AI model in bulk.</p> |
+| StreamingSynthesize | [StreamingSynthesizeRequest](#ondewo.t2s.StreamingSynthesizeRequest) stream | [StreamingSynthesizeResponse](#ondewo.t2s.StreamingSynthesizeResponse) stream | <p>Performs streaming synthesis by accepting stream of input text and returning a stream of generated audio.</p> |
+| NormalizeText | [NormalizeTextRequest](#ondewo.t2s.NormalizeTextRequest) | [NormalizeTextResponse](#ondewo.t2s.NormalizeTextResponse) | <p>Normalizes a text according to the specific pipeline&apos;s normalization rules.</p> |
+| GetT2sPipeline | [T2sPipelineId](#ondewo.t2s.T2sPipelineId) | [Text2SpeechConfig](#ondewo.t2s.Text2SpeechConfig) | <p>Retrieves the configuration of the specified text-to-speech pipeline.</p> |
+| CreateT2sPipeline | [Text2SpeechConfig](#ondewo.t2s.Text2SpeechConfig) | [T2sPipelineId](#ondewo.t2s.T2sPipelineId) | <p>Creates a new text-to-speech pipeline with the provided configuration and returns its pipeline ID.</p> |
+| DeleteT2sPipeline | [T2sPipelineId](#ondewo.t2s.T2sPipelineId) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Deletes the specified text-to-speech pipeline.</p> |
+| UpdateT2sPipeline | [Text2SpeechConfig](#ondewo.t2s.Text2SpeechConfig) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Updates the specified text-to-speech pipeline with the given configuration.</p> |
+| ListT2sPipelines | [ListT2sPipelinesRequest](#ondewo.t2s.ListT2sPipelinesRequest) | [ListT2sPipelinesResponse](#ondewo.t2s.ListT2sPipelinesResponse) | <p>Retrieves a list of text-to-speech pipelines based on specific requirements.</p> |
+| ListT2sLanguages | [ListT2sLanguagesRequest](#ondewo.t2s.ListT2sLanguagesRequest) | [ListT2sLanguagesResponse](#ondewo.t2s.ListT2sLanguagesResponse) | <p>Retrieves a list of languages available based on specific configuration requirements.</p> |
+| ListT2sDomains | [ListT2sDomainsRequest](#ondewo.t2s.ListT2sDomainsRequest) | [ListT2sDomainsResponse](#ondewo.t2s.ListT2sDomainsResponse) | <p>Retrieves a list of domains available based on specific configuration requirements.</p> |
+| ListT2sNormalizationPipelines | [ListT2sNormalizationPipelinesRequest](#ondewo.t2s.ListT2sNormalizationPipelinesRequest) | [ListT2sNormalizationPipelinesResponse](#ondewo.t2s.ListT2sNormalizationPipelinesResponse) | <p>Retrieves a list of normalization pipelines based on specific requirements.</p> |
+| GetServiceInfo | [.google.protobuf.Empty](#google.protobuf.Empty) | [T2SGetServiceInfoResponse](#ondewo.t2s.T2SGetServiceInfoResponse) | <p>Retrieves the version information of the running text-to-speech server.</p> |
+| GetCustomPhonemizer | [PhonemizerId](#ondewo.t2s.PhonemizerId) | [CustomPhonemizerProto](#ondewo.t2s.CustomPhonemizerProto) | <p>Retrieves a custom phonemizer based on the provided PhonemizerId.</p> |
+| CreateCustomPhonemizer | [CreateCustomPhonemizerRequest](#ondewo.t2s.CreateCustomPhonemizerRequest) | [PhonemizerId](#ondewo.t2s.PhonemizerId) | <p>Creates a custom phonemizer based on the provided CreateCustomPhonemizerRequest. Returns the PhonemizerId associated with the created custom phonemizer.</p> |
+| DeleteCustomPhonemizer | [PhonemizerId](#ondewo.t2s.PhonemizerId) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Deletes a custom phonemizer based on the provided PhonemizerId. Returns an Empty response upon successful deletion.</p> |
+| UpdateCustomPhonemizer | [UpdateCustomPhonemizerRequest](#ondewo.t2s.UpdateCustomPhonemizerRequest) | [CustomPhonemizerProto](#ondewo.t2s.CustomPhonemizerProto) | <p>Updates the specified custom phonemizer with the provided configuration.</p> |
+| ListCustomPhonemizer | [ListCustomPhonemizerRequest](#ondewo.t2s.ListCustomPhonemizerRequest) | [ListCustomPhonemizerResponse](#ondewo.t2s.ListCustomPhonemizerResponse) | <p>Retrieves a list of custom phonemizers based on specific requirements.</p> |
+| VoiceCloning | [VoiceCloningRequest](#ondewo.t2s.VoiceCloningRequest) | [.google.protobuf.Empty](#google.protobuf.Empty) | <p>Clones a voice based on a sample audio of the speaker and its transcription. The cloned voice can afterwards be used for synthesis by referencing the given speaker name.</p> |
 
  <!-- end services -->
 
