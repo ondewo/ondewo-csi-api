@@ -27,8 +27,13 @@ ONDEWO_T2S_DIR=ondewo-t2s-api
 # You need to setup an access token at https://github.com/settings/tokens - permissions are important
 GITHUB_GH_TOKEN?=ENTER_YOUR_TOKEN_HERE
 
+# Terminate on the ***** separator that delimits release entries, NOT on /\*\*/ - that matched the first
+# markdown **bold** span inside the entry and silently truncated the notes there. Measured on a scratch
+# copy of RELEASE.md with one bold bullet added to the 5.4.0 entry: old pattern 6 lines, new pattern 11.
+# It is correct today only because no committed entry uses inline bold; the moment one does, every line
+# after it is dropped from `gh release create -n "$(CURRENT_RELEASE_NOTES)"` with no error at all.
 CURRENT_RELEASE_NOTES=`cat RELEASE.md \
-	| perl -ne 'print if /Release ONDEWO CSI API ${ONDEWO_CSI_API_VERSION}/../\*\*/'`
+	| perl -ne 'print if /Release ONDEWO CSI API ${ONDEWO_CSI_API_VERSION}/../^\*{5}/'`
 
 GH_REPO="https://github.com/ondewo/ondewo-csi-api"
 DEVOPS_ACCOUNT_GIT="ondewo-devops-accounts"
@@ -281,13 +286,28 @@ release_client:
 	@# Read through the environment (line 1 is a bare `export`) instead of interpolating the value into the
 	@# command text: interpolated, the notes become part of the command itself, so a backtick or $$(...)
 	@# anywhere in them is command-substituted by the shell before printf ever sees it.
-	@printf '%b' "$$GENERIC_RELEASE_NOTES" > temp-notes-${REPO_NAME} && perl -i -pe 's/\\//g' temp-notes-${REPO_NAME} && perl -i -pe 's/REPONAME/${UPPER_REPO_NAME}/g' temp-notes-${REPO_NAME}
+	@# The final perl normalises the file to exactly ONE trailing newline. printf '%b' appends no newline
+	@# of its own (that was the point), so a GENERIC_RELEASE_NOTES overridden on the command line without a
+	@# trailing \n leaves the notes file with none, and the insert below then glues the last bullet onto the
+	@# blank line before the previous entry's ***** separator - markdownlint MD032, an auto-fix, which brings
+	@# back the `Failed - files were modified by this hook` first run this recipe was changed to avoid.
+	@printf '%b' "$$GENERIC_RELEASE_NOTES" > temp-notes-${REPO_NAME} && perl -i -pe 's/\\//g' temp-notes-${REPO_NAME} && perl -i -pe 's/REPONAME/${UPPER_REPO_NAME}/g' temp-notes-${REPO_NAME} && perl -0777 -i -pe 's/\n*\z/\n/' temp-notes-${REPO_NAME}
 	git clone ${GENERIC_CLIENT}
 # Check if Client is already uptodate with API Version
 	@! git -C ${REPO_DIR} branch -a | grep -q ${ONDEWO_CSI_API_VERSION} || (echo "Already Released ${ONDEWO_CSI_API_VERSION} \n\n\n"  && touch .already_released_marker-${REPO_NAME} && rm -rf ${REPO_DIR} && rm -f temp-notes-${REPO_NAME} && exit 1)
 
 # Change Version Number and RELEASE NOTES
-	cd ${REPO_DIR} && perl -i -ne 'print; if(/Release History/){open my $$fh,"<","../temp-notes-${REPO_NAME}"; print while <$$fh>; close $$fh}' ${RELEASEMD}
+# Only insert the generated boilerplate when the client does not already document this version. A client
+# whose RELEASE.md was curated by hand ahead of the release would otherwise get a SECOND
+# "Release ONDEWO CSI <Name> Client <VERSION>" heading, which buries the curated entry (the notes slice
+# takes the FIRST match) and trips markdownlint MD025/MD024 - neither auto-fixes, so the client's own
+# pre-commit fails and the release aborts. Not hypothetical: ondewo-nlu-client-angular's RELEASE.md
+# carries two byte-identical "## Release ONDEWO NLU Angular Client 3.5.0" blocks from exactly this.
+	cd ${REPO_DIR} && if grep -qE "^#+ Release ONDEWO CSI ${UPPER_REPO_NAME} Client ${ONDEWO_CSI_API_VERSION}$$" ${RELEASEMD}; then \
+		echo "${RELEASEMD} already documents ${ONDEWO_CSI_API_VERSION} - keeping the curated entry, not inserting the generated notes"; \
+	else \
+		perl -i -ne 'print; if(/Release History/){open my $$fh,"<","../temp-notes-${REPO_NAME}"; print while <$$fh>; close $$fh}' ${RELEASEMD}; \
+	fi
 	cd ${REPO_DIR} && head -20 ${RELEASEMD}
 	cd ${REPO_DIR} && perl -i -pe 's/ONDEWO_CSI_VERSION.*=.*/ONDEWO_CSI_VERSION=${ONDEWO_CSI_API_VERSION}/' Makefile
 	cd ${REPO_DIR} && perl -i -pe 's/ONDEWO_PROTO_COMPILER_GIT_BRANCH.*=.*/ONDEWO_PROTO_COMPILER_GIT_BRANCH=tags\/${PROTO_COMPILER}/' Makefile
