@@ -2,6 +2,18 @@
 
 *****************
 
+## Release ONDEWO CSI API 5.5.0
+
+### Improvements
+
+* Tracking [ondewo-nlu-api 7.1.0](https://github.com/ondewo/ondewo-nlu-api/releases/tag/7.1.0) (was 7.0.0) and [ondewo-s2t-api 7.5.0](https://github.com/ondewo/ondewo-s2t-api/releases/tag/7.5.0) (was 7.4.0). `ondewo-t2s-api` stays at 6.6.0, which is already the latest.
+* The change is **purely additive and `ondewo/csi/conversation.proto` is untouched**, so every existing message, field and RPC keeps its number and meaning and a client built against 5.4.0 stays wire-compatible. What grows is the vendored surface this API ships and re-exports:
+  * `ondewo/s2t/speech-to-text.proto` gains the `VadMethod` and `TsdMethod` enums and the `Silero` and `WespeakerTsd` messages — voice-activity and turn-shift detection configuration — together with their fields.
+  * `ondewo/nlu/rag.proto` gains `RagCrawlerIncrementalConfig`.
+* This is a MINOR bump rather than a patch because the published API surface grew: a consumer can now reference definitions that did not exist in 5.4.0.
+
+*****************
+
 ## Release ONDEWO CSI API 5.4.0
 
 ### Improvements
