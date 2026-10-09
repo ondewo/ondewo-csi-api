@@ -2,6 +2,20 @@
 
 *****************
 
+## Release ONDEWO CSI API 5.6.0
+
+### New Features
+
+* [[OND233-367]](https://ondewo.atlassian.net/browse/OND233-367) Add `SetCallMediaControl`: per-call operator media control pushed by ondewo-sip (in-container token only). The request `CallMediaControlLevel` carries the FULL effective level (`bot_muted`, `listening_paused`), a container-lifetime monotonic `generation` (a push is applied only when its generation is strictly greater than the last applied one, otherwise it is answered `stale=true`) and a bounded `reason` token. The response `SetCallMediaControlResponse` reports the `applied` level, `changed`, `stale`, `bot_playback_in_flight` and a `refusal_reason` (`amd-in-progress`).
+* [[OND233-367]](https://ondewo.atlassian.net/browse/OND233-367) Add `ControlStreamResponse.media_control` (field 3): set ONLY on media-control messages, pushed on a level change and seeded on every `GetControlStream` connect. A client must handle such a message as media control and must not apply its echoed `control_status`, which would un-latch a pending `BARGE_IN`.
+
+### Improvements
+
+* `SipTrigger.INVITE` is documented as not implemented: ondewo-csi cannot reach ondewo-vtsi. Use the ondewo-vtsi `Calls.InviteToCall` RPC.
+* Purely additive: no field, enum value or RPC was renumbered or removed, and `ControlStatus` is unchanged, so a client built against 5.5.0 stays wire-compatible.
+
+*****************
+
 ## Release ONDEWO CSI API 5.5.0
 
 ### Improvements
