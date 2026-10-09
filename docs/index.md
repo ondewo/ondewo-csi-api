@@ -4,6 +4,7 @@
 ## Table of Contents
 
 - [ondewo/csi/conversation.proto](#ondewo/csi/conversation.proto)
+    - [CallMediaControlLevel](#ondewo.csi.CallMediaControlLevel)
     - [CheckUpstreamHealthResponse](#ondewo.csi.CheckUpstreamHealthResponse)
     - [Condition](#ondewo.csi.Condition)
     - [ControlMessage](#ondewo.csi.ControlMessage)
@@ -16,6 +17,7 @@
     - [S2sPipelineId](#ondewo.csi.S2sPipelineId)
     - [S2sStreamRequest](#ondewo.csi.S2sStreamRequest)
     - [S2sStreamResponse](#ondewo.csi.S2sStreamResponse)
+    - [SetCallMediaControlResponse](#ondewo.csi.SetCallMediaControlResponse)
     - [SetControlStatusRequest](#ondewo.csi.SetControlStatusRequest)
     - [SetControlStatusResponse](#ondewo.csi.SetControlStatusResponse)
     - [SipTrigger](#ondewo.csi.SipTrigger)
@@ -1060,6 +1062,28 @@
 
 
 
+<a name="ondewo.csi.CallMediaControlLevel"></a>
+
+### CallMediaControlLevel
+<p>Per-call operator media control level, sent by ondewo-sip to <code>SetCallMediaControl</code> and pushed by the
+server on the control stream (<code>ControlStreamResponse.media_control</code>).</p>
+
+<p>It always carries the FULL effective level. It is independent of the bot's own mixer mute that ondewo-csi
+requests from ondewo-sip with <code>SipMute</code> / <code>SipUnMute</code>.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| bot_muted | [bool](#bool) |  | <p>If <code>true</code>, the bot is muted: no text-to-speech is synthesized for new responses (the NLU turn still runs), the in-flight utterance is aborted and discarded (never resumed), and soft-timeout fillers, re-prompts and <code>PLAY_AUDIO</code> triggers produce no audio.</p> |
+| listening_paused | [bool](#bool) |  | <p>If <code>true</code>, the bot stops listening: the caller audio sent to speech-to-text is replaced by muted zero frames at the capture cadence (the stream stays open and its clock stays aligned with the call), S2T responses are dropped before barge-in adjudication and before NLU, and the turn, soft and silence timers are suspended (they restart from zero on resume). Blanked audio is never back-filled.</p> |
+| generation | [uint64](#uint64) |  | <p>ondewo-sip's container-lifetime monotonic counter. Never reset per call. The server applies a level only when this value is strictly greater than the last applied one.</p> |
+| reason | [string](#string) |  | <p>Bounded reason token for logs and telemetry: <code>operator</code>, <code>participant</code>, <code>takeover</code> or <code>resync</code>.</p> |
+
+
+
+
+
+
 <a name="ondewo.csi.CheckUpstreamHealthResponse"></a>
 
 ### CheckUpstreamHealthResponse
@@ -1207,6 +1231,9 @@ Control stream response message.
 | ----- | ---- | ----- | ----------- |
 | control_status | [ControlStatus](#ondewo.csi.ControlStatus) |  | Control status |
 | epoch | [uint64](#uint64) |  | Monotonic barge-in epoch/sequence number so control status transitions are correlatable with the <code>S2sStreamResponse</code> <code>turn_epoch</code> and a second barge-in during a resumed remainder can never be coalesced away |
+| media_control | [CallMediaControlLevel](#ondewo.csi.CallMediaControlLevel) |  | <p>Optional. The per-call operator media control level. Set ONLY on media-control messages: pushed when the level changes (<code>SetCallMediaControl</code>) and sent as the seed on every <code>GetControlStream</code> connect.</p>
+
+<p>A message that has this field set is a media-control message and nothing else: a client must handle it and must NOT read its <code>control_status</code> / <code>epoch</code> as a control status transition. The server echoes the current control status and epoch in it, but a client that applied that <code>control_status</code> (e.g. <code>OK</code>) would un-latch a pending <code>BARGE_IN</code>. Messages without this field keep their meaning unchanged.</p> |
 
 
 
@@ -1324,6 +1351,25 @@ Multiple response messages can be returned in order:
 | chunk_index | [int32](#int32) |  | Optional. Zero-based index of this chunk within the utterance identified by <code>utterance_id</code> |
 | last_chunk | [bool](#bool) |  | Optional. If <code>true</code>, this is the last chunk of the utterance identified by <code>utterance_id</code> |
 | turn_epoch | [uint64](#uint64) |  | Optional. Monotonic turn epoch of the conversation turn that produced this response. Used by consumers to fence stale audio of an interrupted turn |
+
+
+
+
+
+
+<a name="ondewo.csi.SetCallMediaControlResponse"></a>
+
+### SetCallMediaControlResponse
+<p>Response of <code>SetCallMediaControl</code>.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| applied | [CallMediaControlLevel](#ondewo.csi.CallMediaControlLevel) |  | <p>The level the server holds after this request.</p> |
+| changed | [bool](#bool) |  | <p><code>true</code> if the effective level changed.</p> |
+| stale | [bool](#bool) |  | <p><code>true</code> if the request's generation was not greater than the last applied generation. The request was ignored.</p> |
+| bot_playback_in_flight | [bool](#bool) |  | <p><code>true</code> while an utterance is still draining to the caller.</p> |
+| refusal_reason | [string](#string) |  | <p>Empty when the level was applied. Otherwise a stable refusal token: <code>amd-in-progress</code> (<code>listening_paused</code> refused during the answering-machine-detection window).</p> |
 
 
 
@@ -1509,7 +1555,7 @@ Type of SIP trigger that can be executed during a conversation.
 | SEND_NOW | 3 | send now |
 | PAUSE | 4 | pause |
 | TRANSFER | 5 | transfer |
-| INVITE | 6 | invite to conference call |
+| INVITE | 6 | invite to conference call. NOT IMPLEMENTED: ondewo-csi cannot reach ondewo-vtsi, which owns call participants. Invite a softphone with the ondewo-vtsi <code>Calls.InviteToCall</code> RPC instead |
 | PLAY_AUDIO | 7 | play audio |
 
 
@@ -1562,6 +1608,13 @@ All upstreams healthy: <samp>{}</samp>
 All upstreams unhealthy: <samp>{ "s2t_status": { "code": 14, "message": "failed to connect to all addresses" }, "nlu_status": { "code": 14, "message": "failed to connect to all addresses" }, "t2s_status": { "code": 14, "message": "failed to connect to all addresses" } }</samp> |
 | GetControlStream | [ControlStreamRequest](#ondewo.csi.ControlStreamRequest) | [ControlStreamResponse](#ondewo.csi.ControlStreamResponse) stream | <p>Get the control stream to control sip, t2s, s2t etc. during a conversation.</p> |
 | SetControlStatus | [SetControlStatusRequest](#ondewo.csi.SetControlStatusRequest) | [SetControlStatusResponse](#ondewo.csi.SetControlStatusResponse) | <p>Send a message on the control stream to control sip, t2s, s2t etc. during a conversation.</p> |
+| SetCallMediaControl | [CallMediaControlLevel](#ondewo.csi.CallMediaControlLevel) | [SetCallMediaControlResponse](#ondewo.csi.SetCallMediaControlResponse) | <p>Set the per-call operator media control level: mute the bot and/or pause its listening.</p>
+
+<p>Pushed by ondewo-sip only, which owns the per-call level and authenticates with its in-container token (the <code>x-ondewo-sip-in-container-token</code> metadatum). A request without a valid token is refused.</p>
+
+<p>The request carries the FULL effective level, never a toggle. The server applies it only when its <code>generation</code> is strictly greater than the last applied generation and otherwise answers <code>stale=true</code> without changing anything, so a push that arrives after the next call's resync can never re-apply an old call's level. The level is cleared at <code>CALL_ENDED</code>; the generation is kept.</p>
+
+<p>This RPC never changes the control status of <code>GetControlStream</code> / <code>SetControlStatus</code> (the barge-in slot). A level change is announced on the control stream as a <code>ControlStreamResponse</code> with <code>media_control</code> set.</p> |
 
  <!-- end services -->
 
