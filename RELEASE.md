@@ -2,6 +2,32 @@
 
 *****************
 
+## Release ONDEWO CSI API 5.6.2
+
+### Improvements
+
+* No API change: the two unused imports `google/protobuf/timestamp.proto` and `google/protobuf/any.proto` are
+  removed from `ondewo/csi/conversation.proto`. No message, field, enum value or RPC changed, so a client built
+  against 5.6.0 stays wire-compatible. The vendored APIs stay at ondewo-nlu-api 7.1.0, ondewo-s2t-api 7.5.0 and
+  ondewo-t2s-api 6.6.0.
+* All eleven client SDKs (python, nodejs, typescript, angular, js, cpp, csharp, go, java, php, rust) are released
+  from this repository by `make release_all_clients`, generated with the pinned ondewo-proto-compiler 5.15.7. A
+  read-only `preflight_all_clients` runs first and stops the run before anything is released when one client's
+  credentials, version or release notes are not in order; a client is reported released only when its
+  `release_verify` saw the tag, a non-empty GitHub release and the version served by its registry.
+* Release credentials stay off command lines and out of the repository: the devops-accounts clone lives in a
+  private temporary directory and is deleted before the release starts.
+* Client SDK fixes shipped with this release:
+  * python: the async `S2sStream` and `GetControlStream` wrappers return the stream instead of awaiting it, so
+    both async streams can be opened at all (before, grpc.aio raised `TypeError` on the first call).
+  * nodejs and js: the published packages no longer ship the TypeScript sources and spec files.
+  * nodejs, typescript, js and angular: published to npm before anything is pushed, with the shipped package
+    content checked against the committed tree; eslint is no longer pinned back to an older parser.
+  * every SDK: a read-only release preflight, the full test suite before publishing, API-surface tests derived
+    from the protos instead of hard-coded lists, pinned toolchain images and a registry check after publishing.
+
+*****************
+
 ## Release ONDEWO CSI API 5.6.0
 
 ### New Features

@@ -186,9 +186,8 @@ Makefile lacks `release_preflight` or `release_verify` fails with `client <x> la
 (or `release_verify`) instead of being skipped. The client clone is removed on every exit path; files a
 client container wrote as root are removed through a digest-pinned busybox container, never `sudo`.
 
-**No csi client provides `release_preflight` / `release_verify` yet**, so until they do every client run
-stops at that message (measured: `make preflight_all_clients` reports `PREFLIGHT FAILED` for all eleven,
-each with `client <x> lacks release_preflight`, and nothing is released).
+Every csi client provides `release_preflight` and `release_verify` since the 5.6.2 release, which was the
+first one cut by this driver.
 
 The proto compiler is pinned exactly in `ONDEWO_PROTO_COMPILER_VERSION`; move it deliberately.
 

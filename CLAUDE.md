@@ -192,7 +192,7 @@ each of which a past run violated:
 - **`preflight_all_clients` is a prerequisite** of the parallel release (`.NOTPARALLEL:` keeps the order
   under `-j`): one failing preflight stops the run before anything is released.
 - **A client without `release_preflight` / `release_verify` FAILS** with "client <x> lacks …"; never skip it.
-  No csi client has them yet, so today every client run stops there by design.
+  All eleven csi clients have them since 5.6.2, the first release cut by this driver.
 - **One devops-accounts clone per run**, in `mktemp -d`, never in a checkout, removed by an EXIT trap; each
   client gets a private copy as an ABSOLUTE path (clients run as `make -C <client>`, where a relative
   `./ondewo-devops-accounts` resolves to nothing and the client silently clones its own; a client deleting
