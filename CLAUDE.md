@@ -177,8 +177,38 @@ cross-repo contract — never renumber an existing `ControlStatus` member.
 
 ## Client-release orchestration (`release_all_clients`)
 
-- It **fails loudly** on a genuine client-release error: the piped sub-make runs under `bash -c 'set -o pipefail; make -C … | tee …'` (a plain sh pipe returns tee's 0 and masks failures), and a **marker file** distinguishes an "already released" SKIP from a real FAILURE (make flattens recipe exit codes to 2, so the code alone can't tell them apart). Do not regress either.
-- Every token-bearing recipe line is `@`-prefixed so make never echoes a secret — `docker run -e <TOKEN>`, `echo $(TOKEN) | gh auth`, `twine … -p${PYPI_PASSWORD}`, and the credential sub-make `make release $(info)` (which expands the token at runtime and is easy to miss).
+The flow is described in README "Automatic Release Process - Clients"; the logic lives in
+`scripts/release_client.sh` and `scripts/with_devops_accounts.sh`, and `scripts/test_release_driver.py`
+runs it against fake client repositories. It is a port of ondewo-vtsi-api's driver (PR #28). Invariants,
+each of which a past run violated:
+
+- **All eleven SDKs are in `CLIENTS`**; the release-notes heading is the capitalised name except `C++`
+  and `PHP` (`CLIENT_DISPLAY_NAME_<x>`). It used to list five.
+- **SKIP means "tag on origin AND `release_verify` passes".** It used to be "some branch name contains the
+  version" (`branch -a | grep`, unanchored), so a client that failed after pushing `release/<version>` was
+  reported as done on the re-run, and `release/15.6.0` made 5.6.0 a SKIP. A branch without a tag, or a tag
+  whose `release_verify` fails, is FAILED. The marker file still separates SKIP from RELEASED (make flattens
+  exit codes to 2); a marker only counts when the client exited 0.
+- **`preflight_all_clients` is a prerequisite** of the parallel release (`.NOTPARALLEL:` keeps the order
+  under `-j`): one failing preflight stops the run before anything is released.
+- **A client without `release_preflight` / `release_verify` FAILS** with "client <x> lacks …"; never skip it.
+  No csi client has them yet, so today every client run stops there by design.
+- **One devops-accounts clone per run**, in `mktemp -d`, never in a checkout, removed by an EXIT trap; each
+  client gets a private copy as an ABSOLUTE path (clients run as `make -C <client>`, where a relative
+  `./ondewo-devops-accounts` resolves to nothing and the client silently clones its own; a client deleting
+  "its" clone cannot break a parallel one). The wrapper lines call `make`, not `$(MAKE)`: make executes
+  `$(MAKE)` lines under `-n`, so a dry run would clone the credentials.
+- **Cleanup on every exit path, no sudo**: the client clone and the private temp dir go in the script's
+  EXIT trap; root-owned files go through a digest-pinned busybox container.
+- **No bare `export`**, and the client make starts without `MAKEFLAGS` and without every variable named in
+  it: make exports command-line variables (`CLIENT=…`) to children, and a client's `?=` would take them.
+- **The version rewrites are anchored on the assignment** (`^ONDEWO_CSI_VERSION\s*=`, …). Unanchored they
+  also hit lines that merely mention the variable: two `echo` lines of ondewo-csi-client-go's go.mod check
+  and comments in the csharp and angular Makefiles.
+- **The proto compiler is pinned** (`ONDEWO_PROTO_COMPILER_VERSION`), not "the first tag the API returns".
+- The client make's output is piped through `tee` under `set -o pipefail`; a plain pipe returns tee's 0.
+- Every token-bearing recipe line is `@`-prefixed, and gh gets the token as `GH_TOKEN` of the one command
+  that needs it (no `gh auth login`); `scripts/check_release_credentials_hygiene.py` fails on a token on argv.
 
 ## Pre-commit upgraded (language-agnostic hook set)
 
