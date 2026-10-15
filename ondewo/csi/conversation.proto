@@ -17,13 +17,11 @@ syntax = "proto3";
 package ondewo.csi;
 import "google/protobuf/empty.proto";
 import "google/rpc/status.proto";
-import "google/protobuf/timestamp.proto";
 import "google/protobuf/struct.proto";
 import "ondewo/nlu/session.proto";
 import "ondewo/t2s/text-to-speech.proto";
 import "ondewo/s2t/speech-to-text.proto";
 import "ondewo/nlu/context.proto";
-import "google/protobuf/any.proto";
 
 // <p>Endpoints of CSI service.</p>
 service Conversations {

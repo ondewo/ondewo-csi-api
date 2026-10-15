@@ -18,10 +18,15 @@ jobs:
   # This workflow contains a single job called "generate-docs"
   generate-doc-and-deploy:
     # The type of runner that the job will run on
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-24.04
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+      # Before checkout: actions/checkout runs `git init`, and without a configured default branch git prints a
+      # nine-line `hint:` block into every job log.
+      - name: Configure git
+        run: git config --global init.defaultBranch master
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout 🛎️
         uses: actions/checkout@v5
@@ -40,12 +45,20 @@ jobs:
       #     mkdir -p docs
       #     protoc -I. -Igoogleapis --doc_opt=markdown,nlu.md --doc_out=docs $(find ondewo -name '*.proto' | sort)
 
+      # The shared doc action always passes -Igoogleapis; this repository keeps its google protos in ./google (found
+      # through -I.), so an empty directory is all it needs to stop protoc warning that the path does not exist.
+      - name: Provide the include path the doc action expects
+        run: mkdir -p googleapis
+
       - name: Generate documentation from ONDEWO proto files 🔧
-        uses: ondewo/ondewo-protoc-gen-doc-action@master
+        # Pinned to a commit: the action has no release tags, and @master ran whatever was pushed there last.
+        uses: ondewo/ondewo-protoc-gen-doc-action@e5c0309e0d9f680888d5b29349569e4c8bb48cac # master as of 2021-06-29
 
 
+      # Only a push to master publishes. A pull request generates the documentation as a check and nothing more:
+      # deploying from it committed docs/ to master behind the open pull request, which then conflicted with it.
       - name: Deploy 🚀
-        if: ${{ !env.ACT }}
+        if: ${{ !env.ACT && github.event_name != 'pull_request' }}
         uses: JamesIves/github-pages-deploy-action@v4
         with:
           branch: master # The branch the action should deploy to.
