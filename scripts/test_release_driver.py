@@ -49,6 +49,7 @@ release_preflight:
 ondewo_release:
 \t@echo "release ONDEWO_CSI_VERSION=$(ONDEWO_CSI_VERSION)" >> $(LOG)
 \t@env > $(FAKE_CLIENT_CONTROL_DIR)/{name}.env
+\t@echo "$$(umask) $$(stat -c %a Makefile)" > $(FAKE_CLIENT_CONTROL_DIR)/{name}.modes
 \t@test -f "$$DEVOPS_ACCOUNT_DIR/account_github.env"
 \t@cp Makefile $(FAKE_CLIENT_CONTROL_DIR)/{name}.Makefile
 \t@cp {release_md} $(FAKE_CLIENT_CONTROL_DIR)/{name}.RELEASE.md
@@ -451,6 +452,16 @@ class TestReleaseClient(DriverFixture):
             "CLIENT_GIT_URL_PREFIX", "DEVOPS_ACCOUNT_GIT_URL",
         ):
             self.assertNotIn(leaked, env, f"{leaked} leaked into the client release")
+
+    def test_the_client_clone_and_make_are_not_under_the_drivers_private_umask(self) -> None:
+        # A client builds docker images from its checkout and runs them as the caller's uid; a 0600 checkout
+        # made the php, python and rust proto-compiler images unreadable there (5.6.2). The driver sets 077.
+        self.make_client("php", "PHP")
+        result = self.run_make("release_all_clients", clients="php")
+        self.assertEqual(result.returncode, 0, result.stdout)
+        client_umask, makefile_mode = (self.control / "php.modes").read_text(encoding="utf-8").split()
+        self.assertEqual(client_umask, "0022", result.stdout)
+        self.assertEqual(makefile_mode, "644", result.stdout)
 
 
 class TestDryRun(DriverFixture):
