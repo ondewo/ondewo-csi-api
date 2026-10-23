@@ -2,6 +2,25 @@
 
 *****************
 
+## Release ONDEWO CSI API 5.7.0
+
+### Improvements
+
+* Tracking [ondewo-nlu-api 7.4.0](https://github.com/ondewo/ondewo-nlu-api/releases/tag/7.4.0) (was 7.1.0).
+  `ondewo-s2t-api` stays at 7.5.0 and `ondewo-t2s-api` at 6.6.0, both already the latest.
+* `ondewo/csi/conversation.proto` is untouched, so every csi message, field and RPC keeps its number and meaning and
+  a client built against 5.6.2 stays wire-compatible. What changes is the vendored nlu surface this API ships:
+  * `ondewo/nlu/session.proto` gains `LlmAgentNodeEvent` (streamed as `llm_agent_node_event` on
+    `StreamingDetectIntent`) and the per-base-URL `LlmBaseUrlUsage` breakdown in `LlmTelemetryReport`.
+  * `ondewo/nlu/agent.proto` gains a base-URL filter on the agent and session statistics requests.
+  * `ondewo/nlu/operation_metadata.proto` gains the `REPARSE_DATASET` operation type.
+  * `ondewo/nlu/rag.proto` moves `max_pages` from `RagCrawlerDeepCrawlerConfig` to `RagCrawlerConfig`
+    (nlu-api 7.3.0).
+* MINOR rather than patch because the published API surface grew, and because the client SDKs move their
+  `ondewo-nlu-client` dependency to the 7.4 line: csi-client 5.6.x capped it below 7.2.0.
+
+*****************
+
 ## Release ONDEWO CSI API 5.6.2
 
 ### Improvements
