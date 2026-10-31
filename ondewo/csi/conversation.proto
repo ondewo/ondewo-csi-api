@@ -262,6 +262,15 @@ message S2sStreamResponse {
     // Optional. Monotonic turn epoch of the conversation turn that produced this response. Used by consumers to fence stale audio of an interrupted turn
     uint64 turn_epoch = 7;
 
+    // <p>Optional. One-based sequence number of this response on its <code>S2sStream</code>, assigned by the server
+    // when it yields the response and counted over EVERY response of the stream (audio, NLU and SIP trigger), so it
+    // is independent of whether anything is stored or framed. <code>0</code> means the server does not number its
+    // responses (an older server).</p>
+    //
+    // <p>It names a response that has no <code>utterance_id</code> (the greeting, a merged utterance, a filler,
+    // the apology) in <code>PlaybackCut.response_sequence</code> and in a <code>PLAYBACK_DONE</code> report.</p>
+    uint64 response_sequence = 8;
+
 }
 
 // SIP trigger message.
@@ -352,6 +361,18 @@ enum ControlStatus {
     // Status reported by ondewo-sip to the server via <code>SetControlStatus</code> that the phone call has ENDED and the server must reset ALL per-call state in place (persistent-listener model). It is a command, not a state: it is never pushed onto the control stream
     CALL_ENDED = 8;
 
+    // <p>Status reported by the client to the server via <code>SetControlStatus</code>, with
+    // <code>SetControlStatusRequest.playback_cut</code> set, after it aborted playback for a <code>BARGE_IN</code>
+    // whose <code>ControlStreamResponse</code> carried a non-zero <code>playback_cut_request_id</code>. It reports
+    // how much of the cut audio the caller can have heard.</p>
+    //
+    // <p>Like <code>CALL_ENDED</code> it is a report, not a state: the server never assigns it to the control status,
+    // never pushes it onto the control stream and leaves a pending <code>BARGE_IN</code> latched. The request must
+    // carry the in-container token (the <code>x-ondewo-sip-in-container-token</code> metadatum); a request without a
+    // valid token is refused. A client sends it only after reading a non-zero
+    // <code>playback_cut_request_id</code>, so a server that does not consume cuts never receives it.</p>
+    PLAYBACK_CUT = 9;
+
 }
 
 // Control stream response message.
@@ -374,6 +395,16 @@ message ControlStreamResponse{
     // Messages without this field keep their meaning unchanged.</p>
     CallMediaControlLevel media_control = 3;
 
+    // <p>Optional. Non-zero only on a <code>BARGE_IN</code> transition sent by a server that consumes
+    // <code>PlaybackCut</code>: the server asks the client to report the cut with <code>PLAYBACK_CUT</code> and to
+    // echo this value in <code>PlaybackCut.playback_cut_request_id</code>. The value is the server's
+    // process-lifetime, never rewound sequence number of that transition, so every barge-in (including a second one
+    // during a resumed remainder, which keeps its epoch) has its own id.</p>
+    //
+    // <p><code>0</code> means no cut is requested: an older server, the seed of a new control stream, a
+    // media-control message, or any status other than <code>BARGE_IN</code>.</p>
+    uint64 playback_cut_request_id = 4;
+
 }
 
 // Request to set control status.
@@ -381,6 +412,67 @@ message SetControlStatusRequest{
 
     // Control status
     ControlStatus control_status = 1;
+
+    // Optional. Set if and only if <code>control_status</code> is <code>PLAYBACK_CUT</code>
+    PlaybackCut playback_cut = 2;
+
+    // <p>Optional. Set only with <code>PLAYBACK_DONE</code>: the <code>S2sStreamResponse.utterance_id</code> of the
+    // utterance whose playback completed. Empty for a response that carries no <code>utterance_id</code>; that one
+    // is named by <code>response_sequence</code>.</p>
+    string utterance_id = 3;
+
+    // <p>Optional. Set only with <code>PLAYBACK_DONE</code>: the <code>S2sStreamResponse.response_sequence</code> of
+    // the last response of the completed utterance. <code>0</code> if the server does not number its responses.</p>
+    uint64 response_sequence = 4;
+
+}
+
+// <p>Where playback stood when the client aborted it for a <code>BARGE_IN</code>, reported with
+// <code>PLAYBACK_CUT</code>. All audio positions refer to the response named by <code>utterance_id</code> /
+// <code>response_sequence</code> and are measured by the client on the thread that owns the audio connection.</p>
+//
+// <p>The client reports raw values only. The server computes the played prefix in one place as
+// <code>written_audio_us - min(queued_audio_us, written_audio_us)</code>: the audio handed to the audio device
+// minus the audio that was still queued in it and was flushed.</p>
+message PlaybackCut {
+
+    // The <code>ControlStreamResponse.playback_cut_request_id</code> of the <code>BARGE_IN</code> this cut answers.
+    // The server accepts a cut only while this id is pending on the current stream
+    uint64 playback_cut_request_id = 1;
+
+    // The <code>ControlStreamResponse.epoch</code> of that <code>BARGE_IN</code>
+    uint64 barge_in_epoch = 2;
+
+    // The <code>S2sStreamResponse.utterance_id</code> playing at the cut. Empty if that response has none, or if
+    // nothing was playing
+    string utterance_id = 3;
+
+    // The <code>S2sStreamResponse.chunk_index</code> playing at the cut
+    int32 chunk_index = 4;
+
+    // The <code>S2sStreamResponse.response_sequence</code> playing at the cut. <code>0</code> if nothing was playing
+    // or the server does not number its responses
+    uint64 response_sequence = 5;
+
+    // Microseconds of audio of that utterance (or of that single response, if it has no <code>utterance_id</code>)
+    // handed to the audio device since it started playing, across a resumed remainder
+    int64 written_audio_us = 6;
+
+    // Microseconds of audio still queued in the audio device at the cut, read once just before the queue was
+    // flushed. If the device latency could not be read, the client sends its configured target buffer length
+    // instead and sets <code>queued_audio_estimated</code>
+    int64 queued_audio_us = 7;
+
+    // <code>true</code> if <code>queued_audio_us</code> is the configured target buffer length rather than a
+    // latency read
+    bool queued_audio_estimated = 8;
+
+    // <code>CLOCK_MONOTONIC</code> time of the cut in nanoseconds. The client runs on the same host as the server,
+    // so the server can compare it with its own monotonic clock
+    int64 cut_monotonic_ns = 9;
+
+    // <code>true</code> if the client kept the un-played remainder so that <code>RESUME_PLAYBACK</code> can play it
+    bool remainder_held = 10;
 
 }
 
