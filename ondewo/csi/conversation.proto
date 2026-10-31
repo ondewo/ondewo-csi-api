@@ -368,9 +368,30 @@ enum ControlStatus {
     //
     // <p>Like <code>CALL_ENDED</code> it is a report, not a state: the server never assigns it to the control status,
     // never pushes it onto the control stream and leaves a pending <code>BARGE_IN</code> latched. The request must
-    // carry the in-container token (the <code>x-ondewo-sip-in-container-token</code> metadatum); a request without a
-    // valid token is refused. A client sends it only after reading a non-zero
-    // <code>playback_cut_request_id</code>, so a server that does not consume cuts never receives it.</p>
+    // carry the in-container token (the <code>x-ondewo-sip-in-container-token</code> metadatum). A client sends it
+    // only after reading a non-zero <code>playback_cut_request_id</code>, so a server that does not consume cuts
+    // never receives it.</p>
+    //
+    // <p>How the server answers, checked in this order:</p>
+    // <ul>
+    //   <li>Token missing or not equal to the server's: <code>UNAUTHENTICATED</code>, nothing is recorded. A
+    //   server with NO token configured (a standalone server, or one relaunched without its token) refuses every
+    //   cut this way and never requests one: it sends <code>playback_cut_request_id = 0</code> and keeps its own
+    //   estimate. The client must not retry an <code>UNAUTHENTICATED</code> cut.</li>
+    //   <li><code>playback_cut</code> not set: <code>INVALID_ARGUMENT</code>, nothing is recorded. The client must
+    //   not retry it.</li>
+    //   <li><code>playback_cut_request_id</code> not pending on the current control stream (zero, unknown, already
+    //   answered, superseded by a newer <code>BARGE_IN</code>, from a previous stream or a previous call): OK, the
+    //   cut is dropped and the server keeps its own estimate.</li>
+    //   <li>Otherwise: OK, the cut is recorded and the id stops being pending.</li>
+    // </ul>
+    //
+    // <p>An OK answer carries the control status the server holds, unchanged:
+    // <code>old_control_status == new_control_status</code>, in practice <code>BARGE_IN</code> while it is still
+    // latched. It does not say whether the cut was recorded or dropped; nothing on the client depends on that.
+    // Any other status (<code>UNAVAILABLE</code>, <code>DEADLINE_EXCEEDED</code>, ...) means the cut may or may not
+    // have arrived; the client may retry it with the same <code>playback_cut_request_id</code>, because a second copy
+    // of an answered id is dropped.</p>
     PLAYBACK_CUT = 9;
 
 }
@@ -401,8 +422,9 @@ message ControlStreamResponse{
     // process-lifetime, never rewound sequence number of that transition, so every barge-in (including a second one
     // during a resumed remainder, which keeps its epoch) has its own id.</p>
     //
-    // <p><code>0</code> means no cut is requested: an older server, the seed of a new control stream, a
-    // media-control message, or any status other than <code>BARGE_IN</code>.</p>
+    // <p><code>0</code> means no cut is requested: an older server, a server with no in-container token
+    // configured, the seed of a new control stream, a media-control message, or any status other than
+    // <code>BARGE_IN</code>.</p>
     uint64 playback_cut_request_id = 4;
 
 }
@@ -413,7 +435,8 @@ message SetControlStatusRequest{
     // Control status
     ControlStatus control_status = 1;
 
-    // Optional. Set if and only if <code>control_status</code> is <code>PLAYBACK_CUT</code>
+    // Optional. Set if and only if <code>control_status</code> is <code>PLAYBACK_CUT</code>. A
+    // <code>PLAYBACK_CUT</code> without it is answered <code>INVALID_ARGUMENT</code>; any other status ignores it
     PlaybackCut playback_cut = 2;
 
     // <p>Optional. Set only with <code>PLAYBACK_DONE</code>: the <code>S2sStreamResponse.utterance_id</code> of the
@@ -437,7 +460,8 @@ message SetControlStatusRequest{
 message PlaybackCut {
 
     // The <code>ControlStreamResponse.playback_cut_request_id</code> of the <code>BARGE_IN</code> this cut answers.
-    // The server accepts a cut only while this id is pending on the current stream
+    // The server records a cut only while this id is pending on the current stream; any other id is answered OK and
+    // dropped (see <code>PLAYBACK_CUT</code>)
     uint64 playback_cut_request_id = 1;
 
     // The <code>ControlStreamResponse.epoch</code> of that <code>BARGE_IN</code>
@@ -476,7 +500,8 @@ message PlaybackCut {
 
 }
 
-// Response of setting the control status with the old and new status objects.
+// Response of setting the control status with the old and new status objects. For a report that is not a state
+// (<code>PLAYBACK_CUT</code>) both fields carry the status the server holds, unchanged.
 message SetControlStatusResponse{
 
     // Previous 'old' control status

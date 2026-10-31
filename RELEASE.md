@@ -11,7 +11,17 @@
   * `ControlStatus.PLAYBACK_CUT = 9`, reported by the client via `SetControlStatus` with the new
     `SetControlStatusRequest.playback_cut` (field 2). Like `CALL_ENDED` it is a report, not a state: the server never
     assigns it, never pushes it onto the control stream and leaves a pending `BARGE_IN` latched. It requires the
-    in-container token (`x-ondewo-sip-in-container-token`).
+    in-container token (`x-ondewo-sip-in-container-token`). The server answers, in this order:
+    * token missing or wrong: `UNAUTHENTICATED`, never retried. A server with no token configured (standalone, or
+      relaunched without it) refuses every cut, never requests one (`playback_cut_request_id = 0`) and keeps its own
+      estimate;
+    * `playback_cut` not set: `INVALID_ARGUMENT`, never retried;
+    * `playback_cut_request_id` not pending on the current control stream (zero, unknown, already answered,
+      superseded, from a previous stream or call): OK, the cut is dropped;
+    * otherwise: OK, the cut is recorded.
+
+    An OK answer echoes the held control status unchanged (`old_control_status == new_control_status`). Any other
+    gRPC status leaves delivery unknown; a retry with the same id is safe, because an answered id is dropped.
   * `PlaybackCut` carries `playback_cut_request_id`, `barge_in_epoch`, the `utterance_id` / `chunk_index` /
     `response_sequence` playing at the cut, `written_audio_us`, the raw `queued_audio_us` read once before the flush
     with `queued_audio_estimated` when that read was not possible, `cut_monotonic_ns` and `remainder_held`. The server
