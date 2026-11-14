@@ -87,7 +87,7 @@ A refused key changes nothing. The checks run in this order:
 | `stale-sequence` | `sequence` is not greater than the last accepted one (a repeat or a reordered key). |
 | `invalid-digit` | `digit` is not exactly one of `0-9 * # A-D`. |
 | `undeclared` | The bot's last answer declared no key menu or key entry, and the undeclared-key policy is `drop` (the default). The key does not interrupt the bot. |
-| `invalid-key` | A key outside the options of a declared menu whose `invalid_key_policy` is `ignore`. This token is sent by the 5.8.0 server although the proto comment does not list it yet; treat unknown tokens as refusals. |
+| `invalid-key` | A key outside the options of a declared menu whose `invalid_key_policy` is `ignore`. Treat any token you do not know as a refusal. |
 
 ONDEWO SIP forwards each key once with a short deadline and retries once; it does not resend a refused key.
 
@@ -102,7 +102,8 @@ so a menu never outlives the turn that offered it. The declaration is read from,
    - `ondewo-voice:dtmf-digits:<id>[:min=N][:max=N][:terminator=K][:timeout_ms=N][:masked][:nospeech]`
 2. The output context `c-voice-turn` (written at run time, e.g. by an AI Team), with the parameters `dtmf_mode`,
    `dtmf_menu_id`, `dtmf_options` (`"1=marketing;2=sales"`), `dtmf_min_digits`, `dtmf_max_digits`,
-   `dtmf_terminator`, `dtmf_timeout_ms`, `dtmf_masked`.
+   `dtmf_terminator`, `dtmf_timeout_ms`, `dtmf_masked`, `dtmf_clear_key`, `dtmf_allow_speech`,
+   `dtmf_invalid_key_policy`.
 
 The fields of a declaration:
 

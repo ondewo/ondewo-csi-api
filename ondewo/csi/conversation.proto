@@ -606,7 +606,8 @@ message CallerDtmfResponse {
 
     // <p>Empty when accepted. Otherwise a stable token: <code>disabled</code>, <code>no-call</code>,
     // <code>other-call</code>, <code>stale-sequence</code>, <code>invalid-digit</code>, <code>listening-paused</code>,
-    // <code>amd-in-progress</code> or <code>undeclared</code>.</p>
+    // <code>amd-in-progress</code>, <code>undeclared</code> or <code>invalid-key</code> (a menu key outside the menu's
+    // options while the menu ignores such keys).</p>
     string reason = 2;
 
 }
