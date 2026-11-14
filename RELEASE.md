@@ -6,6 +6,11 @@
 
 ### New Features
 
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Add `SetCallerDtmf`: ondewo-sip reports each DTMF
+  key the caller pressed (`CallerDtmfRequest`: `call_id`, per-call `sequence`, `digit`, `duration_ms`,
+  `received_unix_ns`), authenticated with its in-container token. `CallerDtmfResponse` answers `accepted` or a
+  stable `reason` token (`disabled`, `no-call`, `other-call`, `stale-sequence`, `invalid-digit`, `listening-paused`,
+  `amd-in-progress`, `undeclared`). Additive; an older server answers `UNIMPLEMENTED`.
 * [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Add the child-measured barge-in cut, so the server
   knows how much of an interrupted answer the caller can actually have heard:
   * `ControlStatus.PLAYBACK_CUT = 9`, reported by the client via `SetControlStatus` with the new

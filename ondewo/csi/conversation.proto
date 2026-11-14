@@ -156,6 +156,19 @@ service Conversations {
     // <code>ControlStreamResponse</code> with <code>media_control</code> set.</p>
     rpc SetCallMediaControl (CallMediaControlLevel) returns (SetCallMediaControlResponse) {};
 
+    // <p>Report one DTMF key the caller pressed on the current call.</p>
+    //
+    // <p>Sent by ondewo-sip only, one request per key in the order received, authenticated with its in-container
+    // token (the <code>x-ondewo-sip-in-container-token</code> metadatum). A request without a valid token is refused
+    // with <code>UNAUTHENTICATED</code>.</p>
+    //
+    // <p>The server turns keys into caller input: a key pressed while the bot speaks is a barge-in, a key of a
+    // declared menu commits a turn at once, and a key string is collected until its terminator, its maximum length
+    // or its inter-digit timeout. A key of another call, a repeated or older sequence number, or a key while the
+    // server takes no keys is answered <code>accepted=false</code> with a reason token and changes nothing. Neither
+    // side ever logs the digit in clear.</p>
+    rpc SetCallerDtmf (CallerDtmfRequest) returns (CallerDtmfResponse) {};
+
 }
 
 // The top-level message sent by client to <code>CreateS2sPipeline</code> and <code>UpdateS2sPipeline</code> endpoints and received from <code>GetS2sPipeline</code> endpoint.
@@ -559,6 +572,42 @@ message SetCallMediaControlResponse {
     // <p>Empty when the level was applied. Otherwise a stable refusal token: <code>amd-in-progress</code>
     // (<code>listening_paused</code> refused during the answering-machine-detection window).</p>
     string refusal_reason = 5;
+
+}
+
+// <p>One DTMF key the caller pressed, sent by ondewo-sip to <code>SetCallerDtmf</code>.</p>
+message CallerDtmfRequest {
+
+    // <p>ondewo-sip's id of the call the key belongs to (<code>SipStatus.call_id</code>). A key of another call
+    // than the server's current one is refused.</p>
+    string call_id = 1;
+
+    // <p>1 for the first key of the call, then +1 per key ondewo-sip admitted. A sequence number not greater than
+    // the last one accepted for the call is refused.</p>
+    uint64 sequence = 2;
+
+    // <p>The key: one of <code>0</code>-<code>9</code>, <code>*</code>, <code>#</code>, <code>A</code>-<code>D</code>.
+    // Never logged in clear.</p>
+    string digit = 3;
+
+    // <p>How long the key was held, in milliseconds; 0 when unknown.</p>
+    uint32 duration_ms = 4;
+
+    // <p>When ondewo-sip received the key, in nanoseconds since the Unix epoch (for the key-to-audio latency).</p>
+    int64 received_unix_ns = 5;
+
+}
+
+// <p>Response of <code>SetCallerDtmf</code>.</p>
+message CallerDtmfResponse {
+
+    // <p><code>true</code> if the server took the key as caller input.</p>
+    bool accepted = 1;
+
+    // <p>Empty when accepted. Otherwise a stable token: <code>disabled</code>, <code>no-call</code>,
+    // <code>other-call</code>, <code>stale-sequence</code>, <code>invalid-digit</code>, <code>listening-paused</code>,
+    // <code>amd-in-progress</code> or <code>undeclared</code>.</p>
+    string reason = 2;
 
 }
 
