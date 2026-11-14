@@ -41,6 +41,9 @@
 
 ### Improvements
 
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) `docs/dtmf.md`: a hand-written guide to DTMF
+  on the CSI API: `SetCallerDtmf` (fields, authentication, every refusal token), how the NLU answer declares key
+  menus and key entries, the `[DTMF:<keys>]` turn and its `c-dtmf` context, invalid entries, security and limits.
 * Purely additive: no field, enum value or RPC was renumbered or removed. A client sends `PLAYBACK_CUT` only after
   it read a non-zero `playback_cut_request_id`, so a server built against 5.7.0 never receives value 9, and a client
   built against 5.7.0 never sees the new fields. The vendored APIs stay at ondewo-nlu-api 7.4.0, ondewo-s2t-api 7.5.0
