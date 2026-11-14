@@ -2,6 +2,55 @@
 
 *****************
 
+## Release ONDEWO CSI API 5.8.0
+
+### New Features
+
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Add `SetCallerDtmf`: ondewo-sip reports each DTMF
+  key the caller pressed (`CallerDtmfRequest`: `call_id`, per-call `sequence`, `digit`, `duration_ms`,
+  `received_unix_ns`), authenticated with its in-container token. `CallerDtmfResponse` answers `accepted` or a
+  stable `reason` token (`disabled`, `no-call`, `other-call`, `stale-sequence`, `invalid-digit`, `listening-paused`,
+  `amd-in-progress`, `undeclared`). Additive; an older server answers `UNIMPLEMENTED`.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Add the child-measured barge-in cut, so the server
+  knows how much of an interrupted answer the caller can actually have heard:
+  * `ControlStatus.PLAYBACK_CUT = 9`, reported by the client via `SetControlStatus` with the new
+    `SetControlStatusRequest.playback_cut` (field 2). Like `CALL_ENDED` it is a report, not a state: the server never
+    assigns it, never pushes it onto the control stream and leaves a pending `BARGE_IN` latched. It requires the
+    in-container token (`x-ondewo-sip-in-container-token`). The server answers, in this order:
+    * token missing or wrong: `UNAUTHENTICATED`, never retried. A server with no token configured (standalone, or
+      relaunched without it) refuses every cut, never requests one (`playback_cut_request_id = 0`) and keeps its own
+      estimate;
+    * `playback_cut` not set: `INVALID_ARGUMENT`, never retried;
+    * `playback_cut_request_id` not pending on the current control stream (zero, unknown, already answered,
+      superseded, from a previous stream or call): OK, the cut is dropped;
+    * otherwise: OK, the cut is recorded.
+
+    An OK answer echoes the held control status unchanged (`old_control_status == new_control_status`). Any other
+    gRPC status leaves delivery unknown; a retry with the same id is safe, because an answered id is dropped.
+  * `PlaybackCut` carries `playback_cut_request_id`, `barge_in_epoch`, the `utterance_id` / `chunk_index` /
+    `response_sequence` playing at the cut, `written_audio_us`, the raw `queued_audio_us` read once before the flush
+    with `queued_audio_estimated` when that read was not possible, `cut_monotonic_ns` and `remainder_held`. The server
+    computes the played prefix in one place as `written_audio_us - min(queued_audio_us, written_audio_us)`.
+  * `ControlStreamResponse.playback_cut_request_id` (field 4): non-zero only on a `BARGE_IN` transition of a server
+    that consumes cuts. It is that transition's process-lifetime sequence number, so a second barge-in during a
+    resumed remainder (same epoch) still has its own id. Never set on the stream seed or a media-control message.
+  * `S2sStreamResponse.response_sequence` (field 8): a one-based per-stream number of every response the server
+    yields. It names responses that carry no `utterance_id` (greeting, merged utterance, filler, apology) in a cut.
+  * `SetControlStatusRequest.utterance_id` (field 3) and `response_sequence` (field 4), set with `PLAYBACK_DONE`
+    to name the utterance whose playback completed.
+
+### Improvements
+
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) `docs/dtmf.md`: a hand-written guide to DTMF
+  on the CSI API: `SetCallerDtmf` (fields, authentication, every refusal token), how the NLU answer declares key
+  menus and key entries, the `[DTMF:<keys>]` turn and its `c-dtmf` context, invalid entries, security and limits.
+* Purely additive: no field, enum value or RPC was renumbered or removed. A client sends `PLAYBACK_CUT` only after
+  it read a non-zero `playback_cut_request_id`, so a server built against 5.7.0 never receives value 9, and a client
+  built against 5.7.0 never sees the new fields. The vendored APIs stay at ondewo-nlu-api 7.4.0, ondewo-s2t-api 7.5.0
+  and ondewo-t2s-api 6.6.0.
+
+*****************
+
 ## Release ONDEWO CSI API 5.7.0
 
 ### Improvements
