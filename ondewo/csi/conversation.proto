@@ -169,6 +169,23 @@ service Conversations {
     // side ever logs the digit in clear.</p>
     rpc SetCallerDtmf (CallerDtmfRequest) returns (CallerDtmfResponse) {};
 
+    // <p>Deliver the outcome of a warm transfer that did NOT hand the caller over, so the bot can tell the
+    // caller.</p>
+    //
+    // <p>Sent by ondewo-sip only, authenticated with its in-container token (the
+    // <code>x-ondewo-sip-in-container-token</code> metadatum). A request without a valid token is refused with
+    // <code>UNAUTHENTICATED</code>. ondewo-sip sends it whenever a notice is attached to the release of the
+    // participant hold, after the level push of <code>SetCallMediaControl</code> or on its own when the level did not
+    // change, and re-sends a notice it holds as pending (resync) by this RPC only, never inside a level. It clears
+    // its pending notice on <code>QUEUED</code> or <code>DUPLICATE</code>.</p>
+    //
+    // <p>A queued notice is never dropped by the server, except by <code>CALL_ENDED</code>: there is no caller left
+    // to tell. It is spoken once the bot is unmuted, its listening is not paused and no utterance is in flight. See
+    // <code>WarmTransferOutcomeNotice</code> for how. This RPC has no generation, never changes the control status of
+    // <code>GetControlStream</code> / <code>SetControlStatus</code> and is never announced on the control stream. A
+    // server built against a CSI API before 5.9.0 answers <code>UNIMPLEMENTED</code>.</p>
+    rpc DeliverWarmTransferOutcomeNotice (WarmTransferOutcomeNotice) returns (WarmTransferOutcomeNoticeResponse) {};
+
 }
 
 // The top-level message sent by client to <code>CreateS2sPipeline</code> and <code>UpdateS2sPipeline</code> endpoints and received from <code>GetS2sPipeline</code> endpoint.
@@ -609,6 +626,98 @@ message CallerDtmfResponse {
     // <code>amd-in-progress</code>, <code>undeclared</code> or <code>invalid-key</code> (a menu key outside the menu's
     // options while the menu ignores such keys).</p>
     string reason = 2;
+
+}
+
+// <p>Outcome of a warm transfer that did not hand the caller over.</p>
+enum WarmTransferOutcome {
+
+    // <p>Not set. A notice with this outcome is answered <code>INVALID</code>.</p>
+    WARM_TRANSFER_OUTCOME_UNSPECIFIED = 0;
+
+    // <p>The transfer target declined the call. The caller stays with the bot.</p>
+    WARM_TRANSFER_OUTCOME_DECLINED = 1;
+
+    // <p>The transfer target could not be reached: busy, no answer, no decision in time, or the intro could not
+    // run. The caller stays with the bot.</p>
+    WARM_TRANSFER_OUTCOME_UNREACHABLE = 2;
+
+    // <p>A transfer the bot asked for was handed to ondewo-vtsi and never claimed in time. ondewo-sip sent no
+    // transfer. The server runs its failed-transfer action (<code>CSI_TRANSFER_FAILED_ACTION</code>) instead of
+    // speaking a notice.</p>
+    WARM_TRANSFER_OUTCOME_DELEGATION_EXPIRED = 3;
+
+}
+
+// <p>A warm-transfer outcome the bot must tell the caller, sent by ondewo-sip to
+// <code>DeliverWarmTransferOutcomeNotice</code>.</p>
+//
+// <p>The server takes each <code>request_id</code> at most once per call, and forgets the call's notices at
+// <code>CALL_ENDED</code>. A queued <code>DECLINED</code> or <code>UNREACHABLE</code> notice is committed as a
+// <code>[TRANSFER:DECLINED]</code> / <code>[TRANSFER:UNREACHABLE]</code> caller turn when the NLU server advertised
+// the <code>x-ondewo-cai-warm-intro: 1</code> capability on the call, so the NLU answers it. Otherwise (the capability
+// is unknown or absent), the server speaks <code>fallback_text</code> itself as a bot utterance. Either way it is an
+// ordinary utterance the caller can interrupt. No field carries the decline reason, and the server logs none of
+// the texts.</p>
+message WarmTransferOutcomeNotice {
+
+    // <p>ondewo-vtsi's transfer request id, or ondewo-sip's delegated request id for
+    // <code>WARM_TRANSFER_OUTCOME_DELEGATION_EXPIRED</code>. 1 to 128 characters. A second notice with the same id
+    // on the same call is answered <code>DUPLICATE</code> and changes nothing.</p>
+    string request_id = 1;
+
+    // <p>What happened to the transfer. <code>WARM_TRANSFER_OUTCOME_UNSPECIFIED</code> is answered
+    // <code>INVALID</code>.</p>
+    WarmTransferOutcome outcome = 2;
+
+    // <p>NLU session name of the intro session, which holds the decline reason. Only with
+    // <code>WARM_TRANSFER_OUTCOME_DECLINED</code>, and empty when the target gave no reason; ignored with any other
+    // outcome.</p>
+    string intro_session = 3;
+
+    // <p>Display name of the transfer target, at most 128 characters. May be empty.</p>
+    string callee_display_name = 4;
+
+    // <p>Bounded lowercase token naming the cause, at most 64 characters, e.g. <code>voicemail-suspected</code>,
+    // <code>target-hung-up</code> or <code>no-free-listener</code>. For logs and telemetry only.</p>
+    string cause = 5;
+
+    // <p>The sentence the bot speaks when it cannot commit the notice as a turn: rendered by ondewo-vtsi from its
+    // template, with the target's display name and without any decline reason. At most 1024 characters. Empty with
+    // <code>WARM_TRANSFER_OUTCOME_DELEGATION_EXPIRED</code>.</p>
+    string fallback_text = 6;
+
+}
+
+// <p>How the server took a <code>WarmTransferOutcomeNotice</code>.</p>
+enum WarmTransferOutcomeNoticeStatus {
+
+    // <p>Never sent by the server.</p>
+    WARM_TRANSFER_OUTCOME_NOTICE_STATUS_UNSPECIFIED = 0;
+
+    // <p>The notice was queued for the current call and will be spoken unless the call ends first.</p>
+    WARM_TRANSFER_OUTCOME_NOTICE_STATUS_QUEUED = 1;
+
+    // <p>A notice with this <code>request_id</code> was already taken on this call. Nothing changed.</p>
+    WARM_TRANSFER_OUTCOME_NOTICE_STATUS_DUPLICATE = 2;
+
+    // <p>The server takes no notices (<code>CSI_WARM_TRANSFER_OUTCOME_ACTIVE</code> is not <code>true</code>).
+    // Nothing changed.</p>
+    WARM_TRANSFER_OUTCOME_NOTICE_STATUS_DISABLED = 3;
+
+    // <p>The notice breaks a rule of <code>WarmTransferOutcomeNotice</code>: an empty or over-long
+    // <code>request_id</code>, an unspecified or unknown <code>outcome</code>, or a field over its bound. Nothing
+    // changed; the sender must not retry it unchanged.</p>
+    WARM_TRANSFER_OUTCOME_NOTICE_STATUS_INVALID = 4;
+
+}
+
+// <p>Response of <code>DeliverWarmTransferOutcomeNotice</code>.</p>
+message WarmTransferOutcomeNoticeResponse {
+
+    // <p>How the server took the notice. The checks run in this order: <code>DISABLED</code>,
+    // <code>INVALID</code>, <code>DUPLICATE</code>, then <code>QUEUED</code>.</p>
+    WarmTransferOutcomeNoticeStatus status = 1;
 
 }
 

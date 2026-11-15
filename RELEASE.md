@@ -2,6 +2,36 @@
 
 *****************
 
+## Release ONDEWO CSI API 5.9.0
+
+### New Features
+
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Add `DeliverWarmTransferOutcomeNotice`: ondewo-sip
+  delivers the outcome of a warm transfer that did not hand the caller over, so the bot can tell the caller.
+  Authenticated with ondewo-sip's in-container token (`x-ondewo-sip-in-container-token`); a missing or wrong token
+  is answered `UNAUTHENTICATED`, and an older server answers `UNIMPLEMENTED`.
+  * `WarmTransferOutcomeNotice`: `request_id = 1` (string, 1 to 128 characters, taken at most once per call),
+    `outcome = 2` (`WarmTransferOutcome`), `intro_session = 3` (string, the intro's NLU session, `DECLINED` only),
+    `callee_display_name = 4` (string, at most 128), `cause = 5` (string, a bounded token, at most 64) and
+    `fallback_text = 6` (string, at most 1024, the sentence the bot speaks when it cannot commit the notice as a
+    turn; it never carries a decline reason).
+  * `WarmTransferOutcome`: `WARM_TRANSFER_OUTCOME_UNSPECIFIED = 0`, `_DECLINED = 1`, `_UNREACHABLE = 2`,
+    `_DELEGATION_EXPIRED = 3` (a bot transfer handed to ondewo-vtsi and never claimed; the server runs its
+    failed-transfer action).
+  * `WarmTransferOutcomeNoticeResponse.status = 1` (`WarmTransferOutcomeNoticeStatus`): `_QUEUED = 1`,
+    `_DUPLICATE = 2`, `_DISABLED = 3`, `_INVALID = 4`; `_UNSPECIFIED = 0` is never sent. A queued notice is dropped
+    only by `CALL_ENDED`.
+
+### Improvements
+
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) `docs/warm_transfer.md`: a hand-written guide to
+  the warm-transfer outcome notice: who sends it, when, how the server speaks it, every status, and the limits.
+* Purely additive: no field, enum value or RPC was renumbered or removed. `CallMediaControlLevel` and
+  `SetCallMediaControlResponse` are unchanged; the notice is not part of the media-control level. The vendored
+  APIs stay at ondewo-nlu-api 7.4.0, ondewo-s2t-api 7.5.0 and ondewo-t2s-api 6.6.0.
+
+*****************
+
 ## Release ONDEWO CSI API 5.8.0
 
 ### New Features
