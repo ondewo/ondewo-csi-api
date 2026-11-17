@@ -19,7 +19,9 @@
 # example: API 2.9.0 --> Client 2.9.X
 ONDEWO_CSI_API_VERSION=5.9.0
 ONDEWO_NLU_API_GIT_BRANCH=tags/7.4.0
-ONDEWO_S2T_API_GIT_BRANCH=tags/7.5.0
+# Development pin (OND236-120): ondewo-s2t-api 7.6.0 (the TurnDetectionOptions turn-detector oneof) is not tagged yet;
+# move back to tags/7.6.0 at release.
+ONDEWO_S2T_API_GIT_BRANCH=163661c
 ONDEWO_T2S_API_GIT_BRANCH=tags/6.6.0
 ONDEWO_NLU_DIR=ondewo-nlu-api
 ONDEWO_S2T_DIR=ondewo-s2t-api

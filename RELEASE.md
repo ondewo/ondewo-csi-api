@@ -28,7 +28,13 @@
   the warm-transfer outcome notice: who sends it, when, how the server speaks it, every status, and the limits.
 * Purely additive: no field, enum value or RPC was renumbered or removed. `CallMediaControlLevel` and
   `SetCallMediaControlResponse` are unchanged; the notice is not part of the media-control level. The vendored
-  APIs stay at ondewo-nlu-api 7.4.0, ondewo-s2t-api 7.5.0 and ondewo-t2s-api 6.6.0.
+  APIs stay at ondewo-nlu-api 7.4.0 and ondewo-t2s-api 6.6.0.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) The vendored ondewo-s2t-api moves from 7.5.0 to
+  the 7.6.0 development commit `163661c` (move back to the 7.6.0 tag at release). It brings
+  `TurnDetectionOptions.oneof_turn_detector`: one options message per turn detector (chat LLM, end-of-utterance
+  LLM, the ONDEWO German model, the ONDEWO German fusion detector, pipecat Smart Turn). The 7.5.0 fields
+  `turn_detection_system_prompt`, `turn_detection_user_prompt` and `turn_detection_llm_openai_options` are
+  deprecated but still honoured when no detector is chosen. No ondewo-csi-api message changed.
 
 *****************
 
