@@ -27,8 +27,9 @@
 * [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) `docs/warm_transfer.md`: a hand-written guide to
   the warm-transfer outcome notice: who sends it, when, how the server speaks it, every status, and the limits.
 * Purely additive: no field, enum value or RPC was renumbered or removed. `CallMediaControlLevel` and
-  `SetCallMediaControlResponse` are unchanged; the notice is not part of the media-control level. The vendored
-  APIs stay at ondewo-nlu-api 7.4.0 and ondewo-t2s-api 6.6.0.
+  `SetCallMediaControlResponse` are unchanged; the notice is not part of the media-control level.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) The vendored ondewo-nlu-api moves from 7.4.0 to
+  7.6.0 (adds `ondewo/nlu/logs.proto`) and the vendored ondewo-t2s-api from 6.6.0 to 6.7.0.
 * [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) The vendored ondewo-s2t-api moves from 7.5.0 to
   7.6.0. It brings
   `TurnDetectionOptions.oneof_turn_detector`: one options message per turn detector (chat LLM, end-of-utterance
