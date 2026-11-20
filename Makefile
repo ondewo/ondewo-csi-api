@@ -17,10 +17,10 @@
 
 # MUST BE THE SAME AS API in Mayor and Minor Version Number
 # example: API 2.9.0 --> Client 2.9.X
-ONDEWO_CSI_API_VERSION=5.7.0
-ONDEWO_NLU_API_GIT_BRANCH=tags/7.4.0
-ONDEWO_S2T_API_GIT_BRANCH=tags/7.5.0
-ONDEWO_T2S_API_GIT_BRANCH=tags/6.6.0
+ONDEWO_CSI_API_VERSION=5.9.0
+ONDEWO_NLU_API_GIT_BRANCH=tags/7.6.0
+ONDEWO_S2T_API_GIT_BRANCH=tags/7.6.0
+ONDEWO_T2S_API_GIT_BRANCH=tags/6.7.0
 ONDEWO_NLU_DIR=ondewo-nlu-api
 ONDEWO_S2T_DIR=ondewo-s2t-api
 ONDEWO_T2S_DIR=ondewo-t2s-api
@@ -258,12 +258,11 @@ CLIENTS := python nodejs typescript angular js cpp csharp go java php rust
 # The ondewo-proto-compiler every client is built with, pinned EXACTLY and written into each client's
 # ONDEWO_PROTO_COMPILER_GIT_BRANCH as tags/<version>. It used to be "the first tag the GitHub API
 # returned": unauthenticated (60 requests/hour, so a rate-limited run wrote an empty `tags/`), in an
-# undocumented order, and any new compiler tag silently moved every client's pin mid-release. 5.15.7 is the
-# newest tag, the one the most recently released csi clients (angular 5.6.1, typescript 5.6.0) were built
-# with and the one all eleven ondewo-vtsi-client SDKs are built with; the other csi clients still pin
-# 5.15.5 (python 5.15.3) and move to it with their next release. Move it deliberately;
-# `make check_proto_compiler_is_latest` tells you when a newer tag exists.
-ONDEWO_PROTO_COMPILER_VERSION=5.15.7
+# undocumented order, and any new compiler tag silently moved every client's pin mid-release. 5.17.0 is the
+# toolchain release of OND236-120 (protoc 35.1, Python gencode 7.35.1 / grpcio 1.85.1, grpc-web 2.1.1; see
+# its RELEASE.md for the runtime floors); 5.9.0 is the first csi release whose clients are built with it.
+# Move it deliberately; `make check_proto_compiler_is_latest` tells you when a newer tag exists.
+ONDEWO_PROTO_COMPILER_VERSION=5.17.0
 
 CLIENT_GIT_URL_PREFIX?=git@github.com:ondewo/ondewo-csi-client-
 # The RELEASE.md a client's release slices its notes from (the js family keeps it in src/).

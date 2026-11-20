@@ -2,6 +2,115 @@
 
 *****************
 
+## Release ONDEWO CSI API 5.9.0
+
+### New Features
+
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Add `DeliverWarmTransferOutcomeNotice`: ondewo-sip
+  delivers the outcome of a warm transfer that did not hand the caller over, so the bot can tell the caller.
+  Authenticated with ondewo-sip's in-container token (`x-ondewo-sip-in-container-token`); a missing or wrong token
+  is answered `UNAUTHENTICATED`, and an older server answers `UNIMPLEMENTED`.
+  * `WarmTransferOutcomeNotice`: `request_id = 1` (string, 1 to 128 characters, taken at most once per call),
+    `outcome = 2` (`WarmTransferOutcome`), `intro_session = 3` (string, the intro's NLU session, `DECLINED` only),
+    `callee_display_name = 4` (string, at most 128), `cause = 5` (string, a bounded token, at most 64) and
+    `fallback_text = 6` (string, at most 1024, the sentence the bot speaks when it cannot commit the notice as a
+    turn; it never carries a decline reason).
+  * `WarmTransferOutcome`: `WARM_TRANSFER_OUTCOME_UNSPECIFIED = 0`, `_DECLINED = 1`, `_UNREACHABLE = 2`,
+    `_DELEGATION_EXPIRED = 3` (a bot transfer handed to ondewo-vtsi and never claimed; the server runs its
+    failed-transfer action).
+  * `WarmTransferOutcomeNoticeResponse.status = 1` (`WarmTransferOutcomeNoticeStatus`): `_QUEUED = 1`,
+    `_DUPLICATE = 2`, `_DISABLED = 3`, `_INVALID = 4`; `_UNSPECIFIED = 0` is never sent. A queued notice is dropped
+    only by `CALL_ENDED`.
+
+### Improvements
+
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) `docs/warm_transfer.md`: a hand-written guide to
+  the warm-transfer outcome notice: who sends it, when, how the server speaks it, every status, and the limits.
+* Purely additive: no field, enum value or RPC was renumbered or removed. `CallMediaControlLevel` and
+  `SetCallMediaControlResponse` are unchanged; the notice is not part of the media-control level.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) The vendored ondewo-nlu-api moves from 7.4.0 to
+  7.6.0 (adds `ondewo/nlu/logs.proto`) and the vendored ondewo-t2s-api from 6.6.0 to 6.7.0.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) The vendored ondewo-s2t-api moves from 7.5.0 to
+  7.6.0. It brings
+  `TurnDetectionOptions.oneof_turn_detector`: one options message per turn detector (chat LLM, end-of-utterance
+  LLM, the ONDEWO German model, the ONDEWO German fusion detector, pipecat Smart Turn); the ONDEWO German and
+  pipecat Smart Turn options also carry `end_of_turn_probability_threshold`. The 7.5.0 fields
+  `turn_detection_system_prompt`, `turn_detection_user_prompt` and `turn_detection_llm_openai_options` are
+  deprecated but still honoured when no detector is chosen. No ondewo-csi-api message changed.
+
+### Breaking Changes
+
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) The clients of 5.9.0 are generated with
+  ondewo-proto-compiler 5.17.0 (was 5.15.7): protoc 35.1 for every client except C++. The generated code requires
+  at least these runtimes (a newer runtime is fine, an older one is refused):
+  * Python: `protobuf>=7.35.1` and `grpcio>=1.85.1`, so Python >= 3.10. Every `_pb2.py` carries
+    `# Protobuf Python Version: 7.35.1`, every `_pb2_grpc.py` `GRPC_GENERATED_VERSION = '1.85.1'`; both refuse an
+    older runtime at import. The `.pyi` stubs come from mypy-protobuf 5.1.0. `grpcio-tools`, `grpcio-reflection`
+    and `mypy-protobuf` are no longer runtime dependencies of `ondewo-csi-client`.
+  * Java: protobuf-java 4.35.1, grpc-java 1.85.1, proto-google-common-protos 2.82.0.
+  * C#: Google.Protobuf 3.35.1, Grpc.Core.Api / Grpc.Net.Client 2.85.0, Google.Api.CommonProtos 2.17.0.
+  * PHP: `google/protobuf` 5.35.1 (a major step from 4.x, php >= 8.2.0) and `grpc/grpc` 1.85.0.
+  * Go: `google.golang.org/grpc` v1.85.0, `google.golang.org/protobuf` v1.36.12, `go 1.26.0`.
+  * Rust: prost / prost-types 0.14.6, tonic / tonic-prost 0.14.9.
+  * JavaScript, TypeScript: grpc-web 2.1.1 (`protoc-gen-grpc-web` 2.1.1), `google-protobuf ^4.0.3`. grpc-web 2.1.1
+    limits a response to 4 MB unless `maxReceiveMessageSize` is set.
+  * Angular: grpc-web 2.1.1 as an exact direct dependency plus `"overrides": { "grpc-web": "$grpc-web" }` (because
+    `@ngx-grpc/grpc-web-client` still declares the peer `grpc-web ^1.2.1`), `@ngx-grpc/*` `~3.1.2`,
+    `google-protobuf ~3.21.4`. An app installing the client needs the same override.
+  * Node.js: `@grpc/grpc-js` 1.14.7 and `google-protobuf` 3.21.4.
+  * C++: unchanged (Debian trixie's protobuf 3.21.12 / grpc 1.51.1).
+
+*****************
+
+## Release ONDEWO CSI API 5.8.0
+
+### New Features
+
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Add `SetCallerDtmf`: ondewo-sip reports each DTMF
+  key the caller pressed (`CallerDtmfRequest`: `call_id`, per-call `sequence`, `digit`, `duration_ms`,
+  `received_unix_ns`), authenticated with its in-container token. `CallerDtmfResponse` answers `accepted` or a
+  stable `reason` token (`disabled`, `no-call`, `other-call`, `stale-sequence`, `invalid-digit`, `listening-paused`,
+  `amd-in-progress`, `undeclared`). Additive; an older server answers `UNIMPLEMENTED`.
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) Add the child-measured barge-in cut, so the server
+  knows how much of an interrupted answer the caller can actually have heard:
+  * `ControlStatus.PLAYBACK_CUT = 9`, reported by the client via `SetControlStatus` with the new
+    `SetControlStatusRequest.playback_cut` (field 2). Like `CALL_ENDED` it is a report, not a state: the server never
+    assigns it, never pushes it onto the control stream and leaves a pending `BARGE_IN` latched. It requires the
+    in-container token (`x-ondewo-sip-in-container-token`). The server answers, in this order:
+    * token missing or wrong: `UNAUTHENTICATED`, never retried. A server with no token configured (standalone, or
+      relaunched without it) refuses every cut, never requests one (`playback_cut_request_id = 0`) and keeps its own
+      estimate;
+    * `playback_cut` not set: `INVALID_ARGUMENT`, never retried;
+    * `playback_cut_request_id` not pending on the current control stream (zero, unknown, already answered,
+      superseded, from a previous stream or call): OK, the cut is dropped;
+    * otherwise: OK, the cut is recorded.
+
+    An OK answer echoes the held control status unchanged (`old_control_status == new_control_status`). Any other
+    gRPC status leaves delivery unknown; a retry with the same id is safe, because an answered id is dropped.
+  * `PlaybackCut` carries `playback_cut_request_id`, `barge_in_epoch`, the `utterance_id` / `chunk_index` /
+    `response_sequence` playing at the cut, `written_audio_us`, the raw `queued_audio_us` read once before the flush
+    with `queued_audio_estimated` when that read was not possible, `cut_monotonic_ns` and `remainder_held`. The server
+    computes the played prefix in one place as `written_audio_us - min(queued_audio_us, written_audio_us)`.
+  * `ControlStreamResponse.playback_cut_request_id` (field 4): non-zero only on a `BARGE_IN` transition of a server
+    that consumes cuts. It is that transition's process-lifetime sequence number, so a second barge-in during a
+    resumed remainder (same epoch) still has its own id. Never set on the stream seed or a media-control message.
+  * `S2sStreamResponse.response_sequence` (field 8): a one-based per-stream number of every response the server
+    yields. It names responses that carry no `utterance_id` (greeting, merged utterance, filler, apology) in a cut.
+  * `SetControlStatusRequest.utterance_id` (field 3) and `response_sequence` (field 4), set with `PLAYBACK_DONE`
+    to name the utterance whose playback completed.
+
+### Improvements
+
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) `docs/dtmf.md`: a hand-written guide to DTMF
+  on the CSI API: `SetCallerDtmf` (fields, authentication, every refusal token), how the NLU answer declares key
+  menus and key entries, the `[DTMF:<keys>]` turn and its `c-dtmf` context, invalid entries, security and limits.
+* Purely additive: no field, enum value or RPC was renumbered or removed. A client sends `PLAYBACK_CUT` only after
+  it read a non-zero `playback_cut_request_id`, so a server built against 5.7.0 never receives value 9, and a client
+  built against 5.7.0 never sees the new fields. The vendored APIs stay at ondewo-nlu-api 7.4.0, ondewo-s2t-api 7.5.0
+  and ondewo-t2s-api 6.6.0.
+
+*****************
+
 ## Release ONDEWO CSI API 5.7.0
 
 ### Improvements
