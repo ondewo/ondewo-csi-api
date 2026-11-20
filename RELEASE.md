@@ -37,6 +37,28 @@
   `turn_detection_system_prompt`, `turn_detection_user_prompt` and `turn_detection_llm_openai_options` are
   deprecated but still honoured when no detector is chosen. No ondewo-csi-api message changed.
 
+### Breaking Changes
+
+* [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) The clients of 5.9.0 are generated with
+  ondewo-proto-compiler 5.17.0 (was 5.15.7): protoc 35.1 for every client except C++. The generated code requires
+  at least these runtimes (a newer runtime is fine, an older one is refused):
+  * Python: `protobuf>=7.35.1` and `grpcio>=1.85.1`, so Python >= 3.10. Every `_pb2.py` carries
+    `# Protobuf Python Version: 7.35.1`, every `_pb2_grpc.py` `GRPC_GENERATED_VERSION = '1.85.1'`; both refuse an
+    older runtime at import. The `.pyi` stubs come from mypy-protobuf 5.1.0. `grpcio-tools`, `grpcio-reflection`
+    and `mypy-protobuf` are no longer runtime dependencies of `ondewo-csi-client`.
+  * Java: protobuf-java 4.35.1, grpc-java 1.85.1, proto-google-common-protos 2.82.0.
+  * C#: Google.Protobuf 3.35.1, Grpc.Core.Api / Grpc.Net.Client 2.85.0, Google.Api.CommonProtos 2.17.0.
+  * PHP: `google/protobuf` 5.35.1 (a major step from 4.x, php >= 8.2.0) and `grpc/grpc` 1.85.0.
+  * Go: `google.golang.org/grpc` v1.85.0, `google.golang.org/protobuf` v1.36.12, `go 1.26.0`.
+  * Rust: prost / prost-types 0.14.6, tonic / tonic-prost 0.14.9.
+  * JavaScript, TypeScript: grpc-web 2.1.1 (`protoc-gen-grpc-web` 2.1.1), `google-protobuf ^4.0.3`. grpc-web 2.1.1
+    limits a response to 4 MB unless `maxReceiveMessageSize` is set.
+  * Angular: grpc-web 2.1.1 as an exact direct dependency plus `"overrides": { "grpc-web": "$grpc-web" }` (because
+    `@ngx-grpc/grpc-web-client` still declares the peer `grpc-web ^1.2.1`), `@ngx-grpc/*` `~3.1.2`,
+    `google-protobuf ~3.21.4`. An app installing the client needs the same override.
+  * Node.js: `@grpc/grpc-js` 1.14.7 and `google-protobuf` 3.21.4.
+  * C++: unchanged (Debian trixie's protobuf 3.21.12 / grpc 1.51.1).
+
 *****************
 
 ## Release ONDEWO CSI API 5.8.0
