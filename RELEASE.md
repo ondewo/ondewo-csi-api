@@ -30,7 +30,7 @@
   `SetCallMediaControlResponse` are unchanged; the notice is not part of the media-control level. The vendored
   APIs stay at ondewo-nlu-api 7.4.0 and ondewo-t2s-api 6.6.0.
 * [[OND236-120]](https://ondewo.atlassian.net/browse/OND236-120) The vendored ondewo-s2t-api moves from 7.5.0 to
-  the 7.6.0 development commit `9b1c059` (move back to the 7.6.0 tag at release). It brings
+  7.6.0. It brings
   `TurnDetectionOptions.oneof_turn_detector`: one options message per turn detector (chat LLM, end-of-utterance
   LLM, the ONDEWO German model, the ONDEWO German fusion detector, pipecat Smart Turn); the ONDEWO German and
   pipecat Smart Turn options also carry `end_of_turn_probability_threshold`. The 7.5.0 fields
