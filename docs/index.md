@@ -5,6 +5,8 @@
 
 - [ondewo/csi/conversation.proto](#ondewo/csi/conversation.proto)
     - [CallMediaControlLevel](#ondewo.csi.CallMediaControlLevel)
+    - [CallerDtmfRequest](#ondewo.csi.CallerDtmfRequest)
+    - [CallerDtmfResponse](#ondewo.csi.CallerDtmfResponse)
     - [CheckUpstreamHealthResponse](#ondewo.csi.CheckUpstreamHealthResponse)
     - [Condition](#ondewo.csi.Condition)
     - [ControlMessage](#ondewo.csi.ControlMessage)
@@ -13,6 +15,7 @@
     - [ControlStreamResponse](#ondewo.csi.ControlStreamResponse)
     - [ListS2sPipelinesRequest](#ondewo.csi.ListS2sPipelinesRequest)
     - [ListS2sPipelinesResponse](#ondewo.csi.ListS2sPipelinesResponse)
+    - [PlaybackCut](#ondewo.csi.PlaybackCut)
     - [S2sPipeline](#ondewo.csi.S2sPipeline)
     - [S2sPipelineId](#ondewo.csi.S2sPipelineId)
     - [S2sStreamRequest](#ondewo.csi.S2sStreamRequest)
@@ -21,12 +24,16 @@
     - [SetControlStatusRequest](#ondewo.csi.SetControlStatusRequest)
     - [SetControlStatusResponse](#ondewo.csi.SetControlStatusResponse)
     - [SipTrigger](#ondewo.csi.SipTrigger)
+    - [WarmTransferOutcomeNotice](#ondewo.csi.WarmTransferOutcomeNotice)
+    - [WarmTransferOutcomeNoticeResponse](#ondewo.csi.WarmTransferOutcomeNoticeResponse)
   
     - [ConditionType](#ondewo.csi.ConditionType)
     - [ControlMessageServiceMethod](#ondewo.csi.ControlMessageServiceMethod)
     - [ControlMessageServiceName](#ondewo.csi.ControlMessageServiceName)
     - [ControlStatus](#ondewo.csi.ControlStatus)
     - [SipTrigger.SipTriggerType](#ondewo.csi.SipTrigger.SipTriggerType)
+    - [WarmTransferOutcome](#ondewo.csi.WarmTransferOutcome)
+    - [WarmTransferOutcomeNoticeStatus](#ondewo.csi.WarmTransferOutcomeNoticeStatus)
   
     - [Conversations](#ondewo.csi.Conversations)
   
@@ -111,6 +118,11 @@
     - [TrainAgentRequest](#ondewo.nlu.TrainAgentRequest)
     - [UpdateAgentRequest](#ondewo.nlu.UpdateAgentRequest)
     - [UserInProject](#ondewo.nlu.UserInProject)
+    - [WarmTransferAgentLexicon](#ondewo.nlu.WarmTransferAgentLexicon)
+    - [WarmTransferAgentSettings](#ondewo.nlu.WarmTransferAgentSettings)
+    - [WarmTransferAgentSettings.DefaultTextsEntry](#ondewo.nlu.WarmTransferAgentSettings.DefaultTextsEntry)
+    - [WarmTransferAgentSettings.ExtraLexiconEntry](#ondewo.nlu.WarmTransferAgentSettings.ExtraLexiconEntry)
+    - [WarmTransferAgentTexts](#ondewo.nlu.WarmTransferAgentTexts)
   
     - [AgentSorting.AgentSortingField](#ondewo.nlu.AgentSorting.AgentSortingField)
     - [AgentStatus](#ondewo.nlu.AgentStatus)
@@ -521,6 +533,32 @@
   
     - [LlmEvaluations](#ondewo.nlu.LlmEvaluations)
   
+- [ondewo/nlu/logs.proto](#ondewo/nlu/logs.proto)
+    - [CaiLogEntry](#ondewo.nlu.CaiLogEntry)
+    - [CaiLogFilter](#ondewo.nlu.CaiLogFilter)
+    - [CaiLogStream](#ondewo.nlu.CaiLogStream)
+    - [DeleteLogsRequest](#ondewo.nlu.DeleteLogsRequest)
+    - [DeleteLogsResponse](#ondewo.nlu.DeleteLogsResponse)
+    - [ExportLogsRequest](#ondewo.nlu.ExportLogsRequest)
+    - [ExportLogsResponse](#ondewo.nlu.ExportLogsResponse)
+    - [GetLogStreamRequest](#ondewo.nlu.GetLogStreamRequest)
+    - [ListLogStreamsRequest](#ondewo.nlu.ListLogStreamsRequest)
+    - [ListLogStreamsResponse](#ondewo.nlu.ListLogStreamsResponse)
+    - [ListLogsRequest](#ondewo.nlu.ListLogsRequest)
+    - [ListLogsResponse](#ondewo.nlu.ListLogsResponse)
+    - [ListLogsResponse.CountByLevelEntry](#ondewo.nlu.ListLogsResponse.CountByLevelEntry)
+    - [StreamLogsRequest](#ondewo.nlu.StreamLogsRequest)
+    - [StreamLogsResponse](#ondewo.nlu.StreamLogsResponse)
+  
+    - [CaiLogCaptureState](#ondewo.nlu.CaiLogCaptureState)
+    - [CaiLogExportFormat](#ondewo.nlu.CaiLogExportFormat)
+    - [CaiLogFilterField](#ondewo.nlu.CaiLogFilterField)
+    - [CaiLogSource](#ondewo.nlu.CaiLogSource)
+    - [CaiLogStreamChannel](#ondewo.nlu.CaiLogStreamChannel)
+    - [CaiLogStreamEndReason](#ondewo.nlu.CaiLogStreamEndReason)
+  
+    - [Logs](#ondewo.nlu.Logs)
+  
 - [ondewo/nlu/operation_metadata.proto](#ondewo/nlu/operation_metadata.proto)
     - [OperationMetadata](#ondewo.nlu.OperationMetadata)
   
@@ -677,6 +715,7 @@
     - [AddSessionLabelsRequest](#ondewo.nlu.AddSessionLabelsRequest)
     - [AddSessionStepFeedbackRequest](#ondewo.nlu.AddSessionStepFeedbackRequest)
     - [AudioFileResource](#ondewo.nlu.AudioFileResource)
+    - [CancelTurn](#ondewo.nlu.CancelTurn)
     - [ContextFilter](#ondewo.nlu.ContextFilter)
     - [CreateSessionRequest](#ondewo.nlu.CreateSessionRequest)
     - [CreateSessionReviewRequest](#ondewo.nlu.CreateSessionReviewRequest)
@@ -691,6 +730,7 @@
     - [DetectIntentRequest](#ondewo.nlu.DetectIntentRequest)
     - [DetectIntentResponse](#ondewo.nlu.DetectIntentResponse)
     - [DetectedIntent](#ondewo.nlu.DetectedIntent)
+    - [DiscardDraft](#ondewo.nlu.DiscardDraft)
     - [DocumentFileResource](#ondewo.nlu.DocumentFileResource)
     - [EventInput](#ondewo.nlu.EventInput)
     - [FeedbackBreakdownBucket](#ondewo.nlu.FeedbackBreakdownBucket)
@@ -710,8 +750,13 @@
     - [GetSessionRequest](#ondewo.nlu.GetSessionRequest)
     - [GetSessionReviewRequest](#ondewo.nlu.GetSessionReviewRequest)
     - [GetSessionStepRequest](#ondewo.nlu.GetSessionStepRequest)
+    - [GetWarmTransferIntroOutcomeRequest](#ondewo.nlu.GetWarmTransferIntroOutcomeRequest)
+    - [HeardMessage](#ondewo.nlu.HeardMessage)
+    - [HeardReport](#ondewo.nlu.HeardReport)
     - [ImageFileResource](#ondewo.nlu.ImageFileResource)
     - [InputAudioConfig](#ondewo.nlu.InputAudioConfig)
+    - [InterruptTurnRequest](#ondewo.nlu.InterruptTurnRequest)
+    - [InterruptTurnResponse](#ondewo.nlu.InterruptTurnResponse)
     - [ListAccountIdsOfAllSessionsRequest](#ondewo.nlu.ListAccountIdsOfAllSessionsRequest)
     - [ListAccountIdsResponse](#ondewo.nlu.ListAccountIdsResponse)
     - [ListAudioFilesRequest](#ondewo.nlu.ListAudioFilesRequest)
@@ -783,6 +828,8 @@
     - [LlmToolCallMetadata](#ondewo.nlu.LlmToolCallMetadata)
     - [LlmToolCallStartedEvent](#ondewo.nlu.LlmToolCallStartedEvent)
     - [LlmToolUsage](#ondewo.nlu.LlmToolUsage)
+    - [PrepareWarmTransferIntroRequest](#ondewo.nlu.PrepareWarmTransferIntroRequest)
+    - [PrepareWarmTransferIntroResponse](#ondewo.nlu.PrepareWarmTransferIntroResponse)
     - [QueryInput](#ondewo.nlu.QueryInput)
     - [QueryParameters](#ondewo.nlu.QueryParameters)
     - [QueryResult](#ondewo.nlu.QueryResult)
@@ -800,18 +847,24 @@
     - [StreamingDetectIntentResponse](#ondewo.nlu.StreamingDetectIntentResponse)
     - [StreamingRecognitionResult](#ondewo.nlu.StreamingRecognitionResult)
     - [TextInput](#ondewo.nlu.TextInput)
+    - [TurnControl](#ondewo.nlu.TurnControl)
+    - [TurnControlAck](#ondewo.nlu.TurnControlAck)
     - [UpdateSessionCommentsRequest](#ondewo.nlu.UpdateSessionCommentsRequest)
     - [UpdateSessionFeedbackRequest](#ondewo.nlu.UpdateSessionFeedbackRequest)
     - [UpdateSessionStepRequest](#ondewo.nlu.UpdateSessionStepRequest)
     - [VideoFileResource](#ondewo.nlu.VideoFileResource)
+    - [WarmTransferIntroConfig](#ondewo.nlu.WarmTransferIntroConfig)
+    - [WarmTransferIntroOutcome](#ondewo.nlu.WarmTransferIntroOutcome)
   
     - [AudioEncoding](#ondewo.nlu.AudioEncoding)
     - [AudioFileResourceType](#ondewo.nlu.AudioFileResourceType)
+    - [BackgroundWorkPolicy](#ondewo.nlu.BackgroundWorkPolicy)
     - [ComparisonOperator](#ondewo.nlu.ComparisonOperator)
     - [FeedbackAuthorType](#ondewo.nlu.FeedbackAuthorType)
     - [FeedbackRating](#ondewo.nlu.FeedbackRating)
     - [FeedbackScope](#ondewo.nlu.FeedbackScope)
     - [FeedbackTimeGranularity](#ondewo.nlu.FeedbackTimeGranularity)
+    - [HeardTextPrecision](#ondewo.nlu.HeardTextPrecision)
     - [LlmAgentNodePhase](#ondewo.nlu.LlmAgentNodePhase)
     - [LlmSafetyLocation](#ondewo.nlu.LlmSafetyLocation)
     - [ReasoningEffort](#ondewo.nlu.ReasoningEffort)
@@ -820,6 +873,12 @@
     - [SessionReview.View](#ondewo.nlu.SessionReview.View)
     - [StreamingRecognitionResult.MessageType](#ondewo.nlu.StreamingRecognitionResult.MessageType)
     - [TranscriptionType](#ondewo.nlu.TranscriptionType)
+    - [TurnControlAckStatus](#ondewo.nlu.TurnControlAckStatus)
+    - [TurnInterruptionReason](#ondewo.nlu.TurnInterruptionReason)
+    - [WarmTransferIntroDecidedBy](#ondewo.nlu.WarmTransferIntroDecidedBy)
+    - [WarmTransferIntroDecision](#ondewo.nlu.WarmTransferIntroDecision)
+    - [WarmTransferIntroStage](#ondewo.nlu.WarmTransferIntroStage)
+    - [WarmTransferIntroTextSource](#ondewo.nlu.WarmTransferIntroTextSource)
   
     - [Sessions](#ondewo.nlu.Sessions)
   
@@ -965,7 +1024,16 @@
     - [Transcription](#ondewo.s2t.Transcription)
     - [TranscriptionAlternative](#ondewo.s2t.TranscriptionAlternative)
     - [TranscriptionReturnOptions](#ondewo.s2t.TranscriptionReturnOptions)
+    - [TurnDetectionChatLlmOptions](#ondewo.s2t.TurnDetectionChatLlmOptions)
+    - [TurnDetectionContextTurn](#ondewo.s2t.TurnDetectionContextTurn)
+    - [TurnDetectionConversationContext](#ondewo.s2t.TurnDetectionConversationContext)
+    - [TurnDetectionEndOfUtteranceLlmOptions](#ondewo.s2t.TurnDetectionEndOfUtteranceLlmOptions)
+    - [TurnDetectionHoldBand](#ondewo.s2t.TurnDetectionHoldBand)
+    - [TurnDetectionHoldBands](#ondewo.s2t.TurnDetectionHoldBands)
+    - [TurnDetectionOndewoDeFusionOptions](#ondewo.s2t.TurnDetectionOndewoDeFusionOptions)
+    - [TurnDetectionOndewoDeOptions](#ondewo.s2t.TurnDetectionOndewoDeOptions)
     - [TurnDetectionOptions](#ondewo.s2t.TurnDetectionOptions)
+    - [TurnDetectionPipecatSmartTurnOptions](#ondewo.s2t.TurnDetectionPipecatSmartTurnOptions)
     - [UtteranceDetectionOptions](#ondewo.s2t.UtteranceDetectionOptions)
     - [VoiceActivityDetection](#ondewo.s2t.VoiceActivityDetection)
     - [Wav2Vec](#ondewo.s2t.Wav2Vec)
@@ -981,6 +1049,7 @@
     - [ReasoningEffort](#ondewo.s2t.ReasoningEffort)
     - [ServiceTier](#ondewo.s2t.ServiceTier)
     - [TsdMethod](#ondewo.s2t.TsdMethod)
+    - [TurnDetectionContextTurn.Role](#ondewo.s2t.TurnDetectionContextTurn.Role)
     - [VadMethod](#ondewo.s2t.VadMethod)
     - [Verbosity](#ondewo.s2t.Verbosity)
   
@@ -1081,6 +1150,41 @@ requests from ondewo-sip with <code>SipMute</code> / <code>SipUnMute</code>.</p>
 | listening_paused | [bool](#bool) |  | <p>If <code>true</code>, the bot stops listening: the caller audio sent to speech-to-text is replaced by muted zero frames at the capture cadence (the stream stays open and its clock stays aligned with the call), S2T responses are dropped before barge-in adjudication and before NLU, and the turn, soft and silence timers are suspended (they restart from zero on resume). Blanked audio is never back-filled.</p> |
 | generation | [uint64](#uint64) |  | <p>ondewo-sip's container-lifetime monotonic counter. Never reset per call. The server applies a level only when this value is strictly greater than the last applied one.</p> |
 | reason | [string](#string) |  | <p>Bounded reason token for logs and telemetry: <code>operator</code>, <code>participant</code>, <code>takeover</code> or <code>resync</code>.</p> |
+
+
+
+
+
+
+<a name="ondewo.csi.CallerDtmfRequest"></a>
+
+### CallerDtmfRequest
+<p>One DTMF key the caller pressed, sent by ondewo-sip to <code>SetCallerDtmf</code>.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| call_id | [string](#string) |  | <p>ondewo-sip's id of the call the key belongs to (<code>SipStatus.call_id</code>). A key of another call than the server's current one is refused.</p> |
+| sequence | [uint64](#uint64) |  | <p>1 for the first key of the call, then +1 per key ondewo-sip admitted. A sequence number not greater than the last one accepted for the call is refused.</p> |
+| digit | [string](#string) |  | <p>The key: one of <code>0</code>-<code>9</code>, <code>*</code>, <code>#</code>, <code>A</code>-<code>D</code>. Never logged in clear.</p> |
+| duration_ms | [uint32](#uint32) |  | <p>How long the key was held, in milliseconds; 0 when unknown.</p> |
+| received_unix_ns | [int64](#int64) |  | <p>When ondewo-sip received the key, in nanoseconds since the Unix epoch (for the key-to-audio latency).</p> |
+
+
+
+
+
+
+<a name="ondewo.csi.CallerDtmfResponse"></a>
+
+### CallerDtmfResponse
+<p>Response of <code>SetCallerDtmf</code>.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| accepted | [bool](#bool) |  | <p><code>true</code> if the server took the key as caller input.</p> |
+| reason | [string](#string) |  | <p>Empty when accepted. Otherwise a stable token: <code>disabled</code>, <code>no-call</code>, <code>other-call</code>, <code>stale-sequence</code>, <code>invalid-digit</code>, <code>listening-paused</code>, <code>amd-in-progress</code>, <code>undeclared</code> or <code>invalid-key</code> (a menu key outside the menu's options while the menu ignores such keys).</p> |
 
 
 
@@ -1237,6 +1341,9 @@ Control stream response message.
 | media_control | [CallMediaControlLevel](#ondewo.csi.CallMediaControlLevel) |  | <p>Optional. The per-call operator media control level. Set ONLY on media-control messages: pushed when the level changes (<code>SetCallMediaControl</code>) and sent as the seed on every <code>GetControlStream</code> connect.</p>
 
 <p>A message that has this field set is a media-control message and nothing else: a client must handle it and must NOT read its <code>control_status</code> / <code>epoch</code> as a control status transition. The server echoes the current control status and epoch in it, but a client that applied that <code>control_status</code> (e.g. <code>OK</code>) would un-latch a pending <code>BARGE_IN</code>. Messages without this field keep their meaning unchanged.</p> |
+| playback_cut_request_id | [uint64](#uint64) |  | <p>Optional. Non-zero only on a <code>BARGE_IN</code> transition sent by a server that consumes <code>PlaybackCut</code>: the server asks the client to report the cut with <code>PLAYBACK_CUT</code> and to echo this value in <code>PlaybackCut.playback_cut_request_id</code>. The value is the server's process-lifetime, never rewound sequence number of that transition, so every barge-in (including a second one during a resumed remainder, which keeps its epoch) has its own id.</p>
+
+<p><code>0</code> means no cut is requested: an older server, a server with no in-container token configured, the seed of a new control stream, a media-control message, or any status other than <code>BARGE_IN</code>.</p> |
 
 
 
@@ -1264,6 +1371,36 @@ The top-level message received from <code>ListS2sPipelines</code> endpoint.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | pipelines | [S2sPipeline](#ondewo.csi.S2sPipeline) | repeated | Collection of S2S pipelines of the server. |
+
+
+
+
+
+
+<a name="ondewo.csi.PlaybackCut"></a>
+
+### PlaybackCut
+<p>Where playback stood when the client aborted it for a <code>BARGE_IN</code>, reported with
+<code>PLAYBACK_CUT</code>. All audio positions refer to the response named by <code>utterance_id</code> /
+<code>response_sequence</code> and are measured by the client on the thread that owns the audio connection.</p>
+
+<p>The client reports raw values only. The server computes the played prefix in one place as
+<code>written_audio_us - min(queued_audio_us, written_audio_us)</code>: the audio handed to the audio device
+minus the audio that was still queued in it and was flushed.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| playback_cut_request_id | [uint64](#uint64) |  | The <code>ControlStreamResponse.playback_cut_request_id</code> of the <code>BARGE_IN</code> this cut answers. The server records a cut only while this id is pending on the current stream; any other id is answered OK and dropped (see <code>PLAYBACK_CUT</code>) |
+| barge_in_epoch | [uint64](#uint64) |  | The <code>ControlStreamResponse.epoch</code> of that <code>BARGE_IN</code> |
+| utterance_id | [string](#string) |  | The <code>S2sStreamResponse.utterance_id</code> playing at the cut. Empty if that response has none, or if nothing was playing |
+| chunk_index | [int32](#int32) |  | The <code>S2sStreamResponse.chunk_index</code> playing at the cut |
+| response_sequence | [uint64](#uint64) |  | The <code>S2sStreamResponse.response_sequence</code> playing at the cut. <code>0</code> if nothing was playing or the server does not number its responses |
+| written_audio_us | [int64](#int64) |  | Microseconds of audio of that utterance (or of that single response, if it has no <code>utterance_id</code>) handed to the audio device since it started playing, across a resumed remainder |
+| queued_audio_us | [int64](#int64) |  | Microseconds of audio still queued in the audio device at the cut, read once just before the queue was flushed. If the device latency could not be read, the client sends its configured target buffer length instead and sets <code>queued_audio_estimated</code> |
+| queued_audio_estimated | [bool](#bool) |  | <code>true</code> if <code>queued_audio_us</code> is the configured target buffer length rather than a latency read |
+| cut_monotonic_ns | [int64](#int64) |  | <code>CLOCK_MONOTONIC</code> time of the cut in nanoseconds. The client runs on the same host as the server, so the server can compare it with its own monotonic clock |
+| remainder_held | [bool](#bool) |  | <code>true</code> if the client kept the un-played remainder so that <code>RESUME_PLAYBACK</code> can play it |
 
 
 
@@ -1354,6 +1491,9 @@ Multiple response messages can be returned in order:
 | chunk_index | [int32](#int32) |  | Optional. Zero-based index of this chunk within the utterance identified by <code>utterance_id</code> |
 | last_chunk | [bool](#bool) |  | Optional. If <code>true</code>, this is the last chunk of the utterance identified by <code>utterance_id</code> |
 | turn_epoch | [uint64](#uint64) |  | Optional. Monotonic turn epoch of the conversation turn that produced this response. Used by consumers to fence stale audio of an interrupted turn |
+| response_sequence | [uint64](#uint64) |  | <p>Optional. One-based sequence number of this response on its <code>S2sStream</code>, assigned by the server when it yields the response and counted over EVERY response of the stream (audio, NLU and SIP trigger), so it is independent of whether anything is stored or framed. <code>0</code> means the server does not number its responses (an older server).</p>
+
+<p>It names a response that has no <code>utterance_id</code> (the greeting, a merged utterance, a filler, the apology) in <code>PlaybackCut.response_sequence</code> and in a <code>PLAYBACK_DONE</code> report.</p> |
 
 
 
@@ -1388,6 +1528,9 @@ Request to set control status.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | control_status | [ControlStatus](#ondewo.csi.ControlStatus) |  | Control status |
+| playback_cut | [PlaybackCut](#ondewo.csi.PlaybackCut) |  | Optional. Set if and only if <code>control_status</code> is <code>PLAYBACK_CUT</code>. A <code>PLAYBACK_CUT</code> without it is answered <code>INVALID_ARGUMENT</code>; any other status ignores it |
+| utterance_id | [string](#string) |  | <p>Optional. Set only with <code>PLAYBACK_DONE</code>: the <code>S2sStreamResponse.utterance_id</code> of the utterance whose playback completed. Empty for a response that carries no <code>utterance_id</code>; that one is named by <code>response_sequence</code>.</p> |
+| response_sequence | [uint64](#uint64) |  | <p>Optional. Set only with <code>PLAYBACK_DONE</code>: the <code>S2sStreamResponse.response_sequence</code> of the last response of the completed utterance. <code>0</code> if the server does not number its responses.</p> |
 
 
 
@@ -1397,7 +1540,8 @@ Request to set control status.
 <a name="ondewo.csi.SetControlStatusResponse"></a>
 
 ### SetControlStatusResponse
-Response of setting the control status with the old and new status objects.
+Response of setting the control status with the old and new status objects. For a report that is not a state
+(<code>PLAYBACK_CUT</code>) both fields carry the status the server holds, unchanged.
 
 
 | Field | Type | Label | Description |
@@ -1420,6 +1564,50 @@ SIP trigger message.
 | ----- | ---- | ----- | ----------- |
 | type | [SipTrigger.SipTriggerType](#ondewo.csi.SipTrigger.SipTriggerType) |  | Type of the SIP trigger. |
 | content | [google.protobuf.Struct](#google.protobuf.Struct) |  | extra parameters for the trigger |
+
+
+
+
+
+
+<a name="ondewo.csi.WarmTransferOutcomeNotice"></a>
+
+### WarmTransferOutcomeNotice
+<p>A warm-transfer outcome the bot must tell the caller, sent by ondewo-sip to
+<code>DeliverWarmTransferOutcomeNotice</code>.</p>
+
+<p>The server takes each <code>request_id</code> at most once per call, and forgets the call's notices at
+<code>CALL_ENDED</code>. A queued <code>DECLINED</code> or <code>UNREACHABLE</code> notice is committed as a
+<code>[TRANSFER:DECLINED]</code> / <code>[TRANSFER:UNREACHABLE]</code> caller turn when the NLU server advertised
+the <code>x-ondewo-cai-warm-intro: 1</code> capability on the call, so the NLU answers it. Otherwise (the capability
+is unknown or absent), the server speaks <code>fallback_text</code> itself as a bot utterance. Either way it is an
+ordinary utterance the caller can interrupt. No field carries the decline reason, and the server logs none of
+the texts.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| request_id | [string](#string) |  | <p>ondewo-vtsi's transfer request id, or ondewo-sip's delegated request id for <code>WARM_TRANSFER_OUTCOME_DELEGATION_EXPIRED</code>. 1 to 128 characters. A second notice with the same id on the same call is answered <code>DUPLICATE</code> and changes nothing.</p> |
+| outcome | [WarmTransferOutcome](#ondewo.csi.WarmTransferOutcome) |  | <p>What happened to the transfer. <code>WARM_TRANSFER_OUTCOME_UNSPECIFIED</code> is answered <code>INVALID</code>.</p> |
+| intro_session | [string](#string) |  | <p>NLU session name of the intro session, which holds the decline reason. Only with <code>WARM_TRANSFER_OUTCOME_DECLINED</code>, and empty when the target gave no reason; ignored with any other outcome.</p> |
+| callee_display_name | [string](#string) |  | <p>Display name of the transfer target, at most 128 characters. May be empty.</p> |
+| cause | [string](#string) |  | <p>Bounded lowercase token naming the cause, at most 64 characters, e.g. <code>voicemail-suspected</code>, <code>target-hung-up</code> or <code>no-free-listener</code>. For logs and telemetry only.</p> |
+| fallback_text | [string](#string) |  | <p>The sentence the bot speaks when it cannot commit the notice as a turn: rendered by ondewo-vtsi from its template, with the target's display name and without any decline reason. At most 1024 characters. Empty with <code>WARM_TRANSFER_OUTCOME_DELEGATION_EXPIRED</code>.</p> |
+
+
+
+
+
+
+<a name="ondewo.csi.WarmTransferOutcomeNoticeResponse"></a>
+
+### WarmTransferOutcomeNoticeResponse
+<p>Response of <code>DeliverWarmTransferOutcomeNotice</code>.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| status | [WarmTransferOutcomeNoticeStatus](#ondewo.csi.WarmTransferOutcomeNoticeStatus) |  | <p>How the server took the notice. The checks run in this order: <code>DISABLED</code>, <code>INVALID</code>, <code>DUPLICATE</code>, then <code>QUEUED</code>.</p> |
 
 
 
@@ -1542,6 +1730,13 @@ Control status.
 | PLAYBACK_RESUMED | 6 | Status reported by the client to the server via <code>SetControlStatus</code> that playback of the buffered audio remainder has resumed |
 | PLAYBACK_DONE | 7 | Status reported by the client to the server via <code>SetControlStatus</code> that playback of an utterance has completed |
 | CALL_ENDED | 8 | Status reported by ondewo-sip to the server via <code>SetControlStatus</code> that the phone call has ENDED and the server must reset ALL per-call state in place (persistent-listener model). It is a command, not a state: it is never pushed onto the control stream |
+| PLAYBACK_CUT | 9 | <p>Status reported by the client to the server via <code>SetControlStatus</code>, with <code>SetControlStatusRequest.playback_cut</code> set, after it aborted playback for a <code>BARGE_IN</code> whose <code>ControlStreamResponse</code> carried a non-zero <code>playback_cut_request_id</code>. It reports how much of the cut audio the caller can have heard.</p>
+
+<p>Like <code>CALL_ENDED</code> it is a report, not a state: the server never assigns it to the control status, never pushes it onto the control stream and leaves a pending <code>BARGE_IN</code> latched. The request must carry the in-container token (the <code>x-ondewo-sip-in-container-token</code> metadatum). A client sends it only after reading a non-zero <code>playback_cut_request_id</code>, so a server that does not consume cuts never receives it.</p>
+
+<p>How the server answers, checked in this order:</p> <ul> <li>Token missing or not equal to the server's: <code>UNAUTHENTICATED</code>, nothing is recorded. A server with NO token configured (a standalone server, or one relaunched without its token) refuses every cut this way and never requests one: it sends <code>playback_cut_request_id = 0</code> and keeps its own estimate. The client must not retry an <code>UNAUTHENTICATED</code> cut.</li> <li><code>playback_cut</code> not set: <code>INVALID_ARGUMENT</code>, nothing is recorded. The client must not retry it.</li> <li><code>playback_cut_request_id</code> not pending on the current control stream (zero, unknown, already answered, superseded by a newer <code>BARGE_IN</code>, from a previous stream or a previous call): OK, the cut is dropped and the server keeps its own estimate.</li> <li>Otherwise: OK, the cut is recorded and the id stops being pending.</li> </ul>
+
+<p>An OK answer carries the control status the server holds, unchanged: <code>old_control_status == new_control_status</code>, in practice <code>BARGE_IN</code> while it is still latched. It does not say whether the cut was recorded or dropped; nothing on the client depends on that. Any other status (<code>UNAVAILABLE</code>, <code>DEADLINE_EXCEEDED</code>, ...) means the cut may or may not have arrived; the client may retry it with the same <code>playback_cut_request_id</code>, because a second copy of an answered id is dropped.</p> |
 
 
 
@@ -1560,6 +1755,35 @@ Type of SIP trigger that can be executed during a conversation.
 | TRANSFER | 5 | transfer |
 | INVITE | 6 | invite to conference call. NOT IMPLEMENTED: ondewo-csi cannot reach ondewo-vtsi, which owns call participants. Invite a softphone with the ondewo-vtsi <code>Calls.InviteToCall</code> RPC instead |
 | PLAY_AUDIO | 7 | play audio |
+
+
+
+<a name="ondewo.csi.WarmTransferOutcome"></a>
+
+### WarmTransferOutcome
+<p>Outcome of a warm transfer that did not hand the caller over.</p>
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| WARM_TRANSFER_OUTCOME_UNSPECIFIED | 0 | <p>Not set. A notice with this outcome is answered <code>INVALID</code>.</p> |
+| WARM_TRANSFER_OUTCOME_DECLINED | 1 | <p>The transfer target declined the call. The caller stays with the bot.</p> |
+| WARM_TRANSFER_OUTCOME_UNREACHABLE | 2 | <p>The transfer target could not be reached: busy, no answer, no decision in time, or the intro could not run. The caller stays with the bot.</p> |
+| WARM_TRANSFER_OUTCOME_DELEGATION_EXPIRED | 3 | <p>A transfer the bot asked for was handed to ondewo-vtsi and never claimed in time. ondewo-sip sent no transfer. The server runs its failed-transfer action (<code>CSI_TRANSFER_FAILED_ACTION</code>) instead of speaking a notice.</p> |
+
+
+
+<a name="ondewo.csi.WarmTransferOutcomeNoticeStatus"></a>
+
+### WarmTransferOutcomeNoticeStatus
+<p>How the server took a <code>WarmTransferOutcomeNotice</code>.</p>
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| WARM_TRANSFER_OUTCOME_NOTICE_STATUS_UNSPECIFIED | 0 | <p>Never sent by the server.</p> |
+| WARM_TRANSFER_OUTCOME_NOTICE_STATUS_QUEUED | 1 | <p>The notice was queued for the current call and will be spoken unless the call ends first.</p> |
+| WARM_TRANSFER_OUTCOME_NOTICE_STATUS_DUPLICATE | 2 | <p>A notice with this <code>request_id</code> was already taken on this call. Nothing changed.</p> |
+| WARM_TRANSFER_OUTCOME_NOTICE_STATUS_DISABLED | 3 | <p>The server takes no notices (<code>CSI_WARM_TRANSFER_OUTCOME_ACTIVE</code> is not <code>true</code>). Nothing changed.</p> |
+| WARM_TRANSFER_OUTCOME_NOTICE_STATUS_INVALID | 4 | <p>The notice breaks a rule of <code>WarmTransferOutcomeNotice</code>: an empty or over-long <code>request_id</code>, an unspecified or unknown <code>outcome</code>, or a field over its bound. Nothing changed; the sender must not retry it unchanged.</p> |
 
 
  <!-- end enums -->
@@ -1618,6 +1842,16 @@ All upstreams unhealthy: <samp>{ "s2t_status": { "code": 14, "message": "failed 
 <p>The request carries the FULL effective level, never a toggle. The server applies it only when its <code>generation</code> is strictly greater than the last applied generation and otherwise answers <code>stale=true</code> without changing anything, so a push that arrives after the next call's resync can never re-apply an old call's level. The level is cleared at <code>CALL_ENDED</code>; the generation is kept.</p>
 
 <p>This RPC never changes the control status of <code>GetControlStream</code> / <code>SetControlStatus</code> (the barge-in slot). A level change is announced on the control stream as a <code>ControlStreamResponse</code> with <code>media_control</code> set.</p> |
+| SetCallerDtmf | [CallerDtmfRequest](#ondewo.csi.CallerDtmfRequest) | [CallerDtmfResponse](#ondewo.csi.CallerDtmfResponse) | <p>Report one DTMF key the caller pressed on the current call.</p>
+
+<p>Sent by ondewo-sip only, one request per key in the order received, authenticated with its in-container token (the <code>x-ondewo-sip-in-container-token</code> metadatum). A request without a valid token is refused with <code>UNAUTHENTICATED</code>.</p>
+
+<p>The server turns keys into caller input: a key pressed while the bot speaks is a barge-in, a key of a declared menu commits a turn at once, and a key string is collected until its terminator, its maximum length or its inter-digit timeout. A key of another call, a repeated or older sequence number, or a key while the server takes no keys is answered <code>accepted=false</code> with a reason token and changes nothing. Neither side ever logs the digit in clear.</p> |
+| DeliverWarmTransferOutcomeNotice | [WarmTransferOutcomeNotice](#ondewo.csi.WarmTransferOutcomeNotice) | [WarmTransferOutcomeNoticeResponse](#ondewo.csi.WarmTransferOutcomeNoticeResponse) | <p>Deliver the outcome of a warm transfer that did NOT hand the caller over, so the bot can tell the caller.</p>
+
+<p>Sent by ondewo-sip only, authenticated with its in-container token (the <code>x-ondewo-sip-in-container-token</code> metadatum). A request without a valid token is refused with <code>UNAUTHENTICATED</code>. ondewo-sip sends it whenever a notice is attached to the release of the participant hold, after the level push of <code>SetCallMediaControl</code> or on its own when the level did not change, and re-sends a notice it holds as pending (resync) by this RPC only, never inside a level. It clears its pending notice on <code>QUEUED</code> or <code>DUPLICATE</code>.</p>
+
+<p>A queued notice is never dropped by the server, except by <code>CALL_ENDED</code>: there is no caller left to tell. It is spoken once the bot is unmuted, its listening is not paused and no utterance is in flight. See <code>WarmTransferOutcomeNotice</code> for how. This RPC has no generation, never changes the control status of <code>GetControlStream</code> / <code>SetControlStatus</code> and is never announced on the control stream. A server built against a CSI API before 5.9.0 answers <code>UNIMPLEMENTED</code>.</p> |
 
  <!-- end services -->
 
@@ -1673,6 +1907,7 @@ Project/Agent messages
 | modified_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Modification date and time. Read-only field. |
 | created_by | [string](#string) |  | User id in form of a valid UUID. |
 | modified_by | [string](#string) |  | User id in form of a valid UUID. |
+| warm_transfer_settings | [WarmTransferAgentSettings](#ondewo.nlu.WarmTransferAgentSettings) |  | Optional. The agent's settings of warm transfer intros (<code>Sessions.PrepareWarmTransferIntro</code>). Unset = intros are enabled while the server's warm transfer feature is switched on, with the built-in texts. |
 
 
 
@@ -3170,6 +3405,95 @@ Request to get user in project
 
 
 
+
+<a name="ondewo.nlu.WarmTransferAgentLexicon"></a>
+
+### WarmTransferAgentLexicon
+Additional entries of the closed decision lexicon of warm transfer intros in one language, matched before an LLM
+classifies an answer. At most 50 entries in <code>accept_phrases</code> and <code>decline_phrases</code>
+together.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| accept_phrases | [string](#string) | repeated | Words and phrases that accept the call (and confirm the ready question), e.g. "übernehme". |
+| decline_phrases | [string](#string) | repeated | Words and phrases that decline the call, e.g. "bin im Termin". |
+
+
+
+
+
+
+<a name="ondewo.nlu.WarmTransferAgentSettings"></a>
+
+### WarmTransferAgentSettings
+The agent's settings of warm transfer intros. A text a <code>WarmTransferIntroConfig</code> leaves empty falls back
+to the agent's text for the intro's language, then to the built-in default.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| enabled | [bool](#bool) | optional | Whether warm transfer intros are enabled for the agent. Unset = enabled while the server's warm transfer feature is switched on. False = <code>PrepareWarmTransferIntro</code> answers <code>FAILED_PRECONDITION</code> with <code>reason=warm-intro-disabled-for-agent</code>. |
+| llm_ccai_service_name | [string](#string) |  | The <code>ONDEWO_NLU_LLM</code> CCAI service of the LLM intro when the request names none. Empty = the project's first <code>ONDEWO_NLU_LLM</code> service. |
+| default_texts | [WarmTransferAgentSettings.DefaultTextsEntry](#ondewo.nlu.WarmTransferAgentSettings.DefaultTextsEntry) | repeated | The default texts, keyed by language code (e.g. <code>de</code>). |
+| extra_lexicon | [WarmTransferAgentSettings.ExtraLexiconEntry](#ondewo.nlu.WarmTransferAgentSettings.ExtraLexiconEntry) | repeated | Additional words and phrases of the decision lexicon, keyed by language code (e.g. <code>de</code>). |
+
+
+
+
+
+
+<a name="ondewo.nlu.WarmTransferAgentSettings.DefaultTextsEntry"></a>
+
+### WarmTransferAgentSettings.DefaultTextsEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [WarmTransferAgentTexts](#ondewo.nlu.WarmTransferAgentTexts) |  |  |
+
+
+
+
+
+
+<a name="ondewo.nlu.WarmTransferAgentSettings.ExtraLexiconEntry"></a>
+
+### WarmTransferAgentSettings.ExtraLexiconEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [WarmTransferAgentLexicon](#ondewo.nlu.WarmTransferAgentLexicon) |  |  |
+
+
+
+
+
+
+<a name="ondewo.nlu.WarmTransferAgentTexts"></a>
+
+### WarmTransferAgentTexts
+The default texts of warm transfer intros in one language. An empty text = the built-in default. The fields and
+placeholders are those of the same-named fields of <code>WarmTransferIntroConfig</code>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| ready_question | [string](#string) |  | The first question to the target (placeholder <code>{project}</code>). |
+| accept_question | [string](#string) |  | The question after the intro. |
+| decline_reason_question | [string](#string) | optional | The question after a decline. Unset = the built-in default; set to "" = the reason is not asked for. |
+| caller_declined_message | [string](#string) |  | The message the caller hears after a decline (placeholders <code>{callee_name}</code>, <code>{reason}</code>). |
+| caller_unreachable_message | [string](#string) |  | The message the caller hears when the target could not be reached or gave no decision (placeholder <code>{callee_name}</code>). |
+
+
+
+
+
  <!-- end messages -->
 
 
@@ -4596,7 +4920,7 @@ CcaiProjectView defines what the CcaiProject message contains
 | CCAI_SERVICE_PROVIDER_ONDEWO | 1 | ONDEWO provider for CCAI service services <a href="https://www.ondewo.com/">ONDEWO</a> |
 | CCAI_SERVICE_PROVIDER_GOOGLE_GEMINI | 2 | Google as the CCAI service provider, utilizing Google&apos;s conversational AI capabilities <a href="https://deepmind.google/technologies/gemini/">Google Gemini</a> |
 | CCAI_SERVICE_PROVIDER_MICROSOFT_AZURE_OPENAI | 3 | Microsoft Azure as the CCAI service provider, using Microsoft&apos;s Azure cognitive services <a href="https://azure.microsoft.com/en-us/products/cognitive-services/openai-service/">Azure OpenAI</a> |
-| CCAI_SERVICE_PROVIDER_MICROSOFT_AUTOGEN | 4 | Microsoft AutoGen as the CCAI service provider <a href="https://github.com/microsoft/autogen">AutoGen</a> |
+| CCAI_SERVICE_PROVIDER_MICROSOFT_AUTOGEN | 4 | Deprecated: Microsoft AutoGen as the CCAI service provider <a href="https://github.com/microsoft/autogen">AutoGen</a>. The server no longer runs AutoGen and refuses to create services with this provider; stored AutoGen services are migrated to AI Teams v2 (LangChain / LangGraph). The value is kept for wire compatibility and may still appear on data written before the migration. |
 | CCAI_SERVICE_PROVIDER_OLLAMA | 5 | Ollama as the CCAI service provider, typically associated with specific OLLAMA AI tools <a href="https://github.com/ollama/ollama">Ollama</a> |
 | CCAI_SERVICE_PROVIDER_OPENAI | 6 | OpenAI as the CCAI service provider, commonly used for models such as GPT <a href="https://openai.com/">OpenAI</a> |
 | CCAI_SERVICE_PROVIDER_ANTHROPIC | 7 | Anthropic as the CCAI service provider, used with AI models from Anthropic <a href="https://www.anthropic.com/">Anthropic</a> |
@@ -10676,6 +11000,499 @@ golden-transcript recording from sessions, conversation simulation
 
 
 
+<a name="ondewo/nlu/logs.proto"></a>
+<p align="right"><a href="#top">Top</a></p>
+
+## ondewo/nlu/logs.proto
+
+
+
+<a name="ondewo.nlu.CaiLogEntry"></a>
+
+### CaiLogEntry
+A single captured log record. One record may span several physical lines: a Python traceback, a protobuf
+<code>str()</code> dump and a multi-line banner are all one record and are stored and returned as one entry.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| seq | [int64](#int64) |  | Ordering cursor. Assigned by the database, monotonically increasing WITHIN ONE LOG STREAM. It is NOT contiguous: values are drawn from a sequence shared by every stream, are consumed by rolled-back writes, and are removed by retention. Never compute the next cursor as <code>seq + 1</code>; use <code>resume_token</code>, or <code>before_seq</code> / <code>after_seq</code> when the filter resolves to exactly one log stream. |
+| timestamp | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | When the record was produced, in UTC: the instant the server process logged it, or the instant the docker daemon observed the first physical line of a container record. |
+| timestamp_is_exact | [bool](#bool) |  | False when <code>timestamp</code> is the instant CAI captured the record rather than the instant it was produced, which happens when a container line carried no parsable docker timestamp. |
+| level | [LogSeverity](#ondewo.nlu.LogSeverity) |  | The severity of the record. <code>LOG_SEVERITY_UNSPECIFIED</code> means the emitter does not log in a recognised format. |
+| message | [string](#string) |  | The log text, with ANSI escape sequences removed, continuation lines re-joined, and secrets redacted server-side. |
+| log_source | [CaiLogSource](#ondewo.nlu.CaiLogSource) |  | What produced the log stream this entry belongs to. |
+| channel | [CaiLogStreamChannel](#ondewo.nlu.CaiLogStreamChannel) |  | Which output channel the record arrived on. |
+| emitter | [string](#string) |  | <code>&lt;module&gt;:&lt;function&gt;:&lt;line&gt;</code> of the emitting log statement. Empty for output that is not in the ONDEWO logging format. |
+| thread_name | [string](#string) |  | Name of the thread that emitted the record. Empty when not available. |
+| process_name | [string](#string) |  | Name of the process that emitted the record, e.g. <code>GrpcServer_3</code> for a CAI worker. Empty when not available. |
+| log_stream | [string](#string) |  | Resource name of the log stream this entry belongs to. The format is <pre><code>logStreams/&lt;log_stream_uuid&gt;</code></pre> for a stream that belongs to no project (a server process) and <pre><code>projects/&lt;project_uuid&gt;/logStreams/&lt;log_stream_uuid&gt;</code></pre> for one that does (an operation&apos;s container). |
+| operation_name | [string](#string) |  | Name of the long-running operation the record belongs to. Empty for a server record emitted outside any operation. The format is <pre><code>projects/&lt;project_uuid&gt;/operations/&lt;operation_uuid&gt;</code></pre> for a project operation. |
+| project_parent | [string](#string) |  | The project the record belongs to. Empty for a server record emitted outside any project RPC or operation. The format is <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| container_id | [string](#string) |  | Docker container id of the container the record came from. Empty for a server record. |
+| container_name | [string](#string) |  | Docker container name of the container the record came from. Empty for a server record. |
+| replica_id | [string](#string) |  | Identity of the CAI server process that captured the record (<code>&lt;hostname&gt;:&lt;pid&gt;</code> or the configured <code>ONDEWO_NLU_CAI_REPLICA_ID</code>). |
+| trace_id | [string](#string) |  | OpenTelemetry trace id (32 lowercase hex characters) active when a server record was emitted. Empty when no trace was active and for container records. |
+| physical_line_count | [int32](#int32) |  | How many physical lines were folded into <code>message</code>. <code>1</code> for an ordinary single-line record. |
+| operation_type | [OperationMetadata.OperationType](#ondewo.nlu.OperationMetadata.OperationType) |  | Type of the operation named by <code>operation_name</code>; <code>UNSPECIFIED</code> when none. |
+| phase | [string](#string) |  | Lifecycle phase of the container the record came from, e.g. <code>hw_check</code>, <code>gpu_prealloc</code>, <code>build_cache</code>, <code>train</code>, <code>rag_crawl</code>. Empty for a server record. |
+
+
+
+
+
+
+<a name="ondewo.nlu.CaiLogFilter"></a>
+
+### CaiLogFilter
+Narrows a log query. Every field is optional; an empty repeated field means &quot;do not filter on
+this&quot;. Fields are combined with AND; the values within one repeated field are combined with OR.
+
+<p>Filters fall into two groups. IDENTITY filters (fields 1 to 19) select which log streams, operations and
+projects are of interest. CONTENT filters (fields 20 to 30) select which entries of those to return. The time
+window (fields 31, 32) is neither.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| log_stream_names | [string](#string) | repeated | Log stream resource names, in either form of <a href="index.html#ondewo.nlu.CaiLogEntry">CaiLogEntry.log_stream</a>. |
+| operation_names | [string](#string) | repeated | Operation names, e.g. <pre><code>projects/&lt;project_uuid&gt;/operations/&lt;operation_uuid&gt;</code></pre> |
+| include_sub_operations | [bool](#bool) |  | Also match the sub-operations of every operation in <code>operation_names</code> (a training operation runs one sub-operation per algorithm). Defaults to <code>false</code>. |
+| project_parents | [string](#string) | repeated | Project parents of the form <pre><code>projects/&lt;project_uuid&gt;/agent</code></pre> |
+| container_ids | [string](#string) | repeated | Docker container ids. |
+| container_names | [string](#string) | repeated | Docker container names. |
+| replica_ids | [string](#string) | repeated | Identities of the CAI server processes that captured the entries (see <a href="index.html#ondewo.nlu.CaiLogEntry">CaiLogEntry.replica_id</a>). |
+| operation_types | [OperationMetadata.OperationType](#ondewo.nlu.OperationMetadata.OperationType) | repeated | Operation types. |
+| phases | [string](#string) | repeated | Container lifecycle phases, e.g. <code>train</code> or <code>hw_check</code>. |
+| log_sources | [CaiLogSource](#ondewo.nlu.CaiLogSource) | repeated | Restrict to entries of log streams produced by these sources. |
+| channels | [CaiLogStreamChannel](#ondewo.nlu.CaiLogStreamChannel) | repeated | Restrict to entries that arrived on these channels. |
+| min_log_level | [LogSeverity](#ondewo.nlu.LogSeverity) |  | Only return entries at or above this severity. <code>LOG_SEVERITY_UNSPECIFIED</code> (the default) applies no lower bound. Ignored when <code>log_levels</code> is non-empty. |
+| log_levels | [LogSeverity](#ondewo.nlu.LogSeverity) | repeated | Exact severities to include. When non-empty this OVERRIDES <code>min_log_level</code>. |
+| include_unleveled_lines | [bool](#bool) | optional | Keep entries whose severity could not be determined even when a severity bound is set. Defaults to <code>false</code>. |
+| text | [string](#string) | optional | Case-insensitive substring match against the message, as the caller receives it (after the server&apos;s secret redaction). <code>ListLogsResponse.total_matching_count</code>, <code>count_by_level</code>, <code>has_more_older</code> and <code>has_more_newer</code> are computed WITHOUT it and <code>CAI_LOG_FILTER_FIELD_TEXT</code> is reported in <code>scope_limited_filters</code>: they would otherwise reveal whether a redacted secret contains the searched text. |
+| regex | [string](#string) | optional | Regular expression (Python <code>re</code> syntax) matched against the message. At most 512 characters; an invalid, oversized or catastrophically backtracking pattern is rejected with <code>INVALID_ARGUMENT</code>. |
+| emitter_prefixes | [string](#string) | repeated | Prefix match against <code>&lt;module&gt;:&lt;function&gt;:&lt;line&gt;</code>, for example <code>ondewo_cai.ondewo_cdls.services.server.servicers.agents_servicer</code>. |
+| thread_names | [string](#string) | repeated | Restrict to entries emitted by these threads. |
+| process_names | [string](#string) | repeated | Restrict to entries emitted by these processes, e.g. <code>GrpcServer_0</code>. |
+| trace_ids | [string](#string) | repeated | Restrict to entries carrying one of these OpenTelemetry trace ids (32 lowercase hex characters). |
+| start_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) | optional | Only return entries at or after this instant. A zero timestamp counts as unset. |
+| end_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) | optional | Only return entries at or before this instant. A zero timestamp counts as unset. A <code>start_time</code> after <code>end_time</code> is rejected with <code>INVALID_ARGUMENT</code>. |
+
+
+
+
+
+
+<a name="ondewo.nlu.CaiLogStream"></a>
+
+### CaiLogStream
+One capture of one server process or of one container. A server process that restarts, and a container
+recreated under a new id, yield a NEW log stream.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | Resource name of the log stream, in the form of <a href="index.html#ondewo.nlu.CaiLogEntry">CaiLogEntry.log_stream</a>. |
+| log_source | [CaiLogSource](#ondewo.nlu.CaiLogSource) |  | What produced the log stream. |
+| channel | [CaiLogStreamChannel](#ondewo.nlu.CaiLogStreamChannel) |  | The channel this stream captures. |
+| project_parent | [string](#string) |  | The project the stream belongs to (<code>projects/&lt;project_uuid&gt;/agent</code>). Empty for a server process. |
+| operation_name | [string](#string) |  | The operation the container serves. Empty for a server process. |
+| container_id | [string](#string) |  | Docker container id. Empty for a server process. |
+| container_name | [string](#string) |  | Docker container name. Empty for a server process. |
+| host | [string](#string) |  | The host the container runs on, or the host name of the server process. |
+| replica_id | [string](#string) |  | Identity of the CAI server process that captures (or captured) this stream. |
+| process_name | [string](#string) |  | Name of the captured server process, e.g. <code>GrpcServer_3</code>. Empty for a container. |
+| phase | [string](#string) |  | Lifecycle phase of the container. Empty for a server process. |
+| capture_state | [CaiLogCaptureState](#ondewo.nlu.CaiLogCaptureState) |  | State of CAI&apos;s capture of this stream. |
+| capture_error | [string](#string) |  | Why capture failed, when <code>capture_state</code> is <code>CAI_LOG_CAPTURE_STATE_FAILED</code>. |
+| capture_started_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | When CAI started capturing this stream. |
+| capture_finished_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | When CAI stopped capturing this stream. Unset while capturing. |
+| partial_capture | [bool](#bool) |  | True when entries the source emitted were not captured and are not recoverable, e.g. a container whose owning CAI process died and whose output was recovered from a bounded snapshot. |
+| min_available_seq | [int64](#int64) |  | The smallest <code>seq</code> currently stored for this stream (<code>0</code> when it holds none). |
+| max_available_seq | [int64](#int64) |  | The largest <code>seq</code> assigned to this stream (<code>0</code> when it holds no entry). Entries up to it may since have been removed by retention or <code>DeleteLogs</code>; it never decreases while the stream holds an entry. |
+| line_count | [int64](#int64) |  | How many entries are currently stored for this stream. |
+| dropped_line_count | [int64](#int64) |  | How many records were deliberately not stored, summed over every reason: the ingest severity floor, the capture queue being full, storage back-pressure, a failed write and retention. |
+| operation_type | [OperationMetadata.OperationType](#ondewo.nlu.OperationMetadata.OperationType) |  | Type of the operation the container serves; <code>UNSPECIFIED</code> for a server process. |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteLogsRequest"></a>
+
+### DeleteLogsRequest
+The request message for <a href="index.html#ondewo.nlu.Logs.DeleteLogs">Logs.DeleteLogs</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| filter | [CaiLogFilter](#ondewo.nlu.CaiLogFilter) |  | The entries to delete. Only the identity fields and the time window apply; content filters are rejected. At least one field must be set: an empty filter is rejected rather than treated as &quot;delete everything&quot;. |
+| validate_only | [bool](#bool) |  | Optional. Validate only: run every check of a real deletion and report how many entries and log streams WOULD be deleted now, but delete nothing. Default <code>false</code>. |
+
+
+
+
+
+
+<a name="ondewo.nlu.DeleteLogsResponse"></a>
+
+### DeleteLogsResponse
+The response message for <a href="index.html#ondewo.nlu.Logs.DeleteLogs">Logs.DeleteLogs</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| deleted_log_entry_count | [int64](#int64) |  | How many log entries were deleted (with <code>validate_only</code>: would be deleted). |
+| deleted_log_stream_count | [int64](#int64) |  | How many log streams were deleted because no entries remained (with <code>validate_only</code>: would be deleted). |
+
+
+
+
+
+
+<a name="ondewo.nlu.ExportLogsRequest"></a>
+
+### ExportLogsRequest
+The request message for <a href="index.html#ondewo.nlu.Logs.ExportLogs">Logs.ExportLogs</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| filter | [CaiLogFilter](#ondewo.nlu.CaiLogFilter) |  | The entries to export. Every field of <a href="index.html#ondewo.nlu.CaiLogFilter">CaiLogFilter</a> applies, with the semantics of <code>ListLogs</code>. REQUIRED, with both <code>start_time</code> and <code>end_time</code> set and <code>start_time</code> before <code>end_time</code>; otherwise <code>INVALID_ARGUMENT</code>. |
+| format | [CaiLogExportFormat](#ondewo.nlu.CaiLogExportFormat) |  | The file format. Unset means <code>CAI_LOG_EXPORT_FORMAT_TEXT</code>. |
+| include_metadata | [bool](#bool) |  | Include every field of each entry rather than only the timestamp, the severity and the message (see <a href="index.html#ondewo.nlu.CaiLogExportFormat">CaiLogExportFormat</a>). Default <code>false</code>. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ExportLogsResponse"></a>
+
+### ExportLogsResponse
+One message of an <a href="index.html#ondewo.nlu.Logs.ExportLogs">ExportLogs</a> stream.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| chunk | [bytes](#bytes) |  | The next bytes of the exported file, at most 1 MiB. Chunk boundaries carry no meaning: an entry, a line or a multi-byte UTF-8 character may span two chunks. The last message may carry an empty chunk. |
+| entry_count | [int64](#int64) |  | The number of entries exported so far, including those of this chunk. |
+| last | [bool](#bool) |  | True on the last message of a complete export. A stream that ends without a message carrying <code>last = true</code> was cut off and its file is incomplete. |
+| truncated | [bool](#bool) |  | True on the last message when the export stopped early because it reached <code>ONDEWO_NLU_CAI_LOG_EXPORT_MAX_ENTRIES</code>, <code>ONDEWO_NLU_CAI_LOG_EXPORT_MAX_BYTES</code> or the maximum stream duration. |
+
+
+
+
+
+
+<a name="ondewo.nlu.GetLogStreamRequest"></a>
+
+### GetLogStreamRequest
+The request message for <a href="index.html#ondewo.nlu.Logs.GetLogStream">Logs.GetLogStream</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| name | [string](#string) |  | The name of the log stream, in either form of <a href="index.html#ondewo.nlu.CaiLogEntry">CaiLogEntry.log_stream</a>. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. Partial response: the <code>CaiLogStream</code> field paths to populate. <code>name</code> is always populated, unset or empty returns every field, an unknown path is rejected with <code>INVALID_ARGUMENT</code> naming it. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLogStreamsRequest"></a>
+
+### ListLogStreamsRequest
+The request message for <a href="index.html#ondewo.nlu.Logs.ListLogStreams">Logs.ListLogStreams</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| filter | [CaiLogFilter](#ondewo.nlu.CaiLogFilter) | optional | Optional. A filter to narrow the response down to the log streams of interest. Only the identity fields and <code>log_sources</code> / <code>channels</code> / <code>process_names</code> apply; the other content fields and the time window are ignored. |
+| page_token | [string](#string) |  | Optional: The page token to support pagination. Pagination allows you to retrieve a large result set in smaller, more manageable portions. The page token is a string representing the current index and page size.
+
+Valid page token strings: <ul> <li>&quot;&quot; (empty string) - Retrieves the first page.</li> <li>&quot;current_index-0--page_size-20&quot; - Retrieves the first page with a page size of 20.</li> <li>&quot;current_index-1--page_size-20&quot; - Retrieves the second page with a page size of 20.</li> </ul>
+
+Index starts at 0. A page size above 1000 is clamped to 1000.
+
+Examples of valid page token strings: <ul> <li>&quot;&quot;</li> <li>&quot;current_index-0--page_size-20&quot;</li> <li>&quot;current_index-1--page_size-20&quot;</li> <li>&quot;current_index-10--page_size-20&quot;</li> </ul>
+
+Examples of invalid page token strings: <ul> <li>&quot;1&quot;</li> <li>&quot;current_index--1--page_size-20&quot;</li> <li>&quot;current_index1--page_size-20&quot;</li> <li>&quot;current_index-1--page_size--20&quot;</li> </ul> |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. Partial response: the field paths to populate in every returned <code>CaiLogStream</code>, relative to <code>CaiLogStream</code> (no <code>log_streams.</code> prefix). <code>name</code> is always populated. Unset or empty returns every field. An unknown path is rejected with <code>INVALID_ARGUMENT</code> naming it. |
+| capture_states | [CaiLogCaptureState](#ondewo.nlu.CaiLogCaptureState) | repeated | Optional. Only log streams in one of these capture states. Empty matches every state. <code>CAI_LOG_CAPTURE_STATE_UNSPECIFIED</code> is rejected with <code>INVALID_ARGUMENT</code>. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLogStreamsResponse"></a>
+
+### ListLogStreamsResponse
+The response message for <a href="index.html#ondewo.nlu.Logs.ListLogStreams">Logs.ListLogStreams</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| log_streams | [CaiLogStream](#ondewo.nlu.CaiLogStream) | repeated | The log streams of this page, newest <code>capture_started_at</code> first. |
+| next_page_token | [string](#string) |  | The next_page_token is used to retrieve the next page of a returned result, e.g. <code>current_index-2--page_size-20</code>. Empty when there are no more results. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLogsRequest"></a>
+
+### ListLogsRequest
+The request message for <a href="index.html#ondewo.nlu.Logs.ListLogs">Logs.ListLogs</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| filter | [CaiLogFilter](#ondewo.nlu.CaiLogFilter) | optional | Optional. A filter to narrow the response down to the entries of interest. |
+| max_lines | [int32](#int32) | optional | Return at most this many entries. <code>0</code> (the default) and negative values apply the server default (<code>ONDEWO_NLU_CAI_LOG_DEFAULT_MAX_LINES</code>, default 5000); values above the server hard cap (<code>ONDEWO_NLU_CAI_LOG_HARD_MAX_LINES</code>, default 50000) are clamped to it. |
+| before_seq | [int64](#int64) | optional | Optional cursor for infinite-scroll UP: return the newest entries with <code>seq</code> less than this value. Valid only when the filter resolves to exactly one log stream. |
+| after_seq | [int64](#int64) | optional | Optional cursor for infinite-scroll DOWN: return entries with <code>seq</code> greater than this value. Valid only when the filter resolves to exactly one log stream. |
+| resume_token | [string](#string) | optional | Optional. An opaque, server-encoded per-log-stream cursor from a previous response. Use this instead of <code>after_seq</code> whenever the filter can match more than one log stream. Combined with <code>oldest_first</code> it walks forward (newer entries); without it, backward (older entries). |
+| oldest_first | [bool](#bool) | optional | Walk forward from the cursor oldest-first instead of returning the most recent window. A client paging through a whole backlog must set this: the default window silently skips everything between the cursor and the newest entries. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. Partial response: the field paths to populate in every returned <code>CaiLogEntry</code>, relative to <code>CaiLogEntry</code> (no <code>log_entries.</code> prefix), e.g. <code>timestamp</code>, <code>level</code>, <code>message</code>. <code>log_stream</code> and <code>seq</code> are always populated. Unset or empty returns every field. An unknown path, or a path below a repeated field, is rejected with <code>INVALID_ARGUMENT</code> naming it. Applied after the server&apos;s secret redaction. It shapes only the entries: the window and cursor fields of the response are computed exactly as without a mask. |
+| include_counts | [bool](#bool) |  | Optional. Also count the matching entries: fills <code>ListLogsResponse.total_matching_count</code> and <code>count_by_level</code> over the WHOLE filtered history (ignoring the cursors). Off by default; set it on the first page only. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLogsResponse"></a>
+
+### ListLogsResponse
+The response message for <a href="index.html#ondewo.nlu.Logs.ListLogs">Logs.ListLogs</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| log_entries | [CaiLogEntry](#ondewo.nlu.CaiLogEntry) | repeated | The matching entries, oldest first. |
+| truncated | [bool](#bool) |  | True when matching entries were dropped because <code>max_lines</code> was reached. |
+| min_available_seq | [int64](#int64) |  | The smallest <code>seq</code> available under the request&apos;s IDENTITY filters and the caller&apos;s access. Deliberately not narrowed by the content filters. |
+| max_available_seq | [int64](#int64) |  | The largest <code>seq</code> assigned under the request&apos;s identity filters and the caller&apos;s access, over the log streams that still hold an entry (<code>0</code> when none does). Entries up to it may since have been removed by retention or <code>DeleteLogs</code>. |
+| has_more_older | [bool](#bool) |  | True when entries older than this window exist. |
+| has_more_newer | [bool](#bool) |  | True when entries newer than this window exist. |
+| next_resume_token | [string](#string) |  | Cursor to fetch the next window (pass it back with <code>oldest_first</code> to page forward, without it to page backward), or to start a <code>StreamLogs</code> that continues exactly here. |
+| scope_limited_filters | [CaiLogFilterField](#ondewo.nlu.CaiLogFilterField) | repeated | Filters that could only be applied WITHIN the returned window rather than across the whole history. A client displaying a match count must qualify it when this is non-empty. |
+| total_matching_count | [int64](#int64) | optional | The number of entries matching the filter over the whole stored history, regardless of the window and the cursors. Set only when <code>include_counts</code> was requested and the count finished within <code>ONDEWO_NLU_CAI_LOG_COUNT_TIMEOUT_S</code>. An UPPER BOUND when <code>scope_limited_filters</code> is non-empty. |
+| count_by_level | [ListLogsResponse.CountByLevelEntry](#ondewo.nlu.ListLogsResponse.CountByLevelEntry) | repeated | The matching entries counted per severity, keyed by the <code>ondewo.nlu.LogSeverity</code> value NAME (e.g. <code>LOG_SEVERITY_ERROR</code>; entries without a recognised severity under <code>LOG_SEVERITY_UNSPECIFIED</code>). Severities with no entry are omitted; the values sum to <code>total_matching_count</code>. Filled under the same conditions as <code>total_matching_count</code>. |
+
+
+
+
+
+
+<a name="ondewo.nlu.ListLogsResponse.CountByLevelEntry"></a>
+
+### ListLogsResponse.CountByLevelEntry
+
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| key | [string](#string) |  |  |
+| value | [int64](#int64) |  |  |
+
+
+
+
+
+
+<a name="ondewo.nlu.StreamLogsRequest"></a>
+
+### StreamLogsRequest
+The request message for <a href="index.html#ondewo.nlu.Logs.StreamLogs">Logs.StreamLogs</a>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| filter | [CaiLogFilter](#ondewo.nlu.CaiLogFilter) | optional | Optional. A filter to narrow the stream down to the entries of interest. The time window of the filter is meaningless for a live stream and is rejected with <code>INVALID_ARGUMENT</code> rather than ignored. |
+| tail_lines | [int32](#int32) | optional | Replay at most this many of the most recent stored entries before switching to live follow. <code>0</code> (the default) starts the follow with no historical replay; a negative value is treated as <code>0</code>; values above the server hard cap (<code>ONDEWO_NLU_CAI_LOG_HARD_MAX_LINES</code>, default 50000) are clamped to it. Applied to the FILTERED result. Ignored when <code>resume_token</code> or <code>after_seq</code> is set. |
+| resume_token | [string](#string) | optional | Optional. Resume exactly where a previous stream or page stopped. An opaque, server-encoded per-log-stream cursor that must be echoed back verbatim. Prefer it over <code>after_seq</code>. |
+| after_seq | [int64](#int64) | optional | Optional. Resume after this <code>seq</code>. Valid ONLY when the filter resolves to exactly one log stream; otherwise the request is rejected with <code>INVALID_ARGUMENT</code>. Ignored when <code>resume_token</code> is set. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. Partial response: the field paths to populate in every streamed <code>CaiLogEntry</code>, relative to <code>CaiLogEntry</code> (no <code>log_entries.</code> prefix). <code>log_stream</code> and <code>seq</code> are always populated. Unset or empty streams every field. An unknown path, or a path below a repeated field, is rejected with <code>INVALID_ARGUMENT</code> naming it. Applied after the server&apos;s secret redaction; never affects the envelope fields. |
+
+
+
+
+
+
+<a name="ondewo.nlu.StreamLogsResponse"></a>
+
+### StreamLogsResponse
+The response message for <a href="index.html#ondewo.nlu.Logs.StreamLogs">Logs.StreamLogs</a>. The stream
+carries an envelope rather than a bare entry so that a viewer can tell a healthy quiet source from a capture
+that has died.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| log_entries | [CaiLogEntry](#ondewo.nlu.CaiLogEntry) | repeated | The entries in this batch, oldest first. May be empty, e.g. on the final message. |
+| capture_state | [CaiLogCaptureState](#ondewo.nlu.CaiLogCaptureState) |  | The capture state of the log streams being followed, aggregated: <code>FAILED</code> if any has failed, else <code>DETACHED</code> if any is detached, else <code>CAPTURING</code> if any is capturing, else <code>STOPPED</code>. |
+| capture_error | [string](#string) |  | Why capture failed, when <code>capture_state</code> is <code>CAI_LOG_CAPTURE_STATE_FAILED</code>. |
+| dropped_line_count | [int64](#int64) |  | Total records deliberately not stored across the followed streams. See <a href="index.html#ondewo.nlu.CaiLogStream">CaiLogStream.dropped_line_count</a>. |
+| resume_token | [string](#string) |  | Cursor to resume this stream. Echo it into <code>StreamLogsRequest.resume_token</code> after a disconnect. |
+| end_reason | [string](#string) |  | Set on the final message when the stream was ended by the server. Human-readable text, not a contract: match on <code>end_reason_code</code>. |
+| end_reason_code | [CaiLogStreamEndReason](#ondewo.nlu.CaiLogStreamEndReason) |  | Set on the final message when the stream was ended by the server, together with <code>end_reason</code>; <code>CAI_LOG_STREAM_END_REASON_UNSPECIFIED</code> on every other message. |
+
+
+
+
+
+ <!-- end messages -->
+
+
+<a name="ondewo.nlu.CaiLogCaptureState"></a>
+
+### CaiLogCaptureState
+The state of CAI&apos;s capture of one log stream. This describes the CAPTURE, not the process or the
+container.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| CAI_LOG_CAPTURE_STATE_UNSPECIFIED | 0 | Unspecified. |
+| CAI_LOG_CAPTURE_STATE_CAPTURING | 1 | Capture is running. |
+| CAI_LOG_CAPTURE_STATE_STOPPED | 2 | Capture ended cleanly; the stream is complete up to the end of the process or the removal of the container. |
+| CAI_LOG_CAPTURE_STATE_FAILED | 3 | Capture failed or its owner stopped renewing it. The stored history may be incomplete and <code>capture_error</code> says why. |
+| CAI_LOG_CAPTURE_STATE_DETACHED | 4 | Another CAI server process holds the capture of this stream. |
+
+
+
+<a name="ondewo.nlu.CaiLogExportFormat"></a>
+
+### CaiLogExportFormat
+File format of an <a href="index.html#ondewo.nlu.Logs.ExportLogs">ExportLogs</a> export. Every format is UTF-8
+with <code>\n</code> line endings and one entry per record; a multi-line entry stays one record.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| CAI_LOG_EXPORT_FORMAT_UNSPECIFIED | 0 | Unspecified: identical to <code>CAI_LOG_EXPORT_FORMAT_TEXT</code>. |
+| CAI_LOG_EXPORT_FORMAT_TEXT | 1 | Plain text in the manner of <code>docker logs --timestamps</code>: one line per entry, <code>&lt;RFC 3339 UTC timestamp&gt; &lt;message&gt;</code>; continuation lines of a multi-line entry are indented by one tab. With <code>include_metadata</code> the timestamp is followed by the severity, the process or container name and the operation name (<code>-</code> when none), separated by single spaces. |
+| CAI_LOG_EXPORT_FORMAT_NDJSON | 2 | Newline-delimited JSON: one JSON object per line, the proto3 JSON form of a <a href="index.html#ondewo.nlu.CaiLogEntry">CaiLogEntry</a> (lowerCamelCase keys). Without <code>include_metadata</code> only <code>seq</code>, <code>logStream</code>, <code>timestamp</code>, <code>level</code> and <code>message</code> are written; with it every field. |
+| CAI_LOG_EXPORT_FORMAT_CSV | 3 | Comma-separated values (RFC 4180, every field quoted, embedded quotes doubled, embedded line breaks kept inside the quotes), with a header row. Columns without <code>include_metadata</code>: <code>timestamp,level,message</code>; with it: <code>seq,timestamp,timestamp_is_exact,level,log_source, channel,emitter,thread_name,process_name,log_stream,operation_name,operation_type,project_parent, container_id,container_name,replica_id,trace_id,physical_line_count,message</code>. |
+
+
+
+<a name="ondewo.nlu.CaiLogFilterField"></a>
+
+### CaiLogFilterField
+Identifies a field of <a href="index.html#ondewo.nlu.CaiLogFilter">CaiLogFilter</a>. Used by
+<a href="index.html#ondewo.nlu.ListLogsResponse">ListLogsResponse.scope_limited_filters</a> to declare which
+filters could only be applied inside the returned window.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| CAI_LOG_FILTER_FIELD_UNSPECIFIED | 0 | Unspecified. |
+| CAI_LOG_FILTER_FIELD_TEXT | 1 | <code>CaiLogFilter.text</code>. |
+| CAI_LOG_FILTER_FIELD_REGEX | 2 | <code>CaiLogFilter.regex</code>. |
+| CAI_LOG_FILTER_FIELD_LOG_SOURCES | 3 | <code>CaiLogFilter.log_sources</code>. |
+| CAI_LOG_FILTER_FIELD_EMITTER_PREFIXES | 4 | <code>CaiLogFilter.emitter_prefixes</code>. |
+| CAI_LOG_FILTER_FIELD_THREAD_NAMES | 5 | <code>CaiLogFilter.thread_names</code>. |
+| CAI_LOG_FILTER_FIELD_PROCESS_NAMES | 6 | <code>CaiLogFilter.process_names</code>. |
+
+
+
+<a name="ondewo.nlu.CaiLogSource"></a>
+
+### CaiLogSource
+What produced a log stream.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| CAI_LOG_SOURCE_UNSPECIFIED | 0 | Unspecified or unrecognised source. |
+| CAI_LOG_SOURCE_SERVER | 1 | A CAI gRPC server process (one worker of one replica) logging through its own logger. |
+| CAI_LOG_SOURCE_REMOTE_OPERATION_CONTAINER | 2 | The docker container a remote operation runs (build cache, training, RAG crawl, LLM evaluation or simulation, RAGFlow upload / removal / re-parse). |
+| CAI_LOG_SOURCE_HELPER_CONTAINER | 3 | A short-lived helper container a remote operation starts before its main container: the hardware check (phase <code>hw_check</code>) and the GPU pre-allocation (phase <code>gpu_prealloc</code>). |
+
+
+
+<a name="ondewo.nlu.CaiLogStreamChannel"></a>
+
+### CaiLogStreamChannel
+The output channel a log stream captures.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| CAI_LOG_STREAM_CHANNEL_UNSPECIFIED | 0 | The channel is not known. This is the honest value for a container started with a TTY (every remote operation container is), where the pseudo-terminal merges both channels into one stream. |
+| CAI_LOG_STREAM_CHANNEL_STDOUT | 1 | Standard output. |
+| CAI_LOG_STREAM_CHANNEL_STDERR | 2 | Standard error. The CAI server process logs here. |
+
+
+
+<a name="ondewo.nlu.CaiLogStreamEndReason"></a>
+
+### CaiLogStreamEndReason
+Why the SERVER ended a <code>StreamLogs</code> stream. Carried by the final
+<a href="index.html#ondewo.nlu.StreamLogsResponse">StreamLogsResponse</a> beside the human-readable
+<code>end_reason</code>. A stream ended by the client has no final message.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| CAI_LOG_STREAM_END_REASON_UNSPECIFIED | 0 | Not ended by the server: every message except the final one. |
+| CAI_LOG_STREAM_END_REASON_ALL_CAPTURES_TERMINATED | 1 | The capture of every followed log stream has terminated (<code>STOPPED</code> or <code>FAILED</code>) and every stored entry was sent. Nothing more will arrive for this filter. |
+| CAI_LOG_STREAM_END_REASON_MAX_DURATION | 2 | The server-side maximum stream duration (<code>ONDEWO_NLU_CAI_LOG_STREAM_MAX_DURATION_S</code>) was reached. Reconnect with the <code>resume_token</code> of the final message to continue seamlessly. |
+| CAI_LOG_STREAM_END_REASON_SERVER_SHUTDOWN | 3 | The CAI server process is shutting down. Reconnect, to another replica if there is one, with the <code>resume_token</code>. |
+| CAI_LOG_STREAM_END_REASON_PERMISSION_REVOKED | 4 | The caller lost the access the stream requires. The stream then ends with <code>PERMISSION_DENIED</code>. |
+| CAI_LOG_STREAM_END_REASON_CREDENTIALS_EXPIRED | 5 | The caller&apos;s credential expired. The stream then ends with <code>UNAUTHENTICATED</code>; reconnect with a fresh credential and the <code>resume_token</code>. |
+
+
+ <!-- end enums -->
+
+ <!-- end HasExtensions -->
+
+
+<a name="ondewo.nlu.Logs"></a>
+
+### Logs
+<p>Reads, follows, exports and erases the logs ONDEWO CAI captures: the log records of the CAI gRPC server
+processes themselves (every worker of every replica), the output of the docker containers that remote
+operations run (build cache, training, RAG crawl, LLM evaluation and simulation, RAGFlow upload / removal /
+re-parse) and of the short-lived helper containers that prepare them (hardware check, GPU pre-allocation).
+Long-running operations that run inside a CAI worker (agent export, import, restore, re-index, ranking
+optimization) are covered too: the server records they emit carry the operation&apos;s name.</p>
+<p>Entries are served from the CAI database, not from the docker daemon, so the logs of a container that was
+already removed, and of a server process that already exited, stay readable until retention or
+<code>DeleteLogs</code> removes them.</p>
+<p><b>Secrets are redacted server-side</b> when an entry is captured and again when it is read, so a
+redaction rule added later also applies to entries captured before it.</p>
+<p>Errors are reported as gRPC status codes: <code>INVALID_ARGUMENT</code> for a malformed name, filter,
+cursor, <code>resume_token</code>, <code>page_token</code> or <code>field_mask</code> (each naming the field);
+<code>NOT_FOUND</code> for an unknown log stream or operation, and for one the caller may not read;
+<code>RESOURCE_EXHAUSTED</code> when the server process already serves its maximum of concurrent streams or
+exports; <code>UNAVAILABLE</code> when the logs API is disabled (<code>ONDEWO_NLU_CAI_LOG_API_ENABLED</code>)
+or the database cannot be reached; <code>UNAUTHENTICATED</code> without a valid credential;
+<code>PERMISSION_DENIED</code> when the caller may read no logs at all.</p>
+<p>Authorization: entries that belong to no project (the server&apos;s own records outside any project RPC
+or operation) require the server permission <code>ServerPermission.Logs.ReadServerLogs</code>, granted to
+<code>SERVER_ADMIN</code> by default; a caller holding it reads every entry. Without it a caller reads only
+the entries tagged with a project in which it holds <code>ProjectPermission.Logs.ReadProjectLogs</code>,
+granted to <code>PROJECT_DEVELOPER</code> and above by default; entries of other projects are filtered out
+and are never reported as existing. <code>DeleteLogs</code> requires
+<code>ServerPermission.Logs.DeleteLogs</code>, granted to <code>SERVER_ADMIN</code> only. A long-running
+<code>StreamLogs</code> or <code>ExportLogs</code> re-checks the caller periodically and ends when the access
+was revoked or the credential expired.</p>
+
+| Method Name | Request Type | Response Type | Description |
+| ----------- | ------------ | ------------- | ------------|
+| StreamLogs | [StreamLogsRequest](#ondewo.nlu.StreamLogsRequest) | [StreamLogsResponse](#ondewo.nlu.StreamLogsResponse) stream | <p>Streams captured log entries as they are written, in the manner of <code>docker logs --follow</code>. The stream replays <code>tail_lines</code> historical entries and then follows. It stays open until the capture of every matching log stream has terminated (only possible when the filter selects container streams alone: the server&apos;s own log streams never terminate while the server runs), until the client disconnects, or until the server-side maximum stream duration is reached.</p> <p>Limits: at most <code>ONDEWO_NLU_CAI_LOG_STREAM_MAX_DURATION_S</code> (default 3600) seconds per stream, after which the server sends a final message with <code>end_reason_code = CAI_LOG_STREAM_END_REASON_MAX_DURATION</code> and a <code>resume_token</code> to reconnect with; at most <code>ONDEWO_NLU_CAI_LOG_MAX_CONCURRENT_STREAMS</code> (default 8) concurrent streams per server process, beyond which a new stream is <code>RESOURCE_EXHAUSTED</code>. The server sends NO keep-alive message: a quiet filter sends nothing, so a client must not treat silence as a dead stream (use HTTP/2 keep-alive pings to detect a dead connection).</p> <p>Errors: <code>INVALID_ARGUMENT</code> for a filter carrying <code>start_time</code> or <code>end_time</code>, an <code>after_seq</code> with a filter that does not resolve to exactly one log stream, a malformed <code>resume_token</code>, an invalid <code>regex</code> or an unknown <code>field_mask</code> path; <code>NOT_FOUND</code> for a named log stream or operation the caller may not read; <code>RESOURCE_EXHAUSTED</code> as above, and when one read of the stored entries exceeds <code>ONDEWO_NLU_CAI_LOG_QUERY_TIMEOUT_S</code> (narrow the filter); <code>UNAVAILABLE</code> when the database cannot be reached (reconnect with the last <code>resume_token</code>). When the caller&apos;s access is revoked or its credential expires during the stream, the server sends a final message (<code>CAI_LOG_STREAM_END_REASON_PERMISSION_REVOKED</code> / <code>CAI_LOG_STREAM_END_REASON_CREDENTIALS_EXPIRED</code>, with a <code>resume_token</code>) and ends the stream with <code>PERMISSION_DENIED</code> / <code>UNAUTHENTICATED</code>.</p> |
+| ListLogs | [ListLogsRequest](#ondewo.nlu.ListLogsRequest) | [ListLogsResponse](#ondewo.nlu.ListLogsResponse) | <p>Returns a bounded, filtered page of captured log entries. Supports a time window, severity filtering, a regular expression, a plain-text search and cursor paging in both directions for infinite scrolling.</p> <p>No time window is required: without <code>start_time</code> / <code>end_time</code> the window is the newest <code>max_lines</code> matching entries (or, with <code>oldest_first</code>, the oldest after the cursor). With <code>include_counts</code> the response also carries the number of matching entries per severity. The <code>next_resume_token</code> of a response can be handed to <code>StreamLogs</code> to continue live exactly where the page ended, without a gap or a duplicate.</p> <p>Errors: <code>INVALID_ARGUMENT</code> for an invalid or over-long <code>regex</code>, a <code>start_time</code> after <code>end_time</code>, <code>before_seq</code> / <code>after_seq</code> combined with <code>resume_token</code> or with a filter that does not resolve to exactly one log stream, a negative <code>before_seq</code> / <code>after_seq</code>, a malformed <code>resume_token</code> or an unknown <code>field_mask</code> path; <code>NOT_FOUND</code> for a named log stream or operation the caller may not read; <code>RESOURCE_EXHAUSTED</code> when the query exceeds <code>ONDEWO_NLU_CAI_LOG_QUERY_TIMEOUT_S</code> (narrow the filter: log streams, time window or severity); <code>UNAVAILABLE</code> when the database cannot be reached.</p> <p>A page is bounded by size as well as by <code>max_lines</code>: when its messages would exceed the server&apos;s size budget it is cut (a forward page keeps its oldest entries, a backward page its newest) and reported with <code>truncated = true</code>; the cursors continue exactly where it was cut.</p> |
+| GetLogStream | [GetLogStreamRequest](#ondewo.nlu.GetLogStreamRequest) | [CaiLogStream](#ondewo.nlu.CaiLogStream) | <p>Returns one log stream, i.e. the capture of one server process or of one container.</p> <p>Errors: <code>INVALID_ARGUMENT</code> for a malformed <code>name</code> or an unknown <code>field_mask</code> path; <code>NOT_FOUND</code> for an unknown log stream or one the caller may not read.</p> |
+| ListLogStreams | [ListLogStreamsRequest](#ondewo.nlu.ListLogStreamsRequest) | [ListLogStreamsResponse](#ondewo.nlu.ListLogStreamsResponse) | <p>Lists the log streams CAI has captured. A server process yields a new log stream every time it starts, and a container every time it is (re)started under a new container id. Ordered by <code>capture_started_at</code>, newest first.</p> <p>A caller without <code>ServerPermission.Logs.ReadServerLogs</code> sees only the log streams of the projects in which it holds <code>ProjectPermission.Logs.ReadProjectLogs</code>; the server&apos;s own log streams are not listed to it, although <code>ListLogs</code> and <code>StreamLogs</code> return their entries that are tagged with such a project.</p> <p>Errors: <code>INVALID_ARGUMENT</code> for a malformed <code>page_token</code>, <code>CAI_LOG_CAPTURE_STATE_UNSPECIFIED</code> in <code>capture_states</code> or an unknown <code>field_mask</code> path.</p> |
+| ExportLogs | [ExportLogsRequest](#ondewo.nlu.ExportLogsRequest) | [ExportLogsResponse](#ondewo.nlu.ExportLogsResponse) stream | <p>Exports the captured log entries matching a filter as a file: plain text, NDJSON or CSV, streamed in chunks. Entries are exported oldest first with the same filter semantics and the same server-side secret redaction as <code>ListLogs</code>; unlike <code>ListLogs</code> the content filters are applied to EVERY entry of the window. Concatenating the <code>chunk</code>s of all messages in order yields the file.</p> <p>A bounded time window is REQUIRED: <code>filter.start_time</code> AND <code>filter.end_time</code> must both be set, with <code>start_time</code> before <code>end_time</code>.</p> <p>Limits: each <code>chunk</code> is at most 1 MiB; an export holds at most <code>ONDEWO_NLU_CAI_LOG_EXPORT_MAX_ENTRIES</code> (default 1000000) entries and at most <code>ONDEWO_NLU_CAI_LOG_EXPORT_MAX_BYTES</code> (default 1 GiB) of output. When a limit is reached the export ends early with <code>truncated = true</code> on the last message; so does an export one of whose reads exceeds <code>ONDEWO_NLU_CAI_LOG_QUERY_TIMEOUT_S</code>. At most <code>ONDEWO_NLU_CAI_LOG_MAX_CONCURRENT_EXPORTS</code> (default 1) exports run per server process, beyond which a new one is <code>RESOURCE_EXHAUSTED</code>.</p> <p>Errors: <code>INVALID_ARGUMENT</code> for a missing, empty or inverted time window, an invalid <code>regex</code> or an unknown <code>format</code> value; <code>NOT_FOUND</code> for a named log stream or operation the caller may not read; <code>RESOURCE_EXHAUSTED</code> as above. A revoked access or an expired credential ends the export with <code>PERMISSION_DENIED</code> / <code>UNAUTHENTICATED</code> and no last message.</p> |
+| DeleteLogs | [DeleteLogsRequest](#ondewo.nlu.DeleteLogsRequest) | [DeleteLogsResponse](#ondewo.nlu.DeleteLogsResponse) | <p>Permanently deletes captured log entries matching a filter. Only the identity filters and the time window apply; content filters are rejected. A time window alone is a valid filter. A log stream whose last entry was deleted is removed too, unless it is still <code>CAI_LOG_CAPTURE_STATE_CAPTURING</code>. A capture that is still running keeps writing, so entries emitted after the deletion are stored again.</p> <p>Idempotent: repeating a deletion succeeds and reports <code>0</code> deleted entries. With <code>validate_only</code> nothing is deleted and the counts are what would be deleted.</p> <p>Errors: <code>INVALID_ARGUMENT</code> for an empty filter, a content filter (<code>text</code>, <code>regex</code>, <code>log_levels</code>, <code>min_log_level</code>, <code>include_unleveled_lines</code>, <code>emitter_prefixes</code>, <code>thread_names</code>, <code>trace_ids</code>; presence alone counts) or a <code>start_time</code> after <code>end_time</code>; <code>PERMISSION_DENIED</code> without <code>ServerPermission.Logs.DeleteLogs</code>; <code>RESOURCE_EXHAUSTED</code> when one deletion step exceeds <code>ONDEWO_NLU_CAI_LOG_QUERY_TIMEOUT_S</code> (what was deleted until then stays deleted; repeat the request); <code>UNAVAILABLE</code> when the database cannot be reached.</p> |
+
+ <!-- end services -->
+
+
+
 <a name="ondewo/nlu/operation_metadata.proto"></a>
 <p align="right"><a href="#top">Top</a></p>
 
@@ -10842,6 +11659,8 @@ The request message for <a href="index.html#ondewo.nlu.Operations.GetRemoteOpera
 | container_id | [string](#string) |  | Optional. Scope the query to a single container of the operation, identified by its docker container id. Empty (the default) queries the operation&apos;s currently-registered container, preserving the legacy single-container behavior. When the container has finished and been removed, its persisted logs are served from the server-side log archive. |
 | before_seq | [int64](#int64) |  | Optional cursor for infinite-scroll-UP paging: return the newest lines with <a href="index.html#ondewo.nlu.RemoteOperationContainerLogLine">seq</a> &lt; <code>before_seq</code> (older window). <code>0</code> (the default) disables backward paging. |
 | after_seq | [int64](#int64) |  | Optional cursor for infinite-scroll-DOWN paging: return lines with <code>seq</code> &gt; <code>after_seq</code> (newer window). <code>0</code> (the default) disables forward paging. |
+| field_mask | [google.protobuf.FieldMask](#google.protobuf.FieldMask) |  | Optional. Partial response: the field paths to populate in every returned <code>RemoteOperationContainerLogLine</code>, relative to that message (no <code>log_lines.</code> prefix). <code>seq</code> and <code>log_stream</code> are always populated. Unset or empty returns every field. An unknown path is rejected with <code>INVALID_ARGUMENT</code> naming it. |
+| resume_token | [string](#string) |  | Optional. An opaque cursor from a previous response&apos;s <code>next_resume_token</code>. Use it instead of <code>after_seq</code> / <code>before_seq</code> when the operation ran several containers. Cannot be combined with <code>before_seq</code> or <code>after_seq</code>. |
 
 
 
@@ -10861,6 +11680,8 @@ The response message for <a href="index.html#ondewo.nlu.Operations.GetRemoteOper
 | min_available_seq | [int64](#int64) |  | The smallest <code>seq</code> currently available for this container (its oldest captured line). A client paging up has reached the beginning when the returned lines start at this value. |
 | max_available_seq | [int64](#int64) |  | The largest <code>seq</code> currently available for this container (its newest captured line). |
 | has_more_older | [bool](#bool) |  | True when older lines than the returned window still exist (i.e. the window&apos;s first <code>seq</code> &gt; <code>min_available_seq</code>) — the client may keep scrolling up. |
+| next_resume_token | [string](#string) |  | Cursor to fetch the next window, or to start a <code>StreamRemoteOperationContainerLogs</code> (or a <code>Logs.StreamLogs</code>) that continues exactly where this window ended. |
+| has_more_newer | [bool](#bool) |  | True when entries newer than this window exist. |
 
 
 
@@ -11064,7 +11885,8 @@ A single parsed container log line, emitted by both the streaming and the query 
 | message | [string](#string) |  | The log message text, with ANSI colour codes stripped and secrets redacted. |
 | container_id | [string](#string) |  | The docker container id this line was produced by. Lets a client attribute or group lines when an operation ran several containers. Empty when the id was not captured. |
 | container_name | [string](#string) |  | The docker container name this line was produced by. Empty when unavailable. |
-| seq | [int64](#int64) |  | The monotonically-increasing sequence number of this line within its container&apos;s captured log (assigned by the server-side capture). Used as the cursor for infinite-scroll paging. <code>0</code> when the line was produced by a legacy path that did not assign a sequence. |
+| seq | [int64](#int64) |  | Ordering cursor of this line, assigned by the database. Monotonically increasing WITHIN ONE CONTAINER but NOT contiguous: values come from a sequence shared by every log stream and are removed by retention. Never compute the next cursor as <code>seq + 1</code>; pass it back as <code>after_seq</code> / <code>before_seq</code> (strictly greater / smaller) or use <code>resume_token</code>. <code>0</code> when the line was produced by a legacy path that did not assign a sequence. |
+| log_stream | [string](#string) |  | Resource name of the log stream this line belongs to (see <a href="index.html#ondewo.nlu.CaiLogEntry">CaiLogEntry.log_stream</a>). |
 
 
 
@@ -11132,6 +11954,8 @@ The request message for <a href="index.html#ondewo.nlu.Operations.StreamRemoteOp
 | min_log_level | [LogSeverity](#ondewo.nlu.LogSeverity) |  | Only stream lines at or above this loguru severity. <code>LOG_SEVERITY_UNSPECIFIED</code> (the default) streams every line regardless of level. |
 | tail_lines | [int32](#int32) |  | Replay at most this many of the most recent existing log lines before switching to live follow. <code>0</code> (the default) starts the follow with no historical replay. |
 | container_id | [string](#string) |  | Optional. Scope the stream to a single container of the operation, identified by its docker container id (as returned by <a href="index.html#ondewo.nlu.RemoteOperationContainer">RemoteOperationContainer</a>). Empty (the default) streams the operation&apos;s currently-registered container, preserving the legacy single-container behavior. |
+| regex | [string](#string) |  | Optional. Only stream lines whose message matches this regular expression (Python <code>re</code> syntax, at most 512 characters). Empty (the default) disables regex filtering. An invalid, oversized or catastrophically backtracking pattern is rejected with <code>INVALID_ARGUMENT</code>. |
+| resume_token | [string](#string) |  | Optional. Resume exactly where a previous stream or <code>GetRemoteOperationContainerLogs</code> page stopped: the <code>next_resume_token</code> of that response, echoed back verbatim. When set, no historical replay is applied and <code>tail_lines</code> is ignored. The token is interchangeable with <code>Logs.StreamLogs</code> / <code>Logs.ListLogs</code> tokens. |
 
 
 
@@ -13478,6 +14302,26 @@ Represents an audio file resource attached to a session (input recording or gene
 
 
 
+<a name="ondewo.nlu.CancelTurn"></a>
+
+### CancelTurn
+Cancels a turn. At least one of <code>response_id</code> and <code>client_turn_id</code> must be set; when both
+are, <code>client_turn_id</code> is authoritative.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| response_id | [string](#string) |  | The server's <code>response_id</code> of the turn, when the client has already received it; empty otherwise. |
+| client_turn_id | [string](#string) |  | <code>StreamingDetectIntentRequest.client_turn_id</code> of the turn. |
+| turn_interruption_reason | [TurnInterruptionReason](#ondewo.nlu.TurnInterruptionReason) |  | Why the turn is cancelled. |
+| decided_at | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock time at which the client decided to cancel. Telemetry only. |
+| background_work_policy | [BackgroundWorkPolicy](#ondewo.nlu.BackgroundWorkPolicy) |  | What happens to background work the turn started. |
+
+
+
+
+
+
 <a name="ondewo.nlu.ContextFilter"></a>
 
 ### ContextFilter
@@ -13710,6 +14554,25 @@ This message contains a detected intent
 | algorithm | [string](#string) |  | intent detection algorithm |
 | fulfillment_messages | [Intent.Message](#ondewo.nlu.Intent.Message) | repeated | collection of rich messages to present to the user This field is set only for the first detected intent. For the rest of the intents the messages are not resolved and the raw messages for the current language code are available in self.intent.messages |
 | required_param_missing | [bool](#bool) |  | This field is set to: <ul> <li><code>true</code> if the matched intent has required parameters and not all of the required parameter values have been collected.</li> <li><code>false</code> if all required parameter values have been collected, or if the matched intent doesn&apos;t contain any required parameters.</li> </ul> |
+
+
+
+
+
+
+<a name="ondewo.nlu.DiscardDraft"></a>
+
+### DiscardDraft
+Discards the session step of a preemptive draft: a turn the client started speculatively on a partial
+transcript and then did not use. The server deletes the session step only when it belongs to this session and its
+request carried <code>QueryParameters.preemptive_draft</code> = true; it answers
+<code>TURN_CONTROL_ACK_STATUS_DRAFT_DISCARDED</code>. Any other step is kept and the server answers
+<code>TURN_CONTROL_ACK_STATUS_UNKNOWN_TURN</code>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| response_id | [string](#string) |  | The server's <code>response_id</code> of the draft turn. |
 
 
 
@@ -14088,6 +14951,69 @@ This message is a request to get a session step
 
 
 
+<a name="ondewo.nlu.GetWarmTransferIntroOutcomeRequest"></a>
+
+### GetWarmTransferIntroOutcomeRequest
+The request for the outcome of a warm transfer intro.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| intro_session | [string](#string) |  | Required. The intro session. Format: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code>. A session that was not prepared by <code>PrepareWarmTransferIntro</code> is answered with <code>NOT_FOUND</code>. |
+
+
+
+
+
+
+<a name="ondewo.nlu.HeardMessage"></a>
+
+### HeardMessage
+What the user heard of one spoken message of a turn.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| fulfillment_message_index | [int32](#int32) |  | Index into the turn's <code>QueryResult.fulfillment_messages</code>; <code>-1</code> for a filler, which is not one of them. |
+| platform | [Intent.Message.Platform](#ondewo.nlu.Intent.Message.Platform) |  | Platform of that fulfillment message. |
+| full_text | [string](#string) |  | The text that was synthesized for the message, SIP and SSML markup stripped. |
+| heard_text | [string](#string) |  | The prefix of <code>full_text</code> the user heard, cut back to a word boundary. |
+| heard_char_count | [int32](#int32) |  | Length of <code>heard_text</code> in Unicode code points. |
+| heard_audio_duration_in_s | [float](#float) |  | Duration of the message's audio that was played to the user, in seconds. |
+| total_audio_duration_in_s | [float](#float) |  | Duration of the message's whole audio, in seconds; 0 when it was never synthesized. |
+| completed | [bool](#bool) |  | The message was played to its end. |
+| never_started | [bool](#bool) |  | Nothing of the message was played (e.g. it was still queued when the turn was interrupted). |
+| skipped_sip_trigger | [bool](#bool) |  | The message carried a SIP trigger (e.g. a transfer or a hangup) that was NOT executed because the turn was interrupted first. |
+| filler_id | [string](#string) |  | For a filler, the filler id the server sent in <code>diagnostic_info.ondewo_filler.filler_id</code>; empty otherwise. |
+
+
+
+
+
+
+<a name="ondewo.nlu.HeardReport"></a>
+
+### HeardReport
+Reports what the user heard of a turn's answer. At least one of <code>response_id</code> and
+<code>client_turn_id</code> must be set. The server keeps the report with the highest <code>revision</code> per
+turn and ignores a lower or equal one.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| response_id | [string](#string) |  | The server's <code>response_id</code> of the turn, when the client has already received it; empty otherwise. |
+| client_turn_id | [string](#string) |  | <code>StreamingDetectIntentRequest.client_turn_id</code> of the turn. |
+| revision | [int32](#int32) |  | Revision of this report, starting at 1. A later, more precise measurement of the same turn carries a higher revision. |
+| turn_interruption_reason | [TurnInterruptionReason](#ondewo.nlu.TurnInterruptionReason) |  | Why the turn was interrupted. |
+| heard_messages | [HeardMessage](#ondewo.nlu.HeardMessage) | repeated | One entry per message of the turn that was spoken, queued or skipped, in playback order. |
+| heard_text_precision | [HeardTextPrecision](#ondewo.nlu.HeardTextPrecision) |  | How the heard text was determined. |
+| caller_overlap_duration_in_s | [float](#float) |  | Duration of heard audio that was played after the user had started speaking (the overlap of bot and user), in seconds. |
+
+
+
+
+
+
 <a name="ondewo.nlu.ImageFileResource"></a>
 
 ### ImageFileResource
@@ -14121,6 +15047,37 @@ Instructs the speech recognizer how to process the audio content.
 | sample_rate_hertz | [int32](#int32) |  | Required. Sample rate (in Hertz) of the audio content sent in the query. Refer to <a href="/speech/docs/basics">Cloud Speech API documentation</a> for more details. |
 | language_code | [string](#string) |  | Required. The language of the supplied audio. Dialogflow does not do translations. See <a href="https://dialogflow.com/docs/languages">Language Support</a> for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language. |
 | phrase_hints | [string](#string) | repeated | Optional. The collection of phrase hints which are used to boost accuracy of speech recognition. Refer to <a href="/speech/docs/basics#phrase-hints">Cloud Speech API documentation</a> for more details. |
+
+
+
+
+
+
+<a name="ondewo.nlu.InterruptTurnRequest"></a>
+
+### InterruptTurnRequest
+The request to interrupt a turn of a session outside a <code>StreamingDetectIntent</code> stream.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| session | [string](#string) |  | Required. The session of the turn. Format: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code>. |
+| turn_control | [TurnControl](#ondewo.nlu.TurnControl) |  | Required. The control to apply. |
+
+
+
+
+
+
+<a name="ondewo.nlu.InterruptTurnResponse"></a>
+
+### InterruptTurnResponse
+The response to an <code>InterruptTurnRequest</code>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| turn_control_ack | [TurnControlAck](#ondewo.nlu.TurnControlAck) |  | Outcome of the control. |
 
 
 
@@ -14950,7 +15907,7 @@ Emitted on a streaming DetectIntent when an LLM invocation starts.
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | llm_call_id | [string](#string) |  | Collector-assigned id grouping all events emitted for this LLM call. |
-| provider | [string](#string) |  | Provider tag: "autogen" | "langchain" | "openai" | "anthropic" | ... |
+| provider | [string](#string) |  | Provider tag: "langchain" | "openai" | "anthropic" | ... ("autogen" only on telemetry recorded before AutoGen was removed). |
 | model_name | [string](#string) |  | Concrete model identifier (e.g. "claude-3-5-sonnet-20241022"). |
 | agent_name | [string](#string) |  | intent_agent executor / agent name owning the call. |
 | start_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock start of the LLM call. |
@@ -15248,7 +16205,7 @@ Telemetry for a single LLM invocation inside one DetectIntent turn.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| provider | [string](#string) |  | Provider tag: "autogen" | "langchain" | "openai" | "anthropic" | ... |
+| provider | [string](#string) |  | Provider tag: "langchain" | "openai" | "anthropic" | ... ("autogen" only on telemetry recorded before AutoGen was removed). |
 | model_name | [string](#string) |  | Concrete model identifier (e.g. "Qwen/Qwen3.6-27b-fp8"). |
 | agent_name | [string](#string) |  | intent_agent executor / agent name. |
 | llm_token_usage | [LlmTokenUsage](#ondewo.nlu.LlmTokenUsage) |  | Totals for this call. |
@@ -15283,14 +16240,14 @@ Telemetry for a single LLM invocation inside one DetectIntent turn.
 | cached_input_tokens | [int32](#int32) |  | Number of input tokens served from the provider-side prompt cache (Anthropic <code>cache_read_input_tokens</code>). |
 | cache_creation_input_tokens | [int32](#int32) |  | Number of input tokens written to the provider-side prompt cache (Anthropic <code>cache_creation_input_tokens</code>). |
 | langsmith_run_url | [string](#string) |  | LangSmith run URL for direct click-through when LangSmith tracing is active. |
-| team_name | [string](#string) |  | Autogen team display name owning the call. |
-| team_id | [string](#string) |  | Autogen team identifier (UUID). |
-| agent_role | [string](#string) |  | Autogen agent role tag (user_proxy | assistant | tool_executor | reflection). |
-| sender_agent | [string](#string) |  | Name of the autogen agent that produced the message. |
-| recipient_agent | [string](#string) |  | Name of the autogen agent that received the message. |
-| turn_index | [int32](#int32) |  | Zero-based position of this LLM call inside the autogen <code>run_stream()</code> sequence. |
-| reflection_iterations | [int32](#int32) |  | Number of reflection loops executed in <code>robust_assistant_agent</code> for this call. |
-| termination_reason | [string](#string) |  | Autogen <code>TaskResult.stop_reason</code> string when surfaced. |
+| team_name | [string](#string) |  | Display name of the agent team owning the call; empty for a single agent. |
+| team_id | [string](#string) |  | Identifier (UUID) of the agent team owning the call. |
+| agent_role | [string](#string) |  | Role tag of the agent that made the call inside its team. |
+| sender_agent | [string](#string) |  | Name of the agent that produced the message. |
+| recipient_agent | [string](#string) |  | Name of the agent that received the message. |
+| turn_index | [int32](#int32) |  | Zero-based position of this LLM call inside the agent run&apos;s sequence of LLM calls. |
+| reflection_iterations | [int32](#int32) |  | Deprecated: number of reflection loops of the removed AutoGen <code>robust_assistant_agent</code> for this call. No current agent runs reflection loops, so it is 0. |
+| termination_reason | [string](#string) |  | Stop reason of the agent team run when surfaced (formerly AutoGen <code>TaskResult.stop_reason</code>). |
 | evaluator_runs_join_key | [string](#string) |  | Join key linking this LLM call to an evaluator run (see llm_evaluation.proto). |
 | llm_evaluation_feedbacks | [LlmEvaluationFeedback](#ondewo.nlu.LlmEvaluationFeedback) | repeated | Immediate inline feedback recorded inside the turn (e.g. self-grading by a reflection agent). Each entry is a single LlmEvaluationFeedback record. |
 | ccai_service_name | [string](#string) |  | Resource name of the CCAI service that issued this LLM call. |
@@ -15310,7 +16267,7 @@ Telemetry for a single LLM invocation inside one DetectIntent turn.
 | ccai_service_provider | [CcaiServiceProvider](#ondewo.nlu.CcaiServiceProvider) |  | Provider of the ccai service |
 | llm_safety_assessment | [LlmSafetyAssessment](#ondewo.nlu.LlmSafetyAssessment) |  | Native (regex / substring, no-LLM) safety assessment computed at telemetry build time over the call's input / output text. Distinct from the offline LLM-judge safety evaluators in <code>llm_evaluation.proto</code>: this is the live MONITORING signal on real DetectIntent traffic. Unset when safety scoring is disabled. |
 | llm_retrieval_metadata | [LlmRetrievalMetadata](#ondewo.nlu.LlmRetrievalMetadata) |  | Typed view of the retrieved RAG chunks for this LLM call. Populated alongside the unstructured <code>outputs.retrieved_chunks</code> Struct (field 18, kept for back-compat); both carry the same chunk list. Unset for non-retrieval calls. |
-| llm_call_id | [string](#string) |  | Id of THIS LLM call. Same identifier the streaming telemetry events carry as <code>llm_call_id</code> (<code>LlmLlmCallStartedEvent</code>, <code>LlmToolCallStartedEvent</code>, ...), so an aggregate or a persisted row can be correlated back to the live event stream. Distinct from <code>run_id</code> (field 11), which is the UPSTREAM framework's id (autogen / langchain). |
+| llm_call_id | [string](#string) |  | Id of THIS LLM call. Same identifier the streaming telemetry events carry as <code>llm_call_id</code> (<code>LlmLlmCallStartedEvent</code>, <code>LlmToolCallStartedEvent</code>, ...), so an aggregate or a persisted row can be correlated back to the live event stream. Distinct from <code>run_id</code> (field 11), which is the UPSTREAM framework's id (e.g. langchain). |
 
 
 
@@ -15454,7 +16411,7 @@ Metadata for one tool call executed by the LLM.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| tool_call_id | [string](#string) |  | Stable id assigned by the upstream framework (autogen / langchain). |
+| tool_call_id | [string](#string) |  | Stable id assigned by the upstream framework (e.g. langchain). |
 | tool_name | [string](#string) |  | Name of the tool / function invoked. |
 | start_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock start time of the tool call. |
 | end_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock end time of the tool call. |
@@ -15477,7 +16434,7 @@ Emitted on a streaming DetectIntent when a tool call starts.
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| tool_call_id | [string](#string) |  | Stable id assigned by the upstream framework (autogen / langchain). |
+| tool_call_id | [string](#string) |  | Stable id assigned by the upstream framework (e.g. langchain). |
 | tool_name | [string](#string) |  | Name of the tool / function invoked. |
 | arguments | [google.protobuf.Struct](#google.protobuf.Struct) |  | Tool arguments as a structured payload (Struct kept as-is; not a custom Message). |
 | start_time | [google.protobuf.Timestamp](#google.protobuf.Timestamp) |  | Wall-clock start time of the tool call. |
@@ -15505,7 +16462,44 @@ One tool's invocation aggregate across the scope.
 | llm_token_usage | [LlmTokenUsage](#ondewo.nlu.LlmTokenUsage) |  | Summed tool-call token usage (input / output / total). |
 | arguments | [google.protobuf.Struct](#google.protobuf.Struct) |  | Arguments the representative invocation was called with, as a structured payload (Struct kept as-is; not a custom Message). Unset when the source metadata carried none. |
 | llm_call_id | [string](#string) |  | Groups the representative invocation under its <code>LlmTelemetry</code> entry. |
-| tool_call_id | [string](#string) |  | Stable id of the representative invocation, assigned by the upstream framework (autogen / langchain). |
+| tool_call_id | [string](#string) |  | Stable id of the representative invocation, assigned by the upstream framework (e.g. langchain). |
+
+
+
+
+
+
+<a name="ondewo.nlu.PrepareWarmTransferIntroRequest"></a>
+
+### PrepareWarmTransferIntroRequest
+The request to prepare the intro session of a warm transfer.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| intro_session | [string](#string) |  | Required. The intro session, which must not exist yet. Format: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code>. An existing session that was not prepared with the same <code>transfer_request_id</code> is refused with <code>ALREADY_EXISTS</code>. |
+| source_session | [string](#string) |  | Required. The caller's session the intro summarises. Format: <code>projects/&lt;project_uuid&gt;/agent/sessions/&lt;session_uuid&gt;</code>. A session of another project than <code>intro_session</code> is refused with <code>INVALID_ARGUMENT</code>. |
+| config | [WarmTransferIntroConfig](#ondewo.nlu.WarmTransferIntroConfig) |  | The configuration of the intro. |
+| language_code | [string](#string) |  | The language of the intro session. |
+| transfer_request_id | [string](#string) |  | Required. The idempotency key of the transfer. |
+
+
+
+
+
+
+<a name="ondewo.nlu.PrepareWarmTransferIntroResponse"></a>
+
+### PrepareWarmTransferIntroResponse
+The response to a <code>PrepareWarmTransferIntroRequest</code>. Never carries the intro text.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| text_source_used | [WarmTransferIntroTextSource](#ondewo.nlu.WarmTransferIntroTextSource) |  | The source the intro text was rendered from. |
+| text_fell_back | [bool](#bool) |  | True when the LLM failed or exceeded its budget and the TEMPLATE was used instead. |
+| intro_text_chars | [int32](#int32) |  | The length of the intro text in characters. |
+| prompt_digest | [string](#string) |  | The SHA-256 (hex) of the resolved prompt, for audit. |
 
 
 
@@ -15565,6 +16559,7 @@ For a phone bot, this is the phone number +123456789 the user called (Note: This
 https://aim-develop.ondewo.com/ |
 | identified_user_id | [string](#string) |  | Id of the &quot;identified user&quot; e.g. for a chatbot the email address or for a phone bot the phone number of the user This field can also be used for a customized tracking id or tag id |
 | transcriptions | [S2tTranscription](#ondewo.nlu.S2tTranscription) | repeated | transcriptions of the user input sorted by score |
+| preemptive_draft | [bool](#bool) |  | Optional. Marks the request as a preemptive draft: a turn the client (e.g. ondewo-csi) starts speculatively, e.g. on a partial transcript, and may later discard with <code>TurnControl.discard_draft</code>. The server records the mark on the session step of this request. A <code>DiscardDraft</code> deletes only a session step of the same session whose request carried this mark. A server that does not know this field ignores it and keeps the step. |
 
 
 
@@ -15622,6 +16617,7 @@ Chunk information for a document chunk referenced in a RAG based <code>Streaming
 | similarity | [float](#float) |  | Similarity score of this chunk for response it is retruned with. |
 | document_url | [string](#string) |  | For crawled documents the URL of the source document. For any other document it is left empty. |
 | deep_link_url | [string](#string) |  | For crawled documents link to the source document that directly jumps to the chunk's location on the page using a text fragment anchor (a bit fragile and might not always work). For any other document it is left empty. |
+| document_title | [string](#string) |  | Title of the document (optional). |
 
 
 
@@ -15941,6 +16937,8 @@ Multiple request messages should be sent in order:
 | query_input | [QueryInput](#ondewo.nlu.QueryInput) |  | Required. The input specification. It can be set to: <ol> <li>an audio config which instructs the speech recognizer how to process the speech audio,</li> <li>a conversational query in the form of text, or</li> <li>an event that specifies which intent to trigger.</li> </ol> |
 | single_utterance | [bool](#bool) |  | Optional. If <code>false</code> (default), recognition does not cease until the client closes the stream. If <code>true</code>, the recognizer will detect a single spoken utterance in input audio. Recognition ceases when it detects the audio&apos;s voice has stopped or paused. In this case, once a detected intent is received, the client should close the stream and start a new request with a new stream as needed. This setting is ignored when <code>query_input</code> is a piece of text or an event. |
 | input_audio | [bytes](#bytes) |  | Optional. The input audio content to be recognized. Must be sent if <code>query_input</code> was set to a streaming input audio config. The complete audio over all streaming messages must not exceed 1 minute. |
+| turn_control | [TurnControl](#ondewo.nlu.TurnControl) |  | Optional. Controls a turn of this stream: cancels it, reports what the user heard of its answer, or discards the session step of a preemptive draft. Sent ALONE (no <code>query_input</code>) on a call-length stream; the server applies it in stream order and starts no turn for it. Send it only to a server that advertised the initial metadata <code>x-ondewo-cai-turn-control: 1</code> on this stream: an older server treats a request without <code>query_input</code> as a malformed turn and ends the stream. |
+| client_turn_id | [string](#string) |  | Optional. Client-minted id (e.g. a uuid4 hex) of the turn this request STARTS; set together with <code>query_input</code>. The server echoes it on every response of that turn (<code>StreamingDetectIntentResponse.client_turn_id</code>), and a <code>CancelTurn</code> or <code>HeardReport</code> can name the turn by it before the server's <code>response_id</code> is known. |
 
 
 
@@ -15969,6 +16967,8 @@ Multiple response messages can be returned in order:
 | llm_thinking_delta | [LlmThinkingDeltaEvent](#ondewo.nlu.LlmThinkingDeltaEvent) |  | Emitted for an incremental LLM thinking (reasoning) update. |
 | llm_token_usage_update | [LlmTokenUsageUpdateEvent](#ondewo.nlu.LlmTokenUsageUpdateEvent) |  | Emitted when the running LLM token-usage totals are updated. |
 | llm_agent_node_event | [LlmAgentNodeEvent](#ondewo.nlu.LlmAgentNodeEvent) |  | Emitted when a node of an AI Team graph starts, completes or fails. |
+| turn_control_ack | [TurnControlAck](#ondewo.nlu.TurnControlAck) |  | Set on the response that acknowledges a <code>CancelTurn</code> or a <code>DiscardDraft</code> sent as <code>StreamingDetectIntentRequest.turn_control</code>; a <code>HeardReport</code> is not acknowledged on the stream. A response that carries it carries no query result and is never an answer. The acknowledgement of a <code>CancelTurn</code> is sent after every other response of the cancelled turn, so no response of that turn follows it. The acknowledgement of a <code>DiscardDraft</code> is sent once the discard is decided, between turns, with the draft's <code>response_id</code> and no <code>client_turn_id</code>: <code>TURN_CONTROL_ACK_STATUS_DRAFT_DISCARDED</code> when the draft's session step was deleted, <code>TURN_CONTROL_ACK_STATUS_UNKNOWN_TURN</code> when no step was deleted. Not part of <code>telemetry_event</code>. |
+| client_turn_id | [string](#string) |  | Echo of <code>StreamingDetectIntentRequest.client_turn_id</code> of the turn this response belongs to; empty when the client sent none. |
 
 
 
@@ -16034,6 +17034,42 @@ Represents the natural language text to be processed.
 | ----- | ---- | ----- | ----------- |
 | text | [string](#string) |  | Required. The UTF-8 encoded natural language text to be processed. Text length must not exceed 256 bytes. |
 | language_code | [string](#string) |  | Required. The language of this conversational query. See <a href="https://dialogflow.com/docs/languages">Language Support</a> for a list of the currently supported language codes. Note that queries in the same session do not necessarily need to specify the same language. |
+
+
+
+
+
+
+<a name="ondewo.nlu.TurnControl"></a>
+
+### TurnControl
+Controls one turn of a session. Sent as <code>StreamingDetectIntentRequest.turn_control</code> on a call-length
+stream, or in an <code>InterruptTurnRequest</code>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| cancel_turn | [CancelTurn](#ondewo.nlu.CancelTurn) |  | Cancel the turn: stop generating its answer. Acknowledged with a <code>TurnControlAck</code>. |
+| heard_report | [HeardReport](#ondewo.nlu.HeardReport) |  | Report what the user heard of the turn's answer, so the server rewrites the session step and the LLM memory to it. |
+| discard_draft | [DiscardDraft](#ondewo.nlu.DiscardDraft) |  | Discard the session step of a preemptive draft the client did not use. Acknowledged with a <code>TurnControlAck</code>. |
+
+
+
+
+
+
+<a name="ondewo.nlu.TurnControlAck"></a>
+
+### TurnControlAck
+Acknowledges a turn control.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| response_id | [string](#string) |  | The server's <code>response_id</code> of the turn; empty when it is not known (e.g. a turn cancelled before it started). |
+| client_turn_id | [string](#string) |  | <code>client_turn_id</code> of the turn, as sent by the client. |
+| turn_control_ack_status | [TurnControlAckStatus](#ondewo.nlu.TurnControlAckStatus) |  | Outcome of the turn control. |
+| server_cancel_duration_in_s | [float](#float) |  | Time the server took from receiving a <code>CancelTurn</code> until the turn's generation had stopped, in seconds; 0 for any other control. |
 
 
 
@@ -16112,6 +17148,59 @@ Represents a video file resource (e.g., MP4, AVI).
 
 
 
+
+<a name="ondewo.nlu.WarmTransferIntroConfig"></a>
+
+### WarmTransferIntroConfig
+The configuration of one warm transfer intro, as resolved by the caller of
+<code>PrepareWarmTransferIntro</code>. A text left empty (or unset, for an <code>optional</code> field) falls back
+to the agent's default text for the language (<code>Agent.warm_transfer_settings</code>), then to the built-in
+default. Texts are spoken to the target, never to the caller, except <code>caller_declined_message</code> and
+<code>caller_unreachable_message</code>.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| intro_prompt | [string](#string) |  | The LLM instruction (<code>WARM_TRANSFER_INTRO_TEXT_SOURCE_LLM_SUMMARY</code>) or the template text (<code>WARM_TRANSFER_INTRO_TEXT_SOURCE_TEMPLATE</code>, placeholders <code>{caller_name}</code>, <code>{callee_name}</code>, <code>{topic}</code>, <code>{summary}</code>) of the intro. At most 4000 characters. |
+| text_source | [WarmTransferIntroTextSource](#ondewo.nlu.WarmTransferIntroTextSource) |  | Where the intro text comes from. |
+| ready_question | [string](#string) |  | The first question to the target, which must not reveal anything about the caller, e.g. "Hier ist der digitale Assistent von {project}. Ich habe einen Anruf für Sie. Sind Sie am Apparat? Sagen Sie ja oder drücken Sie 1." Placeholder <code>{project}</code>: <code>project_display_name</code>. |
+| confirm_human_before_intro | [bool](#bool) | optional | Whether the intro is spoken only after the target answered <code>ready_question</code> (a guard against a mailbox). Unset = true. |
+| accept_question | [string](#string) |  | The question after the intro, e.g. "Möchten Sie das Gespräch übernehmen? Ja oder 1, nein oder 2." |
+| decline_reason_question | [string](#string) | optional | The question after a decline, e.g. "Was darf ich dem Anrufer ausrichten?". Unset = the agent's or the built-in default; set to "" = the reason is not asked for. |
+| caller_declined_message | [string](#string) |  | The template of the message the caller hears after a decline. Placeholders <code>{callee_name}</code> and <code>{reason}</code>; without a reason, the variant without the reason clause is used. |
+| caller_unreachable_message | [string](#string) |  | The template of the message the caller hears when the target was busy, did not answer, gave no decision or the intro could not run. Placeholder <code>{callee_name}</code>. |
+| accept_dtmf | [string](#string) |  | The DTMF key that accepts: one of <code>0-9</code>, <code>*</code>, <code>#</code>. Empty = "1". |
+| decline_dtmf | [string](#string) |  | The DTMF key that declines: one of <code>0-9</code>, <code>*</code>, <code>#</code>, different from <code>accept_dtmf</code>. Empty = "2". |
+| callee_display_name | [string](#string) |  | Who the target is, e.g. "Frau Berger, Buchhaltung": <code>{callee_name}</code>. At most 128 characters. |
+| callee_description | [string](#string) |  | The role and context of the target, given to the LLM intro. At most 512 characters. |
+| llm_ccai_service_name | [string](#string) |  | The <code>ONDEWO_NLU_LLM</code> CCAI service of the LLM intro. Empty = the agent's <code>warm_transfer_settings.llm_ccai_service_name</code>, then the project's first <code>ONDEWO_NLU_LLM</code> service. |
+| max_history_steps | [int32](#int32) |  | How many of the latest steps of the source session the intro reads. 0 = 30. |
+| decision_timeout_s | [int32](#int32) |  | Seconds from a question to the decision, declared to the client as the expected input's timeout. |
+| project_display_name | [string](#string) |  | The project's display name: <code>{project}</code> in <code>ready_question</code>. |
+
+
+
+
+
+
+<a name="ondewo.nlu.WarmTransferIntroOutcome"></a>
+
+### WarmTransferIntroOutcome
+The outcome of a warm transfer intro. Holds no intro text and no reason text.
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| decision | [WarmTransferIntroDecision](#ondewo.nlu.WarmTransferIntroDecision) |  | The decision of the target. |
+| decided_by | [WarmTransferIntroDecidedBy](#ondewo.nlu.WarmTransferIntroDecidedBy) |  | How the decision was given. |
+| decline_reason_present | [bool](#bool) |  | True when the target gave a reason after declining. |
+| stage | [WarmTransferIntroStage](#ondewo.nlu.WarmTransferIntroStage) |  | The stage of the intro session. |
+| cause | [string](#string) |  | A bounded token naming why there is no decision, e.g. <code>voicemail-suspected</code> (no ready answer) or <code>unclear-twice</code>; empty otherwise. |
+
+
+
+
+
  <!-- end messages -->
 
 
@@ -16145,6 +17234,18 @@ File type of an audio resource
 | AUDIO_FILE_RESOURCE_TYPE_T2S | 1 | Audio file from text to speech |
 | AUDIO_FILE_RESOURCE_TYPE_S2T | 2 | Audio file from speech to text |
 | AUDIO_FILE_RESOURCE_TYPE_S2T_AND_T2S | 3 | Audio file from speech to text and text to speech |
+
+
+
+<a name="ondewo.nlu.BackgroundWorkPolicy"></a>
+
+### BackgroundWorkPolicy
+What happens to background work (e.g. an asynchronous tool) the cancelled turn started.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| BACKGROUND_WORK_POLICY_KEEP | 0 | Keep it running; its result is delivered later as usual. |
+| BACKGROUND_WORK_POLICY_CANCEL_PENDING | 1 | Cancel work that is still pending, unless the user already heard it acknowledged. |
 
 
 
@@ -16219,6 +17320,21 @@ fixed-width bucket_width_seconds on the request.
 | FEEDBACK_TIME_GRANULARITY_WEEK | 3 | Weekly calendar buckets (ISO weeks, Monday start). |
 | FEEDBACK_TIME_GRANULARITY_MONTH | 4 | Monthly calendar buckets. |
 | FEEDBACK_TIME_GRANULARITY_YEAR | 5 | Yearly calendar buckets. |
+
+
+
+<a name="ondewo.nlu.HeardTextPrecision"></a>
+
+### HeardTextPrecision
+How the heard text of a <code>HeardReport</code> was determined.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| HEARD_TEXT_PRECISION_UNSPECIFIED | 0 | Not set. |
+| HEARD_TEXT_PRECISION_NONE_HEARD | 1 | Nothing of the answer was heard. |
+| HEARD_TEXT_PRECISION_FULL | 2 | The whole answer was heard. |
+| HEARD_TEXT_PRECISION_ESTIMATED_SERVER | 3 | The played share of the audio was estimated by the client from when it handed the audio to the player, not measured by the player, and mapped proportionally onto the text. |
+| HEARD_TEXT_PRECISION_PROPORTIONAL | 4 | The played share of the audio was measured by the audio player and mapped proportionally onto the text. |
 
 
 
@@ -16333,6 +17449,100 @@ speech-to-text system or by a human annotator.
 | TRANSCRIPTION_TYPE_HUMAN | 2 | Manual transcription produced by a human annotator. |
 
 
+
+<a name="ondewo.nlu.TurnControlAckStatus"></a>
+
+### TurnControlAckStatus
+Outcome of a turn control.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| TURN_CONTROL_ACK_STATUS_UNSPECIFIED | 0 | Not set. |
+| TURN_CONTROL_ACK_STATUS_CANCELLED | 1 | The turn was being generated and is now cancelled. |
+| TURN_CONTROL_ACK_STATUS_CANCELLED_QUEUED | 2 | The turn had not started yet; it is cancelled and will not run. |
+| TURN_CONTROL_ACK_STATUS_ALREADY_FINISHED | 3 | The turn had already finished generating; nothing was cancelled. |
+| TURN_CONTROL_ACK_STATUS_UNKNOWN_TURN | 4 | No turn of this session matches the given ids. For a <code>DiscardDraft</code>: no session step of this session with the given <code>response_id</code> carries <code>QueryParameters.preemptive_draft</code>; the discard is refused and the step, if one exists, is kept. |
+| TURN_CONTROL_ACK_STATUS_HEARD_APPLIED | 5 | The heard report was applied to the turn's session step. |
+| TURN_CONTROL_ACK_STATUS_HEARD_STALE | 6 | The heard report was ignored because a report with the same or a higher revision was already applied. |
+| TURN_CONTROL_ACK_STATUS_DRAFT_DISCARDED | 7 | The draft's session step, whose request carried <code>QueryParameters.preemptive_draft</code>, was deleted. |
+
+
+
+<a name="ondewo.nlu.TurnInterruptionReason"></a>
+
+### TurnInterruptionReason
+Why a turn was interrupted.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| TURN_INTERRUPTION_REASON_UNSPECIFIED | 0 | Not set. |
+| TURN_INTERRUPTION_REASON_BARGE_IN | 1 | The user spoke over the answer and the interruption was confirmed as real. |
+| TURN_INTERRUPTION_REASON_CALLER_SPOKE_WHILE_THINKING | 2 | The user spoke again while the turn was still being generated, before any of its answer was played. |
+| TURN_INTERRUPTION_REASON_CALL_ENDED | 3 | The call ended while the turn was being generated or played. |
+| TURN_INTERRUPTION_REASON_FILLER_CUT | 4 | A filler of the turn was cut. |
+| TURN_INTERRUPTION_REASON_NO_FINAL_TIMEOUT | 5 | The user started speaking but no final transcript arrived in time, and the held answer was discarded. |
+| TURN_INTERRUPTION_REASON_OPERATOR_TAKEOVER | 6 | A human operator took the call over. |
+| TURN_INTERRUPTION_REASON_BOT_MUTED | 7 | A human operator muted the bot. |
+
+
+
+<a name="ondewo.nlu.WarmTransferIntroDecidedBy"></a>
+
+### WarmTransferIntroDecidedBy
+How the target of a warm transfer intro gave the decision.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| WARM_TRANSFER_INTRO_DECIDED_BY_UNSPECIFIED | 0 | Not set, or not decided yet. |
+| WARM_TRANSFER_INTRO_DECIDED_BY_DTMF | 1 | By a DTMF key. |
+| WARM_TRANSFER_INTRO_DECIDED_BY_SPEECH | 2 | By speech. |
+| WARM_TRANSFER_INTRO_DECIDED_BY_TIMEOUT | 3 | By the decision timeout. |
+
+
+
+<a name="ondewo.nlu.WarmTransferIntroDecision"></a>
+
+### WarmTransferIntroDecision
+The decision of the target of a warm transfer intro.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| WARM_TRANSFER_INTRO_DECISION_UNSPECIFIED | 0 | Not set. |
+| WARM_TRANSFER_INTRO_DECISION_PENDING | 1 | The intro is still running. |
+| WARM_TRANSFER_INTRO_DECISION_ACCEPTED | 2 | The target accepted the call. |
+| WARM_TRANSFER_INTRO_DECISION_DECLINED | 3 | The target declined the call. |
+| WARM_TRANSFER_INTRO_DECISION_NO_DECISION | 4 | The target gave no decision: no ready answer, an unclear answer twice, or a timeout. |
+
+
+
+<a name="ondewo.nlu.WarmTransferIntroStage"></a>
+
+### WarmTransferIntroStage
+The stage of a warm transfer intro session.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| WARM_TRANSFER_INTRO_STAGE_UNSPECIFIED | 0 | Not set. |
+| WARM_TRANSFER_INTRO_STAGE_PREPARED | 1 | Prepared; nothing spoken yet. |
+| WARM_TRANSFER_INTRO_STAGE_READY_ASKED | 2 | <code>ready_question</code> spoken, waiting for a person to answer. |
+| WARM_TRANSFER_INTRO_STAGE_INTRO_SPOKEN | 3 | The intro and <code>accept_question</code> spoken, waiting for the decision. |
+| WARM_TRANSFER_INTRO_STAGE_REASON_ASKED | 4 | <code>decline_reason_question</code> spoken, waiting for the reason. |
+| WARM_TRANSFER_INTRO_STAGE_CLOSED | 5 | The final answer, which ends the target's call, was generated. |
+
+
+
+<a name="ondewo.nlu.WarmTransferIntroTextSource"></a>
+
+### WarmTransferIntroTextSource
+Where the intro text of a warm transfer comes from.
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| WARM_TRANSFER_INTRO_TEXT_SOURCE_UNSPECIFIED | 0 | Not set: <code>WARM_TRANSFER_INTRO_TEXT_SOURCE_LLM_SUMMARY</code> when the project has an LLM service, else <code>WARM_TRANSFER_INTRO_TEXT_SOURCE_TEMPLATE</code>. |
+| WARM_TRANSFER_INTRO_TEXT_SOURCE_TEMPLATE | 1 | <code>WarmTransferIntroConfig.intro_prompt</code> is a text with the placeholders <code>{caller_name}</code>, <code>{callee_name}</code>, <code>{topic}</code> and <code>{summary}</code>. |
+| WARM_TRANSFER_INTRO_TEXT_SOURCE_LLM_SUMMARY | 2 | An LLM summarises the source session for the target; <code>WarmTransferIntroConfig.intro_prompt</code> is its instruction. |
+
+
  <!-- end enums -->
 
  <!-- end HasExtensions -->
@@ -16347,6 +17557,9 @@ A session represents an interaction with a user. You retrieve user input and pas
 | ----------- | ------------ | ------------- | ------------|
 | DetectIntent | [DetectIntentRequest](#ondewo.nlu.DetectIntentRequest) | [DetectIntentResponse](#ondewo.nlu.DetectIntentResponse) | Processes a natural language query and returns structured, actionable data as a result. This method is not idempotent, because it may cause contexts and session entity types to be updated, which in turn might affect results of future queries. |
 | StreamingDetectIntent | [StreamingDetectIntentRequest](#ondewo.nlu.StreamingDetectIntentRequest) stream | [StreamingDetectIntentResponse](#ondewo.nlu.StreamingDetectIntentResponse) stream | Processes a natural language query in audio format in a streaming fashion and returns structured, actionable data as a result. This method is only available via the gRPC API (not REST). |
+| InterruptTurn | [InterruptTurnRequest](#ondewo.nlu.InterruptTurnRequest) | [InterruptTurnResponse](#ondewo.nlu.InterruptTurnResponse) | Interrupts a turn of the session outside a <code>StreamingDetectIntent</code> stream: cancels it, reports what the user actually heard of its answer, or discards the session step of a preemptive draft. Meant for clients without a call-length stream (e.g. a stop button) and for a heard report that arrives after the stream closed. A voice client with an open stream sends the same <code>TurnControl</code> on that stream instead (<code>StreamingDetectIntentRequest.turn_control</code>). Requires the permission to interrupt a turn of the session's project. |
+| PrepareWarmTransferIntro | [PrepareWarmTransferIntroRequest](#ondewo.nlu.PrepareWarmTransferIntroRequest) | [PrepareWarmTransferIntroResponse](#ondewo.nlu.PrepareWarmTransferIntroResponse) | Prepares the intro session of a warm transfer: reads the history, the contexts and the slots of the source (caller) session, renders the intro text (with an LLM within a time budget, or from the TEMPLATE when the LLM fails or is not configured), strips every <code>&lt;SIP:…&gt;</code> markup from it, and stores the text, the configuration and the stage in the intro session, which must not exist yet. Writes no step into the source session. Idempotent per (<code>intro_session</code>, <code>transfer_request_id</code>): a repeated request answers the response of the first one. Answers <code>UNIMPLEMENTED</code> when the server's warm transfer feature is switched off, and <code>FAILED_PRECONDITION</code> with <code>reason=warm-intro-disabled-for-agent</code> when <code>Agent.warm_transfer_settings.enabled</code> is false. Requires the permission to run a warm transfer intro of the session's project. See <code>docs/warm_transfer.md</code>. |
+| GetWarmTransferIntroOutcome | [GetWarmTransferIntroOutcomeRequest](#ondewo.nlu.GetWarmTransferIntroOutcomeRequest) | [WarmTransferIntroOutcome](#ondewo.nlu.WarmTransferIntroOutcome) | Returns the decision the target gave in the intro session of a warm transfer. Never returns the reason text or the intro text. Answers <code>UNIMPLEMENTED</code> when the server's warm transfer feature is switched off. Requires the permission to run a warm transfer intro of the session's project. |
 | ListSessions | [ListSessionsRequest](#ondewo.nlu.ListSessionsRequest) | [ListSessionsResponse](#ondewo.nlu.ListSessionsResponse) | ListSessions: returns list of sessions from ondewo-kb; by default returns only session IDs |
 | GetSession | [GetSessionRequest](#ondewo.nlu.GetSessionRequest) | [Session](#ondewo.nlu.Session) | GetSession: returns a session(=conversation) from ondewo-kb |
 | CreateSession | [CreateSessionRequest](#ondewo.nlu.CreateSessionRequest) | [Session](#ondewo.nlu.Session) | CreateSession: creates and returns a session(=conversation) from ondewo-kb |
@@ -18593,12 +19806,13 @@ upstream in <code>get_speech_timestamps</code> / <code>VADIterator</code>.</p>
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| transcribe_not_final | [bool](#bool) |  | Indicates whether to transcribe non-final results. |
+| transcribe_not_final | [bool](#bool) | optional | Indicates whether to transcribe non-final results for every stream of this pipeline. Unset: the server default, which is now <code>true</code>; an explicit <code>false</code> opts the pipeline out of non-final results. A request's <code>UtteranceDetectionOptions.transcribe_not_final</code> overrides it. Declared <code>optional</code> (same field number, wire-compatible) so an explicit <code>false</code> can be told apart from unset. |
 | decoding_method | [string](#string) |  | Decoding method for speech recognition. |
 | sampling_rate | [int64](#int64) |  | Sampling rate for audio input. |
 | min_audio_chunk_size | [int64](#int64) |  | Minimum audio chunk size for processing. |
 | next_chunk_timeout | [float](#float) |  | Timeout between audio chunks; if exceeded, the stream will be stopped. |
 | turn_detection | [TurnDetectionOptions](#ondewo.s2t.TurnDetectionOptions) |  | Configuration of the options to turn-detection in utterances |
+| transcribe_not_final_period_seconds | [float](#float) | optional | Optional. The minimum new audio, in seconds, between two non-final transcriptions of an utterance (the partial-transcription cadence) for every stream of this pipeline. Overrides the server setting <code>ONDEWO_S2T_INFERENCE_SLIDING_PERIOD_OF_TRANSCRIPT</code>; a request's <code>UtteranceDetectionOptions.transcribe_not_final_period_seconds</code> overrides it. Allowed: (0, 5]; the effective cadence is rounded up to whole <code>min_audio_chunk_size</code> chunks. Unset: the server setting. |
 
 
 
@@ -18729,6 +19943,7 @@ upstream in <code>get_speech_timestamps</code> / <code>VADIterator</code>.</p>
 | audio | [bytes](#bytes) |  | audio bytes of the transcribed utterance |
 | utterance_start | [bool](#bool) |  | is it a start of the utterance |
 | audio_uuid | [string](#string) |  | id of the transcribed audio file |
+| end_of_speech_candidate | [bool](#bool) |  | Whether this response is an end-of-speech candidate. Sent only when the request set <code>TranscriptionReturnOptions.return_end_of_speech_candidate</code>, only under server-side turn detection, and only on the chunk where the server found the end of the caller's speech and its turn detector held the utterance open (not finished, an uncertain hold band, or the minimum endpointing delay), so the final may follow seconds later. Not sent without turn detection, when the detector judges the turn finished (the final is then sent on that same chunk), or while the utterance has no text yet. Never set on a final. At most once per pause: if the caller resumes speaking and pauses again, the next pause may send another one. With non-final results on, it is a FLAG on the non-final response the server sends for that chunk anyway, so it is an ordinary partial plus the hint, not an extra response; with non-final results off, the server sends one non-final response carrying the current text in <code>transcriptions</code>. It is a hint, not a commit: the utterance's final still follows, or the utterance continues if the caller resumes, and the final text may differ. Always false otherwise. |
 | config | [TranscribeRequestConfig](#ondewo.s2t.TranscribeRequestConfig) |  | The configuration for the transcription |
 
 
@@ -18787,6 +20002,148 @@ upstream in <code>get_speech_timestamps</code> / <code>VADIterator</code>.</p>
 | return_alternative_words | [bool](#bool) |  | Whether or not to return alternative results from beam-search |
 | return_alternative_words_nr | [int32](#int32) |  | Optional. Number of alternative words to results |
 | return_word_timing | [bool](#bool) |  | Optional. Whether or not to return timestamps of start and end of the words. Only used in TranscribeFile. |
+| return_end_of_speech_candidate | [bool](#bool) |  | Optional. Whether the server should send an end-of-speech candidate on a stream (see <code>TranscribeStreamResponse.end_of_speech_candidate</code> for what is sent and when). Only used in TranscribeStream, and only acted on under server-side turn detection. Fixed per stream, like <code>return_start_of_speech</code>: the server completes each request config from the one in effect, so a later request without <code>return_options</code> keeps it, but a later <code>return_options</code> block replaces every return option at once and must repeat this field, or the candidate stops for the rest of the stream. Defaults to false: no candidate is sent, exactly as before this field existed. |
+
+
+
+
+
+
+<a name="ondewo.s2t.TurnDetectionChatLlmOptions"></a>
+
+### TurnDetectionChatLlmOptions
+<p>TurnDetectionChatLlmOptions configures a chat LLM as the turn detector: the LLM is asked, with the prompts
+below and the transcription of the turn, whether the caller has finished.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| openai_llm_options | [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions) | optional | Optional. The OpenAI-compatible endpoint and model of the chat LLM. Unset fields take the server's configured values. A <code>model</code> starting with <code>pipecat-</code> or <code>ondewo-s2t-model-</code> is refused with INVALID_ARGUMENT: those detectors have their own options. |
+| system_prompt | [string](#string) | optional | Optional. System prompt that guides the LLM. Unset = the server's configured prompt. |
+| user_prompt | [string](#string) | optional | Optional. User prompt that carries the turn under evaluation. Unset = the server's configured prompt. |
+
+
+
+
+
+
+<a name="ondewo.s2t.TurnDetectionContextTurn"></a>
+
+### TurnDetectionContextTurn
+<p>One turn of the conversation context of the turn detection, read only by
+<code>TurnDetectionEndOfUtteranceLlmOptions</code>.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| role | [TurnDetectionContextTurn.Role](#ondewo.s2t.TurnDetectionContextTurn.Role) |  | Who spoke the turn. |
+| text | [string](#string) |  | The text of the turn. |
+
+
+
+
+
+
+<a name="ondewo.s2t.TurnDetectionConversationContext"></a>
+
+### TurnDetectionConversationContext
+<p>TurnDetectionConversationContext carries the latest turns of the conversation for
+<code>TurnDetectionEndOfUtteranceLlmOptions</code> (see
+<code>TurnDetectionOptions.turn_detection_conversation_context</code>). No other detector reads it.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| turn_detection_context_turns | [TurnDetectionContextTurn](#ondewo.s2t.TurnDetectionContextTurn) | repeated | The turns of the conversation, oldest first. They EXCLUDE the caller's utterance under evaluation, which the server appends itself. |
+
+
+
+
+
+
+<a name="ondewo.s2t.TurnDetectionEndOfUtteranceLlmOptions"></a>
+
+### TurnDetectionEndOfUtteranceLlmOptions
+<p>TurnDetectionEndOfUtteranceLlmOptions configures an end-of-utterance LLM (LiveKit-shaped, e.g.
+<code>livekit/turn-detector</code>) as the turn detector: the model scores the probability of the
+end-of-utterance token after the turn's transcription and, when
+<code>TurnDetectionOptions.turn_detection_conversation_context</code> is set, the turns before it.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| openai_llm_options | [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions) | optional | Optional. The OpenAI-compatible endpoint and served model name. Unset fields take the server's configured values. |
+| end_of_turn_probability_threshold | [float](#float) | optional | Optional. The end-of-utterance probability at or above which the caller is taken to have finished the turn, valid range: 0 - 1. Unset = the server's configured value (default: the threshold configured for the language of the stream). |
+| turn_detection_hold_bands | [TurnDetectionHoldBands](#ondewo.s2t.TurnDetectionHoldBands) | optional | Optional. How long a turn judged finished, but only with a probability below a band's upper bound, waits for further silence before it is committed. Unset = the server's configured value (default: the bands configured for the language of the stream). A wrapper only so that "set with no bands" (a turn at or above the threshold is committed at once) means something different from "unset". |
+| uncertain_min_words | [uint32](#uint32) | optional | Optional. The minimum number of words an utterance needs before a hold band may hold it; a shorter utterance judged finished is committed at once. Unset = the server's configured value (default: 3). |
+| exact_probability | [bool](#bool) | optional | Optional. Whether the exact probability of the end-of-utterance token is computed instead of being read from the returned top log probabilities. Unset = the server's configured value (default: false). Requires a deployment that returns prompt log probabilities (vLLM <code>prompt_logprobs</code>); on any other deployment the probability reads 0, so every turn is judged not finished and waits for <code>TurnDetectionOptions.incomplete_max_silence_seconds</code>. |
+
+
+
+
+
+
+<a name="ondewo.s2t.TurnDetectionHoldBand"></a>
+
+### TurnDetectionHoldBand
+<p>One hold band of <code>TurnDetectionEndOfUtteranceLlmOptions</code>.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| upper_probability | [float](#float) |  | The exclusive upper bound of the end-of-utterance probabilities this band covers, valid range: 0 - 1. |
+| max_silence_seconds | [float](#float) |  | Seconds of silence a turn in this band waits before it is committed, valid range: 0 - 4. The server never holds longer than <code>TurnDetectionOptions.incomplete_max_silence_seconds</code>. |
+
+
+
+
+
+
+<a name="ondewo.s2t.TurnDetectionHoldBands"></a>
+
+### TurnDetectionHoldBands
+<p>TurnDetectionHoldBands carries the hold bands of <code>TurnDetectionEndOfUtteranceLlmOptions</code>. No other
+detector reads them.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| turn_detection_hold_bands | [TurnDetectionHoldBand](#ondewo.s2t.TurnDetectionHoldBand) | repeated | The bands, each holding a turn judged finished with a probability below its upper bound: the first band, sorted by <code>upper_probability</code>, whose upper probability exceeds the end-of-utterance probability decides the hold. A probability above every band is finished at once. |
+
+
+
+
+
+
+<a name="ondewo.s2t.TurnDetectionOndewoDeFusionOptions"></a>
+
+### TurnDetectionOndewoDeFusionOptions
+<p>TurnDetectionOndewoDeFusionOptions configures the ONDEWO German fusion turn detector. It combines the ONDEWO
+German text model on vLLM, acoustic heads on Triton and signals computed from the stream into one end-of-turn
+probability. The Triton heads, the text model's served name and the weights file are server settings.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| openai_llm_options | [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions) | optional | Optional. Addresses the vLLM deployment of the text model (<code>base_url</code>, <code>api_key</code>, <code>timeout</code>); <code>model</code> names the fusion variant, e.g. <code>ondewo-s2t-model-de-fusion-turn-detection</code>. Unset fields take the server's configured values. |
+| end_of_turn_probability_threshold | [float](#float) | optional | Optional. The end-of-turn probability at or above which the caller is taken to have finished the turn, valid range: 0 - 1. Unset = the server's configured value, else the weights file's threshold. |
+
+
+
+
+
+
+<a name="ondewo.s2t.TurnDetectionOndewoDeOptions"></a>
+
+### TurnDetectionOndewoDeOptions
+<p>TurnDetectionOndewoDeOptions configures the ONDEWO German turn-detection model as the turn detector. It judges
+the turn from its text and word timing and is served by vLLM.</p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| openai_llm_options | [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions) | optional | Optional. The vLLM deployment: <code>base_url</code>, <code>api_key</code> and <code>timeout</code> address it, <code>model</code> is the served model name, e.g. <code>ondewo-s2t-model-de-vad-tsd-ondewo-qwen3-0.6b</code>. Unset fields take the server's configured values. |
+| end_of_turn_probability_threshold | [float](#float) | optional | Optional. The end-of-turn probability the model must reach for the caller to be taken to have finished the turn, valid range: 0 - 1. A turn below it is judged not finished and waits for <code>TurnDetectionOptions.incomplete_max_silence_seconds</code>. Unset = the server's configured value (default: 0.5). Precedence: the request config's value, then the pipeline config's value, then the server's configured value. |
 
 
 
@@ -18796,16 +20153,52 @@ upstream in <code>get_speech_timestamps</code> / <code>VADIterator</code>.</p>
 <a name="ondewo.s2t.TurnDetectionOptions"></a>
 
 ### TurnDetectionOptions
-<p>Configuration of the options to turn-detection in utterances</p>
+<p>TurnDetectionOptions configures turn detection: deciding, at a pause of the caller, whether the caller has
+finished the turn. Exactly one turn detector is chosen by <code>oneof_turn_detector</code>; the fields outside it
+apply to every detector.</p>
+<p>Precedence for every field: the request config's value
+(<code>TranscribeRequestConfig.utterance_detection.turn_detection</code>), then the pipeline config's value
+(<code>StreamingSpeechRecognition.turn_detection</code>), then the server's configured value. When the request
+config chooses a different detector than the pipeline config, the request config's detector is used with only
+its own fields: none of the pipeline config's detector fields carry over.</p>
 
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
 | active | [bool](#bool) | optional | Optional. Indicates if the turn-detection feature is active. |
-| full_utterance_deployment | [bool](#bool) | optional | Optional. Whether to transcribe the whole utterance when turn moment is detected. It is helpful to increase accuracy of transcriptions in cost of drop in speed. If deactivated, it just transcribe from last short silence period and concatenates the transcriptions of small audio chunks between tiny silences. |
-| turn_detection_system_prompt | [string](#string) | optional | Optional. System prompt used to guide the turn-detection model. |
-| turn_detection_user_prompt | [string](#string) | optional | Optional. User prompt used as input to the turn-detection model. |
-| turn_detection_llm_openai_options | [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions) | optional | Optional. Configuration options for the OpenAI client used for turn detection. |
+| full_utterance_deployment | [bool](#bool) | optional | Optional. Whether to transcribe the whole utterance when the end of a turn is detected. It increases the accuracy of the transcription at the cost of speed. If deactivated, only the audio after the last short silence is transcribed and the transcriptions of the short audio chunks between silences are concatenated. |
+| turn_detection_system_prompt | [string](#string) | optional | **Deprecated.** Optional. Deprecated in favour of <code>turn_detection_chat_llm_options.system_prompt</code>, but still honoured so that configurations written for ondewo-s2t-api 7.5.0 and earlier keep working unchanged. Read only when <code>oneof_turn_detector</code> is not set. |
+| turn_detection_user_prompt | [string](#string) | optional | **Deprecated.** Optional. Deprecated in favour of <code>turn_detection_chat_llm_options.user_prompt</code>, but still honoured. Read only when <code>oneof_turn_detector</code> is not set. |
+| turn_detection_llm_openai_options | [OpenaiLlmOptions](#ondewo.s2t.OpenaiLlmOptions) | optional | **Deprecated.** Optional. Deprecated in favour of <code>oneof_turn_detector</code>, but still honoured. Read only when <code>oneof_turn_detector</code> is not set; its <code>model</code> then selects the detector by its name, as before <code>oneof_turn_detector</code> existed: a name starting with <code>pipecat-smart-turn</code> selects pipecat Smart Turn, one starting with <code>ondewo-s2t-model-de-vad-tsd-ondewo-qwen3</code> the ONDEWO German turn-detection model, one starting with <code>ondewo-s2t-model-de-fusion-turn-detection</code> the ONDEWO German fusion turn detector, and any other name a chat LLM or an end-of-utterance LLM. A name starting with <code>pipecat-</code> or <code>ondewo-s2t-model-</code> that matches none of these is refused with INVALID_ARGUMENT. On this path every detector-specific value is the server's configured value. |
+| incomplete_max_silence_seconds | [float](#float) | optional | Optional. Seconds of silence after an utterance judged NOT finished before it is finished anyway, valid range: 0 - 4. The server raises a value below the voice activity detection's <code>min_duration_off</code> to it. Unset = the server's configured value (default: the <code>min_duration_off</code> in use). Applies to every "not finished" verdict, whichever detector gave it, including a verdict that did not arrive in time. |
+| turn_detection_conversation_context | [TurnDetectionConversationContext](#ondewo.s2t.TurnDetectionConversationContext) | optional | Optional. The latest turns of the conversation before the caller's utterance under evaluation, handed to the end-of-utterance LLM as preceding chat turns so that it can judge the utterance against what was said before, e.g. a bare number answering a question for a number. Kept outside <code>oneof_turn_detector</code> because it is conversation data, not detector configuration: the server keeps it per stream, a request whose turn detection carries this field replaces it, an empty wrapper (no turns) clears it, and a request without it keeps it. That is why it is a wrapper: the server merges request configs per whole top-level field, so a field it did not store itself could not survive a later request that carries turn detection without it. The server caps the number of turns and the length of each turn. Unset or empty: the utterance is judged alone. Read only by <code>turn_detection_end_of_utterance_llm_options</code>; ignored by every other detector. Honoured only in a request config; ignored in a pipeline config, where a per-stream context has no meaning. |
+| turn_detection_chat_llm_options | [TurnDetectionChatLlmOptions](#ondewo.s2t.TurnDetectionChatLlmOptions) |  | A chat LLM asked, with a prompt, whether the caller has finished the turn. |
+| turn_detection_end_of_utterance_llm_options | [TurnDetectionEndOfUtteranceLlmOptions](#ondewo.s2t.TurnDetectionEndOfUtteranceLlmOptions) |  | An end-of-utterance LLM (LiveKit-shaped) that scores the probability of the end-of-utterance token. |
+| turn_detection_ondewo_de_options | [TurnDetectionOndewoDeOptions](#ondewo.s2t.TurnDetectionOndewoDeOptions) |  | The ONDEWO German turn-detection model: the turn's text and timing, served by vLLM. |
+| turn_detection_ondewo_de_fusion_options | [TurnDetectionOndewoDeFusionOptions](#ondewo.s2t.TurnDetectionOndewoDeFusionOptions) |  | The ONDEWO German fusion turn detector: the ONDEWO German text model on vLLM plus acoustic heads on Triton, combined into one end-of-turn probability. |
+| turn_detection_pipecat_smart_turn_options | [TurnDetectionPipecatSmartTurnOptions](#ondewo.s2t.TurnDetectionPipecatSmartTurnOptions) |  | pipecat Smart Turn v3.2: audio only, served by Triton. |
+
+
+
+
+
+
+<a name="ondewo.s2t.TurnDetectionPipecatSmartTurnOptions"></a>
+
+### TurnDetectionPipecatSmartTurnOptions
+<p>TurnDetectionPipecatSmartTurnOptions configures pipecat Smart Turn v3.2 as the turn detector. It judges the
+turn from the caller's audio alone and is served by Triton.</p>
+<p>Model: <a href="https://github.com/pipecat-ai/smart-turn">pipecat Smart Turn</a></p>
+
+
+| Field | Type | Label | Description |
+| ----- | ---- | ----- | ----------- |
+| model_name | [string](#string) | optional | Optional. Full name of the Triton model. Unset = the server's configured value (default: <code>ondewo-s2t-model-multi-turn-detection-pipecat-smart-turn-3.2-onnx-triton</code>). |
+| triton_server_host | [string](#string) | optional | Optional. Host name of the Triton inference server that serves the model, as <code>Pyannote.triton_server_host</code>. Unset = the server's configured value. The connection uses the server's Triton client TLS settings. |
+| triton_server_port | [int64](#int64) | optional | Optional. Port of the Triton inference server that serves the model, as <code>Pyannote.triton_server_port</code>. Unset = the server's configured value. |
+| max_audio_seconds | [float](#float) | optional | Optional. Seconds of the caller's audio, ending at the decision moment, that the model hears; valid range: 1 - 8. Shorter audio is left-padded with silence to 8 s, as the model was trained. Unset = the server's configured value (default: 8). |
+| timeout_seconds | [float](#float) | optional | Optional. Seconds to wait for Triton's answer, valid range: greater than 0, at most 5. A turn whose verdict does not arrive in time is judged not finished and waits for <code>TurnDetectionOptions.incomplete_max_silence_seconds</code>. Unset = the server's configured value (default: 0.2). |
+| end_of_turn_probability_threshold | [float](#float) | optional | Optional. The end-of-turn probability Smart Turn must report for the caller to be taken to have finished the turn, valid range: 0 - 1. A turn below it is judged not finished and waits for <code>TurnDetectionOptions.incomplete_max_silence_seconds</code>. Unset = the server's configured value (default: 0.5). Precedence: the request config's value, then the pipeline config's value, then the server's configured value. |
 
 
 
@@ -18820,9 +20213,11 @@ upstream in <code>get_speech_timestamps</code> / <code>VADIterator</code>.</p>
 
 | Field | Type | Label | Description |
 | ----- | ---- | ----- | ----------- |
-| transcribe_not_final | [bool](#bool) |  | Return also immediate transcription results |
+| transcribe_not_final | [bool](#bool) |  | Return also immediate transcription results (non-final transcriptions of an utterance while it is still being spoken). Unset: the pipeline's <code>StreamingSpeechRecognition.transcribe_not_final</code>, then the server default, which is now <code>true</code>; an explicit <code>false</code> opts this request out of non-final results. |
 | next_chunk_timeout | [float](#float) |  | if time between audio chunks exceeds next_chunk_timeout, stream will be stopped |
 | turn_detection | [TurnDetectionOptions](#ondewo.s2t.TurnDetectionOptions) |  | The turn detection options |
+| min_audio_chunk_size | [int64](#int64) | optional | Optional. The processing chunk of THIS stream, in samples at the pipeline's sampling rate: the server buffers the incoming audio until it holds this many samples and only then runs the voice-activity search, the sliding transcription and the turn detector, so it is the cadence at which an utterance can end (8000 samples at 16 kHz = 0.5 s; 1600 = 0.1 s). Overrides <code>StreamingSpeechRecognition.min_audio_chunk_size</code> of the pipeline config for this stream only. Allowed: 320 - 32000 (20 ms - 2 s at 16 kHz); a smaller chunk costs proportionally more voice-activity and transcription requests. Read from the first request of a stream that carries it; a later request cannot change a running stream's chunk. Unset: the pipeline's value. |
+| transcribe_not_final_period_seconds | [float](#float) | optional | Optional. The minimum new audio, in seconds, between two non-final transcriptions of an utterance (the partial-transcription cadence; applies only while <code>transcribe_not_final</code> is in force). Overrides <code>StreamingSpeechRecognition.transcribe_not_final_period_seconds</code> of the pipeline config and the server setting <code>ONDEWO_S2T_INFERENCE_SLIDING_PERIOD_OF_TRANSCRIPT</code> for this request only. Allowed: (0, 5]; a shorter period costs proportionally more transcription requests. The server checks the period once per processing chunk, so the effective cadence is rounded up to whole <code>min_audio_chunk_size</code> chunks. Unset: the pipeline's value, then the server setting. |
 
 
 
@@ -19063,6 +20458,19 @@ else (crosstalk, background speakers, barge-in) can be rejected.</p>
 | TSD_METHOD_NONE | 1 | Disable target-speaker detection. Every detected utterance is transcribed, whoever spoke it. |
 | TSD_METHOD_PYANNOTE | 2 | Reuse the Pyannote segmentation model, which distinguishes speakers in addition to detecting speech. Available only when Pyannote is also the active VAD. |
 | TSD_METHOD_WESPEAKER | 3 | Use the dedicated WeSpeaker embedding model, configured by <code>VoiceActivityDetection.wespeaker_tsd</code>. Works with any VAD. |
+
+
+
+<a name="ondewo.s2t.TurnDetectionContextTurn.Role"></a>
+
+### TurnDetectionContextTurn.Role
+<p>Who spoke the turn.</p>
+
+| Name | Number | Description |
+| ---- | ------ | ----------- |
+| ROLE_UNSPECIFIED | 0 | Unspecified role. The server ignores a turn without a role. |
+| ROLE_USER | 1 | The caller, i.e. the speaker whose turns are detected. |
+| ROLE_ASSISTANT | 2 | The voice assistant. Its text is what the caller HEARD, i.e. the spoken prefix of an interrupted utterance. |
 
 
 
@@ -19781,13 +21189,19 @@ all other properties of this generated audio.</p>
 
 <p><b>2. SSML <code>&lt;say-as&gt;</code> tags (local vits / qwen3-tts and cloud providers)</b></p> <p>Rewrites the enclosed text into its spoken form (spelled out letters, digits, symbols, ...). Supported by the local normalization pipeline and forwarded to the cloud providers.</p> <ul> <li>Phone: <pre><code>&lt;say-as interpret-as=&quot;phone&quot;&gt;+12354321&lt;/say-as&gt;</code></pre></li> <li>Email: <pre><code>&lt;say-as interpret-as=&quot;email&quot;&gt;voices@ondewo.com&lt;/say-as&gt;</code></pre></li> <li>URL: <pre><code>&lt;say-as interpret-as=&quot;url&quot;&gt;ondewo.com/en/&lt;/say-as&gt;</code></pre></li> <li>Spell (spell out each character): <pre><code>&lt;say-as interpret-as=&quot;spell&quot;&gt;AP732&lt;/say-as&gt;</code></pre></li> <li>Spell with names (e.g. &quot;A like Anton&quot;): <pre><code>&lt;say-as interpret-as=&quot;spell-with-names&quot;&gt;AHO32&lt;/say-as&gt;</code></pre></li> <li>Callsigns short: <pre><code>&lt;say-as interpret-as=&quot;callsign-short&quot;&gt;AUA439&lt;/say-as&gt;</code></pre></li> <li>Callsigns long: <pre><code>&lt;say-as interpret-as=&quot;callsign-long&quot;&gt;AAL439&lt;/say-as&gt;</code></pre></li> </ul>
 
-<p><b>3. Pauses / breaks</b></p> <ul> <li>Break tag (seconds): <pre><code>I am going to take a 2 seconds break &lt;break time=&quot;2.0&quot;/&gt; done</code></pre></li> <li>Break tag (milliseconds, cloud providers): <pre><code>please wait &lt;break time=&quot;500ms&quot;/&gt; done</code></pre></li> </ul>
+<p><b>3. Pauses / breaks</b></p> <p>Inserts a pause of the given duration into the spoken text. Supported by the local pipelines and forwarded to the cloud providers. The duration is written either with a unit - <code>ms</code> for milliseconds, <code>s</code> for seconds - or as a bare number, which is read as <b>seconds</b>: <code>&lt;break time=&quot;0.5&quot;/&gt;</code> is half a second. A bare number is therefore never milliseconds; <code>&lt;break time=&quot;2000&quot;/&gt;</code> asks for 2000 seconds and is rejected with an error - write <code>&lt;break time=&quot;2000ms&quot;/&gt;</code> instead. A single break may not be longer than 60 seconds.</p> <ul> <li>Milliseconds: <pre><code>Welcome to our service. &lt;break time=&quot;500ms&quot;/&gt; How can I help you today?</code></pre></li> <li>Seconds: <pre><code>Please hold the line. &lt;break time=&quot;2s&quot;/&gt; Thank you for waiting.</code></pre></li> <li>Seconds without a unit: <pre><code>Let me check that for you. &lt;break time=&quot;1.5&quot;/&gt; I found your booking.</code></pre></li> </ul>
 
 <p><b>4. Phonemes / pronunciation control</b></p> <p>The phoneme alphabet depends exclusively on the model type:</p> <p><b>4a. IPA phonemes (vits and cloud providers only)</b> - the vits models and the cloud providers (Amazon Polly, Microsoft Azure and Google Cloud TTS) control pronunciation with the SSML <code>&lt;phoneme&gt;</code> element using the IPA alphabet (<code>alphabet=&quot;ipa&quot;</code>). The IPA string goes in the <code>ph</code> attribute and the written word between the tags:</p> <ul> <li>English: <pre><code>I would like a &lt;phoneme alphabet=&quot;ipa&quot; ph=&quot;t&#601;&#712;me&#618;to&#650;&quot;&gt;tomato&lt;/phoneme&gt; please</code></pre></li> <li>German: <pre><code>Ich h&auml;tte gerne ein &lt;phoneme alphabet=&quot;ipa&quot; ph=&quot;&#712;ba&#618;&#643;pi&#720;l&quot;&gt;Beispiel&lt;/phoneme&gt; bitte</code></pre></li> </ul> <p><b>4b. Arpabet phonemes (glow model only)</b> - the glow model controls pronunciation with Arpabet phonemes, supplied through the same SSML <code>&lt;phoneme&gt;</code> element but with <code>alphabet=&quot;arpabet&quot;</code>. The ARPAbet transcription goes in the <code>ph</code> attribute and the written word between the tags (the phonemes are <b>not</b> written in curly braces <code>{}</code> in the request text):</p> <ul> <li>English: <pre><code>Please say &lt;phoneme alphabet=&quot;arpabet&quot; ph=&quot;T EH1 S T&quot;&gt;test&lt;/phoneme&gt; out loud</code></pre></li> <li>German: <pre><code>Ich sage &lt;phoneme alphabet=&quot;arpabet&quot; ph=&quot;T EH1 S T&quot;&gt;test&lt;/phoneme&gt; laut</code></pre></li> </ul> <p><b>4c. qwen3-tts has no phonemes - use the verbalized form instead</b> - the qwen3-tts models do <b>not</b> support Arpabet or IPA phonemes; the <code>&lt;phoneme&gt;</code> element and its <code>ph</code> string are ignored. Instead, to have a special text (symbols, codes, abbreviations, ...) spoken correctly, pass its <b>verbalization</b>: the plain, written-out spoken form of the text in the target language. For example, to have <code>A-7+8*</code> pronounced correctly:</p> <ul> <li>English: <pre><code>ai dash seven plus eight asterisk</code></pre></li> <li>German: <pre><code>ah bindestrich sieben plus acht sternchen</code></pre></li> </ul>
 
-<p><b>5. Voice control for qwen3-tts (emotion / style / prosody)</b></p> <p>These ONDEWO-namespaced tags are compiled into the model instruction and stripped from the spoken text, so the transcription stays the plain sentence while the delivery changes. They only take effect on the qwen3-tts <b>CustomVoice</b> model; on the base and voicedesign models they are stripped and a warning is logged.</p> <ul> <li>Style - one of the five primary styles <code>apologetic</code>, <code>calm</code>, <code>empathetic</code>, <code>firm</code>, <code>lively</code>, or one of the accepted synonyms <code>cheerful</code> / <code>happy</code> / <code>joyful</code>, <code>sad</code> / <code>sorrowful</code>, <code>angry</code> / <code>furious</code>, <code>excited</code>, <code>serious</code>, <code>tender</code> / <code>gentle</code>. An unknown name falls back to <code>neutral</code> and a warning is logged: <pre><code>&lt;ondewo:style name=&quot;calm&quot;&gt;please stay calm everything will be fine&lt;/ondewo:style&gt;</code></pre></li> <li>Emphasis - selects the intensity tier of the chosen style: <code>strong</code> (intense), <code>moderate</code> (the default when no emphasis is given) or <code>reduced</code> / <code>none</code> (mild): <pre><code>&lt;ondewo:style name=&quot;firm&quot;&gt;&lt;emphasis level=&quot;strong&quot;&gt;listen carefully&lt;/emphasis&gt;&lt;/ondewo:style&gt;</code></pre></li> <li>Prosody - <code>rate</code> (<code>x-slow</code>/<code>slow</code>/<code>medium</code>/<code>fast</code>/<code>x-fast</code> or a percentage such as <code>+20%</code>/<code>-20%</code>/<code>120%</code>), <code>pitch</code> (<code>x-low</code>/<code>low</code>/<code>medium</code>/<code>high</code>/<code>x-high</code>, a semitone offset such as <code>+4st</code>/<code>-4st</code> or a percentage such as <code>+10%</code>/<code>-10%</code>) and <code>volume</code> (<code>silent</code>/<code>x-soft</code>/<code>soft</code>/<code>medium</code>/<code>loud</code>/<code>x-loud</code> or a decibel offset such as <code>+6dB</code>/<code>-6dB</code>): <pre><code>&lt;prosody rate=&quot;slow&quot; pitch=&quot;+4st&quot; volume=&quot;loud&quot;&gt;hello there&lt;/prosody&gt;</code></pre></li> <li>Nested combination (style + emphasis + prosody): <pre><code>&lt;ondewo:style name=&quot;calm&quot;&gt;&lt;emphasis level=&quot;moderate&quot;&gt;&lt;prosody rate=&quot;slow&quot; pitch=&quot;low&quot; volume=&quot;soft&quot;&gt;hello there&lt;/prosody&gt;&lt;/emphasis&gt;&lt;/ondewo:style&gt;</code></pre></li> <li>Free-form instruction (CustomVoice only) - describe the delivery in natural language in the <code>instruction</code> attribute. The attribute value is used verbatim as the model instruction and takes precedence over the style / emphasis / prosody tags; the wrapped inner text is kept as the spoken text and it should be always in English: <pre><code>&lt;ondewo:instruct instruction=&quot;speak slowly in a warm and reassuring tone&quot;&gt;hello there&lt;/ondewo:instruct&gt;</code></pre></li> <li>Inline audio tags (CustomVoice only) - emotional expressions / sound effects in square brackets. They are compiled into the instruction and stripped from the spoken text. The supported tags are: <ul> <li>Voice-related: <code>[laughs]</code>, <code>[laughs harder]</code>, <code>[starts laughing]</code>, <code>[wheezing]</code>, <code>[whispers]</code>, <code>[sighs]</code>, <code>[exhales]</code>, <code>[sarcastic]</code>, <code>[curious]</code>, <code>[excited]</code>, <code>[crying]</code>, <code>[snorts]</code>, <code>[mischievously]</code></li> <li>Sound effects: <code>[gunshot]</code>, <code>[applause]</code>, <code>[clapping]</code>, <code>[explosion]</code>, <code>[swallows]</code>, <code>[gulps]</code></li> <li>Unique and special: <code>[sings]</code>, <code>[woo]</code>, <code>[fart]</code></li> <li>Accent (variable form): <code>[strong &lt;accent&gt; accent]</code>, e.g. <code>[strong French accent]</code></li> </ul> <pre><code>[whispers] hello there</code></pre></li> </ul> <p>See also <code>RequestConfig.instruction</code> for supplying the instruction / voice description directly instead of embedding it in the text.</p>
+<p><b>5. Voice control for qwen3-tts (style / prosody)</b></p> <p>These ONDEWO-namespaced tags are compiled into the model instruction and stripped from the spoken text, so the transcription stays the plain sentence while the delivery changes. They only take effect on the qwen3-tts <b>CustomVoice</b> model; on the base and voicedesign models they are stripped from the text without changing the delivery.</p> <p>qwen3-tts is steered by a natural-language instruction rather than by numeric parameters, so every dimension has exactly <b>one step per direction</b> and the values listed below are the whole vocabulary. Any other value is reported in the server log and then ignored.</p> <ul> <li>Style - one of the four primary styles <code>apologetic</code>, <code>calm</code>, <code>empathetic</code>, <code>firm</code>, or one of the accepted synonyms <code>cheerful</code> / <code>happy</code> / <code>joyful</code>, <code>sad</code> / <code>sorrowful</code>, <code>angry</code> / <code>furious</code>, <code>excited</code>. An unknown name falls back to <code>neutral</code>, which adds no style at all, and a warning is logged: <pre><code>&lt;ondewo:style name=&quot;calm&quot;&gt;please stay calm everything will be fine&lt;/ondewo:style&gt;</code></pre></li> <li>Prosody - <code>rate</code> (<code>slow</code> / <code>medium</code> / <code>fast</code>) and <code>volume</code> (<code>soft</code> / <code>medium</code> / <code>loud</code>), where <code>medium</code> means &quot;leave it alone&quot; and adds nothing. <pre><code>&lt;prosody rate=&quot;slow&quot; volume=&quot;loud&quot;&gt;hello there&lt;/prosody&gt;</code></pre></li> <li>Nested combination (style + prosody): <pre><code>&lt;ondewo:style name=&quot;calm&quot;&gt;&lt;prosody rate=&quot;slow&quot; volume=&quot;soft&quot;&gt;hello there&lt;/prosody&gt;&lt;/ondewo:style&gt;</code></pre></li> <li>Free-form instruction (CustomVoice only) - describe the delivery in natural language in the <code>instruction</code> attribute. The attribute value is used verbatim as the model instruction and takes precedence over the style / prosody tags; the wrapped inner text is kept as the spoken text and the instruction should always be written in English: <pre><code>&lt;ondewo:instruct instruction=&quot;speak slowly in a warm and reassuring tone&quot;&gt;hello there&lt;/ondewo:instruct&gt;</code></pre></li> <li>Inline style tags (CustomVoice only) - the same style vocabulary written positionally in square brackets, so <code>[calm] hello there</code> and the <code>&lt;ondewo:style name=&quot;calm&quot;&gt;</code> element compile to the identical instruction. Such a tag applies to everything that follows it until another tag or the <code>[Neutral]</code> reset replaces it. <pre><code>[excited] we shipped it. it works. [calm] now let us review.</code></pre></li> </ul>
 
-<p><b>6. Provider-specific SSML (cloud pipelines only)</b></p> <p>Each cloud provider documents its own SSML vocabulary; use the elements matching the provider behind the selected pipeline. Standard <code>&lt;prosody&gt;</code>, <code>&lt;emphasis&gt;</code> and <code>&lt;break&gt;</code> are common to all three.</p> <ul> <li>Google Cloud TTS: <pre><code>&lt;google:style name=&quot;calm&quot;&gt;please stay calm everything will be fine&lt;/google:style&gt;</code></pre></li> <li>Microsoft Azure: <pre><code>&lt;mstts:express-as style=&quot;cheerful&quot;&gt;please stay calm everything will be fine&lt;/mstts:express-as&gt;</code></pre></li> <li>Amazon Polly (whispered): <pre><code>&lt;amazon:effect name=&quot;whispered&quot;&gt;please stay calm everything will be fine&lt;/amazon:effect&gt;</code></pre></li> <li>Amazon Polly (soft phonation): <pre><code>&lt;amazon:effect phonation=&quot;soft&quot;&gt;please stay calm everything will be fine&lt;/amazon:effect&gt;</code></pre></li> </ul> |
+<p><b>Styles supported per voice</b></p> <p>A style is rendered by the voice, not by the markup, and no voice renders all of them. The table below lists what each qwen3-tts speaker supports; the speaker is fixed by the pipeline selected through <code>RequestConfig.t2s_pipeline_id</code>.</p> <p>The table applies to <b>both</b> ways of asking for a style. The <code>&lt;ondewo:style name=&quot;calm&quot;&gt;</code> element and the inline <code>[calm]</code> tag compile to the very same instruction, so they are limited by the voice in exactly the same way - switching from one spelling to the other never makes a style work that the voice cannot render.</p> <p><b>The server does not check your request against this table.</b> If you ask a voice for a style it cannot render, the request still succeeds: audio is returned, no error is raised and nothing is written to the log. The only symptom is that the voice sounds exactly as it would have without the style. Use the table to choose a suitable voice <i>before</i> sending the request.</p> <p>This is not the same as writing a style name that does not exist, which <b>is</b> reported: <code>&lt;ondewo:style name=&quot;bored&quot;&gt;</code> logs a warning and falls back to no style, because <code>bored</code> is outside the vocabulary listed further above. The silent case is a name that is in the vocabulary but beyond what the selected voice can do, for example <code>excited</code> on <code>dylan</code>.</p> <table> <tr><th>Voice</th><th>apologetic</th><th>calm</th><th>empathetic</th><th>firm</th><th>cheerful</th><th>sad</th><th>excited</th><th>angry</th></tr> <tr><td>aiden</td><td>-</td><td>-</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>-</td><td>-</td></tr> <tr><td>dylan</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr> <tr><td>eric</td><td>-</td><td>-</td><td>-</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>-</td><td>-</td></tr> <tr><td>ono_anna</td><td>-</td><td>-</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>-</td></tr> <tr><td>ryan</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>-</td></tr> <tr><td>serena</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td><td>-</td></tr> <tr><td>sohee</td><td>-</td><td>-</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>-</td><td>-</td></tr> <tr><td>uncle_fu</td><td>-</td><td>-</td><td>-</td><td>&#10003;</td><td>&#10003;</td><td>-</td><td>-</td><td>&#10003;</td></tr> <tr><td>vivian</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>-</td></tr> </table> <p>Notes on the table:</p> <ul> <li><code>dylan</code> and <code>serena</code> render no style at all - use them for neutral delivery only, and see the prosody table below for what little can still be varied on them.</li> <li><code>ryan</code> and <code>vivian</code> cover the widest range, so they are the safest choice when the style is chosen at runtime rather than fixed in advance.</li> <li>A synonym behaves exactly like its primary name, so <code>happy</code> / <code>joyful</code> work wherever <code>cheerful</code> does, as do <code>sorrowful</code> for <code>sad</code> and <code>furious</code> for <code>angry</code>.</li> </ul>
+
+<p><b>Prosody supported per voice</b></p> <p>Rate and volume are limited per voice in the same way, and the same caveat applies: the server does not check this table either, so asking for a step a voice cannot render succeeds silently and leaves the delivery unchanged. Only the two steps of each dimension are listed - <code>medium</code> (equally <code>default</code>) is available on every voice, because it means &quot;leave this dimension alone&quot; and sends no instruction at all.</p> <table> <tr><th>Voice</th><th>rate slow</th><th>rate fast</th><th>volume soft</th><th>volume loud</th></tr> <tr><td>aiden</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td></tr> <tr><td>dylan</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>-</td></tr> <tr><td>eric</td><td>&#10003;</td><td>-</td><td>&#10003;</td><td>-</td></tr> <tr><td>ono_anna</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td></tr> <tr><td>ryan</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td></tr> <tr><td>serena</td><td>&#10003;</td><td>-</td><td>-</td><td>-</td></tr> <tr><td>sohee</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td></tr> <tr><td>uncle_fu</td><td>-</td><td>-</td><td>&#10003;</td><td>&#10003;</td></tr> <tr><td>vivian</td><td>&#10003;</td><td>&#10003;</td><td>&#10003;</td><td>-</td></tr> </table> <p>Notes on the table:</p> <ul> <li><code>uncle_fu</code> does not respond to <code>rate</code> at all - change its pace by rewriting the text, or pick another voice.</li> <li><code>dylan</code> renders no style but does respond to <code>rate</code> and to <code>volume=&quot;soft&quot;</code>, so <code>&lt;prosody&gt;</code> is the only delivery control that works on it.</li> <li><code>serena</code> is the most constrained voice: <code>rate=&quot;slow&quot;</code> is the one control it responds to, and no style, no <code>rate=&quot;fast&quot;</code> and no volume step has any effect. Treat it as a fixed delivery that can only be slowed down.</li> <li><code>ono_anna</code>, <code>ryan</code>, <code>sohee</code> and <code>aiden</code> render every step of both dimensions.</li> </ul>
+
+<p>Every control is positional - it colours exactly the text it wraps - and a delivery change may only land on a <b>sentence boundary</b>. Markup wrapping part of a sentence is widened to the whole sentence, because a sentence fragment sent as a complete utterance makes the model hallucinate. Each delivery change also costs one additional inference call, so marking up whole sentences, or leaving the text unmarked, synthesises fastest.</p> <p>See also <code>RequestConfig.instruction</code> for supplying the instruction / voice description directly instead of embedding it in the text.</p>
+
+<p><b>6. Provider-specific SSML (cloud pipelines only)</b></p> <p>Each cloud provider documents its own SSML vocabulary; use the elements matching the provider behind the selected pipeline. Standard <code>&lt;prosody&gt;</code>, <code>&lt;emphasis&gt;</code> and <code>&lt;break&gt;</code> are common to all three.</p> <ul> <li>Google Cloud TTS: <pre><code>&lt;google:style name=&quot;calm&quot;&gt;please stay calm everything will be fine&lt;/google:style&gt;</code></pre> More information: <a href="https://docs.cloud.google.com/text-to-speech/docs/ssml#styles">Google Cloud TTS - SSML styles</a></li> <li>Microsoft Azure: <pre><code>&lt;mstts:express-as style=&quot;cheerful&quot;&gt;please stay calm everything will be fine&lt;/mstts:express-as&gt;</code></pre> More information: <a href="https://learn.microsoft.com/en-us/azure/ai-services/speech-service/speech-synthesis-markup-voice">Microsoft Azure - speech synthesis markup, voice and speaking styles</a></li> <li>Amazon Polly (whispered): <pre><code>&lt;amazon:effect name=&quot;whispered&quot;&gt;please stay calm everything will be fine&lt;/amazon:effect&gt;</code></pre> More information: <a href="https://docs.aws.amazon.com/polly/latest/dg/whispered-tag.html">Amazon Polly - whispered speech with amazon:effect</a></li> <li>Amazon Polly (soft phonation): <pre><code>&lt;amazon:effect phonation=&quot;soft&quot;&gt;please stay calm everything will be fine&lt;/amazon:effect&gt;</code></pre></li> </ul> |
 | config | [RequestConfig](#ondewo.t2s.RequestConfig) |  | Required. Represents the specifications needed to do the text to speech transformation. |
 
 
